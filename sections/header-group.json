@@ -19,7 +19,17 @@
           "settings": {
             "new_text": "Welcome to store",
             "text_color": "#ffff00",
-            "text_color_mobile": "#ffffff"
+            "text_transform": "uppercase",
+            "font_weight": "bold",
+            "text_decoration": "none",
+            "font_style": "normal",
+            "letter_spacing": 0,
+            "text_color_mobile": "#ffffff",
+            "text_transform_mobile": "none",
+            "font_weight_mobile": "default",
+            "text_decoration_mobile": "none",
+            "font_style_mobile": "default",
+            "letter_spacing_mobile": 0
           }
         },
         "icon_MahXyh": {
@@ -35,7 +45,17 @@
           "settings": {
             "new_text": "Welcome to store",
             "text_color": "#ffffff",
-            "text_color_mobile": "#ffffff"
+            "text_transform": "none",
+            "font_weight": "normal",
+            "text_decoration": "none",
+            "font_style": "normal",
+            "letter_spacing": 0,
+            "text_color_mobile": "#ffffff",
+            "text_transform_mobile": "none",
+            "font_weight_mobile": "default",
+            "text_decoration_mobile": "none",
+            "font_style_mobile": "default",
+            "letter_spacing_mobile": 0
           }
         },
         "icon_XJHnkj": {
