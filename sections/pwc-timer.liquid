@@ -33,7 +33,7 @@
     flex-direction: {{ section.settings.layout_direction }};
     align-items: center;
     justify-content: space-between;
-    gap: 30px;
+    gap: {{ section.settings.content_gap }}px;
   }
 
   .pc-countdown-text {
@@ -46,38 +46,59 @@
     color: {{ heading_color }};
     margin-top: 0;
     margin-bottom: {{ section.settings.heading_spacing }}px;
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    text-transform: {{ section.settings.heading_transform }};
+    line-height: {{ section.settings.heading_line_height }};
+    letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+  }
+
+  .pc-countdown-text .pc-countdown-description {
+    font-size: {{ section.settings.description_size }}px;
+    font-weight: {{ section.settings.description_weight }};
+    text-transform: {{ section.settings.description_transform }};
+    line-height: {{ section.settings.description_line_height }};
+    letter-spacing: {{ section.settings.description_letter_spacing }}px;
+    margin-bottom: {{ section.settings.description_spacing }}px;
   }
 
   .pc-countdown-timer {
     display: flex;
-    gap: 15px;
+    gap: {{ section.settings.countdown_gap }}px;
     flex: 1;
     justify-content: {{ section.settings.countdown_alignment }};
+    flex-wrap: wrap;
   }
 
   .pc-countdown-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 80px;
+    min-width: {{ section.settings.countdown_item_min_width }}px;
   }
 
   .pc-countdown-number {
     font-size: {{ section.settings.number_size }}px;
-    font-weight: bold;
+    font-weight: {{ section.settings.number_weight }};
     color: {{ section.settings.number_color }};
     {% if section.settings.number_background_color != blank %}
       background-color: {{ section.settings.number_background_color }};
-      padding: 8px 12px;
+      padding: {{ section.settings.number_padding_vertical }}px {{ section.settings.number_padding_horizontal }}px;
       border-radius: {{ section.settings.number_border_radius }}px;
     {% endif %}
+    line-height: 1;
+    text-align: center;
+    width: 100%;
   }
 
   .pc-countdown-label {
     font-size: {{ section.settings.label_size }}px;
-    text-transform: uppercase;
+    text-transform: {{ section.settings.label_transform }};
     color: {{ section.settings.label_color }};
     margin-top: {{ section.settings.label_spacing }}px;
+    font-weight: {{ section.settings.label_weight }};
+    letter-spacing: {{ section.settings.label_letter_spacing }}px;
+    line-height: {{ section.settings.label_line_height }};
   }
 
   .pc-countdown-icon {
@@ -89,20 +110,84 @@
     margin-bottom: {{ section.settings.icon_spacing }}px;
   }
 
+  .pc-countdown-expired {
+    font-size: {{ section.settings.expired_message_size }}px;
+    font-weight: {{ section.settings.expired_message_weight }};
+    color: {{ section.settings.expired_message_color }};
+    text-align: center;
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    .pc-countdown-content {
+      gap: {{ section.settings.content_gap_tablet }}px;
+    }
+
+    .pc-countdown-timer {
+      gap: {{ section.settings.countdown_gap_tablet }}px;
+    }
+
+    .pc-countdown-text h2 {
+      font-size: {{ section.settings.heading_size_tablet }}px;
+    }
+
+    .pc-countdown-text .pc-countdown-description {
+      font-size: {{ section.settings.description_size_tablet }}px;
+    }
+
+    .pc-countdown-number {
+      font-size: {{ section.settings.number_size_tablet }}px;
+    }
+
+    .pc-countdown-label {
+      font-size: {{ section.settings.label_size_tablet }}px;
+    }
+
+    .pc-countdown-item {
+      min-width: {{ section.settings.countdown_item_min_width_tablet }}px;
+    }
+  }
+
   @media (max-width: 768px) {
     .pc-countdown-content {
       flex-direction: column;
+      gap: {{ section.settings.content_gap_mobile }}px;
     }
 
     .pc-countdown-text,
     .pc-countdown-timer {
       text-align: center;
       justify-content: center;
+      width: 100%;
+    }
+
+    .pc-countdown-timer {
+      gap: {{ section.settings.countdown_gap_mobile }}px;
     }
 
     {{ sid }} {
       padding-top: {{ padding_vertical_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+    .pc-countdown-text h2 {
+      font-size: {{ section.settings.heading_size_mobile }}px;
+    }
+
+    .pc-countdown-text .pc-countdown-description {
+      font-size: {{ section.settings.description_size_mobile }}px;
+    }
+
+    .pc-countdown-number {
+      font-size: {{ section.settings.number_size_mobile }}px;
+    }
+
+    .pc-countdown-label {
+      font-size: {{ section.settings.label_size_mobile }}px;
+    }
+
+    .pc-countdown-item {
+      min-width: {{ section.settings.countdown_item_min_width_mobile }}px;
     }
   }
 {%- endstyle -%}
@@ -125,7 +210,7 @@
           </div>
         {% endif %}
         {% if section.settings.description != blank %}
-          <div>{{ section.settings.description }}</div>
+          <div class="pc-countdown-description">{{ section.settings.description }}</div>
         {% endif %}
       </div>
     {% endif %}
@@ -165,7 +250,7 @@
           </div>
         {% endif %}
         {% if section.settings.description != blank %}
-          <div>{{ section.settings.description }}</div>
+          <div class="pc-countdown-description">{{ section.settings.description }}</div>
         {% endif %}
       </div>
     {% endif %}
@@ -185,7 +270,7 @@
 
         if (distance < 0) {
           clearInterval(countdown);
-          element.innerHTML = "{{ section.settings.expired_message }}";
+          element.innerHTML = '<div class="pc-countdown-expired">{{ section.settings.expired_message }}</div>';
           return;
         }
 
@@ -204,7 +289,6 @@
     });
   });
 </script>
-
 {% schema %}
 {
   "name": "Pwc Countdown Timer",
@@ -406,13 +490,256 @@
     },
     {
       "type": "range",
+      "id": "heading_size",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (desktop)",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "heading_size_tablet",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (tablet)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size (mobile)",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "heading_weight",
+      "label": "Heading font weight",
+      "options": [
+        {"value": "100", "label": "Thin"},
+        {"value": "200", "label": "Extra Light"},
+        {"value": "300", "label": "Light"},
+        {"value": "400", "label": "Normal"},
+        {"value": "500", "label": "Medium"},
+        {"value": "600", "label": "Semi Bold"},
+        {"value": "700", "label": "Bold"},
+        {"value": "800", "label": "Extra Bold"},
+        {"value": "900", "label": "Black"}
+      ],
+      "default": "700"
+    },
+    {
+      "type": "select",
+      "id": "heading_transform",
+      "label": "Heading text transform",
+      "options": [
+        {"value": "none", "label": "None"},
+        {"value": "uppercase", "label": "Uppercase"},
+        {"value": "lowercase", "label": "Lowercase"},
+        {"value": "capitalize", "label": "Capitalize"}
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "heading_line_height",
+      "min": 0.8,
+      "max": 2.5,
+      "step": 0.1,
+      "label": "Heading line height",
+      "default": 1.2
+    },
+    {
+      "type": "range",
+      "id": "heading_letter_spacing",
+      "min": -2,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Heading letter spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading bottom spacing",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size (desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_size_tablet",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size (tablet)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size (mobile)",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "description_weight",
+      "label": "Description font weight",
+      "options": [
+        {"value": "100", "label": "Thin"},
+        {"value": "200", "label": "Extra Light"},
+        {"value": "300", "label": "Light"},
+        {"value": "400", "label": "Normal"},
+        {"value": "500", "label": "Medium"},
+        {"value": "600", "label": "Semi Bold"},
+        {"value": "700", "label": "Bold"},
+        {"value": "800", "label": "Extra Bold"},
+        {"value": "900", "label": "Black"}
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "description_transform",
+      "label": "Description text transform",
+      "options": [
+        {"value": "none", "label": "None"},
+        {"value": "uppercase", "label": "Uppercase"},
+        {"value": "lowercase", "label": "Lowercase"},
+        {"value": "capitalize", "label": "Capitalize"}
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "description_line_height",
+      "min": 0.8,
+      "max": 2.5,
+      "step": 0.1,
+      "label": "Description line height",
+      "default": 1.5
+    },
+    {
+      "type": "range",
+      "id": "description_letter_spacing",
+      "min": -2,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Description letter spacing",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "description_spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Description bottom spacing",
+      "default": 20
+    },
+    {
+      "type": "range",
       "id": "number_size",
       "min": 12,
       "max": 72,
       "step": 2,
       "unit": "px",
-      "label": "Number size",
+      "label": "Number size (desktop)",
       "default": 36
+    },
+    {
+      "type": "range",
+      "id": "number_size_tablet",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Number size (tablet)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "number_size_mobile",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Number size (mobile)",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "number_weight",
+      "label": "Number font weight",
+      "options": [
+        {"value": "100", "label": "Thin"},
+        {"value": "200", "label": "Extra Light"},
+        {"value": "300", "label": "Light"},
+        {"value": "400", "label": "Normal"},
+        {"value": "500", "label": "Medium"},
+        {"value": "600", "label": "Semi Bold"},
+        {"value": "700", "label": "Bold"},
+        {"value": "800", "label": "Extra Bold"},
+        {"value": "900", "label": "Black"}
+      ],
+      "default": "700"
+    },
+    {
+      "type": "range",
+      "id": "number_padding_vertical",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Number padding vertical",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "number_padding_horizontal",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Number padding horizontal",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "number_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Number background radius",
+      "default": 4
     },
     {
       "type": "range",
@@ -421,18 +748,76 @@
       "max": 24,
       "step": 1,
       "unit": "px",
-      "label": "Label size",
+      "label": "Label size (desktop)",
       "default": 14
     },
     {
       "type": "range",
-      "id": "heading_spacing",
-      "min": 0,
-      "max": 30,
+      "id": "label_size_tablet",
+      "min": 10,
+      "max": 20,
       "step": 1,
       "unit": "px",
-      "label": "Heading bottom spacing",
-      "default": 15
+      "label": "Label size (tablet)",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "label_size_mobile",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Label size (mobile)",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "label_weight",
+      "label": "Label font weight",
+      "options": [
+        {"value": "100", "label": "Thin"},
+        {"value": "200", "label": "Extra Light"},
+        {"value": "300", "label": "Light"},
+        {"value": "400", "label": "Normal"},
+        {"value": "500", "label": "Medium"},
+        {"value": "600", "label": "Semi Bold"},
+        {"value": "700", "label": "Bold"},
+        {"value": "800", "label": "Extra Bold"},
+        {"value": "900", "label": "Black"}
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "label_transform",
+      "label": "Label text transform",
+      "options": [
+        {"value": "none", "label": "None"},
+        {"value": "uppercase", "label": "Uppercase"},
+        {"value": "lowercase", "label": "Lowercase"},
+        {"value": "capitalize", "label": "Capitalize"}
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "label_line_height",
+      "min": 0.8,
+      "max": 2.5,
+      "step": 0.1,
+      "label": "Label line height",
+      "default": 1.2
+    },
+    {
+      "type": "range",
+      "id": "label_letter_spacing",
+      "min": -2,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Label letter spacing",
+      "default": 0.5
     },
     {
       "type": "range",
@@ -443,6 +828,34 @@
       "unit": "px",
       "label": "Label top spacing",
       "default": 5
+    },
+    {
+      "type": "range",
+      "id": "expired_message_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Expired message size",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "expired_message_weight",
+      "label": "Expired message weight",
+      "options": [
+        {"value": "400", "label": "Normal"},
+        {"value": "500", "label": "Medium"},
+        {"value": "600", "label": "Semi Bold"},
+        {"value": "700", "label": "Bold"}
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "expired_message_color",
+      "label": "Expired message color",
+      "default": "#d32f2f"
     },
     {
       "type": "header",
@@ -479,30 +892,20 @@
       "default": "#000000"
     },
     {
-      "type": "range",
-      "id": "number_border_radius",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Number background radius",
-      "default": 4
-    },
-    {
       "type": "color",
       "id": "label_color",
       "label": "Countdown labels color",
       "default": "#333333"
     },
     {
-      "type": "header",
-      "content": "Background"
-    },
-    {
       "type": "color",
       "id": "background_color",
       "label": "Background color",
       "default": "#f5f5f5"
+    },
+    {
+      "type": "header",
+      "content": "Background Image"
     },
     {
       "type": "image_picker",
@@ -599,7 +1002,97 @@
     },
     {
       "type": "header",
-      "content": "Spacing"
+      "content": "Spacing & Gaps"
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Content gap (desktop)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "content_gap_tablet",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Content gap (tablet)",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "content_gap_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Content gap (mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "countdown_gap",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Countdown gap (desktop)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "countdown_gap_tablet",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Countdown gap (tablet)",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "countdown_gap_mobile",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Countdown gap (mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "countdown_item_min_width",
+      "min": 50,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Countdown item min width (desktop)",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "countdown_item_min_width_tablet",
+      "min": 40,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Countdown item min width (tablet)",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "countdown_item_min_width_mobile",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Countdown item min width (mobile)",
+      "default": 60
     },
     {
       "type": "range",
