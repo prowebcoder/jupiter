@@ -58,7 +58,7 @@
         "colorBackground": "#000000",
         "colorText": "#ffffff",
         "link": "",
-        "direction": "left",
+        "direction": "right",
         "marquee_height": 46,
         "font_size": 18,
         "icon_size": 18,
