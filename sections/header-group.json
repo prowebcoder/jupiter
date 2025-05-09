@@ -18,7 +18,7 @@
           "type": "text",
           "settings": {
             "new_text": "Welcome to store",
-            "text_color": "#a9ff00",
+            "text_color": "#ffff00",
             "text_color_mobile": "#ffffff"
           }
         },
