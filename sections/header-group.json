@@ -18,6 +18,7 @@
           "type": "text",
           "settings": {
             "new_text": "Welcome to store",
+            "text_color": "#a9ff00",
             "text_color_mobile": "#ffffff"
           }
         },
@@ -33,6 +34,7 @@
           "type": "text",
           "settings": {
             "new_text": "Welcome to store",
+            "text_color": "#ffffff",
             "text_color_mobile": "#ffffff"
           }
         },
