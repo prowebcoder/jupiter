@@ -10,6 +10,7 @@
 -%}
 
 <style>
+  /* Desktop styles */
   {{ sid }} .pc-marquee.section-{{ section.id }} {
     display: flex;
     align-items: center;
@@ -95,13 +96,6 @@
 
     {{ sid }} .pc-marquee.section-{{ section.id }} .pc-content {
       font-size: {{ section.settings.font_size_mobile }}px;
-      {% for block in section.blocks %}
-        {% if block.type == 'text' and block.settings.text_color_mobile != blank %}
-          .pc-content-{{ block.id }} {
-            color: {{ block.settings.text_color_mobile }} !important;
-          }
-        {% endif %}
-      {% endfor %}
     }
 
     {{ sid }} .pc-marquee.section-{{ section.id }} .pc-image {
@@ -112,19 +106,30 @@
     {{ sid }} .pc-marquee.section-{{ section.id }} .pc-icon {
       width: {{ image_width_mobile }}px;
       height: {{ image_height_mobile }}px;
-      {% for block in section.blocks %}
-        {% if block.type == 'icon' and block.settings.icon_color_mobile != blank %}
-          .pc-icon-{{ block.id }} {
-            color: {{ block.settings.icon_color_mobile }} !important;
-          }
-        {% endif %}
-      {% endfor %}
     }
 
     {{ sid }} .pc-marquee.section-{{ section.id }} .pc-icon svg {
       width: {{ section.settings.icon_size_mobile }}px;
       height: {{ section.settings.icon_size_mobile }}px;
     }
+
+    /* Block-specific mobile overrides */
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'text' -%}
+          {%- if block.settings.text_color_mobile != blank -%}
+            {{ sid }} .pc-marquee.section-{{ section.id }} .pc-content-{{ block.id }} {
+              color: {{ block.settings.text_color_mobile }} !important;
+            }
+          {%- endif -%}
+        {%- when 'icon' -%}
+          {%- if block.settings.icon_color_mobile != blank -%}
+            {{ sid }} .pc-marquee.section-{{ section.id }} .pc-icon-{{ block.id }} {
+              color: {{ block.settings.icon_color_mobile }} !important;
+            }
+          {%- endif -%}
+      {%- endcase -%}
+    {%- endfor -%}
   }
 </style>
 
@@ -138,7 +143,14 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'text' -%}
-            <span class="pc-content pc-text pc-content-{{ block.id }}">{{ block.settings.new_text | escape }}</span>
+            <span
+              class="pc-content pc-text pc-content-{{ block.id }}"
+              {% if block.settings.text_color_mobile != blank %}
+                data-mobile-color="{{ block.settings.text_color_mobile }}"
+              {% endif %}
+            >
+              {{ block.settings.new_text | escape }}
+            </span>
           {%- when 'image' -%}
             {%- if block.settings.image != blank -%}
               <img
@@ -151,7 +163,13 @@
               >
             {%- endif -%}
           {%- when 'icon' -%}
-            <div class="pc-icon pc-icon-{{ block.id }}" style="color: {{ block.settings.icon_color }};">
+            <div
+              class="pc-icon pc-icon-{{ block.id }}"
+              style="color: {{ block.settings.icon_color }};"
+              {% if block.settings.icon_color_mobile != blank %}
+                data-mobile-color="{{ block.settings.icon_color_mobile }}"
+              {% endif %}
+            >
               {%- case block.settings.icon_name -%}
                 {% when 'shopping-cart' %}
                   <svg
@@ -290,16 +308,20 @@
   "name": "Pwc Marquee",
   "settings": [
     {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
       "type": "color",
       "id": "colorBackground",
       "label": "Background color",
-      "default": "#000"
+      "default": "#000000"
     },
     {
       "type": "color",
       "id": "colorText",
       "label": "Text color",
-      "default": "#fff"
+      "default": "#ffffff"
     },
     {
       "type": "url",
@@ -329,7 +351,8 @@
       "max": 200,
       "step": 2,
       "default": 46,
-      "label": "Marquee height"
+      "label": "Marquee height (px)",
+      "unit": "px"
     },
     {
       "type": "range",
@@ -338,7 +361,8 @@
       "max": 100,
       "step": 2,
       "default": 24,
-      "label": "Font size"
+      "label": "Font size (px)",
+      "unit": "px"
     },
     {
       "type": "range",
@@ -347,7 +371,8 @@
       "max": 100,
       "step": 2,
       "default": 24,
-      "label": "Icon size"
+      "label": "Icon size (px)",
+      "unit": "px"
     },
     {
       "type": "range",
@@ -356,7 +381,8 @@
       "max": 100,
       "step": 2,
       "default": 20,
-      "label": "Horizontal padding"
+      "label": "Horizontal padding (px)",
+      "unit": "px"
     },
     {
       "type": "range",
@@ -365,7 +391,8 @@
       "max": 200,
       "step": 5,
       "default": 40,
-      "label": "Image width (px)"
+      "label": "Image width (px)",
+      "unit": "px"
     },
     {
       "type": "range",
@@ -374,7 +401,8 @@
       "max": 200,
       "step": 5,
       "default": 40,
-      "label": "Image height (px)"
+      "label": "Image height (px)",
+      "unit": "px"
     },
     {
       "type": "range",
@@ -384,6 +412,82 @@
       "step": 1,
       "default": 12,
       "label": "Animation speed (seconds)"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "color",
+      "id": "colorBackground_mobile",
+      "label": "Background color (mobile)",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "colorText_mobile",
+      "label": "Text color (mobile)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "marquee_height_mobile",
+      "min": 24,
+      "max": 200,
+      "step": 2,
+      "default": 36,
+      "label": "Marquee height (mobile) (px)",
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "font_size_mobile",
+      "min": 8,
+      "max": 60,
+      "step": 2,
+      "default": 16,
+      "label": "Font size (mobile) (px)",
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "icon_size_mobile",
+      "min": 8,
+      "max": 60,
+      "step": 2,
+      "default": 16,
+      "label": "Icon size (mobile) (px)",
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "default": 10,
+      "label": "Horizontal padding (mobile) (px)",
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "image_width_mobile",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 30,
+      "label": "Image width (mobile) (px)",
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "image_height_mobile",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 30,
+      "label": "Image height (mobile) (px)",
+      "unit": "px"
     }
   ],
   "blocks": [
@@ -397,6 +501,12 @@
           "id": "new_text",
           "default": "Welcome to store",
           "label": "Text"
+        },
+        {
+          "type": "color",
+          "id": "text_color_mobile",
+          "label": "Text color (mobile)",
+          "default": "#ffffff"
         }
       ]
     },
@@ -466,6 +576,12 @@
           "id": "icon_color",
           "label": "Icon color",
           "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "icon_color_mobile",
+          "label": "Icon color (mobile)",
+          "default": "#ffffff"
         }
       ]
     }
@@ -475,23 +591,33 @@
       "name": "Pwc Marquee",
       "blocks": [
         {
-          "type": "text"
+          "type": "text",
+          "settings": {
+            "new_text": "Welcome to our store",
+            "text_color_mobile": "#ffffff"
+          }
         },
         {
           "type": "icon",
           "settings": {
             "icon_name": "shopping-cart",
-            "icon_color": "#ff0000"
+            "icon_color": "#ff0000",
+            "icon_color_mobile": "#ff0000"
           }
         },
         {
-          "type": "text"
+          "type": "text",
+          "settings": {
+            "new_text": "Free shipping on all orders",
+            "text_color_mobile": "#ffffff"
+          }
         },
         {
           "type": "icon",
           "settings": {
             "icon_name": "star",
-            "icon_color": "#ffff00"
+            "icon_color": "#ffff00",
+            "icon_color_mobile": "#ffff00"
           }
         }
       ]
