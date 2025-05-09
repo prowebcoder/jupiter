@@ -17,27 +17,31 @@
         "text_jTgzNG": {
           "type": "text",
           "settings": {
-            "new_text": "Welcome to store"
+            "new_text": "Welcome to store",
+            "text_color_mobile": "#ffffff"
           }
         },
         "icon_MahXyh": {
           "type": "icon",
           "settings": {
             "icon_name": "shopping-cart",
-            "icon_color": "#ff0000"
+            "icon_color": "#ff0000",
+            "icon_color_mobile": "#ffffff"
           }
         },
         "text_EFkhk3": {
           "type": "text",
           "settings": {
-            "new_text": "Welcome to store"
+            "new_text": "Welcome to store",
+            "text_color_mobile": "#ffffff"
           }
         },
         "icon_XJHnkj": {
           "type": "icon",
           "settings": {
             "icon_name": "star",
-            "icon_color": "#ffff00"
+            "icon_color": "#ffff00",
+            "icon_color_mobile": "#ffffff"
           }
         }
       },
@@ -54,12 +58,20 @@
         "link": "",
         "direction": "left",
         "marquee_height": 46,
-        "font_size": 12,
+        "font_size": 28,
         "icon_size": 22,
         "padding_horizontal": 20,
         "image_width": 40,
         "image_height": 40,
-        "speed": 22
+        "speed": 22,
+        "colorBackground_mobile": "#000000",
+        "colorText_mobile": "#ffffff",
+        "marquee_height_mobile": 36,
+        "font_size_mobile": 14,
+        "icon_size_mobile": 16,
+        "padding_horizontal_mobile": 10,
+        "image_width_mobile": 30,
+        "image_height_mobile": 30
       }
     },
     "announcement-bar": {
