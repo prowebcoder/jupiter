@@ -1,0 +1,691 @@
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+
+{%- style -%}
+{{ sid }} .pc-hotspot-point-{{ section.id }}:hover + .pc-hotspot-tooltip-{{ section.id }} {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+{{ sid }} .pc-hotspot-section-{{ section.id }} {
+  position: relative;
+  margin: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px auto {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px auto;
+  max-width: {{ section.settings.max_width }}px;
+  padding: 0 20px;
+}
+{{ sid }} .pc-hotspot-image-wrapper-{{ section.id }} {
+  position: relative;
+  width: 100%;
+  border-radius: {{ section.settings.image_border_radius }}px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  contain: layout paint;
+}
+{{ sid }} .pc-hotspot-image-{{ section.id }} {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.5s ease;
+}
+{{ sid }} .pc-hotspot-point-{{ section.id }} {
+  position: absolute;
+  width: {{ section.settings.hotspot_size }}px;
+  height: {{ section.settings.hotspot_size }}px;
+  border-radius: 50%;
+  background-color: {{ section.settings.hotspot_color }};
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 0 0 rgba({{ section.settings.hotspot_color | color_to_rgb | remove: 'rgb(' | remove: ')' }}, 0.4);
+  z-index: 2;
+  border: 2px solid white;
+}
+{{ sid }} .pc-hotspot-point-{{ section.id }}:hover {
+  transform: translate(-50%, -50%) scale(1.3);
+}
+{{ sid }} .pc-hotspot-tooltip-{{ section.id }} {
+  position: absolute;
+  background: {{ section.settings.tooltip_background }};
+  color: {{ section.settings.tooltip_text_color }};
+  padding: {{ section.settings.tooltip_padding }}px;
+  border-radius: {{ section.settings.tooltip_border_radius }}px;
+  width: {{ section.settings.tooltip_width }}px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 10;
+  font-size: {{ section.settings.tooltip_font_size }}px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+  transform: translateY(20px);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+{{ sid }} .pc-hotspot-tooltip-{{ section.id }}.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+{{ sid }} .pc-hotspot-tooltip-{{ section.id }} {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), left 0.3s ease-out, top 0.3s ease-out;
+}
+{{ sid }} .pc-hotspot-tooltip-{{ section.id }} .pc-tooltip-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  color: {{ section.settings.tooltip_text_color }};
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.05);
+}
+{{ sid }} .pc-hotspot-tooltip-image {
+  margin-bottom: 16px;
+  border-radius: {{ section.settings.tooltip_image_border_radius }}px;
+  overflow: hidden;
+}
+{{ sid }} .pc-hotspot-tooltip-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+{{ sid }} .pc-hotspot-tooltip-heading {
+  margin: 0 0 12px 0;
+  color: {{ section.settings.tooltip_heading_color }};
+  font-size: {{ section.settings.tooltip_heading_size }}px;
+  font-weight: {{ section.settings.tooltip_heading_weight }};
+}
+{{ sid }} .pc-hotspot-tooltip-content {
+  margin-bottom: 16px;
+  line-height: 1.6;
+  color: {{ section.settings.tooltip_text_color | color_modify: 'alpha', 0.8 }};
+}
+{{ sid }} .pc-hotspot-tooltip-button {
+  margin-top: 16px;
+  display: inline-block;
+  padding: 10px 20px;
+  background: {{ section.settings.tooltip_button_background }};
+  color: {{ section.settings.tooltip_button_text_color }};
+  border-radius: {{ section.settings.tooltip_button_border_radius }}px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: {{ section.settings.tooltip_button_font_size }}px;
+  font-weight: 500;
+}
+@media screen and (min-width: 750px) {
+  {{ sid }} .pc-hotspot-section-{{ section.id }} {
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+  }
+}
+@media screen and (max-width: 749px) {
+  {{ sid }} .pc-hotspot-section-{{ section.id }} {
+    padding: 0 10px;
+  }
+  {{ sid }} .pc-hotspot-point-{{ section.id }} {
+    width: {{ section.settings.hotspot_size | times: 0.8 }}px;
+    height: {{ section.settings.hotspot_size | times: 0.8 }}px;
+  }
+  {{ sid }} .pc-hotspot-tooltip-{{ section.id }} {
+    width: calc(100vw - 40px);
+    max-width: 300px;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(20px) !important;
+    position: fixed;
+    bottom: 20px;
+    top: auto !important;
+  }
+  {{ sid }} .pc-hotspot-tooltip-{{ section.id }}.active {
+    transform: translateX(-50%) translateY(0) !important;
+  }
+  {{ sid }} .pc-hotspot-tooltip-heading {
+    font-size: {{ section.settings.tooltip_heading_size | times: 0.9 }}px;
+  }
+  {{ sid }} .pc-hotspot-tooltip-content {
+    font-size: {{ section.settings.tooltip_font_size | times: 0.9 }}px;
+  }
+  {{ sid }} .pc-hotspot-tooltip-button {
+    font-size: {{ section.settings.tooltip_button_font_size | times: 0.9 }}px;
+    padding: 8px 16px;
+  }
+}
+{%- endstyle -%}
+
+<div class="pc-hotspot-section-{{ section.id }}">
+  <div class="pc-hotspot-image-wrapper-{{ section.id }}">
+    {%- if section.settings.image != blank -%}
+      {%- assign image = section.settings.image -%}
+      <img
+        class="pc-hotspot-image-{{ section.id }}"
+        srcset="
+          {%- if image.width >= 375 -%}{{ image | image_url: width: 375 }} 375w,{%- endif -%}
+          {%- if image.width >= 550 -%}{{ image | image_url: width: 550 }} 550w,{%- endif -%}
+          {%- if image.width >= 750 -%}{{ image | image_url: width: 750 }} 750w,{%- endif -%}
+          {%- if image.width >= 1100 -%}{{ image | image_url: width: 1100 }} 1100w,{%- endif -%}
+          {%- if image.width >= 1500 -%}{{ image | image_url: width: 1500 }} 1500w,{%- endif -%}
+          {%- if image.width >= 1780 -%}{{ image | image_url: width: 1780 }} 1780w,{%- endif -%}
+          {%- if image.width >= 2000 -%}{{ image | image_url: width: 2000 }} 2000w,{%- endif -%}
+          {%- if image.width >= 3000 -%}{{ image | image_url: width: 3000 }} 3000w,{%- endif -%}
+          {%- if image.width >= 3840 -%}{{ image | image_url: width: 3840 }} 3840w,{%- endif -%}
+          {{ image | image_url }} {{ image.width }}w"
+        sizes="100vw"
+        src="{{ image | image_url: width: 1500 }}"
+        loading="lazy"
+        alt="{{ image.alt | escape }}"
+        width="{{ image.width }}"
+        height="{{ image.height }}"
+      >
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+
+    {%- for block in section.blocks -%}
+          <div class="pc-hotspot-point-{{ section.id }}" style="top: {{ block.settings.vertical_position }}%; left: {{ block.settings.horizontal_position }}%;" data-tooltip-id="pc-hotspot-tooltip-{{ block.id }}">
+                        {%- if section.settings.hotspot_icon == 'plus' -%}
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ section.settings.hotspot_icon_color }}" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>
+                          </svg>
+                        {%- elsif section.settings.hotspot_icon == 'info' -%}
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ section.settings.hotspot_icon_color }}" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 17H13V11H11V17ZM12 9.5C12.83 9.5 13.5 8.83 13.5 8C13.5 7.17 12.83 6.5 12 6.5C11.17 6.5 10.5 7.17 10.5 8C10.5 8.83 11.17 9.5 12 9.5ZM12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2Z"/>
+                          </svg>
+                        {%- elsif section.settings.hotspot_icon == 'question' -%}
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ section.settings.hotspot_icon_color }}" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 18H13V16H11V18ZM12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C9.79 6 8 7.79 8 10H10C10 8.9 10.9 8 12 8C13.1 8 14 8.9 14 10C14 12 11 11.75 11 15H13C13 12.75 16 12.5 16 10C16 7.79 14.21 6 12 6Z"/>
+                          </svg>
+                        {%- elsif section.settings.hotspot_icon == 'star' -%}
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ section.settings.hotspot_icon_color }}" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.62L12 2L9.19 8.62L2 9.24L7.45 13.97L5.82 21L12 17.27Z"/>
+                          </svg>
+                        {%- elsif section.settings.hotspot_icon == 'heart' -%}
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ section.settings.hotspot_icon_color }}" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z"/>
+                          </svg>
+                        {%- elsif section.settings.hotspot_icon == 'check' -%}
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ section.settings.hotspot_icon_color }}" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z"/>
+                          </svg>
+                        {%- else -%}
+                          <span style="color: {{ section.settings.hotspot_icon_color }};">{{ forloop.index }}</span>
+                        {%- endif -%}
+            </div>
+      <div class="pc-hotspot-tooltip-{{ section.id }}" id="pc-hotspot-tooltip-{{ block.id }}">
+        {%- if section.settings.show_tooltip_close -%}
+          <span class="pc-tooltip-close">×</span>
+        {%- endif -%}
+        {%- if block.settings.tooltip_image != blank -%}
+          <div class="pc-hotspot-tooltip-image">
+            <img
+              src="{{ block.settings.tooltip_image | image_url: width: 500 }}"
+              alt="{{ block.settings.tooltip_image.alt | escape }}"
+              loading="lazy"
+              width="500"
+              height="{{ 500 | divided_by: block.settings.tooltip_image.aspect_ratio | ceil }}"
+            >
+          </div>
+        {%- endif -%}
+        {%- if block.settings.tooltip_heading != blank -%}
+          <h4 class="pc-hotspot-tooltip-heading">{{ block.settings.tooltip_heading }}</h4>
+        {%- endif -%}
+        {%- if block.settings.tooltip_content != blank -%}
+          <div class="pc-hotspot-tooltip-content">{{ block.settings.tooltip_content }}</div>
+        {%- endif -%}
+        {%- if block.settings.button_label != blank -%}
+          <a href="{{ block.settings.button_link }}" class="pc-hotspot-tooltip-button">
+            {{ block.settings.button_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+	const sectionId = '{{ section.id }}';
+	const hotspots = document.querySelectorAll(`.pc-hotspot-point-{{section.id}}`);
+	const tooltipCloseButtons = document.querySelectorAll(`.pc-hotspot-tooltip-{{section.id}} .pc-tooltip-close`);
+	const imageWrapper = document.querySelector(`.pc-hotspot-image-wrapper-{{section.id}}`);
+
+	function positionTooltip(hotspot, tooltip) {
+		const hotspotRect = hotspot.getBoundingClientRect();
+		const containerRect = imageWrapper.getBoundingClientRect();
+		const tooltipWidth = tooltip.offsetWidth;
+		const tooltipHeight = tooltip.offsetHeight;
+		const hotspotX = hotspotRect.left - containerRect.left;
+		const hotspotY = hotspotRect.top - containerRect.top;
+		const hotspotRight = containerRect.width - (hotspotX + hotspot.offsetWidth);
+		const hotspotBottom = containerRect.height - (hotspotY + hotspot.offsetHeight);
+		const isMobile = window.innerWidth <= 749;
+		if (isMobile) {
+			tooltip.style.left = '50%';
+			tooltip.style.top = 'auto';
+			tooltip.style.bottom = '20px';
+			tooltip.style.transform = 'translateX(-50%)';
+			return;
+		}
+		let newLeft, newTop;
+		if (hotspotX > containerRect.width / 2) {
+			newLeft = hotspotX - tooltipWidth - 15;
+		} else {
+			newLeft = hotspotX + hotspot.offsetWidth + 15;
+		}
+		if (hotspotY > containerRect.height / 2) {
+			newTop = hotspotY - tooltipHeight - 15;
+		} else {
+			newTop = hotspotY + hotspot.offsetHeight + 15;
+		}
+		newLeft = Math.max(15, newLeft);
+		newLeft = Math.min(newLeft, containerRect.width - tooltipWidth - 15);
+		newTop = Math.max(15, newTop);
+		newTop = Math.min(newTop, containerRect.height - tooltipHeight - 15);
+		tooltip.style.left = `${newLeft}px`;
+		tooltip.style.top = `${newTop}px`;
+	}
+	hotspots.forEach(hotspot => {
+		const tooltipId = hotspot.getAttribute('data-tooltip-id');
+		const tooltip = document.getElementById(tooltipId);
+		hotspot.addEventListener('mouseenter', () => {
+			if (window.innerWidth > 749) {
+				positionTooltip(hotspot, tooltip);
+			}
+		});
+		hotspot.addEventListener('click', (e) => {
+			e.stopPropagation();
+			document.querySelectorAll(`.pc-hotspot-tooltip-${sectionId}`).forEach(t => {
+				if (t !== tooltip) t.classList.remove('active');
+			});
+			tooltip.classList.toggle('active');
+			positionTooltip(hotspot, tooltip);
+		});
+	});
+	tooltipCloseButtons.forEach(button => {
+		button.addEventListener('click', (e) => {
+			e.stopPropagation();
+			button.closest(`.pc-hotspot-tooltip-${sectionId}`).classList.remove('active');
+		});
+	});
+	document.addEventListener('click', (e) => {
+		if (!e.target.closest(`.pc-hotspot-point-${sectionId}`) && !e.target.closest(`.pc-hotspot-tooltip-${sectionId}`)) {
+			document.querySelectorAll(`.pc-hotspot-tooltip-${sectionId}`).forEach(tooltip => {
+				tooltip.classList.remove('active');
+			});
+		}
+	});
+	window.addEventListener('resize', function() {
+		document.querySelectorAll(`.pc-hotspot-tooltip-${sectionId}.active`).forEach(tooltip => {
+			const hotspotId = tooltip.id.replace('pc-hotspot-tooltip-', 'pc-hotspot-point-');
+			const hotspot = document.getElementById(hotspotId);
+			if (hotspot) {
+				positionTooltip(hotspot, tooltip);
+			}
+		});
+	});
+});
+</script>
+{% schema %}
+{
+  "name": "PWC - Advanced Hotspot",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Base Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Base Image",
+      "info": "Upload the main image for hotspots"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Image Border Radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 500,
+      "max": 2500,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum Width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Hotspot Settings"
+    },
+    {
+      "type": "range",
+      "id": "hotspot_size",
+      "min": 10,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Hotspot Size",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "hotspot_color",
+      "label": "Hotspot Color",
+      "default": "#FF5A5F"
+    },
+    {
+      "type": "select",
+      "id": "hotspot_icon",
+      "label": "Hotspot Icon",
+      "options": [
+        { "value": "none", "label": "Number" },
+        { "value": "plus", "label": "Plus" },
+        { "value": "question", "label": "Question" },
+        { "value": "info", "label": "Info" },
+        { "value": "star", "label": "Star" },
+        { "value": "heart", "label": "Heart" },
+        { "value": "check", "label": "Check" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "hotspot_icon_color",
+      "label": "Hotspot Icon Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Tooltip Settings"
+    },
+    {
+      "type": "range",
+      "id": "tooltip_width",
+      "min": 150,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "Tooltip Width",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "tooltip_padding",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Tooltip Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "tooltip_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Tooltip Border Radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "tooltip_image_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Tooltip Image Border Radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "tooltip_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Tooltip Text Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "tooltip_heading_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tooltip Heading Size",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "tooltip_heading_weight",
+      "label": "Tooltip Heading Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "tooltip_background",
+      "label": "Tooltip Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "tooltip_text_color",
+      "label": "Tooltip Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "tooltip_heading_color",
+      "label": "Tooltip Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tooltip_close",
+      "label": "Show Close Button",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Tooltip Button Settings"
+    },
+    {
+      "type": "range",
+      "id": "tooltip_button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "tooltip_button_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "tooltip_button_background",
+      "label": "Button Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "tooltip_button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hotspot",
+      "name": "Hotspot",
+      "settings": [
+        {
+          "type": "range",
+          "id": "horizontal_position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Horizontal Position",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "vertical_position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Vertical Position",
+          "default": 50
+        },
+        {
+          "type": "text",
+          "id": "hotspot_label",
+          "label": "Hotspot Label",
+          "info": "Optional label that appears on hover",
+          "default": "Feature"
+        },
+        {
+          "type": "select",
+          "id": "label_position",
+          "label": "Label Position",
+          "options": [
+            { "value": "right", "label": "Right" },
+            { "value": "left", "label": "Left" },
+            { "value": "top", "label": "Top" },
+            { "value": "bottom", "label": "Bottom" }
+          ],
+          "default": "right"
+        },
+        {
+          "type": "header",
+          "content": "Tooltip Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "tooltip_image",
+          "label": "Tooltip Image",
+          "info": "Optional image for the tooltip"
+        },
+        {
+          "type": "text",
+          "id": "tooltip_heading",
+          "label": "Tooltip Heading",
+          "default": "Feature Highlight"
+        },
+        {
+          "type": "richtext",
+          "id": "tooltip_content",
+          "label": "Tooltip Content",
+          "default": "<p>Describe this feature in detail.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC - Advanced Hotspot",
+      "blocks": [
+        {
+          "type": "hotspot",
+          "settings": {
+            "horizontal_position": 25,
+            "vertical_position": 35,
+            "hotspot_label": "Material",
+            "label_position": "right",
+            "tooltip_heading": "Premium Material",
+            "tooltip_content": "<p>Made with 100% organic cotton for maximum comfort and durability.</p>",
+            "button_label": "Shop Collection"
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "horizontal_position": 65,
+            "vertical_position": 60,
+            "hotspot_label": "Design",
+            "label_position": "top",
+            "tooltip_heading": "Innovative Design",
+            "tooltip_content": "<p>Ergonomic design that adapts to your body for all-day comfort.</p>",
+            "button_label": "View Details"
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "horizontal_position": 80,
+            "vertical_position": 25,
+            "hotspot_label": "Eco-Friendly",
+            "label_position": "left",
+            "tooltip_heading": "Sustainable Materials",
+            "tooltip_content": "<p>Our products are made with environmentally friendly materials and processes.</p>",
+            "button_label": "Our Mission"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
