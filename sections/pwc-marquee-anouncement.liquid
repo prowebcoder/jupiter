@@ -1,8 +1,11 @@
 {%- liquid
   assign sid = '#shopify-section-' | append: section.id
   assign padding_horizontal = section.settings.padding_horizontal
+  assign padding_horizontal_mobile = section.settings.padding_horizontal_mobile
   assign image_width = section.settings.image_width
   assign image_height = section.settings.image_height
+  assign image_width_mobile = section.settings.image_width_mobile
+  assign image_height_mobile = section.settings.image_height_mobile
   assign direction = section.settings.direction
 -%}
 
@@ -76,6 +79,53 @@
       transform: translateX(0);
     }
   }
+
+  /* Mobile styles */
+  @media screen and (max-width: 749px) {
+    {{ sid }} .pc-marquee.section-{{ section.id }} {
+      height: {{ section.settings.marquee_height_mobile }}px;
+      background: {{ section.settings.colorBackground_mobile | default: section.settings.colorBackground }};
+      color: {{ section.settings.colorText_mobile | default: section.settings.colorText }};
+      padding: 0 {{ padding_horizontal_mobile }}px;
+    }
+
+    {{ sid }} .pc-marquee.section-{{ section.id }} a {
+      color: {{ section.settings.colorText_mobile | default: section.settings.colorText }};
+    }
+
+    {{ sid }} .pc-marquee.section-{{ section.id }} .pc-content {
+      font-size: {{ section.settings.font_size_mobile }}px;
+      {% for block in section.blocks %}
+        {% if block.type == 'text' and block.settings.text_color_mobile != blank %}
+          .pc-content-{{ block.id }} {
+            color: {{ block.settings.text_color_mobile }} !important;
+          }
+        {% endif %}
+      {% endfor %}
+    }
+
+    {{ sid }} .pc-marquee.section-{{ section.id }} .pc-image {
+      width: {{ image_width_mobile }}px;
+      height: {{ image_height_mobile }}px;
+    }
+
+    {{ sid }} .pc-marquee.section-{{ section.id }} .pc-icon {
+      width: {{ image_width_mobile }}px;
+      height: {{ image_height_mobile }}px;
+      {% for block in section.blocks %}
+        {% if block.type == 'icon' and block.settings.icon_color_mobile != blank %}
+          .pc-icon-{{ block.id }} {
+            color: {{ block.settings.icon_color_mobile }} !important;
+          }
+        {% endif %}
+      {% endfor %}
+    }
+
+    {{ sid }} .pc-marquee.section-{{ section.id }} .pc-icon svg {
+      width: {{ section.settings.icon_size_mobile }}px;
+      height: {{ section.settings.icon_size_mobile }}px;
+    }
+  }
 </style>
 
 <div class="pc-marquee section-{{ section.id }}" role="region" {{ block.shopify_attributes }}>
@@ -88,7 +138,7 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'text' -%}
-            <span class="pc-content pc-text">{{ block.settings.new_text | escape }}</span>
+            <span class="pc-content pc-text pc-content-{{ block.id }}">{{ block.settings.new_text | escape }}</span>
           {%- when 'image' -%}
             {%- if block.settings.image != blank -%}
               <img
@@ -101,7 +151,7 @@
               >
             {%- endif -%}
           {%- when 'icon' -%}
-            <div class="pc-icon" style="color: {{ block.settings.icon_color }};">
+            <div class="pc-icon pc-icon-{{ block.id }}" style="color: {{ block.settings.icon_color }};">
               {%- case block.settings.icon_name -%}
                 {% when 'shopping-cart' %}
                   <svg
