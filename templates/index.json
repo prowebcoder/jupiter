@@ -167,59 +167,6 @@
         "padding_bottom": 36
       }
     },
-    "multicolumn": {
-      "type": "multicolumn",
-      "blocks": {
-        "column1": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column2": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column3": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3"
-      ],
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "image_width": "third",
-        "image_ratio": "adapt",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "center",
-        "background_style": "none",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "pwc_timer_4WcWDa": {
       "type": "pwc-timer",
       "name": "Pwc Countdown Timer",
@@ -233,7 +180,7 @@
         "heading": "Limited Time Offer",
         "description": "<p>Hurry up! This offer ends soon.</p>",
         "icon": "",
-        "icon_position": "above_heading",
+        "icon_position": "below_heading",
         "icon_size": 24,
         "icon_spacing": 10,
         "day_label": "Days",
@@ -242,22 +189,60 @@
         "second_label": "Secs",
         "expired_message": "The offer has expired!",
         "end_date": "2025-6-31 23:59:59",
-        "number_size": 36,
-        "label_size": 14,
+        "heading_size": 36,
+        "heading_size_tablet": 30,
+        "heading_size_mobile": 24,
+        "heading_weight": "700",
+        "heading_transform": "none",
+        "heading_line_height": 1.2,
+        "heading_letter_spacing": 0,
         "heading_spacing": 15,
+        "description_size": 16,
+        "description_size_tablet": 15,
+        "description_size_mobile": 14,
+        "description_weight": "600",
+        "description_transform": "uppercase",
+        "description_line_height": 1.5,
+        "description_letter_spacing": 0,
+        "description_spacing": 20,
+        "number_size": 36,
+        "number_size_tablet": 30,
+        "number_size_mobile": 24,
+        "number_weight": "700",
+        "number_padding_vertical": 8,
+        "number_padding_horizontal": 12,
+        "number_border_radius": 4,
+        "label_size": 14,
+        "label_size_tablet": 13,
+        "label_size_mobile": 12,
+        "label_weight": "400",
+        "label_transform": "uppercase",
+        "label_line_height": 1.2,
+        "label_letter_spacing": 0.5,
         "label_spacing": 5,
+        "expired_message_size": 18,
+        "expired_message_weight": "600",
+        "expired_message_color": "#d32f2f",
         "heading_color": "#00ff0e",
         "text_color": "#333333",
         "icon_color": "#000000",
         "number_color": "#ffffff",
         "number_background_color": "#000000",
-        "number_border_radius": 4,
         "label_color": "#333333",
         "background_color": "#f5f5f5",
         "background_image": "shopify://shop_images/download_7.webp",
         "background_size": "cover",
         "background_position": "center center",
         "background_repeat": "no-repeat",
+        "content_gap": 30,
+        "content_gap_tablet": 25,
+        "content_gap_mobile": 20,
+        "countdown_gap": 15,
+        "countdown_gap_tablet": 12,
+        "countdown_gap_mobile": 10,
+        "countdown_item_min_width": 80,
+        "countdown_item_min_width_tablet": 70,
+        "countdown_item_min_width_mobile": 60,
         "padding_top": 40,
         "padding_bottom": 40,
         "padding_top_mobile": 30,
@@ -271,7 +256,6 @@
     "featured_collection",
     "collage",
     "video",
-    "multicolumn",
     "pwc_timer_4WcWDa"
   ]
 }
