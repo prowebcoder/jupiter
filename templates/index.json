@@ -205,7 +205,7 @@
       "name": "Newsletter with Image",
       "settings": {
         "layout_direction": "row",
-        "content_width": 1200,
+        "content_width": 1600,
         "gap_between": 50,
         "heading": "Subscribe to our newsletter",
         "heading_size": 36,
