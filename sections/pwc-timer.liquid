@@ -20,8 +20,30 @@
       background-size: {{ section.settings.background_size }};
       background-position: {{ section.settings.background_position }};
       background-repeat: {{ section.settings.background_repeat }};
+      {% if section.settings.parallax_effect %}
+        background-attachment: fixed;
+        position: relative;
+        overflow: hidden;
+      {% endif %}
     {% endif %}
   }
+
+  {% if section.settings.parallax_effect and section.settings.background_image != blank %}
+    {{ sid }}::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+    .pc-countdown-section-{{ section.id }} {
+      position: relative;
+      z-index: 2;
+    }
+  {% endif %}
 
   .pc-countdown-section-{{ section.id }} {
     max-width: {{ section.settings.container_width }}px;
@@ -168,6 +190,9 @@
     {{ sid }} {
       padding-top: {{ padding_vertical_mobile }}px;
       padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+      {% if section.settings.parallax_effect %}
+        background-attachment: scroll !important;
+      {% endif %}
     }
 
     .pc-countdown-text h2 {
@@ -258,36 +283,74 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const countdownElements = document.querySelectorAll('[data-countdown]');
+document.addEventListener('DOMContentLoaded', function() {
+  // Countdown timer functionality
+  const countdownElements = document.querySelectorAll('[data-countdown]');
 
-    countdownElements.forEach(element => {
-      const endDate = new Date(element.getAttribute('data-countdown')).getTime();
+  countdownElements.forEach(element => {
+    const endDate = new Date(element.getAttribute('data-countdown')).getTime();
 
-      const countdown = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = endDate - now;
+    const countdown = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = endDate - now;
 
-        if (distance < 0) {
-          clearInterval(countdown);
-          element.innerHTML = '<div class="pc-countdown-expired">{{ section.settings.expired_message }}</div>';
-          return;
-        }
+      if (distance < 0) {
+        clearInterval(countdown);
+        element.innerHTML = '<div class="pc-countdown-expired">{{ section.settings.expired_message }}</div>';
+        return;
+      }
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        if (element.querySelector('[data-days]')) {
-          element.querySelector('[data-days]').textContent = days.toString().padStart(2, '0');
-          element.querySelector('[data-hours]').textContent = hours.toString().padStart(2, '0');
-          element.querySelector('[data-minutes]').textContent = minutes.toString().padStart(2, '0');
-          element.querySelector('[data-seconds]').textContent = seconds.toString().padStart(2, '0');
-        }
-      }, 1000);
-    });
+      if (element.querySelector('[data-days]')) {
+        element.querySelector('[data-days]').textContent = days.toString().padStart(2, '0');
+        element.querySelector('[data-hours]').textContent = hours.toString().padStart(2, '0');
+        element.querySelector('[data-minutes]').textContent = minutes.toString().padStart(2, '0');
+        element.querySelector('[data-seconds]').textContent = seconds.toString().padStart(2, '0');
+      }
+    }, 1000);
   });
+
+  // Parallax effect functionality
+  {% if section.settings.parallax_effect and section.settings.background_image != blank %}
+    const parallaxSection = document.querySelector('{{ sid }}');
+    
+    if (parallaxSection) {
+      // Modern requestAnimationFrame approach
+      function updateParallax() {
+        const scrollPosition = window.pageYOffset;
+        const parallaxSpeed = {{ section.settings.parallax_speed | default: 0.5 }};
+        const backgroundPosition = `center ${scrollPosition * parallaxSpeed}px`;
+        parallaxSection.style.backgroundPosition = backgroundPosition;
+        requestAnimationFrame(updateParallax);
+      }
+      
+      // Start the parallax effect
+      requestAnimationFrame(updateParallax);
+      
+      // Fallback for mobile devices where fixed backgrounds don't work well
+      function isMobile() {
+        return window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      }
+      
+      if (isMobile()) {
+        parallaxSection.style.backgroundAttachment = 'scroll';
+      }
+      
+      // Handle resize events
+      window.addEventListener('resize', function() {
+        if (isMobile()) {
+          parallaxSection.style.backgroundAttachment = 'scroll';
+        } else {
+          parallaxSection.style.backgroundAttachment = 'fixed';
+        }
+      });
+    }
+  {% endif %}
+});
 </script>
 {% schema %}
 {
@@ -911,6 +974,23 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "Background image"
+    },
+    {
+      "type": "checkbox",
+      "id": "parallax_effect",
+      "label": "Enable parallax effect",
+      "default": false,
+      "info": "Creates a scrolling parallax effect for the background image"
+    },
+    {
+      "type": "range",
+      "id": "parallax_speed",
+      "min": 0.1,
+      "max": 1.5,
+      "step": 0.1,
+      "label": "Parallax speed",
+      "default": 0.5,
+      "info": "How fast the background moves relative to scrolling"
     },
     {
       "type": "select",
