@@ -172,7 +172,7 @@
       "name": "Pwc Countdown Timer",
       "settings": {
         "container_width": 1200,
-        "padding_horizontal": 20,
+        "padding_horizontal": 15,
         "text_position": "left",
         "layout_direction": "row",
         "text_alignment": "left",
