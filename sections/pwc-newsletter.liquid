@@ -1,67 +1,110 @@
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+
 {%- style -%}
-  .newsletter-{{ section.id }} {
+  {{ sid }} .pc-newsletter {
     background-color: {{ section.settings.background_color }};
     color: {{ section.settings.text_color }};
     padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+    position: relative;
+    overflow: hidden;
   }
 
-  .newsletter-{{ section.id }} .newsletter__wrapper {
+  {{ sid }} .pc-newsletter__wrapper {
     max-width: {{ section.settings.content_width }}px;
     margin: 0 auto;
     display: flex;
     flex-direction: {{ section.settings.layout_direction }};
     align-items: center;
     gap: {{ section.settings.gap_between }}px;
+    position: relative;
+    z-index: 2;
   }
 
-  .newsletter-{{ section.id }} .newsletter__content {
+  {{ sid }} .pc-newsletter__content {
     flex: 1;
     padding: 2rem;
   }
 
-  .newsletter-{{ section.id }} .newsletter__image-container {
+  {{ sid }} .pc-newsletter__image-container {
     flex: 1;
     position: relative;
     overflow: hidden;
     border-radius: {{ section.settings.image_border_radius }}px;
+    {% if section.settings.enable_parallax %}
+      min-height: 400px;
+    {% endif %}
   }
 
-  .newsletter-{{ section.id }} .newsletter__image {
+  {{ sid }} .pc-newsletter__image {
     width: 100%;
     height: auto;
     display: block;
     transition: transform 0.3s ease;
+    {% if section.settings.enable_parallax %}
+      position: absolute;
+      height: 100%;
+      object-fit: cover;
+      will-change: transform;
+    {% endif %}
   }
 
-  .newsletter-{{ section.id }} .newsletter__image:hover {
+  {{ sid }} .pc-newsletter__image:hover {
     transform: scale(1.03);
   }
 
-  .newsletter-{{ section.id }} .newsletter__heading {
+  /* Newsletter Layout Styles */
+  {{ sid }} .pc-newsletter__content--layout-1 {
+    background: transparent;
+  }
+
+  {{ sid }} .pc-newsletter__content--layout-2 {
+    background: {{ section.settings.content_background | default: '#ffffff' }};
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 3rem;
+  }
+
+  {{ sid }} .pc-newsletter__content--layout-3 {
+    background: linear-gradient(135deg, {{ section.settings.gradient_color_1 | default: '#f3f4f6' }}, {{ section.settings.gradient_color_2 | default: '#e5e7eb' }});
+    border-radius: 12px;
+    padding: 3rem;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  {{ sid }} .pc-newsletter__content--layout-4 {
+    background: {{ section.settings.content_background | default: '#ffffff' }};
+    border-radius: 0;
+    padding: 3rem;
+    border-left: 5px solid {{ section.settings.accent_color | default: '#000000' }};
+  }
+
+  {{ sid }} .pc-newsletter__heading {
     font-size: {{ section.settings.heading_size }}px;
     margin-bottom: 1.5rem;
     line-height: 1.2;
+    color: {{ section.settings.heading_color }};
   }
 
-  .newsletter-{{ section.id }} .newsletter__subheading {
+  {{ sid }} .pc-newsletter__subheading {
     font-size: {{ section.settings.subheading_size }}px;
     margin-bottom: 2rem;
     opacity: 0.9;
+    color: {{ section.settings.subheading_color }};
   }
 
-  .newsletter-{{ section.id }} .newsletter-form {
+  {{ sid }} .pc-newsletter-form {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     max-width: 500px;
   }
 
-  .newsletter-{{ section.id }} .newsletter-form__field-wrapper {
+  {{ sid }} .pc-newsletter-form__field-wrapper {
     flex: 1;
     min-width: 200px;
   }
 
-  .newsletter-{{ section.id }} .newsletter-form__field {
+  {{ sid }} .pc-newsletter-form__field {
     width: 100%;
     padding: 12px 15px;
     border: 1px solid {{ section.settings.input_border_color }};
@@ -69,9 +112,16 @@
     background-color: {{ section.settings.input_background_color }};
     color: {{ section.settings.input_text_color }};
     font-size: 16px;
+    transition: all 0.3s ease;
   }
 
-  .newsletter-{{ section.id }} .newsletter-form__button {
+  {{ sid }} .pc-newsletter-form__field:focus {
+    border-color: {{ section.settings.input_focus_border_color }};
+    outline: none;
+    box-shadow: 0 0 0 2px {{ section.settings.input_focus_shadow_color | default: 'rgba(0,0,0,0.05)' }};
+  }
+
+  {{ sid }} .pc-newsletter-form__button {
     padding: 12px 30px;
     background-color: {{ section.settings.button_background_color }};
     color: {{ section.settings.button_text_color }};
@@ -83,46 +133,100 @@
     font-size: 16px;
   }
 
-  .newsletter-{{ section.id }} .newsletter-form__button:hover {
+  {{ sid }} .pc-newsletter-form__button:hover {
     background-color: {{ section.settings.button_hover_background_color }};
     transform: translateY(-2px);
   }
 
+  {{ sid }} .pc-newsletter__decoration {
+    position: absolute;
+    z-index: 1;
+  }
+
+  {{ sid }} .pc-newsletter__decoration--1 {
+    top: -50px;
+    left: -50px;
+    width: 100px;
+    height: 100px;
+    background: {{ section.settings.decoration_color_1 | default: 'rgba(0,0,0,0.03)' }};
+    border-radius: 50%;
+  }
+
+  {{ sid }} .pc-newsletter__decoration--2 {
+    bottom: -30px;
+    right: -30px;
+    width: 60px;
+    height: 60px;
+    background: {{ section.settings.decoration_color_2 | default: 'rgba(0,0,0,0.03)' }};
+    border-radius: 50%;
+  }
+
   @media screen and (max-width: 768px) {
-    .newsletter-{{ section.id }} .newsletter__wrapper {
+    {{ sid }} .pc-newsletter__wrapper {
       flex-direction: column;
     }
 
-    .newsletter-{{ section.id }} .newsletter__content,
-    .newsletter-{{ section.id }} .newsletter__image-container {
+    {{ sid }} .pc-newsletter__content,
+    {{ sid }} .pc-newsletter__image-container {
       width: 100%;
     }
 
-    .newsletter-{{ section.id }} {
+    {{ sid }} .pc-newsletter {
       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
+    }
+
+    {{ sid }} .pc-newsletter__content--layout-2,
+    {{ sid }} .pc-newsletter__content--layout-3,
+    {{ sid }} .pc-newsletter__content--layout-4 {
+      padding: 2rem;
+    }
+
+    {{ sid }} .pc-newsletter__image-container {
+      min-height: 300px;
     }
   }
 {%- endstyle -%}
 
-<div class="newsletter-{{ section.id }}">
-  <div class="newsletter__wrapper">
-    <div class="newsletter__content">
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    {% if section.settings.enable_parallax %}
+      const parallaxElements = document.querySelectorAll('{{ sid }} .pc-newsletter__image');
+
+      window.addEventListener('scroll', function() {
+        const scrollPosition = window.pageYOffset;
+
+        parallaxElements.forEach(function(element) {
+          const elementOffset = element.parentElement.offsetTop;
+          const distance = scrollPosition - elementOffset;
+          element.style.transform = 'translateY(' + distance * {{ section.settings.parallax_speed | default: 0.1 }} + 'px)';
+        });
+      });
+    {% endif %}
+  });
+</script>
+
+<div class="pc-newsletter">
+  <div class="pc-newsletter__decoration pc-newsletter__decoration--1"></div>
+  <div class="pc-newsletter__decoration pc-newsletter__decoration--2"></div>
+
+  <div class="pc-newsletter__wrapper">
+    <div class="pc-newsletter__content pc-newsletter__content--layout-{{ section.settings.newsletter_layout }}">
       {%- if section.settings.heading != blank -%}
-        <h2 class="newsletter__heading">{{ section.settings.heading }}</h2>
+        <h2 class="pc-newsletter__heading">{{ section.settings.heading }}</h2>
       {%- endif -%}
 
       {%- if section.settings.subheading != blank -%}
-        <div class="newsletter__subheading">{{ section.settings.subheading }}</div>
+        <div class="pc-newsletter__subheading">{{ section.settings.subheading }}</div>
       {%- endif -%}
 
-      {%- form 'customer', class: 'newsletter-form' -%}
+      {%- form 'customer', class: 'pc-newsletter-form' -%}
         <input type="hidden" name="contact[tags]" value="newsletter">
-        <div class="newsletter-form__field-wrapper">
+        <div class="pc-newsletter-form__field-wrapper">
           <input
             id="NewsletterForm--{{ section.id }}"
             type="email"
             name="contact[email]"
-            class="newsletter-form__field"
+            class="pc-newsletter-form__field"
             value="{{ form.email }}"
             aria-required="true"
             autocorrect="off"
@@ -139,11 +243,11 @@
             required
           >
         </div>
-        <button type="submit" class="newsletter-form__button" name="commit">
+        <button type="submit" class="pc-newsletter-form__button" name="commit">
           {{ section.settings.button_label }}
         </button>
         {%- if form.errors -%}
-          <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
+          <small class="pc-newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
             {%- render 'icon-error' -%}
             {{ form.errors.translated_fields.email | capitalize }}
             {{ form.errors.messages.email -}}
@@ -153,7 +257,7 @@
 
       {%- if form.posted_successfully? -%}
         <h3
-          class="newsletter-form__message newsletter-form__message--success form__message"
+          class="pc-newsletter-form__message pc-newsletter-form__message--success form__message"
           id="Newsletter-success--{{ section.id }}"
           tabindex="-1"
           autofocus
@@ -164,7 +268,7 @@
       {%- endif -%}
     </div>
 
-    <div class="newsletter__image-container">
+    <div class="pc-newsletter__image-container">
       {%- if section.settings.image != blank -%}
         <img
           srcset="
@@ -181,13 +285,13 @@
           src="{{ section.settings.image | image_url: width: 750 }}"
           sizes="(min-width: 750px) 50vw, 100vw"
           loading="lazy"
-          class="newsletter__image"
+          class="pc-newsletter__image"
           alt="{{ section.settings.image.alt | escape }}"
           width="{{ section.settings.image.width }}"
           height="{{ section.settings.image.width | divided_by: section.settings.image.aspect_ratio }}"
         >
       {%- else -%}
-        {{ 'image' | placeholder_svg_tag: 'newsletter__image placeholder-svg' }}
+        {{ 'image' | placeholder_svg_tag: 'pc-newsletter__image placeholder-svg' }}
       {%- endif -%}
     </div>
   </div>
@@ -195,9 +299,9 @@
 
 {% schema %}
 {
-  "name": "Newsletter with Image",
+  "name": "PC Newsletter with Image",
   "tag": "section",
-  "class": "shopify-section--newsletter-with-image",
+  "class": "shopify-section--pc-newsletter-with-image",
   "settings": [
     {
       "type": "header",
@@ -218,6 +322,30 @@
         }
       ],
       "default": "row"
+    },
+    {
+      "type": "select",
+      "id": "newsletter_layout",
+      "label": "Newsletter design layout",
+      "options": [
+        {
+          "value": "1",
+          "label": "Layout 1 - Simple"
+        },
+        {
+          "value": "2",
+          "label": "Layout 2 - Card"
+        },
+        {
+          "value": "3",
+          "label": "Layout 3 - Gradient"
+        },
+        {
+          "value": "4",
+          "label": "Layout 4 - Accent Border"
+        }
+      ],
+      "default": "1"
     },
     {
       "type": "range",
@@ -260,6 +388,12 @@
       "default": 36
     },
     {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#333333"
+    },
+    {
       "type": "richtext",
       "id": "subheading",
       "default": "<p>Be the first to know about new products, special offers, and more.</p>",
@@ -274,6 +408,12 @@
       "unit": "px",
       "label": "Subheading font size",
       "default": 18
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#555555"
     },
     {
       "type": "text",
@@ -305,6 +445,62 @@
       "unit": "px",
       "label": "Image border radius",
       "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_parallax",
+      "label": "Enable parallax effect",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "parallax_speed",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "label": "Parallax speed",
+      "default": 2,
+      "info": "Lower values create slower parallax effects"
+    },
+    {
+      "type": "header",
+      "content": "Layout Design Options"
+    },
+    {
+      "type": "color",
+      "id": "content_background",
+      "label": "Content background (Layout 2 & 4)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color (Layout 4)",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_1",
+      "label": "Gradient color 1 (Layout 3)",
+      "default": "#f3f4f6"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Gradient color 2 (Layout 3)",
+      "default": "#e5e7eb"
+    },
+    {
+      "type": "color",
+      "id": "decoration_color_1",
+      "label": "Decoration color 1",
+      "default": "rgba(0,0,0,0.03)"
+    },
+    {
+      "type": "color",
+      "id": "decoration_color_2",
+      "label": "Decoration color 2",
+      "default": "rgba(0,0,0,0.03)"
     },
     {
       "type": "header",
@@ -339,6 +535,18 @@
       "id": "input_border_color",
       "label": "Input border color",
       "default": "#dddddd"
+    },
+    {
+      "type": "color",
+      "id": "input_focus_border_color",
+      "label": "Input focus border color",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "input_focus_shadow_color",
+      "label": "Input focus shadow color",
+      "default": "rgba(0,0,0,0.05)"
     },
     {
       "type": "color",
@@ -473,7 +681,7 @@
   ],
   "presets": [
     {
-      "name": "Newsletter with Image",
+      "name": "PC Newsletter with Image",
       "category": "Promotional"
     }
   ]
