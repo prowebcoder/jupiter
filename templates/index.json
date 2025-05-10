@@ -107,7 +107,7 @@
         "image": "shopify://shop_images/Aluminium.jpg",
         "image_border_radius": 0,
         "enable_parallax": true,
-        "parallax_speed": 4,
+        "parallax_speed": 2,
         "content_background": "#ffffff",
         "accent_color": "#ffffff",
         "gradient_color_1": "#f3f4f6",
