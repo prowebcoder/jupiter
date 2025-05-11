@@ -142,7 +142,7 @@
         <div class="pc-ba-image-container">
           <div class="pc-ba-before">
             <img class="pc-ba-slider-image" 
-                 src="{{ section.settings.bf_image | image_url }}" 
+                 src="{{ section.settings.bf_image | image_url }}"   width="{{ section.settings.bf_image.width }}" height="{{ section.settings.bf_image.height }}"
                  alt="Before image"
                  loading="lazy">
             <span class="pc-ba-badge pc-ba-badge-left">Before</span>
@@ -150,7 +150,7 @@
           
           <div class="pc-ba-after">
             <img class="pc-ba-slider-image" 
-                 src="{{ section.settings.af_image | image_url }}" 
+                 src="{{ section.settings.af_image | image_url }}"  width="{{ section.settings.af_image.width }}" height="{{ section.settings.af_image.height }}"
                  alt="After image"
                  loading="lazy">
             <span class="pc-ba-badge pc-ba-badge-right">After</span>
