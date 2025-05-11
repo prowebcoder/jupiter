@@ -101,6 +101,48 @@
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   }
 
+{{ sid }} .pc-ba-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    --position: 50%;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  {{ sid }} .pc-ba-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  {{ sid }} .pc-ba-before,
+  {{ sid }} .pc-ba-after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  {{ sid }} .pc-ba-before {
+    clip-path: inset(0 calc(100% - var(--position)) 0 0);
+    z-index: 2;
+  }
+
+  {{ sid }} .pc-ba-after {
+    z-index: 1;
+  }
+
+  {{ sid }} .pc-ba-slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+
   @media (max-width: 768px) {
     {{ sid }} .pc-ba-main {
       flex-direction: column;
