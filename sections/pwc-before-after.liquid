@@ -1,6 +1,326 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+
+<style>
+  {{ sid }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
   }
+
+  {{ sid }} .pc-ba-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  {{ sid }} .pc-ba-text-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  {{ sid }} .pc-ba-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    --position: 50%;
+    border-radius: 50%;
+  }
+
+  {{ sid }} .pc-ba-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  {{ sid }} .pc-ba-badge {
+    position: absolute;
+    bottom: 15px;
+    background: #fff;
+    padding: 0 5px;
+    border-radius: 5px;
+    color: #000;
+    z-index: 10;
+    display: {% if section.settings.show_badge %}block{% else %}none{% endif %};
+  }
+
+  {{ sid }} .pc-ba-badge-left {
+    left: 15px;
+  }
+
+  {{ sid }} .pc-ba-badge-right {
+    right: 15px;
+  }
+
+  {{ sid }} .pc-ba-slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  {{ sid }} .pc-ba-slider-input {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+  }
+
+  {{ sid }} .pc-ba-slider-line {
+    position: absolute;
+    inset: 0;
+    width: 0.2rem;
+    height: 100%;
+    background-color: #fff;
+    z-index: 10;
+    left: var(--position);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  {{ sid }} .pc-ba-slider-button {
+    position: absolute;
+    background-color: #fff;
+    padding: 0.5rem;
+    border-radius: 100vw;
+    display: grid;
+    place-items: center;
+    top: 50%;
+    left: var(--position);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 999;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    {{ sid }} .pc-ba-main {
+      flex-direction: column;
+    }
+    
+    {{ sid }} .pc-ba-container {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 750px) {
+    {{ sid }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    
+    {% if section.settings.show_content %}
+      {{ sid }} .pc-ba-container {
+        width: calc(100% - 20px);
+      }
+    {% else %}
+      {{ sid }} .pc-ba-container {
+        width: 50%;
+        margin: 0 auto;
+      }
+    {% endif %}
+  }
+</style>
+
+<div class="pc-ba-section">
+  <div class="page-width">
+    <div class="pc-ba-main">
+      <div class="pc-ba-text-blocks pc-ba-left">
+        <div class="pc-ba-text-block">{{ section.settings.left_top_text }}</div>
+        <div class="pc-ba-text-block">{{ section.settings.left_bottom_text }}</div>
+      </div>
+
+      <div class="pc-ba-container">
+        <div class="pc-ba-image-container">
+          <div class="pc-ba-before">
+            <img class="pc-ba-slider-image" 
+                 src="{{ section.settings.bf_image | image_url }}" 
+                 alt="Before image"
+                 loading="lazy">
+            <span class="pc-ba-badge pc-ba-badge-left">Before</span>
+          </div>
+          
+          <div class="pc-ba-after">
+            <img class="pc-ba-slider-image" 
+                 src="{{ section.settings.af_image | image_url }}" 
+                 alt="After image"
+                 loading="lazy">
+            <span class="pc-ba-badge pc-ba-badge-right">After</span>
+          </div>
+        </div>
+
+        <input type="range" 
+               min="0" 
+               max="100" 
+               value="50"
+               class="pc-ba-slider-input"
+               aria-label="Slider control">
+        
+        <div class="pc-ba-slider-line"></div>
+        <div class="pc-ba-slider-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 256 256">
+             <rect width="256" height="256" fill="none"></rect>
+        <line
+          x1="128"
+          y1="40"
+          x2="128"
+          y2="216"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="16"
+        ></line>
+        <line
+          x1="96"
+          y1="128"
+          x2="16"
+          y2="128"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="16"
+        ></line>
+        <polyline class="before_arrow"
+          points="48 160 16 128 48 96"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="16"
+        ></polyline>
+        <line
+          x1="160"
+          y1="128"
+          x2="240"
+          y2="128"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="16"
+        ></line>
+        <polyline  class="after_arrow"
+          points="208 96 240 128 208 160"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="16"
+        ></polyline>
+          </svg>
+        </div>
+      </div>
+
+      <div class="pc-ba-text-blocks pc-ba-right">
+        <div class="pc-ba-text-block">{{ section.settings.right_top_text }}</div>
+        <div class="pc-ba-text-block">{{ section.settings.right_bottom_text }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const sectionId = '{{ section.id }}';
+  const container = document.querySelector(`#shopify-section-{{section.id}} .pc-ba-container`);
+  const slider = document.querySelector(`#shopify-section-{{section.id}} .pc-ba-slider-input`);
+
+  if (slider && container) {
+    slider.addEventListener('input', (e) => {
+      container.style.setProperty('--position', `${e.target.value}%`);
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "PC - Before/After Slider",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "image_picker",
+      "id": "bf_image",
+      "label": "Before Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "af_image",
+      "label": "After Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show Badges",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_content",
+      "label": "Show Content",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "left_top_text",
+      "label": "Left Top Text"
+    },
+    {
+      "type": "richtext",
+      "id": "left_bottom_text",
+      "label": "Left Bottom Text"
+    },
+    {
+      "type": "richtext",
+      "id": "right_top_text",
+      "label": "Right Top Text"
+    },
+    {
+      "type": "richtext",
+      "id": "right_bottom_text",
+      "label": "Right Bottom Text"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "PC - Before/After Slider",
+      "category": "Custom"
+    }
+  ]
+}
 {% endschema %}
