@@ -232,7 +232,7 @@
         "parallax_speed": 0.5,
         "background_size": "cover",
         "background_position": "center center",
-        "background_repeat": "repeat-y",
+        "background_repeat": "no-repeat",
         "content_gap": 30,
         "content_gap_tablet": 25,
         "content_gap_mobile": 20,
