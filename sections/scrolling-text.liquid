@@ -1,417 +1,460 @@
-
-{%- assign sid = '#shopify-section-' | append: section.id -%}
-
 {%- liquid
-  assign speed = section.settings.speed
+  assign sec_id = '#shopify-section-' | append: section.id
+  assign padding_horizontal = section.settings.padding_horizontal
+  assign image_width = section.settings.image_width
+  assign image_height = section.settings.image_height
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.padding_bottom
   assign direction = section.settings.direction
-  assign background_color = section.settings.background_color
 -%}
 
 <style>
-  {{ sid }} .h2 { font-size: 1.5rem; }
-  {{ sid }} .h1 { font-size: 2rem; }
-  {{ sid }} .h0 { font-size: 2.5rem; }
-  {{ sid }} .hxl { font-size: 3rem; }
-  {{ sid }} .hxxl { font-size: 3.5rem; }
-  
-  {{ sid }} .pc-track-horizontal-alt {
-    height: 72px;
+  /* Desktop styles */
+  {{ sec_id  }} .pc-marquee.section-{{ section.id }} {
     display: flex;
     align-items: center;
-    gap: 40px;
-    will-change: transform;
-  }
-  
-  {{ sid }} .pc-marquee-element {
-    flex-shrink: 0;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-  }
-  
-  {{ sid }} .pc-marquee_text {
-    font-size: 42px;
-    line-height: 50px;
-    font-weight: 600;
-  }
-  
-  {{ sid }} .pc-marquee-image {
-    height: 50px;
-    width: auto;
-    object-fit: contain;
-  }
-
-  /* Improved Animation Definitions */
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  @keyframes scroll-right {
-    0% {
-      transform: translateX(-50%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-  
-  /* Apply animation based on direction */
-  {{ sid }} .pc-track-horizontal-alt {
-    animation: {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} {{ speed }}s linear infinite;
-  }
-
-  /* Dynamic Background Color */
-  {{ sid }} .pc-marquee-horizontal {
-    background-color: {{ background_color }};
+    height: {{ section.settings.marquee_height }}px;
+    width: 100vw;
+    max-width: 100%;
     overflow: hidden;
+    background: {{ section.settings.colorBackground }};
+    color: {{ section.settings.colorText }};
+    padding: 0 {{ padding_horizontal }}px;
   }
 
+  {{ sec_id  }} .pc-marquee.section-{{ section.id }} a {
+    color: {{ section.settings.colorText }};
+    text-decoration: none;
+  }
+
+  {{ sec_id  }} .pc-marquee.section-{{ section.id }} .pc-track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    will-change: transform;
+    animation: marquee-{{ direction }} {{ section.settings.speed }}s linear infinite;
+  }
+
+  {{ sec_id  }} .pc-marquee.section-{{ section.id }} .pc-content {
+    margin-left: 40px;
+    font-size: {{ section.settings.font_size }}px;
+  }
+
+  {{ sec_id  }} .pc-marquee.section-{{ section.id }} .pc-image {
+    margin-left: 40px;
+    width: {{ image_width }}px;
+    height: {{ image_height }}px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  {{ sec_id  }} .pc-marquee.section-{{ section.id }} .pc-icon {
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: {{ image_width }}px;
+    height: {{ image_height }}px;
+  }
+
+  {{ sec_id  }} .pc-marquee.section-{{ section.id }} .pc-icon svg {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+  }
+
+  @keyframes marquee-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-20%);
+    }
+  }
+
+  @keyframes marquee-right {
+    from {
+      transform: translateX(-20%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  /* Block-specific styles */
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'text' -%}
+        {{ sec_id  }} .pc-marquee.section-{{ section.id }} .pc-content-{{ block.id }} {
+          {%- if block.settings.text_color != blank -%}
+            color: {{ block.settings.text_color }};
+          {%- endif -%}
+          {%- if block.settings.text_transform != 'none' -%}
+            text-transform: {{ block.settings.text_transform }};
+          {%- endif -%}
+          {%- if block.settings.font_weight != 'normal' -%}
+            font-weight: {{ block.settings.font_weight }};
+          {%- endif -%}
+          {%- if block.settings.text_decoration != 'none' -%}
+            text-decoration: {{ block.settings.text_decoration }};
+          {%- endif -%}
+          {%- if block.settings.font_style != 'normal' -%}
+            font-style: {{ block.settings.font_style }};
+          {%- endif -%}
+          {%- if block.settings.letter_spacing != 0 -%}
+            letter-spacing: {{ block.settings.letter_spacing }}px;
+          {%- endif -%}
+        }
+
+    {%- endcase -%}
+  {%- endfor -%}
 </style>
 
-<div 
-  class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center" 
-  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;
-  margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px;
-  background-color: {{ section.settings.background_color }}">
-  
-  <div class="pc-track-horizontal-alt">
-    <!-- First set of blocks (visible) -->
-    {% for block in section.blocks %}
-      <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-        {% case block.type %}
-          {% when 'text' %}
-            {% case block.settings.heading_size %}
-              {% when 'h0' %} {% assign heading_class = 'h0' %}
-              {% when 'h1' %} {% assign heading_class = 'h1' %}
-              {% when 'h2' %} {% assign heading_class = 'h2' %}
-              {% when 'hxl' %} {% assign heading_class = 'hxl' %}
-              {% when 'hxxl' %} {% assign heading_class = 'hxxl' %}
-              {% else %} {% assign heading_class = 'h1' %}
-            {% endcase %}
+<div class="pc-marquee section-{{ section.id }}" 
+     role="region" 
+     {{ block.shopify_attributes }}
+     style="padding-top: {{ padding_top }}px; padding-bottom: {{ padding_bottom }}px;">
+  {%- if section.settings.link != blank -%}
+    <a href="{{ section.settings.link }}" class="pc-link">
+  {%- endif -%}
 
-            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
-                  style="color: {{ block.settings.heading_color }}; font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font_family }};">
-                {{ block.settings.heading }}
+  <div class="pc-track">
+    {%- for i in (1..10) -%}
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'text' -%}
+            <span class="pc-content pc-text pc-content-{{ block.id }}">
+              {{ block.settings.new_text | escape }}
             </span>
-          
-          {% when 'emoji' %}
-            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}" 
-                  style="font-size: {{ block.settings.emoji_size }}px;">
-              {{ block.settings.emoji }}
-            </span>
-            
-          {% when 'image' %}
-            {% if block.settings.image != blank %}
-              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
-            {% endif %}
-        {% endcase %}
-      </div>
-    {% endfor %}
-    
-    <!-- Second set of blocks (duplicate for seamless looping) -->
-    {% for block in section.blocks %}
-      <div class="pc-marquee-element" {{ block.shopify_attributes }}>
-        {% case block.type %}
-          {% when 'text' %}
-            {% case block.settings.heading_size %}
-              {% when 'h0' %} {% assign heading_class = 'h0' %}
-              {% when 'h1' %} {% assign heading_class = 'h1' %}
-              {% when 'h2' %} {% assign heading_class = 'h2' %}
-              {% when 'hxl' %} {% assign heading_class = 'hxl' %}
-              {% when 'hxxl' %} {% assign heading_class = 'hxxl' %}
-              {% else %} {% assign heading_class = 'h1' %}
-            {% endcase %}
-
-            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
-                  style="color: {{ block.settings.heading_color }}; font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font_family }};">
-                {{ block.settings.heading }}
-            </span>
-          
-          {% when 'emoji' %}
-            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}" 
-                  style="font-size: {{ block.settings.emoji_size }}px;">
-              {{ block.settings.emoji }}
-            </span>
-            
-          {% when 'image' %}
-            {% if block.settings.image != blank %}
-              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
-            {% endif %}
-        {% endcase %}
-      </div>
-    {% endfor %}
+          {%- when 'image' -%}
+            {%- if block.settings.image != blank -%}
+              <img
+                class="pc-image"
+                src="{{ block.settings.image | img_url: 'master' }}"
+                alt="{{ block.settings.image.alt | escape }}"
+                width="{{ block.settings.image_width }}"
+                height="{{ block.settings.image_height }}"
+                style="
+                  object-fit: {{ block.settings.image_object_fit }};
+                  object-position: {{ block.settings.image_position }};
+                "
+                loading="lazy"
+              >
+            {%- endif -%}
+        {%- endcase -%}
+      {%- endfor -%}
+    {%- endfor -%}
   </div>
+
+  {%- if section.settings.link != blank -%}
+    </a>
+  {%- endif -%}
 </div>
+
 
 {% schema %}
 {
-  "name": "Marquee Scroller",
+  "name": "Pwc Marquee",
   "settings": [
     {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "color",
+      "id": "colorBackground",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "colorText",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Marquee direction",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left to right"
+        },
+        {
+          "value": "right",
+          "label": "Right to left"
+        }
+      ],
+      "default": "left"
+    },
+    {
       "type": "range",
-      "id": "speed",
-      "min": 2,
-      "max": 25,
-      "step": 1,
-      "unit": "s",
-      "label": "Animation Speed",
-      "default": 5
+      "id": "marquee_height",
+      "min": 24,
+      "max": 200,
+      "step": 2,
+      "default": 46,
+      "label": "Marquee height (px)",
+      "unit": "px"
     },
     {
-  "type": "select",
-  "id": "direction",
-  "label": "Animation Direction",
-  "options": [
-    {
-      "value": "left",
-      "label": "Left"
+      "type": "range",
+      "id": "font_size",
+      "min": 8,
+      "max": 100,
+      "step": 2,
+      "default": 24,
+      "label": "Font size (px)",
+      "unit": "px"
     },
     {
-      "value": "right",
-      "label": "Right"
-    }
-  ],
-  "default": "left"
-},
-  {
-  "type": "select",
-  "id": "background_color",
-  "label": "Background Color",
-  "options": [
-    {
-      "value": "black",
-      "label": "Black"
-    },
-    {
-      "value": "white",
-      "label": "White"
-    },
-    {
-      "value": "#1e81b0",
-      "label": "Blue"
-    },
-    {
-      "value": "#FF5733 ",
-      "label": "Orange"
-    },
-    {
-      "value": "pink",
-      "label": "Pink"
-    },
-    {
-      "value": "green",
-      "label": "Green"
-    },
-    {
-      "value": "#abdbe3",
-      "label": "Sky Blue"
-    },
-    {
-      "value": "#f1c40f",
-      "label": "Yellow"
-    },
-    {
-      "value": "red",
-      "label": "Red"
-    }
-  ],
-  "default": "black"
-},
-     {
       "type": "range",
       "id": "padding_top",
+      "label": "Padding Top (px)",
+      "default": 5,
       "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Top",
-      "default": 8
+      "max": 150,
+      "step": 5
     },
     {
       "type": "range",
       "id": "padding_bottom",
+      "label": "Padding Bottom (px)",
+      "default": 5,
       "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Bottom",
-      "default": 20
+      "max": 150,
+      "step": 5
     },
     {
       "type": "range",
-      "id": "margin_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Margin Top",
-      "default": 12
+      "id": "image_width",
+      "min": 10,
+      "max": 200,
+      "step": 5,
+      "default": 10,
+      "label": "Image width (px)",
+      "unit": "px"
     },
     {
       "type": "range",
-      "id": "margin_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Margin Bottom",
-      "default": 20
+      "id": "speed",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "default": 12,
+      "label": "Animation speed (seconds)"
     },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    }
   ],
   "blocks": [
     {
       "type": "text",
-      "name": "Text Item",
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "heading",
-          "default": "t:sections.rich-text.blocks.heading.settings.heading.default",
-          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
-        },
-           {
-  "type": "select",
-  "id": "custom_font_family",
-  "label": "Custom Font Family",
-  "options": [
-    {
-      "value": "Arial, sans-serif",
-      "label": "Arial"
-    },
-    {
-      "value": "Georgia, serif",
-      "label": "Georgia"
-    },
-    {
-      "value": "'Times New Roman', serif",
-      "label": "Times New Roman"
-    },
-    {
-      "value": "'Courier New', monospace",
-      "label": "Courier New"
-    },
-    {
-      "value": "'Lucida Sans', sans-serif",
-      "label": "Lucida Sans"
-    },
-    {
-      "value": "'Poppins', sans-serif",
-      "label": "Poppins"
-    },
-    {
-      "value": "'Roboto', sans-serif",
-      "label": "Roboto"
-    },
-    {
-      "value": "'Montserrat', sans-serif",
-      "label": "Montserrat"
-    }
-  ],
-  "default": "Arial, sans-serif"
-},
-        {
-  "type": "range",
-  "id": "custom_heading_size",
-  "min": 10,
-  "max": 100,
-  "step": 1,
-  "unit": "px",
-  "label": "Heading Size",
-  "default": 24
-},
-        {
-          "type": "select",
-          "id": "heading_color",
-          "label": "Heading Color",
-          "options": [
-            {
-              "value": "black",
-              "label": "Black"
-            },
-            {
-              "value": "red",
-              "label": "Red"
-            },
-            {
-              "value": "blue",
-              "label": "Blue"
-            },
-            {
-              "value": "white",
-              "label": "White"
-            },
-            {
-              "value": "green",
-              "label": "Green"
-            },
-            {
-              "value": "orange",
-              "label": "Orange"
-            },
-            {
-              "value": "purple",
-              "label": "Purple"
-            }
-          ],
-          "default": "black"
-        }
-      ]
-    },
-    {
-      "type": "emoji",
-      "name": "Emoji/Symbol",
+      "name": "Text",
+      "limit": 20,
       "settings": [
         {
           "type": "text",
-          "id": "emoji",
-          "label": "Emoji or Symbol",
-          "default": "🚀"
+          "id": "new_text",
+          "default": "Welcome to store",
+          "label": "Text"
         },
-         {
-      "type": "range",
-      "id": "emoji_size",
-      "min": 12,
-      "max": 100,
-      "step": 2,
-      "unit": "px",
-      "label": "Emoji Size",
-      "default": 24
-    }
+        {
+          "type": "header",
+          "content": "Desktop Text"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "select",
+          "id": "text_transform",
+          "label": "Text transform",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "uppercase",
+              "label": "Uppercase"
+            },
+            {
+              "value": "lowercase",
+              "label": "Lowercase"
+            },
+            {
+              "value": "capitalize",
+              "label": "Capitalize"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "text_decoration",
+          "label": "Text decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "select",
+          "id": "font_style",
+          "label": "Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter spacing",
+          "default": 0
+        },
       ]
     },
     {
       "type": "image",
       "name": "Image",
+      "limit": 20,
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
           "label": "Image"
-        }
+        },
       ]
-    }
+    },
+    
   ],
   "presets": [
     {
-      "name": "PWC - Scrolling-List #1",
+      "name": "Pwc Marquee",
       "blocks": [
         {
-          "type": "text"
+          "type": "text",
+          "settings": {
+            "new_text": "Welcome to our store",
+            "text_color": "#ffffff",
+            "text_transform": "uppercase"
+          }
         },
         {
-          "type": "emoji"
-        },
-        {
-          "type": "text"
+          "type": "text",
+          "settings": {
+            "new_text": "Free shipping on all orders",
+            "text_color": "#00ff00",
+            "font_style": "italic"
+          }
         }
       ]
     }
   ]
 }
 {% endschema %}
+
+
 
