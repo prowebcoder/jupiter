@@ -1,57 +1,41 @@
-{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'section-image-banner.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
-{%- liquid
+ {%- liquid
   assign sec_id = '#shopify-section-' | append: section.id
   assign font_weight = section.settings.font_weight
   assign font_style = section.settings.font_style 
   assign text_color  = section.settings.text_color
-  assign text_decoration = section.settings.text_decoration
-  assign padding_top = section.settings.padding_top
-  assign padding_bottom = section.settings.padding_bottom
+  assign text_decoration = section.text_decoration
+  
+  assign font_weight = section.text_decoration
+  assign text_color = section.text_decoration
+  assign font_style = section.font_style
+  assign text_decoration = section.text_decoration
+  assign padding_top = section.text_decoration
+  assign padding_bottom = section.text_padding_bottom
 -%}
-
-{%- for block in section.blocks -%}
-  {%- assign block_id = '#shopify-block-' | append: block.id -%}
-  {%- liquid
-    assign font_weight = block.settings.font_weight
-    assign font_style = block.settings.font_style 
-    assign text_color = block.settings.text_color
-    assign text_decoration = block.settings.text_decoration
-    assign padding_top = block.settings.padding_top
-    assign padding_bottom = block.settings.padding_bottom
-  -%}
-
-  {{ block_id }} → 
-  Font Weight: {{ font_weight }},
-  Font Style: {{ font_style }},
-  Text Color: {{ text_color }},
-  Text Decoration: {{ text_decoration }},
-  Padding Top: {{ padding_top }}px,
-  Padding Bottom: {{ padding_bottom }}px
-
-{%- endfor -%}
 
 
 
 {% style %}
   {{ sec_id }} .banner__heading {
-    font-weight: {{ font_weight }};
-    font-style: {{ font_style }};
-    color: {{ text_color }};
-    text-decoration: {{ text_decoration }};
+     font-weight: {{ font_weight }};
+      font-style: {{ font_style }};
+      color: {{ text_color }};
+      text-decoration: {{ text_decoration }}
   }
 
-  {{ sec_id }} .banner__text {
-    font-weight: {{ font_weight }};
+  {{ sec_id }} .banner__text{
+     font-weight: {{ font_weight }};
     font-style: {{ font_style }};
     color: {{ text_color }};
     text-decoration: {{ text_decoration }};
     padding-top: {{ padding_top }}px;
     padding-bottom: {{ padding_bottom }}px;
-  }
-{% endstyle %}
+    }
+{% endstyle %}}
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
