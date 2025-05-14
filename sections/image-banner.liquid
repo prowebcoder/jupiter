@@ -24,8 +24,8 @@
         }
       {%- when 'buttons' -%}
       {{ sec_id }} .banner__buttons{
-          padding-top: {{ block.settings.padding_top }};
-          padding-bottom: {{ block.settings.padding_bottom }};
+          padding-top: {{ block.settings.padding_top }}px;
+          padding-bottom: {{ block.settings.padding_bottom }}px;
       }
     {% endcase %}
   {% endfor %}
