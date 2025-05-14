@@ -264,6 +264,46 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "scrolling_text_BReXzM": {
+      "type": "scrolling-text",
+      "blocks": {
+        "text_9crba7": {
+          "type": "text",
+          "settings": {
+            "new_text": "Welcome to our store",
+            "text_color": "#ffffff",
+            "text_transform": "uppercase",
+            "font_weight": "normal",
+            "text_decoration": "none",
+            "font_style": "normal",
+            "letter_spacing": 0
+          }
+        },
+        "image_qyjaTN": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/favicon-2.png"
+          }
+        }
+      },
+      "block_order": [
+        "text_9crba7",
+        "image_qyjaTN"
+      ],
+      "name": "Pwc Marquee",
+      "settings": {
+        "colorBackground": "#000000",
+        "colorText": "#ffffff",
+        "link": "",
+        "direction": "left",
+        "marquee_height": 46,
+        "font_size": 24,
+        "padding_top": 5,
+        "padding_bottom": 5,
+        "image_width": 10,
+        "speed": 12
+      }
     }
   },
   "order": [
@@ -272,6 +312,7 @@
     "pwc_newsletter_KPEt9V",
     "featured_collection",
     "pwc_timer_4WcWDa",
-    "pwc_before_after_WmcCym"
+    "pwc_before_after_WmcCym",
+    "scrolling_text_BReXzM"
   ]
 }
