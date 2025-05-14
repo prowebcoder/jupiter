@@ -305,13 +305,13 @@
         "colorBackground": "#000000",
         "colorText": "#ffffff",
         "link": "",
-        "direction": "left",
+        "direction": "right",
         "marquee_height": 46,
         "font_size": 24,
         "padding_top": 35,
         "padding_bottom": 40,
         "image_width": 20,
-        "speed": 12
+        "speed": 30
       }
     }
   },
