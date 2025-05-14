@@ -33,8 +33,6 @@
    style="
     padding-top: {{ padding_top }};
     padding-bottom: {{ padding_bottom }};
-    margin-top: {{ margin_top }};
-    margin-bottom: {{ margin_bottom }} !important;
     background-color: {{ colorBackground }};
 ">
   <div class="page-width utility-bar__grid{% if announcement_bar and language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--3-col{% elsif language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--2-col{% endif %}">
@@ -89,7 +87,6 @@
     </div>
   {% endif %}
 {% endfor %}
-
 
     {%- elsif section.blocks.size > 1 -%}
       <slideshow-component
