@@ -2,20 +2,15 @@
 
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
- {%- liquid
-  assign sec_id = '#shopify-section-' | append: section.id
-  assign font_weight = section.settings.font_weight
-  assign font_style = section.settings.font_style 
-  assign text_color  = section.settings.text_color
-  assign text_decoration = section.text_decoration
-  
-  assign font_weight = section.text_decoration
-  assign text_color = section.text_decoration
-  assign font_style = section.font_style
-  assign text_decoration = section.text_decoration
-  assign padding_top = section.text_decoration
-  assign padding_bottom = section.text_padding_bottom
--%}
+ {% for block in section.blocks %}
+  {% assign sec_id = '#shopify-section-' | append: section.id %}
+  assign colorBackground = block.settings.colorBackground 
+   assign font_weight = block.settings.font-weight
+  assign font_style = block.settings.font_style
+   assign text_color = block.settings.text_color
+   assign text_color = block.settings.padding_bottom 
+   assign text_decoration = block.settings.text_decoration
+{% endfor %}
 
 
 
@@ -159,6 +154,7 @@
           {%- when 'heading' -%}
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
+          
               {{ block.shopify_attributes }}
             >
               {{ block.settings.heading }}
