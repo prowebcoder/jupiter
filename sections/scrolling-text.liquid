@@ -109,10 +109,12 @@
   {%- endfor -%}
 </style>
 
-<div class="pc-marquee section-{{ section.id }}" 
-     role="region" 
-     {{ block.shopify_attributes }}
-     style="padding-top: {{ padding_top }}px; padding-bottom: {{ padding_bottom }}px;">
+<div 
+  class="pc-marquee section-{{ section.id }}" 
+  role="region" 
+  {{ block.shopify_attributes | default: '' }}
+  style="padding-top: {{ padding_top | default: 0 }}px; padding-bottom: {{ padding_bottom | default: 0 }}px;"
+>
   {%- if section.settings.link != blank -%}
     <a href="{{ section.settings.link }}" class="pc-link">
   {%- endif -%}
