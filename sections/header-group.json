@@ -124,6 +124,8 @@
             "text": "Welcome to our store",
             "text_size": "large",
             "font_weight": "700",
+            "font_style": "normal",
+            "letter_spacing": 0,
             "text_decoration": "underline",
             "text_color": "#ffffff",
             "link": ""
@@ -135,9 +137,14 @@
       ],
       "name": "Pwc announcement bar",
       "settings": {
+        "colorBackground": "#000000",
         "auto_rotate": false,
         "change_slides_speed": 5,
         "color_scheme": "",
+        "padding_top": 5,
+        "padding_bottom": 5,
+        "margin_top": 5,
+        "margin_bottom": 25,
         "show_line_separator": true,
         "show_social": false,
         "enable_country_selector": false,
