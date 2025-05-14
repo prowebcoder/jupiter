@@ -96,31 +96,6 @@
         "image_height_mobile": 30
       }
     },
-    "announcement-bar": {
-      "type": "announcement-bar",
-      "blocks": {
-        "announcement-bar-0": {
-          "type": "announcement",
-          "settings": {
-            "text": "Welcome to our store",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "announcement-bar-0"
-      ],
-      "disabled": true,
-      "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "",
-        "show_line_separator": true,
-        "show_social": false,
-        "enable_country_selector": false,
-        "enable_language_selector": false
-      }
-    },
     "header": {
       "type": "header",
       "settings": {
@@ -139,11 +114,37 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "pwc_announcement_bar_JMa9Tp": {
+      "type": "pwc-announcement-bar",
+      "blocks": {
+        "announcement_pDcHNV": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "text_size": "medium",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_pDcHNV"
+      ],
+      "name": "Pwc announcement bar",
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
     }
   },
   "order": [
     "pwc_marquee_anouncement_BjG7ky",
-    "announcement-bar",
-    "header"
+    "header",
+    "pwc_announcement_bar_JMa9Tp"
   ]
 }
