@@ -100,7 +100,7 @@
                       >
                     {%- endif -%}
                      <p class="announcement-bar__message h5  {{ block.settings.text_size }} ">
-      <span class="color-{{ block.settings.text_color }}">{{ block.settings.text | escape }}</span>
+      <span class="{{ block.settings.text_color }}">{{ block.settings.text | escape }}</span>
       {%- if block.settings.link != blank -%}
         {{ 'icon-arrow.svg' | inline_asset_content }}
       {%- endif -%}
