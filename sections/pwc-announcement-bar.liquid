@@ -31,12 +31,12 @@
   class="announcement-bar{% if section.settings.show_social %} announcement-bar--one-announcement{% endif %}"
   role="region"
   aria-label="{{ 'sections.header.announcement' | t }}"
-  {{ block.shopify_attributes }}
+  {{ section.blocks.first.shopify_attributes }}
 >
-  {%- if block.settings.text != blank -%}
-    {%- if block.settings.link != blank -%}
+  {%- if section.blocks.first.settings.text != blank -%}
+    {%- if section.blocks.first.settings.link != blank -%}
       <a
-        href="{{ block.settings.link }}"
+        href="{{ section.blocks.first.settings.link }}"
         class="announcement-bar__link link link--text focus-inset animate-arrow"
       >
     {%- endif -%}
@@ -44,31 +44,32 @@
     <p
       class="announcement-bar__message h5"
       style="
-        font-size: {% case block.settings.text_size %}
+        font-size: {% case section.blocks.first.settings.text_size %}
                      {% when 'small' %} 14px
                      {% when 'medium' %} 18px
                      {% when 'large' %} 22px
                      {% else %} 14px
                    {% endcase %};
-        font-weight: {{ block.settings.font_weight }};
-        text-decoration: {{ block.settings.text_decoration }};
-        color: {{ block.settings.text_color }};
-        font-style: {% if block.settings.font_style != blank %}{{ block.settings.font_style }}{% else %}normal{% endif %};
+        font-weight: {{ section.blocks.first.settings.font_weight }};
+        text-decoration: {{ section.blocks.first.settings.text_decoration }};
+        color: {{ section.blocks.first.settings.text_color }};
+        font-style: {{ section.blocks.first.settings.font_style | default: 'normal' }};
       "
     >
-      <span style="letter-spacing: {% if block.settings.letter_spacing != blank %}{{ block.settings.letter_spacing }}{% else %}normal{% endif %}">
-        {{ block.settings.text | escape }}
+      <span style="letter-spacing: {{ section.blocks.first.settings.letter_spacing | default: 'normal' }}">
+        {{ section.blocks.first.settings.text | escape }}
       </span>
-      {%- if block.settings.link != blank -%}
+      {%- if section.blocks.first.settings.link != blank -%}
         {{- 'icon-arrow.svg' | inline_asset_content -}}
       {%- endif -%}
     </p>
 
-    {%- if block.settings.link != blank -%}
+    {%- if section.blocks.first.settings.link != blank -%}
       </a>
     {%- endif -%}
   {%- endif -%}
 </div>
+
 
 
 
