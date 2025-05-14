@@ -123,10 +123,10 @@
           "settings": {
             "text": "Welcome to our store",
             "text_size": "large",
-            "font_weight": "700",
-            "font_style": "normal",
-            "letter_spacing": 0,
-            "text_decoration": "underline",
+            "font_weight": "normal",
+            "font_style": "italic",
+            "letter_spacing": 2.5,
+            "text_decoration": "line-through",
             "text_color": "#ffffff",
             "link": ""
           }
@@ -143,8 +143,6 @@
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 0,
-        "margin_top": 5,
-        "margin_bottom": 0,
         "show_line_separator": true,
         "show_social": false,
         "enable_country_selector": false,
