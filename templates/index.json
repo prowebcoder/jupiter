@@ -299,9 +299,9 @@
         "direction": "left",
         "marquee_height": 46,
         "font_size": 24,
-        "padding_top": 5,
-        "padding_bottom": 5,
-        "image_width": 10,
+        "padding_top": 35,
+        "padding_bottom": 40,
+        "image_width": 20,
         "speed": 12
       }
     }
