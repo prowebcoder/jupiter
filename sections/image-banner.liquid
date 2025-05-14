@@ -16,14 +16,7 @@
   assign padding_bottom = section.text_padding_bottom
 -%}
 
-   <!-- style="
-            font-weight: {{ block.settings.font_weight }};
-            font-style: {{ block.settings.font_style }};
-            color: {{ block.settings.text_color }};
-            text-decoration: {{ block.settings.text_decoration }};
-            padding-top: {{ block.settings.padding_top }}px;
-            padding-bottom: {{ block.settings.padding_bottom }}px;
-          " -->
+
 
 {% style %}
   {{ sec_id }} .banner__heading {
@@ -170,7 +163,7 @@
               {{ block.settings.heading }}
             </h2>
           {%- when 'text' -%}
-            <div class="banner__text rte {{ block.settings.text_style }} {{ block.settings.padding_top }}" {{ block.shopify_attributes }}
+            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}
           >
               <p>{{ block.settings.text }}</p>
             </div>
