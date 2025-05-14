@@ -122,7 +122,7 @@
           "type": "announcement",
           "settings": {
             "text": "Welcome to our store",
-            "text_size": "medium",
+            "text_size": "large",
             "link": ""
           }
         }
