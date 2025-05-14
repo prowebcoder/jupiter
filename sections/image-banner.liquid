@@ -2,40 +2,33 @@
 
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
- {%- liquid
+{%- liquid
   assign sec_id = '#shopify-section-' | append: section.id
   assign font_weight = section.settings.font_weight
   assign font_style = section.settings.font_style 
   assign text_color  = section.settings.text_color
-  assign text_decoration = section.text_decoration
-  
-  assign font_weight = section.text_decoration
-  assign text_color = section.text_decoration
-  assign font_style = section.font_style
-  assign text_decoration = section.text_decoration
-  assign padding_top = section.text_decoration
-  assign padding_bottom = section.text_padding_bottom
+  assign text_decoration = section.settings.text_decoration
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
 -%}
-
-
 
 {% style %}
   {{ sec_id }} .banner__heading {
-     font-weight: {{ font_weight }};
-      font-style: {{ font_style }};
-      color: {{ text_color }};
-      text-decoration: {{ text_decoration }}
+    font-weight: {{ font_weight }};
+    font-style: {{ font_style }};
+    color: {{ text_color }};
+    text-decoration: {{ text_decoration }};
   }
 
-  {{ sec_id }} .banner__text{
-     font-weight: {{ font_weight }};
+  {{ sec_id }} .banner__text {
+    font-weight: {{ font_weight }};
     font-style: {{ font_style }};
     color: {{ text_color }};
     text-decoration: {{ text_decoration }};
     padding-top: {{ padding_top }}px;
     padding-bottom: {{ padding_bottom }}px;
-    }
-{% endstyle %}}
+  }
+{% endstyle %}
 
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
