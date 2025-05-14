@@ -16,11 +16,11 @@
           "type": "heading",
           "settings": {
             "heading": "Image banner",
-            "text_color": "#ffffff",
-            "text_size": "small",
-            "font_weight": "normal",
-            "font_style": "normal",
-            "text_decoration": "none"
+            "text_color": "#eb6363",
+            "text_size": "medium",
+            "font_weight": "900",
+            "font_style": "italic",
+            "text_decoration": "underline"
           }
         },
         "text": {
