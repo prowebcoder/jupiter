@@ -1,5 +1,25 @@
 {{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
 
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+
+ {%- liquid
+  assign sec_id = '#shopify-section-' | append: section.id
+  assign font_weight = section.settings.font_weight
+  assign font_style = section.settings.font_style 
+  assign text_color  = section.settings.text_color
+  assign text_decoration = section.text_decoration
+ 
+-%}
+
+{% style %}
+  {{ sec_id }} .banner__heading {
+     font-weight: {{ font_weight }};
+      font-style: {{ font_style }};
+      color: {{ text_color }};
+      text-decoration: {{ text_decoration }}
+  }
+{% endstyle %}}
+
 {%- if section.settings.image_height == 'adapt' and section.settings.image != blank -%}
   {%- style -%}
     @media screen and (max-width: 749px) {
@@ -123,12 +143,6 @@
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}
-           style="
-            font-weight: {{ block.settings.font_weight }};
-            font-style: {{ block.settings.font_style }};
-            color: {{ block.settings.text_color }};
-            text-decoration: {{ block.settings.text_decoration }}
-          "
             >
               {{ block.settings.heading }}
             </h2>
