@@ -156,8 +156,9 @@
           {%- when 'buttons' -%}
             <div
               class="banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}
-            {{ block.settings.padding_top }}
-            {{ block.settings.padding_bottom }}"
+            "
+              style="padding-top: {{ block.settings.padding_top }};
+            padding-top: {{ block.settings.padding_bottom }};"
               {{ block.shopify_attributes }}
             
             >
