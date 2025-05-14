@@ -27,7 +27,7 @@
     {%- endif -%}
     {%- if section.blocks.size == 1 -%}
       
-  <div
+ <div
   class="announcement-bar{% if section.settings.show_social %} announcement-bar--one-announcement{% endif %}"
   role="region"
   aria-label="{{ 'sections.header.announcement' | t }}"
@@ -44,14 +44,19 @@
     <p
       class="announcement-bar__message h5"
       style="
-        font-size: {{ block.settings.text_size }};
+        font-size: {% case block.settings.text_size %}
+                     {% when 'small' %} 14px
+                     {% when 'medium' %} 18px
+                     {% when 'large' %} 22px
+                     {% else %} 14px
+                   {% endcase %};
         font-weight: {{ block.settings.font_weight }};
         text-decoration: {{ block.settings.text_decoration }};
         color: {{ block.settings.text_color }};
-        font-style: {{ block.settings.font_style }};
+        font-style: {% if block.settings.font_style != blank %}{{ block.settings.font_style }}{% else %}normal{% endif %};
       "
     >
-      <span style="letter-spacing: {{ block.settings.letter_spacing }}">
+      <span style="letter-spacing: {% if block.settings.letter_spacing != blank %}{{ block.settings.letter_spacing }}{% else %}normal{% endif %}">
         {{ block.settings.text | escape }}
       </span>
       {%- if block.settings.link != blank -%}
@@ -64,6 +69,7 @@
     {%- endif -%}
   {%- endif -%}
 </div>
+
 
 
     {%- elsif section.blocks.size > 1 -%}
