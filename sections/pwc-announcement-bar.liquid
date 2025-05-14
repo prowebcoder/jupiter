@@ -41,12 +41,12 @@
             >
           {%- endif -%}
           <p class="announcement-bar__message h5 {{ block.settings.text_size }}">
-            <span style="color: {{ block.settings.text_color }};>{{ section.blocks.first.settings.text | escape }}</span>
+            <span style="color: {{ block.settings.text_color }};">{{ section.blocks.first.settings.text | escape }}</span>
             {%- if section.blocks.first.settings.link != blank -%}
               {{- 'icon-arrow.svg' | inline_asset_content -}}
             {%- endif -%}
           </p>
-              jijsodf
+  
           {%- if section.blocks.first.settings.link != blank -%}
             </a>
           {%- endif -%}
