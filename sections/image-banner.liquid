@@ -22,6 +22,11 @@
           padding-top: {{ block.settings.padding_top }}px;
           padding-bottom: {{ block.settings.padding_bottom }}px;
         }
+      {%- when 'buttons' -%}
+      {{ sec_id }} .banner__buttons {
+        padding-top: {{ block.settings.padding_top }};
+        padding-bottom: {{ block.settings.padding_bottom }};
+      }
     {% endcase %}
   {% endfor %}
 
@@ -157,8 +162,7 @@
             <div
               class="banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}
             "
-              style="padding-top: {{ block.settings.padding_top }};
-            padding-bottom: {{ block.settings.padding_bottom }};"
+              style=""
               {{ block.shopify_attributes }}
             
             >
