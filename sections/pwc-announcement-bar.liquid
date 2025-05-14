@@ -10,8 +10,6 @@
   assign color_scheme = section.settings.color_scheme
   assign padding_top = section.settings.padding_top
   assign padding_bottom = section.settings.padding_bottom
-  assign margin_top = section.settings.margin_top 
-  assign margin_bottom = section.settings.margin_bottom 
   assign show_line_separator = section.settings.show_line_separator
 -%}
 
@@ -21,9 +19,6 @@
   display: flex;
   flex-direction: column;
 }
-  {{ sec_id }} .utility-bar {
-  margin-bottom: {{ margin_bottom }} !important;
- }
 
 {{ sec_id }} slideshow-component .slideshow.banner {
   flex-direction: row;
@@ -853,24 +848,6 @@
       "default": 5,
       "min": 0,
       "max": 150,
-      "step": 5
-    },
-     {
-      "type": "range",
-      "id": "margin_top",
-      "label": "Margin Top (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
-    {
-      "type": "range",
-      "id": "margin_bottom",
-      "label": "Margin Bottom (px)",
-      "default": 5,
-      "min": 0,
-      "max": 140,
       "step": 5
     },
     {
