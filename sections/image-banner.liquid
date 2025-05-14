@@ -1,6 +1,6 @@
 {{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
 
-""{% assign sec_id = '#shopify-section-' | append: section.id %}
+{% assign sec_id = '#shopify-section-' | append: section.id %}
 
 {% style %}
   {{ sec_id }} .banner__heading,
@@ -84,7 +84,7 @@
     </div>
   </div>
 </div>
-""
+
 
 
 {% schema %}
