@@ -26,6 +26,7 @@
       {%- render 'social-icons' -%}
     {%- endif -%}
     {%- if section.blocks.size == 1 -%}
+      
       <div
         class="announcement-bar{% if section.settings.show_social %} announcement-bar--one-announcement{% endif %}"
         role="region"
@@ -45,6 +46,7 @@
               {{- 'icon-arrow.svg' | inline_asset_content -}}
             {%- endif -%}
           </p>
+              jijsodf
           {%- if section.blocks.first.settings.link != blank -%}
             </a>
           {%- endif -%}
