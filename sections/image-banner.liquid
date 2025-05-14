@@ -134,7 +134,12 @@
             </h2>
           {%- when 'text' -%}
             <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}
-            style="">
+             style="
+            font-weight: {{ block.settings.font_weight }};
+            font-style: {{ block.settings.font_style }};
+            color: {{ block.settings.text_color }};
+            text-decoration: {{ block.settings.text_decoration }}
+          ">
               <p>{{ block.settings.text }}</p>
             </div>
           {%- when 'buttons' -%}
