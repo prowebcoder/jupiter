@@ -274,7 +274,7 @@
             "new_text": "Welcome to our store",
             "text_color": "#ffffff",
             "text_transform": "uppercase",
-            "font_weight": "normal",
+            "font_weight": "600",
             "text_decoration": "none",
             "font_style": "normal",
             "letter_spacing": 0
