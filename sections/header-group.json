@@ -123,7 +123,9 @@
           "settings": {
             "text": "Welcome to our store",
             "text_size": "large",
-            "text_color": "#d32e2e",
+            "font_weight": "800",
+            "text_decoration": "underline",
+            "text_color": "#ffffff",
             "link": ""
           }
         }
