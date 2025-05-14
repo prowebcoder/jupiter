@@ -125,8 +125,8 @@
             "text_size": "large",
             "font_weight": "normal",
             "font_style": "italic",
-            "letter_spacing": 2.5,
-            "text_decoration": "line-through",
+            "letter_spacing": 3,
+            "text_decoration": "underline",
             "text_color": "#ffffff",
             "link": ""
           }
