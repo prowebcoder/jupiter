@@ -121,9 +121,13 @@
         {%- case block.type -%}
           {%- when 'heading' -%}
             <h2
-              class="banner__heading inline-richtext {{ block.settings.heading_size }}
-          {{ block.settings.font_weight }} {{ block.settings.font_style }}"
+              class="banner__heading inline-richtext {{ block.settings.heading_size }}"
               {{ block.shopify_attributes }}
+           style="
+            font-weight: {{ block.settings.font_weight }};
+            font-style: {{ block.settings.font_style }};
+            color: {{ block.settings.text_color }};
+          "
             >
               {{ block.settings.heading }}
             </h2>
