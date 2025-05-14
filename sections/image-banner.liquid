@@ -133,7 +133,8 @@
               {{ block.settings.heading }}
             </h2>
           {%- when 'text' -%}
-            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}
+            style="">
               <p>{{ block.settings.text }}</p>
             </div>
           {%- when 'buttons' -%}
@@ -530,28 +531,148 @@
           "default": "t:sections.image-banner.blocks.text.settings.text.default",
           "label": "t:sections.image-banner.blocks.text.settings.text.label"
         },
+          {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#fff"
+        },
         {
           "type": "select",
-          "id": "text_style",
+          "id": "heading_size",
           "options": [
             {
-              "value": "body",
-              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__1.label"
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
             },
             {
-              "value": "subtitle",
-              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__2.label"
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
             },
             {
-              "value": "caption-with-letter-spacing",
-              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__3.label"
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            },
+            {
+              "value": "hxxl",
+              "label": "t:sections.all.heading_size.options__5.label"
             }
           ],
-          "default": "body",
-          "label": "t:sections.image-banner.blocks.text.settings.text_style.label"
-        }
+          "default": "h1",
+          "label": "t:sections.all.heading_size.label"
+        },
+         {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+         {
+          "type": "select",
+          "id": "font_style",
+          "label": "Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+         {
+          "type": "select",
+          "id": "text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        
       ]
     },
+        
     {
       "type": "buttons",
       "name": "t:sections.image-banner.blocks.buttons.name",
