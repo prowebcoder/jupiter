@@ -2,15 +2,7 @@
 
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
-<!-- {%- liquid
-  assign sec_id = '#shopify-section-' | append: section.id
-  assign font_weight = section.settings.font_weight
-  assign font_style = section.settings.font_style 
-  assign text_color  = section.settings.text_color
-  assign text_decoration = section.settings.text_decoration
-  assign padding_top = section.settings.padding_top
-  assign padding_bottom = section.settings.padding_bottom
--%} -->
+
 
 {%- for block in section.blocks -%}
   {%- assign block_id = '#shopify-block-' | append: block.id -%}
@@ -23,13 +15,7 @@
     assign padding_bottom = block.settings.padding_bottom
   -%}
 
-  {{ block_id }} → 
-  Font Weight: {{ font_weight }},
-  Font Style: {{ font_style }},
-  Text Color: {{ text_color }},
-  Text Decoration: {{ text_decoration }},
-  Padding Top: {{ padding_top }}px,
-  Padding Bottom: {{ padding_bottom }}px
+  
 
 {%- endfor -%}
 
