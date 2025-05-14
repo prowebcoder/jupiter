@@ -157,6 +157,8 @@
             <div
               class="banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}"
               {{ block.shopify_attributes }}
+            {{ block.settings.padding_top }}
+          {{ block.settings.padding_bottom }}
             >
               {%- if block.settings.button_label_1 != blank -%}
                 <a
