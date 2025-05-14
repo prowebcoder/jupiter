@@ -1,4 +1,4 @@
-{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'section-image-banner.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
@@ -9,7 +9,12 @@
   assign text_color  = section.settings.text_color
   assign text_decoration = section.text_decoration
   
- 
+  assign font_weight = section.text_decoration
+  assign text_color = section.text_decoration
+  assign font_style = section.font_style
+  assign text_decoration = section.text_decoration
+  assign padding_top = section.text_decoration
+  assign padding_bottom = section.text_padding_bottom
 -%}
 
 
