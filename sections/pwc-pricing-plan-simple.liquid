@@ -1,0 +1,400 @@
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+{%- assign padding_top = section.settings.section_padding_top -%}
+{%- assign padding_bottom = section.settings.section_padding_bottom -%}
+
+<div class="pc-pricing-section">
+  <div class="page-width">
+    {% if section.settings.show_section_title %}
+      <h2 class="pc-section-title">{{ section.settings.title }}</h2>
+    {% endif %}
+
+    <div class="pc-pricing-grid">
+      {% for block in section.blocks %}
+        <div class="pc-pricing-card {% if block.settings.featured %}featured{% endif %}" {{ block.shopify_attributes }}>
+          <h3 class="pc-pricing-card-title">{{ block.settings.title }}</h3>
+          <div class="pc-pricing-amount">
+            {{ block.settings.price -}}
+            {{- block.settings.price_unit }}
+          </div>
+          <div class="pc-pricing-period">{{ block.settings.billing_period }}</div>
+
+          {% if block.settings.savings_text != blank %}
+            <div class="pc-pricing-savings">{{ block.settings.savings_text }}</div>
+          {% endif %}
+
+          {% if block.settings.features != blank %}
+            <ul class="pc-pricing-features">
+              {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
+              {% for feature in features %}
+                {% if feature != blank %}
+                  <li>{{ feature }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+          <a href="{{ block.settings.button_link | default: '#' }}" class="pc-pricing-button">
+            {{ block.settings.button_text | default: 'Get Started' }}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "PWC Pricing Cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Choose Your Plan"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_title",
+      "label": "Show section title",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "card_spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Space between cards",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding bottom",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Card Design"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card background",
+      "default": "rgba(255, 255, 255, 0.08)"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "rgba(255, 255, 255, 0.15)"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Card padding",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "rgba(255, 255, 255, 0.1)"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Button hover background",
+      "default": "rgba(255, 255, 255, 0.2)"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 6
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pricing_card",
+      "name": "Pricing Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Plan name",
+          "default": "Starter"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "19"
+        },
+        {
+          "type": "text",
+          "id": "price_unit",
+          "label": "Price unit",
+          "default": "$"
+        },
+        {
+          "type": "text",
+          "id": "billing_period",
+          "label": "Billing period",
+          "default": "/month"
+        },
+        {
+          "type": "text",
+          "id": "savings_text",
+          "label": "Savings text",
+          "default": "Save 10%"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Get Started"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured plan",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Features"
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Features list",
+          "default": "Feature one\nFeature two\nFeature three",
+          "info": "One feature per line"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC Pricing cards",
+      "category": "Pricing",
+      "blocks": [
+        {
+          "type": "pricing_card",
+          "settings": {
+            "title": "Basic",
+            "price": "19",
+            "savings_text": "Save 10%",
+            "features": "5 projects\nBasic support\nLimited storage"
+          }
+        },
+        {
+          "type": "pricing_card",
+          "settings": {
+            "title": "Pro",
+            "price": "49",
+            "featured": true,
+            "savings_text": "Save 20%",
+            "features": "Unlimited projects\nPriority support\n1TB storage"
+          }
+        },
+        {
+          "type": "pricing_card",
+          "settings": {
+            "title": "Enterprise",
+            "price": "99",
+            "savings_text": "Save 30%",
+            "features": "Unlimited projects\n24/7 support\n10TB storage"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% style %}
+  {{ sid }} .pc-pricing-section {
+    padding-top: {{ padding_top }}px;
+    padding-bottom: {{ padding_bottom }}px;
+    position: relative;
+  }
+
+  {{ sid }} .pc-section-title {
+    text-align: {{ section.settings.title_alignment }};
+    margin-bottom: 40px;
+    font-weight: 600;
+    font-size: 2rem;
+  }
+
+  {{ sid }} .pc-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: {{ section.settings.card_spacing }}px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  {{ sid }} .pc-pricing-card {
+    background: {{ section.settings.card_bg_color }};
+    border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color }};
+    border-radius: {{ section.settings.card_border_radius }}px;
+    padding: {{ section.settings.card_padding }}px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    backdrop-filter: blur(8px);
+  }
+
+  {{ sid }} .pc-pricing-card.featured {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+  }
+
+  {{ sid }} .pc-pricing-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  {{ sid }} .pc-pricing-amount {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 10px 0;
+  }
+
+  {{ sid }} .pc-pricing-period {
+    font-size: 1rem;
+    opacity: 0.8;
+  }
+
+  {{ sid }} .pc-pricing-savings {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 20px;
+  }
+
+  {{ sid }} .pc-pricing-features {
+    margin: 25px 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  {{ sid }} .pc-pricing-features li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+  }
+
+  {{ sid }} .pc-pricing-features li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+  }
+
+  {{ sid }} .pc-pricing-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    background: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    border-radius: {{ section.settings.button_border_radius }}px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  {{ sid }} .pc-pricing-button:hover {
+    background: {{ section.settings.button_hover_bg }};
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    {{ sid }} .pc-pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
+
+    {{ sid }} .pc-pricing-card.featured {
+      transform: none;
+    }
+  }
+{% endstyle %}
