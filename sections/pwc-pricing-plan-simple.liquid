@@ -26,9 +26,6 @@
 
   {{ sid }} .pc-pricing-carousel {
     display: none;
-    max-width: 400px;
-    margin: 0 auto;
-    position: relative;
   }
 
   {{ sid }} .pc-pricing-card {
@@ -39,7 +36,6 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     backdrop-filter: blur(8px);
-    margin: 0 10px;
   }
 
   {{ sid }} .pc-pricing-card.featured {
@@ -112,59 +108,83 @@
   }
 
   /* Carousel styles */
-  {{ sid }} .pc-carousel-container {
-    overflow: hidden;
-    position: relative;
+  {{ sid }} .pc-pricing-carousel .slick-list {
+    padding: 10px 0;
   }
 
-  {{ sid }} .pc-carousel-track {
+  {{ sid }} .pc-pricing-carousel .slick-track {
     display: flex;
-    transition: transform 0.5s ease;
   }
 
-  {{ sid }} .pc-carousel-dots {
+  {{ sid }} .pc-pricing-carousel .pc-pricing-card {
+    margin: 0 10px;
+    height: auto;
+  }
+
+  {{ sid }} .pc-pricing-carousel .slick-dots {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    list-style: none;
+    padding: 0;
   }
 
-  {{ sid }} .pc-carousel-dot {
+  {{ sid }} .pc-pricing-carousel .slick-dots li {
+    margin: 0 5px;
+  }
+
+  {{ sid }} .pc-pricing-carousel .slick-dots button {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.5);
-    margin: 0 5px;
-    cursor: pointer;
+    border: none;
+    text-indent: -9999px;
+    padding: 0;
   }
 
-  {{ sid }} .pc-carousel-dot.active {
+  {{ sid }} .pc-pricing-carousel .slick-dots .slick-active button {
     background: white;
   }
 
-  {{ sid }} .pc-carousel-arrow {
+  {{ sid }} .pc-pricing-carousel .slick-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1;
-    border: none;
     color: white;
-    font-size: 20px;
+    font-size: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
 
-  {{ sid }} .pc-carousel-arrow.prev {
+  {{ sid }} .pc-pricing-carousel .slick-arrow:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  {{ sid }} .pc-pricing-carousel .slick-prev {
     left: 10px;
   }
 
-  {{ sid }} .pc-carousel-arrow.next {
+  {{ sid }} .pc-pricing-carousel .slick-prev:before {
+    content: "←";
+    font-size: 20px;
+    line-height: 40px;
+  }
+
+  {{ sid }} .pc-pricing-carousel .slick-next {
     right: 10px;
+  }
+
+  {{ sid }} .pc-pricing-carousel .slick-next:before {
+    content: "→";
+    font-size: 20px;
+    line-height: 40px;
   }
 
   @media (max-width: 768px) {
@@ -174,6 +194,8 @@
 
     {{ sid }} .pc-pricing-carousel {
       display: block;
+      max-width: 400px;
+      margin: 0 auto;
     }
 
     {{ sid }} .pc-pricing-card.featured {
@@ -223,109 +245,315 @@
 
     <!-- Mobile Carousel View -->
     <div class="pc-pricing-carousel">
-      <div class="pc-carousel-container">
-        <div class="pc-carousel-track">
-          {% for block in section.blocks %}
-            <div
-              class="pc-pricing-card {% if block.settings.featured %}featured{% endif %}"
-              {{ block.shopify_attributes }}
-            >
-              <h3 class="pc-pricing-card-title">{{ block.settings.title }}</h3>
-              <div class="pc-pricing-amount">
-                {{ block.settings.price -}}
-                {{- block.settings.price_unit }}
-              </div>
-              <div class="pc-pricing-period">{{ block.settings.billing_period }}</div>
+      {% for block in section.blocks %}
+        <div class="pc-pricing-card {% if block.settings.featured %}featured{% endif %}" {{ block.shopify_attributes }}>
+          <h3 class="pc-pricing-card-title">{{ block.settings.title }}</h3>
+          <div class="pc-pricing-amount">
+            {{ block.settings.price -}}
+            {{- block.settings.price_unit }}
+          </div>
+          <div class="pc-pricing-period">{{ block.settings.billing_period }}</div>
 
-              {% if block.settings.savings_text != blank %}
-                <div class="pc-pricing-savings">{{ block.settings.savings_text }}</div>
-              {% endif %}
+          {% if block.settings.savings_text != blank %}
+            <div class="pc-pricing-savings">{{ block.settings.savings_text }}</div>
+          {% endif %}
 
-              {% if block.settings.features != blank %}
-                <ul class="pc-pricing-features">
-                  {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
-                  {% for feature in features %}
-                    {% if feature != blank %}
-                      <li>{{ feature }}</li>
-                    {% endif %}
-                  {% endfor %}
-                </ul>
-              {% endif %}
+          {% if block.settings.features != blank %}
+            <ul class="pc-pricing-features">
+              {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
+              {% for feature in features %}
+                {% if feature != blank %}
+                  <li>{{ feature }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
 
-              <a href="{{ block.settings.button_link | default: '#' }}" class="pc-pricing-button">
-                {{ block.settings.button_text | default: 'Get Started' }}
-              </a>
-            </div>
-          {% endfor %}
+          <a href="{{ block.settings.button_link | default: '#' }}" class="pc-pricing-button">
+            {{ block.settings.button_text | default: 'Get Started' }}
+          </a>
         </div>
-        <button class="pc-carousel-arrow prev">❮</button>
-        <button class="pc-carousel-arrow next">❯</button>
-      </div>
-      <div class="pc-carousel-dots">
-        {% for block in section.blocks %}
-          <div class="pc-carousel-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
-        {% endfor %}
-      </div>
+      {% endfor %}
     </div>
   </div>
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Only initialize carousel on mobile
-  if (window.innerWidth <= 768) {
-    const carouselContainer = document.querySelector('{{ sid }} .pc-carousel-container');
-    const carouselTrack = document.querySelector('{{ sid }} .pc-carousel-track');
-    const cards = document.querySelectorAll('{{ sid }} .pc-carousel-track .pc-pricing-card');
-    const dots = document.querySelectorAll('{{ sid }} .pc-carousel-dot');
-    const prevBtn = document.querySelector('{{ sid }} .pc-carousel-arrow.prev');
-    const nextBtn = document.querySelector('{{ sid }} .pc-carousel-arrow.next');
-    
-    let currentIndex = 0;
-    const cardWidth = cards[0].offsetWidth + 20; // width + margin
-    
-    function updateCarousel() {
-      carouselTrack.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-      
-      // Update dots
-      dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize slick carousel only on mobile
+    if (window.innerWidth <= 768) {
+      $('.pc-pricing-carousel').slick({
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        centerMode: true,
+        variableWidth: true,
+        adaptiveHeight: true
       });
     }
-    
-    // Next button
-    nextBtn.addEventListener('click', () => {
-      if (currentIndex < cards.length - 1) {
-        currentIndex++;
-        updateCarousel();
-      }
-    });
-    
-    // Previous button
-    prevBtn.addEventListener('click', () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        updateCarousel();
-      }
-    });
-    
-    // Dot navigation
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        currentIndex = index;
-        updateCarousel();
-      });
-    });
-    
+
     // Handle window resize
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 768) {
-        // Reset carousel on desktop
-        carouselTrack.style.transform = 'translateX(0)';
-        currentIndex = 0;
-        updateCarousel();
+    $(window).on('resize', function() {
+      if (window.innerWidth <= 768 && !$('.pc-pricing-carousel').hasClass('slick-initialized')) {
+        $('.pc-pricing-carousel').slick({
+          dots: true,
+          arrows: true,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          centerMode: true,
+          variableWidth: true,
+          adaptiveHeight: true
+        });
+      } else if (window.innerWidth > 768 && $('.pc-pricing-carousel').hasClass('slick-initialized')) {
+        $('.pc-pricing-carousel').slick('unslick');
       }
     });
-  }
-});
+  });
 </script>
+{% schema %}
+{
+  "name": "PWC Pricing Cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Choose Your Plan"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_title",
+      "label": "Show section title",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "card_spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Space between cards",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding bottom",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Card Design"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card background",
+      "default": "rgba(255, 255, 255, 0.08)"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "rgba(255, 255, 255, 0.15)"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Card padding",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "rgba(255, 255, 255, 0.1)"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Button hover background",
+      "default": "rgba(255, 255, 255, 0.2)"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 6
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pricing_card",
+      "name": "Pricing Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Plan name",
+          "default": "Starter"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "19"
+        },
+        {
+          "type": "text",
+          "id": "price_unit",
+          "label": "Price unit",
+          "default": "$"
+        },
+        {
+          "type": "text",
+          "id": "billing_period",
+          "label": "Billing period",
+          "default": "/month"
+        },
+        {
+          "type": "text",
+          "id": "savings_text",
+          "label": "Savings text",
+          "default": "Save 10%"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Get Started"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured plan",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Features"
+        },
+        {
+          "type": "textarea",
+          "id": "features",
+          "label": "Features list",
+          "default": "Feature one\nFeature two\nFeature three",
+          "info": "One feature per line"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC Pricing cards",
+      "category": "Pricing",
+      "blocks": [
+        {
+          "type": "pricing_card",
+          "settings": {
+            "title": "Basic",
+            "price": "19",
+            "savings_text": "Save 10%",
+            "features": "5 projects\nBasic support\nLimited storage"
+          }
+        },
+        {
+          "type": "pricing_card",
+          "settings": {
+            "title": "Pro",
+            "price": "49",
+            "featured": true,
+            "savings_text": "Save 20%",
+            "features": "Unlimited projects\nPriority support\n1TB storage"
+          }
+        },
+        {
+          "type": "pricing_card",
+          "settings": {
+            "title": "Enterprise",
+            "price": "99",
+            "savings_text": "Save 30%",
+            "features": "Unlimited projects\n24/7 support\n10TB storage"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
