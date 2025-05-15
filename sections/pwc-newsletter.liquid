@@ -111,7 +111,7 @@
     border-radius: {{ section.settings.input_border_radius }}px;
     background-color: {{ section.settings.input_background_color }};
     color: {{ section.settings.input_text_color }};
-    font-size: {{section.settings.subheading_size_first}};
+    font-size: {{section.settings.input_font_size}};
     transition: all 0.3s ease;
     
   }
@@ -682,13 +682,12 @@
     },
        {
       "type": "range",
-      "id": "subheading_size_first",
-      "min": 10,
+      "id": "input_font_size",
+      "label": "Input Font Size (px)",
+      "default": 16,
+      "min": 12,
       "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Email Font Size",
-      "default": 10
+      "step": 1
     },
     {
       "type": "color",
