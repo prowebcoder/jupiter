@@ -360,9 +360,9 @@
         "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
         "show_text_box": true,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-38e53496-71db-490c-8860-755d511ff2fb",
         "stack_images_on_mobile": true,
-        "mobile_content_alignment": "right",
+        "mobile_content_alignment": "left",
         "show_text_below": true
       }
     }
