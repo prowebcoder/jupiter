@@ -228,14 +228,11 @@
     <div class="pc-newsletter__content pc-newsletter__content--layout-{{ section.settings.newsletter_layout }}">
       {%- if section.settings.heading != blank -%}
         <h2 class="pc-newsletter__heading "
-          style=""
           >{{ section.settings.heading }}</h2>
       {%- endif -%}
 
       {%- if section.settings.subheading != blank -%}
-        <div class="pc-newsletter__subheading"
-           style=""
-          >{{ section.settings.subheading }}</div>
+        <div class="pc-newsletter__subheading">{{ section.settings.subheading }}</div>
       {%- endif -%}
 
       {%- form 'customer', class: 'pc-newsletter-form' -%}
