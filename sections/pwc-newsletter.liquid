@@ -100,6 +100,14 @@
     color: {{ section.settings.subheading_color }};
   }
 
+  {{ sid }} .pc-newsletter__subheading{
+    font-weight: {{section.settings.font_weight_second}};
+    padding-top: {{ section.settings.padding_top_second }}px;
+    padding-bottom: {{ section.settings.padding_bottom_second }}px;
+    font-style: {{ section.settings.font_style_second }};
+    text-decoration: {{ section.settings.text_decoration_second }}
+  }
+
   {{ sid }} .pc-newsletter-form {
     display: flex;
     flex-wrap: wrap;
@@ -226,12 +234,7 @@
 
       {%- if section.settings.subheading != blank -%}
         <div class="pc-newsletter__subheading"
-           style="font-weight: {{section.settings.font_weight_second}};
-          padding-top: {{ section.settings.padding_top_second }};
-          padding-bottom: {{ section.settings.padding_bottom_second }};
-          font-style: {{ section.settings.font_style_second }};
-          text-decoration: {{ section.settings.text_decoration_second }}
-          "
+           style=""
           >{{ section.settings.subheading }}</div>
       {%- endif -%}
 
