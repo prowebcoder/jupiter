@@ -110,13 +110,13 @@
     border: 1px solid {{ section.settings.input_border_color }};
     border-radius: {{ section.settings.input_border_radius }}px;
     background-color: {{ section.settings.input_background_color }};
-
+    font-size: {{section.settings.input_font_size}};
+    color: {{section.settings.input_text_color}} !important;
     transition: all 0.3s ease;
   }
 
    {{ sid }} .pc-newsletter-form__field {
-     font-size: {{section.settings.input_font_size}} !important;
-      color: {{section.settings.input_text_color}} !important;
+  
    }
 
   {{ sid }} .pc-newsletter-form__field:focus {
