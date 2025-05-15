@@ -255,7 +255,9 @@
             {% endif %}
             placeholder="{{ section.settings.email_placeholder }}"
             required
-            style="font-size: {{ section.settings.subheading_size_first}};"
+            style="font-size: {{ section.settings.subheading_size_first}};
+            color: {{ section.settings.text_color_first }}
+            "
           >
         </div>
         <button type="submit" class="pc-newsletter-form__button" name="commit">
