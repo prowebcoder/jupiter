@@ -30,7 +30,7 @@
             "text_color": "#fefefe",
             "font_weight": "bold",
             "font_style": "italic",
-            "text_decoration": "none",
+            "text_decoration": "underline",
             "padding_top": 0,
             "padding_bottom": 0
           }
@@ -286,7 +286,6 @@
       "settings": {
         "colorBackground": "#000000",
         "colorText": "#ffffff",
-        "link": "",
         "direction": "right",
         "marquee_height": 46,
         "font_size": 24,
