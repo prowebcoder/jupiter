@@ -223,7 +223,14 @@
       {%- endif -%}
 
       {%- if section.settings.subheading != blank -%}
-        <div class="pc-newsletter__subheading">{{ section.settings.subheading }}</div>
+        <div class="pc-newsletter__subheading"
+           style="font-weight: {{section.settings.font_weight}};
+          padding-top: {{ section.settings.padding_top_second }};
+          padding-bottom: {{ section.settings.padding_bottom_second }};
+          font-style: {{ section.settings.font_style_second }};
+          text-decoration: {{ section.settings.text_decoration_second }}
+          "
+          >{{ section.settings.subheading }}</div>
       {%- endif -%}
 
       {%- form 'customer', class: 'pc-newsletter-form' -%}
