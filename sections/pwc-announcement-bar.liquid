@@ -10,28 +10,7 @@
   assign show_line_separator = section.settings.show_line_separator
   -%}
 
-
-  {% style %}
-    {{ sec_id }} .utility-bar {
-      
-    }
-  {% for block in section.blocks %}
-    {% case block.type %}
-      {% when 'heading' %}
-        {{ sec_id }} .banner__heading {
-          
-        }
-      {% when 'text' %}
-        {{ sec_id }} .banner__text {
-          font-weight: {{ block.settings.font_weight }};
-        }
-      {%- when 'buttons' -%}
-      {{ sec_id }} .banner__buttons{
-          padding-top: {{ block.settings.padding_top }}px;
-      }
-    {% endcase %}
-  {% endfor %}
-  {% endstyle %}
+ 
 
   {{ sid }} .pc-newsletter__heading {
     font-weight: {{section.settings.font_weight}};
