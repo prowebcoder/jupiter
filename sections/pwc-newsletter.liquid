@@ -213,7 +213,6 @@
     <div class="pc-newsletter__content pc-newsletter__content--layout-{{ section.settings.newsletter_layout }}">
       {%- if section.settings.heading != blank -%}
         <h2 class="pc-newsletter__heading">{{ section.settings.heading }}</h2>
-      jhdfkjd
       {%- endif -%}
 
       {%- if section.settings.subheading != blank -%}
@@ -388,6 +387,66 @@
       "label": "Heading font size",
       "default": 36
     },
+     {
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
     {
       "type": "color",
       "id": "heading_color",
