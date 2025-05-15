@@ -323,12 +323,12 @@
           "type": "text",
           "settings": {
             "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_color": "#e05c5c",
-            "font_weight": "normal",
-            "font_style": "normal",
-            "text_decoration": "none",
-            "padding_top": 5,
-            "padding_bottom": 5
+            "text_color": "#f8f5f5",
+            "font_weight": "bold",
+            "font_style": "italic",
+            "text_decoration": "underline",
+            "padding_top": 0,
+            "padding_bottom": 0
           }
         },
         "buttons_tnNFmM": {
