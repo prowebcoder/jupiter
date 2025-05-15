@@ -122,10 +122,10 @@
           "type": "announcement",
           "settings": {
             "text": "Welcome to our store",
-            "text_size": "large",
-            "font_weight": "normal",
+            "text_size": "medium",
+            "font_weight": "800",
             "font_style": "italic",
-            "letter_spacing": 3,
+            "letter_spacing": 1,
             "text_decoration": "underline",
             "text_color": "#ffffff",
             "link": ""
@@ -135,12 +135,11 @@
       "block_order": [
         "announcement_pDcHNV"
       ],
-      "disabled": true,
       "name": "Pwc announcement bar",
       "settings": {
         "colorBackground": "#a3ba35",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 5,
+        "padding_bottom": 20
       }
     }
   },
