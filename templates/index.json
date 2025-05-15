@@ -128,6 +128,7 @@
     },
     "featured_collection": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "collection": "all",
         "products_to_show": 8,
@@ -163,7 +164,7 @@
         "text_position": "left",
         "layout_direction": "row",
         "text_alignment": "left",
-        "countdown_alignment": "flex-end",
+        "countdown_alignment": "flex-start",
         "heading": "Limited Time Offer",
         "description": "<p>Hurry up! This offer ends soon.</p>",
         "icon": "",
