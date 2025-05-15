@@ -166,6 +166,11 @@
         "text_alignment": "left",
         "countdown_alignment": "flex-start",
         "heading": "Limited Time Offer",
+        "heading_weight": "600",
+        "heading_transform": "none",
+        "heading_line_height": 1.2,
+        "heading_letter_spacing": 0,
+        "heading_spacing": 15,
         "description": "<p>Hurry up! This offer ends soon.</p>",
         "icon": "",
         "icon_position": "below_heading",
@@ -180,11 +185,6 @@
         "heading_size": 36,
         "heading_size_tablet": 30,
         "heading_size_mobile": 24,
-        "heading_weight": "600",
-        "heading_transform": "none",
-        "heading_line_height": 1.2,
-        "heading_letter_spacing": 0,
-        "heading_spacing": 15,
         "description_size": 16,
         "description_size_tablet": 15,
         "description_size_mobile": 14,
@@ -295,6 +295,76 @@
         "image_width": 20,
         "speed": 30
       }
+    },
+    "pwc_pricing_plan_simple_6LW46V": {
+      "type": "pwc-pricing-plan-simple",
+      "blocks": {
+        "pricing_card_yEbzRp": {
+          "type": "pricing_card",
+          "settings": {
+            "title": "Basic",
+            "price": "19",
+            "price_unit": "$",
+            "billing_period": "/month",
+            "savings_text": "Save 10%",
+            "button_link": "",
+            "button_text": "Get Started",
+            "featured": true,
+            "features": "5 projects\nBasic support\nLimited storage"
+          }
+        },
+        "pricing_card_yWDWXh": {
+          "type": "pricing_card",
+          "settings": {
+            "title": "Pro",
+            "price": "49",
+            "price_unit": "$",
+            "billing_period": "/month",
+            "savings_text": "Save 20%",
+            "button_link": "",
+            "button_text": "Get Started",
+            "featured": true,
+            "features": "Unlimited projects\nPriority support\n1TB storage"
+          }
+        },
+        "pricing_card_RVKMLB": {
+          "type": "pricing_card",
+          "settings": {
+            "title": "Enterprise",
+            "price": "99",
+            "price_unit": "$",
+            "billing_period": "/month",
+            "savings_text": "Save 30%",
+            "button_link": "",
+            "button_text": "Get Started",
+            "featured": true,
+            "features": "Unlimited projects\n24/7 support\n10TB storage"
+          }
+        }
+      },
+      "block_order": [
+        "pricing_card_yEbzRp",
+        "pricing_card_yWDWXh",
+        "pricing_card_RVKMLB"
+      ],
+      "name": "PWC Pricing cards",
+      "settings": {
+        "title": "Choose Your Plan",
+        "show_section_title": true,
+        "title_alignment": "center",
+        "card_spacing": 20,
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "card_bg_color": "rgba(255, 255, 255, 0.08)",
+        "card_border_color": "rgba(255, 255, 255, 0.15)",
+        "card_border_width": 1,
+        "card_border_radius": 12,
+        "card_padding": 30,
+        "button_bg_color": "rgba(255, 255, 255, 0.1)",
+        "button_hover_bg": "rgba(255, 255, 255, 0.2)",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 6
+      }
     }
   },
   "order": [
@@ -303,6 +373,7 @@
     "featured_collection",
     "pwc_timer_4WcWDa",
     "pwc_before_after_WmcCym",
-    "scrolling_text_BReXzM"
+    "scrolling_text_BReXzM",
+    "pwc_pricing_plan_simple_6LW46V"
   ]
 }
