@@ -2,6 +2,119 @@
 {%- assign padding_top = section.settings.section_padding_top -%}
 {%- assign padding_bottom = section.settings.section_padding_bottom -%}
 
+{% style %}
+  {{ sid }} .pc-pricing-section {
+    padding-top: {{ padding_top }}px;
+    padding-bottom: {{ padding_bottom }}px;
+    position: relative;
+  }
+
+  {{ sid }} .pc-section-title {
+    text-align: {{ section.settings.title_alignment }};
+    margin-bottom: 40px;
+    font-weight: 600;
+    font-size: 2rem;
+  }
+
+  {{ sid }} .pc-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: {{ section.settings.card_spacing }}px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  {{ sid }} .pc-pricing-card {
+    background: {{ section.settings.card_bg_color }};
+    border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color }};
+    border-radius: {{ section.settings.card_border_radius }}px;
+    padding: {{ section.settings.card_padding }}px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    backdrop-filter: blur(8px);
+  }
+
+  {{ sid }} .pc-pricing-card.featured {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+  }
+
+  {{ sid }} .pc-pricing-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  {{ sid }} .pc-pricing-amount {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 10px 0;
+  }
+
+  {{ sid }} .pc-pricing-period {
+    font-size: 1rem;
+    opacity: 0.8;
+  }
+
+  {{ sid }} .pc-pricing-savings {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 20px;
+  }
+
+  {{ sid }} .pc-pricing-features {
+    margin: 25px 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  {{ sid }} .pc-pricing-features li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+  }
+
+  {{ sid }} .pc-pricing-features li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+  }
+
+  {{ sid }} .pc-pricing-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    background: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    border-radius: {{ section.settings.button_border_radius }}px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  {{ sid }} .pc-pricing-button:hover {
+    background: {{ section.settings.button_hover_bg }};
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    {{ sid }} .pc-pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
+
+    {{ sid }} .pc-pricing-card.featured {
+      transform: none;
+    }
+  }
+{% endstyle %}
+
 <div class="pc-pricing-section">
   <div class="page-width">
     {% if section.settings.show_section_title %}
@@ -285,116 +398,3 @@
   ]
 }
 {% endschema %}
-
-{% style %}
-  {{ sid }} .pc-pricing-section {
-    padding-top: {{ padding_top }}px;
-    padding-bottom: {{ padding_bottom }}px;
-    position: relative;
-  }
-
-  {{ sid }} .pc-section-title {
-    text-align: {{ section.settings.title_alignment }};
-    margin-bottom: 40px;
-    font-weight: 600;
-    font-size: 2rem;
-  }
-
-  {{ sid }} .pc-pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: {{ section.settings.card_spacing }}px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  {{ sid }} .pc-pricing-card {
-    background: {{ section.settings.card_bg_color }};
-    border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color }};
-    border-radius: {{ section.settings.card_border_radius }}px;
-    padding: {{ section.settings.card_padding }}px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    backdrop-filter: blur(8px);
-  }
-
-  {{ sid }} .pc-pricing-card.featured {
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    transform: translateY(-10px);
-  }
-
-  {{ sid }} .pc-pricing-card-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-  }
-
-  {{ sid }} .pc-pricing-amount {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1;
-    margin: 10px 0;
-  }
-
-  {{ sid }} .pc-pricing-period {
-    font-size: 1rem;
-    opacity: 0.8;
-  }
-
-  {{ sid }} .pc-pricing-savings {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    margin-bottom: 20px;
-  }
-
-  {{ sid }} .pc-pricing-features {
-    margin: 25px 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  {{ sid }} .pc-pricing-features li {
-    padding: 8px 0;
-    position: relative;
-    padding-left: 25px;
-  }
-
-  {{ sid }} .pc-pricing-features li:before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: #4CAF50;
-  }
-
-  {{ sid }} .pc-pricing-button {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    text-align: center;
-    background: {{ section.settings.button_bg_color }};
-    color: {{ section.settings.button_text_color }};
-    border-radius: {{ section.settings.button_border_radius }}px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-  }
-
-  {{ sid }} .pc-pricing-button:hover {
-    background: {{ section.settings.button_hover_bg }};
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 768px) {
-    {{ sid }} .pc-pricing-grid {
-      grid-template-columns: 1fr;
-      max-width: 400px;
-    }
-
-    {{ sid }} .pc-pricing-card.featured {
-      transform: none;
-    }
-  }
-{% endstyle %}
