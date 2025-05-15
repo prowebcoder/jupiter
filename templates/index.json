@@ -314,7 +314,7 @@
             "heading": "Image banner",
             "text_color": "#fff",
             "heading_size": "h1",
-            "font_weight": "normal",
+            "font_weight": "bolder",
             "font_style": "normal",
             "text_decoration": "none"
           }
