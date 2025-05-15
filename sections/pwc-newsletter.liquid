@@ -111,7 +111,7 @@
     border-radius: {{ section.settings.input_border_radius }}px;
     background-color: {{ section.settings.input_background_color }};
     color: {{ section.settings.input_text_color }};
-    font-size: {{section.settings.input_font_size}};
+   
     transition: all 0.3s ease;
     
   }
@@ -242,7 +242,7 @@
             type="email"
             name="contact[email]"
             class="pc-newsletter-form__field"
-            style=" color: {{ section.settings.input_text_color_first }};"
+            style="font-size: {{section.settings.input_font_size}}; color: {{ section.settings.input_text_color_first }};"
             value="{{ form.email }}"
             aria-required="true"
             autocorrect="off"
