@@ -111,9 +111,10 @@
     border-radius: {{ section.settings.input_border_radius }}px;
     background-color: {{ section.settings.input_background_color }};
     color: {{ section.settings.input_text_color }} !important;
-    font-size: {{section.settings.input_font_size}} !important;
     transition: all 0.3s ease;
   }
+
+   
 
   {{ sid }} .pc-newsletter-form__field:focus {
     border-color: {{ section.settings.input_focus_border_color }};
@@ -241,6 +242,8 @@
             type="email"
             name="contact[email]"
             class="pc-newsletter-form__field"
+            style="font-size: {{section.settings.input_font_size}};
+            text-color: {{ section.settings.input_text_color }} !important;"
             value="{{ form.email }}"
             aria-required="true"
             autocorrect="off"
