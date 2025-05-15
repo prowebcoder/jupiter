@@ -110,12 +110,9 @@
     border: 1px solid {{ section.settings.input_border_color }};
     border-radius: {{ section.settings.input_border_radius }}px;
     background-color: {{ section.settings.input_background_color }};
-    color: {{ section.settings.input_text_color }};
-    transition: all 0.3s ease;
-  }
-
-   {{ sid }} .pc-newsletter-form__field {
     color: {{ section.settings.input_text_color }} !important;
+    font-size: {{section.settings.input_font_size}};
+    transition: all 0.3s ease;
   }
 
   {{ sid }} .pc-newsletter-form__field:focus {
@@ -240,33 +237,25 @@
         <input type="hidden" name="contact[tags]" value="newsletter">
         <div class="pc-newsletter-form__field-wrapper">
           <input
-  id="NewsletterForm--{{ section.id }}"
-  type="email"
-  name="contact[email]"
-  class="pc-newsletter-form__field"
-  style="
-    font-size: {{ section.settings.input_font_size }}px;
-    color: {{ section.settings.input_text_color }};
-    background-color: {{ section.settings.input_background_color }};
-    border-color: {{ section.settings.input_border_color }};
-    border-radius: {{ section.settings.input_border_radius }}px;
-  "
-  value="{{ form.email }}"
-  aria-required="true"
-  autocorrect="off"
-  autocapitalize="off"
-  autocomplete="email"
-  {% if form.errors %}
-    autofocus
-    aria-invalid="true"
-    aria-describedby="Newsletter-error--{{ section.id }}"
-  {% elsif form.posted_successfully? %}
-    aria-describedby="Newsletter-success--{{ section.id }}"
-  {% endif %}
-  placeholder="{{ section.settings.email_placeholder }}"
-  required
-/>
-
+            id="NewsletterForm--{{ section.id }}"
+            type="email"
+            name="contact[email]"
+            class="pc-newsletter-form__field"
+            value="{{ form.email }}"
+            aria-required="true"
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+            {% if form.errors %}
+              autofocus
+              aria-invalid="true"
+              aria-describedby="Newsletter-error--{{ section.id }}"
+            {% elsif form.posted_successfully? %}
+              aria-describedby="Newsletter-success--{{ section.id }}"
+            {% endif %}
+            placeholder="{{ section.settings.email_placeholder }}"
+            required
+          >
         </div>
         <button type="submit" class="pc-newsletter-form__button" name="commit">
           {{ section.settings.button_label }}
