@@ -10,7 +10,15 @@
   assign show_line_separator = section.settings.show_line_separator
   -%}
 
- 
+  {%- style -%}
+  {{ sid }} .pc-newsletter {
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+    position: relative;
+    overflow: hidden;
+  }
+  {% endstyle %}
 
   {{ sid }} .pc-newsletter__heading {
     font-weight: {{section.settings.font_weight}};
