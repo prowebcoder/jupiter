@@ -18,7 +18,7 @@
             "heading": "Image banner",
             "text_color": "#ffffff",
             "heading_size": "h1",
-            "font_weight": "800",
+            "font_weight": "bold",
             "font_style": "normal",
             "text_decoration": "none"
           }
