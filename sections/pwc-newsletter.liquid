@@ -212,8 +212,8 @@
   <div class="pc-newsletter__wrapper">
     <div class="pc-newsletter__content pc-newsletter__content--layout-{{ section.settings.newsletter_layout }}">
       {%- if section.settings.heading != blank -%}
-        <h2 class="pc-newsletter__heading {{section.settings.font_weight}}" style="">{{ section.settings.heading }}</h2>
-      {%- endif -%}
+        <h2 class="pc-newsletter__heading " style="font-weight: {{section.settings.font_weight}};">{{ section.settings.heading }}</h2>
+      {%- endif -%};
 
       {%- if section.settings.subheading != blank -%}
         <div class="pc-newsletter__subheading">{{ section.settings.subheading }}</div>
