@@ -113,6 +113,7 @@
     color: {{ section.settings.input_text_color }};
     font-size: 16px;
     transition: all 0.3s ease;
+    
   }
 
   {{ sid }} .pc-newsletter-form__field:focus {
@@ -255,8 +256,6 @@
             {% endif %}
             placeholder="{{ section.settings.email_placeholder }}"
             required
-            style="font-size: {{ section.settings.subheading_size_first }} }};color: {{ section.settings.text_color }};"
-                
           >
         </div>
         <button type="submit" class="pc-newsletter-form__button" name="commit">
