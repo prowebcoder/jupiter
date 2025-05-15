@@ -9,6 +9,67 @@
  */
 {
   "sections": {
+    "pwc_image_banner_hcXGjD": {
+      "type": "pwc-image-banner",
+      "blocks": {
+        "heading_Hcr8Vd": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image banner",
+            "text_color": "#fff",
+            "heading_size": "h1",
+            "font_weight": "bolder",
+            "font_style": "normal",
+            "text_decoration": "none"
+          }
+        },
+        "text_FB3jHy": {
+          "type": "text",
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_color": "#f8f5f5",
+            "font_weight": "bold",
+            "font_style": "italic",
+            "text_decoration": "underline",
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        },
+        "buttons_tnNFmM": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false,
+            "padding_top": 0,
+            "padding_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "heading_Hcr8Vd",
+        "text_FB3jHy",
+        "buttons_tnNFmM"
+      ],
+      "name": "Pwc Image Banner",
+      "settings": {
+        "image": "shopify://shop_images/bannerdeck.jpg",
+        "image_2": "shopify://shop_images/banner.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "scheme-38e53496-71db-490c-8860-755d511ff2fb",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "left",
+        "show_text_below": true
+      }
+    },
     "pwc_newsletter_KPEt9V": {
       "type": "pwc-newsletter",
       "name": "Newsletter with Image",
@@ -304,76 +365,15 @@
         "button_text_color": "#ffffff",
         "button_border_radius": 6
       }
-    },
-    "pwc_image_banner_hcXGjD": {
-      "type": "pwc-image-banner",
-      "blocks": {
-        "heading_Hcr8Vd": {
-          "type": "heading",
-          "settings": {
-            "heading": "Image banner",
-            "text_color": "#fff",
-            "heading_size": "h1",
-            "font_weight": "bolder",
-            "font_style": "normal",
-            "text_decoration": "none"
-          }
-        },
-        "text_FB3jHy": {
-          "type": "text",
-          "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_color": "#f8f5f5",
-            "font_weight": "bold",
-            "font_style": "italic",
-            "text_decoration": "underline",
-            "padding_top": 0,
-            "padding_bottom": 0
-          }
-        },
-        "buttons_tnNFmM": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Button label",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false,
-            "padding_top": 0,
-            "padding_bottom": 0
-          }
-        }
-      },
-      "block_order": [
-        "heading_Hcr8Vd",
-        "text_FB3jHy",
-        "buttons_tnNFmM"
-      ],
-      "name": "Pwc Image Banner",
-      "settings": {
-        "image": "shopify://shop_images/bannerdeck.jpg",
-        "image_2": "shopify://shop_images/banner.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "scheme-38e53496-71db-490c-8860-755d511ff2fb",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "left",
-        "show_text_below": true
-      }
     }
   },
   "order": [
+    "pwc_image_banner_hcXGjD",
     "pwc_newsletter_KPEt9V",
     "featured_collection",
     "pwc_timer_4WcWDa",
     "pwc_before_after_WmcCym",
     "scrolling_text_BReXzM",
-    "pwc_pricing_plan_simple_6LW46V",
-    "pwc_image_banner_hcXGjD"
+    "pwc_pricing_plan_simple_6LW46V"
   ]
 }
