@@ -111,9 +111,11 @@
     border-radius: {{ section.settings.input_border_radius }}px;
     background-color: {{ section.settings.input_background_color }};
     color: {{ section.settings.input_text_color }};
-   
     transition: all 0.3s ease;
-    
+  }
+
+   {{ sid }} .pc-newsletter-form__field {
+    color: {{ section.settings.input_text_color }} !important;
   }
 
   {{ sid }} .pc-newsletter-form__field:focus {
