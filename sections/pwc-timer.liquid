@@ -227,7 +227,10 @@
           </div>
         {% endif %}
         {% if section.settings.heading != blank %}
-          <h2>{{ section.settings.heading }}</h2>
+          <div>
+            <h2>{{ section.settings.heading }}</h2>
+          </div>
+          
         {% endif %}
         {% if section.settings.icon != blank and section.settings.icon_position == 'below_heading' %}
           <div class="pc-countdown-icon">
