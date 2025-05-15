@@ -227,8 +227,16 @@
           </div>
         {% endif %}
         {% if section.settings.heading != blank %}
-          <div class="">
-            <h2>{{ section.settings.heading }}</h2>
+          <div class="custom-heading-container" style="padding-top: {{ section.settings.padding_top_first }}px; padding-bottom: {{ section.settings.padding_bottom_first }}px;">
+             <h2 style="
+    font-size: {{ section.settings.heading_size_first }}px;
+    color: {{ section.settings.heading_color_first }};
+    font-weight: {{ section.settings.font_weight }};
+    font-style: {{ section.settings.font_style }};
+    text-decoration: {{ section.settings.text_decoration }};
+  ">
+    {{ section.settings.heading }}
+  </h2>
           </div>
           
         {% endif %}
