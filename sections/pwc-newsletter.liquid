@@ -255,6 +255,7 @@
             {% endif %}
             placeholder="{{ section.settings.email_placeholder }}"
             required
+            style=""
           >
         </div>
         <button type="submit" class="pc-newsletter-form__button" name="commit">
@@ -678,6 +679,16 @@
       "id": "email_placeholder",
       "default": "Your email address",
       "label": "Email placeholder text"
+    },
+       {
+      "type": "range",
+      "id": "subheading_size_third",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading font size",
+      "default": 18
     },
     {
       "type": "text",
