@@ -25,18 +25,18 @@
         "promo_code": "PROMO15",
         "button_label": "Shop Now",
         "button_link": "",
-        "button_shape": "5px",
+        "button_shape": "50px",
         "featured_button_background": "#FFA500",
         "featured_button_text_color": "#FFFFFF",
         "disclaimer": "Final discount, cannot be combined with other offers.",
         "countdown_end_date": "2025-10-12",
-        "background_color": "#f1f1f1",
+        "background_color": "#121212",
         "subheading_font_size": 14,
         "heading_font_size": 24,
         "promo_code_font_size": 14,
         "disclaimer_font_size": 12,
         "countdown_font_size": 20,
-        "countdown_background_color1": "#1e1e1e",
+        "countdown_background_color1": "#FFA500",
         "countdown_text_color1": "#ffffff"
       }
     }
