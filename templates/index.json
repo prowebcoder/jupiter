@@ -240,132 +240,6 @@
         "padding_bottom_mobile": 30
       }
     },
-    "pwc_before_after_WmcCym": {
-      "type": "pwc-before-after",
-      "name": "PC - Before/After Slider",
-      "settings": {
-        "background_color": "#ffffff",
-        "bf_image": "shopify://shop_images/IMG_0221_2.webp",
-        "af_image": "shopify://shop_images/IMG_0222_6.webp",
-        "show_badge": false,
-        "show_content": true,
-        "left_top_text": "<p>✔️<strong>Smärtfri</strong></p><p>Inget behöver föras in i näsan; allt sker utvändigt. Vår magnetiska näsvidgare är helt smärtfri och extremt bekväm – du kanske inte ens märker att den är där!</p>",
-        "left_bottom_text": "<p>✔️<strong>Smärtfri</strong></p><p>Inget behöver föras in i näsan; allt sker utvändigt. Vår magnetiska näsvidgare är helt smärtfri och extremt bekväm – du kanske inte ens märker att den är där!</p>",
-        "right_top_text": "<p>✔️<strong>Smärtfri</strong></p><p>Inget behöver föras in i näsan; allt sker utvändigt. Vår magnetiska näsvidgare är helt smärtfri och extremt bekväm – du kanske inte ens märker att den är där!</p>",
-        "right_bottom_text": "<p>✔️<strong>Smärtfri</strong></p><p>Inget behöver föras in i näsan; allt sker utvändigt. Vår magnetiska näsvidgare är helt smärtfri och extremt bekväm – du kanske inte ens märker att den är där!</p>",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "scrolling_text_BReXzM": {
-      "type": "scrolling-text",
-      "blocks": {
-        "text_9crba7": {
-          "type": "text",
-          "settings": {
-            "new_text": "Welcome to our store",
-            "text_color": "#ffffff",
-            "text_transform": "uppercase",
-            "font_weight": "600",
-            "text_decoration": "none",
-            "font_style": "normal",
-            "letter_spacing": 0
-          }
-        },
-        "image_qyjaTN": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/favicon-2.png"
-          }
-        }
-      },
-      "block_order": [
-        "text_9crba7",
-        "image_qyjaTN"
-      ],
-      "name": "Pwc Marquee",
-      "settings": {
-        "colorBackground": "#000000",
-        "colorText": "#ffffff",
-        "direction": "right",
-        "marquee_height": 46,
-        "font_size": 24,
-        "padding_top": 35,
-        "padding_bottom": 40,
-        "image_width": 20,
-        "speed": 30
-      }
-    },
-    "pwc_pricing_plan_simple_6LW46V": {
-      "type": "pwc-pricing-plan-simple",
-      "blocks": {
-        "pricing_card_yEbzRp": {
-          "type": "pricing_card",
-          "settings": {
-            "title": "Basic",
-            "price": "19",
-            "price_unit": "$",
-            "billing_period": "/month",
-            "savings_text": "Save 10%",
-            "button_link": "",
-            "button_text": "Get Started",
-            "featured": true,
-            "features": "5 projects\nBasic support\nLimited storage"
-          }
-        },
-        "pricing_card_yWDWXh": {
-          "type": "pricing_card",
-          "settings": {
-            "title": "Pro",
-            "price": "49",
-            "price_unit": "$",
-            "billing_period": "/month",
-            "savings_text": "Save 20%",
-            "button_link": "",
-            "button_text": "Get Started",
-            "featured": true,
-            "features": "Unlimited projects\nPriority support\n1TB storage"
-          }
-        },
-        "pricing_card_RVKMLB": {
-          "type": "pricing_card",
-          "settings": {
-            "title": "Enterprise",
-            "price": "99",
-            "price_unit": "$",
-            "billing_period": "/month",
-            "savings_text": "Save 30%",
-            "button_link": "",
-            "button_text": "Get Started",
-            "featured": true,
-            "features": "Unlimited projects\n24/7 support\n10TB storage"
-          }
-        }
-      },
-      "block_order": [
-        "pricing_card_yEbzRp",
-        "pricing_card_yWDWXh",
-        "pricing_card_RVKMLB"
-      ],
-      "name": "PWC Pricing cards",
-      "settings": {
-        "title": "Choose Your Plan",
-        "show_section_title": true,
-        "title_alignment": "center",
-        "card_spacing": 20,
-        "section_padding_top": 60,
-        "section_padding_bottom": 60,
-        "card_bg_color": "#ffffff14",
-        "card_border_color": "#ffffff26",
-        "card_border_width": 1,
-        "card_border_radius": 12,
-        "card_padding": 30,
-        "button_bg_color": "#ffffff1a",
-        "button_hover_bg": "#ffffff33",
-        "button_text_color": "#ffffff",
-        "button_border_radius": 6
-      }
-    },
     "pricing_plan_p_83L4ad": {
       "type": "pricing-plan-p",
       "blocks": {
@@ -514,16 +388,142 @@
         "accent_color_hover": "#d80060",
         "vip_button_border_color": "rgba(0,0,0,0)"
       }
+    },
+    "pwc_before_after_WmcCym": {
+      "type": "pwc-before-after",
+      "name": "PC - Before/After Slider",
+      "settings": {
+        "background_color": "#ffffff",
+        "bf_image": "shopify://shop_images/IMG_0221_2.webp",
+        "af_image": "shopify://shop_images/IMG_0222_6.webp",
+        "show_badge": false,
+        "show_content": true,
+        "left_top_text": "<p>✔️<strong>Smärtfri</strong></p><p>Inget behöver föras in i näsan; allt sker utvändigt. Vår magnetiska näsvidgare är helt smärtfri och extremt bekväm – du kanske inte ens märker att den är där!</p>",
+        "left_bottom_text": "<p>✔️<strong>Smärtfri</strong></p><p>Inget behöver föras in i näsan; allt sker utvändigt. Vår magnetiska näsvidgare är helt smärtfri och extremt bekväm – du kanske inte ens märker att den är där!</p>",
+        "right_top_text": "<p>✔️<strong>Smärtfri</strong></p><p>Inget behöver föras in i näsan; allt sker utvändigt. Vår magnetiska näsvidgare är helt smärtfri och extremt bekväm – du kanske inte ens märker att den är där!</p>",
+        "right_bottom_text": "<p>✔️<strong>Smärtfri</strong></p><p>Inget behöver föras in i näsan; allt sker utvändigt. Vår magnetiska näsvidgare är helt smärtfri och extremt bekväm – du kanske inte ens märker att den är där!</p>",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "scrolling_text_BReXzM": {
+      "type": "scrolling-text",
+      "blocks": {
+        "text_9crba7": {
+          "type": "text",
+          "settings": {
+            "new_text": "Welcome to our store",
+            "text_color": "#ffffff",
+            "text_transform": "uppercase",
+            "font_weight": "600",
+            "text_decoration": "none",
+            "font_style": "normal",
+            "letter_spacing": 0
+          }
+        },
+        "image_qyjaTN": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/favicon-2.png"
+          }
+        }
+      },
+      "block_order": [
+        "text_9crba7",
+        "image_qyjaTN"
+      ],
+      "name": "Pwc Marquee",
+      "settings": {
+        "colorBackground": "#000000",
+        "colorText": "#ffffff",
+        "direction": "right",
+        "marquee_height": 46,
+        "font_size": 24,
+        "padding_top": 35,
+        "padding_bottom": 40,
+        "image_width": 20,
+        "speed": 30
+      }
+    },
+    "pwc_pricing_plan_simple_6LW46V": {
+      "type": "pwc-pricing-plan-simple",
+      "blocks": {
+        "pricing_card_yEbzRp": {
+          "type": "pricing_card",
+          "settings": {
+            "title": "Basic",
+            "price": "19",
+            "price_unit": "$",
+            "billing_period": "/month",
+            "savings_text": "Save 10%",
+            "button_link": "",
+            "button_text": "Get Started",
+            "featured": true,
+            "features": "5 projects\nBasic support\nLimited storage"
+          }
+        },
+        "pricing_card_yWDWXh": {
+          "type": "pricing_card",
+          "settings": {
+            "title": "Pro",
+            "price": "49",
+            "price_unit": "$",
+            "billing_period": "/month",
+            "savings_text": "Save 20%",
+            "button_link": "",
+            "button_text": "Get Started",
+            "featured": true,
+            "features": "Unlimited projects\nPriority support\n1TB storage"
+          }
+        },
+        "pricing_card_RVKMLB": {
+          "type": "pricing_card",
+          "settings": {
+            "title": "Enterprise",
+            "price": "99",
+            "price_unit": "$",
+            "billing_period": "/month",
+            "savings_text": "Save 30%",
+            "button_link": "",
+            "button_text": "Get Started",
+            "featured": true,
+            "features": "Unlimited projects\n24/7 support\n10TB storage"
+          }
+        }
+      },
+      "block_order": [
+        "pricing_card_yEbzRp",
+        "pricing_card_yWDWXh",
+        "pricing_card_RVKMLB"
+      ],
+      "name": "PWC Pricing cards",
+      "settings": {
+        "title": "Choose Your Plan",
+        "show_section_title": true,
+        "title_alignment": "center",
+        "card_spacing": 20,
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "card_bg_color": "#ffffff14",
+        "card_border_color": "#ffffff26",
+        "card_border_width": 1,
+        "card_border_radius": 12,
+        "card_padding": 30,
+        "button_bg_color": "#ffffff1a",
+        "button_hover_bg": "#ffffff33",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 6
+      }
     }
   },
   "order": [
     "pwc_image_banner_hcXGjD",
     "pwc_newsletter_KPEt9V",
+    "pwc_pricing_plan_simple_6LW46V",
     "featured_collection",
     "pwc_timer_4WcWDa",
     "pwc_before_after_WmcCym",
     "scrolling_text_BReXzM",
-    "pwc_pricing_plan_simple_6LW46V",
     "pricing_plan_p_83L4ad"
   ]
 }
