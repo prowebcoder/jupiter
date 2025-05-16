@@ -340,7 +340,7 @@
         "show_badge": false,
         "show_content": true,
         "left_top_text": "<p>✔️<strong>Smärtfri</strong></p><p>Inget behöver föras in i näsan; allt sker utvändigt. Vår magnetiska näsvidgare är helt smärtfri och extremt bekväm – du kanske inte ens märker att den är där!</p>",
-        "text_color": "#db1f1f",
+        "text_color": "#e1b923",
         "subheading_size": 17,
         "padding_top_first": 0,
         "padding_bottom_first": 0,
