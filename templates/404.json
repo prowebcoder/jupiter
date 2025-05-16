@@ -22,8 +22,8 @@
         "button_label": "Shop Now",
         "button_link": "",
         "button_shape": "50px",
-        "featured_button_background": "#FFA500",
-        "featured_button_text_color": "#FFFFFF",
+        "featured_button_background": "#ffa500",
+        "featured_button_text_color": "#ffffff",
         "disclaimer": "Final discount, cannot be combined with other offers.",
         "countdown_end_date": "2025-10-12",
         "background_color": "#121212",
@@ -32,8 +32,35 @@
         "promo_code_font_size": 14,
         "disclaimer_font_size": 12,
         "countdown_font_size": 20,
-        "countdown_background_color1": "#FFA500",
+        "countdown_background_color1": "#ffa500",
         "countdown_text_color1": "#ffffff"
+      }
+    },
+    "split_banner_blog_pwc_tCRqFw": {
+      "type": "Split_banner_blog_pwc",
+      "name": "Split Banner with Blog Pwc",
+      "settings": {
+        "page_width": 1200,
+        "background_image": "shopify://shop_images/person-dressed-in-black-holds-two-weights-in-each-hand.jpg",
+        "background_color": "#f1f1f1",
+        "heading_text": "FEATURED ARTICLE",
+        "heading_font_size": 28,
+        "heading_font_weight": "700",
+        "subheading_text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "subheading_font_size": 20,
+        "subheading_font_weight": "400",
+        "button_link": "",
+        "button_text": "Read More",
+        "image_position": "left",
+        "text_alignment": "center",
+        "text_color": "#000000",
+        "button_shape": "5px",
+        "featured_button_background": "#FFA500",
+        "featured_button_text_color": "#FFFFFF",
+        "blog": "news",
+        "post_limit": 4,
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     },
     "main": {
@@ -43,6 +70,7 @@
   },
   "order": [
     "image_counter_pwc_a3hUT3",
+    "split_banner_blog_pwc_tCRqFw",
     "main"
   ]
 }
