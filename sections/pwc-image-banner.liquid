@@ -1,4 +1,4 @@
-{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'section-image-banner.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
@@ -22,20 +22,6 @@
           padding-top: {{ block.settings.padding_top }}px;
           padding-bottom: {{ block.settings.padding_bottom }}px;
         }
-        {{ sec_id }} .banner__content--left {
-    justify-content: flex-start;
-    text-align: left;
-  }
-
-  {{ sec_id }} .banner__content--right {
-    justify-content: flex-end;
-    text-align: right;
-  }
-
-  {{ sec_id }} .banner__content--center {
-    justify-content: center;
-    text-align: center;
-  }
       {%- when 'buttons' -%}
       {{ sec_id }} .banner__buttons{
           padding-top: {{ block.settings.padding_top }}px;
