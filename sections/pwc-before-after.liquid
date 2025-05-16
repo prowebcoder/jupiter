@@ -279,7 +279,11 @@
       </div>
 
       <div class="pc-ba-text-blocks pc-ba-right">
-        <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size_second }}">{{ section.settings.right_top_text }}</div>
+        <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size_second }}
+                    color: {{ section.settings.text_color_second }};
+                    padding-top: {{ section.settings.padding_top_second }};
+                    padding-bottom: {{ section.settings.padding_bottom_second }}
+          ">{{ section.settings.right_top_text }}</div>
         <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size_third }}">{{ section.settings.right_bottom_text }}</div>
       </div>
     </div>
