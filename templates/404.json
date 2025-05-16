@@ -54,7 +54,7 @@
         "image_position": "left",
         "text_alignment": "center",
         "text_color": "#000000",
-        "button_shape": "5px",
+        "button_shape": "50px",
         "featured_button_background": "#FFA500",
         "featured_button_text_color": "#FFFFFF",
         "blog": "news",
