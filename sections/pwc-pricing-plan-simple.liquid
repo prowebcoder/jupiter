@@ -79,6 +79,16 @@
       "default": true
     },
     {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 2600,
+      "step": 20,
+      "unit": "px",
+      "label": "Container Max Width",
+      "default": 1400
+    },
+    {
       "type": "select",
       "id": "title_alignment",
       "label": "Title Alignment",
@@ -381,6 +391,7 @@
 
 {% style %}
   {{ sid }} .pcw-pricing-section {
+    max-width: {{ section.settings.container_width }}px;
     padding-top: {{ padding_top }}px;
     padding-bottom: {{ padding_bottom }}px;
     position: relative;
