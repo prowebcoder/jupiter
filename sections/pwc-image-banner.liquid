@@ -22,6 +22,20 @@
           padding-top: {{ block.settings.padding_top }}px;
           padding-bottom: {{ block.settings.padding_bottom }}px;
         }
+        {{ sec_id }} .banner__content--left {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  {{ sec_id }} .banner__content--right {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  {{ sec_id }} .banner__content--center {
+    justify-content: center;
+    text-align: center;
+  }
       {%- when 'buttons' -%}
       {{ sec_id }} .banner__buttons{
           padding-top: {{ block.settings.padding_top }}px;
@@ -148,7 +162,7 @@
         {%- case block.type -%}
           {%- when 'heading' -%}
             <h2
-              class="banner__heading inline-richtext--{{ section.settings.desktop_content_position }} {{ block.settings.heading_size }}" 
+              class="banner__heading inline-richtext {{ block.settings.heading_size }}" 
               {{ block.shopify_attributes }}
             >
               {{ block.settings.heading }}
