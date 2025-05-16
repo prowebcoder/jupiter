@@ -25,28 +25,29 @@
 {% endstyle %}
 
 {% style %}
-{% for block in section.blocks %}
-  {% case block.type %}
-    {% when 'heading' %}
-      {{ sec_id }} .banner__heading {
-        font-weight: {{ block.settings.font_weight }};
-      }
-    {% when 'text' %}
-      {{ sec_id }} .banner__text {
-        font-weight: {{ block.settings.font_weight }};
-      }
-    {% when 'buttons' %}
-      {{ sec_id }} .banner__buttons {
-        padding-top: {{ block.settings.padding_top }}px;
-        padding-bottom: {{ block.settings.padding_bottom }}px;
-      }
-  {% endcase %}
-{% endfor %}
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'heading' %}
+        {{ sec_id }} .banner__heading {
+          font-weight: {{ block.settings.font_weight }};
+        }
+      {% when 'text' %}
+        {{ sec_id }} .banner__text {
+          font-weight: {{ block.settings.font_weight }};
+        }
+      {% when 'buttons' %}
+        {{ sec_id }} .banner__buttons {
+          padding-top: {{ block.settings.padding_top }}px;
+          padding-bottom: {{ block.settings.padding_bottom }}px;
+        }
+    {% endcase %}
+  {% endfor %}
 {% endstyle %}
 
 <div
   class="utility-bar color-{{ section.settings.color_scheme }}"
-  style="background-color: {{ section.settings.colorBackground }}">
+  style="background-color: {{ section.settings.colorBackground }}"
+>
   <div class="page-width utility-bar__grid">
     {% if section.settings.show_social %}
       {% render 'social-icons' %}
@@ -61,7 +62,9 @@
                 {% if block.settings.link %}
                   <a href="{{ block.settings.link }}" class="announcement-bar__link">
                 {% endif %}
-                  <p class="announcement-bar__message h5" style="
+                <p
+                  class="announcement-bar__message h5"
+                  style="
                     font-size: {% case block.settings.text_size %}
                                {% when 'small' %} 14px
                                {% when 'medium' %} 18px
@@ -72,14 +75,15 @@
                     text-decoration: {{ block.settings.text_decoration }};
                     color: {{ block.settings.text_color }};
                     font-style: {{ block.settings.font_style }};
-                  ">
-                    <span style="letter-spacing: {{ block.settings.letter_spacing }}px;">
-                      {{ block.settings.text | escape }}
-                    </span>
-                    {% if block.settings.link %}
-                      {{ 'icon-arrow.svg' | inline_asset_content }}
-                    {% endif %}
-                  </p>
+                  "
+                >
+                  <span style="letter-spacing: {{ block.settings.letter_spacing }}px;">
+                    {{ block.settings.text | escape }}
+                  </span>
+                  {% if block.settings.link %}
+                    {{ 'icon-arrow.svg' | inline_asset_content }}
+                  {% endif %}
+                </p>
                 {% if block.settings.link %}
                   </a>
                 {% endif %}
@@ -104,14 +108,14 @@
                 {% if block.settings.link %}
                   <a href="{{ block.settings.link }}" class="announcement-bar__link">
                 {% endif %}
-                  <p class="announcement-bar__message h5">
-                    <span style="letter-spacing: {{ block.settings.letter_spacing }}px;">
-                      {{ block.settings.text | escape }}
-                    </span>
-                    {% if block.settings.link %}
-                      {{ 'icon-arrow.svg' | inline_asset_content }}
-                    {% endif %}
-                  </p>
+                <p class="announcement-bar__message h5">
+                  <span style="letter-spacing: {{ block.settings.letter_spacing }}px;">
+                    {{ block.settings.text | escape }}
+                  </span>
+                  {% if block.settings.link %}
+                    {{ 'icon-arrow.svg' | inline_asset_content }}
+                  {% endif %}
+                </p>
                 {% if block.settings.link %}
                   </a>
                 {% endif %}
@@ -123,7 +127,6 @@
     {% endif %}
   </div>
 </div>
-
 
 {% schema %}
 {
@@ -139,7 +142,7 @@
       "id": "colorBackground",
       "label": "Background color",
       "default": "#000000"
-    },    
+    },
      {
       "type": "range",
       "id": "padding_top",
@@ -331,4 +334,3 @@
   ]
 }
 {% endschema %}
-
