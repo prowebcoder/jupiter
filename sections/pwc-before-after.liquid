@@ -2,9 +2,9 @@
 
 <style>
   {{ sid }} {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
-    background-color: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top | default: '0' }}px;
+    padding-bottom: {{ section.settings.padding_bottom | default: '0' }}px;
+    background-color: {{ section.settings.background_color | default: '#fff' }};
   }
 
   {{ sid }} .pc-ba-main {
@@ -21,19 +21,22 @@
     text-align: center;
   }
 
-  {{ sid }} .pc-ba-text-block .first {
-    font-size: {{ section.settings.subheading_size }}px;
-    color: {{ section.settings.text_color }};
-    padding-top: {{ section.settings.padding_top_first }}px;
-    padding-bottom: {{ section.settings.padding_bottom_first }}px;
-  }
+  /* Dynamic Classes for Each Text Block */
+{% for i in (1..4) %}
+  {% assign subheading_size_key = 'subheading_size_' | append: i %}
+  {% assign text_color_key = 'text_color_' | append: i %}
+  {% assign padding_top_key = 'padding_top_' | append: i %}
+  {% assign padding_bottom_key = 'padding_bottom_' | append: i %}
 
-  {{ sid }} .pc-ba-text-block .second {
-    font-size: {{ section.settings.subheading_size_first }}px;
-    color: {{ section.settings.text_color_first }};
-    padding-top: {{ section.settings.padding_top_second }}px;
-    padding-bottom: {{ section.settings.padding_bottom_second }}px;
+  {{ sid }} .pc-ba-text-block:nth-child({{ i }}) {
+    font-size: {{ section.settings[subheading_size_key] | default: '16' }}px;
+    color: {{ section.settings[text_color_key] | default: '#000' }};
+    padding-top: {{ section.settings[padding_top_key] | default: '0' }}px;
+    padding-bottom: {{ section.settings[padding_bottom_key] | default: '0' }}px;
   }
+{% endfor %}
+
+
 
   {{ sid }} .pc-ba-container {
     position: relative;
@@ -48,25 +51,6 @@
     position: relative;
     width: 100%;
     height: 100%;
-  }
-
-  {{ sid }} .pc-ba-badge {
-    position: absolute;
-    bottom: 15px;
-    background: #fff;
-    padding: 0 5px;
-    border-radius: 5px;
-    color: #000;
-    z-index: 10;
-    display: {% if section.settings.show_badge %}block{% else %}none{% endif %};
-  }
-
-  {{ sid }} .pc-ba-badge-left {
-    left: 15px;
-  }
-
-  {{ sid }} .pc-ba-badge-right {
-    right: 15px;
   }
 
   {{ sid }} .pc-ba-slider-image {
@@ -115,74 +99,10 @@
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   }
 
-{{ sid }} .pc-ba-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1;
-    --position: 50%;
-    overflow: hidden;
-    border-radius: 50%;
-  }
-
-  {{ sid }} .pc-ba-image-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
-  {{ sid }} .pc-ba-before,
-  {{ sid }} .pc-ba-after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  {{ sid }} .pc-ba-before {
-    clip-path: inset(0 calc(100% - var(--position)) 0 0);
-    z-index: 2;
-  }
-
-  {{ sid }} .pc-ba-after {
-    z-index: 1;
-  }
-
-  {{ sid }} .pc-ba-slider-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-
   @media (max-width: 768px) {
     {{ sid }} .pc-ba-main {
       flex-direction: column;
     }
-    
-    {{ sid }} .pc-ba-container {
-      width: 100%;
-    }
-  }
-
-  @media (min-width: 750px) {
-    {{ sid }} {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-    
-    {% if section.settings.show_content %}
-      {{ sid }} .pc-ba-container {
-        width: calc(100% - 20px);
-      }
-    {% else %}
-      {{ sid }} .pc-ba-container {
-        width: 50%;
-        margin: 0 auto;
-      }
-    {% endif %}
   }
 </style>
 
@@ -190,21 +110,15 @@
   <div class="page-width">
     <div class="pc-ba-main">
       <div class="pc-ba-text-blocks pc-ba-left">
-        <div class="pc-ba-text-block first">
-          {{ section.settings.left_top_text }}
-        </div>
-        <div class="pc-ba-text-block second" style="
-          ">
-          {{ section.settings.left_bottom_text }}
-        </div>
+        <div class="pc-ba-text-block first">{{ section.settings.left_top_text }}</div>
+        <div class="pc-ba-text-block second">{{ section.settings.left_bottom_text }}</div>
       </div>
-
 
       <div class="pc-ba-container">
         <div class="pc-ba-image-container">
           <div class="pc-ba-before">
             <img class="pc-ba-slider-image" 
-                 src="{{ section.settings.bf_image | image_url }}"   width="{{ section.settings.bf_image.width }}" height="{{ section.settings.bf_image.height }}"
+                 src="{{ section.settings.bf_image | image_url }}" 
                  alt="Before image"
                  loading="lazy">
             <span class="pc-ba-badge pc-ba-badge-left">Before</span>
@@ -212,7 +126,7 @@
           
           <div class="pc-ba-after">
             <img class="pc-ba-slider-image" 
-                 src="{{ section.settings.af_image | image_url }}"  width="{{ section.settings.af_image.width }}" height="{{ section.settings.af_image.height }}"
+                 src="{{ section.settings.af_image | image_url }}" 
                  alt="After image"
                  loading="lazy">
             <span class="pc-ba-badge pc-ba-badge-right">After</span>
@@ -229,76 +143,24 @@
         <div class="pc-ba-slider-line">&nbsp;</div>
         <div class="pc-ba-slider-button">
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 256 256">
-             <rect width="256" height="256" fill="none"></rect>
-        <line
-          x1="128"
-          y1="40"
-          x2="128"
-          y2="216"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="16"
-        ></line>
-        <line
-          x1="96"
-          y1="128"
-          x2="16"
-          y2="128"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="16"
-        ></line>
-        <polyline class="before_arrow"
-          points="48 160 16 128 48 96"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="16"
-        ></polyline>
-        <line
-          x1="160"
-          y1="128"
-          x2="240"
-          y2="128"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="16"
-        ></line>
-        <polyline  class="after_arrow"
-          points="208 96 240 128 208 160"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="16"
-        ></polyline>
+            <rect width="256" height="256" fill="none"></rect>
+            <line x1="128" y1="40" x2="128" y2="216" stroke="currentColor" stroke-width="16"></line>
+            <line x1="96" y1="128" x2="16" y2="128" stroke="currentColor" stroke-width="16"></line>
+            <polyline points="48 160 16 128 48 96" stroke="currentColor" stroke-width="16"></polyline>
+            <line x1="160" y1="128" x2="240" y2="128" stroke="currentColor" stroke-width="16"></line>
+            <polyline points="208 96 240 128 208 160" stroke="currentColor" stroke-width="16"></polyline>
           </svg>
         </div>
       </div>
 
       <div class="pc-ba-text-blocks pc-ba-right">
-        <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size_second }};
-                    color: {{ section.settings.text_color_second }};
-                    padding-top: {{ section.settings.padding_top_third }}px;
-                    padding-bottom: {{ section.settings.padding_bottom_third }}px;
-          ">{{ section.settings.right_top_text }}</div>
-        
-        <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size_third }};
-                    color: {{ section.settings.text_color_third }};
-                    padding-top: {{ section.settings.padding_top_fourth }}px;
-                    padding-bottom: {{ section.settings.padding_bottom_fourth }}px;
-          ">{{ section.settings.right_bottom_text }}</div>
+        <div class="pc-ba-text-block third">{{ section.settings.right_top_text }}</div>
+        <div class="pc-ba-text-block fourth">{{ section.settings.right_bottom_text }}</div>
       </div>
     </div>
   </div>
 </div>
+
 
 <script>
 (function() {
