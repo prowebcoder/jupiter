@@ -1,6 +1,345 @@
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+<style>
+{{ sec_id }} .pw-countdown-section {
+  background: {{ section.settings.background_color }};
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  flex-direction: row;
+}
+
+{{ sec_id }} .pw-countdown-section.reverse {
+  flex-direction: row-reverse;
+}
+
+{{ sec_id }} .pw-countdown-section .pw-section-image {
+  flex: 1 1 50%;
+}
+
+{{ sec_id }} .pw-countdown-section .pw-section-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+{{ sec_id }} .pw-countdown-section .pw-section-content {
+  flex: 1 1 50%;
+  padding: 40px 30px;
+  text-align: center;
+  background-color: {{ section.settings.background_color }};
+  color: {{ section.settings.countdown_text_color1 }};
+}
+
+{{ sec_id }} .pw-countdown-section .pw-small-heading {
+  font-size: {{ section.settings.subheading_font_size }}px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: {{ section.settings.countdown_text_color1 }};
+}
+
+{{ sec_id }} .pw-countdown-section .pw-heading {
+  font-size: {{ section.settings.heading_font_size }}px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  line-height: 1.4;
+  color: {{ section.settings.countdown_text_color1 }};
+}
+
+{{ sec_id }} .pw-promo-code-box {
+  border: 1px dashed #999;
+  padding: 10px;
+  margin-bottom: 20px;
+  display: inline-block;
+  font-size: {{ section.settings.promo_code_font_size }}px;
+
+}
+
+{{ sec_id }} .pw-countdown-timer-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+
+}
+
+{{ sec_id }} .pw-timer-box {
+  background: {{ section.settings.countdown_background_color1 }};
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-align: center;
+  color: {{ section.settings.countdown_text_color1 }};
+}
+
+{{ sec_id }} .pw-timer-box .pw-value {
+  font-size: {{ section.settings.countdown_font_size }}px;
+  font-weight: bold;
+}
+
+{{ sec_id }} .pw-timer-box .pw-label {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+{{ sec_id }} .pw-shop-now-btn {
+  background: {{ section.settings.featured_button_background }};
+  color: {{ section.settings.featured_button_text_color }};
+  padding: 12px 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  border-radius: {{ section.settings.button_shape }};
+  cursor: pointer;
+}
+
+{{ sec_id }} .pw-disclaimer {
+  font-size: {{ section.settings.disclaimer_font_size }}px;
+  color: #aaa;
+  margin-top: 15px;
+}
+</style>
+
+<div class="pw-custom-page-width" style="max-width: {{ section.settings.page_width }}px; margin: 0 auto;">
+  <div class="pw-countdown-section {% if section.settings.image_position == 'right' %}reverse{% endif %}">
+    <div class="pw-section-image">
+      <img src="{{ section.settings.image | img_url: '800x' }}" alt="Promo Image" />
+    </div>
+    <div class="pw-section-content">
+      <div class="pw-small-heading">{{ section.settings.subheading }}</div>
+      <h2 class="pw-heading">{{ section.settings.heading }}</h2>
+      <div class="pw-promo-code-box">{{ section.settings.promo_code }}</div>
+      <div class="pw-countdown-timer-boxes" id="timerBoxes-{{ section.id }}">
+        <div class="pw-timer-box">
+          <div class="pw-value" id="days-{{ section.id }}">00</div>
+          <div class="pw-label">Days</div>
+        </div>
+        <div class="pw-timer-box">
+          <div class="pw-value" id="hours-{{ section.id }}">00</div>
+          <div class="pw-label">Hours</div>
+        </div>
+        <div class="pw-timer-box">
+          <div class="pw-value" id="minutes-{{ section.id }}">00</div>
+          <div class="pw-label">Min</div>
+        </div>
+        <div class="pw-timer-box">
+          <div class="pw-value" id="seconds-{{ section.id }}">00</div>
+          <div class="pw-label">Sec</div>
+        </div>
+      </div>
+      <button class="pw-shop-now-btn" onclick="window.location.href='{{ section.settings.button_link }}'">
+        {{ section.settings.button_label }}
+      </button>
+      <div class="pw-disclaimer">{{ section.settings.disclaimer }}</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const endDate = new Date("{{ section.settings.countdown_end_date }}").getTime();
+    const daysEl = document.getElementById('days-{{ section.id }}');
+    const hoursEl = document.getElementById('hours-{{ section.id }}');
+    const minutesEl = document.getElementById('minutes-{{ section.id }}');
+    const secondsEl = document.getElementById('seconds-{{ section.id }}');
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = endDate - now;
+
+      if (diff < 0) return;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      daysEl.textContent = days;
+      hoursEl.textContent = hours;
+      minutesEl.textContent = minutes;
+      secondsEl.textContent = seconds;
+    }, 1000);
+  });
+</script>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Countdown Section Pwc",
+  "settings": [
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Page Width",
+      "min": 600,
+      "max": 1600,
+      "step": 50,
+      "default": 1200,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "default": "left",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Side Image"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Top Subheading",
+      "default": "Hurry! Time's running out!"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Last chance to buy marked-down items before they go"
+    },
+    {
+      "type": "text",
+      "id": "promo_code",
+      "label": "Promo Code",
+      "default": "PROMO15"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+     {
+      "type": "select",
+      "id": "button_shape",
+      "label": "Button Shape",
+      "options": [
+        { "value": "0px", "label": "Square" },
+        { "value": "5px", "label": "Rounded" },
+        { "value": "50px", "label": "Pill" }
+      ],
+      "default": "5px"
+    },
+    {
+      "type": "color",
+      "id": "featured_button_background",
+      "label": "Button Background Color",
+      "default": "#FFA500"
+    },
+    {
+      "type": "color",
+      "id": "featured_button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Disclaimer Text",
+      "default": "Final discount, cannot be combined with other offers."
+    },
+    {
+      "type": "text",
+      "id": "countdown_end_date",
+      "label": "Countdown End Date (YYYY-MM-DD)",
+      "default": "2024-12-31"
+    },
+     {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f1f1f1"
+    },
+    {
+  "type": "range",
+  "id": "subheading_font_size",
+  "label": "Subheading Font Size",
+  "min": 10,
+  "max": 30,
+  "step": 1,
+  "default": 14,
+  "unit": "px"
+},
+{
+  "type": "range",
+  "id": "heading_font_size",
+  "label": "Main Heading Font Size",
+  "min": 16,
+  "max": 48,
+  "step": 1,
+  "default": 24,
+  "unit": "px"
+},
+{
+  "type": "range",
+  "id": "promo_code_font_size",
+  "label": "Promo Code Font Size",
+  "min": 10,
+  "max": 24,
+  "step": 1,
+  "default": 14,
+  "unit": "px"
+},
+{
+  "type": "range",
+  "id": "disclaimer_font_size",
+  "label": "Disclaimer Font Size",
+  "min": 10,
+  "max": 16,
+  "step": 1,
+  "default": 12,
+  "unit": "px"
+},
+{
+  "type": "range",
+  "id": "countdown_font_size",
+  "label": "Countdown Timer Font Size",
+  "min": 12,
+  "max": 36,
+  "step": 1,
+  "default": 20,
+  "unit": "px"
+},
+    {
+  "type": "color",
+  "id": "countdown_background_color1",
+  "label": "Countdown Background Color",
+  "default": "#1e1e1e"
+},
+{
+  "type": "color",
+  "id": "countdown_text_color1",
+  "label": "Countdown Text Color",
+  "default": "#ffffff"
+}
+
+
+  ],
+  "presets": [
+    {
+      "name": "Countdown Section Pwc"
+    }
+  ]
+}
 {% endschema %}
