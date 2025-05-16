@@ -9,10 +9,6 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-404",
-      "settings": {}
-    },
     "image_counter_pwc_a3hUT3": {
       "type": "Image_Counter_pwc",
       "name": " Image Countdown Pwc",
@@ -39,10 +35,14 @@
         "countdown_background_color1": "#FFA500",
         "countdown_text_color1": "#ffffff"
       }
+    },
+    "main": {
+      "type": "main-404",
+      "settings": {}
     }
   },
   "order": [
-    "main",
-    "image_counter_pwc_a3hUT3"
+    "image_counter_pwc_a3hUT3",
+    "main"
   ]
 }
