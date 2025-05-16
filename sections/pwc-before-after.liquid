@@ -176,9 +176,33 @@
   <div class="page-width">
     <div class="pc-ba-main">
       <div class="pc-ba-text-blocks pc-ba-left">
-  <div class="pc-ba-text-block"  style="font-size: {{ section.settings.heading_size }};">
-    {{ section.settings.left_top_text }}
-  </div>
+  {% case section.settings.heading_size %}
+  {% when 'h2' %}
+    <h2 class="pc-ba-text-block">
+      {{ section.settings.left_top_text }}
+    </h2>
+  {% when 'h1' %}
+    <h1 class="pc-ba-text-block">
+      {{ section.settings.left_top_text }}
+    </h1>
+  {% when 'h0' %}
+    <div class="pc-ba-text-block text-3xl">
+      {{ section.settings.left_top_text }}
+    </div>
+  {% when 'hxl' %}
+    <div class="pc-ba-text-block text-4xl">
+      {{ section.settings.left_top_text }}
+    </div>
+  {% when 'hxxl' %}
+    <div class="pc-ba-text-block text-5xl">
+      {{ section.settings.left_top_text }}
+    </div>
+  {% else %}
+    <h1 class="pc-ba-text-block">
+      {{ section.settings.left_top_text }}
+    </h1>
+{% endcase %}
+
   <div class="pc-ba-text-block">
     {{ section.settings.left_bottom_text }}
   </div>
