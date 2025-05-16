@@ -55,8 +55,8 @@
         "text_alignment": "center",
         "text_color": "#000000",
         "button_shape": "50px",
-        "featured_button_background": "#FFA500",
-        "featured_button_text_color": "#FFFFFF",
+        "featured_button_background": "#ffa500",
+        "featured_button_text_color": "#ffffff",
         "blog": "news",
         "post_limit": 4,
         "padding_top": 100,
@@ -66,11 +66,40 @@
     "main": {
       "type": "main-404",
       "settings": {}
+    },
+    "image_banner_blog_pwc_PpPPGY": {
+      "type": "Image_Banner_blog_PWC",
+      "name": "Image banner blog PWC",
+      "settings": {
+        "page_width": 1200,
+        "background_image": "shopify://shop_images/portable1.png",
+        "banner_height": "medium",
+        "heading_text": "FEATURED ARTICLE",
+        "heading_font_size": 24,
+        "heading_color": "#ffffff",
+        "subheading_text": "How to add a FAQ section to Shopify",
+        "subheading_font_size": 36,
+        "subheading_color": "#ffffff",
+        "button_link": "",
+        "button_text": "Read More",
+        "blog": "news",
+        "post_limit": 4,
+        "text_alignment": "center",
+        "button_shape": "5px",
+        "featured_button_background": "#FFA500",
+        "featured_button_text_color": "#FFFFFF",
+        "read_more_button_shape": "5px",
+        "read_more_button_background": "#FFA500",
+        "read_more_button_text_color": "#FFFFFF",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
     }
   },
   "order": [
     "image_counter_pwc_a3hUT3",
     "split_banner_blog_pwc_tCRqFw",
-    "main"
+    "main",
+    "image_banner_blog_pwc_PpPPGY"
   ]
 }
