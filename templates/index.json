@@ -389,7 +389,7 @@
             "highlight_plan": true,
             "is_vip_plan": true,
             "plan_image": "shopify://shop_images/planning.png",
-            "block_width": 50,
+            "block_width": 20,
             "plan_name": "Plan Name",
             "plan_price": "$99",
             "plan_features": "Feature 1\nFeature 2\nFeature 3\nFeature 4",
