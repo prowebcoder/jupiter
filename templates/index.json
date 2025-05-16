@@ -375,7 +375,7 @@
             "highlight_plan": false,
             "is_vip_plan": false,
             "plan_image": "shopify://shop_images/download_5b87c0d5-7083-424d-a48e-3644f7d41815.png",
-            "block_width": 50,
+            "block_width": 20,
             "plan_name": "Plan Name",
             "plan_price": "$99",
             "plan_features": "Feature 1\nFeature 2\nFeature 3\nFeature 4",
