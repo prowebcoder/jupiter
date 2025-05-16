@@ -77,7 +77,6 @@
       "settings": {
         "colorBackground": "#000000",
         "colorText": "#ffffff",
-        "link": "",
         "direction": "right",
         "marquee_height": 36,
         "font_size": 16,
