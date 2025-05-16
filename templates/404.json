@@ -1,10 +1,48 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
-      "type": "main-404"
+      "type": "main-404",
+      "settings": {}
+    },
+    "image_counter_pwc_a3hUT3": {
+      "type": "Image_Counter_pwc",
+      "name": " Image Countdown Pwc",
+      "settings": {
+        "page_width": 1200,
+        "image_position": "left",
+        "image": "shopify://shop_images/a-model-in-red-suit-jacket-removing-sunglasses.jpg",
+        "subheading": "Hurry! Time's running out!",
+        "heading": "Last chance to buy marked-down items before they go",
+        "promo_code": "PROMO15",
+        "button_label": "Shop Now",
+        "button_link": "",
+        "button_shape": "5px",
+        "featured_button_background": "#FFA500",
+        "featured_button_text_color": "#FFFFFF",
+        "disclaimer": "Final discount, cannot be combined with other offers.",
+        "countdown_end_date": "2025-10-12",
+        "background_color": "#f1f1f1",
+        "subheading_font_size": 14,
+        "heading_font_size": 24,
+        "promo_code_font_size": 14,
+        "disclaimer_font_size": 12,
+        "countdown_font_size": 20,
+        "countdown_background_color1": "#1e1e1e",
+        "countdown_text_color1": "#ffffff"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "image_counter_pwc_a3hUT3"
   ]
 }
