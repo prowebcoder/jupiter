@@ -176,9 +176,14 @@
   <div class="page-width">
     <div class="pc-ba-main">
       <div class="pc-ba-text-blocks pc-ba-left">
-        <div class="pc-ba-text-block" style="font-size: {{ section.settings.text_size }};">{{ section.settings.left_top_text }}</div>
-        <div class="pc-ba-text-block">{{ section.settings.left_bottom_text }}</div>
-      </div>
+  <div class="pc-ba-text-block {{ section.settings.text_size }}">
+    {{ section.settings.left_top_text }}
+  </div>
+  <div class="pc-ba-text-block">
+    {{ section.settings.left_bottom_text }}
+  </div>
+</div>
+
 
       <div class="pc-ba-container">
         <div class="pc-ba-image-container">
@@ -326,25 +331,13 @@
       "type": "select",
       "id": "text_size",
       "label": "Text Size",
+      "default": "text-lg",
       "options": [
-        {
-          "value": "text-sm",
-          "label": "Small"
-        },
-        {
-          "value": "text-lg",
-          "label": "Large"
-        },
-        {
-          "value": "text-xl",
-          "label": "Extra Large"
-        },
-        {
-          "value": "text-2xl",
-          "label": "Double Extra Large"
-        }
-      ],
-      "default": "text-lg"
+        { "value": "text-sm", "label": "Small" },
+        { "value": "text-lg", "label": "Large" },
+        { "value": "text-xl", "label": "Extra Large" },
+        { "value": "text-2xl", "label": "Double Extra Large" }
+      ]
     },
     {
       "type": "richtext",
