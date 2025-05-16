@@ -1,10 +1,6 @@
 {%- assign sid = '#shopify-section-' | append: section.id -%}
 
 <style>
-
-  {{ sid }} .pc-ba-text-block .first {
-    
-  }
   
   {{ sid }} {
     padding-top: {{ section.settings.padding_top }}px;
@@ -181,116 +177,36 @@
   }
 </style>
 
-<div class="pc-ba-section">
-  <div class="page-width">
-    <div class="pc-ba-main">
-      <!-- Left Text Blocks -->
-      <div class="pc-ba-text-blocks pc-ba-left">
-        {% for i in (1..2) %}
-          <div class="pc-ba-text-block {% if forloop.first %}first{% endif %}" 
-               style="font-size: {% if forloop.first %}{{ section.settings.subheading_size }}{% else %}{{ section.settings.subheading_size_first }}{% endif %}px;
-                      color: {% if forloop.first %}{{ section.settings.text_color }}{% else %}{{ section.settings.text_color_first }}{% endif %};
-                      padding-top: {% if forloop.first %}{{ section.settings.padding_top_first }}{% else %}{{ section.settings.padding_top_second }}{% endif %}px;
-                      padding-bottom: {% if forloop.first %}{{ section.settings.padding_bottom_first }}{% else %}{{ section.settings.padding_bottom_second }}{% endif %}px;">
-            {% if forloop.first %}
-              {{ section.settings.left_top_text }}
-            {% else %}
-              {{ section.settings.left_bottom_text }}
-            {% endif %}
-          </div>
-        {% endfor %}
+<div class="pc-ba-text-blocks pc-ba-left">
+  {% for block in section.blocks %}
+    {% if block.type == 'text_block' and block.settings.position == 'left' %}
+      <div class="pc-ba-text-block" style="
+          font-size: {{ block.settings.font_size }}px;
+          color: {{ block.settings.text_color }};
+          padding-top: {{ block.settings.padding_top }}px;
+          padding-bottom: {{ block.settings.padding_bottom }}px;
+        ">
+        {{ block.settings.content }}
       </div>
-
-      <!-- Image Slider Container -->
-      <div class="pc-ba-container">
-        <div class="pc-ba-image-container">
-          <div class="pc-ba-before">
-            <img class="pc-ba-slider-image" 
-                 src="{{ section.settings.bf_image | image_url }}"   
-                 width="{{ section.settings.bf_image.width }}" 
-                 height="{{ section.settings.bf_image.height }}"
-                 alt="Before image"
-                 loading="lazy">
-            <span class="pc-ba-badge pc-ba-badge-left">Before</span>
-          </div>
-          
-          <div class="pc-ba-after">
-            <img class="pc-ba-slider-image" 
-                 src="{{ section.settings.af_image | image_url }}"  
-                 width="{{ section.settings.af_image.width }}" 
-                 height="{{ section.settings.af_image.height }}"
-                 alt="After image"
-                 loading="lazy">
-            <span class="pc-ba-badge pc-ba-badge-right">After</span>
-          </div>
-        </div>
-
-        <input type="range" 
-               min="0" 
-               max="100" 
-               value="50"
-               class="pc-ba-slider-input"
-               aria-label="Slider control">
-        
-        <div class="pc-ba-slider-line">&nbsp;</div>
-        <div class="pc-ba-slider-button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 256 256">
-            <rect width="256" height="256" fill="none"></rect>
-            <line x1="128" y1="40" x2="128" y2="216"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"></line>
-            <line x1="96" y1="128" x2="16" y2="128"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"></line>
-            <polyline class="before_arrow"
-                      points="48 160 16 128 48 96"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="16"></polyline>
-            <line x1="160" y1="128" x2="240" y2="128"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="16"></line>
-            <polyline class="after_arrow"
-                      points="208 96 240 128 208 160"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="16"></polyline>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Right Text Blocks -->
-      <div class="pc-ba-text-blocks pc-ba-right">
-        {% for i in (1..2) %}
-          <div class="pc-ba-text-block" 
-               style="font-size: {% if forloop.first %}{{ section.settings.subheading_size_second }}{% else %}{{ section.settings.subheading_size_third }}{% endif %}px;
-                      color: {% if forloop.first %}{{ section.settings.text_color_second }}{% else %}{{ section.settings.text_color_third }}{% endif %};
-                      padding-top: {% if forloop.first %}{{ section.settings.padding_top_third }}{% else %}{{ section.settings.padding_top_fourth }}{% endif %}px;
-                      padding-bottom: {% if forloop.first %}{{ section.settings.padding_bottom_third }}{% else %}{{ section.settings.padding_bottom_fourth }}{% endif %}px;">
-            {% if forloop.first %}
-              {{ section.settings.right_top_text }}
-            {% else %}
-              {{ section.settings.right_bottom_text }}
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
+    {% endif %}
+  {% endfor %}
 </div>
+
+<div class="pc-ba-text-blocks pc-ba-right">
+  {% for block in section.blocks %}
+    {% if block.type == 'text_block' and block.settings.position == 'right' %}
+      <div class="pc-ba-text-block" style="
+          font-size: {{ block.settings.font_size }}px;
+          color: {{ block.settings.text_color }};
+          padding-top: {{ block.settings.padding_top }}px;
+          padding-bottom: {{ block.settings.padding_bottom }}px;
+        ">
+        {{ block.settings.content }}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
 
 <script>
 (function() {
