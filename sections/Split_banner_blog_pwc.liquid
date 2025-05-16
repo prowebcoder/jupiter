@@ -1,0 +1,371 @@
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+<style>
+  {{ sec_id }} .pw-split-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px 0;
+    width: {{ section.settings.page_width }}px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  {{ sec_id }} .pw-split-image {
+    flex: 1 1 50%;
+    background-image: url({{ section.settings.background_image | img_url: 'master' }});
+    background-size: cover;
+    background-position: center;
+    min-height: 400px;
+  }
+
+  {{ sec_id }} .pw-split-content {
+    flex: 1 1 50%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  {{ sec_id }} .pw-split-content h2 {
+    font-size: {{ section.settings.heading_font_size }}px;
+    {% if section.settings.heading_font %}
+      font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+      font-weight: {{ section.settings.heading_font.weight }};
+    {% endif %}
+    margin-bottom: 10px;
+    color: {{ section.settings.text_color }};
+  }
+
+  {{ sec_id }} .pw-split-content h3 {
+    font-size: {{ section.settings.subheading_font_size }}px;
+    {% if section.settings.subheading_font %}
+      font-family: {{ section.settings.subheading_font.family }}, {{ section.settings.subheading_font.fallback_families }};
+      font-weight: {{ section.settings.subheading_font.weight }};
+    {% endif %}
+    margin-bottom: 20px;
+    color: {{ section.settings.text_color }};
+  }
+
+  {{ sec_id }} .pw-split-button {
+    display: inline-block;
+    background-color: {{ section.settings.featured_button_background }};
+    color: {{ section.settings.featured_button_text_color }};
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: {{ section.settings.button_shape }};
+    font-weight: bold;
+    text-align: center;
+  }
+
+  {{ sec_id }} .pw-split-button:hover {
+    background-color: transparent;
+    color: {{ section.settings.featured_button_background }};
+    border: 2px solid {{ section.settings.featured_button_background }};
+  }
+
+  {{ sec_id }} .pw-blog-posts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+    
+  }
+
+  {{ sec_id }} .pw-blog-post {
+    flex: 1 1 calc(25% - 20px);
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  {{ sec_id }} .pw-blog-post img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+{{ sec_id }} .pw-split-section,
+{{ sec_id }} .pw-blog-posts {
+  width: {{ section.settings.page_width }}px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+  {{ sec_id }} .pw-blog-post h4 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: {{ section.settings.text_color }};
+  }
+
+  {{ sec_id }} .pw-read-more {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: {{ section.settings.featured_button_background }};
+    color: {{ section.settings.featured_button_text_color }};
+    text-decoration: none;
+    border-radius: {{ section.settings.button_shape }};
+    font-weight: bold;
+  }
+
+  {{ sec_id }} .pw-read-more:hover {
+    background-color: transparent;
+    color: {{ section.settings.featured_button_background }};
+    border: 2px solid {{ section.settings.featured_button_background }};
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} .pw-split-section {
+      flex-direction: column;
+      padding: {{ section.settings.padding_top }}px 10px {{ section.settings.padding_bottom }}px 10px;
+    }
+
+    {{ sec_id }} .pw-split-image {
+      flex: 1 1 100%;
+      min-height: 250px;
+    }
+
+    {{ sec_id }} .pw-split-content {
+      flex: 1 1 100%;
+      text-align: center !important;
+    }
+
+    {{ sec_id }} .pw-blog-post {
+      flex: 1 1 calc(50% - 20px);
+    }
+  }
+</style>
+
+<div id="shopify-section-{{ section.id }}">
+  <div class="pw-split-section" 
+       {% if section.settings.image_position == 'right' %}
+         style="flex-direction: row-reverse;"
+       {% else %}
+         style="flex-direction: row;"
+       {% endif %}>
+    
+    <div class="pw-split-image">
+      <!-- Background image here -->
+    </div>
+
+    <div class="pw-split-content">
+      <h2>{{ section.settings.heading_text }}</h2>
+      <h3>{{ section.settings.subheading_text }}</h3>
+      <a href="{{ section.settings.button_link }}" class="pw-split-button">{{ section.settings.button_text }}</a>
+    </div>
+  </div>
+
+  <div class="pw-blog-posts">
+    {% assign blog = section.settings.blog %}
+    {% if blog %}
+      {% for article in blogs[blog.handle].articles limit: section.settings.post_limit %}
+        <div class="pw-blog-post">
+          <img src="{{ article.image | img_url: 'large' }}" alt="{{ article.title }}">
+          <h4>{{ article.title }}</h4>
+          <a href="{{ article.url }}" class="pw-read-more">Read more</a>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p style="text-align:center;">Please select a blog to display posts.</p>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Split Banner Blog PWC",
+  "settings": [
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Page Width",
+      "min": 600,
+      "max": 1600,
+      "step": 50,
+      "default": 1200,
+      "unit": "px"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f1f1f1"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text",
+      "default": "FEATURED ARTICLE"
+    },
+
+     {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading Font Size",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "default": 28,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_weight",
+      "label": "Heading Font Weight",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "700"
+    }, 
+    {
+      "type": "text",
+      "id": "subheading_text",
+      "label": "Paragraph Text",
+      "default": "How to add a FAQ section to Shopify"
+    },
+       
+    {
+      "type": "range",
+      "id": "subheading_font_size",
+      "label": "Paragraph  Font Size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "subheading_font_weight",
+      "label": "Paragraph  Font Weight",
+      "options": [
+        { "value": "100", "label": "Thin" },
+        { "value": "300", "label": "Light" },
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "900", "label": "Black" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Read More"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+   
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "button_shape",
+      "label": "Button Shape",
+      "options": [
+        { "value": "0px", "label": "Square" },
+        { "value": "5px", "label": "Rounded" },
+        { "value": "50px", "label": "Pill" }
+      ],
+      "default": "5px"
+    },
+    {
+      "type": "color",
+      "id": "featured_button_background",
+      "label": "Button Background Color",
+      "default": "#FFA500"
+    },
+    {
+      "type": "color",
+      "id": "featured_button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+   
+   {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select Blog"
+    },
+    {
+      "type": "range",
+      "id": "post_limit",
+      "label": "Number of Posts",
+      "default": 4,
+      "min": 1,
+      "max": 6
+    },
+ 
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Section Padding Top",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "default": 100,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Section Padding Bottom",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "default": 100,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split Banner with Blog Pwc"
+    }
+  ]
+}
+{% endschema %}
