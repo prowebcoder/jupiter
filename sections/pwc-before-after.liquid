@@ -176,7 +176,7 @@
   <div class="page-width">
     <div class="pc-ba-main">
       <div class="pc-ba-text-blocks pc-ba-left">
-  <div class="pc-ba-text-block" class="font-size: {{ section.settings.text_size }}px;">
+  <div class="pc-ba-text-block"  {{ section.settings.heading_size }}>
     {{ section.settings.left_top_text }}
   </div>
   <div class="pc-ba-text-block">
@@ -328,17 +328,33 @@
       "label": "Left Top Text"
     },
      {
-      "type": "select",
-      "id": "text_size",
-      "label": "Text Size",
-      "default": "text-lg",
-      "options": [
-        { "value": "text-sm", "label": "Small" },
-        { "value": "text-lg", "label": "Large" },
-        { "value": "text-xl", "label": "Extra Large" },
-        { "value": "text-2xl", "label": "Double Extra Large" }
-      ]
-    },
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            },
+            {
+              "value": "hxxl",
+              "label": "t:sections.all.heading_size.options__5.label"
+            }
+          ],
+          "default": "h1",
+          "label": "t:sections.all.heading_size.label"
+        },
     {
       "type": "richtext",
       "id": "left_bottom_text",
