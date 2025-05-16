@@ -284,7 +284,11 @@
                     padding-top: {{ section.settings.padding_top_third }}px;
                     padding-bottom: {{ section.settings.padding_bottom_third }}px;
           ">{{ section.settings.right_top_text }}</div>
-        <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size_third }}">{{ section.settings.right_bottom_text }}</div>
+        <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size_third }}
+                    color: {{ section.settings.text_color_third }};
+                    padding-top: {{ section.settings.padding_top_fourth }}px;
+                    padding-bottom: {{ section.settings.padding_bottom_fourth }}px;
+          ">{{ section.settings.right_bottom_text }}</div>
       </div>
     </div>
   </div>
@@ -482,7 +486,7 @@
     },
     {
       "type": "range",
-      "id": "padding_top",
+      "id": "padding_top_fourth",
       "min": 0,
       "max": 100,
       "step": 4,
@@ -492,7 +496,7 @@
     },
     {
       "type": "range",
-      "id": "padding_bottom",
+      "id": "padding_bottom_fourth",
       "min": 0,
       "max": 100,
       "step": 4,
