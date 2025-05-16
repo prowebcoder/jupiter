@@ -176,7 +176,7 @@
   <div class="page-width">
     <div class="pc-ba-main">
       <div class="pc-ba-text-blocks pc-ba-left">
-        <div class="pc-ba-text-block {{ section.settings.text_size_first  }}">{{ section.settings.left_top_text }}</div>
+        <div class="pc-ba-text-block {{ section.settings.text_size }}">{{ section.settings.left_top_text }}</div>
         <div class="pc-ba-text-block">{{ section.settings.left_bottom_text }}</div>
       </div>
 
@@ -322,26 +322,30 @@
       "id": "left_top_text",
       "label": "Left Top Text"
     },
-      {
-          "type": "select",
-          "id": "text_size",
-          "options": [
-            {
-              "value": "small",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__1.label"
-            },
-            {
-              "value": "medium",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__2.label"
-            },
-            {
-              "value": "large",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__3.label"
-            }
-          ],
-          "default": "medium",
-          "label": "t:sections.rich-text.blocks.caption.settings.caption_size.label"
+     {
+      "type": "select",
+      "id": "text_size",
+      "label": "Text Size",
+      "options": [
+        {
+          "value": "text-sm",
+          "label": "Small"
         },
+        {
+          "value": "text-lg",
+          "label": "Large"
+        },
+        {
+          "value": "text-xl",
+          "label": "Extra Large"
+        },
+        {
+          "value": "text-2xl",
+          "label": "Double Extra Large"
+        }
+      ],
+      "default": "text-lg"
+    },
     {
       "type": "richtext",
       "id": "left_bottom_text",
