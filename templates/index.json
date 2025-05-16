@@ -548,6 +548,84 @@
         "accent_color_hover": "#d80060",
         "vip_button_border_color": "rgba(0,0,0,0)"
       }
+    },
+    "pwc_icon_text_iUx4MG": {
+      "type": "pwc-icon-text",
+      "blocks": {
+        "feature_item_dW8VfQ": {
+          "type": "feature_item",
+          "settings": {
+            "text": "30-Day Money Back Guarantee & Free Returns"
+          }
+        },
+        "feature_item_GkHRW7": {
+          "type": "feature_item",
+          "settings": {
+            "text": "Buy now, pay later financing on orders over $50"
+          }
+        }
+      },
+      "block_order": [
+        "feature_item_dW8VfQ",
+        "feature_item_GkHRW7"
+      ],
+      "name": "PC - Icon Text Features",
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "icon_size_mobile": 30,
+        "icon_size_desktop": 36,
+        "text_size_mobile": 14,
+        "text_size_desktop": 16,
+        "icon_spacing": 10,
+        "mobile_gap": 20,
+        "desktop_gap": 40,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "font_weight": "400"
+      }
+    },
+    "pwc_video_text_zxqygB": {
+      "type": "pwc-video-text",
+      "blocks": {
+        "press_quote_kQeyi9": {
+          "type": "press_quote",
+          "settings": {
+            "quote": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
+          }
+        },
+        "press_quote_EDPGjG": {
+          "type": "press_quote",
+          "settings": {
+            "quote": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
+          }
+        }
+      },
+      "block_order": [
+        "press_quote_kQeyi9",
+        "press_quote_EDPGjG"
+      ],
+      "name": "PWC - Hero with Video",
+      "settings": {
+        "reviews": "★ 3,913 Reviews",
+        "heading": "<p>Life Changing Breathing</p>",
+        "subheading": "<p>Intake is a revolutionary nasal strip designed to unlock your deepest breath.</p>",
+        "button_text": "Stop Now",
+        "button_link": "",
+        "video_position": "right",
+        "background_color": "#ffffff",
+        "review_color": "#1E81B0",
+        "review_size": 16,
+        "heading_color": "#000000",
+        "heading_size": 48,
+        "subheading_color": "#666666",
+        "subheading_size": 18,
+        "button_color": "#1E81B0",
+        "button_text_color": "#FFFFFF",
+        "press_color": "#444444",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -558,6 +636,8 @@
     "pwc_timer_4WcWDa",
     "pwc_before_after_WmcCym",
     "scrolling_text_BReXzM",
-    "pricing_plan_p_83L4ad"
+    "pricing_plan_p_83L4ad",
+    "pwc_icon_text_iUx4MG",
+    "pwc_video_text_zxqygB"
   ]
 }
