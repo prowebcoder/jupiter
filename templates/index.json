@@ -342,8 +342,8 @@
         "left_top_text": "<p>✔️<strong>Smärtfri</strong></p><p>Inget behöver föras in i näsan; allt sker utvändigt. Vår magnetiska näsvidgare är helt smärtfri och extremt bekväm – du kanske inte ens märker att den är där!</p>",
         "text_color": "#db1f1f",
         "subheading_size": 17,
-        "padding_top_first": 40,
-        "padding_bottom_first": 52,
+        "padding_top_first": 0,
+        "padding_bottom_first": 0,
         "left_bottom_text": "<p>✔️<strong>Smärtfri</strong></p><p>Inget behöver föras in i näsan; allt sker utvändigt. Vår magnetiska näsvidgare är helt smärtfri och extremt bekväm – du kanske inte ens märker att den är där!</p>",
         "text_color_first": "#6ba329",
         "subheading_size_first": 17,
@@ -357,8 +357,8 @@
         "right_bottom_text": "<p>✔️<strong>Smärtfri</strong></p><p>Inget behöver föras in i näsan; allt sker utvändigt. Vår magnetiska näsvidgare är helt smärtfri och extremt bekväm – du kanske inte ens märker att den är där!</p>",
         "text_color_third": "#d62222",
         "subheading_size_third": 18,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top_fourth": 0,
+        "padding_bottom_fourth": 0
       }
     },
     "scrolling_text_BReXzM": {
