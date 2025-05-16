@@ -21,6 +21,13 @@
     text-align: center;
   }
 
+  {{ sid }}. pc-ba-text-block {
+    font-size: {{ section.settings.subheading_size }}px;
+    color: {{ section.settings.text_color }};
+    padding-top: {{ section.settings.padding_top_first }};
+    padding-bottom: {{ section.settings.padding_bottom_first }}
+  }
+
   {{ sid }} .pc-ba-container {
     position: relative;
     width: 100%;
@@ -176,11 +183,7 @@
   <div class="page-width">
     <div class="pc-ba-main">
       <div class="pc-ba-text-blocks pc-ba-left">
-        <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size }}px;
-                    color: {{ section.settings.text_color }};
-                    padding-top: {{ section.settings.padding_top_first }};
-                    padding-bottom: {{ section.settings.padding_bottom_first }}
-          ";
+        <div class="pc-ba-text-block" style="";
                                 
           >
           {{ section.settings.left_top_text }}
