@@ -200,7 +200,7 @@
       "settings": {
         "title": "Choose Your Plan",
         "show_section_title": true,
-        "container_width": 1480,
+        "container_width": 2600,
         "title_alignment": "center",
         "section_bg_color": "#efebeb",
         "card_spacing": 20,
