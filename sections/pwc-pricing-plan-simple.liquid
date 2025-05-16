@@ -2,7 +2,7 @@
 {%- assign padding_top = section.settings.section_padding_top -%}
 {%- assign padding_bottom = section.settings.section_padding_bottom -%}
 
-<div class="pcw-pricing-section">
+<div class="pcw-pricing-section" style="background-color: {{ section.settings.section_bg_color }};">
   <div class="page-width">
     {% if section.settings.show_section_title %}
       <h2 class="pc-section-title">{{ section.settings.title }}</h2>
@@ -11,19 +11,33 @@
     <div class="pc-pricing-grid">
       {% for block in section.blocks %}
         <div class="pc-pricing-card {% if block.settings.featured %}featured{% endif %}" {{ block.shopify_attributes }}>
-          <h3 class="pc-pricing-card-title">{{ block.settings.title }}</h3>
-          <div class="pc-pricing-amount">
-            {{ block.settings.price -}}
-            {{- block.settings.price_unit }}
-          </div>
-          <div class="pc-pricing-period">{{ block.settings.billing_period }}</div>
+          {% if block.settings.title != blank %}
+            <h3 class="pc-pricing-card-title" style="text-align: {{ block.settings.title_alignment }};">
+              {{ block.settings.title }}
+            </h3>
+          {% endif %}
+
+          {% if block.settings.price != blank %}
+            <div class="pc-pricing-amount" style="text-align: {{ block.settings.price_alignment }};">
+              {{ block.settings.price -}}
+              {{- block.settings.price_unit }}
+            </div>
+          {% endif %}
+
+          {% if block.settings.billing_period != blank %}
+            <div class="pc-pricing-period" style="text-align: {{ block.settings.period_alignment }};">
+              {{ block.settings.billing_period }}
+            </div>
+          {% endif %}
 
           {% if block.settings.savings_text != blank %}
-            <div class="pc-pricing-savings">{{ block.settings.savings_text }}</div>
+            <div class="pc-pricing-savings" style="text-align: {{ block.settings.savings_alignment }};">
+              {{ block.settings.savings_text }}
+            </div>
           {% endif %}
 
           {% if block.settings.features != blank %}
-            <ul class="pc-pricing-features">
+            <ul class="pc-pricing-features" style="text-align: {{ block.settings.features_alignment }};">
               {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
               {% for feature in features %}
                 {% if feature != blank %}
@@ -33,14 +47,21 @@
             </ul>
           {% endif %}
 
-          <a href="{{ block.settings.button_link | default: '#' }}" class="pc-pricing-button">
-            {{ block.settings.button_text | default: 'Get Started' }}
-          </a>
+          {% if block.settings.button_text != blank %}
+            <a
+              href="{{ block.settings.button_link | default: '#' }}"
+              class="pc-pricing-button"
+              style="text-align: {{ block.settings.button_alignment }};"
+            >
+              {{ block.settings.button_text | default: 'Get Started' }}
+            </a>
+          {% endif %}
         </div>
       {% endfor %}
     </div>
   </div>
 </div>
+
 {% schema %}
 {
   "name": "PWC Pricing Cards",
@@ -67,6 +88,12 @@
         { "value": "right", "label": "Right" }
       ],
       "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section background color",
+      "default": "transparent"
     },
     {
       "type": "header",
@@ -193,10 +220,32 @@
           "default": "Starter"
         },
         {
+          "type": "select",
+          "id": "title_alignment",
+          "label": "Title alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
           "type": "text",
           "id": "price",
           "label": "Price",
           "default": "19"
+        },
+        {
+          "type": "select",
+          "id": "price_alignment",
+          "label": "Price alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
         },
         {
           "type": "text",
@@ -211,10 +260,32 @@
           "default": "/month"
         },
         {
+          "type": "select",
+          "id": "period_alignment",
+          "label": "Period alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
           "type": "text",
           "id": "savings_text",
           "label": "Savings text",
           "default": "Save 10%"
+        },
+        {
+          "type": "select",
+          "id": "savings_alignment",
+          "label": "Savings alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
         },
         {
           "type": "url",
@@ -226,6 +297,17 @@
           "id": "button_text",
           "label": "Button text",
           "default": "Get Started"
+        },
+        {
+          "type": "select",
+          "id": "button_alignment",
+          "label": "Button alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
         },
         {
           "type": "checkbox",
@@ -243,6 +325,17 @@
           "label": "Features list",
           "default": "Feature one\nFeature two\nFeature three",
           "info": "One feature per line"
+        },
+        {
+          "type": "select",
+          "id": "features_alignment",
+          "label": "Features alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
         }
       ]
     }
