@@ -179,7 +179,7 @@
         <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size }}"px >
           {{ section.settings.left_top_text }}
         </div>
-        <div class="pc-ba-text-block">
+        <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size_first }}"px>
           {{ section.settings.left_bottom_text }}
         </div>
 </div>
@@ -342,26 +342,16 @@
       "id": "left_bottom_text",
       "label": "Left Bottom Text"
     },
-      {
-          "type": "select",
-          "id": "text_size_first",
-          "options": [
-            {
-              "value": "small",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__1.label"
-            },
-            {
-              "value": "medium",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__2.label"
-            },
-            {
-              "value": "large",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__3.label"
-            }
-          ],
-          "default": "medium",
-          "label": "t:sections.rich-text.blocks.caption.settings.caption_size.label"
-        },
+     {
+      "type": "range",
+      "id": "subheading_size_first",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading font size",
+      "default": 18
+    },
     {
       "type": "richtext",
       "id": "right_top_text",
