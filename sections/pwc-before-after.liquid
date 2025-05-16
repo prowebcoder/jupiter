@@ -176,9 +176,9 @@
   <div class="page-width">
     <div class="pc-ba-main">
       <div class="pc-ba-text-blocks pc-ba-left">
-        <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size }}"px >
-          {{ section.settings.left_top_text }}
-        </div>
+       <div 
+  class="pc-ba-text-block" 
+  style="font-size: {{ section.settings.subheading_size | default: '16' }}px; color: {{ section.settings.text_color | default: '#000' }};">
         <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size_first }}"px>
           {{ section.settings.left_bottom_text }}
         </div>
@@ -326,6 +326,12 @@
       "type": "richtext",
       "id": "left_top_text",
       "label": "Left Top Text"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000"
     },
      {
       "type": "range",
