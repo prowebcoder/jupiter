@@ -63,10 +63,6 @@
         "padding_bottom": 100
       }
     },
-    "main": {
-      "type": "main-404",
-      "settings": {}
-    },
     "image_banner_blog_pwc_PpPPGY": {
       "type": "Image_Banner_blog_PWC",
       "name": "Image banner blog PWC",
@@ -86,20 +82,24 @@
         "post_limit": 4,
         "text_alignment": "center",
         "button_shape": "5px",
-        "featured_button_background": "#FFA500",
-        "featured_button_text_color": "#FFFFFF",
+        "featured_button_background": "#ffa500",
+        "featured_button_text_color": "#ffffff",
         "read_more_button_shape": "5px",
-        "read_more_button_background": "#FFA500",
-        "read_more_button_text_color": "#FFFFFF",
+        "read_more_button_background": "#ffa500",
+        "read_more_button_text_color": "#ffffff",
         "padding_top": 100,
         "padding_bottom": 100
       }
+    },
+    "main": {
+      "type": "main-404",
+      "settings": {}
     }
   },
   "order": [
     "image_counter_pwc_a3hUT3",
     "split_banner_blog_pwc_tCRqFw",
-    "main",
-    "image_banner_blog_pwc_PpPPGY"
+    "image_banner_blog_pwc_PpPPGY",
+    "main"
   ]
 }
