@@ -269,8 +269,8 @@
       </div>
 
       <div class="pc-ba-text-blocks pc-ba-right">
-        <div class="pc-ba-text-block">{{ section.settings.right_top_text }}</div>
-        <div class="pc-ba-text-block">{{ section.settings.right_bottom_text }}</div>
+        <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size_second }}">{{ section.settings.right_top_text }}</div>
+        <div class="pc-ba-text-block" style="font-size: {{ section.settings.subheading_size_third }}>{{ section.settings.right_bottom_text }}</div>
       </div>
     </div>
   </div>
@@ -358,9 +358,29 @@
       "label": "Right Top Text"
     },
     {
+      "type": "range",
+      "id": "subheading_size_second",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading font size",
+      "default": 18
+    },
+    {
       "type": "richtext",
       "id": "right_bottom_text",
       "label": "Right Bottom Text"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size_third",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading font size",
+      "default": 18
     },
     {
       "type": "range",
