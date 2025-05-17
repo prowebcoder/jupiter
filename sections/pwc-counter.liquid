@@ -1,0 +1,612 @@
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+
+{%- style -%}
+  /* Embedded Josefin Sans font */
+  @font-face {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('{{ "josefin-sans-v20-latin-regular.woff2" | asset_url }}') format('woff2');
+  }
+  @font-face {
+    font-family: 'Josefin Sans';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('{{ "josefin-sans-v20-latin-italic.woff2" | asset_url }}') format('woff2');
+  }
+  @font-face {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('{{ "josefin-sans-v20-latin-700.woff2" | asset_url }}') format('woff2');
+  }
+  @font-face {
+    font-family: 'Josefin Sans';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url('{{ "josefin-sans-v20-latin-700italic.woff2" | asset_url }}') format('woff2');
+  }
+
+  {{ sid }} .pc-pwc-counter-wrapper {
+    background-color: {{ section.settings.bg_color }};
+    {% if section.settings.bg_image != blank %}
+      background-image: url('{{ section.settings.bg_image | img_url: '2000x' }}');
+      background-size: {{ section.settings.bg_size }};
+      background-position: {{ section.settings.bg_position }};
+      background-repeat: {{ section.settings.bg_repeat }};
+      background-attachment: {{ section.settings.bg_attachment }};
+    {% endif %}
+    position: relative;
+    padding: {{ section.settings.section_padding }}px 0;
+    overflow: hidden;
+  }
+
+  {{ sid }} .pc-pwc-counter-wrapper::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,{{ section.settings.overlay_opacity | divided_by: 100.0 }});
+    z-index: 1;
+  }
+
+  {{ sid }} .pc-pwc-counter-inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  {{ sid }} .pc-pwc-counter-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 -{{ section.settings.item_gap }}px;
+  }
+
+  {{ sid }} .pc-pwc-counter-item {
+    flex: 1 0 calc(25% - {{ section.settings.item_gap | times: 2 }}px);
+    min-width: 200px;
+    padding: {{ section.settings.item_padding }}px {{ section.settings.item_gap }}px;
+    text-align: center;
+    color: {{ section.settings.text_color }};
+    transition: all 0.3s ease;
+  }
+
+  {{ sid }} .pc-pwc-counter-item:hover {
+    transform: translateY(-5px);
+  }
+
+  {{ sid }} .pc-pwc-count-icon {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    margin-bottom: 15px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    fill: {{ section.settings.icon_color }};
+  }
+
+  {{ sid }} .pc-pwc-counter-item:hover .pc-pwc-count-icon {
+    transform: scale(1.1);
+  }
+
+  {{ sid }} .pc-pwc-count {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: {{ section.settings.number_size }}px;
+    font-weight: {{ section.settings.number_weight }};
+    color: {{ section.settings.number_color }};
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  {{ sid }} .pc-pwc-suffix {
+    font-size: {{ section.settings.suffix_size }}px;
+    margin-left: 2px;
+  }
+
+  {{ sid }} .pc-pwc-label {
+    font-size: {{ section.settings.label_size }}px;
+    font-weight: {{ section.settings.label_weight }};
+    line-height: 1.3;
+  }
+
+  @media (max-width: 991px) {
+    {{ sid }} .pc-pwc-counter-item {
+      flex: 1 0 calc(50% - {{ section.settings.item_gap | times: 2 }}px);
+    }
+  }
+
+  @media (max-width: 767px) {
+    {{ sid }} .pc-pwc-counter-item {
+      flex: 1 0 100%;
+    }
+  }
+{%- endstyle -%}
+
+<section class="pc-pwc-counter-wrapper">
+  <div class="pc-pwc-counter-inner">
+    <div class="{% if section.settings.container_width == 'container' %}container{% else %}container-fluid{% endif %}">
+      <div class="pc-pwc-counter-grid">
+        {% for block in section.blocks %}
+          <div class="pc-pwc-counter-item" {{ block.shopify_attributes }}>
+            <div class="pc-pwc-count-icon">
+              {% case block.settings.icon %}
+                {% when 'building' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M4 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1ZM4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1ZM7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1ZM4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Z"/>
+                    <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V1Zm11 0H3v14h3v-2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V15h3V1Z"/>
+                  </svg>
+                {% when 'people' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
+                  </svg>
+                {% when 'trophy' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5c0 .538-.012 1.05-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33.076 33.076 0 0 1 2.5.5zm.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935zm10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935zM3.504 1c.007.517.026 1.006.056 1.469.13 2.028.457 3.546.87 4.667C5.294 9.48 6.484 10 7 10a.5.5 0 0 1 .5.5v2.61a1 1 0 0 1-.757.97l-1.426.356a.5.5 0 0 0-.179.085L4.5 15h7l-.638-.479a.5.5 0 0 0-.18-.085l-1.425-.356a1 1 0 0 1-.757-.97V10.5A.5.5 0 0 1 9 10c.516 0 1.706-.52 2.57-2.864.413-1.12.74-2.64.87-4.667.03-.463.049-.952.056-1.469H3.504z"/>
+                  </svg>
+                {% when 'graph-up' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/>
+                  </svg>
+                {% when 'award' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z"/>
+                    <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
+                  </svg>
+                {% when 'star' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                {% when 'heart' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                  </svg>
+                {% when 'lightning' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5zM6.374 1 4.168 8.5H7.5a.5.5 0 0 1 .478.647L6.78 13.04 11.478 7H8a.5.5 0 0 1-.474-.658L9.306 1H6.374z"/>
+                  </svg>
+                {% when 'globe' %}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.73 6.73 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
+                  </svg>
+              {% endcase %}
+            </div>
+            <div class="pc-pwc-count">
+              <span id="pc-pwc-count-{{ section.id }}-{{ forloop.index }}">{{ block.settings.start_value }}</span>
+              {% if block.settings.suffix != blank %}
+                <span class="pc-pwc-suffix">{{ block.settings.suffix }}</span>
+              {% endif %}
+            </div>
+            <div class="pc-pwc-label">
+              {{ block.settings.label }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    {% for block in section.blocks %}
+      counter(
+        "pc-pwc-count-{{ section.id }}-{{ forloop.index }}",
+        {{ block.settings.start_value }},
+        {{ block.settings.end_value }},
+        {{ block.settings.duration }}
+      );
+    {% endfor %}
+
+    function counter(id, start, end, duration) {
+      let obj = document.getElementById(id),
+       current = start,
+       range = end - start,
+       increment = end > start ? 1 : -1,
+       step = Math.abs(Math.floor(duration / range)),
+       timer = setInterval(() => {
+        current += increment;
+        obj.textContent = current;
+        if (current == end) {
+         clearInterval(timer);
+        }
+       }, step);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "PWC Animated Counter",
+  "class": "section-counter",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container width",
+      "options": [
+        {
+          "value": "container",
+          "label": "Boxed"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Full width"
+        }
+      ],
+      "default": "container"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "item_padding",
+      "min": 20,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Item padding",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "label": "Item spacing",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#333333"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "select",
+      "id": "bg_size",
+      "label": "Background size",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "auto",
+          "label": "Auto"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "bg_position",
+      "label": "Background position",
+      "options": [
+        {
+          "value": "left top",
+          "label": "Left Top"
+        },
+        {
+          "value": "left center",
+          "label": "Left Center"
+        },
+        {
+          "value": "left bottom",
+          "label": "Left Bottom"
+        },
+        {
+          "value": "center top",
+          "label": "Center Top"
+        },
+        {
+          "value": "center center",
+          "label": "Center Center"
+        },
+        {
+          "value": "center bottom",
+          "label": "Center Bottom"
+        },
+        {
+          "value": "right top",
+          "label": "Right Top"
+        },
+        {
+          "value": "right center",
+          "label": "Right Center"
+        },
+        {
+          "value": "right bottom",
+          "label": "Right Bottom"
+        }
+      ],
+      "default": "center center"
+    },
+    {
+      "type": "select",
+      "id": "bg_repeat",
+      "label": "Background repeat",
+      "options": [
+        {
+          "value": "repeat",
+          "label": "Repeat"
+        },
+        {
+          "value": "no-repeat",
+          "label": "No repeat"
+        },
+        {
+          "value": "repeat-x",
+          "label": "Repeat horizontally"
+        },
+        {
+          "value": "repeat-y",
+          "label": "Repeat vertically"
+        }
+      ],
+      "default": "no-repeat"
+    },
+    {
+      "type": "select",
+      "id": "bg_attachment",
+      "label": "Background attachment",
+      "options": [
+        {
+          "value": "scroll",
+          "label": "Scroll"
+        },
+        {
+          "value": "fixed",
+          "label": "Fixed"
+        }
+      ],
+      "default": "scroll"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "number_size",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Number size",
+      "default": 48
+    },
+    {
+      "type": "select",
+      "id": "number_weight",
+      "label": "Number weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "700"
+    },
+    {
+      "type": "color",
+      "id": "number_color",
+      "label": "Number color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "suffix_size",
+      "min": 12,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Suffix size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Label size",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "label_weight",
+      "label": "Label weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "counter",
+      "name": "Counter Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "building", "label": "Building" },
+            { "value": "people", "label": "People" },
+            { "value": "trophy", "label": "Trophy" },
+            { "value": "graph-up", "label": "Graph Up" },
+            { "value": "award", "label": "Award" },
+            { "value": "star", "label": "Star" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "lightning", "label": "Lightning" },
+            { "value": "globe", "label": "Globe" }
+          ],
+          "default": "building"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Lorem Ipsum HQs"
+        },
+        {
+          "type": "number",
+          "id": "start_value",
+          "label": "Start value",
+          "default": 0
+        },
+        {
+          "type": "number",
+          "id": "end_value",
+          "label": "End value",
+          "default": 100
+        },
+        {
+          "type": "number",
+          "id": "duration",
+          "label": "Animation duration (ms)",
+          "default": 1000
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "Suffix",
+          "info": "Optional text after number (e.g. '+', 'm', 'k')",
+          "default": "35"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC Animated Counter",
+      "category": "Content",
+      "blocks": [
+        {
+          "type": "counter",
+          "settings": {
+            "icon": "building",
+            "label": "Our Locations",
+            "start_value": 50,
+            "end_value": 107,
+            "duration": 1000
+          }
+        },
+        {
+          "type": "counter",
+          "settings": {
+            "icon": "people",
+            "label": "Happy Clients",
+            "start_value": 9911,
+            "end_value": 10000,
+            "duration": 1000,
+            "suffix": "+"
+          }
+        },
+        {
+          "type": "counter",
+          "settings": {
+            "icon": "trophy",
+            "label": "Awards Won",
+            "start_value": 0,
+            "end_value": 21,
+            "duration": 1000
+          }
+        },
+        {
+          "type": "counter",
+          "settings": {
+            "icon": "graph-up",
+            "label": "Annual Revenue",
+            "start_value": 10,
+            "end_value": 56,
+            "duration": 1000,
+            "suffix": "m"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
