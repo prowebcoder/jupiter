@@ -151,7 +151,7 @@
           {% if block.type == 'icon_right' %}
             <div class="pw-icon-box">
               {% if block.settings.icon_image %}
-                {{ block.settings.icon_image  | image_url: width: 200 | image_tag }}
+                {{ block.settings.icon_image  | image_url: width: 200 ,height: 'auto'| image_tag }}
               
               {% endif %}
               <h3 style="font-size: {{ block.settings.heading_font_size2 }}px;">
