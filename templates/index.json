@@ -893,7 +893,7 @@
         "button_link": "",
         "background_button_color": "#ffa500",
         "button_text_color": "#ffffff",
-        "button_shape": "5px",
+        "button_shape": "50px",
         "countdown_end_date": "2025-12-31",
         "heading_font_size": 27,
         "heading_color": "#ffffff",
