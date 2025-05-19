@@ -884,13 +884,14 @@
       "name": " Background image Countdown Pwc",
       "settings": {
         "page_width": 1200,
+        "background_image": "shopify://shop_images/woman-in-park-afternoon.jpeg",
         "image_height": "medium",
         "text_alignment": "center",
         "heading": "50% off all suits and accessories",
         "text_color": "#ffffff",
         "button_label": "View Discounted Items",
         "button_link": "",
-        "background_button_color": "#FFA500",
+        "background_button_color": "#ffa500",
         "button_text_color": "#ffffff",
         "button_shape": "5px",
         "countdown_end_date": "2025-12-31"
