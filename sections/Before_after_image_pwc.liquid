@@ -184,40 +184,54 @@ document.addEventListener("DOMContentLoaded", function () {
   const beforeImg = container.querySelector('.before');
   const handle = document.getElementById('sliderHandle');
 
-  if (window.innerWidth <= 768) {
-    beforeImg.style.clipPath = `inset(0 50% 0 0)`;
-    handle.style.left = `50%`;
-  }
+  // Set initial position to 50%
+  beforeImg.style.clipPath = `inset(0 50% 0 0)`;
+  handle.style.left = `50%`;
 
-  function updateSlider(x) {
+  let isDragging = false;
+
+  function updateSliderPosition(clientX) {
     const rect = container.getBoundingClientRect();
-    let offsetX = x - rect.left;
+    let offsetX = clientX - rect.left;
     let percent = Math.max(0, Math.min(offsetX / rect.width, 1));
     beforeImg.style.clipPath = `inset(0 ${100 - percent * 100}% 0 0)`;
     handle.style.left = `${percent * 100}%`;
   }
 
-  container.addEventListener('mousemove', (e) => {
-    updateSlider(e.clientX);
+  // Desktop
+  handle.addEventListener("mousedown", function (e) {
+    isDragging = true;
+    e.preventDefault();
   });
 
-  let isTouching = false;
-  container.addEventListener('touchstart', (e) => {
-    isTouching = true;
-    if (e.touches.length > 0) {
-      updateSlider(e.touches[0].clientX);
+  document.addEventListener("mousemove", function (e) {
+    if (isDragging) {
+      updateSliderPosition(e.clientX);
     }
   });
-  container.addEventListener('touchmove', (e) => {
-    if (isTouching && e.touches.length > 0) {
-      updateSlider(e.touches[0].clientX);
+
+  document.addEventListener("mouseup", function () {
+    isDragging = false;
+  });
+
+  // Touch Devices
+  handle.addEventListener("touchstart", function (e) {
+    isDragging = true;
+    e.preventDefault();
+  });
+
+  document.addEventListener("touchmove", function (e) {
+    if (isDragging && e.touches.length > 0) {
+      updateSliderPosition(e.touches[0].clientX);
     }
   });
-  container.addEventListener('touchend', () => {
-    isTouching = false;
+
+  document.addEventListener("touchend", function () {
+    isDragging = false;
   });
 });
 </script>
+
 
 
 {% schema %}
