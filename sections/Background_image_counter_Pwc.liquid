@@ -1,6 +1,229 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+
+<style>
+  {{ sec_id }} .pw-countdown-banner-section {
+    position: relative;
+    text-align: {{ section.settings.text_alignment }};
+    {% case section.settings.image_height %}
+      {% when 'small' %}
+        height: 300px;
+      {% when 'medium' %}
+        height: 400px;
+      {% when 'large' %}
+        height: 500px;
+      {% when 'adapt' %}
+        height: auto;
+    {% endcase %}
   }
+
+  {{ sec_id }} .pw-banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  {{ sec_id }} .pw-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  {{ sec_id }} .pw-content {
+    z-index: 1;
+  }
+
+  {{ sec_id }} .pw-content h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: {{ section.settings.text_color }};
+     text-align: {{ section.settings.text_alignment }};
+  }
+
+  {{ sec_id }} .pw-button-shape button {
+    border-radius: {{ section.settings.button_shape }};
+    color: {{ section.settings.button_text_color }};
+    background-color: {{ section.settings.background_button_color }};
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+  }
+
+  {{ sec_id }} .pw-button-shape button:hover {
+    background-color: #d75c42;
+  }
+
+  {{ sec_id }} .pw-countdown-timer {
+    font-size: 24px;
+    margin-top: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: {{ section.settings.text_color }};
+     text-align: {{ section.settings.text_alignment }};
+  }
+
+  {{ sec_id }} #pw-countdown {
+    font-size: 32px;
+    font-weight: bold;
+    color: {{ section.settings.text_color }};
+     text-align: {{ section.settings.text_alignment }};
+  }
+</style>
+
+<div class="pw-custom-page-width" style="max-width: {{ section.settings.page_width }}px; margin: 0 auto;">
+  <section class="pw-countdown-banner-section">
+    <img src="{{ section.settings.background_image | img_url: 'master' }}" alt="Banner Image" class="pw-banner-image">
+    <div class="pw-overlay">
+      <div class="pw-content">
+        <h2>{{ section.settings.heading }}</h2>
+        <div class="pw-button-shape">
+          <button onclick="window.location.href='{{ section.settings.button_link }}'">{{ section.settings.button_label }}</button>
+        </div>
+        <div class="pw-countdown-timer">
+          <div id="pw-countdown"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  // Countdown Timer Script
+  function startCountdown() {
+    var endDate = new Date("{{ section.settings.countdown_end_date }}").getTime();
+
+    var x = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = endDate - now;
+
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("pw-countdown").innerHTML = days + " Days " + hours + " Hours " 
+      + minutes + " Minutes " + seconds + " Seconds ";
+
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("pw-countdown").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  }
+  startCountdown();
+</script>
+
+{% schema %}
+{
+  "name": "image Countdown Pwc",
+  "settings": [
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Page Width",
+      "min": 600,
+      "max": 1600,
+      "step": 50,
+      "default": 1200,
+      "unit": "px"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "label": "Image Height",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" },
+        { "value": "adapt", "label": "Adapt to Image" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "50% off all suits and accessories"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "View Discounted Items"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "background_button_color",
+      "label": "Button Background Color",
+      "default": "#FFA500"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "button_shape",
+      "label": "Button Shape",
+      "options": [
+        { "value": "0px", "label": "Square" },
+        { "value": "5px", "label": "Rounded" },
+        { "value": "50px", "label": "Pill" }
+      ],
+      "default": "5px"
+    },
+    {
+      "type": "text",
+      "id": "countdown_end_date",
+      "label": "Countdown End Date (Format: YYYY-MM-DD)",
+      "default": "2025-12-31"
+    }
+  ],
+  "presets": [
+    {
+      "name": " Background image Countdown Pwc"
+    }
+  ]
+}
 {% endschema %}
