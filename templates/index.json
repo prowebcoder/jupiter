@@ -668,6 +668,33 @@
         "countdown_background_color1": "#ffa500",
         "countdown_text_color1": "#ffffff"
       }
+    },
+    "split_banner_blog_pwc_9mhPtR": {
+      "type": "Split_banner_blog_pwc",
+      "name": "Split Banner with Blog Pwc",
+      "settings": {
+        "page_width": 1200,
+        "background_image": "shopify://shop_images/close-up-of-a-person-arm-wearing-a-smartwatch.jpg",
+        "background_color": "#f1f1f1",
+        "heading_text": "FEATURED ARTICLE",
+        "heading_font_size": 28,
+        "heading_font_weight": "700",
+        "subheading_text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "subheading_font_size": 20,
+        "subheading_font_weight": "400",
+        "button_link": "",
+        "button_text": "Read More",
+        "image_position": "left",
+        "text_alignment": "center",
+        "text_color": "#000000",
+        "button_shape": "50px",
+        "featured_button_background": "#FFA500",
+        "featured_button_text_color": "#FFFFFF",
+        "blog": "",
+        "post_limit": 4,
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
     }
   },
   "order": [
@@ -681,6 +708,7 @@
     "pricing_plan_p_83L4ad",
     "pwc_icon_text_iUx4MG",
     "before_after_image_pwc_GwnNGT",
-    "image_counter_pwc_GHENam"
+    "image_counter_pwc_GHENam",
+    "split_banner_blog_pwc_9mhPtR"
   ]
 }
