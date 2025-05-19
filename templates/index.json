@@ -715,13 +715,184 @@
         "post_limit": 4,
         "text_alignment": "center",
         "button_shape": "50px",
-        "featured_button_background": "#FFA500",
-        "featured_button_text_color": "#FFFFFF",
+        "featured_button_background": "#ffa500",
+        "featured_button_text_color": "#ffffff",
         "read_more_button_shape": "5px",
-        "read_more_button_background": "#FFA500",
-        "read_more_button_text_color": "#FFFFFF",
+        "read_more_button_background": "#ffa500",
+        "read_more_button_text_color": "#ffffff",
         "padding_top": 100,
         "padding_bottom": 100
+      }
+    },
+    "slider_testimonial_pwc_DGkhKX": {
+      "type": "Slider_testimonial_Pwc",
+      "blocks": {
+        "testimonial_fDjwGg": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "",
+            "name_font_size": 18,
+            "role": "",
+            "role_font_size": 14,
+            "testimonial_text": "",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_4nYdwp": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "",
+            "name_font_size": 18,
+            "role": "",
+            "role_font_size": 14,
+            "testimonial_text": "",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_FPkHzt": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "",
+            "name_font_size": 18,
+            "role": "",
+            "role_font_size": 14,
+            "testimonial_text": "",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_CekKVf": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "",
+            "name_font_size": 18,
+            "role": "",
+            "role_font_size": 14,
+            "testimonial_text": "",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_68dQaE": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "",
+            "name_font_size": 18,
+            "role": "",
+            "role_font_size": 14,
+            "testimonial_text": "",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_7WRWHd": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "",
+            "name_font_size": 18,
+            "role": "",
+            "role_font_size": 14,
+            "testimonial_text": "",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_KdAGTL": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "",
+            "name_font_size": 18,
+            "role": "",
+            "role_font_size": 14,
+            "testimonial_text": "",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_pjdtCy": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "",
+            "name_font_size": 18,
+            "role": "",
+            "role_font_size": 14,
+            "testimonial_text": "",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_K6gykx": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "",
+            "name_font_size": 18,
+            "role": "",
+            "role_font_size": 14,
+            "testimonial_text": "",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_HjXPUz": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "",
+            "name_font_size": 18,
+            "role": "",
+            "role_font_size": 14,
+            "testimonial_text": "",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_fDjwGg",
+        "testimonial_4nYdwp",
+        "testimonial_FPkHzt",
+        "testimonial_CekKVf",
+        "testimonial_68dQaE",
+        "testimonial_7WRWHd",
+        "testimonial_KdAGTL",
+        "testimonial_pjdtCy",
+        "testimonial_K6gykx",
+        "testimonial_HjXPUz"
+      ],
+      "name": "Testimonial Slider Pwc",
+      "settings": {
+        "page_width": 1200
       }
     }
   },
@@ -738,6 +909,7 @@
     "before_after_image_pwc_GwnNGT",
     "image_counter_pwc_GHENam",
     "split_banner_blog_pwc_9mhPtR",
-    "image_banner_blog_pwc_nTnipj"
+    "image_banner_blog_pwc_nTnipj",
+    "slider_testimonial_pwc_DGkhKX"
   ]
 }
