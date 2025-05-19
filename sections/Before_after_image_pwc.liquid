@@ -74,6 +74,17 @@
     cursor: ew-resize;
     z-index: 2;
 }
+{{ sec_id }} .pw-slider-handle::before {
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: #85a179;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  display: block;
+  z-index: 3;
+}
 
 @media (max-width: 768px) {
   {{ sec_id }} .pw-before-after-wrapper {
