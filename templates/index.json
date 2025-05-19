@@ -690,7 +690,7 @@
         "button_shape": "50px",
         "featured_button_background": "#FFA500",
         "featured_button_text_color": "#FFFFFF",
-        "blog": "",
+        "blog": "news",
         "post_limit": 4,
         "padding_top": 100,
         "padding_bottom": 100
