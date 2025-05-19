@@ -895,9 +895,9 @@
         "button_text_color": "#ffffff",
         "button_shape": "5px",
         "countdown_end_date": "2025-12-31",
-        "heading_font_size": 39,
+        "heading_font_size": 27,
         "heading_color": "#ffffff",
-        "countdown_font_size": 32,
+        "countdown_font_size": 27,
         "countdown_color": "#ffffff"
       }
     }
