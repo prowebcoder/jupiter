@@ -381,11 +381,31 @@
           "settings": {
             "image": "shopify://shop_images/favicon-2.png"
           }
+        },
+        "text_rDAbNq": {
+          "type": "text",
+          "settings": {
+            "new_text": "Welcome to store",
+            "text_color": "#ffffff",
+            "text_transform": "none",
+            "font_weight": "normal",
+            "text_decoration": "none",
+            "font_style": "normal",
+            "letter_spacing": 0
+          }
+        },
+        "image_bbkw3F": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/favicon-1.png"
+          }
         }
       },
       "block_order": [
         "text_9crba7",
-        "image_qyjaTN"
+        "image_qyjaTN",
+        "text_rDAbNq",
+        "image_bbkw3F"
       ],
       "name": "Pwc Marquee",
       "settings": {
