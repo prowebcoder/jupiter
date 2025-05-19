@@ -655,8 +655,8 @@
         "button_label": "Shop Now",
         "button_link": "",
         "button_shape": "50px",
-        "featured_button_background": "#FFA500",
-        "featured_button_text_color": "#FFFFFF",
+        "featured_button_background": "#ffa500",
+        "featured_button_text_color": "#ffffff",
         "disclaimer": "Final discount, cannot be combined with other offers.",
         "countdown_end_date": "2025-10-12",
         "background_color": "#121212",
@@ -688,10 +688,38 @@
         "text_alignment": "center",
         "text_color": "#000000",
         "button_shape": "50px",
-        "featured_button_background": "#FFA500",
-        "featured_button_text_color": "#FFFFFF",
+        "featured_button_background": "#ffa500",
+        "featured_button_text_color": "#ffffff",
         "blog": "news",
         "post_limit": 4,
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "image_banner_blog_pwc_nTnipj": {
+      "type": "Image_Banner_blog_PWC",
+      "name": "Image banner blog PWC",
+      "settings": {
+        "page_width": 1200,
+        "background_image": "shopify://shop_images/all-dogs-go-to-birthday.jpg",
+        "banner_height": "medium",
+        "heading_text": "FEATURED ARTICLE",
+        "heading_font_size": 40,
+        "heading_color": "#334fb4",
+        "subheading_text": "How to add a FAQ section to Shopify",
+        "subheading_font_size": 36,
+        "subheading_color": "#334fb4",
+        "button_link": "",
+        "button_text": "Read More",
+        "blog": "news",
+        "post_limit": 4,
+        "text_alignment": "center",
+        "button_shape": "50px",
+        "featured_button_background": "#FFA500",
+        "featured_button_text_color": "#FFFFFF",
+        "read_more_button_shape": "5px",
+        "read_more_button_background": "#FFA500",
+        "read_more_button_text_color": "#FFFFFF",
         "padding_top": 100,
         "padding_bottom": 100
       }
@@ -709,6 +737,7 @@
     "pwc_icon_text_iUx4MG",
     "before_after_image_pwc_GwnNGT",
     "image_counter_pwc_GHENam",
-    "split_banner_blog_pwc_9mhPtR"
+    "split_banner_blog_pwc_9mhPtR",
+    "image_banner_blog_pwc_nTnipj"
   ]
 }
