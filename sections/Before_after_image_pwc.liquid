@@ -1,238 +1,89 @@
 {% assign sec_id = '#shopify-section-' | append: section.id %}
 <style>
-{{ sec_id }} .pw-before-after-section {
-  padding: 30px 20px;
-  text-align: center;
-}
-{{ sec_id }} .pw-before-after-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: nowrap;
-  min-height: auto;
-  gap: 20px;
-  padding: 10px;
-}
-{{ sec_id }} .pw-result-icons {
-  width: 20%;
-  min-width: 180px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-{{ sec_id }} .pw-icon-box {
-  margin-bottom: 25px;
-}
-{{ sec_id }} .pw-icon-box img {
-  width: 35px;
-  margin-bottom: 8px;
-}
-{{ sec_id }} .pw-icon-box h3 {
-  margin: 5px 0;
-  font-weight: 600;
-}
-{{ sec_id }} .pw-icon-box p {
-  color: #666;
-  font-weight: 300;
-}
-{{ sec_id }} .pw-before-after-container {
-  width: 380px;
-  height: 380px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 50%;
-  margin: 0 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
-}
-{{ sec_id }} .pw-before-after img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-{{ sec_id }} .pw-before-after .before {
-  clip-path: inset(0 50% 0 0);
-  transition: clip-path 0.2s;
-  z-index: 1;
-}
-{{ sec_id }} .pw-before-after img:not(.before) {
-  z-index: 0;
-}
-{{ sec_id }} .pw-slider-handle {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 100%;
-    width: 2px;
-    background: rgb(255 255 255);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: ew-resize;
-    z-index: 2;
-}
-{{ sec_id }} .pw-slider-handle::before {
-  content: "";
-  width: 30px;
-  height: 30px;
-  background: #85a179;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
-  display: block;
-  z-index: 3;
-}
-
-@media (max-width: 768px) {
-  {{ sec_id }} .pw-before-after-wrapper {
-    flex-direction: column;
-    gap: 30px;
+  {{ sec_id }} .pw-before-after-section{padding:30px 20px;text-align:center}
+  {{ sec_id }} .pw-before-after-wrapper{display:flex;justify-content:center;align-items:center;flex-wrap:nowrap;min-height:auto;gap:20px;padding:10px}
+  {{ sec_id }} .pw-result-icons{width:20%;min-width:180px;display:flex;flex-direction:column;justify-content:space-around}
+  {{ sec_id }} .pw-icon-box{margin-bottom:25px}
+  {{ sec_id }} .pw-icon-box img{width:35px;margin-bottom:8px}
+  {{ sec_id }} .pw-icon-box h3{margin:5px 0;font-weight:600}
+  {{ sec_id }} .pw-icon-box p{color:#666;font-weight:300}
+  {{ sec_id }} .pw-before-after-container{width:380px;height:380px;position:relative;overflow:hidden;border-radius:50%;margin:0 20px;box-shadow:0 0 20px rgba(0,0,0,0.1)}
+  {{ sec_id }} .pw-before-after img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+  {{ sec_id }} .pw-before-after .before{clip-path:inset(0 50% 0 0);transition:clip-path 0.2s;z-index:1}
+  {{ sec_id }} .pw-before-after img:not(.before){z-index:0}
+  {{ sec_id }} .pw-slider-handle{position:absolute;top:0;left:50%;transform:translateX(-50%);height:100%;width:2px;background:#fff;display:flex;align-items:center;justify-content:center;cursor:ew-resize;z-index:2}
+  {{ sec_id }} .pw-slider-handle::before{content:"↔";width:30px;height:30px;background:#85a179;border-radius:50%;border:2px solid #fff;box-shadow:0 0 8px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
+  @media (max-width:768px){
+  {{ sec_id }} .pw-before-after-wrapper{flex-direction:column;gap:30px}
+  {{ sec_id }} .pw-result-icons{width:100%;text-align:center!important;padding:0!important}
+  {{ sec_id }} .pw-icon-box{margin-bottom:20px}
+  {{ sec_id }} .pw-before-after-container{width:90%;height:auto;aspect-ratio:1/1;margin:0 auto}
+  {{ sec_id }} .pw-icon-box img{width:30px}
   }
-
-  {{ sec_id }} .pw-result-icons {
-    width: 100%;
-    text-align: center !important;
-    padding: 0 !important;
-  }
-
-  {{ sec_id }} .pw-icon-box {
-    margin-bottom: 20px;
-  }
-
-  {{ sec_id }} .pw-before-after-container {
-    width: 90%;
-    height: auto;
-    aspect-ratio: 1/1;
-    margin: 0 auto;
-  }
-  {{ sec_id }} .pw-icon-box img {
-    width: 30px;
-  }
-}
-
 </style>
 
 <section class="pw-before-after-section">
-  <div class="pw-before-after-inner" style="max-width: {{ section.settings.page_width }}px; margin: 0 auto;">
+  <div class="pw-before-after-inner" style="max-width:{{ section.settings.page_width }}px;margin:0 auto">
     <div class="text-center">
-      <h2 class="pw-section-heading" style="font-size: {{ section.settings.heading_font_size }}px;">
+      <h2 class="pw-section-heading" style="font-size:{{ section.settings.heading_font_size }}px">
         {{ section.settings.heading }}
       </h2>
-      <p class="pw-section-subheading" style="font-size: {{ section.settings.subheading_font_size }}px; color: #85a179;">
+      <p class="pw-section-subheading" style="font-size:{{ section.settings.subheading_font_size }}px;color:#85a179">
         {{ section.settings.subheading }}
       </p>
     </div>
 
     <div class="pw-before-after-wrapper">
-      <!-- Left Icons -->
       <div class="pw-result-icons pw-left">
-        {% for block in section.blocks %}
-          {% if block.type == 'icon_left' %}
+        {% for block in section.blocks -%}
+          {%- if block.type == 'icon_left' %}
             <div class="pw-icon-box">
-              {% if block.settings.icon_image %}
-                 {{ block.settings.icon_image  | image_url: width: block.settings.icon_image.width ,height: block.settings.icon_image.height | image_tag }}
-                
-              {% endif %}
-              <h3 style="font-size: {{ block.settings.heading_font_size1 }}px;">
-                {{ block.settings.icon_heading }}
-              </h3>
-              <p style="font-size: {{ block.settings.subheading_font_size1 }}px;">
-                {{ block.settings.icon_text }}
-              </p>
+              {% if block.settings.icon_image -%}
+                {{-
+                  block.settings.icon_image
+                  | image_url: width: block.settings.icon_image.width, height: block.settings.icon_image.height
+                  | image_tag
+                -}}
+              {%- endif %}
+              <h3 style="font-size:{{ block.settings.heading_font_size1 }}px">{{ block.settings.icon_heading }}</h3>
+              <p style="font-size:{{ block.settings.subheading_font_size1 }}px">{{ block.settings.icon_text }}</p>
             </div>
-          {% endif %}
-        {% endfor %}
+          {% endif -%}
+        {%- endfor %}
       </div>
 
-      <!-- Before/After Image -->
       <div class="pw-before-after-container">
         <div class="pw-before-after">
-           {{ section.settings.before_image  | image_url: width: 800 | image_tag : class:"before" , alt:"Before" }}
-           {{ section.settings.after_image  | image_url: width: 800 | image_tag : class:"after" , alt:"After" }}
-         <div class="pw-slider-handle" id="sliderHandle"></div>
+          {{ section.settings.before_image | image_url: width: 800 | image_tag: class: 'before', alt: 'Before' }}
+          {{ section.settings.after_image | image_url: width: 800 | image_tag: class: 'after', alt: 'After' }}
+          <div class="pw-slider-handle" id="sliderHandle"></div>
         </div>
       </div>
 
-      <!-- Right Icons -->
       <div class="pw-result-icons pw-right">
-        {% for block in section.blocks %}
-          {% if block.type == 'icon_right' %}
+        {% for block in section.blocks -%}
+          {%- if block.type == 'icon_right' %}
             <div class="pw-icon-box">
-              {% if block.settings.icon_image %}
-                {{ block.settings.icon_image  | image_url: width: block.settings.icon_image.width ,height: block.settings.icon_image.height | image_tag }}
-              {% endif %}
-              <h3 style="font-size: {{ block.settings.heading_font_size2 }}px;">
-                {{ block.settings.icon_heading }}
-              </h3>
-              <p style="font-size: {{ block.settings.subheading_font_size2 }}px;">
-                {{ block.settings.icon_text }}
-              </p>
+              {% if block.settings.icon_image -%}
+                {{-
+                  block.settings.icon_image
+                  | image_url: width: block.settings.icon_image.width, height: block.settings.icon_image.height
+                  | image_tag
+                -}}
+              {%- endif %}
+              <h3 style="font-size:{{ block.settings.heading_font_size2 }}px">{{ block.settings.icon_heading }}</h3>
+              <p style="font-size:{{ block.settings.subheading_font_size2 }}px">{{ block.settings.icon_text }}</p>
             </div>
-          {% endif %}
-        {% endfor %}
+          {% endif -%}
+        {%- endfor %}
       </div>
     </div>
   </div>
 </section>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const container = document.querySelector('.pw-before-after');
-  const beforeImg = container.querySelector('.before');
-  const handle = document.getElementById('sliderHandle');
-
-  // Set initial position to 50%
-  beforeImg.style.clipPath = `inset(0 50% 0 0)`;
-  handle.style.left = `50%`;
-
-  let isDragging = false;
-
-  function updateSliderPosition(clientX) {
-    const rect = container.getBoundingClientRect();
-    let offsetX = clientX - rect.left;
-    let percent = Math.max(0, Math.min(offsetX / rect.width, 1));
-    beforeImg.style.clipPath = `inset(0 ${100 - percent * 100}% 0 0)`;
-    handle.style.left = `${percent * 100}%`;
-  }
-
-  // Desktop
-  handle.addEventListener("mousedown", function (e) {
-    isDragging = true;
-    e.preventDefault();
-  });
-
-  document.addEventListener("mousemove", function (e) {
-    if (isDragging) {
-      updateSliderPosition(e.clientX);
-    }
-  });
-
-  document.addEventListener("mouseup", function () {
-    isDragging = false;
-  });
-
-  // Touch Devices
-  handle.addEventListener("touchstart", function (e) {
-    isDragging = true;
-    e.preventDefault();
-  });
-
-  document.addEventListener("touchmove", function (e) {
-    if (isDragging && e.touches.length > 0) {
-      updateSliderPosition(e.touches[0].clientX);
-    }
-  });
-
-  document.addEventListener("touchend", function () {
-    isDragging = false;
-  });
-});
+document.addEventListener("DOMContentLoaded",function(){const e=document.querySelector(".pw-before-after"),t=e.querySelector(".before"),n=document.getElementById("sliderHandle");t.style.clipPath="inset(0 50% 0 0)",n.style.left="50%";let i=!1;function o(e){const i=document.querySelector(".pw-before-after").getBoundingClientRect(),o=(e-i.left)/i.width;let s=Math.max(0,Math.min(o,1));t.style.clipPath=`inset(0 ${100-100*s}% 0 0)`,n.style.left=`${100*s}%`}n.addEventListener("mousedown",function(e){i=!0,e.preventDefault()}),document.addEventListener("mousemove",function(e){i&&o(e.clientX)}),document.addEventListener("mouseup",function(){i=!1}),n.addEventListener("touchstart",function(e){i=!0,e.preventDefault()}),document.addEventListener("touchmove",function(e){i&&e.touches.length>0&&o(e.touches[0].clientX)}),document.addEventListener("touchend",function(){i=!1})});
 </script>
-
-
 
 {% schema %}
 {
@@ -369,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "max": 30,
       "step": 1,
       "default": 18
-    } 
+    }
       ]
     }
   ],
