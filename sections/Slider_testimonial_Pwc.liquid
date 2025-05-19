@@ -1,6 +1,289 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+
+<style>
+   {{ sec_id }} .testimonial-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
   }
+
+   {{ sec_id }} .testimonial-container {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  {{ sec_id }}  .testimonial-slide {
+    flex: 0 0 30%;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    background: #fff;
+    border-radius: 10px;
+    margin: 0 10px;
+  }
+
+  {{ sec_id }}  .testimonial-slide img.main-image {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
+  }
+
+  {{ sec_id }}  .testimonial-slide img.small-image {
+    margin-top: 10px;
+    border-radius: 50%;
+  }
+
+  {{ sec_id }}  .check-post {
+    display: inline-block;
+    padding: 8px 15px;
+    color: #333;
+    background-color: #FFD700;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
+   {{ sec_id }} .arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 20px;
+    background: hsla(0, 0%, 13%, 1);
+    color: #fff;
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    height: 40px;
+    width: 40px;
+  }
+
+   {{ sec_id }} .arrow:hover {
+    background: grey;
+    color: black;
+  }
+
+   {{ sec_id }} .arrow.left {
+    left: 10px;
+    padding-left: 12px;
+  }
+
+   {{ sec_id }} .arrow.right {
+    right: 10px;
+    padding-right: 12px;
+  }
+
+   {{ sec_id }} .social-links {
+    margin-top: 10px;
+  }
+
+   {{ sec_id }} .social-links a {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 20px;
+    color: #333;
+    text-decoration: none;
+  }
+
+   {{ sec_id }} .social-links a:hover {
+    text-decoration: underline;
+  }
+
+  {{ sec_id }}  .social-links a.instagram {
+    color: #E4405F;
+  }
+
+  {{ sec_id }}  .social-links a.youtube {
+    color: #FF0000;
+  }
+</style>
+
+<div class="custom-page-width" style="max-width: {{ section.settings.page_width }}px; margin: 0 auto;">
+  <div class="testimonial-slider">
+    <div class="arrow left">&#10094;</div>
+    <div class="testimonial-container">
+      {% for block in section.blocks %}
+        <div class="testimonial-slide">
+          {% if block.settings.image %}
+            <img src="{{ block.settings.image | img_url: '200x200' }}" alt="{{ block.settings.name }}" class="main-image">
+          {% endif %}
+          <div class="small-image-position" style="text-align: {{ block.settings.alignment }};">
+            {% if block.settings.small_image %}
+              <img src="{{ block.settings.small_image | img_url: '70x70' }}" alt="{{ block.settings.name }}" class="small-image">
+            {% endif %}
+            <h3 style="font-size: {{ block.settings.name_font_size }}px;">{{ block.settings.name }}</h3>
+            <p class="role" style="font-size: {{ block.settings.role_font_size }}px;">{{ block.settings.role }}</p>
+            <p style="font-size: {{ block.settings.testimonial_font_size }}px;">{{ block.settings.testimonial_text }}</p>
+            {% if block.settings.post_link %}
+              <a href="{{ block.settings.post_link }}" class="check-post">+ Check full post</a>
+            {% endif %}
+            <div class="social-links">
+              {% if block.settings.instagram_link %}
+                <a href="{{ block.settings.instagram_link }}" target="_blank" class="instagram">Instagram</a>
+              {% endif %}
+              {% if block.settings.youtube_link %}
+                <a href="{{ block.settings.youtube_link }}" target="_blank" class="youtube">YouTube</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="arrow right">&#10095;</div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const sliders = document.querySelectorAll(".testimonial-slider");
+    sliders.forEach(function (slider) {
+      const container = slider.querySelector(".testimonial-container");
+      const slides = slider.querySelectorAll(".testimonial-slide");
+      let index = 0;
+      const slidesToShow = 3;
+      const totalSlides = slides.length;
+      const slideWidth = slides[0].clientWidth + 20;
+
+      function showSlides() {
+        container.style.transform = `translateX(${-index * slideWidth}px)`;
+      }
+
+      function nextSlide() {
+        if (index < totalSlides - slidesToShow) {
+          index++;
+        } else {
+          index = 0;
+        }
+        showSlides();
+      }
+
+      function prevSlide() {
+        if (index > 0) {
+          index--;
+        } else {
+          index = totalSlides - slidesToShow;
+        }
+        showSlides();
+      }
+
+      slider.querySelector(".arrow.left").addEventListener("click", prevSlide);
+      slider.querySelector(".arrow.right").addEventListener("click", nextSlide);
+
+      setInterval(() => {
+        nextSlide();
+      }, 5000);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Testimonial Slider Pwc",
+  "settings": [
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Page Width",
+      "min": 600,
+      "max": 1600,
+      "step": 50,
+      "default": 1200,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Profile Image"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Content Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "image_picker",
+          "id": "small_image",
+          "label": "Small Image Below Profile"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "range",
+          "id": "name_font_size",
+          "label": "Name Font Size",
+          "min": 14,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "default": 18
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role"
+        },
+        {
+          "type": "range",
+          "id": "role_font_size",
+          "label": "Role Font Size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "type": "text",
+          "id": "testimonial_text",
+          "label": "Testimonial Text"
+        },
+        {
+          "type": "range",
+          "id": "testimonial_font_size",
+          "label": "Testimonial Text Font Size",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "url",
+          "id": "post_link",
+          "label": "Link to Full Post"
+        },
+        {
+          "type": "url",
+          "id": "instagram_link",
+          "label": "Instagram Link"
+        },
+        {
+          "type": "url",
+          "id": "youtube_link",
+          "label": "YouTube Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial Slider Pwc",
+      "category": "Testimonials"
+    }
+  ]
+}
 {% endschema %}
