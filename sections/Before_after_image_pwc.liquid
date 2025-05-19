@@ -4,7 +4,6 @@
   padding: 30px 20px;
   text-align: center;
 }
-
 {{ sec_id }} .pw-before-after-wrapper {
   display: flex;
   justify-content: center;
@@ -14,7 +13,6 @@
   gap: 20px;
   padding: 10px;
 }
-
 {{ sec_id }} .pw-result-icons {
   width: 20%;
   min-width: 180px;
@@ -22,26 +20,21 @@
   flex-direction: column;
   justify-content: space-around;
 }
-
 {{ sec_id }} .pw-icon-box {
   margin-bottom: 25px;
 }
-
 {{ sec_id }} .pw-icon-box img {
   width: 35px;
   margin-bottom: 8px;
 }
-
 {{ sec_id }} .pw-icon-box h3 {
   margin: 5px 0;
   font-weight: 600;
 }
-
 {{ sec_id }} .pw-icon-box p {
   color: #666;
   font-weight: 300;
 }
-
 {{ sec_id }} .pw-before-after-container {
   width: 380px;
   height: 380px;
@@ -51,7 +44,6 @@
   margin: 0 20px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
-
 {{ sec_id }} .pw-before-after img {
   position: absolute;
   top: 0;
@@ -60,23 +52,19 @@
   height: 100%;
   object-fit: cover;
 }
-
 {{ sec_id }} .pw-before-after .before {
   clip-path: inset(0 50% 0 0);
   transition: clip-path 0.2s;
   z-index: 1;
 }
-
 {{ sec_id }} .pw-before-after img:not(.before) {
   z-index: 0;
 }
-
 {{ sec_id }} .pw-slider-handle {
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-
   height: 100%;
   background: rgba(255,255,255,0.6);
   display: flex;
@@ -85,7 +73,6 @@
   cursor: ew-resize;
   z-index: 2;
 }
-
 
 @media (max-width: 768px) {
   {{ sec_id }} .pw-before-after-wrapper {
@@ -109,9 +96,6 @@
     aspect-ratio: 1/1;
     margin: 0 auto;
   }
-
-
-
   {{ sec_id }} .pw-icon-box img {
     width: 30px;
   }
@@ -137,7 +121,8 @@
           {% if block.type == 'icon_left' %}
             <div class="pw-icon-box">
               {% if block.settings.icon_image %}
-                <img src="{{ block.settings.icon_image | img_url: '200x200' }}" alt="{{ block.settings.icon_heading }}">
+                 {{ block.settings.icon_image  | image_url: width: 200 | image_tag }}
+                
               {% endif %}
               <h3 style="font-size: {{ block.settings.heading_font_size1 }}px;">
                 {{ block.settings.icon_heading }}
@@ -153,6 +138,7 @@
       <!-- Before/After Image -->
       <div class="pw-before-after-container">
         <div class="pw-before-after">
+           {{ section.settings.before_image  | image_url: width: 800 | image_tag : class:"before"}}
           <img src="{{ section.settings.before_image | img_url: '800x800' }}" alt="Before Image" class="before" />
           <img src="{{ section.settings.after_image | img_url: '800x800' }}" alt="After Image" />
           <div class="pw-slider-handle" id="sliderHandle"></div>
@@ -165,7 +151,8 @@
           {% if block.type == 'icon_right' %}
             <div class="pw-icon-box">
               {% if block.settings.icon_image %}
-                <img src="{{ block.settings.icon_image | img_url: '200x200' }}" alt="{{ block.settings.icon_heading }}">
+                {{ block.settings.icon_image  | image_url: width: 200 | image_tag }}
+              
               {% endif %}
               <h3 style="font-size: {{ block.settings.heading_font_size2 }}px;">
                 {{ block.settings.icon_heading }}
