@@ -1,18 +1,18 @@
 {% assign sec_id = '#shopify-section-' | append: section.id %}
 
 <style>
-   {{ sec_id }} .testimonial-slider {
+  {{ sec_id }} .pw-testimonial-slider {
     position: relative;
     width: 100%;
     overflow: hidden;
   }
 
-   {{ sec_id }} .testimonial-container {
+  {{ sec_id }} .pw-testimonial-container {
     display: flex;
     transition: transform 0.5s ease;
   }
 
-  {{ sec_id }}  .testimonial-slide {
+  {{ sec_id }} .pw-testimonial-slide {
     flex: 0 0 30%;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -22,18 +22,18 @@
     margin: 0 10px;
   }
 
-  {{ sec_id }}  .testimonial-slide img.main-image {
+  {{ sec_id }} .pw-testimonial-slide img.pw-main-image {
     width: 300px;
     height: 300px;
     margin-bottom: 10px;
   }
 
-  {{ sec_id }}  .testimonial-slide img.small-image {
+  {{ sec_id }} .pw-testimonial-slide img.pw-small-image {
     margin-top: 10px;
     border-radius: 50%;
   }
 
-  {{ sec_id }}  .check-post {
+  {{ sec_id }} .pw-check-post {
     display: inline-block;
     padding: 8px 15px;
     color: #333;
@@ -42,7 +42,7 @@
     text-decoration: none;
   }
 
-   {{ sec_id }} .arrow {
+  {{ sec_id }} .pw-arrow {
     position: absolute;
     top: 50%;
     font-size: 20px;
@@ -57,26 +57,30 @@
     width: 40px;
   }
 
-   {{ sec_id }} .arrow:hover {
+  {{ sec_id }} .pw-arrow:hover {
     background: grey;
     color: black;
   }
 
-   {{ sec_id }} .arrow.left {
+  {{ sec_id }} .pw-arrow.pw-left {
     left: 10px;
     padding-left: 12px;
   }
 
-   {{ sec_id }} .arrow.right {
-    right: 10px;
-    padding-right: 12px;
-  }
+{{ sec_id }} .pw-arrow.pw-right {
+  right: 10px;
+  transform: translateY(-50%);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-   {{ sec_id }} .social-links {
+  {{ sec_id }} .pw-social-links {
     margin-top: 10px;
   }
 
-   {{ sec_id }} .social-links a {
+  {{ sec_id }} .pw-social-links a {
     display: inline-block;
     margin: 0 10px;
     font-size: 20px;
@@ -84,60 +88,61 @@
     text-decoration: none;
   }
 
-   {{ sec_id }} .social-links a:hover {
+  {{ sec_id }} .pw-social-links a:hover {
     text-decoration: underline;
   }
 
-  {{ sec_id }}  .social-links a.instagram {
+  {{ sec_id }} .pw-social-links a.pw-instagram {
     color: #E4405F;
   }
 
-  {{ sec_id }}  .social-links a.youtube {
+  {{ sec_id }} .pw-social-links a.pw-youtube {
     color: #FF0000;
   }
 </style>
 
-<div class="custom-page-width" style="max-width: {{ section.settings.page_width }}px; margin: 0 auto;">
-  <div class="testimonial-slider">
-    <div class="arrow left">&#10094;</div>
-    <div class="testimonial-container">
+
+<div class="pw-custom-page-width" style="max-width: {{ section.settings.page_width }}px; margin: 0 auto;">
+  <div class="pw-testimonial-slider">
+    <div class="pw-arrow pw-left">&#10094;</div>
+    <div class="pw-testimonial-container">
       {% for block in section.blocks %}
-        <div class="testimonial-slide">
+        <div class="pw-testimonial-slide">
           {% if block.settings.image %}
-            <img src="{{ block.settings.image | img_url: '200x200' }}" alt="{{ block.settings.name }}" class="main-image">
+            <img src="{{ block.settings.image | img_url: '200x200' }}" alt="{{ block.settings.name }}" class="pw-main-image">
           {% endif %}
-          <div class="small-image-position" style="text-align: {{ block.settings.alignment }};">
+          <div class="pw-small-image-position" style="text-align: {{ block.settings.alignment }};">
             {% if block.settings.small_image %}
-              <img src="{{ block.settings.small_image | img_url: '70x70' }}" alt="{{ block.settings.name }}" class="small-image">
+              <img src="{{ block.settings.small_image | img_url: '70x70' }}" alt="{{ block.settings.name }}" class="pw-small-image">
             {% endif %}
             <h3 style="font-size: {{ block.settings.name_font_size }}px;">{{ block.settings.name }}</h3>
-            <p class="role" style="font-size: {{ block.settings.role_font_size }}px;">{{ block.settings.role }}</p>
+            <p class="pw-role" style="font-size: {{ block.settings.role_font_size }}px;">{{ block.settings.role }}</p>
             <p style="font-size: {{ block.settings.testimonial_font_size }}px;">{{ block.settings.testimonial_text }}</p>
             {% if block.settings.post_link %}
-              <a href="{{ block.settings.post_link }}" class="check-post">+ Check full post</a>
+              <a href="{{ block.settings.post_link }}" class="pw-check-post">+ Check full post</a>
             {% endif %}
-            <div class="social-links">
+            <div class="pw-social-links">
               {% if block.settings.instagram_link %}
-                <a href="{{ block.settings.instagram_link }}" target="_blank" class="instagram">Instagram</a>
+                <a href="{{ block.settings.instagram_link }}" target="_blank" class="pw-instagram">Instagram</a>
               {% endif %}
               {% if block.settings.youtube_link %}
-                <a href="{{ block.settings.youtube_link }}" target="_blank" class="youtube">YouTube</a>
+                <a href="{{ block.settings.youtube_link }}" target="_blank" class="pw-youtube">YouTube</a>
               {% endif %}
             </div>
           </div>
         </div>
       {% endfor %}
     </div>
-    <div class="arrow right">&#10095;</div>
+    <div class="pw-arrow pw-right">&#10095;</div>
   </div>
 </div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const sliders = document.querySelectorAll(".testimonial-slider");
+    const sliders = document.querySelectorAll(".pw-testimonial-slider");
     sliders.forEach(function (slider) {
-      const container = slider.querySelector(".testimonial-container");
-      const slides = slider.querySelectorAll(".testimonial-slide");
+      const container = slider.querySelector(".pw-testimonial-container");
+      const slides = slider.querySelectorAll(".pw-testimonial-slide");
       let index = 0;
       const slidesToShow = 3;
       const totalSlides = slides.length;
@@ -165,8 +170,8 @@
         showSlides();
       }
 
-      slider.querySelector(".arrow.left").addEventListener("click", prevSlide);
-      slider.querySelector(".arrow.right").addEventListener("click", nextSlide);
+      slider.querySelector(".pw-arrow.pw-left").addEventListener("click", prevSlide);
+      slider.querySelector(".pw-arrow.pw-right").addEventListener("click", nextSlide);
 
       setInterval(() => {
         nextSlide();
@@ -174,6 +179,7 @@
     });
   });
 </script>
+
 
 {% schema %}
 {
