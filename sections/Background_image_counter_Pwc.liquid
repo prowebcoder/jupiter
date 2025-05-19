@@ -77,6 +77,18 @@
     color: {{ section.settings.text_color }};
     text-align: {{ section.settings.text_alignment }};
   }
+  {{ sec_id }} .pw-content h2 {
+  font-size: {{ section.settings.heading_font_size }}px;
+  color: {{ section.settings.heading_color }};
+  /* existing styles */
+}
+
+{{ sec_id }} #pw-countdown {
+  font-size: {{ section.settings.countdown_font_size }}px;
+  color: {{ section.settings.countdown_color }};
+  /* existing styles */
+}
+
 </style>
 
 <div class="pw-custom-page-width" style="max-width: {{ section.settings.page_width }}px; margin: 0 auto;">
