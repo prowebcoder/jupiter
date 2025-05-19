@@ -611,6 +611,7 @@
         "icon_left_CEkUGA": {
           "type": "icon_left",
           "settings": {
+            "icon_image": "shopify://shop_images/favicon-1.png",
             "icon_heading": "Blemishes",
             "icon_text": "Removes oil buildup and reduces the appearance of pores and blemishes.",
             "heading_font_size1": 30,
@@ -620,6 +621,7 @@
         "icon_left_B7eE8b": {
           "type": "icon_left",
           "settings": {
+            "icon_image": "shopify://shop_images/favicon-2.png",
             "icon_heading": "Blemishes",
             "icon_text": "Removes oil buildup and reduces the appearance of pores and blemishes.",
             "heading_font_size1": 30,
@@ -629,6 +631,7 @@
         "icon_right_HytN4d": {
           "type": "icon_right",
           "settings": {
+            "icon_image": "shopify://shop_images/favicon-1.png",
             "icon_heading": "Radiance",
             "icon_text": "Polishes and resurfaces skin to improve radiance and deliver glowing skin.",
             "heading_font_size2": 30,
@@ -638,6 +641,7 @@
         "icon_right_44NcAr": {
           "type": "icon_right",
           "settings": {
+            "icon_image": "shopify://shop_images/favicon-2.png",
             "icon_heading": "Radiance",
             "icon_text": "Polishes and resurfaces skin to improve radiance and deliver glowing skin.",
             "heading_font_size2": 30,
@@ -921,42 +925,6 @@
         "countdown_color": "#ffffff"
       }
     },
-    "pwc_icon_text_QXctMc": {
-      "type": "pwc-icon-text",
-      "blocks": {
-        "feature_item_YD8Gp4": {
-          "type": "feature_item",
-          "settings": {
-            "text": "30-Day Money Back Guarantee & Free Returns"
-          }
-        },
-        "feature_item_bifPwL": {
-          "type": "feature_item",
-          "settings": {
-            "text": "Buy now, pay later financing on orders over $50"
-          }
-        }
-      },
-      "block_order": [
-        "feature_item_YD8Gp4",
-        "feature_item_bifPwL"
-      ],
-      "name": "PC - Icon Text Features",
-      "settings": {
-        "background_color": "#ffffff",
-        "text_color": "#000000",
-        "icon_size_mobile": 30,
-        "icon_size_desktop": 36,
-        "text_size_mobile": 14,
-        "text_size_desktop": 16,
-        "icon_spacing": 10,
-        "mobile_gap": 20,
-        "desktop_gap": 40,
-        "padding_top": 20,
-        "padding_bottom": 20,
-        "font_weight": "400"
-      }
-    },
     "pwc_before_after_hFPQeJ": {
       "type": "pwc-before-after",
       "name": "PC - Before/After Slider",
@@ -1005,7 +973,6 @@
     "image_banner_blog_pwc_nTnipj",
     "slider_testimonial_pwc_DGkhKX",
     "background_image_counter_pwc_pTTtzW",
-    "pwc_icon_text_QXctMc",
     "pwc_before_after_hFPQeJ"
   ]
 }
