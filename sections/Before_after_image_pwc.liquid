@@ -138,8 +138,8 @@
       <!-- Before/After Image -->
       <div class="pw-before-after-container">
         <div class="pw-before-after">
-           {{ section.settings.before_image  | image_url: width: 800 | image_tag : class:"before" }}
-           {{ section.settings.after_image  | image_url: width: 800 | image_tag : class:"after" }}
+           {{ section.settings.before_image  | image_url: width: 800 | image_tag : class:"before" , alt:"Before" }}
+           {{ section.settings.after_image  | image_url: width: 800 | image_tag : class:"after" , alt:"After" }}
       
           <div class="pw-slider-handle" id="sliderHandle"></div>
         </div>
