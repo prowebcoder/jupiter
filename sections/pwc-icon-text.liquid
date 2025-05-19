@@ -63,7 +63,7 @@
       <div class="pc-feature-item" {{ block.shopify_attributes }}>
         {%- if block.settings.icon != blank -%}
           <div class="pc-feature-icon">
-            <img src="{{ block.settings.icon | img_url: '100x' }}" 
+            <img src="{{ block.settings.icon | image_url: width: section.settings.icon_size_desktop, height: 'auto' }}" 
                  alt="{{ block.settings.text | escape }}" 
                  loading="lazy"
                  width="{{ section.settings.icon_size_desktop }}"
