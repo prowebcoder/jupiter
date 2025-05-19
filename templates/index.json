@@ -885,7 +885,7 @@
       "settings": {
         "page_width": 1200,
         "background_image": "shopify://shop_images/woman-in-park-afternoon.jpeg",
-        "image_height": "medium",
+        "image_height": "adapt",
         "text_alignment": "center",
         "heading": "50% off all suits and accessories",
         "text_color": "#ffffff",
