@@ -584,6 +584,63 @@
         "padding_bottom": 20,
         "font_weight": "400"
       }
+    },
+    "before_after_image_pwc_GwnNGT": {
+      "type": "Before_after_image_pwc",
+      "blocks": {
+        "icon_left_CEkUGA": {
+          "type": "icon_left",
+          "settings": {
+            "icon_heading": "Blemishes",
+            "icon_text": "Removes oil buildup and reduces the appearance of pores and blemishes.",
+            "heading_font_size1": 30,
+            "subheading_font_size1": 18
+          }
+        },
+        "icon_left_B7eE8b": {
+          "type": "icon_left",
+          "settings": {
+            "icon_heading": "Blemishes",
+            "icon_text": "Removes oil buildup and reduces the appearance of pores and blemishes.",
+            "heading_font_size1": 30,
+            "subheading_font_size1": 18
+          }
+        },
+        "icon_right_HytN4d": {
+          "type": "icon_right",
+          "settings": {
+            "icon_heading": "Radiance",
+            "icon_text": "Polishes and resurfaces skin to improve radiance and deliver glowing skin.",
+            "heading_font_size2": 30,
+            "subheading_font_size2": 18
+          }
+        },
+        "icon_right_44NcAr": {
+          "type": "icon_right",
+          "settings": {
+            "icon_heading": "Radiance",
+            "icon_text": "Polishes and resurfaces skin to improve radiance and deliver glowing skin.",
+            "heading_font_size2": 30,
+            "subheading_font_size2": 18
+          }
+        }
+      },
+      "block_order": [
+        "icon_left_CEkUGA",
+        "icon_left_B7eE8b",
+        "icon_right_HytN4d",
+        "icon_right_44NcAr"
+      ],
+      "name": "Before & After Image Pwc",
+      "settings": {
+        "page_width": 1200,
+        "heading_font_size": 30,
+        "subheading_font_size": 18,
+        "heading": "Proven Results",
+        "subheading": "Based on an independent, third-party clinical study of participants.",
+        "before_image": "shopify://shop_images/woman-poses-in-dark-room.jpg",
+        "after_image": "shopify://shop_images/model-in-neutral-colors-by-window.jpg"
+      }
     }
   },
   "order": [
@@ -595,6 +652,7 @@
     "pwc_before_after_WmcCym",
     "scrolling_text_BReXzM",
     "pricing_plan_p_83L4ad",
-    "pwc_icon_text_iUx4MG"
+    "pwc_icon_text_iUx4MG",
+    "before_after_image_pwc_GwnNGT"
   ]
 }
