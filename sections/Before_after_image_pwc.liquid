@@ -138,9 +138,9 @@
       <!-- Before/After Image -->
       <div class="pw-before-after-container">
         <div class="pw-before-after">
-           {{ section.settings.before_image  | image_url: width: 800 | image_tag : class:"before"}}
-          <img src="{{ section.settings.before_image | img_url: '800x800' }}" alt="Before Image" class="before" />
-          <img src="{{ section.settings.after_image | img_url: '800x800' }}" alt="After Image" />
+           {{ section.settings.before_image  | image_url: width: 800 | image_tag : class:"before" }}
+           {{ section.settings.after_image  | image_url: width: 800 | image_tag : class:"after" }}
+      
           <div class="pw-slider-handle" id="sliderHandle"></div>
         </div>
       </div>
