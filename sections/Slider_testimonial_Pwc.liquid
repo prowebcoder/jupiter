@@ -22,11 +22,14 @@
     margin: 0 10px;
   }
 
-  {{ sec_id }} .pw-testimonial-slide img.pw-main-image {
-    width: 300px;
-    height: 300px;
-    margin-bottom: 10px;
-  }
+  
+{{ sec_id }} .pw-testimonial-slide img.pw-main-image {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 10px;
+  object-fit: cover;
+  image-rendering: auto;
+}
 
 
 {{ sec_id }} .pw-testimonial-slide img.pw-small-image {
@@ -112,7 +115,8 @@
       {% for block in section.blocks %}
         <div class="pw-testimonial-slide">
           {% if block.settings.image %}
-            <img src="{{ block.settings.image | img_url: '200x200' }}" alt="{{ block.settings.name }}" class="pw-main-image">
+           <img src="{{ block.settings.image | img_url: '600x600' }}" alt="{{ block.settings.name }}" class="pw-main-image">
+
           {% endif %}
           <div class="pw-small-image-position" style="text-align: {{ block.settings.alignment }};">
             {% if block.settings.small_image %}
