@@ -641,6 +641,33 @@
         "before_image": "shopify://shop_images/woman-poses-in-dark-room.jpg",
         "after_image": "shopify://shop_images/model-in-neutral-colors-by-window.jpg"
       }
+    },
+    "image_counter_pwc_GHENam": {
+      "type": "Image_Counter_pwc",
+      "name": " Image Countdown Pwc",
+      "settings": {
+        "page_width": 1200,
+        "image_position": "left",
+        "image": "shopify://shop_images/a-model-in-red-suit-jacket-removing-sunglasses.jpg",
+        "subheading": "Hurry! Time's running out!",
+        "heading": "Last chance to buy marked-down items before they go",
+        "promo_code": "PROMO15",
+        "button_label": "Shop Now",
+        "button_link": "",
+        "button_shape": "50px",
+        "featured_button_background": "#FFA500",
+        "featured_button_text_color": "#FFFFFF",
+        "disclaimer": "Final discount, cannot be combined with other offers.",
+        "countdown_end_date": "2025-10-12",
+        "background_color": "#121212",
+        "subheading_font_size": 14,
+        "heading_font_size": 24,
+        "promo_code_font_size": 14,
+        "disclaimer_font_size": 12,
+        "countdown_font_size": 20,
+        "countdown_background_color1": "#ffa500",
+        "countdown_text_color1": "#ffffff"
+      }
     }
   },
   "order": [
@@ -653,6 +680,7 @@
     "scrolling_text_BReXzM",
     "pricing_plan_p_83L4ad",
     "pwc_icon_text_iUx4MG",
-    "before_after_image_pwc_GwnNGT"
+    "before_after_image_pwc_GwnNGT",
+    "image_counter_pwc_GHENam"
   ]
 }
