@@ -2,19 +2,23 @@
 
 <style>
   {{ sec_id }} .pw-countdown-banner-section {
-    position: relative;
-    text-align: {{ section.settings.text_alignment }};
-    {% case section.settings.image_height %}
-      {% when 'small' %}
-        height: 300px;
-      {% when 'medium' %}
-        height: 400px;
-      {% when 'large' %}
-        height: 500px;
-      {% when 'adapt' %}
-        height: auto;
-    {% endcase %}
-  }
+  position: relative;
+  text-align: {{ section.settings.text_alignment }};
+  {% case section.settings.image_height %}
+    {% when 'small' %}
+      height: 300px;
+    {% when 'medium' %}
+      height: 400px;
+    {% when 'large' %}
+      height: 500px;
+    {% when 'adapt' %}
+      height: auto;
+  {% endcase %}
+  background-image: url('{{ section.settings.background_image | img_url: 'master' }}');
+  background-size: cover;
+  background-position: center;
+}
+
 
   {{ sec_id }} .pw-banner-image {
     width: 100%;
@@ -96,7 +100,8 @@
 
 <div class="pw-custom-page-width" style="max-width: {{ section.settings.page_width }}px; margin: 0 auto;">
   <section class="pw-countdown-banner-section">
-    <img src="{{ section.settings.background_image | img_url: 'master' }}" alt="Banner Image" class="pw-banner-image">
+   <img src="{{ section.settings.background_image | img_url: 'master' }}" alt="Banner Image" class="pw-banner-image">
+
     <div class="pw-overlay">
       <div class="pw-content">
         <h2>{{ section.settings.heading }}</h2>
