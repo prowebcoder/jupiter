@@ -724,28 +724,6 @@
         "padding_bottom": 100
       }
     },
-    "background_image_counter_pwc_pTTtzW": {
-      "type": "Background_image_counter_Pwc",
-      "name": " Background image Countdown Pwc",
-      "settings": {
-        "page_width": 1200,
-        "background_image": "shopify://shop_images/woman-in-park-afternoon.jpeg",
-        "image_height": "medium",
-        "text_alignment": "center",
-        "heading": "50% off all suits and accessories",
-        "text_color": "#ffffff",
-        "button_label": "View Discounted Items",
-        "button_link": "",
-        "background_button_color": "#ffa500",
-        "button_text_color": "#ffffff",
-        "button_shape": "5px",
-        "countdown_end_date": "2025-12-31",
-        "heading_font_size": 39,
-        "heading_color": "#ffffff",
-        "countdown_font_size": 32,
-        "countdown_color": "#ffffff"
-      }
-    },
     "slider_testimonial_pwc_DGkhKX": {
       "type": "Slider_testimonial_Pwc",
       "blocks": {
@@ -900,6 +878,28 @@
       "settings": {
         "page_width": 1200
       }
+    },
+    "background_image_counter_pwc_pTTtzW": {
+      "type": "Background_image_counter_Pwc",
+      "name": " Background image Countdown Pwc",
+      "settings": {
+        "page_width": 1200,
+        "background_image": "shopify://shop_images/woman-in-park-afternoon.jpeg",
+        "image_height": "medium",
+        "text_alignment": "center",
+        "heading": "50% off all suits and accessories",
+        "text_color": "#ffffff",
+        "button_label": "View Discounted Items",
+        "button_link": "",
+        "background_button_color": "#ffa500",
+        "button_text_color": "#ffffff",
+        "button_shape": "5px",
+        "countdown_end_date": "2025-12-31",
+        "heading_font_size": 39,
+        "heading_color": "#ffffff",
+        "countdown_font_size": 32,
+        "countdown_color": "#ffffff"
+      }
     }
   },
   "order": [
@@ -916,7 +916,7 @@
     "image_counter_pwc_GHENam",
     "split_banner_blog_pwc_9mhPtR",
     "image_banner_blog_pwc_nTnipj",
-    "background_image_counter_pwc_pTTtzW",
-    "slider_testimonial_pwc_DGkhKX"
+    "slider_testimonial_pwc_DGkhKX",
+    "background_image_counter_pwc_pTTtzW"
   ]
 }
