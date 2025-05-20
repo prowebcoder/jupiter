@@ -82,7 +82,54 @@
 </section>
 
 <script>
-document.addEventListener("DOMContentLoaded",function(){const e=document.querySelector(".pw-before-after"),t=e.querySelector(".before"),n=document.getElementById("sliderHandle");t.style.clipPath="inset(0 50% 0 0)",n.style.left="50%";let i=!1;function o(e){const i=document.querySelector(".pw-before-after").getBoundingClientRect(),o=(e-i.left)/i.width;let s=Math.max(0,Math.min(o,1));t.style.clipPath=`inset(0 ${100-100*s}% 0 0)`,n.style.left=`${100*s}%`}n.addEventListener("mousedown",function(e){i=!0,e.preventDefault()}),document.addEventListener("mousemove",function(e){i&&o(e.clientX)}),document.addEventListener("mouseup",function(){i=!1}),n.addEventListener("touchstart",function(e){i=!0,e.preventDefault()}),document.addEventListener("touchmove",function(e){i&&e.touches.length>0&&o(e.touches[0].clientX)}),document.addEventListener("touchend",function(){i=!1})});
+(function() {
+  const initializeSlider = (container) => {
+    const beforeImg = container.querySelector('.before');
+    const handle = container.querySelector('.pw-slider-handle');
+    
+    beforeImg.style.clipPath = 'inset(0 50% 0 0)';
+    handle.style.left = '50%';
+
+    let isDragging = false;
+
+    const updateSlider = (clientX) => {
+      const rect = container.getBoundingClientRect();
+      const percent = Math.max(0, Math.min((clientX - rect.left) / rect.width, 1));
+      beforeImg.style.clipPath = `inset(0 ${100 - percent * 100}% 0 0)`;
+      handle.style.left = `${percent * 100}%`;
+    };
+
+    // Event listeners
+    handle.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if(isDragging) updateSlider(e.clientX);
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    handle.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      e.preventDefault();
+    });
+
+    document.addEventListener('touchmove', (e) => {
+      if(isDragging && e.touches[0]) updateSlider(e.touches[0].clientX);
+    });
+
+    document.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+  };
+
+  // Initialize all sliders on page
+  document.querySelectorAll('.pw-before-after').forEach(initializeSlider);
+})();
 </script>
 
 {% schema %}
