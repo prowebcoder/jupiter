@@ -984,18 +984,21 @@
         "press_quote_Xh7bJ4": {
           "type": "press_quote",
           "settings": {
+            "icon_image": "shopify://shop_images/free-shipping_1.png",
             "quote": "<p>Lorem Ipsum Text Goes Here</p>"
           }
         },
         "press_quote_eHMecK": {
           "type": "press_quote",
           "settings": {
+            "icon_image": "shopify://shop_images/delivery-status.png",
             "quote": "<p>Lorem Ipsum Text Goes Here</p>"
           }
         },
         "press_quote_WRDiFK": {
           "type": "press_quote",
           "settings": {
+            "icon_image": "shopify://shop_images/delivery-status.png",
             "quote": "<p>Lorem Ipsum Text Goes Here</p>"
           }
         }
