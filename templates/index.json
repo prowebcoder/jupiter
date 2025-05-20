@@ -970,6 +970,48 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "pwc_video_text_hrcgka": {
+      "type": "pwc-video-text",
+      "blocks": {
+        "press_quote_8LWb4V": {
+          "type": "press_quote",
+          "settings": {
+            "quote": "<p>Lorem Ipsum Text Goes Here</p>"
+          }
+        },
+        "press_quote_Xh7bJ4": {
+          "type": "press_quote",
+          "settings": {
+            "quote": "<p>Lorem Ipsum Text Goes Here</p>"
+          }
+        }
+      },
+      "block_order": [
+        "press_quote_8LWb4V",
+        "press_quote_Xh7bJ4"
+      ],
+      "name": "PWC - Hero with Video",
+      "settings": {
+        "reviews": "★ 3,913 Reviews",
+        "heading": "<p>Heading Goes here</p>",
+        "subheading": "<p>Subheading Goes here</p>",
+        "button_text": "Shop Now",
+        "button_link": "",
+        "video_position": "right",
+        "background_color": "#ffffff",
+        "review_color": "#1E81B0",
+        "review_size": 12,
+        "heading_color": "#000000",
+        "heading_size": 30,
+        "subheading_color": "#666666",
+        "subheading_size": 18,
+        "button_color": "#1E81B0",
+        "button_text_color": "#FFFFFF",
+        "press_color": "#444444",
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
     }
   },
   "order": [
@@ -989,6 +1031,7 @@
     "slider_testimonial_pwc_DGkhKX",
     "background_image_counter_pwc_pTTtzW",
     "pwc_before_after_hFPQeJ",
-    "video_gpxBBe"
+    "video_gpxBBe",
+    "pwc_video_text_hrcgka"
   ]
 }
