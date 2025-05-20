@@ -187,6 +187,13 @@
     {% if section.blocks.size > 0 %}
       <div class="pc-press-quotes">
         {%- for block in section.blocks -%}
+             {% if block.settings.icon_image -%}
+                {{-
+                  block.settings.icon_image
+                  | image_url: width: block.settings.icon_image.width, height: block.settings.icon_image.height
+                  | image_tag
+                -}}
+              {%- endif %}
           <div class="pc-press-item" {{ block.shopify_attributes }}>
             {{ block.settings.quote }}
           </div>
@@ -683,6 +690,11 @@
       "name": "Press Quote",
       "limit": 4,
       "settings": [
+          {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
         {
           "type": "richtext",
           "id": "quote",
