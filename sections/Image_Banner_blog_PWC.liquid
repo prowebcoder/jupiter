@@ -1,12 +1,12 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
 <style>
- {{ sec_id }}  .pw-featured-wrapper {
+  {{ sec_id }} .pc-featured-wrapper {
     max-width: {{ section.settings.page_width }}px;
     margin: 0 auto;
   }
 
-   {{ sec_id }}.pw-featured-section {
+  {{ sec_id }} .pc-featured-section {
     position: relative;
     text-align: {{ section.settings.text_alignment }};
     padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px 0;
@@ -17,17 +17,18 @@
     color: {{ section.settings.text_color }};
   }
 
-  {{ sec_id }} .pw-featured-image {
+  {{ sec_id }} .pc-featured-image {
     width: 100%;
     display: block;
   }
 
-   {{ sec_id }}.pw-featured-image img {
+  {{ sec_id }} .pc-featured-image img {
     width: 100%;
     height: auto;
     display: block;
   }
-   {{ sec_id }}.pw-featured-image {
+
+  {{ sec_id }} .pc-featured-image {
     overflow: hidden;
     {% case section.settings.banner_height %}
       {% when 'small' %}
@@ -44,14 +45,14 @@
     {% endcase %}
   }
 
-  {{ sec_id }} .pw-featured-image img {
+  {{ sec_id }} .pc-featured-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
- {{ sec_id }}  .pw-featured-content {
+  {{ sec_id }} .pc-featured-content {
     position: absolute;
     z-index: 2;
     text-align: inherit;
@@ -59,19 +60,19 @@
     width: 100%;
   }
 
-  {{ sec_id }} .pw-featured-content h2 {
+  {{ sec_id }} .pc-featured-content h2 {
     font-size: {{ section.settings.heading_font_size }}px;
     margin: 0;
     color: {{ section.settings.heading_color }};
   }
 
-  {{ sec_id }} .pw-featured-content h3 {
+  {{ sec_id }} .pc-featured-content h3 {
     font-size: {{ section.settings.subheading_font_size }}px;
     margin: 10px 0;
     color: {{ section.settings.subheading_color }};
   }
 
-  {{ sec_id }} .pw-featured-button {
+  {{ sec_id }} .pc-featured-button {
     display: inline-block;
     background-color: {{ section.settings.featured_button_background }};
     color: {{ section.settings.featured_button_text_color }};
@@ -81,7 +82,7 @@
     font-weight: bold;
   }
 
-   {{ sec_id }}.pw-blog-posts {
+  {{ sec_id }} .pc-blog-posts {
     display: flex;
     gap: 20px;
     justify-content: center;
@@ -89,24 +90,28 @@
     padding: 40px 20px;
   }
 
-  {{ sec_id }} .pw-blog-post {
+  {{ sec_id }} .pc-blog-post {
     width: calc(25% - 20px); /* 4 posts per row */
     background-color: whitesmoke;
     padding: 20px;
     text-align: center;
   }
 
-   {{ sec_id }}.pw-blog-post img {
+  {{ sec_id }} .pc-blog-post img {
     width: 100%;
     border-radius: 5px;
   }
 
-  {{ sec_id }} .pw-blog-post h4 {
+  {{ sec_id }} .pc-blog-post h4 {
     font-size: 18px;
     margin: 10px 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
   }
 
-  {{ sec_id }} .pw-read-more {
+  {{ sec_id }} .pc-read-more {
     display: inline-block;
     background-color: {{ section.settings.read_more_button_background }};
     color: {{ section.settings.read_more_button_text_color }};
@@ -116,84 +121,80 @@
     font-weight: bold;
   }
 
-  {{ sec_id }} a.pw-featured-button:hover {
+  {{ sec_id }} a.pc-featured-button:hover {
     background-color: transparent;
     color: {{ section.settings.featured_button_background }};
     border: 2px solid {{ section.settings.featured_button_background }};
   }
 
- {{ sec_id }}  a.pw-read-more:hover {
+  {{ sec_id }} a.pc-read-more:hover {
     background-color: transparent;
     color: {{ section.settings.read_more_button_background }};
     border: 2px solid {{ section.settings.read_more_button_background }};
   }
-{{ sec_id }} .pw-blog-post h4 {
-  font-size: 18px;
-  margin: 10px 0;
-  text-overflow: ellipsis;
-  white-space: nowrap; /* Prevents the title from wrapping to the next line */
-  overflow: hidden; /* Hides overflowed text */
-  display: block; /* Ensures the element behaves like a block-level element */
-}
 
   @media (max-width: 768px) {
-    {{ sec_id }} .pw-featured-content h2 {
+    {{ sec_id }} .pc-featured-content h2 {
       font-size: 20px;
     }
 
-    .pw-featured-content h3 {
+    .pc-featured-content h3 {
       font-size: 24px;
     }
 
-    {{ sec_id }} .pw-blog-posts {
+    {{ sec_id }} .pc-blog-posts {
       flex-direction: column;
       align-items: center;
       padding: 20px 0;
     }
 
-    {{ sec_id }} .pw-blog-post {
+    {{ sec_id }} .pc-blog-post {
       width: 90%;
       margin-bottom: 20px;
     }
 
-    {{ sec_id }} .pw-featured-button,
-    .pw-read-more {
+    {{ sec_id }} .pc-featured-button,
+    .pc-read-more {
       width: 100%;
       text-align: center;
     }
   }
 </style>
 
-<div class="pw-featured-wrapper">
-  <div class="pw-featured-section">
-    <div class="pw-featured-image">
+<div class="pc-featured-wrapper">
+  <div class="pc-featured-section">
+    <div class="pc-featured-image">
       {% if section.settings.background_image %}
-        <img src="{{ section.settings.background_image | img_url: 'master' }}" alt="Banner Image">
+        {{- 
+            block.settings.background_image
+            | image_url: width: block.settings.background_image.width, height: block.settings.background_image.height
+            | image_tag
+        -}}
       {% endif %}
     </div>
-    <div class="pw-featured-content">
+    <div class="pc-featured-content">
       <h2>{{ section.settings.heading_text }}</h2>
       <h3>{{ section.settings.subheading_text }}</h3>
-      <a href="{{ section.settings.button_link }}" class="pw-featured-button">{{ section.settings.button_text }}</a>
+      <a href="{{ section.settings.button_link }}" class="pc-featured-button">{{ section.settings.button_text }}</a>
     </div>
   </div>
 
-  <div class="pw-blog-posts">
+  <div class="pc-blog-posts">
     {% assign blog = section.settings.blog %}
     {% if blog %}
-     {% for article in blogs[blog.handle].articles limit: section.settings.post_limit %}
-       <div class="pw-blog-post d-flex flex-column">
-  <img src="{{ article.image | img_url: 'large' }}" alt="{{ article.title }}">
-  <h4>{{ article.title }}</h4>
-  <a href="{{ article.url }}" class="pw-read-more mt-auto">Read more</a>
-</div>
-
+      {% for article in blogs[blog.handle].articles limit: section.settings.post_limit %}
+        <div class="pc-blog-post d-flex flex-column">
+          <img src="{{ article.image | img_url: 'large' }}" alt="{{ article.title }}">
+          <h4>{{ article.title }}</h4>
+          <a href="{{ article.url }}" class="pc-read-more mt-auto">Read more</a>
+        </div>
       {% endfor %}
     {% else %}
       <p>Please select a blog to display posts.</p>
     {% endif %}
   </div>
 </div>
+
 
 {% schema %}
 {
