@@ -187,14 +187,15 @@
     {% if section.blocks.size > 0 %}
       <div class="pc-press-quotes">
         {%- for block in section.blocks -%}
-             {% if block.settings.icon_image -%}
+             
+          <div class="pc-press-item" {{ block.shopify_attributes }}>
+            {% if block.settings.icon_image -%}
                 {{-
                   block.settings.icon_image
                   | image_url: width: 40, height: 40
                   | image_tag
                 -}}
               {%- endif %}
-          <div class="pc-press-item" {{ block.shopify_attributes }}>
             {{ block.settings.quote }}
           </div>
         {%- endfor -%}
