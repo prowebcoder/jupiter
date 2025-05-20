@@ -137,7 +137,7 @@
       {%- if section.settings.video != blank -%}
         {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
       {%- else -%}
-        {{ 'lifestyle-1' | placeholder_svg_tag: 'pc-placeholder-video' }}
+        {{ 'hero-apparel-3' | placeholder_svg_tag: 'pc-placeholder-video' }}
       {%- endif -%}
     </div>
   </div>
@@ -308,7 +308,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding Top",
-      "default": 36
+      "default": 12
     },
     {
       "type": "range",
@@ -318,7 +318,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding Bottom",
-      "default": 36
+      "default": 12
     }
   ],
   "blocks": [

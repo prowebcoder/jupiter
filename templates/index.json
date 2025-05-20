@@ -935,25 +935,74 @@
         "show_badge": true,
         "show_content": true,
         "left_top_text": "<p>Hello</p>",
-        "text_color": "#000",
+        "text_color": "#000000",
         "subheading_size": 18,
         "padding_top_first": 40,
         "padding_bottom_first": 52,
         "left_bottom_text": "<p>Hello</p>",
-        "text_color_first": "#000",
+        "text_color_first": "#000000",
         "subheading_size_first": 18,
         "padding_top_second": 40,
         "padding_bottom_second": 52,
         "right_top_text": "<p>Hello</p>",
-        "text_color_second": "#000",
+        "text_color_second": "#000000",
         "subheading_size_second": 18,
         "padding_top_third": 40,
         "padding_bottom_third": 52,
         "right_bottom_text": "<p>Hello</p>",
-        "text_color_third": "#000",
+        "text_color_third": "#000000",
         "subheading_size_third": 18,
         "padding_top_fourth": 36,
         "padding_bottom_fourth": 36
+      }
+    },
+    "pwc_video_text_YpWcb7": {
+      "type": "pwc-video-text",
+      "blocks": {
+        "press_quote_DePWfw": {
+          "type": "press_quote",
+          "settings": {
+            "quote": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
+          }
+        },
+        "press_quote_EDjDph": {
+          "type": "press_quote",
+          "settings": {
+            "quote": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
+          }
+        },
+        "press_quote_B6NRFr": {
+          "type": "press_quote",
+          "settings": {
+            "quote": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
+          }
+        }
+      },
+      "block_order": [
+        "press_quote_DePWfw",
+        "press_quote_EDjDph",
+        "press_quote_B6NRFr"
+      ],
+      "name": "PWC - Hero with Video",
+      "settings": {
+        "reviews": "",
+        "heading": "<p>Life Changing Breathing</p>",
+        "subheading": "<p>Intake is a revolutionary nasal strip designed to unlock your deepest breath.</p>",
+        "button_text": "Stop Now",
+        "button_link": "",
+        "video_position": "left",
+        "background_color": "#ffffff",
+        "review_color": "#1E81B0",
+        "review_size": 16,
+        "heading_color": "#000000",
+        "heading_size": 48,
+        "subheading_color": "#666666",
+        "subheading_size": 18,
+        "button_color": "#1E81B0",
+        "button_text_color": "#FFFFFF",
+        "press_color": "#444444",
+        "padding_top": 24,
+        "padding_bottom": 24
       }
     }
   },
@@ -973,6 +1022,7 @@
     "image_banner_blog_pwc_nTnipj",
     "slider_testimonial_pwc_DGkhKX",
     "background_image_counter_pwc_pTTtzW",
-    "pwc_before_after_hFPQeJ"
+    "pwc_before_after_hFPQeJ",
+    "pwc_video_text_YpWcb7"
   ]
 }
