@@ -985,11 +985,25 @@
           "settings": {
             "quote": "<p>Lorem Ipsum Text Goes Here</p>"
           }
+        },
+        "press_quote_eHMecK": {
+          "type": "press_quote",
+          "settings": {
+            "quote": "<p>Lorem Ipsum Text Goes Here</p>"
+          }
+        },
+        "press_quote_WRDiFK": {
+          "type": "press_quote",
+          "settings": {
+            "quote": "<p>Lorem Ipsum Text Goes Here</p>"
+          }
         }
       },
       "block_order": [
         "press_quote_8LWb4V",
-        "press_quote_Xh7bJ4"
+        "press_quote_Xh7bJ4",
+        "press_quote_eHMecK",
+        "press_quote_WRDiFK"
       ],
       "name": "PWC - Hero with Video",
       "settings": {
@@ -1000,14 +1014,14 @@
         "button_link": "",
         "video_position": "right",
         "background_color": "#ffffff",
-        "review_color": "#1E81B0",
+        "review_color": "#1e81b0",
         "review_size": 12,
         "heading_color": "#000000",
         "heading_size": 30,
         "subheading_color": "#666666",
         "subheading_size": 18,
-        "button_color": "#1E81B0",
-        "button_text_color": "#FFFFFF",
+        "button_color": "#1e81b0",
+        "button_text_color": "#ffffff",
         "press_color": "#444444",
         "padding_top": 12,
         "padding_bottom": 12
