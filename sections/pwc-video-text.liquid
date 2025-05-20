@@ -12,21 +12,21 @@
   }
 
   {{ sid }} .pc-container {
-    max-width: 1400px;
+    max-width: {{ section.settings.container_width }}px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
-    gap: 20px;
+    gap: {{ section.settings.grid_gap }}px;
   }
 
   {{ sid }} .pc-content-wrapper {
     order: {% if video_position == 'right' %}1{% else %}2{% endif %};
     height: 100%;
     align-content: center;
-    background: #cccccc2e;
-    border-radius: 20px;
-    padding: 30px;
+    background: {{ section.settings.content_background }};
+    border-radius: {{ section.settings.content_radius }}px;
+    padding: {{ section.settings.content_padding }}px;
   }
 
   {{ sid }} .pc-media-wrapper {
@@ -37,63 +37,73 @@
   {{ sid }} .pc-review-stars {
     font-size: {{ section.settings.review_size }}px;
     color: {{ section.settings.review_color }};
-    margin-bottom: 20px;
+    margin-bottom: {{ section.settings.review_spacing }}px;
   }
 
   {{ sid }} .pc-heading {
     font-size: {{ section.settings.heading_size }}px;
     color: {{ section.settings.heading_color }};
-    margin-bottom: 25px;
-    line-height: 1.2;
-  }
-  {{ sid }} .pc-heading p{
-    font-size: {{ section.settings.heading_size }}px;
-    color: {{ section.settings.heading_color }};
-    margin-bottom: 25px;
-    line-height: 1.2;
+    margin-bottom: {{ section.settings.heading_spacing }}px;
+    line-height: {{ section.settings.heading_line_height }};
+    font-weight: {{ section.settings.heading_weight }};
   }
 
   {{ sid }} .pc-subheading {
     font-size: {{ section.settings.subheading_size }}px;
     color: {{ section.settings.subheading_color }};
-    margin-bottom: 35px;
-    max-width: 500px;
+    margin-bottom: {{ section.settings.subheading_spacing }}px;
+    max-width: {{ section.settings.subheading_width }}px;
+    line-height: {{ section.settings.subheading_line_height }};
+    font-weight: {{ section.settings.subheading_weight }};
   }
 
   {{ sid }} .pc-cta-button {
     background: {{ section.settings.button_color }};
-    color: {{ section.settings.button_text_color }};
-    padding: 15px 40px;
-    border-radius: 30px;
-    display: inline-block;
-    font-weight: 700;
-    text-transform: uppercase;
+    color: {{ section.settings.button_text_color }} !important;
+    padding: {{ section.settings.button_padding }};
+    border-radius: {{ section.settings.button_radius }}px;
+    display: inline-flex;
+    font-weight: {{ section.settings.button_weight }};
+    text-transform: {{ section.settings.button_transform }};
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    font-size: {{ section.settings.button_size }}px;
+  }
+
+  {{ sid }} .pc-cta-button:hover {
+    transform: scale(1.05);
   }
 
   {{ sid }} .pc-press-quotes {
-    margin-top: 50px;
+    margin-top: {{ section.settings.press_spacing }}px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax({{ section.settings.press_min_width }}px, 1fr));
+    gap: {{ section.settings.press_gap }}px;
   }
 
   {{ sid }} .pc-press-item {
-    font-size: 18px;
+    font-size: {{ section.settings.press_size }}px;
     color: {{ section.settings.press_color }};
     position: relative;
-    padding-left: 25px;
+    padding-left: 35px;
+    line-height: 1.4;
   }
 
   {{ sid }} .pc-press-item:before {
-    content: '•';
+    content: '';
     position: absolute;
     left: 0;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background: {{ section.settings.press_icon_color }};
+    mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>');
   }
 
   {{ sid }} .pc-video-wrapper {
-    aspect-ratio: 1/1;
+    aspect-ratio: {{ section.settings.video_aspect_ratio }};
     overflow: hidden;
-    border-radius: 20px;
+    border-radius: {{ section.settings.media_radius }}px;
   }
 
   {{ sid }} .pc-video-wrapper video {
@@ -105,39 +115,54 @@
   @media (max-width: 768px) {
     {{ sid }} .pc-container {
       grid-template-columns: 1fr;
-      gap: 10px;
-      margin:10px
+      gap: {{ section.settings.mobile_grid_gap }}px;
+      padding: 0 {{ section.settings.mobile_container_padding }}px;
     }
-    
-    {{ sid }} .pc-content-wrapper,
-    {{ sid }} .pc-media-wrapper {
-      order: initial;
+
+    {{ sid }} .pc-content-wrapper {
+      padding: {{ section.settings.mobile_content_padding }}px;
+      border-radius: {{ section.settings.mobile_content_radius }}px;
     }
-    
-    {{ sid }} .pc-heading p{
-      font-size: {{ section.settings.heading_size | times: 0.5 }}px;
+
+    {{ sid }} .pc-heading {
+      font-size: {{ section.settings.mobile_heading_size }}px;
+      margin-bottom: {{ section.settings.mobile_heading_spacing }}px;
     }
-     {{ sid }} .pc-subheading {
-      font-size: {{ section.settings.subheading_size | times: 0.8 }}px;
+
+    {{ sid }} .pc-subheading {
+      font-size: {{ section.settings.mobile_subheading_size }}px;
+      margin-bottom: {{ section.settings.mobile_subheading_spacing }}px;
     }
-     {{ sid }} .pc-review-stars {
-      font-size: {{ section.settings.review_size | times: 0.8 }}px;
+
+    {{ sid }} .pc-review-stars {
+      font-size: {{ section.settings.mobile_review_size }}px;
+      margin-bottom: {{ section.settings.mobile_review_spacing }}px;
     }
-    
+
+    {{ sid }} .pc-cta-button {
+      font-size: {{ section.settings.mobile_button_size }}px;
+      width: 100%;
+      text-align: center;
+    }
+
     {{ sid }} .pc-press-quotes {
       grid-template-columns: 1fr;
+      gap: {{ section.settings.mobile_press_gap }}px;
+    }
+
+    {{ sid }} .pc-press-item {
+      font-size: {{ section.settings.mobile_press_size }}px;
     }
   }
-  
 </style>
 
 <div class="pc-container">
-    <div class="pc-media-wrapper">
+  <div class="pc-media-wrapper">
     <div class="pc-video-wrapper">
       {%- if section.settings.video != blank -%}
         {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
       {%- else -%}
-        {{ 'collection-5' | placeholder_svg_tag: 'pc-placeholder-video' }}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'pc-placeholder-video' }}
       {%- endif -%}
     </div>
   </div>
@@ -157,19 +182,17 @@
         {{- section.settings.button_text -}}
       </a>
     {%- endif -%}
-{% if section.blocks.size > 0 %}
-    <div class="pc-press-quotes">
-      {%- for block in section.blocks -%}
-        <div class="pc-press-item" {{ block.shopify_attributes }}>
-          {{ block.settings.quote }}
-        </div>
-      {%- endfor -%}
-    </div>
-  {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="pc-press-quotes">
+        {%- for block in section.blocks -%}
+          <div class="pc-press-item" {{ block.shopify_attributes }}>
+            {{ block.settings.quote }}
+          </div>
+        {%- endfor -%}
+      </div>
+    {% endif %}
   </div>
-  
-
-
 </div>
 
 {% schema %}
@@ -178,31 +201,64 @@
   "settings": [
     {
       "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1800,
+      "step": 20,
+      "unit": "px",
+      "label": "Container Width",
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Column Gap",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "video_aspect_ratio",
+      "min": 0.5,
+      "max": 2,
+      "step": 0.1,
+      "label": "Video Aspect Ratio",
+      "default": 1
+    },
+    {
+      "type": "header",
       "content": "Content Settings"
     },
     {
       "type": "text",
       "id": "reviews",
       "label": "Review Text",
-      "default": "★ 3,913 Reviews"
+      "default": "★★★★★ 4.9/5 from 10k+ Customers"
     },
     {
       "type": "richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "<p>Life Changing Breathing</p>"
+      "default": "<p>Experience Deeper Sleep with Advanced Breathing Technology</p>"
     },
     {
       "type": "richtext",
       "id": "subheading",
       "label": "Subheading",
-      "default": "<p>Intake is a revolutionary nasal strip designed to unlock your deepest breath.</p>"
+      "default": "<p>Clinically proven nasal strips that enhance oxygen intake by up to 38% during sleep. Non-invasive solution for better rest and improved performance.</p>"
     },
     {
       "type": "text",
       "id": "button_text",
       "label": "Button Text",
-      "default": "Stop Now"
+      "default": "Shop Now - 30% Off"
     },
     {
       "type": "url",
@@ -226,35 +282,53 @@
     },
     {
       "type": "header",
-      "content": "Style Settings"
+      "content": "Style Customization"
     },
     {
       "type": "color",
       "id": "background_color",
       "label": "Background Color",
-      "default": "#ffffff"
+      "default": "#f7f9fc"
     },
     {
       "type": "color",
-      "id": "review_color",
-      "label": "Review Color",
-      "default": "#1E81B0"
+      "id": "content_background",
+      "label": "Content Background",
+      "default": "rgba(255, 255, 255, 0.95)"
     },
     {
       "type": "range",
-      "id": "review_size",
-      "min": 12,
-      "max": 32,
-      "step": 1,
+      "id": "content_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
       "unit": "px",
-      "label": "Review Text Size",
-      "default": 16
+      "label": "Content Radius",
+      "default": 24
     },
     {
-      "type": "color",
-      "id": "heading_color",
-      "label": "Heading Color",
-      "default": "#000000"
+      "type": "range",
+      "id": "media_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Media Radius",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "min": 20,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Content Padding",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
     },
     {
       "type": "range",
@@ -267,58 +341,46 @@
       "default": 48
     },
     {
-      "type": "color",
-      "id": "subheading_color",
-      "label": "Subheading Color",
-      "default": "#666666"
+      "type": "range",
+      "id": "heading_line_height",
+      "min": 1,
+      "max": 2,
+      "step": 0.1,
+      "label": "Heading Line Height",
+      "default": 1.2
     },
     {
       "type": "range",
-      "id": "subheading_size",
-      "min": 14,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Subheading Size",
-      "default": 18
+      "id": "heading_weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "label": "Heading Font Weight",
+      "default": 700
     },
     {
-      "type": "color",
-      "id": "button_color",
-      "label": "Button Color",
-      "default": "#1E81B0"
+      "type": "header",
+      "content": "Mobile Settings"
     },
     {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "press_color",
-      "label": "Press Quotes Color",
-      "default": "#444444"
-    },
-      {
       "type": "range",
-      "id": "padding_top",
+      "id": "mobile_container_padding",
       "min": 0,
-      "max": 100,
-      "step": 4,
+      "max": 40,
+      "step": 2,
       "unit": "px",
-      "label": "Padding Top",
-      "default": 12
+      "label": "Mobile Side Padding",
+      "default": 16
     },
     {
       "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
+      "id": "mobile_heading_size",
+      "min": 18,
+      "max": 42,
+      "step": 2,
       "unit": "px",
-      "label": "Padding Bottom",
-      "default": 12
+      "label": "Mobile Heading Size",
+      "default": 32
     }
   ],
   "blocks": [
@@ -330,7 +392,7 @@
           "type": "richtext",
           "id": "quote",
           "label": "Quote",
-          "default": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
+          "default": "<p>\"2024 Sleep Innovation Award Winner\" - HealthTech Journal</p>"
         }
       ]
     }
@@ -339,6 +401,9 @@
     {
       "name": "PWC - Hero with Video",
       "blocks": [
+        {
+          "type": "press_quote"
+        },
         {
           "type": "press_quote"
         },
