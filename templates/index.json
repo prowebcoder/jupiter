@@ -977,6 +977,7 @@
         "press_quote_8LWb4V": {
           "type": "press_quote",
           "settings": {
+            "icon_image": "shopify://shop_images/delivery-status.png",
             "quote": "<p>Lorem Ipsum Text Goes Here</p>"
           }
         },

@@ -190,7 +190,7 @@
              {% if block.settings.icon_image -%}
                 {{-
                   block.settings.icon_image
-                  | image_url: width: block.settings.icon_image.width, height: block.settings.icon_image.height
+                  | image_url: width: 40, height: 40
                   | image_tag
                 -}}
               {%- endif %}
