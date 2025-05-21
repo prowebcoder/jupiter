@@ -181,11 +181,7 @@
       <div class="pc-subheading">{{ section.settings.subheading }}</div>
     {%- endif -%}
 
-    {%- if section.settings.button_text != blank -%}
-      <a href="{{ section.settings.button_link }}" class="pc-cta-button">
-        {{- section.settings.button_text -}}
-      </a>
-    {%- endif -%}
+ 
 
     {% if section.blocks.size > 0 %}
       <div class="pc-press-quotes">
@@ -204,6 +200,11 @@
         {%- endfor -%}
       </div>
     {% endif %}
+       {%- if section.settings.button_text != blank -%}
+      <a href="{{ section.settings.button_link }}" class="pc-cta-button">
+        {{- section.settings.button_text -}}
+      </a>
+    {%- endif -%}
   </div>
 </div>
 
