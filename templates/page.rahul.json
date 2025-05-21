@@ -23,33 +23,37 @@
         "press_quote_4Gcmyn": {
           "type": "press_quote",
           "settings": {
+            "icon_image": "shopify://shop_images/favicon-1.png",
             "quote": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
           }
         },
-        "press_quote_9azPVq": {
+        "press_quote_PixW9W": {
           "type": "press_quote",
           "settings": {
+            "icon_image": "shopify://shop_images/favicon-1.png",
             "quote": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
           }
         },
-        "press_quote_UxzVjX": {
+        "press_quote_tF963W": {
           "type": "press_quote",
           "settings": {
+            "icon_image": "shopify://shop_images/favicon-1.png",
             "quote": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
           }
         },
-        "press_quote_grnDFk": {
+        "press_quote_p79ygp": {
           "type": "press_quote",
           "settings": {
+            "icon_image": "shopify://shop_images/favicon-1.png",
             "quote": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
           }
         }
       },
       "block_order": [
         "press_quote_4Gcmyn",
-        "press_quote_9azPVq",
-        "press_quote_UxzVjX",
-        "press_quote_grnDFk"
+        "press_quote_PixW9W",
+        "press_quote_tF963W",
+        "press_quote_p79ygp"
       ],
       "name": "PWC -Video With Text #1",
       "settings": {
