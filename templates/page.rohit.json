@@ -63,61 +63,68 @@
     },
     "pwc_counter_text_zBjKcn": {
       "type": "pwc-counter-text",
+      "name": "Pwc Counter Cards",
+      "settings": {}
+    },
+    "pwc_counter_text_KAnKcB": {
+      "type": "pwc-counter-text",
       "blocks": {
-        "card_A4b6yc": {
-          "type": "card",
+        "image_kNXrDA": {
+          "type": "image",
           "settings": {
-            "title": "Partners",
-            "end_value": 50,
-            "emoji": "🤝",
-            "emoji_color": "#6495ed",
-            "background": "linear-gradient(313deg, rgba(2, 0, 36, 1) 82%, rgba(2, 165, 224, 1) 100%)"
+            "title": "Package Title",
+            "tagline": "The tagline goes here",
+            "price": "800",
+            "label": "900 is the real price",
+            "save": "You save 100",
+            "included_items": "Included item 1,Included item 2",
+            "excluded_items": "Excluded item 1,Excluded item 2",
+            "button_text": "Continue",
+            "popular": false
           }
         },
-        "card_9Pxa63": {
-          "type": "card",
+        "image_HBzfWj": {
+          "type": "image",
           "settings": {
-            "title": "Partners",
-            "end_value": 100,
-            "emoji": "🤝",
-            "emoji_color": "#6495ed",
-            "background": "linear-gradient(313deg, rgba(2,0,36,1) 82%, rgba(2,165,224,1) 100%)"
+            "title": "Package Title",
+            "tagline": "The tagline goes here",
+            "price": "800",
+            "label": "900 is the real price",
+            "save": "You save 100",
+            "included_items": "Included item 1,Included item 2",
+            "excluded_items": "Excluded item 1,Excluded item 2",
+            "button_text": "Continue",
+            "popular": false
           }
         },
-        "card_8YVxnE": {
-          "type": "card",
+        "image_78pzLV": {
+          "type": "image",
           "settings": {
-            "title": "Partners",
-            "end_value": 100,
-            "emoji": "🤝",
-            "emoji_color": "#6495ed",
-            "background": "linear-gradient(313deg, rgba(2,0,36,1) 82%, rgba(2,165,224,1) 100%)"
-          }
-        },
-        "card_miXK8E": {
-          "type": "card",
-          "settings": {
-            "title": "Partners",
-            "end_value": 100,
-            "emoji": "🤝",
-            "emoji_color": "#6495ed",
-            "background": "linear-gradient(313deg, rgba(2,0,36,1) 82%, rgba(2,165,224,1) 100%)"
+            "title": "Package Title",
+            "tagline": "The tagline goes here",
+            "price": "800",
+            "label": "900 is the real price",
+            "save": "You save 100",
+            "included_items": "Included item 1,Included item 2",
+            "excluded_items": "Excluded item 1,Excluded item 2",
+            "button_text": "Continue",
+            "popular": false
           }
         }
       },
       "block_order": [
-        "card_A4b6yc",
-        "card_9Pxa63",
-        "card_8YVxnE",
-        "card_miXK8E"
+        "image_kNXrDA",
+        "image_HBzfWj",
+        "image_78pzLV"
       ],
-      "name": "Pwc Counter Cards",
+      "name": "Pwc Pricing Table",
       "settings": {}
     }
   },
   "order": [
     "main",
     "pwc_marquee_1_MiwcCR",
-    "pwc_counter_text_zBjKcn"
+    "pwc_counter_text_zBjKcn",
+    "pwc_counter_text_KAnKcB"
   ]
 }
