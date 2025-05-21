@@ -85,6 +85,7 @@
 
   {{ sid }} .pc-press-quotes {
     margin-top: {{ section.settings.press_spacing }}px;
+    margin-bottom: {{ section.settings.press_spacing_bottom }}px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax({{ section.settings.press_min_width }}px, 1fr));
     gap: {{ section.settings.press_gap }}px;
@@ -568,6 +569,16 @@
       "step": 2,
       "unit": "px",
       "label": "Top Spacing",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "press_spacing_bottom",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom Spacing",
       "default": 20
     },
     {
