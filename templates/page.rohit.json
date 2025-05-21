@@ -72,6 +72,7 @@
         "image_kNXrDA": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/free-shipping.png",
             "title": "Package Title",
             "tagline": "The tagline goes here",
             "price": "800",
