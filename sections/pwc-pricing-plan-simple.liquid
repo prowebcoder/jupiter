@@ -25,7 +25,6 @@
     margin: 0 auto;
   }
   {{ sid }} .pc-pricing-card {
-    background: {{ section.settings.card_bg_color }};
     border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color }};
     border-radius: {{ section.settings.card_border_radius }}px;
     padding: {{ section.settings.card_padding }}px;
@@ -118,7 +117,7 @@
 
     <div class="pc-pricing-grid">
       {% for block in section.blocks %}
-        <div class="pc-pricing-card {% if block.settings.featured %}featured{% endif %}" {{ block.shopify_attributes }} >
+        <div class="pc-pricing-card {% if block.settings.featured %}featured{% endif %}" {{ block.shopify_attributes }} style="background:{{ block.settings.card_bg_color }}">
           {% if block.settings.title != blank %}
             <h3 class="pc-pricing-card-title" style="text-align: {{ block.settings.title_alignment }};color:{{ block.settings.text_color }}">
               {{ block.settings.title }}
@@ -251,12 +250,7 @@
       "type": "header",
       "content": "Card Design"
     },
-    {
-      "type": "color",
-      "id": "card_bg_color",
-      "label": "Card background",
-      "default": "#A3BA35"
-    },
+   
     {
       "type": "color",
       "id": "card_border_color",
@@ -432,6 +426,12 @@
           "id": "text_color",
           "label": "Text color",
           "default": "#fff"
+         },
+         {
+          "type": "color",
+          "id": "card_bg_color",
+          "label": "Card Background color",
+          "default": "#A3BA35"
          },
         {
           "type": "checkbox",
