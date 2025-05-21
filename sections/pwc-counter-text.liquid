@@ -1,6 +1,157 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+<style>
+  .counter-cards-wrapper {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(120deg, rgba(215,217,211,1) 0%, rgba(154,6,112,1) 99%);
+    padding: 50px 0;
+    text-align: center;
   }
+
+  .counter-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .counter-column {
+    flex: 1 1 200px;
+    max-width: 25%;
+    padding: 10px;
+  }
+
+  .counter-card {
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+  }
+
+  .counter-card .fa {
+    font-size: 60px;
+    margin-bottom: 10px;
+  }
+
+  .card-one { background: linear-gradient(313deg, rgba(2,0,36,1) 82%, rgba(2,165,224,1) 100%); }
+  .card-two { background: linear-gradient(313deg, rgba(2,0,36,1) 82%, rgb(39, 224, 2) 100%); }
+  .card-three { background: linear-gradient(313deg, rgba(2,0,36,1) 82%, rgb(224, 209, 2) 100%); }
+  .card-four { background: linear-gradient(313deg, rgba(2,0,36,1) 82%, orangered 100%); }
+
+  @media screen and (max-width: 768px) {
+    .counter-column {
+      max-width: 50%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .counter-column {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<div class="counter-cards-wrapper">
+  <div class="counter-row">
+    <div class="counter-column">
+      <div class="counter-card card-one">
+        <i class="fa fa-user" style="color: cornflowerblue;"></i>
+        <h3 id="counter1" class="counter">0 +</h3>
+        <p>Partners</p>
+      </div>
+    </div>
+
+    <div class="counter-column">
+      <div class="counter-card card-two">
+        <i class="fa fa-check" style="color: lightgreen;"></i>
+        <h3 id="counter2" class="counter">0 +</h3>
+        <p>Projects</p>
+      </div>
+    </div>
+
+    <div class="counter-column">
+      <div class="counter-card card-three">
+        <i class="fa fa-smile-o" style="color: yellow;"></i>
+        <h3 id="counter3" class="counter">0 +</h3>
+        <p>Clients</p>
+      </div>
+    </div>
+
+    <div class="counter-column">
+      <div class="counter-card card-four">
+        <i class="fa fa-coffee" style="color: orangered;"></i>
+        <h3 id="counter4" class="counter">0 +</h3>
+        <p>Meetings</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function startCounting(id, end, interval = 50) {
+    let current = 0;
+    const element = document.getElementById(id);
+    const timer = setInterval(() => {
+      element.textContent = current + " +";
+      current++;
+      if (current > end) clearInterval(timer);
+    }, interval);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    startCounting("counter1", {{ section.settings.counter1_end }});
+    startCounting("counter2", {{ section.settings.counter2_end }});
+    startCounting("counter3", {{ section.settings.counter3_end }});
+    startCounting("counter4", {{ section.settings.counter4_end }});
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Counter Cards",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Counter Cards Configuration"
+    },
+    {
+      "type": "range",
+      "id": "counter1_end",
+      "label": "Partners Count",
+      "min": 10,
+      "max": 1000,
+      "step": 10,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "counter2_end",
+      "label": "Projects Count",
+      "min": 10,
+      "max": 1000,
+      "step": 10,
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "counter3_end",
+      "label": "Clients Count",
+      "min": 10,
+      "max": 1000,
+      "step": 10,
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "counter4_end",
+      "label": "Meetings Count",
+      "min": 0,
+      "max": 1000,
+      "step": 10,
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pwc Counter Cards"
+    }
+  ]
+}
 {% endschema %}
