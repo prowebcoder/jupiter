@@ -68,9 +68,9 @@
           "type": "card",
           "settings": {
             "title": "Partners",
-            "end_value": 99,
-            "icon_class": "😀",
-            "icon_color": "#ffff00",
+            "end_value": 100,
+            "emoji": "🤝",
+            "emoji_color": "#6495ed",
             "background": "linear-gradient(313deg, rgba(2, 0, 36, 1) 82%, rgba(2, 165, 224, 1) 100%)"
           }
         },
@@ -79,8 +79,8 @@
           "settings": {
             "title": "Partners",
             "end_value": 100,
-            "icon_class": "fa-user",
-            "icon_color": "#6495ed",
+            "emoji": "🤝",
+            "emoji_color": "#6495ed",
             "background": "linear-gradient(313deg, rgba(2,0,36,1) 82%, rgba(2,165,224,1) 100%)"
           }
         },
@@ -89,8 +89,8 @@
           "settings": {
             "title": "Partners",
             "end_value": 100,
-            "icon_class": "fa-user",
-            "icon_color": "#6495ed",
+            "emoji": "🤝",
+            "emoji_color": "#6495ed",
             "background": "linear-gradient(313deg, rgba(2,0,36,1) 82%, rgba(2,165,224,1) 100%)"
           }
         },
@@ -99,8 +99,8 @@
           "settings": {
             "title": "Partners",
             "end_value": 100,
-            "icon_class": "fa-user",
-            "icon_color": "#6495ed",
+            "emoji": "🤝",
+            "emoji_color": "#6495ed",
             "background": "linear-gradient(313deg, rgba(2,0,36,1) 82%, rgba(2,165,224,1) 100%)"
           }
         }
