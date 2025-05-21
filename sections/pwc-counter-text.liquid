@@ -1,14 +1,14 @@
 <style>
-.all-pricing-table{
+.pc-all-pricing-table{
   width: 100%;
 }
-.pricing-table-wrapper {
+.pc-pricing-table-wrapper {
   max-width: 71rem;
   margin: 0 auto;
 }
 
-.pricing-table {
-  --pricing-table-color: hsl(219, 83%, 57%);
+.pc-pricing-table {
+  --pc-pricing-table-color: hsl(219, 83%, 57%);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2em;
@@ -17,7 +17,7 @@
   list-style: none;
 }
 
-.pricing-table__item {
+.pc-pricing-table__item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,16 +28,16 @@
   transition: box-shadow 200ms cubic-bezier(0.02, 0.01, 0.47, 1), transform 200ms cubic-bezier(0.02, 0.01, 0.47, 1);
 }
 
-.pricing-table__item:hover {
+.pc-pricing-table__item:hover {
   box-shadow: 0 40px 40px rgba(0, 0, 0, 0.16);
   transform: translateY(-20px);
 }
 
-.pricing-table__item--popular {
+.pc-pricing-table__item--popular {
   position: relative;
 }
 
-.pricing-table__item--popular::before {
+.pc-pricing-table__item--popular::before {
   position: absolute;
   content: attr(data-popular);
   top: 2em;
@@ -49,50 +49,50 @@
   color: hsl(60, 5%, 15%);
 }
 
-.pricing-table__img {
+.pc-pricing-table__img {
   margin: 2.5em auto 4em;
   width: 100%;
   max-width: 9.3em;
 }
 
-.pricing-table__title {
+.pc-pricing-table__title {
   margin: 0;
   font-size: 1.7em;
   text-transform: capitalize;
 }
 
-.pricing-table__description {
+.pc-pricing-table__description {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
 }
 
-.pricing-table__tagline {
+.pc-pricing-table__tagline {
   margin: 0;
   color: hsl(216, 3%, 63%);
   text-align: center;
 }
 
-.pricing-table__price {
-  color: var(--pricing-table-color);
+.pc-pricing-table__price {
+  color: var(--pc-pricing-table-color);
   font-size: 2.5em;
   margin: 1em auto 0;
   font-weight: bold;
 }
 
-.pricing-table__label {
+.pc-pricing-table__label {
   margin: 0;
   color: hsl(216, 3%, 63%);
   font-size: 0.9em;
 }
 
-.pricing-table__save {
+.pc-pricing-table__save {
   color: hsl(122, 39%, 49%);
   font-weight: bold;
 }
 
-.pricing-table__products {
+.pc-pricing-table__products {
   margin: 1.87em 0;
   padding: 0;
   list-style: none;
@@ -102,33 +102,33 @@
   justify-content: center;
 }
 
-.pricing-table__product {
+.pc-pricing-table__product {
   display: flex;
   align-items: center;
   font-weight: bold;
   margin-bottom: 0.5em;
 }
 
-.pricing-table__product a {
+.pc-pricing-table__product a {
   text-decoration: none;
   color: inherit;
   transition: color 0.2s ease-in-out;
 }
 
-.pricing-table__product a:hover {
-  color: var(--pricing-table-color);
+.pc-pricing-table__product a:hover {
+  color: var(--pc-pricing-table-color);
 }
 
-.pricing-table__product::before {
+.pc-pricing-table__product::before {
   content: '';
   width: 0.5em;
   height: 0.5em;
   margin-inline-end: 1em;
   border-radius: 50%;
-  background-color: var(--pricing-table-color);
+  background-color: var(--pc-pricing-table-color);
 }
 
-.pricing-table__product--excluded::before {
+.pc-pricing-table__product--excluded::before {
   content: '';
   width: 0.5em;
   height: 0.5em;
@@ -138,8 +138,8 @@
   transform: scale(2.5);
 }
 
-.pricing-table__button {
-  background: var(--pricing-table-color);
+.pc-pricing-table__button {
+  background: var(--pc-pricing-table-color);
   color: #fff;
   margin-top: auto;
   padding: 1em 2em;
@@ -151,40 +151,40 @@
   text-transform: capitalize;
 }
 
-.pricing-table__button:hover {
+.pc-pricing-table__button:hover {
   background-color: hsl(122, 39%, 49%);
 }
 </style>
 
-<div class="all-pricing-table">
-<ul class="pricing-table">
+<div class="pc-all-pricing-table">
+<ul class="pc-pricing-table">
   {% for block in section.blocks %}
     {% assign plan = block.settings %}
-    <li class="pricing-table__item {% if plan.popular %}pricing-table__item--popular{% endif %}" {% if plan.popular %}data-popular="Popular"{% endif %}>
+    <li class="pc-pricing-table__item {% if plan.popular %}pc-pricing-table__item--popular{% endif %}" {% if plan.popular %}data-popular="Popular"{% endif %}>
       {% if plan.image %}
-        <img src="{{ plan.image | image_url }}" alt="" class="pricing-table__img" />
+        <img src="{{ plan.image | image_url }}" alt="" class="pc-pricing-table__img" />
       {% endif %}
-      <h3 class="pricing-table__title">{{ plan.title }}</h3>
-      <p class="pricing-table__description">
-        <span class="pricing-table__tagline">{{ plan.tagline }}</span>
-        <span class="pricing-table__price">{{ plan.price }}</span>
-        <span class="pricing-table__label">{{ plan.label }}</span>
-        <span class="pricing-table__save">{{ plan.save }}</span>
+      <h3 class="pc-pricing-table__title">{{ plan.title }}</h3>
+      <p class="pc-pricing-table__description">
+        <span class="pc-pricing-table__tagline">{{ plan.tagline }}</span>
+        <span class="pc-pricing-table__price">{{ plan.price }}</span>
+        <span class="pc-pricing-table__label">{{ plan.label }}</span>
+        <span class="pc-pricing-table__save">{{ plan.save }}</span>
       </p>
-      <ul class="pricing-table__products">
+      <ul class="pc-pricing-table__products">
         {% assign included = plan.included_items | split: ',' %}
         {% for item in included %}
           {% assign item_trimmed = item | strip %}
-          <li class="pricing-table__product"><a href="#">{{ item_trimmed }}</a></li>
+          <li class="pc-pricing-table__product"><a href="#">{{ item_trimmed }}</a></li>
         {% endfor %}
 
         {% assign excluded = plan.excluded_items | split: ',' %}
         {% for item in excluded %}
           {% assign item_trimmed = item | strip %}
-          <li class="pricing-table__product pricing-table__product--excluded"><a href="#">{{ item_trimmed }}</a></li>
+          <li class="pc-pricing-table__product pc-pricing-table__product--excluded"><a href="#">{{ item_trimmed }}</a></li>
         {% endfor %}
       </ul>
-      <a href="{{ plan.button_link }}" class="pricing-table__button">{{ plan.button_text }}</a>
+      <a href="{{ plan.button_link }}" class="pc-pricing-table__button">{{ plan.button_text }}</a>
     </li>
   {% endfor %}
 </ul>
