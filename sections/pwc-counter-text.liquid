@@ -61,6 +61,8 @@
   function startCounting(id, end, interval = 50) {
     let current = 0;
     const element = document.getElementById(id);
+    if (!element) return;
+
     const timer = setInterval(() => {
       element.textContent = current + " +";
       current++;
@@ -74,6 +76,7 @@
     {% endfor %}
   });
 </script>
+
 
 {% schema %}
 {
