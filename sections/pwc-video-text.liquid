@@ -152,6 +152,7 @@
     {{ sid }} .pc-press-quotes {
       grid-template-columns: 2fr;
       gap: {{ section.settings.mobile_press_gap }}px;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     }
 
     {{ sid }} .pc-press-item {
