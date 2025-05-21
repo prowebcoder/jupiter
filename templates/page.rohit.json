@@ -87,6 +87,7 @@
         "image_HBzfWj": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/security.png",
             "title": "Package Title",
             "tagline": "The tagline goes here",
             "price": "800",
