@@ -96,7 +96,7 @@
   margin: 1.87em 0;
   padding: 0;
   list-style: none;
-  flex-grow: 1;
+  flex-grow: 1; /* allows it to stretch */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -107,6 +107,10 @@
   align-items: center;
   font-weight: bold;
   margin-bottom: 0.5em;
+}
+
+.pricing-table__button {
+  margin-top: auto; /* pushes to bottom */
 }
 
 .pricing-table__product a {
