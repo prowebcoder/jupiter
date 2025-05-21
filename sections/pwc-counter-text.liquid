@@ -106,51 +106,54 @@
 {% schema %}
 {
   "name": "Counter Cards",
-  "settings": [
+  "max_blocks": 4,
+  "blocks": [
     {
-      "type": "header",
-      "content": "Counter Cards Configuration"
-    },
-    {
-      "type": "range",
-      "id": "counter1_end",
-      "label": "Partners Count",
-      "min": 10,
-      "max": 1000,
-      "step": 10,
-      "default": 100
-    },
-    {
-      "type": "range",
-      "id": "counter2_end",
-      "label": "Projects Count",
-      "min": 10,
-      "max": 1000,
-      "step": 10,
-      "default": 200
-    },
-    {
-      "type": "range",
-      "id": "counter3_end",
-      "label": "Clients Count",
-      "min": 10,
-      "max": 1000,
-      "step": 10,
-      "default": 200
-    },
-    {
-      "type": "range",
-      "id": "counter4_end",
-      "label": "Meetings Count",
-      "min": 0,
-      "max": 1000,
-      "step": 10,
-      "default": 100
+      "type": "card",
+      "name": "Counter Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Partners"
+        },
+        {
+          "type": "number",
+          "id": "end_value",
+          "label": "Counter End Value",
+          "default": 100
+        },
+        {
+          "type": "text",
+          "id": "icon_class",
+          "label": "Font Awesome Icon Class",
+          "default": "fa-user"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icon Color",
+          "default": "#6495ed"
+        },
+        {
+          "type": "color_background",
+          "id": "background",
+          "label": "Card Background Gradient",
+          "default": "linear-gradient(313deg, rgba(2,0,36,1) 82%, rgba(2,165,224,1) 100%)"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Pwc Counter Cards"
+      "name": "Pwc Counter Cards",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
     }
   ]
 }
