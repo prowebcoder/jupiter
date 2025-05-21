@@ -68,7 +68,7 @@
           "type": "card",
           "settings": {
             "title": "Partners",
-            "end_value": 100,
+            "end_value": 50,
             "emoji": "🤝",
             "emoji_color": "#6495ed",
             "background": "linear-gradient(313deg, rgba(2, 0, 36, 1) 82%, rgba(2, 165, 224, 1) 100%)"
