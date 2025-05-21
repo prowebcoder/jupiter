@@ -118,34 +118,34 @@
 
     <div class="pc-pricing-grid">
       {% for block in section.blocks %}
-        <div class="pc-pricing-card {% if block.settings.featured %}featured{% endif %}" {{ block.shopify_attributes }}>
+        <div class="pc-pricing-card {% if block.settings.featured %}featured{% endif %}" {{ block.shopify_attributes }} >
           {% if block.settings.title != blank %}
-            <h3 class="pc-pricing-card-title" style="text-align: {{ block.settings.title_alignment }};">
+            <h3 class="pc-pricing-card-title" style="text-align: {{ block.settings.title_alignment }};color:{{ block.settings.text_color }}">
               {{ block.settings.title }}
             </h3>
           {% endif %}
 
           {% if block.settings.price != blank %}
-            <div class="pc-pricing-amount" style="text-align: {{ block.settings.price_alignment }};">
+            <div class="pc-pricing-amount" style="text-align: {{ block.settings.price_alignment }};color:{{ block.settings.text_color }}">
               {{ block.settings.price -}}
               {{- block.settings.price_unit }}
             </div>
           {% endif %}
 
           {% if block.settings.billing_period != blank %}
-            <div class="pc-pricing-period" style="text-align: {{ block.settings.period_alignment }};">
+            <div class="pc-pricing-period" style="text-align: {{ block.settings.period_alignment }};color:{{ block.settings.text_color }}">
               {{ block.settings.billing_period }}
             </div>
           {% endif %}
 
           {% if block.settings.savings_text != blank %}
-            <div class="pc-pricing-savings" style="text-align: {{ block.settings.savings_alignment }};">
+            <div class="pc-pricing-savings" style="text-align: {{ block.settings.savings_alignment }};color:{{ block.settings.text_color }}">
               {{ block.settings.savings_text }}
             </div>
           {% endif %}
 
           {% if block.settings.features != blank %}
-            <ul class="pc-pricing-features" style="text-align: {{ block.settings.features_alignment }};">
+            <ul class="pc-pricing-features" style="text-align: {{ block.settings.features_alignment }};color:{{ block.settings.text_color }}">
               {% assign features = block.settings.features | newline_to_br | split: '<br />' %}
               {% for feature in features %}
                 {% if feature != blank %}
