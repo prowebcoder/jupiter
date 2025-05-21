@@ -15,9 +15,55 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "pwc_marquee_1_MiwcCR": {
+      "type": "pwc-marquee-1",
+      "blocks": {
+        "text_KDctXJ": {
+          "type": "text",
+          "settings": {
+            "new_text": "Welcome to our store",
+            "text_color": "#ffffff",
+            "text_transform": "uppercase",
+            "font_weight": "normal",
+            "text_decoration": "none",
+            "font_style": "normal",
+            "letter_spacing": 0
+          }
+        },
+        "text_VXyqHY": {
+          "type": "text",
+          "settings": {
+            "new_text": "Free shipping on all orders",
+            "text_color": "#00ff00",
+            "text_transform": "none",
+            "font_weight": "normal",
+            "text_decoration": "none",
+            "font_style": "italic",
+            "letter_spacing": 0
+          }
+        }
+      },
+      "block_order": [
+        "text_KDctXJ",
+        "text_VXyqHY"
+      ],
+      "name": "Pwc Marquee #1",
+      "settings": {
+        "colorBackground": "#000000",
+        "colorText": "#ffffff",
+        "direction": "left",
+        "marquee_height": 46,
+        "font_size": 24,
+        "padding_top": 5,
+        "padding_bottom": 5,
+        "image_width": 10,
+        "speed": 12
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "pwc_marquee_1_MiwcCR"
   ]
 }
