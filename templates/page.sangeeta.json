@@ -249,11 +249,39 @@
         "accent_color_hover": "#d80060",
         "vip_button_border_color": "rgba(0,0,0,0)"
       }
+    },
+    "image_counter_pwc_4LedYC": {
+      "type": "Image_Counter_pwc",
+      "name": " Image Countdown Pwc",
+      "settings": {
+        "page_width": 1200,
+        "image_position": "left",
+        "image": "shopify://shop_images/a-model-in-red-suit-jacket-removing-sunglasses.jpg",
+        "subheading": "Hurry! Time's running out!",
+        "heading": "Last chance to buy marked-down items before they go",
+        "promo_code": "PROMO15",
+        "button_label": "Shop Now",
+        "button_link": "",
+        "button_shape": "50px",
+        "featured_button_background": "#ffa500",
+        "featured_button_text_color": "#ffffff",
+        "disclaimer": "Final discount, cannot be combined with other offers.",
+        "countdown_end_date": "2025-10-12",
+        "background_color": "#121212",
+        "subheading_font_size": 14,
+        "heading_font_size": 24,
+        "promo_code_font_size": 14,
+        "disclaimer_font_size": 12,
+        "countdown_font_size": 20,
+        "countdown_background_color1": "#ffa500",
+        "countdown_text_color1": "#ffffff"
+      }
     }
   },
   "order": [
     "main",
     "pwc_timer_BeYrN3",
-    "pricing_plan_p_JP9y6c"
+    "pricing_plan_p_JP9y6c",
+    "image_counter_pwc_4LedYC"
   ]
 }
