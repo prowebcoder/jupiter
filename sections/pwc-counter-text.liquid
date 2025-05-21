@@ -1,132 +1,127 @@
+<!-- sections/fact-success.liquid -->
+<section class="fact-success-section bg-light py-3 py-md-5">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6 text-center">
+        <h3 class="fs-6 text-secondary mb-2 text-uppercase">{{ section.settings.subtitle }}</h3>
+        <h2 class="mb-4 display-5">{{ section.settings.title }}</h2>
+        <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row gy-4 gy-lg-0 align-items-lg-center">
+      <div class="col-12 col-lg-6">
+        <img class="img-fluid rounded" loading="lazy" src="{{ section.settings.image | image_url }}" alt="Our Success">
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="row justify-content-xl-end">
+          <div class="col-12 col-xl-11">
+            <div class="row gy-4 gy-sm-0 overflow-hidden">
+              {% for block in section.blocks %}
+                <div class="col-12 col-sm-6 {% if forloop.index > 2 %}mt-lg-6 mt-xxl-8{% endif %} {% if forloop.index == 1 or forloop.index == 3 %}mb-4{% endif %}">
+                  <div class="card border-0 border-bottom border-primary shadow-sm">
+                    <div class="card-body text-center p-4 p-xxl-5">
+                      <h3 class="display-2 fw-bold mb-2">{{ block.settings.stat }}</h3>
+                      <p class="fs-5 mb-0 text-secondary">{{ block.settings.label }}</p>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <style>
-  .counter-cards-wrapper {
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(120deg, rgba(215,217,211,1) 0%, rgba(154,6,112,1) 99%);
-    padding: 50px 0;
-    text-align: center;
+  .fact-success-section .card {
+    transition: transform 0.3s ease;
   }
 
-  .counter-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .counter-column {
-    flex: 1 1 200px;
-    max-width: 25%;
-    padding: 10px;
-  }
-
-  .counter-card {
-    padding: 20px;
-    min-height: 220px;
-    border-radius: 8px;
-    color: white;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .counter-card .fa {
-    font-size: 60px;
-    margin-bottom: 10px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .counter-column {
-      max-width: 50%;
-    }
-  }
-
-  @media screen and (max-width: 480px) {
-    .counter-column {
-      max-width: 100%;
-    }
+  .fact-success-section .card:hover {
+    transform: translateY(-5px);
   }
 </style>
 
-<div class="counter-cards-wrapper">
-  <div class="counter-row">
-    {% for block in section.blocks %}
-      <div class="counter-column">
-        <div class="counter-card" style="background: {{ block.settings.background }};">
-         <span class="counter-emoji">{{ block.settings.emoji }}</span>
-          <h3 id="counter{{ forloop.index }}" class="counter" style="color: #fff">0 +</h3>
-          <p>{{ block.settings.title }}</p>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-</div>
-
-<script>
-  function startCounting(id, end, interval = 50) {
-    let current = 0;
-    const element = document.getElementById(id);
-    if (!element) return;
-
-    const timer = setInterval(() => {
-      element.textContent = current + " +";
-      current++;
-      if (current > end) clearInterval(timer);
-    }, interval);
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    {% for block in section.blocks %}
-      startCounting("counter{{ forloop.index }}", {{ block.settings.end_value }});
-    {% endfor %}
-  });
-</script>
-
-
 {% schema %}
 {
-  "name": "Counter Cards",
-  "max_blocks": 4,
+  "name": "Fact Success Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Our Success"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "We have a proven track record of success."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left Image"
+    }
+  ],
   "blocks": [
     {
-      "type": "card",
-      "name": "Counter Card",
+      "type": "stat",
+      "name": "Stat Block",
       "settings": [
         {
           "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Partners"
-        },
-        {
-          "type": "number",
-          "id": "end_value",
-          "label": "Counter End Value",
-          "default": 100
+          "id": "stat",
+          "label": "Statistic",
+          "default": "60"
         },
         {
           "type": "text",
-          "id": "emoji",
-          "label": "Emoji",
-          "default": "🤝"
-        },
-        {
-          "type": "color_background",
-          "id": "background",
-          "label": "Card Background Gradient",
-          "default": "linear-gradient(313deg, rgba(2,0,36,1) 82%, rgba(2,165,224,1) 100%)"
+          "id": "label",
+          "label": "Label",
+          "default": "Finished Projects"
         }
       ]
     }
   ],
+  "max_blocks": 4,
   "presets": [
     {
-      "name": "Pwc Counter Cards",
+      "name": "Fact Success Section",
       "blocks": [
-        { "type": "card" },
-        { "type": "card" },
-        { "type": "card" },
-        { "type": "card" }
+        {
+          "type": "stat",
+          "settings": {
+            "stat": "60",
+            "label": "Finished Projects"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat": "18k+",
+            "label": "Issues Solved"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat": "10k+",
+            "label": "Happy Customers"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "stat": "78",
+            "label": "Awwwards"
+          }
+        }
       ]
     }
   ]
