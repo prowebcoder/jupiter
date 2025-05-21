@@ -69,7 +69,7 @@
           "settings": {
             "title": "Partners",
             "end_value": 99,
-            "icon_class": "fa-use",
+            "icon_class": "😀",
             "icon_color": "#ffff00",
             "background": "linear-gradient(313deg, rgba(2, 0, 36, 1) 82%, rgba(2, 165, 224, 1) 100%)"
           }
