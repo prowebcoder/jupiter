@@ -60,10 +60,64 @@
         "image_width": 10,
         "speed": 12
       }
+    },
+    "pwc_counter_text_zBjKcn": {
+      "type": "pwc-counter-text",
+      "blocks": {
+        "card_A4b6yc": {
+          "type": "card",
+          "settings": {
+            "title": "Partners",
+            "end_value": 99,
+            "icon_class": "fa-use",
+            "icon_color": "#ffff00",
+            "background": "linear-gradient(313deg, rgba(2, 0, 36, 1) 82%, rgba(2, 165, 224, 1) 100%)"
+          }
+        },
+        "card_9Pxa63": {
+          "type": "card",
+          "settings": {
+            "title": "Partners",
+            "end_value": 100,
+            "icon_class": "fa-user",
+            "icon_color": "#6495ed",
+            "background": "linear-gradient(313deg, rgba(2,0,36,1) 82%, rgba(2,165,224,1) 100%)"
+          }
+        },
+        "card_8YVxnE": {
+          "type": "card",
+          "settings": {
+            "title": "Partners",
+            "end_value": 100,
+            "icon_class": "fa-user",
+            "icon_color": "#6495ed",
+            "background": "linear-gradient(313deg, rgba(2,0,36,1) 82%, rgba(2,165,224,1) 100%)"
+          }
+        },
+        "card_miXK8E": {
+          "type": "card",
+          "settings": {
+            "title": "Partners",
+            "end_value": 100,
+            "icon_class": "fa-user",
+            "icon_color": "#6495ed",
+            "background": "linear-gradient(313deg, rgba(2,0,36,1) 82%, rgba(2,165,224,1) 100%)"
+          }
+        }
+      },
+      "block_order": [
+        "card_A4b6yc",
+        "card_9Pxa63",
+        "card_8YVxnE",
+        "card_miXK8E"
+      ],
+      "name": "Pwc Counter Cards",
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "pwc_marquee_1_MiwcCR"
+    "pwc_marquee_1_MiwcCR",
+    "pwc_counter_text_zBjKcn"
   ]
 }
