@@ -182,7 +182,7 @@
           src="{{ plan.image | image_url }}"
           alt=""
           class="pc-pricing-table__img"
-          style="width: {{ section.settings.image_width }}px; height: auto;"
+          style="width: {{ plan.image_width }}px; height: auto;
         />
       {% endif %}
       <h3 class="pc-pricing-table__title">{{ plan.title }}</h3>
@@ -210,8 +210,6 @@
 </ul>
 </div>
 </div>
-
-
 
 {% schema %}
 {
