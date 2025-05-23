@@ -179,42 +179,6 @@
     
   }
 
-  {{ sec_id }} .pc-pricing-table__title {
-  color: {{ plan.title_color }};
-   font-weight: {{ plan.font_weight }};
-    font-style: {{ plan.font_style }};
-    letter-spacing: {{ plan.letter_spacing }}px;
-    text-decoration: {{ plan.text_decoration }};
-    text-decoration-color: {{ plan.text_decoration_color }};
-    padding-top: {{ plan.padding_top }}px;
-    padding-bottom: {{ plan.padding_bottom }}px;
-    font-size:
-      {% case plan.text_size %}
-        {% when 'small' %}14px
-        {% when 'medium' %}18px
-        {% when 'large' %}24px
-        {% else %}16px
-      {% endcase %};
-  }
-
-  {{ sec_id }} .pc-pricing-table__tagline {
-    color: {{ plan.tagline_text_color }};
-    text-align: {{ plan.tagline_text_align }};
-   font-weight: {{ plan.font_weight }};
-    font-style: {{ plan.tagline_font_style }};
-    letter-spacing: {{ plan.tagline_letter_spacing }}px;
-    text-decoration: {{ plan.tagline_text_decoration }};
-    text-decoration-color: {{ plan.tagline_text_decoration_color}} !important;
-    padding-top: {{ plan.tagline_padding_top }}px;
-    padding-bottom: {{ plan.tagline_padding_bottom }}px;
-    font-size:
-      {% case plan.tagline_text_size %}
-        {% when 'small' %}14px
-        {% when 'medium' %}18px
-        {% when 'large' %}24px
-        {% else %}16px
-      {% endcase %};
-  }
 
   
   
@@ -241,13 +205,44 @@
       {% endif %}
 
       <h3 class="pc-pricing-table__title"
-        style=""
+        style="
+    color: {{ plan.title_color }};
+   font-weight: {{ plan.font_weight }};
+    font-style: {{ plan.font_style }};
+    letter-spacing: {{ plan.letter_spacing }}px;
+    text-decoration: {{ plan.text_decoration }};
+    text-decoration-color: {{ plan.text_decoration_color }};
+    padding-top: {{ plan.padding_top }}px;
+    padding-bottom: {{ plan.padding_bottom }}px;
+    font-size:
+      {% case plan.text_size %}
+        {% when 'small' %}14px
+        {% when 'medium' %}18px
+        {% when 'large' %}24px
+        {% else %}16px
+      {% endcase %};
+  "
         >{{ plan.title }}</h3>
   
       <p class="pc-pricing-table__description">
         <span class="pc-pricing-table__tagline"
           style="
-    
+    color: {{ plan.tagline_text_color }};
+    text-align: {{ plan.tagline_text_align }};
+   font-weight: {{ plan.font_weight }};
+    font-style: {{ plan.tagline_font_style }};
+    letter-spacing: {{ plan.tagline_letter_spacing }}px;
+    text-decoration: {{ plan.tagline_text_decoration }};
+    text-decoration-color: {{ plan.tagline_text_decoration_color}} !important;
+    padding-top: {{ plan.tagline_padding_top }}px;
+    padding-bottom: {{ plan.tagline_padding_bottom }}px;
+    font-size:
+      {% case plan.tagline_text_size %}
+        {% when 'small' %}14px
+        {% when 'medium' %}18px
+        {% when 'large' %}24px
+        {% else %}16px
+      {% endcase %};
   ">{{ plan.tagline }}</span>
         
     {% assign price_font_size = '' %}
