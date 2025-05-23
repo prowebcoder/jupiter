@@ -304,7 +304,26 @@
         {% assign included = plan.included_items | split: ',' %}
         {% for item in included %}
           {% assign item_trimmed = item | strip %}
-          <li class="pc-pricing-table__product"><a href="#">{{ item_trimmed }}</a></li>
+           <li class="pc-pricing-table__product">
+      <a href="#"
+         style="
+           color: {{ section.settings.included_items_title_color }};
+           font-size: {% case section.settings.included_items_text_size %}
+                        {% when 'small' %}14px
+                        {% when 'medium' %}16px
+                        {% when 'large' %}18px
+                      {% endcase %};
+           text-align: {{ section.settings.included_items_text_align }};
+           font-weight: {{ section.settings.included_items_font_weight }};
+           font-style: {{ section.settings.included_items_font_style }};
+           letter-spacing: {{ section.settings.included_items_letter_spacing }}px;
+           text-decoration: {{ section.settings.included_items_text_decoration }};
+           padding-top: {{ section.settings.included_items_padding_top }}px;
+           padding-bottom: {{ section.settings.included_items_padding_bottom }}px;
+         ">
+        {{ item_trimmed }}
+      </a>
+    </li>
         {% endfor %}
 
         {% assign excluded = plan.excluded_items | split: ',' %}
@@ -1281,6 +1300,184 @@
           "label": "Included Items (comma-separated)",
           "default": "Included item 1,Included item 2"
         },
+        {
+      "type": "color",
+      "id": "included_items_title_color",
+      "label": "Text Color",
+      "default": "#fff"
+    },
+    {
+      "type": "select",
+      "id": "included_items_text_size",
+      "label": "Text Size",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "small"
+    },
+    {
+      "type": "select",
+      "id": "included_items_text_align",
+      "label": "Text Alignment",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "included_items_font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        },
+        {
+          "value": "bolder",
+          "label": "Bolder"
+        },
+        {
+          "value": "lighter",
+          "label": "Lighter"
+        },
+        {
+          "value": "100",
+          "label": "100"
+        },
+        {
+          "value": "200",
+          "label": "200"
+        },
+        {
+          "value": "300",
+          "label": "300"
+        },
+        {
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "value": "900",
+          "label": "900"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "included_items_font_style",
+      "label": "Font style",
+      "options": [
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "italic",
+          "label": "Italic"
+        },
+        {
+          "value": "oblique",
+          "label": "Oblique"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "included_items_letter_spacing",
+      "min": 0,
+      "max": 10,
+      "step": 0.5,
+      "unit": "px",
+      "label": "Letter spacing",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "included_items_text_decoration",
+      "label": "Text Decoration",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "underline",
+          "label": "Underline"
+        },
+        {
+          "value": "overline",
+          "label": "Overline"
+        },
+        {
+          "value": "line-through",
+          "label": "Line Through"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "included_items_padding_top",
+      "label": "Padding Top (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "included_items_padding_bottom",
+      "label": "Padding Bottom (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
         {
           "type": "textarea",
           "id": "excluded_items",
