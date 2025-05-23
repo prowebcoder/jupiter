@@ -305,22 +305,7 @@
         {% for item in included %}
           {% assign item_trimmed = item | strip %}
            <li class="pc-pricing-table__product">
-      <a href="#"
-         style="
-           color: {{ section.settings.included_items_title_color }};
-           font-size: {% case section.settings.included_items_text_size %}
-                        {% when 'small' %}14px
-                        {% when 'medium' %}16px
-                        {% when 'large' %}18px
-                      {% endcase %};
-           text-align: {{ section.settings.included_items_text_align }};
-           font-weight: {{ section.settings.included_items_font_weight }};
-           font-style: {{ section.settings.included_items_font_style }};
-           letter-spacing: {{ section.settings.included_items_letter_spacing }}px;
-           text-decoration: {{ section.settings.included_items_text_decoration }};
-           padding-top: {{ section.settings.included_items_padding_top }}px;
-           padding-bottom: {{ section.settings.included_items_padding_bottom }}px;
-         ">
+      <a href="#">
         {{ item_trimmed }}
       </a>
     </li>
@@ -347,7 +332,7 @@
   "blocks": [
     {
       "type": "image",
-      "name": "image",
+      "name": "Image",
       "settings": [
         {
           "type": "image_picker",
@@ -355,15 +340,15 @@
           "label": "Plan Image"
         },
         {
-  "type": "range",
-  "id": "image_width",
-  "min": 50,
-  "max": 200,
-  "step": 10,
-  "unit": "px",
-  "default": 50,
-  "label": "Image Width (px)"
-},
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 200,
+          "step": 10,
+          "unit": "px",
+          "default": 50,
+          "label": "Image Width (px)"
+        },
         {
           "type": "text",
           "id": "title",
@@ -371,169 +356,100 @@
           "default": "Package Title"
         },
         {
-      "type": "color",
-      "id": "title_color",
-      "label": "Text Color",
-      "default": "#000"
-    },
-    {
-      "type": "select",
-      "id": "text_size",
-      "label": "Text Size",
-      "options": [
-        {
-          "value": "small",
-          "label": "Small"
+          "type": "color",
+          "id": "title_color",
+          "label": "Text Color",
+          "default": "#000"
         },
         {
-          "value": "medium",
-          "label": "Medium"
+          "type": "select",
+          "id": "text_size",
+          "label": "Text Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "small"
         },
         {
-          "value": "large",
-          "label": "Large"
-        }
-      ],
-      "default": "small"
-    },
-    {
-      "type": "select",
-      "id": "font_weight",
-      "label": "Font weight",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
+          "type": "select",
+          "id": "font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "bolder", "label": "Bolder" },
+            { "value": "lighter", "label": "Lighter" },
+            { "value": "100", "label": "100" },
+            { "value": "200", "label": "200" },
+            { "value": "300", "label": "300" },
+            { "value": "400", "label": "400" },
+            { "value": "500", "label": "500" },
+            { "value": "600", "label": "600" },
+            { "value": "700", "label": "700" },
+            { "value": "800", "label": "800" },
+            { "value": "900", "label": "900" }
+          ],
+          "default": "normal"
         },
         {
-          "value": "bold",
-          "label": "Bold"
+          "type": "select",
+          "id": "font_style",
+          "label": "Font Style",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "italic", "label": "Italic" },
+            { "value": "oblique", "label": "Oblique" }
+          ],
+          "default": "normal"
         },
         {
-          "value": "bolder",
-          "label": "Bolder"
+          "type": "range",
+          "id": "letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter Spacing",
+          "default": 0
         },
         {
-          "value": "lighter",
-          "label": "Lighter"
+          "type": "select",
+          "id": "text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "underline", "label": "Underline" },
+            { "value": "overline", "label": "Overline" },
+            { "value": "line-through", "label": "Line Through" }
+          ],
+          "default": "none"
         },
         {
-          "value": "100",
-          "label": "100"
+          "type": "color",
+          "id": "text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#ffffff"
         },
         {
-          "value": "200",
-          "label": "200"
+          "type": "range",
+          "id": "padding_top",
+          "label": "Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
         {
-          "value": "300",
-          "label": "300"
+          "type": "range",
+          "id": "padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
-        {
-          "value": "400",
-          "label": "400"
-        },
-        {
-          "value": "500",
-          "label": "500"
-        },
-        {
-          "value": "600",
-          "label": "600"
-        },
-        {
-          "value": "700",
-          "label": "700"
-        },
-        {
-          "value": "800",
-          "label": "800"
-        },
-        {
-          "value": "900",
-          "label": "900"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "select",
-      "id": "font_style",
-      "label": "Font style",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
-        },
-        {
-          "value": "italic",
-          "label": "Italic"
-        },
-        {
-          "value": "oblique",
-          "label": "Oblique"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "range",
-      "id": "letter_spacing",
-      "min": 0,
-      "max": 10,
-      "step": 0.5,
-      "unit": "px",
-      "label": "Letter spacing",
-      "default": 0
-    },
-    {
-      "type": "select",
-      "id": "text_decoration",
-      "label": "Text Decoration",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "underline",
-          "label": "Underline"
-        },
-        {
-          "value": "overline",
-          "label": "Overline"
-        },
-        {
-          "value": "line-through",
-          "label": "Line Through"
-        }
-      ],
-      "default": "none"
-    },
-        {
-  "type": "color",
-  "id": "text_decoration_color",
-  "label": "Text Decoration Color",
-  "default": "#ffffff"
-},
-    {
-      "type": "range",
-      "id": "padding_top",
-      "label": "Padding Top (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "label": "Padding Bottom (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
         {
           "type": "text",
           "id": "tagline",
@@ -541,189 +457,111 @@
           "default": "The tagline goes here"
         },
         {
-      "type": "color",
-      "id": "tagline_text_color",
-      "label": "Text Color",
-      "default": "#000"
-    },
-    {
-      "type": "select",
-      "id": "tagline_text_size",
-      "label": "Text Size",
-      "options": [
-        {
-          "value": "small",
-          "label": "Small"
+          "type": "color",
+          "id": "tagline_text_color",
+          "label": "Text Color",
+          "default": "#000"
         },
         {
-          "value": "medium",
-          "label": "Medium"
+          "type": "select",
+          "id": "tagline_text_size",
+          "label": "Text Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "small"
         },
         {
-          "value": "large",
-          "label": "Large"
-        }
-      ],
-      "default": "small"
-    },
-    {
-      "type": "select",
-      "id": "tagline_text_align",
-      "label": "Text Alignment",
-      "default": "center",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
+          "type": "select",
+          "id": "tagline_text_align",
+          "label": "Text Alignment",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
         },
         {
-          "value": "center",
-          "label": "Center"
+          "type": "select",
+          "id": "tagline_font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "bolder", "label": "Bolder" },
+            { "value": "lighter", "label": "Lighter" },
+            { "value": "100", "label": "100" },
+            { "value": "200", "label": "200" },
+            { "value": "300", "label": "300" },
+            { "value": "400", "label": "400" },
+            { "value": "500", "label": "500" },
+            { "value": "600", "label": "600" },
+            { "value": "700", "label": "700" },
+            { "value": "800", "label": "800" },
+            { "value": "900", "label": "900" }
+          ],
+          "default": "normal"
         },
         {
-          "value": "right",
-          "label": "Right"
-        }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "tagline_font_weight",
-      "label": "Font weight",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
+          "type": "select",
+          "id": "tagline_font_style",
+          "label": "Font Style",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "italic", "label": "Italic" },
+            { "value": "oblique", "label": "Oblique" }
+          ],
+          "default": "normal"
         },
         {
-          "value": "bold",
-          "label": "Bold"
+          "type": "range",
+          "id": "tagline_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter Spacing",
+          "default": 0
         },
         {
-          "value": "bolder",
-          "label": "Bolder"
+          "type": "select",
+          "id": "tagline_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "underline", "label": "Underline" },
+            { "value": "overline", "label": "Overline" },
+            { "value": "line-through", "label": "Line Through" }
+          ],
+          "default": "none"
         },
         {
-          "value": "lighter",
-          "label": "Lighter"
+          "type": "color",
+          "id": "tagline_text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#ffffff"
         },
         {
-          "value": "100",
-          "label": "100"
+          "type": "range",
+          "id": "tagline_padding_top",
+          "label": "Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
         {
-          "value": "200",
-          "label": "200"
+          "type": "range",
+          "id": "tagline_padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
-        {
-          "value": "300",
-          "label": "300"
-        },
-        {
-          "value": "400",
-          "label": "400"
-        },
-        {
-          "value": "500",
-          "label": "500"
-        },
-        {
-          "value": "600",
-          "label": "600"
-        },
-        {
-          "value": "700",
-          "label": "700"
-        },
-        {
-          "value": "800",
-          "label": "800"
-        },
-        {
-          "value": "900",
-          "label": "900"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "select",
-      "id": "tagline_font_style",
-      "label": "Font style",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
-        },
-        {
-          "value": "italic",
-          "label": "Italic"
-        },
-        {
-          "value": "oblique",
-          "label": "Oblique"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "range",
-      "id": "tagline_letter_spacing",
-      "min": 0,
-      "max": 10,
-      "step": 0.5,
-      "unit": "px",
-      "label": "Letter spacing",
-      "default": 0
-    },
-    {
-      "type": "select",
-      "id": "tagline_text_decoration",
-      "label": "Text Decoration",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "underline",
-          "label": "Underline"
-        },
-        {
-          "value": "overline",
-          "label": "Overline"
-        },
-        {
-          "value": "line-through",
-          "label": "Line Through"
-        }
-      ],
-      "default": "none"
-    },
-     {
-  "type": "color",
-  "id": "tagline_text_decoration_color",
-  "label": "Text Decoration Color",
-  "default": "#ffffff"
-},
-    {
-      "type": "range",
-      "id": "tagline_padding_top",
-      "label": "Padding Top (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
-    {
-      "type": "range",
-      "id": "tagline_padding_bottom",
-      "label": "Padding Bottom (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
         {
           "type": "text",
           "id": "price",
@@ -731,189 +569,111 @@
           "default": "800"
         },
         {
-      "type": "color",
-      "id": "price_title_color",
-      "label": "Text Color",
-      "default": "#fff"
-    },
-    {
-      "type": "select",
-      "id": "price_text_size",
-      "label": "Text Size",
-      "options": [
-        {
-          "value": "small",
-          "label": "Small"
+          "type": "color",
+          "id": "price_title_color",
+          "label": "Text Color",
+          "default": "#fff"
         },
         {
-          "value": "medium",
-          "label": "Medium"
+          "type": "select",
+          "id": "price_text_size",
+          "label": "Text Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "small"
         },
         {
-          "value": "large",
-          "label": "Large"
-        }
-      ],
-      "default": "small"
-    },
-    {
-      "type": "select",
-      "id": "price_text_align",
-      "label": "Text Alignment",
-      "default": "center",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
+          "type": "select",
+          "id": "price_text_align",
+          "label": "Text Alignment",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
         },
         {
-          "value": "center",
-          "label": "Center"
+          "type": "select",
+          "id": "price_font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "bolder", "label": "Bolder" },
+            { "value": "lighter", "label": "Lighter" },
+            { "value": "100", "label": "100" },
+            { "value": "200", "label": "200" },
+            { "value": "300", "label": "300" },
+            { "value": "400", "label": "400" },
+            { "value": "500", "label": "500" },
+            { "value": "600", "label": "600" },
+            { "value": "700", "label": "700" },
+            { "value": "800", "label": "800" },
+            { "value": "900", "label": "900" }
+          ],
+          "default": "normal"
         },
         {
-          "value": "right",
-          "label": "Right"
-        }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "price_font_weight",
-      "label": "Font weight",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
+          "type": "select",
+          "id": "price_font_style",
+          "label": "Font Style",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "italic", "label": "Italic" },
+            { "value": "oblique", "label": "Oblique" }
+          ],
+          "default": "normal"
         },
         {
-          "value": "bold",
-          "label": "Bold"
+          "type": "range",
+          "id": "price_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter Spacing",
+          "default": 0
         },
         {
-          "value": "bolder",
-          "label": "Bolder"
+          "type": "select",
+          "id": "price_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "underline", "label": "Underline" },
+            { "value": "overline", "label": "Overline" },
+            { "value": "line-through", "label": "Line Through" }
+          ],
+          "default": "none"
         },
         {
-          "value": "lighter",
-          "label": "Lighter"
+          "type": "color",
+          "id": "price_text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#ffffff"
         },
         {
-          "value": "100",
-          "label": "100"
+          "type": "range",
+          "id": "price_padding_top",
+          "label": "Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
         {
-          "value": "200",
-          "label": "200"
+          "type": "range",
+          "id": "price_padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
-        {
-          "value": "300",
-          "label": "300"
-        },
-        {
-          "value": "400",
-          "label": "400"
-        },
-        {
-          "value": "500",
-          "label": "500"
-        },
-        {
-          "value": "600",
-          "label": "600"
-        },
-        {
-          "value": "700",
-          "label": "700"
-        },
-        {
-          "value": "800",
-          "label": "800"
-        },
-        {
-          "value": "900",
-          "label": "900"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "select",
-      "id": "price_font_style",
-      "label": "Font style",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
-        },
-        {
-          "value": "italic",
-          "label": "Italic"
-        },
-        {
-          "value": "oblique",
-          "label": "Oblique"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "range",
-      "id": "price_letter_spacing",
-      "min": 0,
-      "max": 10,
-      "step": 0.5,
-      "unit": "px",
-      "label": "Letter spacing",
-      "default": 0
-    },
-    {
-      "type": "select",
-      "id": "price_text_decoration",
-      "label": "Text Decoration",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "underline",
-          "label": "Underline"
-        },
-        {
-          "value": "overline",
-          "label": "Overline"
-        },
-        {
-          "value": "line-through",
-          "label": "Line Through"
-        }
-      ],
-      "default": "none"
-    },
-        {
-  "type": "color",
-  "id": "price_text_decoration_color",
-  "label": "Text Decoration Color",
-  "default": "#ffffff"
-},
-    {
-      "type": "range",
-      "id": "price_padding_top",
-      "label": "Padding Top (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
-    {
-      "type": "range",
-      "id": "price_padding_bottom",
-      "label": "Padding Bottom (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
         {
           "type": "text",
           "id": "label",
@@ -921,189 +681,111 @@
           "default": "900 is the real price"
         },
         {
-      "type": "color",
-      "id": "label_title_color",
-      "label": "Text Color",
-      "default": "#000"
-    },
-    {
-      "type": "select",
-      "id": "label_text_size",
-      "label": "Text Size",
-      "options": [
-        {
-          "value": "small",
-          "label": "Small"
+          "type": "color",
+          "id": "label_title_color",
+          "label": "Text Color",
+          "default": "#000"
         },
         {
-          "value": "medium",
-          "label": "Medium"
+          "type": "select",
+          "id": "label_text_size",
+          "label": "Text Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "small"
         },
         {
-          "value": "large",
-          "label": "Large"
-        }
-      ],
-      "default": "small"
-    },
-    {
-      "type": "select",
-      "id": "label_text_align",
-      "label": "Text Alignment",
-      "default": "center",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
+          "type": "select",
+          "id": "label_text_align",
+          "label": "Text Alignment",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
         },
         {
-          "value": "center",
-          "label": "Center"
+          "type": "select",
+          "id": "label_font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "bolder", "label": "Bolder" },
+            { "value": "lighter", "label": "Lighter" },
+            { "value": "100", "label": "100" },
+            { "value": "200", "label": "200" },
+            { "value": "300", "label": "300" },
+            { "value": "400", "label": "400" },
+            { "value": "500", "label": "500" },
+            { "value": "600", "label": "600" },
+            { "value": "700", "label": "700" },
+            { "value": "800", "label": "800" },
+            { "value": "900", "label": "900" }
+          ],
+          "default": "normal"
         },
         {
-          "value": "right",
-          "label": "Right"
-        }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "label_font_weight",
-      "label": "Font weight",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
+          "type": "select",
+          "id": "label_font_style",
+          "label": "Font Style",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "italic", "label": "Italic" },
+            { "value": "oblique", "label": "Oblique" }
+          ],
+          "default": "normal"
         },
         {
-          "value": "bold",
-          "label": "Bold"
+          "type": "range",
+          "id": "label_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter Spacing",
+          "default": 0
         },
         {
-          "value": "bolder",
-          "label": "Bolder"
+          "type": "select",
+          "id": "label_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "underline", "label": "Underline" },
+            { "value": "overline", "label": "Overline" },
+            { "value": "line-through", "label": "Line Through" }
+          ],
+          "default": "none"
         },
         {
-          "value": "lighter",
-          "label": "Lighter"
+          "type": "color",
+          "id": "label_text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#ffffff"
         },
         {
-          "value": "100",
-          "label": "100"
+          "type": "range",
+          "id": "label_padding_top",
+          "label": "Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
         {
-          "value": "200",
-          "label": "200"
+          "type": "range",
+          "id": "label_padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
-        {
-          "value": "300",
-          "label": "300"
-        },
-        {
-          "value": "400",
-          "label": "400"
-        },
-        {
-          "value": "500",
-          "label": "500"
-        },
-        {
-          "value": "600",
-          "label": "600"
-        },
-        {
-          "value": "700",
-          "label": "700"
-        },
-        {
-          "value": "800",
-          "label": "800"
-        },
-        {
-          "value": "900",
-          "label": "900"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "select",
-      "id": "label_font_style",
-      "label": "Font style",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
-        },
-        {
-          "value": "italic",
-          "label": "Italic"
-        },
-        {
-          "value": "oblique",
-          "label": "Oblique"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "range",
-      "id": "label_letter_spacing",
-      "min": 0,
-      "max": 10,
-      "step": 0.5,
-      "unit": "px",
-      "label": "Letter spacing",
-      "default": 0
-    },
-    {
-      "type": "select",
-      "id": "label_text_decoration",
-      "label": "Text Decoration",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "underline",
-          "label": "Underline"
-        },
-        {
-          "value": "overline",
-          "label": "Overline"
-        },
-        {
-          "value": "line-through",
-          "label": "Line Through"
-        }
-      ],
-      "default": "none"
-    },
-        {
-  "type": "color",
-  "id": "label_text_decoration_color",
-  "label": "Text Decoration Color",
-  "default": "#ffffff"
-},
-    {
-      "type": "range",
-      "id": "label_padding_top",
-      "label": "Padding Top (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
-    {
-      "type": "range",
-      "id": "label_padding_bottom",
-      "label": "Padding Bottom (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
         {
           "type": "text",
           "id": "save",
@@ -1111,189 +793,111 @@
           "default": "You save 100"
         },
         {
-      "type": "color",
-      "id": "save_title_color",
-      "label": "Text Color",
-      "default": "#fff"
-    },
-    {
-      "type": "select",
-      "id": "save_text_size",
-      "label": "Text Size",
-      "options": [
-        {
-          "value": "small",
-          "label": "Small"
+          "type": "color",
+          "id": "save_title_color",
+          "label": "Text Color",
+          "default": "#fff"
         },
         {
-          "value": "medium",
-          "label": "Medium"
+          "type": "select",
+          "id": "save_text_size",
+          "label": "Text Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "small"
         },
         {
-          "value": "large",
-          "label": "Large"
-        }
-      ],
-      "default": "small"
-    },
-    {
-      "type": "select",
-      "id": "save_text_align",
-      "label": "Text Alignment",
-      "default": "center",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
+          "type": "select",
+          "id": "save_text_align",
+          "label": "Text Alignment",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
         },
         {
-          "value": "center",
-          "label": "Center"
+          "type": "select",
+          "id": "save_font_weight",
+          "label": "Font Weight",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "bolder", "label": "Bolder" },
+            { "value": "lighter", "label": "Lighter" },
+            { "value": "100", "label": "100" },
+            { "value": "200", "label": "200" },
+            { "value": "300", "label": "300" },
+            { "value": "400", "label": "400" },
+            { "value": "500", "label": "500" },
+            { "value": "600", "label": "600" },
+            { "value": "700", "label": "700" },
+            { "value": "800", "label": "800" },
+            { "value": "900", "label": "900" }
+          ],
+          "default": "normal"
         },
         {
-          "value": "right",
-          "label": "Right"
-        }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "save_font_weight",
-      "label": "Font weight",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
+          "type": "select",
+          "id": "save_font_style",
+          "label": "Font Style",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "italic", "label": "Italic" },
+            { "value": "oblique", "label": "Oblique" }
+          ],
+          "default": "normal"
         },
         {
-          "value": "bold",
-          "label": "Bold"
+          "type": "range",
+          "id": "save_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter Spacing",
+          "default": 0
         },
         {
-          "value": "bolder",
-          "label": "Bolder"
+          "type": "select",
+          "id": "save_text_decoration",
+          "label": "Text Decoration",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "underline", "label": "Underline" },
+            { "value": "overline", "label": "Overline" },
+            { "value": "line-through", "label": "Line Through" }
+          ],
+          "default": "none"
         },
         {
-          "value": "lighter",
-          "label": "Lighter"
+          "type": "color",
+          "id": "save_text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#ffffff"
         },
         {
-          "value": "100",
-          "label": "100"
+          "type": "range",
+          "id": "save_padding_top",
+          "label": "Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
         {
-          "value": "200",
-          "label": "200"
+          "type": "range",
+          "id": "save_padding_bottom",
+          "label": "Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
-        {
-          "value": "300",
-          "label": "300"
-        },
-        {
-          "value": "400",
-          "label": "400"
-        },
-        {
-          "value": "500",
-          "label": "500"
-        },
-        {
-          "value": "600",
-          "label": "600"
-        },
-        {
-          "value": "700",
-          "label": "700"
-        },
-        {
-          "value": "800",
-          "label": "800"
-        },
-        {
-          "value": "900",
-          "label": "900"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "select",
-      "id": "save_font_style",
-      "label": "Font style",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
-        },
-        {
-          "value": "italic",
-          "label": "Italic"
-        },
-        {
-          "value": "oblique",
-          "label": "Oblique"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "range",
-      "id": "save_letter_spacing",
-      "min": 0,
-      "max": 10,
-      "step": 0.5,
-      "unit": "px",
-      "label": "Letter spacing",
-      "default": 0
-    },
-    {
-      "type": "select",
-      "id": "save_text_decoration",
-      "label": "Text Decoration",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "underline",
-          "label": "Underline"
-        },
-        {
-          "value": "overline",
-          "label": "Overline"
-        },
-        {
-          "value": "line-through",
-          "label": "Line Through"
-        }
-      ],
-      "default": "none"
-    },
-      {
-  "type": "color",
-  "id": "save_text_decoration_color",
-  "label": "Text Decoration Color",
-  "default": "#ffffff"
-},
-    {
-      "type": "range",
-      "id": "save_padding_top",
-      "label": "Padding Top (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
-    {
-      "type": "range",
-      "id": "save_padding_bottom",
-      "label": "Padding Bottom (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
         {
           "type": "textarea",
           "id": "included_items",
@@ -1301,183 +905,111 @@
           "default": "Included item 1,Included item 2"
         },
         {
-      "type": "color",
-      "id": "included_items_title_color",
-      "label": "Text Color",
-      "default": "#fff"
-    },
-    {
-      "type": "select",
-      "id": "included_items_text_size",
-      "label": "Text Size",
-      "options": [
-        {
-          "value": "small",
-          "label": "Small"
+          "type": "color",
+          "id": "included_items_title_color",
+          "label": "Included Items Text Color",
+          "default": "#fff"
         },
         {
-          "value": "medium",
-          "label": "Medium"
+          "type": "select",
+          "id": "included_items_text_size",
+          "label": "Included Items Text Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "small"
         },
         {
-          "value": "large",
-          "label": "Large"
-        }
-      ],
-      "default": "small"
-    },
-    {
-      "type": "select",
-      "id": "included_items_text_align",
-      "label": "Text Alignment",
-      "default": "center",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
+          "type": "select",
+          "id": "included_items_text_align",
+          "label": "Included Items Text Alignment",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
         },
         {
-          "value": "center",
-          "label": "Center"
+          "type": "select",
+          "id": "included_items_font_weight",
+          "label": "Included Items Font Weight",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "bolder", "label": "Bolder" },
+            { "value": "lighter", "label": "Lighter" },
+            { "value": "100", "label": "100" },
+            { "value": "200", "label": "200" },
+            { "value": "300", "label": "300" },
+            { "value": "400", "label": "400" },
+            { "value": "500", "label": "500" },
+            { "value": "600", "label": "600" },
+            { "value": "700", "label": "700" },
+            { "value": "800", "label": "800" },
+            { "value": "900", "label": "900" }
+          ],
+          "default": "normal"
         },
         {
-          "value": "right",
-          "label": "Right"
-        }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "included_items_font_weight",
-      "label": "Font weight",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
+          "type": "select",
+          "id": "included_items_font_style",
+          "label": "Included Items Font Style",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "italic", "label": "Italic" },
+            { "value": "oblique", "label": "Oblique" }
+          ],
+          "default": "normal"
         },
         {
-          "value": "bold",
-          "label": "Bold"
+          "type": "range",
+          "id": "included_items_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Included Items Letter Spacing",
+          "default": 0
         },
         {
-          "value": "bolder",
-          "label": "Bolder"
+          "type": "select",
+          "id": "included_items_text_decoration",
+          "label": "Included Items Text Decoration",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "underline", "label": "Underline" },
+            { "value": "overline", "label": "Overline" },
+            { "value": "line-through", "label": "Line Through" }
+          ],
+          "default": "none"
         },
         {
-          "value": "lighter",
-          "label": "Lighter"
+          "type": "color",
+          "id": "included_items_text_decoration_color",
+          "label": "Included Items Text Decoration Color",
+          "default": "#ffffff"
         },
         {
-          "value": "100",
-          "label": "100"
+          "type": "range",
+          "id": "included_items_padding_top",
+          "label": "Included Items Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
         {
-          "value": "200",
-          "label": "200"
+          "type": "range",
+          "id": "included_items_padding_bottom",
+          "label": "Included Items Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
         },
-        {
-          "value": "300",
-          "label": "300"
-        },
-        {
-          "value": "400",
-          "label": "400"
-        },
-        {
-          "value": "500",
-          "label": "500"
-        },
-        {
-          "value": "600",
-          "label": "600"
-        },
-        {
-          "value": "700",
-          "label": "700"
-        },
-        {
-          "value": "800",
-          "label": "800"
-        },
-        {
-          "value": "900",
-          "label": "900"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "select",
-      "id": "included_items_font_style",
-      "label": "Font style",
-      "options": [
-        {
-          "value": "normal",
-          "label": "Normal"
-        },
-        {
-          "value": "italic",
-          "label": "Italic"
-        },
-        {
-          "value": "oblique",
-          "label": "Oblique"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "range",
-      "id": "included_items_letter_spacing",
-      "min": 0,
-      "max": 10,
-      "step": 0.5,
-      "unit": "px",
-      "label": "Letter spacing",
-      "default": 0
-    },
-    {
-      "type": "select",
-      "id": "included_items_text_decoration",
-      "label": "Text Decoration",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "underline",
-          "label": "Underline"
-        },
-        {
-          "value": "overline",
-          "label": "Overline"
-        },
-        {
-          "value": "line-through",
-          "label": "Line Through"
-        }
-      ],
-      "default": "none"
-    },
-    {
-      "type": "range",
-      "id": "included_items_padding_top",
-      "label": "Padding Top (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
-    {
-      "type": "range",
-      "id": "included_items_padding_bottom",
-      "label": "Padding Bottom (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
-    },
         {
           "type": "textarea",
           "id": "excluded_items",
@@ -1485,16 +1017,347 @@
           "default": "Excluded item 1,Excluded item 2"
         },
         {
-          "type": "text",
-          "id": "button_text",
-          "label": "Button Text",
-          "default": "Continue"
+          "type": "color",
+          "id": "excluded_items_title_color",
+          "label": "Excluded Items Text Color",
+          "default": "#fff"
         },
         {
-          "type": "checkbox",
-          "id": "popular",
-          "label": "Mark as Popular?",
-          "default": false
+          "type": "select",
+          "id": "excluded_items_text_size",
+          "label": "Excluded Items Text Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "excluded_items_text_align",
+          "label": "Excluded Items Text Alignment",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "excluded_items_font_weight",
+          "label": "Excluded Items Font Weight",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "bolder", "label": "Bolder" },
+            { "value": "lighter", "label": "Lighter" },
+            { "value": "100", "label": "100" },
+            { "value": "200", "label": "200" },
+            { "value": "300", "label": "300" },
+            { "value": "400", "label": "400" },
+            { "value": "500", "label": "500" },
+            { "value": "600", "label": "600" },
+            { "value": "700", "label": "700" },
+            { "value": "800", "label": "800" },
+            { "value": "900", "label": "900" }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "excluded_items_font_style",
+          "label": "Excluded Items Font Style",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "italic", "label": "Italic" },
+            { "value": "oblique", "label": "Oblique" }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "excluded_items_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Excluded Items Letter Spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "excluded_items_text_decoration",
+          "label": "Excluded Items Text Decoration",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "underline", "label": "Underline" },
+            { "value": "overline", "label": "Overline" },
+            { "value": "line-through", "label": "Line Through" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "excluded_items_text_decoration_color",
+          "label": "Excluded Items Text Decoration Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "excluded_items_padding_top",
+          "label": "Excluded Items Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "excluded_items_padding_bottom",
+          "label": "Excluded Items Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        }
+      ]
+    },
+    {
+      "type": "press_quote",
+      "name": "Press Quote",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "included_items",
+          "label": "Included Items (comma-separated)",
+          "default": "Included item 1,Included item 2"
+        },
+        {
+          "type": "color",
+          "id": "included_items_title_color",
+          "label": "Included Items Text Color",
+          "default": "#fff"
+        },
+        {
+          "type": "select",
+          "id": "included_items_text_size",
+          "label": "Included Items Text Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "included_items_text_align",
+          "label": "Included Items Text Alignment",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "included_items_font_weight",
+          "label": "Included Items Font Weight",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "bolder", "label": "Bolder" },
+            { "value": "lighter", "label": "Lighter" },
+            { "value": "100", "label": "100" },
+            { "value": "200", "label": "200" },
+            { "value": "300", "label": "300" },
+            { "value": "400", "label": "400" },
+            { "value": "500", "label": "500" },
+            { "value": "600", "label": "600" },
+            { "value": "700", "label": "700" },
+            { "value": "800", "label": "800" },
+            { "value": "900", "label": "900" }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "included_items_font_style",
+          "label": "Included Items Font Style",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "italic", "label": "Italic" },
+            { "value": "oblique", "label": "Oblique" }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "included_items_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Included Items Letter Spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "included_items_text_decoration",
+          "label": "Included Items Text Decoration",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "underline", "label": "Underline" },
+            { "value": "overline", "label": "Overline" },
+            { "value": "line-through", "label": "Line Through" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "included_items_text_decoration_color",
+          "label": "Included Items Text Decoration Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "included_items_padding_top",
+          "label": "Included Items Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "included_items_padding_bottom",
+          "label": "Included Items Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "textarea",
+          "id": "excluded_items",
+          "label": "Excluded Items (comma-separated)",
+          "default": "Excluded item 1,Excluded item 2"
+        },
+        {
+          "type": "color",
+          "id": "excluded_items_title_color",
+          "label": "Excluded Items Text Color",
+          "default": "#fff"
+        },
+        {
+          "type": "select",
+          "id": "excluded_items_text_size",
+          "label": "Excluded Items Text Size",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "excluded_items_text_align",
+          "label": "Excluded Items Text Alignment",
+          "default": "center",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "excluded_items_font_weight",
+          "label": "Excluded Items Font Weight",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "bold", "label": "Bold" },
+            { "value": "bolder", "label": "Bolder" },
+            { "value": "lighter", "label": "Lighter" },
+            { "value": "100", "label": "100" },
+            { "value": "200", "label": "200" },
+            { "value": "300", "label": "300" },
+            { "value": "400", "label": "400" },
+            { "value": "500", "label": "500" },
+            { "value": "600", "label": "600" },
+            { "value": "700", "label": "700" },
+            { "value": "800", "label": "800" },
+            { "value": "900", "label": "900" }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "excluded_items_font_style",
+          "label": "Excluded Items Font Style",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "italic", "label": "Italic" },
+            { "value": "oblique", "label": "Oblique" }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "excluded_items_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Excluded Items Letter Spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "excluded_items_text_decoration",
+          "label": "Excluded Items Text Decoration",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "underline", "label": "Underline" },
+            { "value": "overline", "label": "Overline" },
+            { "value": "line-through", "label": "Line Through" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "excluded_items_text_decoration_color",
+          "label": "Excluded Items Text Decoration Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "excluded_items_padding_top",
+          "label": "Excluded Items Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "excluded_items_padding_bottom",
+          "label": "Excluded Items Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Quote",
+          "default": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
         }
       ]
     }
