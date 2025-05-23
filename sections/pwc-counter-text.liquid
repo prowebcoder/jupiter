@@ -305,22 +305,7 @@
         {% for item in included %}
           {% assign item_trimmed = item | strip %}
            <li class="pc-pricing-table__product">
-      <a href="#"
-         style="
-           color: {{ section.settings.included_items_title_color }};
-           font-size: {% case section.settings.included_items_text_size %}
-                        {% when 'small' %}14px
-                        {% when 'medium' %}16px
-                        {% when 'large' %}18px
-                      {% endcase %};
-           text-align: {{ section.settings.included_items_text_align }};
-           font-weight: {{ section.settings.included_items_font_weight }};
-           font-style: {{ section.settings.included_items_font_style }};
-           letter-spacing: {{ section.settings.included_items_letter_spacing }}px;
-           text-decoration: {{ section.settings.included_items_text_decoration }};
-           padding-top: {{ section.settings.included_items_padding_top }}px;
-           padding-bottom: {{ section.settings.included_items_padding_bottom }}px;
-         ">
+      <a href="#">
         {{ item_trimmed }}
       </a>
     </li>
