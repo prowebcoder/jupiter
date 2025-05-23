@@ -162,7 +162,9 @@
       ],
       "name": "Pwc Pricing Table List",
       "settings": {
-        "background_color": "#ffffff"
+        "background_color": "#f3f3f3",
+        "padding_top": 15,
+        "padding_bottom": 0
       }
     }
   },
