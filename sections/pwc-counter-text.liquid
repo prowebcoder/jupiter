@@ -29,7 +29,7 @@
 
 .pc-pricing-table__item {
   display: flex;
-  max-height: 90%;
+  max-height: 70%;
   flex-direction: column;
   align-items: center;
   background-color: #fff;
@@ -192,6 +192,7 @@
         {% assign excluded = plan.excluded_items | split: ',' %}
         {% for item in excluded %}
           {% assign item_trimmed = item | strip %}
+          <li class="pc-pricing-table__product pc-pricing-table__product--excluded"><a href="#">{{ item_trimmed }}</a></li>
         {% endfor %}
       </ul>
       <a href="{{ plan.button_link }}" class="pc-pricing-table__button">{{ plan.button_text }}</a>
