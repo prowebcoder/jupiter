@@ -300,27 +300,53 @@
 
         
       </p>
-     <ul class="pc-pricing-table__products">
-  {%- assign included = block.settings.included_items | split: ',' -%}
-  {% for item in included %}
-    {% assign item_trimmed = item | strip %}
-    <li class="pc-pricing-table__product included">
-      <a href="#">
-        {{ item_trimmed }}
-      </a>
-    </li>
-  {% endfor %}
+  {% for block in section.blocks %}
+    {% assign text_color = block.settings.title_color %}
+    {% assign text_size = block.settings.text_size %}
+    {% assign text_align = block.settings.text_align %}
+    {% assign font_weight = block.settings.font_weight %}
+    {% assign font_style = block.settings.font_style %}
+    {% assign letter_spacing = block.settings.letter_spacing %}
+    {% assign text_decoration = block.settings.text_decoration %}
+    {% assign padding_top = block.settings.padding_top %}
+    {% assign padding_bottom = block.settings.padding_bottom %}
 
-  {%- assign excluded = block.settings.excluded_items | split: ',' -%}
-  {% for item in excluded %}
-    {% assign item_trimmed = item | strip %}
-    <li class="pc-pricing-table__product excluded">
-      <a href="#" class="excluded">
-        <s>{{ item_trimmed }}</s>
-      </a>
-    </li>
-  {% endfor %}
-</ul>
+  {% assign inline_style = "color: #{text_color}; text-align: #{text_align}; font-weight: #{font_weight}; font-style: #{font_style}; letter-spacing: #{letter_spacing}px; text-decoration: #{text_decoration}; padding-top: #{padding_top}px; padding-bottom: #{padding_bottom}px;" %}
+
+  {% comment %} Optional: Tailwind or class-based font sizing {% endcomment %}
+  {% assign font_size_class = '' %}
+  {% if text_size == 'small' %}
+    {% assign font_size_class = 'text-sm' %}
+  {% elsif text_size == 'medium' %}
+    {% assign font_size_class = 'text-base' %}
+  {% elsif text_size == 'large' %}
+    {% assign font_size_class = 'text-lg' %}
+  {% endif %}
+
+  <ul class="pc-pricing-table__products {{ font_size_class }}" style="{{ inline_style }}">
+    {%- assign included = block.settings.included_items | split: ',' -%}
+    {% for item in included %}
+      {% assign item_trimmed = item | strip %}
+      <li class="pc-pricing-table__product included">
+        <a href="#">
+          {{ item_trimmed }}
+        </a>
+      </li>
+    {% endfor %}
+
+    {%- assign excluded = block.settings.excluded_items | split: ',' -%}
+    {% for item in excluded %}
+      {% assign item_trimmed = item | strip %}
+      <li class="pc-pricing-table__product excluded">
+        <a href="#" class="excluded">
+          <s>{{ item_trimmed }}</s>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endfor %}
+
+
 
       <a href="https://mojtabaseyedi.com" class="pricing-table__button"
         style="
