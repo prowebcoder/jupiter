@@ -197,8 +197,8 @@
       {% endcase %};
   }
 
-  {{ sec_id }} .pc-pricing-table__description {
-     color: {{ plan.tagline_text_color }};
+  {{ sec_id }} .pc-pricing-table__tagline {
+    color: {{ plan.tagline_text_color }};
     text-align: {{ plan.tagline_text_align }};
    font-weight: {{ plan.font_weight }};
     font-style: {{ plan.tagline_font_style }};
@@ -247,7 +247,7 @@
       <p class="pc-pricing-table__description">
         <span class="pc-pricing-table__tagline"
           style="
-   
+    
   ">{{ plan.tagline }}</span>
         
     {% assign price_font_size = '' %}
