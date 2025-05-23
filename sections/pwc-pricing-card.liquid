@@ -175,7 +175,7 @@
 <ul class="pc-pricing-table">
   {% for block in section.blocks %}
     {% assign plan = block.settings %}
-    <li class="pc-pricing-table__item {% if plan.popular %}pc-pricing-table__item--popular{% endif %}" {% if plan.popular %}data-popular="Popular"{% endif %}>
+    <li class="pc-pricing-table__item {% if plan.popular %} pc-pricing-table__item--popular{% endif %}" {% if plan.popular %}data-popular="Popular"{% endif %}>
       {% if plan.image %}
         <img
             src="{{ plan.image | image_url }}"
