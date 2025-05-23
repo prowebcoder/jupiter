@@ -67,6 +67,11 @@
         "plan_gFpPKR": {
           "type": "plan",
           "settings": {
+            "box_shadow_x": 4,
+            "box_shadow_y": 4,
+            "box_shadow_blur": 13,
+            "box_shadow_spread": -4,
+            "box_shadow_color": "#00ff00",
             "image": "shopify://shop_images/2.webp",
             "image_width": 80,
             "title": "Package Title",
