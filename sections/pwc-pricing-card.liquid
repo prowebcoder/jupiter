@@ -175,11 +175,11 @@
 <ul class="pc-pricing-table">
   {% for block in section.blocks %}
     {% assign plan = block.settings %}
-<li class="pc-pricing-table__item {% if plan.popular %} pc-pricing-table__item--popular{% endif %}"
-    {% if plan.popular %}data-popular="Popular"{% endif %}
-    style="box-shadow: {{ plan.box_shadow }};"
-    onmouseover="this.style.boxShadow='{{ plan.box_shadow_hover }}';"
-    onmouseout="this.style.boxShadow='{{ plan.box_shadow }}';"
+<li class="pc-pricing-table__item{% if block.settings.popular %} pc-pricing-table__item--popular{% endif %}"
+    {% if block.settings.popular %}data-popular="Popular"{% endif %}
+    style="box-shadow: {{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }};"
+    onmouseover="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';"
+    onmouseout="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';"
 >
       {% if plan.image %}
         <img
