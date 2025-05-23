@@ -61,34 +61,29 @@
         "speed": 12
       }
     },
-    "pwc_counter_text_zBjKcn": {
-      "type": "pwc-counter-text",
-      "name": "Pwc Counter Cards",
-      "settings": {}
-    },
-    "pwc_counter_text_KAnKcB": {
-      "type": "pwc-counter-text",
+    "pwc_pricing_card_7zaqnh": {
+      "type": "pwc-pricing-card",
       "blocks": {
-        "plan_KG6VLp": {
+        "plan_gFpPKR": {
           "type": "plan",
           "settings": {
             "image": "shopify://shop_images/2.webp",
-            "image_width": 90,
+            "image_width": 80,
             "title": "Package Title",
-            "title_color": "#857d1f",
-            "text_size": "large",
-            "font_weight": "bold",
+            "title_color": "#000",
+            "text_size": "small",
+            "font_weight": "normal",
             "font_style": "normal",
             "letter_spacing": 0,
-            "text_decoration": "underline",
-            "text_decoration_color": "#dc2121",
+            "text_decoration": "none",
+            "text_decoration_color": "#ffffff",
             "padding_top": 5,
             "padding_bottom": 5,
             "tagline": "The tagline goes here",
-            "tagline_text_color": "#0054ff",
-            "tagline_text_size": "medium",
+            "tagline_text_color": "#000",
+            "tagline_text_size": "small",
             "tagline_text_align": "center",
-            "tagline_font_weight": "600",
+            "tagline_font_weight": "normal",
             "tagline_font_style": "normal",
             "tagline_letter_spacing": 0,
             "tagline_text_decoration": "none",
@@ -96,19 +91,19 @@
             "tagline_padding_top": 5,
             "tagline_padding_bottom": 5,
             "price": "800",
-            "price_title_color": "#00ff00",
-            "price_text_size": "medium",
+            "price_title_color": "#fff",
+            "price_text_size": "small",
             "price_text_align": "center",
             "price_font_weight": "normal",
             "price_font_style": "normal",
             "price_letter_spacing": 0,
-            "price_text_decoration": "underline",
-            "price_text_decoration_color": "#ff0000",
+            "price_text_decoration": "none",
+            "price_text_decoration_color": "#ffffff",
             "price_padding_top": 5,
             "price_padding_bottom": 5,
             "label": "900 is the real price",
-            "label_title_color": "#000000",
-            "label_text_size": "medium",
+            "label_title_color": "#000",
+            "label_text_size": "small",
             "label_text_align": "center",
             "label_font_weight": "normal",
             "label_font_style": "normal",
@@ -118,20 +113,20 @@
             "label_padding_top": 5,
             "label_padding_bottom": 5,
             "save": "You save 100",
-            "save_title_color": "#ff0000",
-            "save_text_size": "medium",
+            "save_title_color": "#fff",
+            "save_text_size": "small",
             "save_text_align": "center",
-            "save_font_weight": "bold",
-            "save_font_style": "italic",
+            "save_font_weight": "normal",
+            "save_font_style": "normal",
             "save_letter_spacing": 0,
-            "save_text_decoration": "underline",
-            "save_text_decoration_color": "#dc2121",
+            "save_text_decoration": "none",
+            "save_text_decoration_color": "#ffffff",
             "save_padding_top": 5,
             "save_padding_bottom": 5,
             "included_items": "Included item 1,Included item 2",
             "included_items_text_size": "small",
             "included_items_text_align": "center",
-            "included_items_font_weight": "800",
+            "included_items_font_weight": "normal",
             "included_items_font_style": "normal",
             "included_items_letter_spacing": 0,
             "included_items_text_decoration": "none",
@@ -142,16 +137,15 @@
         }
       },
       "block_order": [
-        "plan_KG6VLp"
+        "plan_gFpPKR"
       ],
-      "name": "Pwc Pricing Table",
+      "name": "Pwc Pricing Table List",
       "settings": {}
     }
   },
   "order": [
     "main",
     "pwc_marquee_1_MiwcCR",
-    "pwc_counter_text_zBjKcn",
-    "pwc_counter_text_KAnKcB"
+    "pwc_pricing_card_7zaqnh"
   ]
 }
