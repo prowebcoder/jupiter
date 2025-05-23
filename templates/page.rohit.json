@@ -136,7 +136,7 @@
             "button_hover_background_color": "#005bb5",
             "button_hover_text_color": "#ffffff",
             "button_hover_border_color": "#bfe50f",
-            "button_padding_vertical": 13,
+            "button_padding_vertical": 10,
             "button_padding_horizontal": 50,
             "button_min_width": 140,
             "included_items": "Included item 1,Included item 2",
