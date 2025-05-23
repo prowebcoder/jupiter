@@ -223,7 +223,15 @@
         {% else %}16px
       {% endcase %};
   ">{{ plan.tagline }}</span>
-        <span class="pc-pricing-table__price"
+    {% assign price_font_size = '' %}
+{% case plan.price_text_size %}
+  {% when 'small' %} {% assign price_font_size = '14px' %}
+  {% when 'medium' %} {% assign price_font_size = '18px' %}
+  {% when 'large' %} {% assign price_font_size = '24px' %}
+  {% else %} {% assign price_font_size = '16px' %}
+{% endcase %}
+
+<span class="pc-pricing-table__price"
   style="
     color: {{ plan.price_title_color }};
     text-align: {{ plan.price_text_align }};
@@ -231,14 +239,14 @@
     font-style: {{ plan.price_font_style }};
     letter-spacing: {{ plan.price_letter_spacing }}px;
     text-decoration: {{ plan.price_text_decoration }};
-    text-decoration-color: {{ price_text_decoration_color }};
     padding-top: {{ plan.price_padding_top }}px;
     padding-bottom: {{ plan.price_padding_bottom }}px;
-    font-size: {{ plan.price_font_size }};
+    font-size: {{ price_font_size }};
   "
 >
   {{ plan.price }}
-  </span>
+</span>
+
       {% assign label_font_size = '' %}
 {% case plan.label_text_size %}
   {% when 'small' %} {% assign label_font_size = '14px' %}
