@@ -1,23 +1,26 @@
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+
 <style>
   
- .pc-pricing-table__item img {
+ {{ sec_id }} .pc-pricing-table__item img {
     height: 128px;
     margin: 28px 0;
  }
 
-  .pc-pricing-table__products {
+  {{ sec_id }} .pc-pricing-table__products {
     margin: 11px 0;
  }
   
-.pc-all-pricing-table{
+  {{ sec_id }} .pc-all-pricing-table{
   width: 100%;
-}
-.pc-pricing-table-wrapper {
+  }
+  
+  {{ sec_id }} .pc-pricing-table-wrapper {
   max-width: 71rem;
   margin: 0 auto;
 }
 
-.pc-pricing-table {
+  {{ sec_id }} .pc-pricing-table {
   --pc-pricing-table-color: hsl(219, 83%, 57%);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -26,9 +29,9 @@
   padding: 0;
   list-style: none;
   margin-top: 22px;
-}
+ }
 
-.pc-pricing-table__item {
+  {{ sec_id }} .pc-pricing-table__item {
   display: flex;
   max-height: 100%;
   flex-direction: column;
@@ -40,16 +43,16 @@
   transition: box-shadow 200ms cubic-bezier(0.02, 0.01, 0.47, 1), transform 200ms cubic-bezier(0.02, 0.01, 0.47, 1);
 }
 
-.pc-pricing-table__item:hover {
+ {{ sec_id }} .pc-pricing-table__item:hover {
   box-shadow: 0 40px 40px rgba(0, 0, 0, 0.16);
   transform: translateY(-20px);
 }
 
-.pc-pricing-table__item--popular {
+ {{ sec_id }} .pc-pricing-table__item--popular {
   position: relative;
-}
+ }
 
-.pc-pricing-table__item--popular::before {
+  {{ sec_id }} .pc-pricing-table__item--popular::before {
   position: absolute;
   content: attr(data-popular);
   top: 2em;
@@ -59,52 +62,52 @@
   background-color: hsl(51, 100%, 50%);
   border-radius: 1em;
   color: hsl(60, 5%, 15%);
-}
+  }
 
-.pc-pricing-table__img {
+  {{ sec_id }} .pc-pricing-table__img {
   margin: 2.5em auto 4em;
   width: 100%;
   max-width: 9.3em;
-}
+  }
 
-.pc-pricing-table__title {
+  {{ sec_id }} .pc-pricing-table__title {
   margin: 0;
   font-size: 1.7em;
   text-transform: capitalize;
-}
+  }
 
-.pc-pricing-table__description {
+  {{ sec_id }} .pc-pricing-table__description {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-}
+  }
 
-.pc-pricing-table__tagline {
+  {{ sec_id }} .pc-pricing-table__tagline {
   margin: 0;
   color: hsl(216, 3%, 63%);
   text-align: center;
 }
 
-.pc-pricing-table__price {
+  {{ sec_id }} .pc-pricing-table__price {
   color: var(--pc-pricing-table-color);
   font-size: 2.5em;
   margin: -2px;
   font-weight: bold;
-}
+  }
 
-.pc-pricing-table__label {
+  {{ sec_id }} .pc-pricing-table__label {
   margin: 0;
   color: hsl(216, 3%, 63%);
   font-size: 0.9em;
-}
+  }
 
-.pc-pricing-table__save {
+  {{ sec_id }} .pc-pricing-table__save {
   color: hsl(122, 39%, 49%);
   font-weight: bold;
-}
+  }
 
-.pc-pricing-table__products {
+  {{ sec_id }} .pc-pricing-table__products {
   padding: 0;
   list-style: none;
   flex-grow: 1;
@@ -113,33 +116,33 @@
   justify-content: center;
 }
 
-.pc-pricing-table__product {
+  {{ sec_id }} .pc-pricing-table__product {
   display: flex;
   align-items: center;
   font-weight: bold;
   margin-bottom: 0.5em;
-}
+  }
 
-.pc-pricing-table__product a {
+  {{ sec_id }} .pc-pricing-table__product a {
   text-decoration: none;
   color: inherit;
   transition: color 0.2s ease-in-out;
-}
+  }
 
-.pc-pricing-table__product a:hover {
+  {{ sec_id }} .pc-pricing-table__product a:hover {
   color: var(--pc-pricing-table-color);
-}
+  }
 
-.pc-pricing-table__product::before {
+  {{ sec_id }} .pc-pricing-table__product::before {
   content: '';
   width: 0.5em;
   height: 0.5em;
   margin-inline-end: 1em;
   border-radius: 50%;
   background-color: var(--pc-pricing-table-color);
-}
+  }
 
-.pc-pricing-table__product--excluded::before {
+  {{ sec_id }} .pc-pricing-table__product--excluded::before {
   content: '';
   width: 0.5em;
   height: 0.5em;
@@ -147,9 +150,9 @@
   border-radius: 0;
   background: no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='hsl(4, 90%, 58%)'%3E%3Cpath d='M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z'/%3E%3C/svg%3E") center/contain;
   transform: scale(2.5);
-}
+  }
 
-.pc-pricing-table__button {
+  {{ sec_id }} .pc-pricing-table__button {
   background: var(--pc-pricing-table-color);
   color: #fff;
   margin-top: auto;
@@ -160,11 +163,12 @@
   text-align: center;
   transition: background 0.2s ease-in-out;
   text-transform: capitalize;
-}
+  }
 
-.pc-pricing-table__button:hover {
+  {{ sec_id }} .pc-pricing-table__button:hover {
   background-color: hsl(122, 39%, 49%);
-}
+  }
+  
 </style>
 
 <div class="pc-all-pricing-table">
