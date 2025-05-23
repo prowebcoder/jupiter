@@ -300,37 +300,28 @@
 
         
       </p>
-      <ul class="pc-pricing-table__products">
-        {% assign included = plan.included_items | split: ',' %}
-        {% for item in included %}
-          {% assign item_trimmed = item | strip %}
-           <li class="pc-pricing-table__product">
-      <a href="#"
-         style="
-           color: {{ section.settings.included_items_title_color }};
-           font-size: {% case section.settings.included_items_text_size %}
-                        {% when 'small' %}14px
-                        {% when 'medium' %}16px
-                        {% when 'large' %}18px
-                      {% endcase %};
-           text-align: {{ section.settings.included_items_text_align }};
-           font-weight: {{ section.settings.included_items_font_weight }};
-           font-style: {{ section.settings.included_items_font_style }};
-           letter-spacing: {{ section.settings.included_items_letter_spacing }}px;
-           text-decoration: {{ section.settings.included_items_text_decoration }};
-           padding-top: {{ section.settings.included_items_padding_top }}px;
-           padding-bottom: {{ section.settings.included_items_padding_bottom }}px;
-         ">
+     <ul class="pc-pricing-table__products">
+  {%- assign included = block.settings.included_items | split: ',' -%}
+  {% for item in included %}
+    {% assign item_trimmed = item | strip %}
+    <li class="pc-pricing-table__product included">
+      <a href="#">
         {{ item_trimmed }}
       </a>
     </li>
-        {% endfor %}
+  {% endfor %}
 
-        {% assign excluded = plan.excluded_items | split: ',' %}
-        {% for item in excluded %}
-          {% assign item_trimmed = item | strip %} 
-        {% endfor %}
-      </ul>
+  {%- assign excluded = block.settings.excluded_items | split: ',' -%}
+  {% for item in excluded %}
+    {% assign item_trimmed = item | strip %}
+    <li class="pc-pricing-table__product excluded">
+      <a href="#" class="excluded">
+        <s>{{ item_trimmed }}</s>
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
       <a href="https://mojtabaseyedi.com" class="pricing-table__button"
         style="
     background: blue;
