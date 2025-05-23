@@ -175,7 +175,7 @@
 <ul class="pc-pricing-table">
   {% for block in section.blocks %}
     {% assign plan = block.settings %}
-   <li class="pc-pricing-table__item {% if plan.popular %} pc-pricing-table__item--popular{% endif %}"
+<li class="pc-pricing-table__item {% if plan.popular %} pc-pricing-table__item--popular{% endif %}"
     {% if plan.popular %}data-popular="Popular"{% endif %}
     style="box-shadow: {{ plan.box_shadow }};"
     onmouseover="this.style.boxShadow='{{ plan.box_shadow_hover }}';"
@@ -355,6 +355,7 @@
   "class": "pricing-table-wrapper",
   "settings": [],
   "blocks": [
+      
     {
       "type": "plan",
       "name": "Plan",
@@ -1713,7 +1714,10 @@
   "presets": [
     {
       "name": "Pwc Pricing Table List",
-      "category": "Custom"
+      "category": "Custom",
+      "blocks": {
+        "type": "text"
+      }
     }
   ]
 }
