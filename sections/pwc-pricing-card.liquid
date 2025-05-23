@@ -167,23 +167,30 @@
   {{ sec_id }} .pc-pricing-table__button:hover {
   background-color: hsl(122, 39%, 49%);
   }
-  
-</style>
 
-<div class="pc-all-pricing-table" style="
+  /* custom-settings */
+  {{ sec_id }} .pc-all-pricing-table{
   background-color: {{ section.settings.background_color }};
   padding-top: {{ section.settings.padding_top }}px;
   padding-bottom: {{ section.settings.padding_bottom }}px;
-">
+  }
+
+  {{ sec_id }} .pc-pricing-table__item {
+    box-shadow: {{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }};"
+    onmouseover="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';"
+    onmouseout="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';"
+  }
+  
+</style>
+
+<div class="pc-all-pricing-table" style="">
   <div class="page-width">
 <ul class="pc-pricing-table">
   {% for block in section.blocks %}
     {% assign plan = block.settings %}
 <li class="pc-pricing-table__item{% if block.settings.popular %} pc-pricing-table__item--popular{% endif %}"
     {% if block.settings.popular %}data-popular="Popular"{% endif %}
-    style="box-shadow: {{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }};"
-    onmouseover="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';"
-    onmouseout="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';"
+    style="
 >
       {% if plan.image %}
         <img
