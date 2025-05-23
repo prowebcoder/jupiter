@@ -1,1484 +1,417 @@
+
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
+{%- liquid
+  assign speed = section.settings.speed
+  assign direction = section.settings.direction
+  assign background_color = section.settings.background_color
+-%}
+
 <style>
+  {{ sec_id }} .h2 { font-size: 1.5rem; }
+  {{ sec_id }} .h1 { font-size: 2rem; }
+  {{ sec_id }} .h0 { font-size: 2.5rem; }
+  {{ sec_id }} .hxl { font-size: 3rem; }
+  {{ sec_id }} .hxxl { font-size: 3.5rem; }
   
- {{ sec_id }} .pc-pricing-table__item img {
-    height: 128px;
-    margin-bottom: 20px;
- }
-
-  {{ sec_id }} .pc-pricing-table__products {
-    margin: 11px 0;
- }
-  
-  {{ sec_id }} .pc-all-pricing-table{
-  width: 100%;
-  }
-  
-  {{ sec_id }} .pc-pricing-table-wrapper {
-  max-width: 71rem;
-  margin: 0 auto;
-}
-
-  {{ sec_id }} .pc-pricing-table {
-  --pc-pricing-table-color: hsl(219, 83%, 57%);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2em;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-  margin-top: 22px;
-  }
-
-  {{ sec_id }} .pc-pricing-table__item {
-  display: flex;
-  max-height: 100%;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  padding: 2em;
-  border-radius: 1.5em;
-  box-shadow:  0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);;
-  transition: box-shadow 200ms cubic-bezier(0.02, 0.01, 0.47, 1), transform 200ms cubic-bezier(0.02, 0.01, 0.47, 1);
-  }
-
- {{ sec_id }} .pc-pricing-table__item:hover {
-  box-shadow: 0 40px 40px rgba(0, 0, 0, 0.16);
-  transform: translateY(-20px);
-  }
-
- {{ sec_id }} .pc-pricing-table__item--popular {
-  position: relative;
- }
-
-  {{ sec_id }} .pc-pricing-table__item--popular::before {
-  position: absolute;
-  content: attr(data-popular);
-  top: 2em;
-  right: 2em;
-  font-size: 0.9em;
-  padding: 0 1em;
-  background-color: hsl(51, 100%, 50%);
-  border-radius: 1em;
-  color: hsl(60, 5%, 15%);
-  }
-
-  {{ sec_id }} .pc-pricing-table__img {
-  width: 100%;
-  max-width: 9.3em;
-  }
-
-  {{ sec_id }} .pc-pricing-table__title {
-  margin: 0;
-  font-size: 1.7em;
-  text-transform: capitalize;
-  }
-
-  {{ sec_id }} .pc-pricing-table__description {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  }
-
-  {{ sec_id }} .pc-pricing-table__tagline {
-  margin: 0;
-  color: hsl(216, 3%, 63%);
-  text-align: center;
-  }
-
-  {{ sec_id }} .pc-pricing-table__price {
-  color: var(--pc-pricing-table-color);
-  font-size: 2.5em;
-  margin: -2px;
-  font-weight: bold;
-  }
-
-  {{ sec_id }} .pc-pricing-table__label {
-  margin: 0;
-  color: hsl(216, 3%, 63%);
-  font-size: 0.9em;
-  }
-
-  {{ sec_id }} .pc-pricing-table__save {
-  color: hsl(122, 39%, 49%);
-  font-weight: bold;
-  }
-
-  {{ sec_id }} .pc-pricing-table__products {
-  padding: 0;
-  list-style: none;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  }
-
-  {{ sec_id }} .pc-pricing-table__product {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  margin-bottom: 0.5em;
-  }
-
-  {{ sec_id }} .pc-pricing-table__product a {
-  text-decoration: none;
-  color: inherit;
-  transition: color 0.2s ease-in-out;
-  }
-
-  {{ sec_id }} .pc-pricing-table__product a:hover {
-  color: var(--pc-pricing-table-color);
-  }
-
-  {{ sec_id }} .pc-pricing-table__product::before {
-  content: '';
-  width: 0.5em;
-  height: 0.5em;
-  margin-inline-end: 1em;
-  border-radius: 50%;
-  background-color: var(--pc-pricing-table-color);
-  }
-
-  {{ sec_id }} .pc-pricing-table__product--excluded::before {
-  content: '';
-  width: 0.5em;
-  height: 0.5em;
-  margin-inline-end: 1em;
-  border-radius: 0;
-  background: no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='hsl(4, 90%, 58%)'%3E%3Cpath d='M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z'/%3E%3C/svg%3E") center/contain;
-  transform: scale(2.5);
-  }
-
-  {{ sec_id }} .pc-pricing-table__button {
-  background: var(--pc-pricing-table-color);
-  color: #fff;
-  margin-top: auto;
-  padding: 1em 2em;
-  text-decoration: none;
-  width: 100%;
-  border-radius: 1.87em;
-  text-align: center;
-  transition: background 0.2s ease-in-out;
-  text-transform: capitalize;
-  }
-
-  {{ sec_id }} .pc-pricing-table__button:hover {
-  background-color: hsl(122, 39%, 49%);
+  {{ sec_id }} .pc-track-horizontal-alt {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    will-change: transform;
   }
   
+  {{ sec_id }} .pc-marquee-element {
+    flex-shrink: 0;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  {{ sec_id }} .pc-marquee_text {
+    font-size: 42px;
+    line-height: 50px;
+    font-weight: 600;
+  }
+  
+  {{ sec_id }} .pc-marquee-image {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* Improved Animation Definitions */
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  /* Apply animation based on direction */
+  {{ sec_id }} .pc-track-horizontal-alt {
+    animation: {% if direction == 'left' %}scroll-left{% else %}scroll-right{% endif %} {{ speed }}s linear infinite;
+  }
+
+  /* Dynamic Background Color */
+  {{ sec_id }} .pc-marquee-horizontal {
+    background-color: {{ background_color }};
+    overflow: hidden;
+  }
+
 </style>
 
-<div class="pc-all-pricing-table">
-  <div class="page-width">
-<ul class="pc-pricing-table">
-  {% for block in section.blocks %}
-    {% assign plan = block.settings %}
-    <li class="pc-pricing-table__item {% if plan.popular %}pc-pricing-table__item--popular{% endif %}" {% if plan.popular %}data-popular="Popular"{% endif %}>
-      {% if plan.image %}
-        <img
-            src="{{ plan.image | image_url }}"
-            alt=""
-            class="pc-pricing-table__img"
-            style="width: {{ plan.image_width }}px; height: auto;"
-        />
-      {% endif %}
-      <h3 class="pc-pricing-table__title"
-        style="
-    color: {{ plan.title_color }};
-    font-weight: {{ plan.font_weight }};
-    font-style: {{ plan.font_style }};
-    letter-spacing: {{ plan.letter_spacing }}px;
-    text-decoration: {{ plan.text_decoration }};
-    text-decoration-color: {{ plan.text_decoration_color }};
-    padding-top: {{ plan.padding_top }}px;
-    padding-bottom: {{ plan.padding_bottom }}px;
-    font-size:
-      {% case plan.text_size %}
-        {% when 'small' %}14px
-        {% when 'medium' %}18px
-        {% when 'large' %}24px
-        {% else %}16px
-      {% endcase %};
-  "
-        >{{ plan.title }}</h3>
-      <p class="pc-pricing-table__description">
-        <span class="pc-pricing-table__tagline"
-          style="
-    color: {{ plan.tagline_text_color }};
-    text-align: {{ plan.tagline_text_align }};
-    font-weight: {{ plan.tagline_font_weight }};
-    font-style: {{ plan.tagline_font_style }};
-    letter-spacing: {{ plan.tagline_letter_spacing }}px;
-    text-decoration: {{ plan.tagline_text_decoration }};
-    text-decoration-color: {{ plan.tagline_text_decoration_color}} !important;
-    padding-top: {{ plan.tagline_padding_top }}px;
-    padding-bottom: {{ plan.tagline_padding_bottom }}px;
-    font-size:
-      {% case plan.tagline_text_size %}
-        {% when 'small' %}14px
-        {% when 'medium' %}18px
-        {% when 'large' %}24px
-        {% else %}16px
-      {% endcase %};
-  ">{{ plan.tagline }}</span>
-        
-    {% assign price_font_size = '' %}
-{% case plan.price_text_size %}
-  {% when 'small' %} {% assign price_font_size = '14px' %}
-  {% when 'medium' %} {% assign price_font_size = '18px' %}
-  {% when 'large' %} {% assign price_font_size = '24px' %}
-  {% else %} {% assign price_font_size = '16px' %}
-{% endcase %}
+<div 
+  class="pc-marquee-horizontal tw-relative tw-flex tw-overflow-hidden tw-w-full tw-justify-start tw-items-center" 
+  style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;
+  margin-top: {{ section.settings.margin_top }}px; margin-bottom: {{ section.settings.margin_bottom }}px;
+  background-color: {{ section.settings.background_color }}">
+  
+  <div class="pc-track-horizontal-alt">
+    <!-- First set of blocks (visible) -->
+    {% for block in section.blocks %}
+      <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+        {% case block.type %}
+          {% when 'text' %}
+            {% case block.settings.heading_size %}
+              {% when 'h0' %} {% assign heading_class = 'h0' %}
+              {% when 'h1' %} {% assign heading_class = 'h1' %}
+              {% when 'h2' %} {% assign heading_class = 'h2' %}
+              {% when 'hxl' %} {% assign heading_class = 'hxl' %}
+              {% when 'hxxl' %} {% assign heading_class = 'hxxl' %}
+              {% else %} {% assign heading_class = 'h1' %}
+            {% endcase %}
 
-<span class="pc-pricing-table__price"
-  style="
-    color: {{ plan.price_title_color }};
-    text-align: {{ plan.price_text_align }};
-    font-weight: {{ plan.price_font_weight }};
-    font-style: {{ plan.price_font_style }};
-    letter-spacing: {{ plan.price_letter_spacing }}px;
-    text-decoration: {{ plan.price_text_decoration }};
-    padding-top: {{ plan.price_padding_top }}px;
-    padding-bottom: {{ plan.price_padding_bottom }}px;
-    font-size: {{ price_font_size }};
-  "
->
-  {{ plan.price }}
-</span>
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
+                  style="color: {{ block.settings.heading_color }}; font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font_family }};">
+                {{ block.settings.heading }}
+            </span>
+          
+          {% when 'emoji' %}
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}" 
+                  style="font-size: {{ block.settings.emoji_size }}px;">
+              {{ block.settings.emoji }}
+            </span>
+            
+          {% when 'image' %}
+            {% if block.settings.image != blank %}
+              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+            {% endif %}
+        {% endcase %}
+      </div>
+    {% endfor %}
+    
+    <!-- Second set of blocks (duplicate for seamless looping) -->
+    {% for block in section.blocks %}
+      <div class="pc-marquee-element" {{ block.shopify_attributes }}>
+        {% case block.type %}
+          {% when 'text' %}
+            {% case block.settings.heading_size %}
+              {% when 'h0' %} {% assign heading_class = 'h0' %}
+              {% when 'h1' %} {% assign heading_class = 'h1' %}
+              {% when 'h2' %} {% assign heading_class = 'h2' %}
+              {% when 'hxl' %} {% assign heading_class = 'hxl' %}
+              {% when 'hxxl' %} {% assign heading_class = 'hxxl' %}
+              {% else %} {% assign heading_class = 'h1' %}
+            {% endcase %}
 
-      {% assign label_font_size = '' %}
-{% case plan.label_text_size %}
-  {% when 'small' %} {% assign label_font_size = '14px' %}
-  {% when 'medium' %} {% assign label_font_size = '18px' %}
-  {% when 'large' %} {% assign label_font_size = '24px' %}
-  {% else %} {% assign label_font_size = '16px' %}
-{% endcase %}
-
-<span class="pc-pricing-table__label"
-  style="
-    color: {{ plan.label_title_color }};
-    text-align: {{ plan.label_text_align }};
-    font-weight: {{ plan.label_font_weight }};
-    font-style: {{ plan.label_font_style }};
-    letter-spacing: {{ plan.label_letter_spacing }}px;
-    text-decoration: {{ plan.label_text_decoration }};
-    text-decoration-color: {{ plan.label_text_decoration_color }};
-    padding-top: {{ plan.label_padding_top }}px;
-    padding-bottom: {{ plan.label_padding_bottom }}px;
-    font-size: {{ label_font_size }};
-  "
->
-  {{ plan.label }}
-</span>
-
-       {% assign save_font_size = '' %}
-{% case plan.save_text_size %}
-  {% when 'small' %} {% assign save_font_size = '14px' %}
-  {% when 'medium' %} {% assign save_font_size = '18px' %}
-  {% when 'large' %} {% assign save_font_size = '24px' %}
-  {% else %} {% assign save_font_size = '16px' %}
-{% endcase %}
-
-<span class="pc-pricing-table__save"
-  style="
-    color: {{ plan.save_title_color }};
-    text-align: {{ plan.save_text_align }};
-    font-weight: {{ plan.save_font_weight }};
-    font-style: {{ plan.save_font_style }};
-    letter-spacing: {{ plan.save_letter_spacing }}px;
-    text-decoration: {{ plan.save_text_decoration }};
-    text-decoration-color: {{ plan.save_text_decoration_color }};
-    padding-top: {{ plan.save_padding_top }}px;
-    padding-bottom: {{ plan.save_padding_bottom }}px;
-    font-size: {{ save_font_size }};
-  "
->
-  {{ plan.save }}
-</span>
-</p>
-      <ul class="pc-pricing-table__products">
-        {% assign included = plan.included_items | split: ',' %}
-        {% for item in included %}
-          {% assign item_trimmed = item | strip %}
-           <li class="pc-pricing-table__product">
-      <a href="#">
-        {{ item_trimmed }}
-      </a>
-    </li>
-        {% endfor %}
-
-        {% assign excluded = plan.excluded_items | split: ',' %}
-        {% for item in excluded %}
-          {% assign item_trimmed = item | strip %} 
-        {% endfor %}
-      </ul>
-      <a href="https://mojtabaseyedi.com" class="pricing-table__button"
-        style="
-    background: blue;
-    display: inline-block;
-    text-decoration: none;
-    color: #fff;
-    padding: 7px 70px;
-    border-radius: 29px;
-"
-        >continue</a>
-    </li>
-  {% endfor %}
-</ul>
-</div>
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ heading_class }} {% if block.settings.uppercase %}uppercase{% endif %}"
+                  style="color: {{ block.settings.heading_color }}; font-size: {{ block.settings.custom_heading_size }}px; font-family: {{ block.settings.custom_font_family }};">
+                {{ block.settings.heading }}
+            </span>
+          
+          {% when 'emoji' %}
+            <span class="pc-marquee_text tw-font-transducer-extended tw-font-black tw-align-super {{ block.settings.heading_size }}" 
+                  style="font-size: {{ block.settings.emoji_size }}px;">
+              {{ block.settings.emoji }}
+            </span>
+            
+          {% when 'image' %}
+            {% if block.settings.image != blank %}
+              <img class="pc-marquee-image" src="{{ block.settings.image | img_url: '100x' }}" alt="{{ block.settings.image.alt }}" width="auto" height="50" loading="lazy">
+            {% endif %}
+        {% endcase %}
+      </div>
+    {% endfor %}
+  </div>
 </div>
 
 {% schema %}
 {
-  "name": "Pricing Table",
-  "tag": "section",
-  "class": "pricing-table-wrapper",
-  "settings": [],
+  "name": "Marquee Scroller",
+  "settings": [
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 2,
+      "max": 25,
+      "step": 1,
+      "unit": "s",
+      "label": "Animation Speed",
+      "default": 5
+    },
+    {
+  "type": "select",
+  "id": "direction",
+  "label": "Animation Direction",
+  "options": [
+    {
+      "value": "left",
+      "label": "Left"
+    },
+    {
+      "value": "right",
+      "label": "Right"
+    }
+  ],
+  "default": "left"
+},
+  {
+  "type": "select",
+  "id": "background_color",
+  "label": "Background Color",
+  "options": [
+    {
+      "value": "black",
+      "label": "Black"
+    },
+    {
+      "value": "white",
+      "label": "White"
+    },
+    {
+      "value": "#1e81b0",
+      "label": "Blue"
+    },
+    {
+      "value": "#FF5733 ",
+      "label": "Orange"
+    },
+    {
+      "value": "pink",
+      "label": "Pink"
+    },
+    {
+      "value": "green",
+      "label": "Green"
+    },
+    {
+      "value": "#abdbe3",
+      "label": "Sky Blue"
+    },
+    {
+      "value": "#f1c40f",
+      "label": "Yellow"
+    },
+    {
+      "value": "red",
+      "label": "Red"
+    }
+  ],
+  "default": "black"
+},
+     {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 20
+    },
+  ],
   "blocks": [
     {
-      "type": "plan",
-      "name": "Plan",
+      "type": "text",
+      "name": "Text Item",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.rich-text.blocks.heading.settings.heading.default",
+          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+        },
+           {
+  "type": "select",
+  "id": "custom_font_family",
+  "label": "Custom Font Family",
+  "options": [
+    {
+      "value": "Arial, sans-serif",
+      "label": "Arial"
+    },
+    {
+      "value": "Georgia, serif",
+      "label": "Georgia"
+    },
+    {
+      "value": "'Times New Roman', serif",
+      "label": "Times New Roman"
+    },
+    {
+      "value": "'Courier New', monospace",
+      "label": "Courier New"
+    },
+    {
+      "value": "'Lucida Sans', sans-serif",
+      "label": "Lucida Sans"
+    },
+    {
+      "value": "'Poppins', sans-serif",
+      "label": "Poppins"
+    },
+    {
+      "value": "'Roboto', sans-serif",
+      "label": "Roboto"
+    },
+    {
+      "value": "'Montserrat', sans-serif",
+      "label": "Montserrat"
+    }
+  ],
+  "default": "Arial, sans-serif"
+},
+        {
+  "type": "range",
+  "id": "custom_heading_size",
+  "min": 10,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Heading Size",
+  "default": 24
+},
+        {
+          "type": "select",
+          "id": "heading_color",
+          "label": "Heading Color",
+          "options": [
+            {
+              "value": "black",
+              "label": "Black"
+            },
+            {
+              "value": "red",
+              "label": "Red"
+            },
+            {
+              "value": "blue",
+              "label": "Blue"
+            },
+            {
+              "value": "white",
+              "label": "White"
+            },
+            {
+              "value": "green",
+              "label": "Green"
+            },
+            {
+              "value": "orange",
+              "label": "Orange"
+            },
+            {
+              "value": "purple",
+              "label": "Purple"
+            }
+          ],
+          "default": "black"
+        }
+      ]
+    },
+    {
+      "type": "emoji",
+      "name": "Emoji/Symbol",
+      "settings": [
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji or Symbol",
+          "default": "🚀"
+        },
+         {
+      "type": "range",
+      "id": "emoji_size",
+      "min": 12,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Emoji Size",
+      "default": 24
+    }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Plan Image"
-        },
-        {
-          "type": "range",
-          "id": "image_width",
-          "min": 50,
-          "max": 200,
-          "step": 10,
-          "unit": "px",
-          "default": 50,
-          "label": "Image Width (px)"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Package Title",
-          "default": "Package Title"
-        },
-        {
-          "type": "color",
-          "id": "title_color",
-          "label": "Text Color",
-          "default": "#000"
-        },
-        {
-          "type": "select",
-          "id": "text_size",
-          "label": "Text Size",
-          "options": [
-            {
-              "value": "small",
-              "label": "Small"
-            },
-            {
-              "value": "medium",
-              "label": "Medium"
-            },
-            {
-              "value": "large",
-              "label": "Large"
-            }
-          ],
-          "default": "small"
-        },
-        {
-          "type": "select",
-          "id": "font_weight",
-          "label": "Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "select",
-          "id": "font_style",
-          "label": "Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "range",
-          "id": "letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Letter spacing",
-          "default": 0
-        },
-        {
-          "type": "select",
-          "id": "text_decoration",
-          "label": "Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "text_decoration_color",
-          "label": "Text Decoration Color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "range",
-          "id": "padding_top",
-          "label": "Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "padding_bottom",
-          "label": "Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "text",
-          "id": "tagline",
-          "label": "Tagline",
-          "default": "The tagline goes here"
-        },
-        {
-          "type": "color",
-          "id": "tagline_text_color",
-          "label": "Text Color",
-          "default": "#000"
-        },
-        {
-          "type": "select",
-          "id": "tagline_text_size",
-          "label": "Text Size",
-          "options": [
-            {
-              "value": "small",
-              "label": "Small"
-            },
-            {
-              "value": "medium",
-              "label": "Medium"
-            },
-            {
-              "value": "large",
-              "label": "Large"
-            }
-          ],
-          "default": "small"
-        },
-        {
-          "type": "select",
-          "id": "tagline_text_align",
-          "label": "Text Alignment",
-          "default": "center",
-          "options": [
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "center",
-              "label": "Center"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            }
-          ]
-        },
-        {
-          "type": "select",
-          "id": "tagline_font_weight",
-          "label": "Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "select",
-          "id": "tagline_font_style",
-          "label": "Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "range",
-          "id": "tagline_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Letter spacing",
-          "default": 0
-        },
-        {
-          "type": "select",
-          "id": "tagline_text_decoration",
-          "label": "Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "tagline_text_decoration_color",
-          "label": "Text Decoration Color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "range",
-          "id": "tagline_padding_top",
-          "label": "Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "tagline_padding_bottom",
-          "label": "Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "text",
-          "id": "price",
-          "label": "Price",
-          "default": "800"
-        },
-        {
-          "type": "color",
-          "id": "price_title_color",
-          "label": "Text Color",
-          "default": "#fff"
-        },
-        {
-          "type": "select",
-          "id": "price_text_size",
-          "label": "Text Size",
-          "options": [
-            {
-              "value": "small",
-              "label": "Small"
-            },
-            {
-              "value": "medium",
-              "label": "Medium"
-            },
-            {
-              "value": "large",
-              "label": "Large"
-            }
-          ],
-          "default": "small"
-        },
-        {
-          "type": "select",
-          "id": "price_text_align",
-          "label": "Text Alignment",
-          "default": "center",
-          "options": [
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "center",
-              "label": "Center"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            }
-          ]
-        },
-        {
-          "type": "select",
-          "id": "price_font_weight",
-          "label": "Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "select",
-          "id": "price_font_style",
-          "label": "Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "range",
-          "id": "price_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Letter spacing",
-          "default": 0
-        },
-        {
-          "type": "select",
-          "id": "price_text_decoration",
-          "label": "Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "price_text_decoration_color",
-          "label": "Text Decoration Color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "range",
-          "id": "price_padding_top",
-          "label": "Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "price_padding_bottom",
-          "label": "Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Label (Original Price)",
-          "default": "900 is the real price"
-        },
-        {
-          "type": "color",
-          "id": "label_title_color",
-          "label": "Text Color",
-          "default": "#000"
-        },
-        {
-          "type": "select",
-          "id": "label_text_size",
-          "label": "Text Size",
-          "options": [
-            {
-              "value": "small",
-              "label": "Small"
-            },
-            {
-              "value": "medium",
-              "label": "Medium"
-            },
-            {
-              "value": "large",
-              "label": "Large"
-            }
-          ],
-          "default": "small"
-        },
-        {
-          "type": "select",
-          "id": "label_text_align",
-          "label": "Text Alignment",
-          "default": "center",
-          "options": [
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "center",
-              "label": "Center"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            }
-          ]
-        },
-        {
-          "type": "select",
-          "id": "label_font_weight",
-          "label": "Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "select",
-          "id": "label_font_style",
-          "label": "Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "range",
-          "id": "label_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Letter spacing",
-          "default": 0
-        },
-        {
-          "type": "select",
-          "id": "label_text_decoration",
-          "label": "Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "label_text_decoration_color",
-          "label": "Text Decoration Color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "range",
-          "id": "label_padding_top",
-          "label": "Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "label_padding_bottom",
-          "label": "Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "text",
-          "id": "save",
-          "label": "Save Text",
-          "default": "You save 100"
-        },
-        {
-          "type": "color",
-          "id": "save_title_color",
-          "label": "Text Color",
-          "default": "#fff"
-        },
-        {
-          "type": "select",
-          "id": "save_text_size",
-          "label": "Text Size",
-          "options": [
-            {
-              "value": "small",
-              "label": "Small"
-            },
-            {
-              "value": "medium",
-              "label": "Medium"
-            },
-            {
-              "value": "large",
-              "label": "Large"
-            }
-          ],
-          "default": "small"
-        },
-        {
-          "type": "select",
-          "id": "save_text_align",
-          "label": "Text Alignment",
-          "default": "center",
-          "options": [
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "center",
-              "label": "Center"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            }
-          ]
-        },
-        {
-          "type": "select",
-          "id": "save_font_weight",
-          "label": "Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "select",
-          "id": "save_font_style",
-          "label": "Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "range",
-          "id": "save_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Letter spacing",
-          "default": 0
-        },
-        {
-          "type": "select",
-          "id": "save_text_decoration",
-          "label": "Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "color",
-          "id": "save_text_decoration_color",
-          "label": "Text Decoration Color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "range",
-          "id": "save_padding_top",
-          "label": "Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "save_padding_bottom",
-          "label": "Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "textarea",
-          "id": "included_items",
-          "label": "Included Items (comma-separated)",
-          "default": "Included item 1,Included item 2"
-        },
-        {
-          "type": "select",
-          "id": "included_items_text_size",
-          "label": "Text Size",
-          "options": [
-            {
-              "value": "small",
-              "label": "Small"
-            },
-            {
-              "value": "medium",
-              "label": "Medium"
-            },
-            {
-              "value": "large",
-              "label": "Large"
-            }
-          ],
-          "default": "small"
-        },
-        {
-          "type": "select",
-          "id": "included_items_text_align",
-          "label": "Text Alignment",
-          "default": "center",
-          "options": [
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "center",
-              "label": "Center"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            }
-          ]
-        },
-        {
-          "type": "select",
-          "id": "included_items_font_weight",
-          "label": "Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "select",
-          "id": "included_items_font_style",
-          "label": "Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "range",
-          "id": "included_items_letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Letter spacing",
-          "default": 0
-        },
-        {
-          "type": "select",
-          "id": "included_items_text_decoration",
-          "label": "Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "range",
-          "id": "included_items_padding_top",
-          "label": "Padding Top (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "range",
-          "id": "included_items_padding_bottom",
-          "label": "Padding Bottom (px)",
-          "default": 5,
-          "min": 0,
-          "max": 150,
-          "step": 5
-        },
-        {
-          "type": "richtext",
-          "id": "quote",
-          "label": "Quote",
-          "default": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
+          "label": "Image"
         }
       ]
     }
   ],
-  "max_blocks": 3,
   "presets": [
     {
-      "name": "Pwc Pricing Table",
-      "category": "Custom"
+      "name": "PWC - Scrolling-List #1",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "emoji"
+        },
+        {
+          "type": "text"
+        }
+      ]
     }
   ]
 }
 {% endschema %}
+
