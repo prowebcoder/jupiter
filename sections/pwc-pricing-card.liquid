@@ -308,46 +308,49 @@
   {{ plan.save }}
 </span>
 </p>
-      <ul class="pc-pricing-table__products">
+           <ul class="pc-pricing-table__products">
         {% assign included = plan.included_items | split: ',' %}
         {% for item in included %}
           {% assign item_trimmed = item | strip %}
            <li class="pc-pricing-table__product">
-      <a href="#">
-        {{ item_trimmed }}
-      </a>
-    </li>
+              <a href="#">
+                {{ item_trimmed }}
+              </a>
+            </li>
         {% endfor %}
 
         {% assign excluded = plan.excluded_items | split: ',' %}
         {% for item in excluded %}
           {% assign item_trimmed = item | strip %} 
+          <!-- You might want to add similar LI elements for excluded items -->
         {% endfor %}
       </ul>
-    <a href="{{ block.settings.button_url | default: '#' }}"
-   class="pricing-table__button"
-   style="
-     background: {{ block.settings.button_background_color }};
-     color: {{ block.settings.button_text_color }};
-     font-size: {{ block.settings.button_font_size }}px;
-    font-weight: {{ plan.font_weight }};
-     text-transform: {{ block.settings.button_text_transform }};
-     letter-spacing: {{ block.settings.button_letter_spacing }}px;
-     text-decoration: {{ block.settings.button_text_decoration }};
-     border: 1px solid {{ block.settings.button_border_color }};
-     border-radius: {{ block.settings.button_border_radius }}px;
-     padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
-     min-width: {{ block.settings.button_min_width }}px;
-     display: inline-block;
-     text-align: center;
-     text-decoration: none;
-     transition: all 0.3s ease;
-   "
-   onmouseover="this.style.background='{{ block.settings.button_hover_background_color }}'; this.style.color='{{ block.settings.button_hover_text_color }}'; this.style.borderColor='{{ block.settings.button_hover_border_color }}';"
-   onmouseout="this.style.background='{{ block.settings.button_background_color }}'; this.style.color='{{ block.settings.button_text_color }}'; this.style.borderColor='{{ block.settings.button_border_color }}';"
->
-  {{ block.settings.button_label }}
-</a>
+      
+      <a href="{{ block.settings.button_url | default: '#' }}"
+        class="pricing-table__button"
+        style="
+          background: {{ block.settings.button_background_color }};
+          color: {{ block.settings.button_text_color }};
+          font-size: {{ block.settings.button_font_size }}px;
+          font-weight: {{ plan.font_weight }};
+          text-transform: {{ block.settings.button_text_transform }};
+          letter-spacing: {{ block.settings.button_letter_spacing }}px;
+          text-decoration: {{ block.settings.button_text_decoration }};
+          border: 1px solid {{ block.settings.button_border_color }};
+          border-radius: {{ block.settings.button_border_radius }}px;
+          padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+          min-width: {{ block.settings.button_min_width }}px;
+          display: inline-block;
+          text-align: center;
+          text-decoration: none;
+          transition: all 0.3s ease;
+        "
+        onmouseover="this.style.background='{{ block.settings.button_hover_background_color }}'; this.style.color='{{ block.settings.button_hover_text_color }}'; this.style.borderColor='{{ block.settings.button_hover_border_color }}';"
+        onmouseout="this.style.background='{{ block.settings.button_background_color }}'; this.style.color='{{ block.settings.button_text_color }}'; this.style.borderColor='{{ block.settings.button_border_color }}';"
+      >
+        {{ block.settings.button_label }}
+      </a>
+    </li> <!-- This closes the pc-pricing-table__item -->
   {% endfor %}
 </ul>
 </div>
