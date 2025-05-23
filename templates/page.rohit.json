@@ -73,7 +73,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/1.webp",
-            "image_width": 50,
+            "image_width": 80,
             "title": "Package Title",
             "tagline": "The tagline goes here",
             "price": "800",
