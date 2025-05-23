@@ -359,11 +359,51 @@
       "type": "plan",
       "name": "Plan",
       "settings": [
+         {
+          "type": "range",
+          "id": "box_shadow_x",
+          "label": "Box Shadow X Offset",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
         {
-          "type": "text",
-          "id": "box_shadow",
-          "label": "Box Shadow",
-          "default": "0 4px 12px rgba(0, 0, 0, 0.1)"
+          "type": "range",
+          "id": "box_shadow_y",
+          "label": "Box Shadow Y Offset",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 4,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "box_shadow_blur",
+          "label": "Box Shadow Blur",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 12,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "id": "box_shadow_spread",
+          "label": "Box Shadow Spread",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "default": 0,
+          "unit": "px"
+        },
+        {
+          "type": "color",
+          "id": "box_shadow_color",
+          "label": "Box Shadow Color",
+          "default": "#0000001A"
         },
         {
           "type": "image_picker",
