@@ -118,7 +118,7 @@
             "label_padding_top": 5,
             "label_padding_bottom": 5,
             "save": "You save 100",
-            "save_title_color": "#ffffff",
+            "save_title_color": "#121212",
             "save_text_size": "small",
             "save_text_align": "center",
             "save_font_weight": "normal",
