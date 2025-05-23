@@ -191,8 +191,7 @@
 
         {% assign excluded = plan.excluded_items | split: ',' %}
         {% for item in excluded %}
-          {% assign item_trimmed = item | strip %}
-          <li class="pc-pricing-table__product pc-pricing-table__product--excluded"><a href="#">{{ item_trimmed }}</a></li>
+          {% assign item_trimmed = item | strip %} 
         {% endfor %}
       </ul>
       <a href="{{ plan.button_link }}" class="pc-pricing-table__button">{{ plan.button_text }}</a>
