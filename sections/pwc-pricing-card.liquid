@@ -206,12 +206,12 @@
     onmouseover="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';"
     onmouseout="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';"
 >
-      {% if plan.image %}
+      {% if block.settings.image %}
         <img
-            src="{{ plan.image | image_url }}"
+            src="{{ block.settings.image | image_url }}"
             alt=""
             class="pc-pricing-table__img"
-            style="width: {{ plan.image_width }}px; height: auto;"
+            style="width: {{ block.settings.image_width }}px; height: auto;"
         />
       {% endif %}
 
