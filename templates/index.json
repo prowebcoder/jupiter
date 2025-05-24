@@ -49,6 +49,14 @@
         "circle_icon_UB4KfU": {
           "type": "circle-icon",
           "settings": {
+            "circle_collection": "frontpage",
+            "cutome_title_circle": "",
+            "custom_image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg"
+          }
+        },
+        "circle_icon_mbGcPa": {
+          "type": "circle-icon",
+          "settings": {
             "circle_collection": "",
             "cutome_title_circle": ""
           }
@@ -71,6 +79,7 @@
       "block_order": [
         "circle_icon_TYkqnR",
         "circle_icon_UB4KfU",
+        "circle_icon_mbGcPa",
         "circle_icon_6kFfcC",
         "circle_icon_VpUPJd"
       ],
