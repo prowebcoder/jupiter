@@ -175,23 +175,6 @@
   }
 
   {{ sec_id }} .pc-pricing-table__title {
-   color: {{ block.settings.title_color }};
-    font-weight: {{ block.settings.title_font_weight }};
-    font-style: {{ block.settings.font_style }};
-    letter-spacing: {{ block.settings.letter_spacing }}px;
-    text-decoration: {{ block.settings.text_decoration }};
-    {% if block.settings.text_decoration != 'none' %}
-      text-decoration-color: {{ block.settings.text_decoration_color }};
-    {% endif %}
-    padding-top: {{ block.settings.padding_top }}px;
-    padding-bottom: {{ block.settings.padding_bottom }}px;
-    font-size: 
-    {% case block.settings.text_size %}
-      {% when 'small' %}14px
-      {% when 'medium' %}18px
-      {% when 'large' %}24px
-      {% else %}16px
-    {% endcase %};
   }
   
 </style>
