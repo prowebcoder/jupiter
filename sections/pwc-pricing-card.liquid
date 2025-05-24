@@ -382,6 +382,7 @@
           text-transform: {{ block.settings.button_text_transform }};
           letter-spacing: {{ block.settings.button_letter_spacing }}px;
           text-decoration: {{ block.settings.button_text_decoration }};
+          text-decoration-color: {{ block.settings.button_text_decoration_color }};
           border: 1px solid {{ block.settings.button_border_color }};
           border-radius: {{ block.settings.button_border_radius }}px;
           padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
@@ -1497,6 +1498,12 @@
       ],
       "default": "none"
     },
+    {
+          "type": "color",
+          "id": "button_text_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#ffffff"
+        },
     {
       "type": "color",
       "id": "button_border_color",
