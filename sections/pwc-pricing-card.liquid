@@ -349,20 +349,38 @@
 {% endif %}
 
 
-       {% if block.settings.excluded_items != blank %}
-    <li class="pc-pricing-table__product-label" style="font-weight: bold; margin: 16px 0 8px;">
-      {{ block.settings.excluded_label }}
+     {% if block.settings.excluded_items != blank %}
+  <li class="pc-pricing-table__product-label" style="font-weight: bold; margin: 16px 0 8px;">
+    {{ block.settings.excluded_label }}
+  </li>
+  {% assign excluded = block.settings.excluded_items | split: ',' %}
+  {% for item in excluded %}
+    {% assign item_trimmed = item | strip %}
+    <li class="pc-pricing-table__product pc-pricing-table__product--excluded"
+        style="
+          font-size: {% case block.settings.excluded_items_text_size %}
+            {% when 'small' %}12px
+            {% when 'medium' %}16px
+            {% when 'large' %}20px
+          {% endcase %};
+          text-align: {{ block.settings.excluded_items_text_align | default: 'left' }};
+          font-weight: {{ block.settings.excluded_items_font_weight }};
+          font-style: {{ block.settings.excluded_items_font_style }};
+          letter-spacing: {{ block.settings.excluded_items_letter_spacing }}px;
+          text-decoration: {{ block.settings.excluded_items_text_decoration }};
+          {% if block.settings.excluded_items_text_decoration != 'none' %}
+            text-decoration-color: {{ block.settings.excluded_items_text_decoration_color }};
+          {% endif %}
+          padding-top: {{ block.settings.excluded_items_padding_top }}px;
+          padding-bottom: {{ block.settings.excluded_items_padding_bottom }}px;
+          color: {{ block.settings.excluded_items_text_color | default: 'inherit' }};
+        ">
+      <a href="#">
+        {{ item_trimmed }}
+      </a>
     </li>
-    {% assign excluded = block.settings.excluded_items | split: ',' %}
-    {% for item in excluded %}
-      {% assign item_trimmed = item | strip %}
-      <li class="pc-pricing-table__product pc-pricing-table__product--excluded">
-        <a href="#">
-          {{ item_trimmed }}
-        </a>
-      </li>
-    {% endfor %}
-  {% endif %}
+  {% endfor %}
+{% endif %}
       </ul>
       
       <a href="{{ block.settings.button_url | default: '#' }}"
