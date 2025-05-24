@@ -392,7 +392,7 @@
           font-weight: {{ plan.button_font_weight }};
           text-transform: {{ block.settings.button_text_transform }};
           letter-spacing: {{ block.settings.button_letter_spacing }}px;
-          text-decoration-line: {{ block.settings.button_text_decoration }};
+          text-decoration: {{ block.settings.button_text_decoration }};
           text-decoration-color: {{ block.settings.button_text_decoration_color }};
           border: 1px solid {{ block.settings.button_border_color }};
           border-radius: {{ block.settings.button_border_radius }}px;
@@ -400,7 +400,6 @@
           min-width: {{ block.settings.button_min_width }}px;
           display: inline-block;
           text-align: center;
-          text-decoration: none;
           transition: all 0.3s ease;
         "
         onmouseover="this.style.background='{{ block.settings.button_hover_background_color }}'; this.style.color='{{ block.settings.button_hover_text_color }}'; this.style.borderColor='{{ block.settings.button_hover_border_color }}';"
