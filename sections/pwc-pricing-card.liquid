@@ -1959,8 +1959,41 @@
   "presets": [
     {
       "name": "Pwc Pricing Table List",
-      "category": "Custom"
+      "blocks": [
+        {
+          "type": "plan",
+          "settings": {
+            "title": "Basic",
+            "price": "$19",
+            "label": "per month",
+            "save": "Save 10%",
+            "included_items": "Feature 1, Feature 2",
+            "excluded_items": "Feature 3, Feature 4"
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "title": "Pro",
+            "price": "$39",
+            "label": "per month",
+            "save": "Save 20%",
+            "included_items": "Feature 1, Feature 2, Feature 3",
+            "excluded_items": "Feature 4"
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "title": "Enterprise",
+            "price": "$99",
+            "label": "per month",
+            "save": "Save 30%",
+            "included_items": "Feature 1, Feature 2, Feature 3, Feature 4"
+          }
+        }
+      ]
     }
-  ]
+  ],
 }
 {% endschema %}
