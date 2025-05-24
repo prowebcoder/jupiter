@@ -73,7 +73,7 @@
             "box_shadow_spread": 0,
             "box_shadow_color": "#0000001A",
             "image": "shopify://shop_images/2.webp",
-            "image_width": 50,
+            "image_width": 80,
             "title": "Basic",
             "title_color": "#000",
             "text_size": "small",
