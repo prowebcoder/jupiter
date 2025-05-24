@@ -176,16 +176,16 @@
   }
   
   {{ sec_id }} .pc-pricing-table__title {
-    color: {{ plan.title_color }};
-   font-weight: {{ plan.font_weight }};
-    font-style: {{ plan.font_style }};
-    letter-spacing: {{ plan.letter_spacing }}px;
-    text-decoration: {{ plan.text_decoration }};
-    text-decoration-color: {{ plan.text_decoration_color }};
-    padding-top: {{ plan.padding_top }}px;
-    padding-bottom: {{ plan.padding_bottom }}px;
+      color: {{ block.settings.title_color }};
+     font-weight: {{ block.settings.font_weight }};
+    font-style: {{ block.settings.font_style }};
+    letter-spacing: {{ block.settings.letter_spacing }}px;
+    text-decoration: {{ block.settings.text_decoration }};
+    text-decoration-color: {{ block.settings.text_decoration_color }};
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
     font-size:
-      {% case plan.text_size %}
+      {% case block.settings.text_size %}
         {% when 'small' %}14px
         {% when 'medium' %}18px
         {% when 'large' %}24px
@@ -216,23 +216,7 @@
       {% endif %}
 
       <h3 class="pc-pricing-table__title"
-        style="
-    color: {{ block.settings.title_color }};
-   font-weight: {{ block.settings.font_weight }};
-    font-style: {{ block.settings.font_style }};
-    letter-spacing: {{ block.settings.letter_spacing }}px;
-    text-decoration: {{ block.settings.text_decoration }};
-    text-decoration-color: {{ block.settings.text_decoration_color }};
-    padding-top: {{ block.settings.padding_top }}px;
-    padding-bottom: {{ block.settings.padding_bottom }}px;
-    font-size:
-      {% case block.settings.text_size %}
-        {% when 'small' %}14px
-        {% when 'medium' %}18px
-        {% when 'large' %}24px
-        {% else %}16px
-      {% endcase %};
-  "
+        style=""
         >{{ block.settings.title }}</h3>
   
       <p class="pc-pricing-table__description">
