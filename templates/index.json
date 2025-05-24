@@ -65,15 +65,17 @@
         "circle_icon_6kFfcC": {
           "type": "circle-icon",
           "settings": {
-            "circle_collection": "",
-            "cutome_title_circle": ""
+            "circle_collection": "frontpage",
+            "cutome_title_circle": "",
+            "custom_image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg"
           }
         },
         "circle_icon_VpUPJd": {
           "type": "circle-icon",
           "settings": {
             "circle_collection": "",
-            "cutome_title_circle": ""
+            "cutome_title_circle": "",
+            "custom_image": "shopify://shop_images/a-model-in-red-suit-jacket-removing-sunglasses.jpg"
           }
         }
       },
