@@ -174,18 +174,10 @@
   padding-top: {{ section.settings.padding_top }}px;
   padding-bottom: {{ section.settings.padding_bottom }}px;
   }
-  
-  {% assign font_size = '' %}
-{% case block.settings.text_size %}
-  {% when 'small' %}{% assign font_size = '14px' %}
-  {% when 'medium' %}{% assign font_size = '18px' %}
-  {% when 'large' %}{% assign font_size = '24px' %}
-  {% else %}{% assign font_size = '16px' %}
-{% endcase %}
 
-{{ sec_id }} .pc-pricing-table__title {
+  {{ sec_id }} .pc-pricing-table__title {
   
-}
+  }
 
   
   CSS_rules
