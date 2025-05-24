@@ -140,7 +140,7 @@
             "button_padding_vertical": 12,
             "button_padding_horizontal": 70,
             "button_min_width": 140,
-            "included_items": "included item",
+            "included_items": "first item",
             "included_items_text_size": "small",
             "included_items_text_align": "center",
             "included_items_font_weight": "normal",
