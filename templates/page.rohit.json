@@ -140,7 +140,7 @@
             "button_padding_vertical": 12,
             "button_padding_horizontal": 70,
             "button_min_width": 140,
-            "included_items": "first item",
+            "included_items": "Feature 1, Feature 2, Feature 3",
             "included_items_text_size": "medium",
             "included_items_font_weight": "bold",
             "included_items_font_style": "italic",
