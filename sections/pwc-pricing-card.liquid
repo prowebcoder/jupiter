@@ -333,23 +333,37 @@
   {{ plan.save }}
 </span>
 </p>
-           <ul class="pc-pricing-table__products">
-        {% assign included = plan.included_items | split: ',' %}
-        {% for item in included %}
-          {% assign item_trimmed = item | strip %}
-           <li class="pc-pricing-table__product">
-              <a href="#">
-                {{ item_trimmed }}
-              </a>
-            </li>
-        {% endfor %}
+         <ul class="pc-pricing-table__products">
+  {% if block.settings.included_items != blank %}
+    <li class="pc-pricing-table__product-label" style="font-weight: bold; margin-bottom: 8px; color: {{ block.settings.included_label_color }};">
+      {{ block.settings.included_label }}
+    </li>
+    {% assign included = block.settings.included_items | split: ',' %}
+    {% for item in included %}
+      {% assign item_trimmed = item | strip %}
+      <li class="pc-pricing-table__product">
+        <a href="#">
+          {{ item_trimmed }}
+        </a>
+      </li>
+    {% endfor %}
+  {% endif %}
 
-        {% assign excluded = plan.excluded_items | split: ',' %}
-        {% for item in excluded %}
-          {% assign item_trimmed = item | strip %} 
-          <!-- You might want to add similar LI elements for excluded items -->
-        {% endfor %}
-      </ul>
+  {% if block.settings.excluded_items != blank %}
+    <li class="pc-pricing-table__product-label" style="font-weight: bold; margin: 16px 0 8px; color: {{ block.settings.excluded_label_color }};">
+      {{ block.settings.excluded_label }}
+    </li>
+    {% assign excluded = block.settings.excluded_items | split: ',' %}
+    {% for item in excluded %}
+      {% assign item_trimmed = item | strip %}
+      <li class="pc-pricing-table__product pc-pricing-table__product--excluded" style="opacity: {{ block.settings.excluded_item_opacity | divided_by: 100.0 }};">
+        <a href="#">
+          {{ item_trimmed }}
+        </a>
+      </li>
+    {% endfor %}
+  {% endif %}
+</ul>
       
       <a href="{{ block.settings.button_url | default: '#' }}"
         class="pricing-table__button"
@@ -1547,11 +1561,11 @@
       "unit": "px"
     },
         {
-          "type": "textarea",
-          "id": "included_items",
-          "label": "Included Items (comma-separated)",
-          "default": "Included item 1,Included item 2"
-        },
+  "type": "text",
+  "id": "included_label",
+  "label": "Included Items Label",
+  "default": "Included:"
+},
         {
           "type": "select",
           "id": "included_items_text_size",
