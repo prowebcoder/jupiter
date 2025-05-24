@@ -184,15 +184,7 @@
 {% endcase %}
 
 {{ sec_id }} .pc-pricing-table__title {
-  color: {{ block.settings.title_color }};
-  font-weight: {{ block.settings.font_weight }};
-  font-style: {{ block.settings.font_style }};
-  letter-spacing: {{ block.settings.letter_spacing }}px;
-  text-decoration: {{ block.settings.text_decoration }};
-  text-decoration-color: {{ block.settings.text_decoration_color }};
-  padding-top: {{ block.settings.padding_top }}px;
-  padding-bottom: {{ block.settings.padding_bottom }}px;
-  font-size: {{ block.settings.font_size }};
+  
 }
 
   
@@ -220,9 +212,17 @@
       {% endif %}
 
       <h3 class="pc-pricing-table__title"
-        style="
-   
-  "
+         style="
+        color: {{ block.settings.title_color }};
+  font-weight: {{ block.settings.font_weight }};
+  font-style: {{ block.settings.font_style }};
+  letter-spacing: {{ block.settings.letter_spacing }}px;
+  text-decoration: {{ block.settings.text_decoration }};
+  text-decoration-color: {{ block.settings.text_decoration_color }};
+  padding-top: {{ block.settings.padding_top }}px;
+  padding-bottom: {{ block.settings.padding_bottom }}px;
+  font-size: {{ block.settings.font_size }};
+        "
         >{{ block.settings.title }}</h3>
   
       <p class="pc-pricing-table__description">
