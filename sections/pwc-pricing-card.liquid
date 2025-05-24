@@ -195,12 +195,11 @@
     onmouseout="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';"
 >
       {% if block.settings.image %}
-        <img
-            src="{{ block.settings.image | image_url }}"
-            alt=""
-            class="pc-pricing-table__img"
-            style="width: {{ block.settings.image_width }}px; height: auto;"
-        />
+        {{-
+            block.settings.image
+            | image_url: width: 40, height: 40
+            | image_tag
+                -}}
       {% endif %}
 
       <h3 class="pc-pricing-table__title"
