@@ -318,9 +318,6 @@
 </p>
            <ul class="pc-pricing-table__products">
      {% if block.settings.included_items != blank %}
-  <li class="pc-pricing-table__product-label">
-    {{ block.settings.included_label }}
-  </li>
 
   {% assign included = block.settings.included_items | split: ',' %}
   {% for item in included %}
