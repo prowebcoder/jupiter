@@ -335,19 +335,35 @@
 </p>
            <ul class="pc-pricing-table__products">
      {% if block.settings.included_items != blank %}
-    <li class="pc-pricing-table__product-label">
-      {{ block.settings.included_label }}
+  <li class="pc-pricing-table__product-label">
+    {{ block.settings.included_label }}
+  </li>
+
+  {% assign included = block.settings.included_items | split: ',' %}
+  {% for item in included %}
+    {% assign item_trimmed = item | strip %}
+    <li class="pc-pricing-table__product"
+        style="
+          font-size: {% case block.settings.included_items_text_size %}
+            {% when 'small' %}12px
+            {% when 'medium' %}16px
+            {% when 'large' %}20px
+          {% endcase %};
+          text-align: {{ block.settings.included_items_text_align }};
+          font-weight: {{ block.settings.included_items_font_weight }};
+          font-style: {{ block.settings.included_items_font_style }};
+          letter-spacing: {{ block.settings.included_items_letter_spacing }}px;
+          text-decoration: {{ block.settings.included_items_text_decoration }};
+          padding-top: {{ block.settings.included_items_padding_top }}px;
+          padding-bottom: {{ block.settings.included_items_padding_bottom }}px;
+        ">
+      <a href="#">
+        {{ item_trimmed }}
+      </a>
     </li>
-    {% assign included = block.settings.included_items | split: ',' %}
-    {% for item in included %}
-      {% assign item_trimmed = item | strip %}
-      <li class="pc-pricing-table__product">
-        <a href="#">
-          {{ item_trimmed }}
-        </a>
-      </li>
-    {% endfor %}
-  {% endif %}
+  {% endfor %}
+{% endif %}
+
 
         {% assign excluded = plan.excluded_items | split: ',' %}
         {% for item in excluded %}
