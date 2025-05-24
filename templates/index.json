@@ -57,8 +57,9 @@
         "circle_icon_mbGcPa": {
           "type": "circle-icon",
           "settings": {
-            "circle_collection": "",
-            "cutome_title_circle": ""
+            "circle_collection": "test",
+            "cutome_title_circle": "",
+            "custom_image": "shopify://shop_images/fertilizer.jpg"
           }
         },
         "circle_icon_6kFfcC": {
