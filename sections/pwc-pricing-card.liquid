@@ -215,10 +215,10 @@
         />
       {% endif %}
 
-      <h3 class="pc-pricing-table__title"
+       <h3 class="pc-pricing-table__title"
         style="
     color: {{ plan.title_color }};
-   font-weight: {{ plan.font_weight }};
+    font-weight: {{ plan.font_weight }};
     font-style: {{ plan.font_style }};
     letter-spacing: {{ plan.letter_spacing }}px;
     text-decoration: {{ plan.text_decoration }};
@@ -233,7 +233,7 @@
         {% else %}16px
       {% endcase %};
   "
-        >{{ block.settings.title }}</h3>
+        >{{ plan.title }}</h3>
   
       <p class="pc-pricing-table__description">
         <span class="pc-pricing-table__tagline"
