@@ -67,9 +67,9 @@
         "plan_RanfDz": {
           "type": "plan",
           "settings": {
-            "box_shadow_x": 5,
-            "box_shadow_y": -3,
-            "box_shadow_blur": 12,
+            "box_shadow_x": -1,
+            "box_shadow_y": -1,
+            "box_shadow_blur": 22,
             "box_shadow_spread": -7,
             "box_shadow_color": "#35bab6",
             "image": "shopify://shop_images/2.webp",
