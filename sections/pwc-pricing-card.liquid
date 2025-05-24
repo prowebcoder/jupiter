@@ -122,22 +122,7 @@
           <p class="pc-pricing-table__description">
             <span class="pc-pricing-table__tagline"
               style="
-                color: {{ block.settings.tagline_text_color }};
-                text-align: {{ block.settings.tagline_text_align }};
-                font-weight: {{ block.settings.tagline_font_weight }};
-                font-style: {{ block.settings.tagline_font_style }};
-                letter-spacing: {{ block.settings.tagline_letter_spacing }}px;
-                text-decoration: {{ block.settings.tagline_text_decoration }};
-                text-decoration-color: {{ block.settings.tagline_text_decoration_color}} !important;
-                padding-top: {{ block.settings.tagline_padding_top }}px;
-                padding-bottom: {{ block.settings.tagline_padding_bottom }}px;
-                font-size:
-                {% case block.settings.tagline_text_size %}
-                  {% when 'small' %}14px
-                  {% when 'medium' %}18px
-                  {% when 'large' %}24px
-                  {% else %}16px
-                {% endcase %};
+                
               ">
               {{ block.settings.tagline }}
             </span>
