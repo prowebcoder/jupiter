@@ -183,7 +183,7 @@
     text-decoration: {{ plan.text_decoration }};
     text-decoration-color: {{ plan.text_decoration_color }};
     padding-top: {{ plan.padding_top }}px;
-    padding-bottom: {{ plan.padding_bottom }}px;
+    padding-bottom: {{ plan.padding_bottom }}px;title_color
     font-size:
       {% case plan.text_size %}
         {% when 'small' %}14px
@@ -249,7 +249,7 @@
 
 <span class="pc-pricing-table__price"
   style="
-    color: {{ plan.price_title_color }};
+    color: {{ block.settings.price_title_color }};
     text-align: {{ plan.price_text_align }};
     font-weight: {{ plan.price_font_weight }};
     font-style: {{ plan.price_font_style }};
@@ -273,7 +273,7 @@
 
 <span class="pc-pricing-table__label"
   style="
-    color: {{ plan.label_title_color }};
+    color: {{ block.settings.label_title_color }};
     text-align: {{ plan.label_text_align }};
    font-weight: {{ plan.label_font_weight }};
     font-style: {{ plan.label_font_style }};
@@ -298,7 +298,7 @@
 
 <span class="pc-pricing-table__save"
   style="
-    color: {{ plan.save_title_color }};
+    color: {{ block.settings.save_title_color }};
     text-align: {{ plan.save_text_align }};
    font-weight: {{ plan.save_font_weight }};
     font-style: {{ plan.save_font_style }};
