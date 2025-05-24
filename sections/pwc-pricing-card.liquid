@@ -174,7 +174,11 @@
   padding-top: {{ section.settings.padding_top }}px;
   padding-bottom: {{ section.settings.padding_bottom }}px;
   }
-  
+
+
+  h3.pc-pricing-table__title {
+    color: {{ block.settings.title_color }};
+  }
   {{ sec_id }} .pc-pricing-table__title {
   color: {{ block.settings.title_color }};
     font-weight: {{ plan.title_font_weight }};
