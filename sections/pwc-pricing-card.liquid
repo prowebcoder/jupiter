@@ -347,7 +347,7 @@
 
 
      {% if block.settings.excluded_items != blank %}
-  <li class="pc-pricing-table__product-label" style="font-weight: bold; margin: 16px 0 8px;">
+  <li class="pc-pricing-table__product-label">
     {{ block.settings.excluded_label }}
   </li>
   {% assign excluded = block.settings.excluded_items | split: ',' %}
