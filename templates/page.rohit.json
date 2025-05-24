@@ -88,7 +88,7 @@
             "tagline_text_color": "#334fb4",
             "tagline_text_size": "medium",
             "tagline_text_align": "left",
-            "tagline_font_weight": "bold",
+            "tagline_font_weight": "normal",
             "tagline_font_style": "normal",
             "tagline_letter_spacing": 0,
             "tagline_text_decoration": "underline",
