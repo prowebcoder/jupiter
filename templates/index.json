@@ -35,9 +35,63 @@
         "countdown_background_color1": "#ffa500",
         "countdown_text_color1": "#ffffff"
       }
+    },
+    "pwc_circle_collection_PLLWfA": {
+      "type": "pwc-circle-collection",
+      "blocks": {
+        "circle_icon_TYkqnR": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "test",
+            "cutome_title_circle": ""
+          }
+        },
+        "circle_icon_UB4KfU": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "",
+            "cutome_title_circle": ""
+          }
+        },
+        "circle_icon_6kFfcC": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "",
+            "cutome_title_circle": ""
+          }
+        },
+        "circle_icon_VpUPJd": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "",
+            "cutome_title_circle": ""
+          }
+        }
+      },
+      "block_order": [
+        "circle_icon_TYkqnR",
+        "circle_icon_UB4KfU",
+        "circle_icon_6kFfcC",
+        "circle_icon_VpUPJd"
+      ],
+      "name": "PWC Circle Collection",
+      "settings": {
+        "icon_title": "",
+        "is_icon_enable": true,
+        "background_color": "",
+        "background_image": "shopify://shop_images/woman-infront-of-tree-with-berries.jpeg",
+        "enable_parallax": false,
+        "mobile_disable_parallax": true,
+        "text_color": "#000000",
+        "image_width": 80,
+        "image_height": 80,
+        "section_padding": 30,
+        "mobile_section_padding": 15
+      }
     }
   },
   "order": [
-    "image_counter_pwc_GHENam"
+    "image_counter_pwc_GHENam",
+    "pwc_circle_collection_PLLWfA"
   ]
 }
