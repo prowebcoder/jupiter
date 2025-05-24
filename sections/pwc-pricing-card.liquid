@@ -191,14 +191,14 @@
     onmouseout="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';"
 >
        <div class="pc-pricing-table__img" {{ block.shopify_attributes }} style="width: {{ plan.image_width }}px; height: auto;">
-    {% if block.settings.image %}
-        {{
-          block.settings.image
-          | image_url: width: plan.image_width
-          | image_tag
-        }}
-    {% endif %}
-</div>
+            {% if block.settings.image %}
+                {{
+                  block.settings.image
+                  | image_url: width: plan.image_width
+                  | image_tag
+                }}
+            {% endif %}
+        </div>
 
        <h3 class="pc-pricing-table__title"
          style="
