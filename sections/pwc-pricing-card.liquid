@@ -354,6 +354,7 @@
           font-style: {{ block.settings.included_items_font_style }};
           letter-spacing: {{ block.settings.included_items_letter_spacing }}px;
           text-decoration: {{ block.settings.included_items_text_decoration }};
+          text-decoration: {{ block.settings.included_items_text_decoration_color }};
           padding-top: {{ block.settings.included_items_padding_top }}px;
           padding-bottom: {{ block.settings.included_items_padding_bottom }}px;
         ">
@@ -1499,12 +1500,6 @@
       "default": "none"
     },
     {
-          "type": "color",
-          "id": "button_text_decoration_color",
-          "label": "Text Decoration Color",
-          "default": "#ffffff"
-        },
-    {
       "type": "color",
       "id": "button_border_color",
       "label": "Button Border Color",
@@ -1599,26 +1594,6 @@
             }
           ],
           "default": "small"
-        },
-        {
-          "type": "select",
-          "id": "included_items_text_align",
-          "label": "Text Alignment",
-          "default": "center",
-          "options": [
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "center",
-              "label": "Center"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            }
-          ]
         },
         {
           "type": "select",
@@ -1733,6 +1708,12 @@
             }
           ],
           "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "included_items_decoration_color",
+          "label": "Text Decoration Color",
+          "default": "#ffffff"
         },
         {
           "type": "range",
