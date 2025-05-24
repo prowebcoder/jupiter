@@ -175,6 +175,25 @@
   padding-bottom: {{ section.settings.padding_bottom }}px;
   }
   
+
+  {{ sec_id }} .pc-pricing-table__title {
+    color: {{ plan.title_color }};
+   font-weight: {{ plan.font_weight }};
+    font-style: {{ plan.font_style }};
+    letter-spacing: {{ plan.letter_spacing }}px;
+    text-decoration: {{ plan.text_decoration }};
+    text-decoration-color: {{ plan.text_decoration_color }};
+    padding-top: {{ plan.padding_top }}px;
+    padding-bottom: {{ plan.padding_bottom }}px;
+    font-size:
+      {% case plan.text_size %}
+        {% when 'small' %}14px
+        {% when 'medium' %}18px
+        {% when 'large' %}24px
+        {% else %}16px
+      {% endcase %};
+  }
+  
 </style>
 
 <div class="pc-all-pricing-table" style="">
