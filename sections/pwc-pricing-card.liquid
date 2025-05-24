@@ -168,7 +168,6 @@
   background-color: hsl(122, 39%, 49%);
   }
 
-  /* custom-settings */
   {{ sec_id }} .pc-all-pricing-table{
   background-color: {{ section.settings.background_color }};
   padding-top: {{ section.settings.padding_top }}px;
@@ -183,7 +182,7 @@
     text-decoration: {{ block.settings.text_decoration }};
     text-decoration-color: {{ block.settings.text_decoration_color }};
     padding-top: {{block.settings.padding_top }}px;
-    padding-bottom: {{ block.settings.padding_bottom }}px;title_color
+    padding-bottom: {{ block.settings.padding_bottom }}px;
     font-size:
       {% case block.settings.text_size %}
         {% when 'small' %}14px
