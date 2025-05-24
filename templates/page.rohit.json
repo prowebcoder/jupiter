@@ -151,12 +151,12 @@
             "included_items_padding_top": 5,
             "included_items_padding_bottom": 5,
             "excluded_items": "Feature 3, Feature 4",
-            "excluded_items_text_size": "small",
+            "excluded_items_text_size": "medium",
             "excluded_items_font_weight": "normal",
             "excluded_items_font_style": "normal",
             "excluded_items_letter_spacing": 0,
-            "excluded_items_text_decoration": "none",
-            "excluded_items_text_decoration_color": "#000000",
+            "excluded_items_text_decoration": "underline",
+            "excluded_items_text_decoration_color": "#ff0000",
             "excluded_items_padding_top": 5,
             "excluded_items_padding_bottom": 5
           }
