@@ -1,6 +1,6 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
-<style>
+{% style %}
   
  {{ sec_id }} .pc-pricing-table__item img {
     height: 128px;
@@ -175,25 +175,29 @@
   padding-bottom: {{ section.settings.padding_bottom }}px;
   }
   
-  {{ sec_id }} .pc-pricing-table__title {
-      color: {{ block.settings.title_color }};
-     font-weight: {{ block.settings.font_weight }};
-    font-style: {{ block.settings.font_style }};
-    letter-spacing: {{ block.settings.letter_spacing }}px;
-    text-decoration: {{ block.settings.text_decoration }};
-    text-decoration-color: {{ block.settings.text_decoration_color }};
-    padding-top: {{ block.settings.padding_top }}px;
-    padding-bottom: {{ block.settings.padding_bottom }}px;
-    font-size:
-      {% case block.settings.text_size %}
-        {% when 'small' %}14px
-        {% when 'medium' %}18px
-        {% when 'large' %}24px
-        {% else %}16px
-      {% endcase %};
-  }
+  {% assign font_size = '' %}
+{% case block.settings.text_size %}
+  {% when 'small' %}{% assign font_size = '14px' %}
+  {% when 'medium' %}{% assign font_size = '18px' %}
+  {% when 'large' %}{% assign font_size = '24px' %}
+  {% else %}{% assign font_size = '16px' %}
+{% endcase %}
+
+{{ sec_id }} .pc-pricing-table__title {
+  color: {{ block.settings.title_color }};
+  font-weight: {{ block.settings.font_weight }};
+  font-style: {{ block.settings.font_style }};
+  letter-spacing: {{ block.settings.letter_spacing }}px;
+  text-decoration: {{ block.settings.text_decoration }};
+  text-decoration-color: {{ block.settings.text_decoration_color }};
+  padding-top: {{ block.settings.padding_top }}px;
+  padding-bottom: {{ block.settings.padding_bottom }}px;
+  font-size: {{ block.settings.font_size }};
+}
+
   
-</style>
+  CSS_rules
+{% endstyle %}}
 
 <div class="pc-all-pricing-table" style="">
   <div class="page-width">
@@ -216,7 +220,9 @@
       {% endif %}
 
       <h3 class="pc-pricing-table__title"
-        style=""
+        style="
+   
+  "
         >{{ block.settings.title }}</h3>
   
       <p class="pc-pricing-table__description">
