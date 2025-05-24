@@ -145,9 +145,9 @@
             "included_items_font_weight": "normal",
             "included_items_font_style": "normal",
             "included_items_letter_spacing": 0,
-            "included_items_text_decoration": "none",
-            "included_items_text_decoration_color": "#00d1ff",
-            "included_items_padding_top": 5,
+            "included_items_text_decoration": "underline",
+            "included_items_text_decoration_color": "#1ab0d1",
+            "included_items_padding_top": 0,
             "included_items_padding_bottom": 5,
             "quote": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
           }
