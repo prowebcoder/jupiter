@@ -1,6 +1,6 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
-{% style %}
+<style>
   
  {{ sec_id }} .pc-pricing-table__item img {
     height: 128px;
@@ -174,16 +174,12 @@
   padding-top: {{ section.settings.padding_top }}px;
   padding-bottom: {{ section.settings.padding_bottom }}px;
   }
-
+  
   {{ sec_id }} .pc-pricing-table__title {
-  
+   
   }
-
-  {{ sec_id }} .pricing-table__button"
-
   
-  CSS_rules
-{% endstyle %}}
+</style>
 
 <div class="pc-all-pricing-table" style="">
   <div class="page-width">
@@ -197,25 +193,32 @@
     onmouseout="this.style.boxShadow='{{ block.settings.box_shadow_x }}px {{ block.settings.box_shadow_y }}px {{ block.settings.box_shadow_blur }}px {{ block.settings.box_shadow_spread }}px {{ block.settings.box_shadow_color }}';"
 >
       {% if block.settings.image %}
-        {{-
-            block.settings.image
-            | image_url: width: 200, height: 150
-            | image_tag
-                -}}
+        <img
+            src="{{ block.settings.image | image_url }}"
+            alt=""
+            class="pc-pricing-table__img"
+            style="width: {{ block.settings.image_width }}px; height: auto;"
+        />
       {% endif %}
 
       <h3 class="pc-pricing-table__title"
-         style="
-        color: {{ block.settings.title_color }};
-  font-weight: {{ block.settings.font_weight }};
-  font-style: {{ block.settings.font_style }};
-  letter-spacing: {{ block.settings.letter_spacing }}px;
-  text-decoration: {{ block.settings.text_decoration }};
-  text-decoration-color: {{ block.settings.text_decoration_color }};
-  padding-top: {{ block.settings.padding_top }}px;
-  padding-bottom: {{ block.settings.padding_bottom }}px;
-  font-size: {{ block.settings.font_size }};
-        "
+        style="
+    color: {{ block.settings.title_color }};
+   font-weight: {{ block.settings.font_weight }};
+    font-style: {{ block.settings.font_style }};
+    letter-spacing: {{ block.settings.letter_spacing }}px;
+    text-decoration: {{ block.settings.text_decoration }};
+    text-decoration-color: {{ block.settings.text_decoration_color }};
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+    font-size:
+      {% case block.settings.text_size %}
+        {% when 'small' %}14px
+        {% when 'medium' %}18px
+        {% when 'large' %}24px
+        {% else %}16px
+      {% endcase %};
+  "
         >{{ block.settings.title }}</h3>
   
       <p class="pc-pricing-table__description">
