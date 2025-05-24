@@ -358,7 +358,7 @@
       "name": "Pwc Pricing Table List",
       "settings": {
         "background_color": "#ffffff",
-        "padding_top": 5,
+        "padding_top": 15,
         "padding_bottom": 5
       }
     }
