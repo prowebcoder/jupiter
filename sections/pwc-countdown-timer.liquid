@@ -180,7 +180,7 @@
         
         {% when 'hours' %}
           <div class="pc-bloc-time pc-hours" data-init-value="{{ block.settings.hours }}">
-            <span class="pc-count-title">Hours</span>
+            <span class="pc-count-title">{{ block.settings.title }}</span>
             <div class="pc-figure-container">
               <div class="pc-figure pc-hours-1" style="background-color: {{ block.settings.background_color }};">
                 <span class="pc-top">0</span>
@@ -407,6 +407,12 @@ document.addEventListener('DOMContentLoaded', function() {
           "min": 0,
           "max": 99,
           "default": 24
+        },
+         {
+          "type": "inline_richtext",
+          "id": "title",
+          "default": "t:sections.multicolumn.settings.title.default",
+          "label": "t:sections.multicolumn.settings.title.label"
         },
         {
           "type": "color",
