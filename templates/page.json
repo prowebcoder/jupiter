@@ -30,14 +30,14 @@
           "type": "minutes",
           "settings": {
             "minutes": 59,
-            "background_color": "#ffffff"
+            "background_color": "#d2b6b6"
           }
         },
         "seconds_83xT8a": {
           "type": "seconds",
           "settings": {
             "seconds": 59,
-            "background_color": "#ffffff"
+            "background_color": "#d2b6b6"
           }
         }
       },
