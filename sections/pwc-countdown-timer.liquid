@@ -186,12 +186,7 @@
                 <span class="bottom">0</span>
                 <span class="bottom-back"><span>0</span></span>
               </div>
-              <div class="figure hours-2" style="background-color: {{ block.settings.background_color }};">
-                <span class="top">0</span>
-                <span class="top-back"><span>0</span></span>
-                <span class="bottom">0</span>
-                <span class="bottom-back"><span>0</span></span>
-              </div>
+             
             </div>
           </div>
     
@@ -205,12 +200,7 @@
                 <span class="bottom">0</span>
                 <span class="bottom-back"><span>0</span></span>
               </div>
-              <div class="figure min-2" style="background-color: {{ block.settings.background_color }};">
-                <span class="top">0</span>
-                <span class="top-back"><span>0</span></span>
-                <span class="bottom">0</span>
-                <span class="bottom-back"><span>0</span></span>
-              </div>
+             
             </div>
           </div>
     
@@ -224,12 +214,7 @@
                 <span class="bottom">0</span>
                 <span class="bottom-back"><span>0</span></span>
               </div>
-              <div class="figure sec-2" style="background-color: {{ block.settings.background_color }};">
-                <span class="top">0</span>
-                <span class="top-back"><span>0</span></span>
-                <span class="bottom">0</span>
-                <span class="bottom-back"><span>0</span></span>
-              </div>
+           
             </div>
           </div>
       {% endcase %}
@@ -310,11 +295,11 @@ document.addEventListener('DOMContentLoaded', function() {
           ease: "power2.out",
           onComplete: function() {
             top.textContent = '';
-bottom.textContent = '';
-requestAnimationFrame(() => {
-  top.textContent = value;
-  bottom.textContent = value;
-});
+            bottom.textContent = '';
+            requestAnimationFrame(() => {
+              top.textContent = value;
+              bottom.textContent = value;
+            });
 
             gsap.set(top, { rotationX: 0 });
           }
@@ -330,11 +315,11 @@ requestAnimationFrame(() => {
       } else {
         // Fallback if GSAP isn't available
         top.textContent = '';
-bottom.textContent = '';
-requestAnimationFrame(() => {
-  top.textContent = value;
-  bottom.textContent = value;
-});
+        bottom.textContent = '';
+        requestAnimationFrame(() => {
+          top.textContent = value;
+          bottom.textContent = value;
+        });
 
         back_top.querySelector('span').textContent = value;
         back_bottom.querySelector('span').textContent = value;
