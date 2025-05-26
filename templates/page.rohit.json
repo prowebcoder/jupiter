@@ -61,48 +61,6 @@
         "speed": 12
       }
     },
-    "pwc_countdown_timer_mFddGK": {
-      "type": "pwc-countdown-timer",
-      "blocks": {
-        "hours_qF8pxB": {
-          "type": "hours",
-          "settings": {
-            "hours": 24,
-            "title": "Multicolumn",
-            "background_color": "#f3bebe"
-          }
-        },
-        "minutes_tpbaQK": {
-          "type": "minutes",
-          "settings": {
-            "minutes": 59,
-            "minutes_title": "Minutes",
-            "background_color": "#f3bebe"
-          }
-        },
-        "seconds_kT4i4w": {
-          "type": "seconds",
-          "settings": {
-            "seconds": 59,
-            "seconds_title": "seconds",
-            "background_color": "#f3bebe"
-          }
-        }
-      },
-      "block_order": [
-        "hours_qF8pxB",
-        "minutes_tpbaQK",
-        "seconds_kT4i4w"
-      ],
-      "name": "Custom Countdown Timer",
-      "settings": {
-        "title": "Draft Countdown",
-        "highlighted_text": "Countdown",
-        "highlight_color": "#ea4c4c",
-        "digit_color": "#000000",
-        "background_color": "#ffffff"
-      }
-    },
     "pwc_pricing_card_NHeMiK": {
       "type": "pwc-pricing-card",
       "blocks": {
@@ -213,12 +171,54 @@
         "padding_top": 15,
         "padding_bottom": 5
       }
+    },
+    "pwc_countdown_HfHr9w": {
+      "type": "pwc-countdown",
+      "blocks": {
+        "hours_37Yx8B": {
+          "type": "hours",
+          "settings": {
+            "hours": 24,
+            "title": "Hours",
+            "background_color": "#e4bc95"
+          }
+        },
+        "minutes_ctFyqg": {
+          "type": "minutes",
+          "settings": {
+            "minutes": 0,
+            "minutes_title": "Multicolumn",
+            "background_color": "#ffffff"
+          }
+        },
+        "seconds_X3nYqa": {
+          "type": "seconds",
+          "settings": {
+            "seconds": 0,
+            "seconds_title": "Multicolumn",
+            "background_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "hours_37Yx8B",
+        "minutes_ctFyqg",
+        "seconds_X3nYqa"
+      ],
+      "name": "PWC CDT",
+      "settings": {
+        "title": "Draft Countdown",
+        "highlighted_text": "Countdown",
+        "highlight_color": "#ea4c4c",
+        "digit_color": "#000000",
+        "background_color": "#ffffff"
+      }
     }
   },
   "order": [
     "main",
     "pwc_marquee_1_MiwcCR",
-    "pwc_countdown_timer_mFddGK",
-    "pwc_pricing_card_NHeMiK"
+    "pwc_pricing_card_NHeMiK",
+    "pwc_countdown_HfHr9w"
   ]
 }
