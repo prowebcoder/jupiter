@@ -296,11 +296,11 @@
                 font-size: {{ label_font_size }};
               "
             >
-              {{ plan.label }}
+              {{ block.settings.label }}
             </span>
 
             {% assign save_font_size = '' %}
-            {% case plan.save_text_size %}
+            {% case block.settings.save_text_size %}
               {% when 'small' %} {% assign save_font_size = '14px' %}
               {% when 'medium' %} {% assign save_font_size = '18px' %}
               {% when 'large' %} {% assign save_font_size = '24px' %}
@@ -310,18 +310,18 @@
             <span class="pc-pricing-table__save"
               style="
                 color: {{ block.settings.save_title_color }};
-                text-align: {{ plan.save_text_align }};
-                font-weight: {{ plan.save_font_weight }};
-                font-style: {{ plan.save_font_style }};
-                letter-spacing: {{ plan.save_letter_spacing }}px;
-                text-decoration: {{ plan.save_text_decoration }};
-                text-decoration-color: {{ plan.save_text_decoration_color }};
-                padding-top: {{ plan.save_padding_top }}px;
-                padding-bottom: {{ plan.save_padding_bottom }}px;
+                text-align: {{ block.settings.save_text_align }};
+                font-weight: {{ block.settings.save_font_weight }};
+                font-style: {{ block.settings.save_font_style }};
+                letter-spacing: {{ block.settings.save_letter_spacing }}px;
+                text-decoration: {{ block.settings.save_text_decoration }};
+                text-decoration-color: {{ block.settings.save_text_decoration_color }};
+                padding-top: {{ block.settings.save_padding_top }}px;
+                padding-bottom: {{ block.settings.save_padding_bottom }}px;
                 font-size: {{ save_font_size }};
               "
             >
-              {{ plan.save }}
+              {{ block.settings.save }}
             </span>
           </p>
           
