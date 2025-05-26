@@ -1,6 +1,121 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+<div class="page-width">
+  <h1 class="text">The New Year Is Coming Soon!</h1>
+  <div id="countdown">
+    {% assign colors = "#ff4c4c,#ffd700,#ffc0cb,#b0e0e6" | split: ',' %}
+    {% assign ids = "dd,hh,mm,ss" | split: ',' %}
+    {% assign labels = "Days,Hours,Minutes,Seconds" | split: ',' %}
+    {% assign values = "days,hours,minutes,seconds" | split: ',' %}
+    {% for i in (0..3) %}
+    <div class="circle" style="--clr: {{ colors[i] }}">
+      <svg>
+        <circle cx="70" cy="70" r="70"></circle>
+        <circle cx="70" cy="70" r="70" id="{{ ids[i] }}"></circle>
+      </svg>
+      <div id="{{ values[i] }}">00<br><span>{{ labels[i] }}</span></div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  let days = document.getElementById('days');
+  let hours = document.getElementById('hours');
+  let minutes = document.getElementById('minutes');
+  let seconds = document.getElementById('seconds');
+  let dd = document.getElementById('dd');
+  let hh = document.getElementById('hh');
+  let mm = document.getElementById('mm');
+  let ss = document.getElementById('ss');
+
+  let x = setInterval(function () {
+    let currentYear = new Date().getFullYear();
+    let newYear = new Date(`Jan 1, ${currentYear + 1} 00:00:00`);
+    let now = new Date().getTime();
+    let distance = newYear - now;
+
+    let d = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let s = Math.floor((distance % (1000 * 60)) / (1000));
+
+    days.innerHTML = d + "<br><span>Days</span>";
+    hours.innerHTML = h + "<br><span>Hours</span>";
+    minutes.innerHTML = m + "<br><span>Minutes</span>";
+    seconds.innerHTML = s + "<br><span>Seconds</span>";
+
+    dd.style.strokeDashoffset = 440 - (440 * d) / 365;
+    hh.style.strokeDashoffset = 440 - (440 * h) / 24;
+    mm.style.strokeDashoffset = 440 - (440 * m) / 60;
+    ss.style.strokeDashoffset = 440 - (440 * s) / 60;
+
+    if (distance < 0) {
+      document.querySelector('.text').innerText = `Happy New Year ${currentYear}`;
+    }
+  }, 1000);
+
+  // snowflakes
+  const canvas = document.getElementById("snowflakes");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const colors = ["#eee", "#ddd", "#ccc"];
+
+  class SnowFlake {
+    constructor() {
+      this.reset();
+    }
+
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = Math.random() - 0.5;
+      this.vy = Math.random() * 1 + 1;
+      this.radius = Math.random() * 1 + 1;
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.y > canvas.height) this.reset();
+    }
   }
+
+  const snowflakes = Array.from({ length: 100 }, () => new SnowFlake());
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    snowflakes.forEach(flake => {
+      flake.draw();
+      flake.update();
+    });
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+});
+</script>
+
+{% schema %}
+{
+  "name": "Pwc Countdown Timer",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "New Year Countdown"
+    }
+  ]
+}
 {% endschema %}
+
