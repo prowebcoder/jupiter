@@ -47,16 +47,6 @@
   gap: 10px;
 }
 
-  .figure {
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-.top, .top-back {
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-}
-
-
 .figure {
   position: relative;
   height: 110px;
@@ -303,35 +293,35 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     
     animateFigure: function(el, value) {
-  const top = el.querySelector('.top');
-  const bottom = el.querySelector('.bottom');
-  const backTop = el.querySelector('.top-back');
-  const backBottom = el.querySelector('.bottom-back');
-
-  // Set the next value
-  backTop.querySelector('span').textContent = value;
-  backBottom.querySelector('span').textContent = value;
-
-  // First half of flip (top to mid)
-  gsap.timeline()
-    .set(backTop, { rotationX: -180 }) // reset backTop rotation
-    .to(top, {
-      duration: 0.3,
-      rotationX: -90,
-      ease: "power1.in",
-      onComplete: function() {
-        top.textContent = value;
-        bottom.textContent = value;
-      }
-    })
-    .set(top, { rotationX: 0 }) // reset top
-    .to(backTop, {
-      duration: 0.3,
-      rotationX: 0,
-      ease: "power1.out"
-    });
-}
-
+      const top = el.querySelector('.top');
+      const bottom = el.querySelector('.bottom');
+      const back_top = el.querySelector('.top-back');
+      const back_bottom = el.querySelector('.bottom-back');
+      
+      back_top.querySelector('span').textContent = value;
+      back_bottom.querySelector('span').textContent = value;
+      
+      // Animate with GSAP (make sure to include GSAP in your theme)
+      if (typeof gsap !== 'undefined') {
+        gsap.to(top, {
+          duration: 0.8,
+          rotationX: -180,
+          transformPerspective: 300,
+          ease: "power2.out",
+          onComplete: function() {
+            top.textContent = value;
+            bottom.textContent = value;
+            gsap.set(top, { rotationX: 0 });
+          }
+        });
+        
+        gsap.to(back_top, {
+          duration: 0.8,
+          rotationX: 0,
+          transformPerspective: 300,
+          ease: "power2.out",
+          clearProps: "all"
+        });
       } else {
         // Fallback if GSAP isn't available
         top.textContent = value;
