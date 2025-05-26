@@ -151,6 +151,30 @@
     display: none;
 }
 
+.figure {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.figure.flipping {
+  transform: rotateX(180deg);
+}
+
+.figure .top,
+.figure .top-back {
+  backface-visibility: hidden;
+}
+
+.figure .top-back {
+  transform: rotateX(180deg);
+}
+
+.figure .bottom,
+.figure .bottom-back {
+  backface-visibility: hidden;
+}
+
 @media (max-width: 767px) {
   .countdown {
     width: 100%;
@@ -293,42 +317,33 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     
     animateFigure: function(el, value) {
+      const that = this;
       const top = el.querySelector('.top');
       const bottom = el.querySelector('.bottom');
       const back_top = el.querySelector('.top-back');
       const back_bottom = el.querySelector('.bottom-back');
       
+      // Set the back face values
       back_top.querySelector('span').textContent = value;
       back_bottom.querySelector('span').textContent = value;
       
-      // Animate with GSAP (make sure to include GSAP in your theme)
-      if (typeof gsap !== 'undefined') {
-        gsap.to(top, {
-          duration: 0.8,
-          rotationX: -180,
-          transformPerspective: 300,
-          ease: "power2.out",
-          onComplete: function() {
-            top.textContent = value;
-            bottom.textContent = value;
-            gsap.set(top, { rotationX: 0 });
-          }
-        });
-        
-        gsap.to(back_top, {
-          duration: 0.8,
-          rotationX: 0,
-          transformPerspective: 300,
-          ease: "power2.out",
-          clearProps: "all"
-        });
-      } else {
-        // Fallback if GSAP isn't available
+      // Start the animation
+      this.startAnimation(el);
+      
+      // After animation completes, update the front face
+      setTimeout(function() {
         top.textContent = value;
         bottom.textContent = value;
-        back_top.querySelector('span').textContent = value;
-        back_bottom.querySelector('span').textContent = value;
-      }
+        that.resetAnimation(el);
+      }, 500); // Match this with the CSS transition duration
+    },
+    
+    startAnimation: function(el) {
+      el.classList.add('flipping');
+    },
+    
+    resetAnimation: function(el) {
+      el.classList.remove('flipping');
     },
     
     checkHour: function(value, el1, el2) {
