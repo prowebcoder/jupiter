@@ -15,25 +15,9 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
-    },
-    "pwc_countdown_timer_WAGHBp": {
-      "type": "pwc-countdown-timer",
-      "name": "Pwc Countdown Timer",
-      "settings": {
-        "title": "Draft Countdown",
-        "highlighted_text": "Countdown",
-        "highlight_color": "#ea4c4c",
-        "hours": 24,
-        "minutes": 0,
-        "seconds": 0,
-        "digit_color": "#de4848",
-        "background_color": "#ffffff",
-        "top_section_color": "#f7f7f7"
-      }
     }
   },
   "order": [
-    "main",
-    "pwc_countdown_timer_WAGHBp"
+    "main"
   ]
 }
