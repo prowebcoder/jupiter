@@ -1,5 +1,4 @@
 
-
 {%- style -%}
 .countdown-timer-section {
   position: relative;
@@ -7,214 +6,198 @@
   padding: 40px 0;
   max-width: 1200px;
   text-align: center;
-  font-family: Arial, sans-serif;
 }
 
 .countdown-timer-section h1 {
   margin-bottom: 60px;
-  font-weight: bold;
-  font-size: 2.5em;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 2.25em;
   text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
 .countdown-timer-section h1 strong {
+  font-weight: 400;
   color: {{ section.settings.highlight_color }};
 }
 
 .countdown {
+  width: 720px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
-  gap: 30px;
-  margin: 0 auto;
+  gap: 45px;
 }
 
 .bloc-time {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 120px;
+  text-align: center;
 }
 
 .count-title {
   display: block;
   margin-bottom: 15px;
-  font-weight: bold;
-  font-size: 1.2em;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.94em;
+  color: #1a1a1a;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .figure-container {
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 
 .figure {
   position: relative;
-  height: 80px;
-  width: 50px;
+  height: 110px;
+  width: 100px;
   background-color: {{ section.settings.background_color }};
-  border: 1px solid {{ section.settings.border_color }};
-  border-radius: 5px;
-  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
 }
 
-.figure .digit {
+.figure > span {
   position: absolute;
   left: 0;
   right: 0;
   margin: auto;
-  font-family: 'Arial', sans-serif;
-  font-size: 3.5em;
-  line-height: 80px;
-  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  font-size: 5.94em;
+  line-height: 107px;
+  font-weight: 700;
   color: {{ section.settings.digit_color }};
-  text-align: center;
+}
+
+.figure .top, .figure .bottom-back {
+  position: relative;
+}
+
+.figure .top:after, .figure .bottom-back:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .figure .top {
-  position: absolute;
-  top: 0;
-  width: 100%;
+  z-index: 3;
+  transform-origin: 50% 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transform: perspective(200px);
   height: 50%;
-  background-color: {{ section.settings.top_section_color }};
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
   overflow: hidden;
-  z-index: 2;
-  border-bottom: 1px solid {{ section.settings.border_color }};
+  backface-visibility: hidden;
 }
 
 .figure .bottom {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 50%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  overflow: hidden;
   z-index: 1;
+  height: 50%;
 }
 
-.figure .top-back {
+.figure .bottom:before {
+  content: "";
   position: absolute;
+  display: block;
   top: 0;
+  left: 0;
   width: 100%;
-  height: 50%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  overflow: hidden;
-  z-index: 3;
-  transform-origin: bottom;
-  transform: rotateX(0deg);
+  height: 95%;
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 .figure .bottom-back {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  top: 0;
   height: 50%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
   overflow: hidden;
-  z-index: 1;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.figure .bottom-back span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.figure .top-back {
+  z-index: 4;
+  bottom: 0;
   background-color: {{ section.settings.background_color }};
+  transform-origin: 50% 0;
+  transform: perspective(200px) rotateX(180deg);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 50%;
+  overflow: hidden;
+  backface-visibility: hidden;
 }
 
-/* Animation classes */
-.flipping .top {
-  transform: rotateX(-90deg);
-  transition: transform 0.6s ease;
+.figure .top-back span {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
-.flipping .top-back {
-  transform: rotateX(0deg);
-  transition: transform 0.6s ease 0.3s;
+.bottom-back {
+    display: none;
 }
 
 @media (max-width: 767px) {
   .countdown {
+    width: 100%;
     flex-direction: column;
-    align-items: center;
     gap: 20px;
   }
   
   .figure {
-    height: 60px;
-    width: 40px;
+    height: 80px;
+    width: 70px;
   }
   
-  .figure .digit {
-    font-size: 2.5em;
-    line-height: 60px;
+  .figure > span {
+    font-size: 4em;
+    line-height: 80px;
   }
 }
 {%- endstyle -%}
 
-<div class="countdown-timer-section">
-  <h1>{{ section.settings.title }} <strong>{{ section.settings.highlighted_text }}</strong></h1>
-  
-  <div class="countdown">
-    <div class="bloc-time hours" data-init-value="{{ section.settings.hours }}">
-      <span class="count-title">HOURS</span>
-      <div class="figure-container">
-        <div class="figure hours-1">
-          <span class="digit top">{{ section.settings.hours | slice: 0 }}</span>
-          <span class="digit top-back">{{ section.settings.hours | slice: 0 }}</span>
-          <span class="digit bottom">{{ section.settings.hours | slice: 0 }}</span>
-          <span class="digit bottom-back">{{ section.settings.hours | slice: 0 }}</span>
-        </div>
-        <div class="figure hours-2">
-          <span class="digit top">{{ section.settings.hours | slice: 1 }}</span>
-          <span class="digit top-back">{{ section.settings.hours | slice: 1 }}</span>
-          <span class="digit bottom">{{ section.settings.hours | slice: 1 }}</span>
-          <span class="digit bottom-back">{{ section.settings.hours | slice: 1 }}</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="bloc-time min" data-init-value="{{ section.settings.minutes }}">
-      <span class="count-title">MINUTES</span>
-      <div class="figure-container">
-        <div class="figure min-1">
-          <span class="digit top">{{ section.settings.minutes | slice: 0 }}</span>
-          <span class="digit top-back">{{ section.settings.minutes | slice: 0 }}</span>
-          <span class="digit bottom">{{ section.settings.minutes | slice: 0 }}</span>
-          <span class="digit bottom-back">{{ section.settings.minutes | slice: 0 }}</span>
-        </div>
-        <div class="figure min-2">
-          <span class="digit top">{{ section.settings.minutes | slice: 1 }}</span>
-          <span class="digit top-back">{{ section.settings.minutes | slice: 1 }}</span>
-          <span class="digit bottom">{{ section.settings.minutes | slice: 1 }}</span>
-          <span class="digit bottom-back">{{ section.settings.minutes | slice: 1 }}</span>
-        </div>
-      </div>
-    </div>
-    
-    <div class="bloc-time sec" data-init-value="{{ section.settings.seconds }}">
-      <span class="count-title">SECONDS</span>
-      <div class="figure-container">
-        <div class="figure sec-1">
-          <span class="digit top">{{ section.settings.seconds | slice: 0 }}</span>
-          <span class="digit top-back">{{ section.settings.seconds | slice: 0 }}</span>
-          <span class="digit bottom">{{ section.settings.seconds | slice: 0 }}</span>
-          <span class="digit bottom-back">{{ section.settings.seconds | slice: 0 }}</span>
-        </div>
-        <div class="figure sec-2">
-          <span class="digit top">{{ section.settings.seconds | slice: 1 }}</span>
-          <span class="digit top-back">{{ section.settings.seconds | slice: 1 }}</span>
-          <span class="digit bottom">{{ section.settings.seconds | slice: 1 }}</span>
-          <span class="digit bottom-back">{{ section.settings.seconds | slice: 1 }}</span>
-        </div>
-      </div>
-    </div>
+<div class="countdown-timer-section" style="background-color: {{ section.settings.background_color }}; padding: 20px;">
+  {% if section.settings.title %}
+    <h2>{{ section.settings.title }}</h2>
+  {% endif %}
+
+  {% if section.settings.highlighted_text %}
+    <h3 style="color: {{ section.settings.highlight_color }};">{{ section.settings.highlighted_text }}</h3>
+  {% endif %}
+
+  <div class="countdown-timer-blocks" style="display: flex; gap: 20px;">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'hours' %}
+        {% when 'minutes' %}
+        {% when 'seconds' %}
+          <div class="countdown-digit" style="background: {{ block.settings.background }}; padding: 15px; border-radius: 8px; text-align: center;">
+            <div class="digit-value" style="color: {{ section.settings.digit_color }}; font-size: 2em;">
+              {{ block.settings.digit }}
+            </div>
+            <div class="digit-label" style="font-weight: bold;">
+              {{ block.settings.title }}
+            </div>
+          </div>
+      {% endcase %}
+    {% endfor %}
   </div>
 </div>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -235,7 +218,10 @@ document.addEventListener('DOMContentLoaded', function() {
       this.total_seconds = this.values.hours * 60 * 60 + (this.values.minutes * 60) + this.values.seconds;
       
       // Initialize display
-      this.updateDisplay();
+      this.checkHour(this.values.hours, this.$.hours[0], this.$.hours[1]);
+      this.checkHour(this.values.minutes, this.$.minutes[0], this.$.minutes[1]);
+      this.checkHour(this.values.seconds, this.$.seconds[0], this.$.seconds[1]);
+      
       this.count();
     },
     
@@ -256,7 +242,10 @@ document.addEventListener('DOMContentLoaded', function() {
             --that.values.hours;
           }
           
-          that.updateDisplay();
+          that.checkHour(that.values.hours, that.$.hours[0], that.$.hours[1]);
+          that.checkHour(that.values.minutes, that.$.minutes[0], that.$.minutes[1]);
+          that.checkHour(that.values.seconds, that.$.seconds[0], that.$.seconds[1]);
+          
           --that.total_seconds;
         } else {
           clearInterval(that.countdown_interval);
@@ -264,52 +253,62 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 1000);
     },
     
-    animateFigure: function(el, newValue) {
+    animateFigure: function(el, value) {
       const top = el.querySelector('.top');
       const bottom = el.querySelector('.bottom');
-      const topBack = el.querySelector('.top-back');
-      const bottomBack = el.querySelector('.bottom-back');
+      const back_top = el.querySelector('.top-back');
+      const back_bottom = el.querySelector('.bottom-back');
       
-      if (top.textContent !== newValue) {
-        // Set the back values first
-        topBack.textContent = newValue;
-        bottomBack.textContent = newValue;
+      back_top.querySelector('span').textContent = value;
+      back_bottom.querySelector('span').textContent = value;
+      
+      // Animate with GSAP (make sure to include GSAP in your theme)
+      if (typeof gsap !== 'undefined') {
+        gsap.to(top, {
+          duration: 0.8,
+          rotationX: -180,
+          transformPerspective: 300,
+          ease: "power2.out",
+          onComplete: function() {
+            top.textContent = value;
+            bottom.textContent = value;
+            gsap.set(top, { rotationX: 0 });
+          }
+        });
         
-        // Add animation class
-        el.classList.add('flipping');
-        
-        // After animation completes
-        setTimeout(function() {
-          top.textContent = newValue;
-          bottom.textContent = newValue;
-          el.classList.remove('flipping');
-        }, 600);
+        gsap.to(back_top, {
+          duration: 0.8,
+          rotationX: 0,
+          transformPerspective: 300,
+          ease: "power2.out",
+          clearProps: "all"
+        });
+      } else {
+        // Fallback if GSAP isn't available
+        top.textContent = value;
+        bottom.textContent = value;
+        back_top.querySelector('span').textContent = value;
+        back_bottom.querySelector('span').textContent = value;
       }
     },
     
-    updateDisplay: function() {
-      // Format values to always be 2 digits
-      const hoursStr = this.values.hours.toString().padStart(2, '0');
-      const minutesStr = this.values.minutes.toString().padStart(2, '0');
-      const secondsStr = this.values.seconds.toString().padStart(2, '0');
+    checkHour: function(value, el1, el2) {
+      const valStr = value.toString().padStart(2, '0');
+      const val1 = valStr.charAt(0);
+      const val2 = valStr.charAt(1);
       
-      // Update hours
-      this.animateFigure(this.$.hours[0], hoursStr[0]);
-      this.animateFigure(this.$.hours[1], hoursStr[1]);
+      const fig1Value = el1.querySelector('.top').textContent;
+      const fig2Value = el2.querySelector('.top').textContent;
       
-      // Update minutes
-      this.animateFigure(this.$.minutes[0], minutesStr[0]);
-      this.animateFigure(this.$.minutes[1], minutesStr[1]);
-      
-      // Update seconds
-      this.animateFigure(this.$.seconds[0], secondsStr[0]);
-      this.animateFigure(this.$.seconds[1], secondsStr[1]);
+      if(fig1Value !== val1) this.animateFigure(el1, val1);
+      if(fig2Value !== val2) this.animateFigure(el2, val2);
     }
   };
   
   Countdown.init();
 });
 </script>
+
 {%- schema -%}
 {
   "name": "Countdown Timer",
@@ -318,19 +317,19 @@ document.addEventListener('DOMContentLoaded', function() {
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "DRAFT COUNTDOWN"
+      "default": "Draft Countdown"
     },
     {
       "type": "text",
       "id": "highlighted_text",
       "label": "Highlighted Text",
-      "default": "COUNTDOWN"
+      "default": "Countdown"
     },
     {
       "type": "color",
       "id": "highlight_color",
       "label": "Highlight Color",
-      "default": "#000000"
+      "default": "#ea4c4c"
     },
     {
       "type": "header",
@@ -343,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "min": 0,
       "max": 99,
       "step": 1,
-      "default": 22
+      "default": 24
     },
     {
       "type": "range",
@@ -352,7 +351,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "min": 0,
       "max": 59,
       "step": 1,
-      "default": 33
+      "default": 0
     },
     {
       "type": "range",
@@ -361,7 +360,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "min": 0,
       "max": 59,
       "step": 1,
-      "default": 55
+      "default": 0
     },
     {
       "type": "header",
@@ -371,31 +370,119 @@ document.addEventListener('DOMContentLoaded', function() {
       "type": "color",
       "id": "digit_color",
       "label": "Digit Color",
-      "default": "#000000"
+      "default": "#de4848"
     },
     {
       "type": "color",
       "id": "background_color",
       "label": "Background Color",
       "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hours",
+      "name": "Hours Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Hours"
+        },
+        {
+          "type": "text",
+          "id": "digit",
+          "label": "Digit",
+          "default": "24"
+        },
+        {
+          "type": "text",
+          "id": "background",
+          "label": "Background Color or Label",
+          "default": "#f3f3f3"
+        }
+      ]
     },
     {
-      "type": "color",
-      "id": "top_section_color",
-      "label": "Top Section Color",
-      "default": "#f5f5f5"
+      "type": "minutes",
+      "name": "Minutes Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Minutes"
+        },
+        {
+          "type": "text",
+          "id": "digit",
+          "label": "Digit",
+          "default": "00"
+        },
+        {
+          "type": "text",
+          "id": "background",
+          "label": "Background Color or Label",
+          "default": "#f3f3f3"
+        }
+      ]
     },
     {
-      "type": "color",
-      "id": "border_color",
-      "label": "Border Color",
-      "default": "#e0e0e0"
+      "type": "seconds",
+      "name": "Seconds Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Seconds"
+        },
+        {
+          "type": "text",
+          "id": "digit",
+          "label": "Digit",
+          "default": "00"
+        },
+        {
+          "type": "text",
+          "id": "background",
+          "label": "Background Color or Label",
+          "default": "#f3f3f3"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Countdown Timer",
-      "category": "Promotional"
+      "name": "Pwc Countdown Timer",
+      "category": "Promotional",
+      "blocks": [
+        {
+          "type": "hours",
+          "settings": {
+            "title": "Hours",
+            "digit": "24",
+            "background": "#ffecec"
+          }
+        },
+        {
+          "type": "minutes",
+          "settings": {
+            "title": "Minutes",
+            "digit": "00",
+            "background": "#fff6e0"
+          }
+        },
+        {
+          "type": "seconds",
+          "settings": {
+            "title": "Seconds",
+            "digit": "00",
+            "background": "#e0f7ff"
+          }
+        }
+      ]
     }
   ]
 }
