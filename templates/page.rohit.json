@@ -188,11 +188,19 @@
             "minutes": 0,
             "background_color": "#f3bebe"
           }
+        },
+        "seconds_kT4i4w": {
+          "type": "seconds",
+          "settings": {
+            "seconds": 59,
+            "background_color": "#f3bebe"
+          }
         }
       },
       "block_order": [
         "hours_qF8pxB",
-        "minutes_tpbaQK"
+        "minutes_tpbaQK",
+        "seconds_kT4i4w"
       ],
       "name": "Custom Countdown Timer",
       "settings": {
