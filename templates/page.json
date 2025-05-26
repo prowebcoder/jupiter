@@ -52,10 +52,48 @@
         "highlighted_text": "Timer",
         "highlight_color": "#ea4c4c"
       }
+    },
+    "pwc_countdown_timer_yqnNik": {
+      "type": "pwc-countdown-timer",
+      "blocks": {
+        "hours_Jd9WUz": {
+          "type": "hours",
+          "settings": {
+            "hours": 24,
+            "background_color": "#ffffff"
+          }
+        },
+        "minutes_4DtAAD": {
+          "type": "minutes",
+          "settings": {
+            "minutes": 0,
+            "background_color": "#ffffff"
+          }
+        },
+        "seconds_RKqPPm": {
+          "type": "seconds",
+          "settings": {
+            "seconds": 0,
+            "background_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "hours_Jd9WUz",
+        "minutes_4DtAAD",
+        "seconds_RKqPPm"
+      ],
+      "name": "PWC Countdown Timer",
+      "settings": {
+        "title": "Draft Countdown",
+        "highlighted_text": "Countdown",
+        "highlight_color": "#ea4c4c"
+      }
     }
   },
   "order": [
     "main",
-    "pwc_countdown_timer_3JLp4U"
+    "pwc_countdown_timer_3JLp4U",
+    "pwc_countdown_timer_yqnNik"
   ]
 }
