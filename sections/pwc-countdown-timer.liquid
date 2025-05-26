@@ -154,25 +154,48 @@
 .figure {
   perspective: 1000px;
   transform-style: preserve-3d;
-  transition: transform 0.5s ease;
-}
-
-.figure.flipping {
-  transform: rotateX(180deg);
 }
 
 .figure .top,
-.figure .top-back {
+.figure .bottom,
+.figure .top-back,
+.figure .bottom-back {
   backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 
 .figure .top-back {
   transform: rotateX(180deg);
 }
 
-.figure .bottom,
-.figure .bottom-back {
-  backface-visibility: hidden;
+.figure.flipping .top {
+  animation: flipTop 0.5s ease-in forwards;
+}
+
+.figure.flipping .top-back {
+  animation: flipTopBack 0.5s ease-in forwards;
+}
+
+@keyframes flipTop {
+  0% {
+    transform: perspective(200px) rotateX(0deg);
+  }
+  100% {
+    transform: perspective(200px) rotateX(-180deg);
+  }
+}
+
+@keyframes flipTopBack {
+  0% {
+    transform: perspective(200px) rotateX(180deg);
+  }
+  100% {
+    transform: perspective(200px) rotateX(0deg);
+  }
+}
+
+.bottom-back {
+  display: block !important; /* Make sure bottom-back is visible */
 }
 
 @media (max-width: 767px) {
@@ -320,30 +343,22 @@ document.addEventListener('DOMContentLoaded', function() {
       const that = this;
       const top = el.querySelector('.top');
       const bottom = el.querySelector('.bottom');
-      const back_top = el.querySelector('.top-back');
-      const back_bottom = el.querySelector('.bottom-back');
+      const topBack = el.querySelector('.top-back span');
+      const bottomBack = el.querySelector('.bottom-back span');
       
       // Set the back face values
-      back_top.querySelector('span').textContent = value;
-      back_bottom.querySelector('span').textContent = value;
+      topBack.textContent = value;
+      bottomBack.textContent = value;
       
       // Start the animation
-      this.startAnimation(el);
+      el.classList.add('flipping');
       
       // After animation completes, update the front face
       setTimeout(function() {
         top.textContent = value;
         bottom.textContent = value;
-        that.resetAnimation(el);
+        el.classList.remove('flipping');
       }, 500); // Match this with the CSS transition duration
-    },
-    
-    startAnimation: function(el) {
-      el.classList.add('flipping');
-    },
-    
-    resetAnimation: function(el) {
-      el.classList.remove('flipping');
     },
     
     checkHour: function(value, el1, el2) {
