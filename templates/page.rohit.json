@@ -179,6 +179,7 @@
           "type": "hours",
           "settings": {
             "hours": 24,
+            "title": "Multicolumn",
             "background_color": "#f3bebe"
           }
         },
@@ -186,6 +187,7 @@
           "type": "minutes",
           "settings": {
             "minutes": 59,
+            "minutes_title": "Minutes",
             "background_color": "#f3bebe"
           }
         },
@@ -206,7 +208,9 @@
       "settings": {
         "title": "Draft Countdown",
         "highlighted_text": "Countdown",
-        "highlight_color": "#ea4c4c"
+        "highlight_color": "#ea4c4c",
+        "digit_color": "#000000",
+        "background_color": "#ffffff"
       }
     }
   },
