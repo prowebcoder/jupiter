@@ -180,7 +180,7 @@
           "settings": {
             "hours": 24,
             "title": "Hours",
-            "background_color": "#e4bc95"
+            "background_color": "#e7d0e7"
           }
         },
         "minutes_ctFyqg": {
@@ -188,7 +188,7 @@
           "settings": {
             "minutes": 59,
             "minutes_title": "minutes",
-            "background_color": "#e4bc95"
+            "background_color": "#e7d0e7"
           }
         },
         "seconds_X3nYqa": {
@@ -196,7 +196,7 @@
           "settings": {
             "seconds": 0,
             "seconds_title": "seconds",
-            "background_color": "#e4bc95"
+            "background_color": "#e7d0e7"
           }
         }
       },
