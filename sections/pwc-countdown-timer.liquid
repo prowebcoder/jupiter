@@ -199,7 +199,7 @@
     
         {% when 'minutes' %}
           <div class="pc-bloc-time pc-min" data-init-value="{{ block.settings.minutes }}">
-            <span class="pc-count-title">Minutes</span>
+            <span class="pc-count-title">{{ block.settings.minutes_title }}</span>
             <div class="pc-figure-container">
               <div class="pc-figure pc-min-1" style="background-color: {{ block.settings.background_color }};">
                 <span class="pc-top">0</span>
@@ -433,6 +433,12 @@ document.addEventListener('DOMContentLoaded', function() {
           "min": 0,
           "max": 59,
           "default": 0
+        },
+         {
+          "type": "inline_richtext",
+          "id": "minutes_title",
+          "default": "t:sections.multicolumn.settings.title.default",
+          "label": "t:sections.multicolumn.settings.title.label"
         },
         {
           "type": "color",
