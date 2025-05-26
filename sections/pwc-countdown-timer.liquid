@@ -1,177 +1,425 @@
-<style>
-  .countdown-section {
-    background-color: {{ section.settings.bg_color }};
-    color: {{ section.settings.timer_color }};
-    padding: 60px 20px;
-    text-align: center;
+
+{%- style -%}
+.countdown-timer-section {
+  position: relative;
+  margin: 0 auto;
+  padding: 40px 0;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.countdown-timer-section h1 {
+  margin-bottom: 60px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 2.25em;
+  text-transform: uppercase;
+}
+
+.countdown-timer-section h1 strong {
+  font-weight: 400;
+  color: {{ section.settings.highlight_color }};
+}
+
+.countdown {
+  width: 720px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 45px;
+}
+
+.bloc-time {
+  text-align: center;
+}
+
+.count-title {
+  display: block;
+  margin-bottom: 15px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.94em;
+  color: #1a1a1a;
+  text-transform: uppercase;
+}
+
+.figure-container {
+  display: flex;
+  gap: 10px;
+}
+
+.figure {
+  position: relative;
+  height: 110px;
+  width: 100px;
+  background-color: {{ section.settings.background_color }};
+  border-radius: 8px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+.figure > span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-family: 'Lato', sans-serif;
+  font-size: 5.94em;
+  line-height: 107px;
+  font-weight: 700;
+  color: {{ section.settings.digit_color }};
+}
+
+.figure .top, .figure .bottom-back {
+  position: relative;
+}
+
+.figure .top:after, .figure .bottom-back:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.figure .top {
+  z-index: 3;
+  background-color: {{ section.settings.top_section_color }};
+  transform-origin: 50% 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transform: perspective(200px);
+  height: 50%;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.figure .bottom {
+  z-index: 1;
+  height: 50%;
+  position: relative;
+}
+
+.figure .bottom:before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.figure .bottom-back {
+  z-index: 2;
+  top: 0;
+  height: 50%;
+  overflow: hidden;
+  background-color: {{ section.settings.top_section_color }};
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.figure .bottom-back span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.figure .top-back {
+  z-index: 4;
+  bottom: 0;
+  background-color: {{ section.settings.background_color }};
+  transform-origin: 50% 0;
+  transform: perspective(200px) rotateX(180deg);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 50%;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.figure .top-back span {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+@media (max-width: 767px) {
+  .countdown {
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
   }
-
-  .countdown-heading {
-    font-size: 2rem;
-    margin-bottom: 30px;
+  
+  .figure {
+    height: 80px;
+    width: 70px;
   }
-
-  .countdown-timer {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
+  
+  .figure > span {
+    font-size: 4em;
+    line-height: 80px;
   }
+}
+{%- endstyle -%}
 
-  .countdown-block {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px 15px;
-    border-radius: 12px;
-    min-width: 90px;
-    transition: all 0.3s ease;
-  }
-
-  .countdown-number {
-    font-size: 2.5rem;
-    font-weight: bold;
-    display: block;
-  }
-
-  .countdown-label {
-    font-size: 1rem;
-    margin-top: 5px;
-    display: block;
-  }
-
-  .end-message {
-    display: none;
-    font-size: 2rem;
-    margin-top: 30px;
-    animation: pop-in 0.6s ease forwards;
-  }
-
-  @keyframes pop-in {
-    0% {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @media (max-width: 500px) {
-    .countdown-number {
-      font-size: 1.8rem;
-    }
-
-    .countdown-block {
-      min-width: 70px;
-    }
-
-    .countdown-heading {
-      font-size: 1.5rem;
-    }
-  }
-</style>
-
-<div class="countdown-section">
-  <h2 class="countdown-heading">{{ section.settings.heading }}</h2>
-  <div id="countdown" class="countdown-timer">
-    <div class="countdown-block">
-      <span id="days" class="countdown-number">00</span>
-      <span class="countdown-label">Days</span>
+<div class="countdown-timer-section">
+  <h1>{{ section.settings.title }} <strong>{{ section.settings.highlighted_text }}</strong></h1>
+  
+  <div class="countdown">
+    <div class="bloc-time hours" data-init-value="{{ section.settings.hours }}">
+      <span class="count-title">Hours</span>
+      <div class="figure-container">
+        <div class="figure hours hours-1">
+          <span class="top">0</span>
+          <span class="top-back"><span>0</span></span>
+          <span class="bottom">0</span>
+          <span class="bottom-back"><span>0</span></span>
+        </div>
+        <div class="figure hours hours-2">
+          <span class="top">0</span>
+          <span class="top-back"><span>0</span></span>
+          <span class="bottom">0</span>
+          <span class="bottom-back"><span>0</span></span>
+        </div>
+      </div>
     </div>
-    <div class="countdown-block">
-      <span id="hours" class="countdown-number">00</span>
-      <span class="countdown-label">Hours</span>
+    
+    <div class="bloc-time min" data-init-value="{{ section.settings.minutes }}">
+      <span class="count-title">Minutes</span>
+      <div class="figure-container">
+        <div class="figure min min-1">
+          <span class="top">0</span>
+          <span class="top-back"><span>0</span></span>
+          <span class="bottom">0</span>
+          <span class="bottom-back"><span>0</span></span>
+        </div>
+        <div class="figure min min-2">
+          <span class="top">0</span>
+          <span class="top-back"><span>0</span></span>
+          <span class="bottom">0</span>
+          <span class="bottom-back"><span>0</span></span>
+        </div>
+      </div>
     </div>
-    <div class="countdown-block">
-      <span id="minutes" class="countdown-number">00</span>
-      <span class="countdown-label">Minutes</span>
+    
+    <div class="bloc-time sec" data-init-value="{{ section.settings.seconds }}">
+      <span class="count-title">Seconds</span>
+      <div class="figure-container">
+        <div class="figure sec sec-1">
+          <span class="top">0</span>
+          <span class="top-back"><span>0</span></span>
+          <span class="bottom">0</span>
+          <span class="bottom-back"><span>0</span></span>
+        </div>
+        <div class="figure sec sec-2">
+          <span class="top">0</span>
+          <span class="top-back"><span>0</span></span>
+          <span class="bottom">0</span>
+          <span class="bottom-back"><span>0</span></span>
+        </div>
+      </div>
     </div>
-    <div class="countdown-block">
-      <span id="seconds" class="countdown-number">00</span>
-      <span class="countdown-label">Seconds</span>
-    </div>
-  </div>
-  <div id="end-message" class="end-message">
-    {{ section.settings.end_message }}
   </div>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const targetDate = new Date("{{ section.settings.target_date }}").getTime();
-    const daysEl = document.getElementById("days");
-    const hoursEl = document.getElementById("hours");
-    const minutesEl = document.getElementById("minutes");
-    const secondsEl = document.getElementById("seconds");
-    const countdownEl = document.getElementById("countdown");
-    const endMessageEl = document.getElementById("end-message");
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      if (distance <= 0) {
-        countdownEl.style.display = "none";
-        endMessageEl.style.display = "block";
-        return;
+document.addEventListener('DOMContentLoaded', function() {
+  const Countdown = {
+    init: function() {
+      this.$ = {
+        hours: document.querySelectorAll('.bloc-time.hours .figure'),
+        minutes: document.querySelectorAll('.bloc-time.min .figure'),
+        seconds: document.querySelectorAll('.bloc-time.sec .figure')
+      };
+      
+      this.values = {
+        hours: parseInt(document.querySelector('.bloc-time.hours').getAttribute('data-init-value')),
+        minutes: parseInt(document.querySelector('.bloc-time.min').getAttribute('data-init-value')),
+        seconds: parseInt(document.querySelector('.bloc-time.sec').getAttribute('data-init-value'))
+      };
+      
+      this.total_seconds = this.values.hours * 60 * 60 + (this.values.minutes * 60) + this.values.seconds;
+      
+      // Initialize display
+      this.checkHour(this.values.hours, this.$.hours[0], this.$.hours[1]);
+      this.checkHour(this.values.minutes, this.$.minutes[0], this.$.minutes[1]);
+      this.checkHour(this.values.seconds, this.$.seconds[0], this.$.seconds[1]);
+      
+      this.count();
+    },
+    
+    count: function() {
+      const that = this;
+      
+      this.countdown_interval = setInterval(function() {
+        if(that.total_seconds > 0) {
+          --that.values.seconds;
+          
+          if(that.values.minutes >= 0 && that.values.seconds < 0) {
+            that.values.seconds = 59;
+            --that.values.minutes;
+          }
+          
+          if(that.values.hours >= 0 && that.values.minutes < 0) {
+            that.values.minutes = 59;
+            --that.values.hours;
+          }
+          
+          that.checkHour(that.values.hours, that.$.hours[0], that.$.hours[1]);
+          that.checkHour(that.values.minutes, that.$.minutes[0], that.$.minutes[1]);
+          that.checkHour(that.values.seconds, that.$.seconds[0], that.$.seconds[1]);
+          
+          --that.total_seconds;
+        } else {
+          clearInterval(that.countdown_interval);
+        }
+      }, 1000);
+    },
+    
+    animateFigure: function(el, value) {
+      const top = el.querySelector('.top');
+      const bottom = el.querySelector('.bottom');
+      const back_top = el.querySelector('.top-back');
+      const back_bottom = el.querySelector('.bottom-back');
+      
+      back_top.querySelector('span').textContent = value;
+      back_bottom.querySelector('span').textContent = value;
+      
+      // Animate with GSAP (make sure to include GSAP in your theme)
+      if (typeof gsap !== 'undefined') {
+        gsap.to(top, {
+          duration: 0.8,
+          rotationX: -180,
+          transformPerspective: 300,
+          ease: "power2.out",
+          onComplete: function() {
+            top.textContent = value;
+            bottom.textContent = value;
+            gsap.set(top, { rotationX: 0 });
+          }
+        });
+        
+        gsap.to(back_top, {
+          duration: 0.8,
+          rotationX: 0,
+          transformPerspective: 300,
+          ease: "power2.out",
+          clearProps: "all"
+        });
+      } else {
+        // Fallback if GSAP isn't available
+        top.textContent = value;
+        bottom.textContent = value;
+        back_top.querySelector('span').textContent = value;
+        back_bottom.querySelector('span').textContent = value;
       }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      daysEl.textContent = String(days).padStart(2, "0");
-      hoursEl.textContent = String(hours).padStart(2, "0");
-      minutesEl.textContent = String(minutes).padStart(2, "0");
-      secondsEl.textContent = String(seconds).padStart(2, "0");
+    },
+    
+    checkHour: function(value, el1, el2) {
+      const valStr = value.toString().padStart(2, '0');
+      const val1 = valStr.charAt(0);
+      const val2 = valStr.charAt(1);
+      
+      const fig1Value = el1.querySelector('.top').textContent;
+      const fig2Value = el2.querySelector('.top').textContent;
+      
+      if(fig1Value !== val1) this.animateFigure(el1, val1);
+      if(fig2Value !== val2) this.animateFigure(el2, val2);
     }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  });
+  };
+  
+  Countdown.init();
+});
 </script>
-
-{% schema %}
+{%- schema -%}
 {
-  "name": "Custom Countdown Timer",
+  "name": "Countdown Timer",
   "settings": [
     {
       "type": "text",
-      "id": "heading",
-      "label": "Heading Text",
-      "default": "🎆 The New Year Is Coming Soon! 🎆"
+      "id": "title",
+      "label": "Heading",
+      "default": "Draft Countdown"
     },
     {
       "type": "text",
-      "id": "target_date",
-      "label": "Target Date (YYYY-MM-DDTHH:MM:SSZ)",
-      "default": "2026-01-01T00:00:00Z",
-      "info": "Use ISO format (UTC time). Example: 2026-01-01T00:00:00Z"
+      "id": "highlighted_text",
+      "label": "Highlighted Text",
+      "default": "Countdown"
     },
     {
       "type": "color",
-      "id": "timer_color",
-      "label": "Timer Text Color",
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "default": "#ea4c4c"
+    },
+    {
+      "type": "header",
+      "content": "Countdown Settings"
+    },
+    {
+      "type": "range",
+      "id": "hours",
+      "label": "Hours",
+      "min": 0,
+      "max": 99,
+      "step": 1,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "minutes",
+      "label": "Minutes",
+      "min": 0,
+      "max": 59,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "seconds",
+      "label": "Seconds",
+      "min": 0,
+      "max": 59,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Style Settings"
+    },
+    {
+      "type": "color",
+      "id": "digit_color",
+      "label": "Digit Color",
+      "default": "#de4848"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
       "default": "#ffffff"
     },
     {
       "type": "color",
-      "id": "bg_color",
-      "label": "Background Color",
-      "default": "#000000"
-    },
-    {
-      "type": "text",
-      "id": "end_message",
-      "label": "Message When Time Expires",
-      "default": "🎉 Happy New Year 2026! 🎉"
+      "id": "top_section_color",
+      "label": "Top Section Color",
+      "default": "#f7f7f7"
     }
   ],
   "presets": [
     {
-      "name": "Custom Countdown Timer"
+      "name": "Pwc Countdown Timer",
+      "category": "Promotional"
     }
   ]
 }
-{% endschema %}
+{%- endschema -%}
