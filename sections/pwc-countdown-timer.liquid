@@ -309,7 +309,13 @@ document.addEventListener('DOMContentLoaded', function() {
           transformPerspective: 300,
           ease: "power2.out",
           onComplete: function() {
-           
+           top.textContent = '';
+bottom.textContent = '';
+requestAnimationFrame(() => {
+  top.textContent = value;
+  bottom.textContent = value;
+});
+
             gsap.set(top, { rotationX: 0 });
           }
         });
