@@ -1,6 +1,5 @@
-
 {%- style -%}
-.countdown-timer-section {
+.pc-countdown-timer-section {
   position: relative;
   margin: 0 auto;
   padding: 40px 0;
@@ -8,7 +7,7 @@
   text-align: center;
 }
 
-.countdown-timer-section h1 {
+.pc-countdown-timer-section h1 {
   margin-bottom: 60px;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
@@ -16,12 +15,12 @@
   text-transform: uppercase;
 }
 
-.countdown-timer-section h1 strong {
+.pc-countdown-timer-section h1 strong {
   font-weight: 400;
   color: {{ section.settings.highlight_color }};
 }
 
-.countdown {
+.pc-countdown {
   width: 720px;
   margin: 0 auto;
   display: flex;
@@ -29,11 +28,11 @@
   gap: 45px;
 }
 
-.bloc-time {
+.pc-bloc-time {
   text-align: center;
 }
 
-.count-title {
+.pc-count-title {
   display: block;
   margin-bottom: 15px;
   font-family: 'Lato', sans-serif;
@@ -42,12 +41,12 @@
   text-transform: uppercase;
 }
 
-.figure-container {
+.pc-figure-container {
   display: flex;
   gap: 10px;
 }
 
-.figure {
+.pc-figure {
   position: relative;
   height: 110px;
   width: 100px;
@@ -56,7 +55,7 @@
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
 }
 
-.figure > span {
+.pc-figure > span {
   position: absolute;
   left: 0;
   right: 0;
@@ -68,11 +67,11 @@
   color: {{ section.settings.digit_color }};
 }
 
-.figure .top, .figure .bottom-back {
+.pc-figure .pc-top, .pc-figure .pc-bottom-back {
   position: relative;
 }
 
-.figure .top:after, .figure .bottom-back:after {
+.pc-figure .pc-top:after, .pc-figure .pc-bottom-back:after {
   content: "";
   position: absolute;
   z-index: -1;
@@ -83,7 +82,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.figure .top {
+.pc-figure .pc-top {
   z-index: 3;
   transform-origin: 50% 100%;
   border-top-left-radius: 10px;
@@ -94,12 +93,12 @@
   backface-visibility: hidden;
 }
 
-.figure .bottom {
+.pc-figure .pc-bottom {
   z-index: 1;
   height: 50%;
 }
 
-.figure .bottom:before {
+.pc-figure .pc-bottom:before {
   content: "";
   position: absolute;
   display: block;
@@ -110,7 +109,7 @@
   background-color: rgba(0, 0, 0, 0.02);
 }
 
-.figure .bottom-back {
+.pc-figure .pc-bottom-back {
   top: 0;
   height: 50%;
   overflow: hidden;
@@ -118,7 +117,7 @@
   border-top-right-radius: 10px;
 }
 
-.figure .bottom-back span {
+.pc-figure .pc-bottom-back span {
   position: absolute;
   top: 0;
   left: 0;
@@ -126,7 +125,7 @@
   margin: auto;
 }
 
-.figure .top-back {
+.pc-figure .pc-top-back {
   z-index: 4;
   bottom: 0;
   background-color: {{ section.settings.background_color }};
@@ -139,7 +138,7 @@
   backface-visibility: hidden;
 }
 
-.figure .top-back span {
+.pc-figure .pc-top-back span {
   position: absolute;
   top: -100%;
   left: 0;
@@ -147,88 +146,88 @@
   margin: auto;
 }
 
-.bottom-back {
+.pc-bottom-back {
     display: none;
 }
 
 @media (max-width: 767px) {
-  .countdown {
+  .pc-countdown {
     width: 100%;
     flex-direction: column;
     gap: 20px;
   }
   
-  .figure {
+  .pc-figure {
     height: 80px;
     width: 70px;
   }
   
-  .figure > span {
+  .pc-figure > span {
     font-size: 4em;
     line-height: 80px;
   }
 }
 {%- endstyle -%}
 
-<div class="countdown-timer-section">
+<div class="pc-countdown-timer-section">
   <h1>{{ section.settings.title }} <strong>{{ section.settings.highlighted_text }}</strong></h1>
-  <div class="countdown">
+  <div class="pc-countdown">
     {% for block in section.blocks %}
       {% case block.type %}
         
         {% when 'hours' %}
-          <div class="bloc-time hours" data-init-value="{{ block.settings.hours }}">
-            <span class="count-title">Hours</span>
-            <div class="figure-container">
-              <div class="figure hours-1" style="background-color: {{ block.settings.background_color }};">
-                <span class="top">0</span>
-                <span class="top-back"><span>0</span></span>
-                <span class="bottom">0</span>
-                <span class="bottom-back"><span>0</span></span>
+          <div class="pc-bloc-time pc-hours" data-init-value="{{ block.settings.hours }}">
+            <span class="pc-count-title">Hours</span>
+            <div class="pc-figure-container">
+              <div class="pc-figure pc-hours-1" style="background-color: {{ block.settings.background_color }};">
+                <span class="pc-top">0</span>
+                <span class="pc-top-back"><span>0</span></span>
+                <span class="pc-bottom">0</span>
+                <span class="pc-bottom-back"><span>0</span></span>
               </div>
-              <div class="figure hours-2" style="background-color: {{ block.settings.background_color }};">
-                <span class="top">0</span>
-                <span class="top-back"><span>0</span></span>
-                <span class="bottom">0</span>
-                <span class="bottom-back"><span>0</span></span>
+              <div class="pc-figure pc-hours-2" style="background-color: {{ block.settings.background_color }};">
+                <span class="pc-top">0</span>
+                <span class="pc-top-back"><span>0</span></span>
+                <span class="pc-bottom">0</span>
+                <span class="pc-bottom-back"><span>0</span></span>
               </div>
             </div>
           </div>
     
         {% when 'minutes' %}
-          <div class="bloc-time min" data-init-value="{{ block.settings.minutes }}">
-            <span class="count-title">Minutes</span>
-            <div class="figure-container">
-              <div class="figure min-1" style="background-color: {{ block.settings.background_color }};">
-                <span class="top">0</span>
-                <span class="top-back"><span>0</span></span>
-                <span class="bottom">0</span>
-                <span class="bottom-back"><span>0</span></span>
+          <div class="pc-bloc-time pc-min" data-init-value="{{ block.settings.minutes }}">
+            <span class="pc-count-title">Minutes</span>
+            <div class="pc-figure-container">
+              <div class="pc-figure pc-min-1" style="background-color: {{ block.settings.background_color }};">
+                <span class="pc-top">0</span>
+                <span class="pc-top-back"><span>0</span></span>
+                <span class="pc-bottom">0</span>
+                <span class="pc-bottom-back"><span>0</span></span>
               </div>
-              <div class="figure min-2" style="background-color: {{ block.settings.background_color }};">
-                <span class="top">0</span>
-                <span class="top-back"><span>0</span></span>
-                <span class="bottom">0</span>
-                <span class="bottom-back"><span>0</span></span>
+              <div class="pc-figure pc-min-2" style="background-color: {{ block.settings.background_color }};">
+                <span class="pc-top">0</span>
+                <span class="pc-top-back"><span>0</span></span>
+                <span class="pc-bottom">0</span>
+                <span class="pc-bottom-back"><span>0</span></span>
               </div>
             </div>
           </div>
     
         {% when 'seconds' %}
-          <div class="bloc-time sec" data-init-value="{{ block.settings.seconds }}">
-            <span class="count-title">Seconds</span>
-            <div class="figure-container">
-              <div class="figure sec-1" style="background-color: {{ block.settings.background_color }};">
-                <span class="top">0</span>
-                <span class="top-back"><span>0</span></span>
-                <span class="bottom">0</span>
-                <span class="bottom-back"><span>0</span></span>
+          <div class="pc-bloc-time pc-sec" data-init-value="{{ block.settings.seconds }}">
+            <span class="pc-count-title">Seconds</span>
+            <div class="pc-figure-container">
+              <div class="pc-figure pc-sec-1" style="background-color: {{ block.settings.background_color }};">
+                <span class="pc-top">0</span>
+                <span class="pc-top-back"><span>0</span></span>
+                <span class="pc-bottom">0</span>
+                <span class="pc-bottom-back"><span>0</span></span>
               </div>
-              <div class="figure sec-2" style="background-color: {{ block.settings.background_color }};">
-                <span class="top">0</span>
-                <span class="top-back"><span>0</span></span>
-                <span class="bottom">0</span>
-                <span class="bottom-back"><span>0</span></span>
+              <div class="pc-figure pc-sec-2" style="background-color: {{ block.settings.background_color }};">
+                <span class="pc-top">0</span>
+                <span class="pc-top-back"><span>0</span></span>
+                <span class="pc-bottom">0</span>
+                <span class="pc-bottom-back"><span>0</span></span>
               </div>
             </div>
           </div>
@@ -243,15 +242,15 @@ document.addEventListener('DOMContentLoaded', function() {
   const Countdown = {
     init: function() {
       this.$ = {
-        hours: document.querySelectorAll('.bloc-time.hours .figure'),
-        minutes: document.querySelectorAll('.bloc-time.min .figure'),
-        seconds: document.querySelectorAll('.bloc-time.sec .figure')
+        hours: document.querySelectorAll('.pc-bloc-time.pc-hours .pc-figure'),
+        minutes: document.querySelectorAll('.pc-bloc-time.pc-min .pc-figure'),
+        seconds: document.querySelectorAll('.pc-bloc-time.pc-sec .pc-figure')
       };
       
       this.values = {
-        hours: parseInt(document.querySelector('.bloc-time.hours').getAttribute('data-init-value')),
-        minutes: parseInt(document.querySelector('.bloc-time.min').getAttribute('data-init-value')),
-        seconds: parseInt(document.querySelector('.bloc-time.sec').getAttribute('data-init-value'))
+        hours: parseInt(document.querySelector('.pc-bloc-time.pc-hours').getAttribute('data-init-value')),
+        minutes: parseInt(document.querySelector('.pc-bloc-time.pc-min').getAttribute('data-init-value')),
+        seconds: parseInt(document.querySelector('.pc-bloc-time.pc-sec').getAttribute('data-init-value'))
       };
       
       this.total_seconds = this.values.hours * 60 * 60 + (this.values.minutes * 60) + this.values.seconds;
@@ -293,10 +292,10 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     
     animateFigure: function(el, value) {
-      const top = el.querySelector('.top');
-      const bottom = el.querySelector('.bottom');
-      const back_top = el.querySelector('.top-back');
-      const back_bottom = el.querySelector('.bottom-back');
+      const top = el.querySelector('.pc-top');
+      const bottom = el.querySelector('.pc-bottom');
+      const back_top = el.querySelector('.pc-top-back');
+      const back_bottom = el.querySelector('.pc-bottom-back');
       
       back_top.querySelector('span').textContent = value;
       back_bottom.querySelector('span').textContent = value;
@@ -346,8 +345,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const val1 = valStr.charAt(0);
       const val2 = valStr.charAt(1);
       
-      const fig1Value = el1.querySelector('.top').textContent;
-      const fig2Value = el2.querySelector('.top').textContent;
+      const fig1Value = el1.querySelector('.pc-top').textContent;
+      const fig2Value = el2.querySelector('.pc-top').textContent;
       
       if(fig1Value !== val1) this.animateFigure(el1, val1);
       if(fig2Value !== val2) this.animateFigure(el2, val2);
