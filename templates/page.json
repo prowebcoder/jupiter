@@ -18,16 +18,39 @@
     },
     "pwc_countdown_timer_3JLp4U": {
       "type": "pwc-countdown-timer",
+      "blocks": {
+        "hours_9EpgKz": {
+          "type": "hours",
+          "settings": {
+            "hours": 24,
+            "background_color": "#ffffff"
+          }
+        },
+        "minutes_j6GEFm": {
+          "type": "minutes",
+          "settings": {
+            "minutes": 59,
+            "background_color": "#ffffff"
+          }
+        },
+        "seconds_83xT8a": {
+          "type": "seconds",
+          "settings": {
+            "seconds": 0,
+            "background_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "hours_9EpgKz",
+        "minutes_j6GEFm",
+        "seconds_83xT8a"
+      ],
       "name": "Pwc Countdown Timer Rohit",
       "settings": {
         "title": "countdown",
         "highlighted_text": "Timer",
-        "highlight_color": "#ea4c4c",
-        "hours": 24,
-        "minutes": 0,
-        "seconds": 0,
-        "digit_color": "#de4848",
-        "background_color": "#ffffff"
+        "highlight_color": "#ea4c4c"
       }
     }
   },
