@@ -274,7 +274,7 @@
             </span>
 
             {% assign label_font_size = '' %}
-            {% case plan.label_text_size %}
+            {% case block.settings.label_text_size %}
               {% when 'small' %} {% assign label_font_size = '14px' %}
               {% when 'medium' %} {% assign label_font_size = '18px' %}
               {% when 'large' %} {% assign label_font_size = '24px' %}
@@ -284,15 +284,15 @@
             <span class="pc-pricing-table__label"
               style="
                 color: {{ block.settings.label_title_color }};
-                text-align: {{ plan.label_text_align }};
-                font-weight: {{ plan.label_font_weight }};
-                font-style: {{ plan.label_font_style }};
-                letter-spacing: {{ plan.label_letter_spacing }}px;
-                text-decoration: {{ plan.label_text_decoration }};
-                text-decoration-color: {{ plan.label_text_decoration_color }};
-                text-decoration-color: {{ plan.label_text_decoration_color }};
-                padding-top: {{ plan.label_padding_top }}px;
-                padding-bottom: {{ plan.label_padding_bottom }}px;
+                text-align: {{ block.settings.label_text_align }};
+                font-weight: {{ block.settings.label_font_weight }};
+                font-style: {{ block.settings.label_font_style }};
+                letter-spacing: {{ block.settings.label_letter_spacing }}px;
+                text-decoration: {{ block.settings.label_text_decoration }};
+                text-decoration-color: {{ block.settings.label_text_decoration_color }};
+                text-decoration-color: {{ block.settings.label_text_decoration_color }};
+                padding-top: {{ block.settings.label_padding_top }}px;
+                padding-bottom: {{ block.settings.label_padding_bottom }}px;
                 font-size: {{ label_font_size }};
               "
             >
