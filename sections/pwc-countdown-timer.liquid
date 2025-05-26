@@ -1,3 +1,4 @@
+
 {%- style -%}
 .countdown-timer-section {
   position: relative;
@@ -50,7 +51,7 @@
   position: relative;
   height: 110px;
   width: 100px;
-  background-color: {{ section.settings.background_color }};
+  background-color: {{ block.settings.background_color }};
   border-radius: 8px;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
 }
@@ -128,7 +129,7 @@
 .figure .top-back {
   z-index: 4;
   bottom: 0;
-  background-color: {{ section.settings.background_color }};
+  background-color: {{ block.settings.background_color }};
   transform-origin: 50% 0;
   transform: perspective(200px) rotateX(180deg);
   border-bottom-left-radius: 10px;
@@ -147,7 +148,7 @@
 }
 
 .bottom-back {
-  display: none;
+    display: none;
 }
 
 @media (max-width: 767px) {
@@ -156,12 +157,12 @@
     flex-direction: column;
     gap: 20px;
   }
-
+  
   .figure {
     height: 80px;
     width: 70px;
   }
-
+  
   .figure > span {
     font-size: 4em;
     line-height: 80px;
@@ -172,136 +173,145 @@
 <div class="countdown-timer-section">
   <h1>{{ section.settings.title }} <strong>{{ section.settings.highlighted_text }}</strong></h1>
   <div class="countdown">
-    <div class="bloc-time hours" data-init-value="{{ section.settings.hours }}">
-      <span class="count-title">Hours</span>
-      <div class="figure-container">
-        <div class="figure hours-1">
-          <span class="top">0</span>
-          <span class="top-back"><span>0</span></span>
-          <span class="bottom">0</span>
-          <span class="bottom-back"><span>0</span></span>
-        </div>
-        <div class="figure hours-2">
-          <span class="top">0</span>
-          <span class="top-back"><span>0</span></span>
-          <span class="bottom">0</span>
-          <span class="bottom-back"><span>0</span></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="bloc-time min" data-init-value="{{ section.settings.minutes }}">
-      <span class="count-title">Minutes</span>
-      <div class="figure-container">
-        <div class="figure min-1">
-          <span class="top">0</span>
-          <span class="top-back"><span>0</span></span>
-          <span class="bottom">0</span>
-          <span class="bottom-back"><span>0</span></span>
-        </div>
-        <div class="figure min-2">
-          <span class="top">0</span>
-          <span class="top-back"><span>0</span></span>
-          <span class="bottom">0</span>
-          <span class="bottom-back"><span>0</span></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="bloc-time sec" data-init-value="{{ section.settings.seconds }}">
-      <span class="count-title">Seconds</span>
-      <div class="figure-container">
-        <div class="figure sec-1">
-          <span class="top">0</span>
-          <span class="top-back"><span>0</span></span>
-          <span class="bottom">0</span>
-          <span class="bottom-back"><span>0</span></span>
-        </div>
-        <div class="figure sec-2">
-          <span class="top">0</span>
-          <span class="top-back"><span>0</span></span>
-          <span class="bottom">0</span>
-          <span class="bottom-back"><span>0</span></span>
-        </div>
-      </div>
-    </div>
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'hours' %}
+          <div class="bloc-time hours" data-init-value="{{ block.settings.hours }}">
+            <span class="count-title">Hours</span>
+            <div class="figure-container">
+              <div class="figure hours-1" style="background-color: {{ block.settings.background_color }};">
+                <span class="top">0</span>
+                <span class="top-back"><span>0</span></span>
+                <span class="bottom">0</span>
+                <span class="bottom-back"><span>0</span></span>
+              </div>
+              <div class="figure hours-2" style="background-color: {{ block.settings.background_color }};">
+                <span class="top">0</span>
+                <span class="top-back"><span>0</span></span>
+                <span class="bottom">0</span>
+                <span class="bottom-back"><span>0</span></span>
+              </div>
+            </div>
+          </div>
+        {% when 'minutes' %}
+          <div class="bloc-time min" data-init-value="{{ block.settings.minutes }}">
+            <span class="count-title">Minutes</span>
+            <div class="figure-container">
+              <div class="figure min-1" style="background-color: {{ block.settings.background_color }};">
+                <span class="top">0</span>
+                <span class="top-back"><span>0</span></span>
+                <span class="bottom">0</span>
+                <span class="bottom-back"><span>0</span></span>
+              </div>
+              <div class="figure min-2" style="background-color: {{ block.settings.background_color }};">
+                <span class="top">0</span>
+                <span class="top-back"><span>0</span></span>
+                <span class="bottom">0</span>
+                <span class="bottom-back"><span>0</span></span>
+              </div>
+            </div>
+          </div>
+        {% when 'seconds' %}
+          <div class="bloc-time sec" data-init-value="{{ block.settings.seconds }}">
+            <span class="count-title">Seconds</span>
+            <div class="figure-container">
+              <div class="figure sec-1" style="background-color: {{ block.settings.background_color }};">
+                <span class="top">0</span>
+                <span class="top-back"><span>0</span></span>
+                <span class="bottom">0</span>
+                <span class="bottom-back"><span>0</span></span>
+              </div>
+              <div class="figure sec-2" style="background-color: {{ block.settings.background_color }};">
+                <span class="top">0</span>
+                <span class="top-back"><span>0</span></span>
+                <span class="bottom">0</span>
+                <span class="bottom-back"><span>0</span></span>
+              </div>
+            </div>
+          </div>
+      {% endcase %}
+    {% endfor %}
   </div>
 </div>
 
+
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
   const Countdown = {
-    init: function () {
+    init: function() {
       this.$ = {
         hours: document.querySelectorAll('.bloc-time.hours .figure'),
         minutes: document.querySelectorAll('.bloc-time.min .figure'),
         seconds: document.querySelectorAll('.bloc-time.sec .figure')
       };
-
+      
       this.values = {
         hours: parseInt(document.querySelector('.bloc-time.hours').getAttribute('data-init-value')),
         minutes: parseInt(document.querySelector('.bloc-time.min').getAttribute('data-init-value')),
         seconds: parseInt(document.querySelector('.bloc-time.sec').getAttribute('data-init-value'))
       };
-
-      this.total_seconds = this.values.hours * 3600 + this.values.minutes * 60 + this.values.seconds;
-
+      
+      this.total_seconds = this.values.hours * 60 * 60 + (this.values.minutes * 60) + this.values.seconds;
+      
+      // Initialize display
       this.checkHour(this.values.hours, this.$.hours[0], this.$.hours[1]);
       this.checkHour(this.values.minutes, this.$.minutes[0], this.$.minutes[1]);
       this.checkHour(this.values.seconds, this.$.seconds[0], this.$.seconds[1]);
-
+      
       this.count();
     },
-
-    count: function () {
+    
+    count: function() {
       const that = this;
-
-      this.countdown_interval = setInterval(function () {
-        if (that.total_seconds > 0) {
-          --that.total_seconds;
+      
+      this.countdown_interval = setInterval(function() {
+        if(that.total_seconds > 0) {
           --that.values.seconds;
-
-          if (that.values.seconds < 0) {
+          
+          if(that.values.minutes >= 0 && that.values.seconds < 0) {
             that.values.seconds = 59;
             --that.values.minutes;
           }
-
-          if (that.values.minutes < 0) {
+          
+          if(that.values.hours >= 0 && that.values.minutes < 0) {
             that.values.minutes = 59;
             --that.values.hours;
           }
-
+          
           that.checkHour(that.values.hours, that.$.hours[0], that.$.hours[1]);
           that.checkHour(that.values.minutes, that.$.minutes[0], that.$.minutes[1]);
           that.checkHour(that.values.seconds, that.$.seconds[0], that.$.seconds[1]);
+          
+          --that.total_seconds;
         } else {
           clearInterval(that.countdown_interval);
         }
       }, 1000);
     },
-
-    animateFigure: function (el, value) {
+    
+    animateFigure: function(el, value) {
       const top = el.querySelector('.top');
       const bottom = el.querySelector('.bottom');
       const back_top = el.querySelector('.top-back');
       const back_bottom = el.querySelector('.bottom-back');
-
+      
       back_top.querySelector('span').textContent = value;
       back_bottom.querySelector('span').textContent = value;
-
+      
+      // Animate with GSAP (make sure to include GSAP in your theme)
       if (typeof gsap !== 'undefined') {
         gsap.to(top, {
           duration: 0.8,
           rotationX: -180,
           transformPerspective: 300,
           ease: "power2.out",
-          onComplete: function () {
+          onComplete: function() {
             top.textContent = value;
             bottom.textContent = value;
             gsap.set(top, { rotationX: 0 });
           }
         });
-
+        
         gsap.to(back_top, {
           duration: 0.8,
           rotationX: 0,
@@ -310,28 +320,31 @@ document.addEventListener('DOMContentLoaded', function () {
           clearProps: "all"
         });
       } else {
+        // Fallback if GSAP isn't available
         top.textContent = value;
         bottom.textContent = value;
         back_top.querySelector('span').textContent = value;
         back_bottom.querySelector('span').textContent = value;
       }
     },
-
-    checkHour: function (value, el1, el2) {
+    
+    checkHour: function(value, el1, el2) {
       const valStr = value.toString().padStart(2, '0');
       const val1 = valStr.charAt(0);
       const val2 = valStr.charAt(1);
-
-      if (el1.querySelector('.top').textContent !== val1) this.animateFigure(el1, val1);
-      if (el2.querySelector('.top').textContent !== val2) this.animateFigure(el2, val2);
+      
+      const fig1Value = el1.querySelector('.top').textContent;
+      const fig2Value = el2.querySelector('.top').textContent;
+      
+      if(fig1Value !== val1) this.animateFigure(el1, val1);
+      if(fig2Value !== val2) this.animateFigure(el2, val2);
     }
   };
-
+  
   Countdown.init();
 });
 </script>
-
-{%- schema -%}
+{% schema %}
 {
   "name": "Countdown Timer",
   "settings": [
@@ -352,60 +365,80 @@ document.addEventListener('DOMContentLoaded', function () {
       "id": "highlight_color",
       "label": "Highlight Color",
       "default": "#ea4c4c"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hours",
+      "name": "Hours",
+      "settings": [
+        {
+          "type": "range",
+          "id": "hours",
+          "label": "Hours",
+          "min": 0,
+          "max": 99,
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Digit Background",
+          "default": "#ffffff"
+        }
+      ]
     },
     {
-      "type": "header",
-      "content": "Countdown Settings"
+      "type": "minutes",
+      "name": "Minutes",
+      "settings": [
+        {
+          "type": "range",
+          "id": "minutes",
+          "label": "Minutes",
+          "min": 0,
+          "max": 59,
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Digit Background",
+          "default": "#ffffff"
+        }
+      ]
     },
     {
-      "type": "range",
-      "id": "hours",
-      "label": "Hours",
-      "min": 0,
-      "max": 99,
-      "step": 1,
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "minutes",
-      "label": "Minutes",
-      "min": 0,
-      "max": 59,
-      "step": 1,
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "seconds",
-      "label": "Seconds",
-      "min": 0,
-      "max": 59,
-      "step": 1,
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Style Settings"
-    },
-    {
-      "type": "color",
-      "id": "digit_color",
-      "label": "Digit Color",
-      "default": "#de4848"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#ffffff"
+      "type": "seconds",
+      "name": "Seconds",
+      "settings": [
+        {
+          "type": "range",
+          "id": "seconds",
+          "label": "Seconds",
+          "min": 0,
+          "max": 59,
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Digit Background",
+          "default": "#ffffff"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Pwc Countdown Timer",
-      "category": "Promotional"
+      "name": "PWC Countdown Timer",
+      "category": "Promotional",
+      "blocks": [
+        { "type": "hours" },
+        { "type": "minutes" },
+        { "type": "seconds" }
+      ]
     }
   ]
 }
-{%- endschema -%}
+{% endschema %}
