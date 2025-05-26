@@ -381,6 +381,18 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "highlight_color",
       "label": "Highlight Color",
       "default": "#ea4c4c"
+    },
+    {
+      "type": "color",
+      "id": "digit_color",
+      "label": "Digit Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Default Digit Background",
+      "default": "#ffffff"
     }
   ],
   "blocks": [
@@ -450,9 +462,15 @@ document.addEventListener('DOMContentLoaded', function() {
       "name": "PWC CDT",
       "category": "Promotional",
       "blocks": [
-        { "type": "hours" },
-        { "type": "minutes" },
-        { "type": "seconds" }
+        {
+          "type": "hours"
+        },
+        {
+          "type": "minutes"
+        },
+        {
+          "type": "seconds"
+        }
       ]
     }
   ]
