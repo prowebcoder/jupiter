@@ -1,3 +1,93 @@
+{%- schema -%}
+{
+  "name": "Countdown Timer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "DRAFT COUNTDOWN"
+    },
+    {
+      "type": "text",
+      "id": "highlighted_text",
+      "label": "Highlighted Text",
+      "default": "COUNTDOWN"
+    },
+    {
+      "type": "color",
+      "id": "highlight_color",
+      "label": "Highlight Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Countdown Settings"
+    },
+    {
+      "type": "range",
+      "id": "hours",
+      "label": "Hours",
+      "min": 0,
+      "max": 99,
+      "step": 1,
+      "default": 23
+    },
+    {
+      "type": "range",
+      "id": "minutes",
+      "label": "Minutes",
+      "min": 0,
+      "max": 59,
+      "step": 1,
+      "default": 58
+    },
+    {
+      "type": "range",
+      "id": "seconds",
+      "label": "Seconds",
+      "min": 0,
+      "max": 59,
+      "step": 1,
+      "default": 33
+    },
+    {
+      "type": "header",
+      "content": "Style Settings"
+    },
+    {
+      "type": "color",
+      "id": "digit_color",
+      "label": "Digit Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "top_section_color",
+      "label": "Top Section Color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#e0e0e0"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Countdown Timer",
+      "category": "Promotional"
+    }
+  ]
+}
+{%- endschema -%}
 
 {%- style -%}
 .countdown-timer-section {
@@ -293,94 +383,3 @@ document.addEventListener('DOMContentLoaded', function() {
   Countdown.init();
 });
 </script>
-
-{%- schema -%}
-{
-  "name": "Countdown Timer",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "DRAFT COUNTDOWN"
-    },
-    {
-      "type": "text",
-      "id": "highlighted_text",
-      "label": "Highlighted Text",
-      "default": "COUNTDOWN"
-    },
-    {
-      "type": "color",
-      "id": "highlight_color",
-      "label": "Highlight Color",
-      "default": "#000000"
-    },
-    {
-      "type": "header",
-      "content": "Countdown Settings"
-    },
-    {
-      "type": "range",
-      "id": "hours",
-      "label": "Hours",
-      "min": 0,
-      "max": 99,
-      "step": 1,
-      "default": 23
-    },
-    {
-      "type": "range",
-      "id": "minutes",
-      "label": "Minutes",
-      "min": 0,
-      "max": 59,
-      "step": 1,
-      "default": 58
-    },
-    {
-      "type": "range",
-      "id": "seconds",
-      "label": "Seconds",
-      "min": 0,
-      "max": 59,
-      "step": 1,
-      "default": 33
-    },
-    {
-      "type": "header",
-      "content": "Style Settings"
-    },
-    {
-      "type": "color",
-      "id": "digit_color",
-      "label": "Digit Color",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "top_section_color",
-      "label": "Top Section Color",
-      "default": "#f5f5f5"
-    },
-    {
-      "type": "color",
-      "id": "border_color",
-      "label": "Border Color",
-      "default": "#e0e0e0"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Countdown Timer",
-      "category": "Promotional"
-    }
-  ]
-}
-{%- endschema -%}
