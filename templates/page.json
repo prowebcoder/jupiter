@@ -18,36 +18,14 @@
     },
     "pwc_countdown_timer_3JLp4U": {
       "type": "pwc-countdown-timer",
-      "blocks": {
-        "hours_WenFRA": {
-          "type": "hours",
-          "settings": {
-            "value": 24
-          }
-        },
-        "minutes_cPYchz": {
-          "type": "minutes",
-          "settings": {
-            "value": 59
-          }
-        },
-        "seconds_HxkbLd": {
-          "type": "seconds",
-          "settings": {
-            "value": 59
-          }
-        }
-      },
-      "block_order": [
-        "hours_WenFRA",
-        "minutes_cPYchz",
-        "seconds_HxkbLd"
-      ],
       "name": "Pwc Countdown Timer Rohit",
       "settings": {
         "title": "countdown",
-        "highlighted_text": "Countdown",
+        "highlighted_text": "Timer",
         "highlight_color": "#ea4c4c",
+        "hours": 24,
+        "minutes": 0,
+        "seconds": 0,
         "digit_color": "#de4848",
         "background_color": "#ffffff"
       }
