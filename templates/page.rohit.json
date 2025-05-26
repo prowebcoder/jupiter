@@ -174,13 +174,23 @@
     },
     "pwc_countdown_timer_mFddGK": {
       "type": "pwc-countdown-timer",
+      "blocks": {
+        "hours_qF8pxB": {
+          "type": "hours",
+          "settings": {
+            "hours": 24,
+            "background_color": "#f3bebe"
+          }
+        }
+      },
+      "block_order": [
+        "hours_qF8pxB"
+      ],
       "name": "Custom Countdown Timer",
       "settings": {
-        "heading": "🎆 The New Year Is Coming Soon! 🎆",
-        "target_date": "2026-01-01T00:00:00Z",
-        "timer_color": "#121212",
-        "bg_color": "#ffffff",
-        "end_message": "🎉 Happy New Year 2026! 🎉"
+        "title": "Draft Countdown",
+        "highlighted_text": "Countdown",
+        "highlight_color": "#ea4c4c"
       }
     }
   },
