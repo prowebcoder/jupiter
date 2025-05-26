@@ -22,29 +22,26 @@
         "hours_WenFRA": {
           "type": "hours",
           "settings": {
-            "label": "Hours",
             "value": 24
           }
         },
-        "min_aAnDNJ": {
-          "type": "min",
+        "minutes_cPYchz": {
+          "type": "minutes",
           "settings": {
-            "label": "Minutes",
             "value": 59
           }
         },
-        "sec_YyACYt": {
-          "type": "sec",
+        "seconds_HxkbLd": {
+          "type": "seconds",
           "settings": {
-            "label": "Seconds",
             "value": 59
           }
         }
       },
       "block_order": [
         "hours_WenFRA",
-        "min_aAnDNJ",
-        "sec_YyACYt"
+        "minutes_cPYchz",
+        "seconds_HxkbLd"
       ],
       "name": "Pwc Countdown Timer Rohit",
       "settings": {
