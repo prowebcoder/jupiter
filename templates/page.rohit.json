@@ -195,6 +195,7 @@
           "type": "seconds",
           "settings": {
             "seconds": 59,
+            "seconds_title": "seconds",
             "background_color": "#f3bebe"
           }
         }
