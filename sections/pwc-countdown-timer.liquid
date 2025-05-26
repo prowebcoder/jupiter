@@ -1,5 +1,4 @@
 
-
 {%- style -%}
 .countdown-timer-section {
   position: relative;
@@ -7,56 +6,54 @@
   padding: 40px 0;
   max-width: 1200px;
   text-align: center;
-  font-family: Arial, sans-serif;
 }
 
 .countdown-timer-section h1 {
   margin-bottom: 60px;
-  font-weight: bold;
-  font-size: 2.5em;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 2.25em;
   text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
 .countdown-timer-section h1 strong {
+  font-weight: 400;
   color: {{ section.settings.highlight_color }};
 }
 
 .countdown {
+  width: 720px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
-  gap: 30px;
-  margin: 0 auto;
+  gap: 45px;
 }
 
 .bloc-time {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
 }
 
 .count-title {
   display: block;
   margin-bottom: 15px;
-  font-weight: bold;
-  font-size: 1.2em;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.94em;
+  color: #1a1a1a;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .figure-container {
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 
 .figure {
   position: relative;
-  height: 80px;
-  width: 50px;
+  height: 110px;
+  width: 100px;
   background-color: {{ section.settings.background_color }};
-  border: 1px solid {{ section.settings.border_color }};
-  border-radius: 5px;
-  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
 }
 
 .figure > span {
@@ -64,81 +61,111 @@
   left: 0;
   right: 0;
   margin: auto;
-  font-family: 'Arial', sans-serif;
-  font-size: 3.5em;
-  line-height: 80px;
-  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  font-size: 5.94em;
+  line-height: 107px;
+  font-weight: 700;
   color: {{ section.settings.digit_color }};
 }
 
-.figure .top {
+.figure .top, .figure .bottom-back {
+  position: relative;
+}
+
+.figure .top:after, .figure .bottom-back:after {
+  content: "";
   position: absolute;
-  top: 0;
+  z-index: -1;
+  left: 0;
+  bottom: 0;
   width: 100%;
-  height: 50%;
+  height: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.figure .top {
+  z-index: 3;
   background-color: {{ section.settings.top_section_color }};
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  transform-origin: 50% 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transform: perspective(200px);
+  height: 50%;
   overflow: hidden;
-  z-index: 2;
-  border-bottom: 1px solid {{ section.settings.border_color }};
+  backface-visibility: hidden;
 }
 
 .figure .bottom {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 50%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  overflow: hidden;
   z-index: 1;
+  height: 50%;
+  position: relative;
 }
 
-.figure .top-back {
+.figure .bottom:before {
+  content: "";
   position: absolute;
+  display: block;
   top: 0;
+  left: 0;
   width: 100%;
   height: 50%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  overflow: hidden;
-  z-index: 3;
-  transform-origin: bottom;
-  transform: rotateX(0deg);
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 .figure .bottom-back {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  z-index: 2;
+  top: 0;
   height: 50%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
   overflow: hidden;
-  z-index: 1;
+  background-color: {{ section.settings.top_section_color }};
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.figure .bottom-back span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.figure .top-back {
+  z-index: 4;
+  bottom: 0;
   background-color: {{ section.settings.background_color }};
+  transform-origin: 50% 0;
+  transform: perspective(200px) rotateX(180deg);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 50%;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+.figure .top-back span {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 @media (max-width: 767px) {
   .countdown {
+    width: 100%;
     flex-direction: column;
-    align-items: center;
     gap: 20px;
   }
   
   .figure {
-    height: 60px;
-    width: 40px;
+    height: 80px;
+    width: 70px;
   }
   
   .figure > span {
-    font-size: 2.5em;
-    line-height: 60px;
+    font-size: 4em;
+    line-height: 80px;
   }
 }
 {%- endstyle -%}
@@ -148,55 +175,55 @@
   
   <div class="countdown">
     <div class="bloc-time hours" data-init-value="{{ section.settings.hours }}">
-      <span class="count-title">HOURS</span>
+      <span class="count-title">Hours</span>
       <div class="figure-container">
         <div class="figure hours hours-1">
-          <span class="top">2</span>
-          <span class="top-back">2</span>
-          <span class="bottom">2</span>
-          <span class="bottom-back">2</span>
+          <span class="top">0</span>
+          <span class="top-back"><span>0</span></span>
+          <span class="bottom">0</span>
+          <span class="bottom-back"><span>0</span></span>
         </div>
         <div class="figure hours hours-2">
-          <span class="top">3</span>
-          <span class="top-back">3</span>
-          <span class="bottom">3</span>
-          <span class="bottom-back">3</span>
+          <span class="top">0</span>
+          <span class="top-back"><span>0</span></span>
+          <span class="bottom">0</span>
+          <span class="bottom-back"><span>0</span></span>
         </div>
       </div>
     </div>
     
     <div class="bloc-time min" data-init-value="{{ section.settings.minutes }}">
-      <span class="count-title">MINUTES</span>
+      <span class="count-title">Minutes</span>
       <div class="figure-container">
         <div class="figure min min-1">
-          <span class="top">5</span>
-          <span class="top-back">5</span>
-          <span class="bottom">5</span>
-          <span class="bottom-back">5</span>
+          <span class="top">0</span>
+          <span class="top-back"><span>0</span></span>
+          <span class="bottom">0</span>
+          <span class="bottom-back"><span>0</span></span>
         </div>
         <div class="figure min min-2">
-          <span class="top">8</span>
-          <span class="top-back">8</span>
-          <span class="bottom">8</span>
-          <span class="bottom-back">8</span>
+          <span class="top">0</span>
+          <span class="top-back"><span>0</span></span>
+          <span class="bottom">0</span>
+          <span class="bottom-back"><span>0</span></span>
         </div>
       </div>
     </div>
     
     <div class="bloc-time sec" data-init-value="{{ section.settings.seconds }}">
-      <span class="count-title">SECONDS</span>
+      <span class="count-title">Seconds</span>
       <div class="figure-container">
         <div class="figure sec sec-1">
           <span class="top">0</span>
-          <span class="top-back">0</span>
+          <span class="top-back"><span>0</span></span>
           <span class="bottom">0</span>
-          <span class="bottom-back">0</span>
+          <span class="bottom-back"><span>0</span></span>
         </div>
         <div class="figure sec sec-2">
-          <span class="top">3</span>
-          <span class="top-back">3</span>
-          <span class="bottom">3</span>
-          <span class="bottom-back">3</span>
+          <span class="top">0</span>
+          <span class="top-back"><span>0</span></span>
+          <span class="bottom">0</span>
+          <span class="bottom-back"><span>0</span></span>
         </div>
       </div>
     </div>
@@ -260,22 +287,40 @@ document.addEventListener('DOMContentLoaded', function() {
     animateFigure: function(el, value) {
       const top = el.querySelector('.top');
       const bottom = el.querySelector('.bottom');
-      const topBack = el.querySelector('.top-back');
-      const bottomBack = el.querySelector('.bottom-back');
+      const back_top = el.querySelector('.top-back');
+      const back_bottom = el.querySelector('.bottom-back');
       
-      // Set the back values first
-      topBack.textContent = value;
-      bottomBack.textContent = value;
+      back_top.querySelector('span').textContent = value;
+      back_bottom.querySelector('span').textContent = value;
       
-      // Add animation class
-      el.classList.add('flipping');
-      
-      // After animation completes
-      setTimeout(function() {
+      // Animate with GSAP (make sure to include GSAP in your theme)
+      if (typeof gsap !== 'undefined') {
+        gsap.to(top, {
+          duration: 0.8,
+          rotationX: -180,
+          transformPerspective: 300,
+          ease: "power2.out",
+          onComplete: function() {
+            top.textContent = value;
+            bottom.textContent = value;
+            gsap.set(top, { rotationX: 0 });
+          }
+        });
+        
+        gsap.to(back_top, {
+          duration: 0.8,
+          rotationX: 0,
+          transformPerspective: 300,
+          ease: "power2.out",
+          clearProps: "all"
+        });
+      } else {
+        // Fallback if GSAP isn't available
         top.textContent = value;
         bottom.textContent = value;
-        el.classList.remove('flipping');
-      }, 600);
+        back_top.querySelector('span').textContent = value;
+        back_bottom.querySelector('span').textContent = value;
+      }
     },
     
     checkHour: function(value, el1, el2) {
@@ -294,7 +339,6 @@ document.addEventListener('DOMContentLoaded', function() {
   Countdown.init();
 });
 </script>
-
 {%- schema -%}
 {
   "name": "Countdown Timer",
@@ -303,19 +347,19 @@ document.addEventListener('DOMContentLoaded', function() {
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "DRAFT COUNTDOWN"
+      "default": "Draft Countdown"
     },
     {
       "type": "text",
       "id": "highlighted_text",
       "label": "Highlighted Text",
-      "default": "COUNTDOWN"
+      "default": "Countdown"
     },
     {
       "type": "color",
       "id": "highlight_color",
       "label": "Highlight Color",
-      "default": "#000000"
+      "default": "#ea4c4c"
     },
     {
       "type": "header",
@@ -328,7 +372,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "min": 0,
       "max": 99,
       "step": 1,
-      "default": 23
+      "default": 24
     },
     {
       "type": "range",
@@ -337,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "min": 0,
       "max": 59,
       "step": 1,
-      "default": 58
+      "default": 0
     },
     {
       "type": "range",
@@ -346,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "min": 0,
       "max": 59,
       "step": 1,
-      "default": 33
+      "default": 0
     },
     {
       "type": "header",
@@ -356,7 +400,7 @@ document.addEventListener('DOMContentLoaded', function() {
       "type": "color",
       "id": "digit_color",
       "label": "Digit Color",
-      "default": "#000000"
+      "default": "#de4848"
     },
     {
       "type": "color",
@@ -368,18 +412,12 @@ document.addEventListener('DOMContentLoaded', function() {
       "type": "color",
       "id": "top_section_color",
       "label": "Top Section Color",
-      "default": "#f5f5f5"
-    },
-    {
-      "type": "color",
-      "id": "border_color",
-      "label": "Border Color",
-      "default": "#e0e0e0"
+      "default": "#f7f7f7"
     }
   ],
   "presets": [
     {
-      "name": "Countdown Timer",
+      "name": "Pwc Countdown Timer",
       "category": "Promotional"
     }
   ]
