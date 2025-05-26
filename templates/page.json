@@ -22,41 +22,35 @@
         "hours_WenFRA": {
           "type": "hours",
           "settings": {
-            "title": "Hours",
-            "digit": "24",
-            "background": "#ffecec"
+            "label": "Hours",
+            "value": 24
           }
         },
-        "minutes_yy7X3r": {
-          "type": "minutes",
+        "min_aAnDNJ": {
+          "type": "min",
           "settings": {
-            "title": "Minutes",
-            "digit": "12",
-            "background": "#fff6e0"
+            "label": "Minutes",
+            "value": 59
           }
         },
-        "seconds_tY689C": {
-          "type": "seconds",
+        "sec_YyACYt": {
+          "type": "sec",
           "settings": {
-            "title": "Seconds",
-            "digit": "12",
-            "background": "#e0f7ff"
+            "label": "Seconds",
+            "value": 59
           }
         }
       },
       "block_order": [
         "hours_WenFRA",
-        "minutes_yy7X3r",
-        "seconds_tY689C"
+        "min_aAnDNJ",
+        "sec_YyACYt"
       ],
       "name": "Pwc Countdown Timer Rohit",
       "settings": {
-        "title": "Draft Countdown",
+        "title": "countdown",
         "highlighted_text": "Countdown",
         "highlight_color": "#ea4c4c",
-        "hours": 24,
-        "minutes": 0,
-        "seconds": 0,
         "digit_color": "#de4848",
         "background_color": "#ffffff"
       }
