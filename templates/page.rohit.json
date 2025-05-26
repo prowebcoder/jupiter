@@ -186,9 +186,9 @@
         "minutes_ctFyqg": {
           "type": "minutes",
           "settings": {
-            "minutes": 0,
-            "minutes_title": "Multicolumn",
-            "background_color": "#ffffff"
+            "minutes": 59,
+            "minutes_title": "minutes",
+            "background_color": "#e4bc95"
           }
         },
         "seconds_X3nYqa": {
