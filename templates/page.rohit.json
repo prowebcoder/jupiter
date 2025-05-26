@@ -195,8 +195,8 @@
           "type": "seconds",
           "settings": {
             "seconds": 0,
-            "seconds_title": "Multicolumn",
-            "background_color": "#ffffff"
+            "seconds_title": "seconds",
+            "background_color": "#e4bc95"
           }
         }
       },
