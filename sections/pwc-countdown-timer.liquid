@@ -175,6 +175,7 @@
   <div class="countdown">
     {% for block in section.blocks %}
       {% case block.type %}
+        
         {% when 'hours' %}
           <div class="bloc-time hours" data-init-value="{{ block.settings.hours }}">
             <span class="count-title">Hours</span>
@@ -193,6 +194,7 @@
               </div>
             </div>
           </div>
+    
         {% when 'minutes' %}
           <div class="bloc-time min" data-init-value="{{ block.settings.minutes }}">
             <span class="count-title">Minutes</span>
@@ -211,6 +213,7 @@
               </div>
             </div>
           </div>
+    
         {% when 'seconds' %}
           <div class="bloc-time sec" data-init-value="{{ block.settings.seconds }}">
             <span class="count-title">Seconds</span>
