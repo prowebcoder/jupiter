@@ -1,121 +1,177 @@
-<div class="page-width">
-  <h1 class="text">The New Year Is Coming Soon!</h1>
-  <div id="countdown">
-    {% assign colors = "#ff4c4c,#ffd700,#ffc0cb,#b0e0e6" | split: ',' %}
-    {% assign ids = "dd,hh,mm,ss" | split: ',' %}
-    {% assign labels = "Days,Hours,Minutes,Seconds" | split: ',' %}
-    {% assign values = "days,hours,minutes,seconds" | split: ',' %}
-    {% for i in (0..3) %}
-    <div class="circle" style="--clr: {{ colors[i] }}">
-      <svg>
-        <circle cx="70" cy="70" r="70"></circle>
-        <circle cx="70" cy="70" r="70" id="{{ ids[i] }}"></circle>
-      </svg>
-      <div id="{{ values[i] }}">00<br><span>{{ labels[i] }}</span></div>
+<style>
+  .countdown-section {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.timer_color }};
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .countdown-heading {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+
+  .countdown-block {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px 15px;
+    border-radius: 12px;
+    min-width: 90px;
+    transition: all 0.3s ease;
+  }
+
+  .countdown-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    display: block;
+  }
+
+  .countdown-label {
+    font-size: 1rem;
+    margin-top: 5px;
+    display: block;
+  }
+
+  .end-message {
+    display: none;
+    font-size: 2rem;
+    margin-top: 30px;
+    animation: pop-in 0.6s ease forwards;
+  }
+
+  @keyframes pop-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .countdown-number {
+      font-size: 1.8rem;
+    }
+
+    .countdown-block {
+      min-width: 70px;
+    }
+
+    .countdown-heading {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<div class="countdown-section">
+  <h2 class="countdown-heading">{{ section.settings.heading }}</h2>
+  <div id="countdown" class="countdown-timer">
+    <div class="countdown-block">
+      <span id="days" class="countdown-number">00</span>
+      <span class="countdown-label">Days</span>
     </div>
-    {% endfor %}
+    <div class="countdown-block">
+      <span id="hours" class="countdown-number">00</span>
+      <span class="countdown-label">Hours</span>
+    </div>
+    <div class="countdown-block">
+      <span id="minutes" class="countdown-number">00</span>
+      <span class="countdown-label">Minutes</span>
+    </div>
+    <div class="countdown-block">
+      <span id="seconds" class="countdown-number">00</span>
+      <span class="countdown-label">Seconds</span>
+    </div>
   </div>
+  <div id="end-message" class="end-message">
+    {{ section.settings.end_message }}
+  </div>
+</div>
 
-  <script>
-document.addEventListener('DOMContentLoaded', function () {
-  let days = document.getElementById('days');
-  let hours = document.getElementById('hours');
-  let minutes = document.getElementById('minutes');
-  let seconds = document.getElementById('seconds');
-  let dd = document.getElementById('dd');
-  let hh = document.getElementById('hh');
-  let mm = document.getElementById('mm');
-  let ss = document.getElementById('ss');
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const targetDate = new Date("{{ section.settings.target_date }}").getTime();
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+    const countdownEl = document.getElementById("countdown");
+    const endMessageEl = document.getElementById("end-message");
 
-  let x = setInterval(function () {
-    let currentYear = new Date().getFullYear();
-    let newYear = new Date(`Jan 1, ${currentYear + 1} 00:00:00`);
-    let now = new Date().getTime();
-    let distance = newYear - now;
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
 
-    let d = Math.floor(distance / (1000 * 60 * 60 * 24));
-    let h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let s = Math.floor((distance % (1000 * 60)) / (1000));
+      if (distance <= 0) {
+        countdownEl.style.display = "none";
+        endMessageEl.style.display = "block";
+        return;
+      }
 
-    days.innerHTML = d + "<br><span>Days</span>";
-    hours.innerHTML = h + "<br><span>Hours</span>";
-    minutes.innerHTML = m + "<br><span>Minutes</span>";
-    seconds.innerHTML = s + "<br><span>Seconds</span>";
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    dd.style.strokeDashoffset = 440 - (440 * d) / 365;
-    hh.style.strokeDashoffset = 440 - (440 * h) / 24;
-    mm.style.strokeDashoffset = 440 - (440 * m) / 60;
-    ss.style.strokeDashoffset = 440 - (440 * s) / 60;
-
-    if (distance < 0) {
-      document.querySelector('.text').innerText = `Happy New Year ${currentYear}`;
-    }
-  }, 1000);
-
-  // snowflakes
-  const canvas = document.getElementById("snowflakes");
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const colors = ["#eee", "#ddd", "#ccc"];
-
-  class SnowFlake {
-    constructor() {
-      this.reset();
+      daysEl.textContent = String(days).padStart(2, "0");
+      hoursEl.textContent = String(hours).padStart(2, "0");
+      minutesEl.textContent = String(minutes).padStart(2, "0");
+      secondsEl.textContent = String(seconds).padStart(2, "0");
     }
 
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.vx = Math.random() - 0.5;
-      this.vy = Math.random() * 1 + 1;
-      this.radius = Math.random() * 1 + 1;
-      this.color = colors[Math.floor(Math.random() * colors.length)];
-    }
-
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
-      ctx.fill();
-      ctx.closePath();
-    }
-
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      if (this.y > canvas.height) this.reset();
-    }
-  }
-
-  const snowflakes = Array.from({ length: 100 }, () => new SnowFlake());
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    snowflakes.forEach(flake => {
-      flake.draw();
-      flake.update();
-    });
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-});
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  });
 </script>
 
 {% schema %}
 {
-  "name": "Pwc Countdown Timer",
-  "tag": "section",
-  "settings": [],
+  "name": "Custom Countdown Timer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading Text",
+      "default": "🎆 The New Year Is Coming Soon! 🎆"
+    },
+    {
+      "type": "text",
+      "id": "target_date",
+      "label": "Target Date (YYYY-MM-DDTHH:MM:SSZ)",
+      "default": "2026-01-01T00:00:00Z",
+      "info": "Use ISO format (UTC time). Example: 2026-01-01T00:00:00Z"
+    },
+    {
+      "type": "color",
+      "id": "timer_color",
+      "label": "Timer Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "end_message",
+      "label": "Message When Time Expires",
+      "default": "🎉 Happy New Year 2026! 🎉"
+    }
+  ],
   "presets": [
     {
-      "name": "New Year Countdown"
+      "name": "Custom Countdown Timer"
     }
   ]
 }
 {% endschema %}
-
