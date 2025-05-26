@@ -1,5 +1,7 @@
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+
 {%- style -%}
-.pc-countdown-timer-section {
+{{ sec_id }} .pc-countdown-timer-section {
   position: relative;
   margin: 0 auto;
   padding: 40px 0;
@@ -7,7 +9,7 @@
   text-align: center;
 }
 
-.pc-countdown-timer-section h1 {
+{{ sec_id }} .pc-countdown-timer-section h1 {
   margin-bottom: 60px;
   font-family: 'Lato', sans-serif;
   font-weight: 300;
@@ -15,12 +17,12 @@
   text-transform: uppercase;
 }
 
-.pc-countdown-timer-section h1 strong {
+{{ sec_id }} .pc-countdown-timer-section h1 strong {
   font-weight: 400;
   color: {{ section.settings.highlight_color }};
 }
 
-.pc-countdown {
+{{ sec_id }} .pc-countdown {
   width: 720px;
   margin: 0 auto;
   display: flex;
@@ -28,11 +30,11 @@
   gap: 45px;
 }
 
-.pc-bloc-time {
+{{ sec_id }} .pc-bloc-time {
   text-align: center;
 }
 
-.pc-count-title {
+{{ sec_id }} .pc-count-title {
   display: block;
   margin-bottom: 15px;
   font-family: 'Lato', sans-serif;
@@ -41,12 +43,12 @@
   text-transform: uppercase;
 }
 
-.pc-figure-container {
+{{ sec_id }} .pc-figure-container {
   display: flex;
   gap: 10px;
 }
 
-.pc-figure {
+{{ sec_id }} .pc-figure {
   position: relative;
   height: 110px;
   width: 100px;
@@ -55,7 +57,7 @@
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
 }
 
-.pc-figure > span {
+{{ sec_id }} .pc-figure > span {
   position: absolute;
   left: 0;
   right: 0;
@@ -67,11 +69,11 @@
   color: {{ section.settings.digit_color }};
 }
 
-.pc-figure .pc-top, .pc-figure .pc-bottom-back {
+{{ sec_id }} .pc-figure .pc-top, .pc-figure .pc-bottom-back {
   position: relative;
 }
 
-.pc-figure .pc-top:after, .pc-figure .pc-bottom-back:after {
+{{ sec_id }} .pc-figure .pc-top:after, .pc-figure .pc-bottom-back:after {
   content: "";
   position: absolute;
   z-index: -1;
@@ -82,7 +84,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.pc-figure .pc-top {
+{{ sec_id }} .pc-figure .pc-top {
   z-index: 3;
   transform-origin: 50% 100%;
   border-top-left-radius: 10px;
@@ -93,12 +95,12 @@
   backface-visibility: hidden;
 }
 
-.pc-figure .pc-bottom {
+{{ sec_id }} .pc-figure .pc-bottom {
   z-index: 1;
   height: 50%;
 }
 
-.pc-figure .pc-bottom:before {
+{{ sec_id }} .pc-figure .pc-bottom:before {
   content: "";
   position: absolute;
   display: block;
@@ -109,7 +111,7 @@
   background-color: rgba(0, 0, 0, 0.02);
 }
 
-.pc-figure .pc-bottom-back {
+{{ sec_id }} .pc-figure .pc-bottom-back {
   top: 0;
   height: 50%;
   overflow: hidden;
@@ -117,7 +119,7 @@
   border-top-right-radius: 10px;
 }
 
-.pc-figure .pc-bottom-back span {
+{{ sec_id }} .pc-figure .pc-bottom-back span {
   position: absolute;
   top: 0;
   left: 0;
@@ -125,7 +127,7 @@
   margin: auto;
 }
 
-.pc-figure .pc-top-back {
+{{ sec_id }} .pc-figure .pc-top-back {
   z-index: 4;
   bottom: 0;
   background-color: {{ section.settings.background_color }};
@@ -138,7 +140,7 @@
   backface-visibility: hidden;
 }
 
-.pc-figure .pc-top-back span {
+{{ sec_id }} .pc-figure .pc-top-back span {
   position: absolute;
   top: -100%;
   left: 0;
@@ -146,23 +148,23 @@
   margin: auto;
 }
 
-.pc-bottom-back {
+{{ sec_id }} .pc-bottom-back {
     display: none;
 }
 
 @media (max-width: 767px) {
-  .pc-countdown {
+  {{ sec_id }} .pc-countdown {
     width: 100%;
     flex-direction: column;
     gap: 20px;
   }
   
-  .pc-figure {
+  {{ sec_id }} .pc-figure {
     height: 80px;
     width: 70px;
   }
   
-  .pc-figure > span {
+  {{ sec_id }} .pc-figure > span {
     font-size: 4em;
     line-height: 80px;
   }
