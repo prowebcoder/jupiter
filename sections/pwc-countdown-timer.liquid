@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function() {
           transformPerspective: 300,
           ease: "power2.out",
           onComplete: function() {
-           top.textContent = '';
+            top.textContent = '';
 bottom.textContent = '';
 requestAnimationFrame(() => {
   top.textContent = value;
@@ -329,7 +329,13 @@ requestAnimationFrame(() => {
         });
       } else {
         // Fallback if GSAP isn't available
-       
+        top.textContent = '';
+bottom.textContent = '';
+requestAnimationFrame(() => {
+  top.textContent = value;
+  bottom.textContent = value;
+});
+
         back_top.querySelector('span').textContent = value;
         back_bottom.querySelector('span').textContent = value;
       }
