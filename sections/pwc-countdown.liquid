@@ -177,6 +177,22 @@
   padding-bottom: {{ section.settings.heading_padding_bottom }}px;
 }
 
+    {{ sec_id }} .pc-countdown-timer-section h3 {
+    color: {{ section.settings.highlighted_text_color }};
+    font-size: {% case section.settings.highlighted_text_size %}
+      {% when 'small' %}16px
+      {% when 'medium' %}24px
+      {% when 'large' %}32px
+    {% endcase %};
+    font-weight: {{ section.settings.highlighted__font_weight }};
+    font-style: {{ section.settings.highlighted_style }};
+    letter-spacing: {{ section.settings.highlighted_letter_spacing }}px;
+    text-decoration: {{ section.settings.highlighted__text_decoration }};
+    text-decoration-color: {{ section.settings.highlighted_decoration_color }};
+    margin: 0;
+    padding: 0;
+  }
+
 /* Dynamic styles for each block instance */
   {% for block in section.blocks %}
     {% case block.type %}
@@ -223,10 +239,10 @@
 {%- endstyle -%}
 
 <div class="pc-countdown-timer-section">
-  <div class="pc-countdown-items">
-  <h1>{{ section.settings.heading }}</h1>
-  <h3>{{ section.settings.highlighted_text }}</h3>
-    </div>
+ <div class="pc-countdown-items">
+    <h1>{{ section.settings.heading }}</h1>
+    <h3>{{ section.settings.highlighted_text }}</h3>
+  </div>
 
   <div class="pc-countdown">
     {% for block in section.blocks %}
