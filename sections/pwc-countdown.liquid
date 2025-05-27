@@ -219,92 +219,61 @@
       {% case block.type %}
         
         {% when 'hours' %}
-      <div
-  class="pc-bloc-time pc-hours"
-  data-init-value="{{ block.settings.hours }}"
-  style="
-    background-color: {{ section.settings.background_color }};
-    margin-top: {{ section.settings.background_margin_top }}px;
-    margin-bottom: {{ section.settings.background__margin_bottom }}px;
-  "
->
-  <!-- Heading -->
+         <div class="pc-bloc-time pc-hours" data-init-value="{{ block.settings.hours }}">
   <span
     class="pc-count-title"
     style="
-      color: {{ section.settings.heading_text_color }};
-      font-size: {% case section.settings.heading_text_size %}
+      color: {{ block.settings.title_text_color }};
+      font-size: {% case block.settings.title_text_size %}
         {% when 'small' %}14px
         {% when 'medium' %}18px
         {% when 'large' %}22px
       {% endcase %};
-      font-weight: {{ section.settings.heading_font_weight }};
-      font-style: {{ section.settings.heading_style }};
-      letter-spacing: {{ section.settings.heading_letter_spacing }}px;
-      text-decoration: {{ section.settings.heading_text_decoration }};
-      text-decoration-color: {{ section.settings.heading_decoration_color }};
-      padding-top: {{ section.settings.heading_padding_top }}px;
-      padding-bottom: {{ section.settings.heading_padding_bottom }}px;
+      font-weight: {{ block.settings.title_font_weight }};
+      font-style: {{ block.settings.title_font_style }};
+      letter-spacing: {{ block.settings.title_letter_spacing }}px;
+      text-decoration: {{ block.settings.title_text_decoration }};
+      text-decoration-color: {{ block.settings.title_text_decoration_color }};
+      padding-top: {{ block.settings.title_padding_top }}px;
+      padding-bottom: {{ block.settings.title_padding_bottom }}px;
     "
   >
-    {{ section.settings.heading }}
+    {{ block.settings.title }}
   </span>
 
-  <!-- Highlighted Text -->
-  <span
-    class="pc-highlighted-text"
-    style="
-      color: {{ section.settings.highlighted_text_color }};
-      font-size: {% case section.settings.highlighted_text_size %}
-        {% when 'small' %}14px
-        {% when 'medium' %}18px
-        {% when 'large' %}22px
-      {% endcase %};
-      font-weight: {{ section.settings.highlighted__font_weight }};
-      font-style: {{ section.settings.highlighted_style }};
-      letter-spacing: {{ section.settings.highlighted_letter_spacing }}px;
-      text-decoration: {{ section.settings.highlighted__text_decoration }};
-      text-decoration-color: {{ section.settings.highlighted_decoration_color }};
-    "
-  >
-    {{ section.settings.highlighted_text }}
-  </span>
-
-  <!-- Digits -->
   <div class="pc-figure-container">
     {% for i in (1..2) %}
       <div
         class="pc-figure pc-hours-{{ i }}"
-        style="
-          background-color: {{ section.settings.background_color }};
-          color: {{ section.settings.digit_color }};
-        "
+        style="background-color: {{ block.settings.background_color }}; color: {{ section.settings.digit_color }};"
       >
-        <span
-          class="pc-top"
-          style="
-            color: {{ block.settings.seconds_digit_color }};
-            font-weight: {{ block.settings.seconds_digit_weight }};
-            font-size: {% case block.settings.seconds_digit_size %}
-              {% when 'small' %}16px
-              {% when 'medium' %}24px
-              {% when 'large' %}32px
-            {% endcase %};
-          "
-        >0</span>
+        <span 
+  class="pc-top"
+  style="
+    color: {{ block.settings.seconds_digit_color }};
+    font-weight: {{ block.settings.seconds_digit_weight }};
+    font-size: 
+      {% case block.settings.seconds_digit_size %}
+        {% when 'small' %}16px;
+        {% when 'medium' %}24px;
+        {% when 'large' %}32px;
+      {% endcase %}
+  "
+>0</span>
 
-        <span class="pc-top-back">
-          <span
-            style="
-              font-size: {% case section.settings.digit_back_font_size %}
-                {% when 'small' %}16px
-                {% when 'medium' %}24px
-                {% when 'large' %}32px
-              {% endcase %};
-              color: {{ section.settings.digit_color }};
-            "
-          >0</span>
-        </span>
+       <span class="pc-top-back">
+  <span 
+    style="
+      font-size: 
+        {% case block.settings.digit_back_font_size %}
+          {% when 'small' %}16px;
+          {% when 'medium' %}24px;
+          {% when 'large' %}32px;
+        {% endcase %}
+      color: {{ block.settings.digit_back_color }};
+    "
+  >0</span>
+</span>
 
         <span class="pc-bottom">0</span>
         <span class="pc-bottom-back"><span>0</span></span>
@@ -312,7 +281,6 @@
     {% endfor %}
   </div>
 </div>
-
 
 
         {% when 'minutes' %}
@@ -537,17 +505,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "label": "Digit Color",
       "default": "#000000"
     },
-    {
-  "type": "select",
-  "id": "digit_back_font_size",
-  "label": "Back Digit Font Size",
-  "options": [
-    { "value": "small", "label": "Small" },
-    { "value": "medium", "label": "Medium" },
-    { "value": "large", "label": "Large" }
-  ],
-  "default": "medium"
-},
     {
       "type": "header",
       "content": "Margin Top Bottom"
