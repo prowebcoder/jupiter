@@ -279,7 +279,7 @@
             "background_color": "#d2cfdc",
             "title": "Hours",
             "title_text_color": "#e02525",
-            "title_text_size": "large",
+            "title_text_size": "medium",
             "title_font_weight": "bold",
             "title_font_style": "normal",
             "title_letter_spacing": 0,
@@ -296,14 +296,14 @@
             "minutes": 59,
             "minutes_title": "minutes",
             "minutes_text_color": "#000000",
-            "minutes_text_size": "small",
+            "minutes_text_size": "medium",
             "minutes_font_weight": "normal",
             "minutes_font_style": "normal",
             "minutes_letter_spacing": 0,
             "minutes_text_decoration": "none",
             "minutes_text_decoration_color": "#000000",
-            "minutes_padding_top": 5,
-            "minutes_padding_bottom": 5
+            "minutes_padding_top": 0,
+            "minutes_padding_bottom": 0
           }
         },
         "seconds_X3nYqa": {
@@ -319,8 +319,8 @@
             "seconds_letter_spacing": 0,
             "seconds_text_decoration": "none",
             "seconds_text_decoration_color": "#000000",
-            "seconds_padding_top": 5,
-            "seconds_padding_bottom": 5
+            "seconds_padding_top": 0,
+            "seconds_padding_bottom": 0
           }
         }
       },
