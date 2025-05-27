@@ -553,10 +553,170 @@ document.addEventListener('DOMContentLoaded', function() {
       "label": "Highlighted Text",
       "default": "Countdown"
     },
-    {
-      "type": "header",
-      "content": "Background Color"
-    },
+       {
+          "type": "color",
+          "id": "highlighted_text_color",
+          "label": "Highlighted Text Color",
+          "default": "#000"
+        },
+     {
+          "type": "select",
+          "id": "highlighted_text_size",
+          "label": "Highlighted Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "small"
+        },
+        {
+          "type": "select",
+          "id": "highlighted__font_weight",
+          "label": " Highlighted Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "highlighted_style",
+          "label": "Highlighted style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "highlighted_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "highlighted__text_decoration",
+          "label": "Highlighted Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "highlighted_decoration_color",
+          "label": "Highlighted Decoration Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "highlighted_padding_top",
+          "label": "Highlighted Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "highlighted__padding_bottom",
+          "label": "Highlighted Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
     {
       "type": "color",
       "id": "highlight_color",
