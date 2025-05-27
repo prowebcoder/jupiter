@@ -182,7 +182,7 @@
     align-items: center;
 }
 
-    {{ sec_id }} .pc-countdown-timer-section h1 {
+    {{ sec_id }} .pc-countdown-timer-section h2 {
     color: {{ section.settings.highlighted_text_color }};
     font-size: {% case section.settings.highlighted_text_size %}
       {% when 'small' %}16px
@@ -246,7 +246,7 @@
 <div class="pc-countdown-timer-section">
  <div class="pc-countdown-items">
     <h1>{{ section.settings.heading }}</h1>
-    <h1>{{ section.settings.highlighted_text }}</h1>
+    <h2>{{ section.settings.highlighted_text }}</h2>
   </div>
 
   <div class="pc-countdown">
