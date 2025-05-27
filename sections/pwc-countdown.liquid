@@ -70,11 +70,13 @@
   color: {{ section.settings.digit_color }};
 }
 
-{{ sec_id }} .pc-figure .pc-top, .pc-figure .pc-bottom-back {
+{{ sec_id }} .pc-figure .pc-top,
+{{ sec_id }} .pc-figure .pc-bottom-back {
   position: relative;
 }
 
-{{ sec_id }} .pc-figure .pc-top:after, .pc-figure .pc-bottom-back:after {
+{{ sec_id }} .pc-figure .pc-top:after,
+{{ sec_id }} .pc-figure .pc-bottom-back:after {
   content: "";
   position: absolute;
   z-index: -1;
@@ -150,63 +152,41 @@
 }
 
 {{ sec_id }} .pc-bottom-back {
-    display: none;
+  display: none;
 }
 
 {{ sec_id }} .pc-countdown-timer-section {
-    background-color: {{ section.settings.background_color }};
-    margin-top: {{ section.settings.background_margin_top }}px;
-    margin-bottom: {{ section.settings.background_margin_bottom }}px;
+  background-color: {{ section.settings.background_color }};
+  margin-top: {{ section.settings.background_margin_top }}px;
+  margin-bottom: {{ section.settings.background_margin_bottom }}px;
 }
 
 {{ sec_id }} .pc-countdown-timer-section h1 {
-   color: {{ section.settings.heading_text_color }};
-      font-size: {% case section.settings.heading_text_size %}
-      {% when 'small' %}16px {% when 'medium' %}24px
-      {% when 'large' %}32px {% endcase %};
-      font-weight: {{ section.settings.heading_font_weight }};
-      font-style: {{ section.settings.heading_style }};
-      letter-spacing: {{ section.settings.heading_letter_spacing }}px;
-      text-decoration: {{ section.settings.heading_text_decoration }};
-      text-decoration-color: {{ section.settings.heading_decoration_color }};
-      padding-top: {{ section.settings.heading_padding_top }}px;
-      padding-bottom: {{ section.settings.heading_padding_bottom }}px;
+  color: {{ section.settings.heading_text_color }};
+  font-size: {% case section.settings.heading_text_size %}
+    {% when 'small' %}16px
+    {% when 'medium' %}24px
+    {% when 'large' %}32px
+  {% endcase %};
+  font-weight: {{ section.settings.heading_font_weight }};
+  font-style: {{ section.settings.heading_style }};
+  letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+  text-decoration: {{ section.settings.heading_text_decoration }};
+  text-decoration-color: {{ section.settings.heading_decoration_color }};
+  padding-top: {{ section.settings.heading_padding_top }}px;
+  padding-bottom: {{ section.settings.heading_padding_bottom }}px;
 }
 
-{{ sec_id }} .pc-count-title {
-     color: {{ block.settings.title_text_color }};
-      font-size: {% case block.settings.title_text_size %}
-        {% when 'small' %}14px
-        {% when 'medium' %}18px
-        {% when 'large' %}22px
-      {% endcase %};
-      font-weight: {{ block.settings.title_font_weight }};
-      font-style: {{ block.settings.title_font_style }};
-      letter-spacing: {{ block.settings.title_letter_spacing }}px;
-      text-decoration: {{ block.settings.title_text_decoration }};
-      text-decoration-color: {{ block.settings.title_text_decoration_color }};
-      padding-top: {{ block.settings.title_padding_top }}px;
-      padding-bottom: {{ block.settings.title_padding_bottom }}px;
-}
-
-
-
-@media (max-width: 767px) {
-  {{ sec_id }} .pc-countdown {
-    width: 100%;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  {{ sec_id }} .pc-figure {
-    height: 80px;
-    width: 70px;
-  }
-  
-  {{ sec_id }} .pc-figure > span {
-    font-size: 4em;
-    line-height: 80px;
-  }
+{{ sec_id }} .pc-bloc-time .pc-hours .pc-count-title {
+  color: {{ block.settings.title_text_color }};
+  font-size: {{ font_size }};
+  font-weight: {{ block.settings.title_font_weight }};
+  font-style: {{ block.settings.title_font_style }};
+  letter-spacing: {{ block.settings.title_letter_spacing }}px;
+  text-decoration: {{ block.settings.title_text_decoration }};
+  text-decoration-color: {{ block.settings.title_text_decoration_color }};
+  padding-top: {{ block.settings.title_padding_top }}px;
+  padding-bottom: {{ block.settings.title_padding_bottom }}px;
 }
 {%- endstyle -%}
 
@@ -217,36 +197,27 @@
   </h1>
 
   <div class="pc-countdown">
-    {% for block in section.blocks %}
-      {% case block.type %}
-        
-        {% when 'hours' %}
-         <div class="pc-bloc-time pc-hours" data-init-value="{{ block.settings.hours }}">
-  <span class="pc-count-title"
-    style=""
-     
-  >
-    {{ block.settings.title }}
-  </span>
+  {% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'hours' %}
+      <div class="pc-bloc-time pc-hours" data-init-value="{{ block.settings.hours }}">
+        <span class="pc-count-title" style="">
+          {{ block.settings.title }}
+        </span>
 
-  <div class="pc-figure-container">
-    {% for i in (1..2) %}
-      <div
-        class="pc-figure pc-hours-{{ i }}"
-        style="background-color: {{ block.settings.background_color }}; color: {{ section.settings.digit_color }};"
-      >
-        <span class="pc-top">0</span>
-
-       <span class="pc-top-back">
-  <span>0</span>
-</span>
-
-        <span class="pc-bottom">0</span>
-        <span class="pc-bottom-back"><span>0</span></span>
+        <div class="pc-figure-container">
+          {% for i in (1..2) %}
+            <div class="pc-figure pc-hours-{{ i }}" style="background-color: {{ block.settings.background_color }}; color: {{ section.settings.digit_color }};">
+              <span class="pc-top">0</span>
+              <span class="pc-top-back">
+                <span>0</span>
+              </span>
+              <span class="pc-bottom">0</span>
+              <span class="pc-bottom-back"><span>0</span></span>
+            </div>
+          {% endfor %}
+        </div>
       </div>
-    {% endfor %}
-  </div>
-</div>
 
 
         {% when 'minutes' %}

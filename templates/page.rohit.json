@@ -279,7 +279,7 @@
             "background_color": "#d2cfdc",
             "title": "Hours",
             "title_text_color": "#000000",
-            "title_text_size": "small",
+            "title_text_size": "medium",
             "title_font_weight": "lighter",
             "title_font_style": "normal",
             "title_letter_spacing": 0,
