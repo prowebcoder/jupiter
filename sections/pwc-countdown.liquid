@@ -224,7 +224,11 @@
     class="pc-count-title"
     style="
       color: {{ block.settings.title_text_color }};
-      font-size: {{ block.settings.title_text_size }}px;
+      font-size: {% case block.settings.title_text_size %}
+        {% when 'small' %}14px
+        {% when 'medium' %}18px
+        {% when 'large' %}22px
+      {% endcase %};
       font-weight: {{ block.settings.title_font_weight }};
       font-style: {{ block.settings.title_font_style }};
       letter-spacing: {{ block.settings.title_letter_spacing }}px;
@@ -829,16 +833,25 @@ document.addEventListener('DOMContentLoaded', function() {
           "default": "#000"
         },
         {
-  "type": "range",
-  "id": "title_text_size",
-  "label": "Text Size (px)",
-  "min": 10,
-  "max": 100,
-  "step": 1,
-  "unit": "px",
-  "default": 18
-},
-
+          "type": "select",
+          "id": "title_text_size",
+          "label": "Text Size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "small"
+        },
         {
           "type": "select",
           "id": "title_font_weight",
