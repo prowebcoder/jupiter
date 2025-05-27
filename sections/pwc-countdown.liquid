@@ -833,25 +833,16 @@ document.addEventListener('DOMContentLoaded', function() {
           "default": "#000"
         },
         {
-          "type": "select",
-          "id": "title_text_size",
-          "label": "Text Size",
-          "options": [
-            {
-              "value": "small",
-              "label": "Small"
-            },
-            {
-              "value": "medium",
-              "label": "Medium"
-            },
-            {
-              "value": "large",
-              "label": "Large"
-            }
-          ],
-          "default": "small"
-        },
+  "type": "range",
+  "id": "title_text_size",
+  "label": "Text Size (px)",
+  "min": 10,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "default": 18
+},
+
         {
           "type": "select",
           "id": "title_font_weight",
