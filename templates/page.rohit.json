@@ -304,7 +304,8 @@
       ],
       "name": "PWC CDT",
       "settings": {
-        "background_color": "#ffffff",
+        "background_color": "#d2aeae",
+        "digit_color": "#ffb300",
         "heading": "Heading Text",
         "heading_text_color": "#000000",
         "heading_text_size": "small",
@@ -316,8 +317,15 @@
         "heading_padding_top": 5,
         "heading_padding_bottom": 5,
         "highlighted_text": "Timer",
-        "highlight_color": "#ea4c4c",
-        "digit_color": "#00ff00"
+        "highlighted_text_color": "#ca2c2c",
+        "highlighted_text_size": "small",
+        "highlighted__font_weight": "normal",
+        "highlighted_style": "normal",
+        "highlighted_letter_spacing": 0,
+        "highlighted__text_decoration": "none",
+        "highlighted_decoration_color": "#000000",
+        "highlighted_padding_top": 5,
+        "highlighted__padding_bottom": 5
       }
     }
   },
