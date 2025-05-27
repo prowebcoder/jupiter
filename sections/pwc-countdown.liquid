@@ -173,6 +173,7 @@
 {%- endstyle -%}
 
 <div class="pc-countdown-timer-section" style="background-color: {{ section.settings.background_color }};">
+  <div class="pc-countdown-items">
   <h1 
     style="
       color: {{ section.settings.heading_text_color }};
@@ -209,6 +210,7 @@
       ">
     {{ section.settings.highlighted_text }}
   </h2>
+    </div>
 
   <div class="pc-countdown">
     {% for block in section.blocks %}
