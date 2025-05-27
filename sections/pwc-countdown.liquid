@@ -196,7 +196,7 @@
       {% when 'minutes' %}
         {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-count-title {
           color: {{ block.settings.minutes_text_color }};
-          font-size: {{ block.settings.minutes_text_size }}px;
+          font-size: {{ block.settings.minutes_text_size }};
           font-weight: {{ block.settings.minutes_font_weight }};
           font-style: {{ block.settings.minutes_font_style }};
           letter-spacing: {{ block.settings.minutes_letter_spacing }}px;
@@ -209,7 +209,7 @@
       {% when 'seconds' %}
         {{ sec_id }} [data-block-id="{{ block.id }}"] .pc-count-title {
           color: {{ block.settings.seconds_text_color }};
-          font-size: {{ block.settings.seconds_text_size }}px;
+          font-size: {{ block.settings.seconds_text_size }};
           font-weight: {{ block.settings.seconds_font_weight }};
           font-style: {{ block.settings.seconds_font_style }};
           letter-spacing: {{ block.settings.seconds_letter_spacing }}px;
