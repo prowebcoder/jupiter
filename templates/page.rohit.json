@@ -344,7 +344,7 @@
         "heading_text_decoration": "underline",
         "heading_decoration_color": "#e02525",
         "heading_margin_right": 0,
-        "heading_padding_top": 45,
+        "heading_padding_top": 0,
         "heading_padding_bottom": 0,
         "highlighted_text": "Timer",
         "highlighted_text_color": "#ca2c2c",
