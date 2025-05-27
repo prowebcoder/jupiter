@@ -304,8 +304,8 @@
       ],
       "name": "PWC CDT",
       "settings": {
-        "background_color": "#d2aeae",
-        "digit_color": "#ffb300",
+        "background_color": "#e4efee",
+        "digit_color": "#ff6300",
         "heading": "Heading Text",
         "heading_text_color": "#000000",
         "heading_text_size": "small",
