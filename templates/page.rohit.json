@@ -313,7 +313,7 @@
         "heading_style": "normal",
         "heading_letter_spacing": 0,
         "heading_text_decoration": "underline",
-        "heading_decoration_color": "#942121",
+        "heading_decoration_color": "#161515",
         "heading_padding_top": 0,
         "heading_padding_bottom": 0,
         "highlighted_text": "Timer",
@@ -323,7 +323,7 @@
         "highlighted_style": "italic",
         "highlighted_letter_spacing": 0,
         "highlighted__text_decoration": "underline",
-        "highlighted_decoration_color": "#ff6300",
+        "highlighted_decoration_color": "#3843e9",
         "highlighted_padding_top": 0,
         "highlighted__padding_bottom": 0
       }
