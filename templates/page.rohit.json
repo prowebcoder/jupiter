@@ -333,6 +333,8 @@
       "settings": {
         "background_color": "#f0f7f0",
         "digit_color": "#d09b1d",
+        "background_padding_top": 0,
+        "background_padding_bottom": 50,
         "background_margin_top": 60,
         "background__margin_bottom": 5,
         "heading": "Countdown",
