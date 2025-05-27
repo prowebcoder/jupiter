@@ -174,8 +174,8 @@
 
 <div class="pc-countdown-timer-section"
   style="background-color: {{ section.settings.background_color }};
-         margin-top: {{ section.settings.highlighted__margin_top }}px;
-         margin-bottom: {{ section.settings.highlighted__margin_bottom }}px;
+         margin-top: {{ section.settings.background_margin_top }}px;
+         margin-bottom: {{ section.settings.background_margin_bottom }}px;
   ">
   <h1 
     style="
@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
      {
           "type": "range",
-          "id": "highlighted_margin_top",
+          "id": "background_margin_top",
           "label": "Margin Top (px)",
           "default": 5,
           "min": 0,
@@ -426,8 +426,8 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
           "type": "range",
-          "id": "highlighted__margin_bottom",
-          "label": "Highlighted Padding Bottom (px)",
+          "id": "background__margin_bottom",
+          "label": " Padding Bottom (px)",
           "default": 5,
           "min": 0,
           "max": 150,
