@@ -175,7 +175,7 @@
       padding-bottom: {{ section.settings.heading_padding_bottom }}px;
 }
 
-{{ sec_id }} .pc-hours span {
+{{ sec_id }} .pc-count-title {
      color: {{ block.settings.title_text_color }};
       font-size: {% case block.settings.title_text_size %}
         {% when 'small' %}14px
@@ -215,23 +215,7 @@
 <div class="pc-countdown-timer-section">
   <h1>
     {{ section.settings.heading }}
-    <strong
-      style="
-        color: {{ section.settings.highlighted_text_color }};
-        font-size: {% case section.settings.highlighted_text_size %}
-                    {% when 'small' %}16px
-                    {% when 'medium' %}24px
-                    {% when 'large' %}32px
-                  {% endcase %};
-        font-weight: {{ section.settings.highlighted__font_weight }};
-        font-style: {{ section.settings.highlighted_style }};
-        letter-spacing: {{ section.settings.highlighted_letter_spacing }}px;
-        text-decoration: {{ section.settings.highlighted__text_decoration }};
-        text-decoration-color: {{ section.settings.highlighted_decoration_color }};
-      "
-    >
-      {{ section.settings.highlighted_text }}
-    </strong>
+    <strong>{{ section.settings.highlighted_text }}</strong>
   </h1>
 
   <div class="pc-countdown">
