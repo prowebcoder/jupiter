@@ -332,7 +332,7 @@
       "name": "PWC CDT",
       "settings": {
         "background_color": "#f2f1ed",
-        "digit_color": "#de4848",
+        "digit_color": "#bd4f4f",
         "background_padding_top": 0,
         "background_padding_bottom": 50,
         "background_margin_top": 60,
