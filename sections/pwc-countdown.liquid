@@ -177,17 +177,58 @@
   padding-bottom: {{ section.settings.heading_padding_bottom }}px;
 }
 
-{{ sec_id }} .pc-bloc-time .pc-hours .pc-count-title {
-  color: {{ block.settings.title_text_color }};
-  font-size: {{ font_size }};
-  font-weight: {{ block.settings.title_font_weight }};
-  font-style: {{ block.settings.title_font_style }};
-  letter-spacing: {{ block.settings.title_letter_spacing }}px;
-  text-decoration: {{ block.settings.title_text_decoration }};
-  text-decoration-color: {{ block.settings.title_text_decoration_color }};
-  padding-top: {{ block.settings.title_padding_top }}px;
-  padding-bottom: {{ block.settings.title_padding_bottom }}px;
-}
+/* Hours block styling */
+  {{ sec_id }} .pc-bloc-time.pc-hours .pc-count-title {
+    color: {{ section.blocks.hours.settings.title_text_color }};
+    font-size: {% case section.blocks.hours.settings.title_text_size %}
+      {% when 'small' %}14px
+      {% when 'medium' %}18px
+      {% when 'large' %}24px
+      {% else %}14px
+    {% endcase %};
+    font-weight: {{ section.blocks.hours.settings.title_font_weight }};
+    font-style: {{ section.blocks.hours.settings.title_font_style }};
+    letter-spacing: {{ section.blocks.hours.settings.title_letter_spacing }}px;
+    text-decoration: {{ section.blocks.hours.settings.title_text_decoration }};
+    text-decoration-color: {{ section.blocks.hours.settings.title_text_decoration_color }};
+    padding-top: {{ section.blocks.hours.settings.title_padding_top }}px;
+    padding-bottom: {{ section.blocks.hours.settings.title_padding_bottom }}px;
+  }
+
+  /* Minutes block styling */
+  {{ sec_id }} .pc-bloc-time.pc-min .pc-count-title {
+    color: {{ section.blocks.minutes.settings.minutes_text_color }};
+    font-size: {% case section.blocks.minutes.settings.minutes_text_size %}
+      {% when 'small' %}14px
+      {% when 'medium' %}18px
+      {% when 'large' %}24px
+      {% else %}14px
+    {% endcase %};
+    font-weight: {{ section.blocks.minutes.settings.minutes_font_weight }};
+    font-style: {{ section.blocks.minutes.settings.minutes_font_style }};
+    letter-spacing: {{ section.blocks.minutes.settings.minutes_letter_spacing }}px;
+    text-decoration: {{ section.blocks.minutes.settings.minutes_text_decoration }};
+    text-decoration-color: {{ section.blocks.minutes.settings.minutes_text_decoration_color }};
+    padding-top: {{ section.blocks.minutes.settings.minutes_padding_top }}px;
+    padding-bottom: {{ section.blocks.minutes.settings.minutes_padding_bottom }}px;
+  }
+
+  /* Seconds block styling */
+  {{ sec_id }} .pc-bloc-time.pc-sec .pc-count-title {
+    color: {{ section.blocks.seconds.settings.seconds_text_color }};
+    font-size: {% case section.blocks.seconds.settings.seconds_text_size %}
+      {% when 'small' %}12px
+      {% when 'medium' %}16px
+      {% when 'large' %}20px
+    {% endcase %};
+    font-weight: {{ section.blocks.seconds.settings.seconds_font_weight }};
+    font-style: {{ section.blocks.seconds.settings.seconds_font_style }};
+    letter-spacing: {{ section.blocks.seconds.settings.seconds_letter_spacing }}px;
+    text-decoration: {{ section.blocks.seconds.settings.seconds_text_decoration }};
+    text-decoration-color: {{ section.blocks.seconds.settings.seconds_text_decoration_color }};
+    padding-top: {{ section.blocks.seconds.settings.seconds_padding_top }}px;
+    padding-bottom: {{ section.blocks.seconds.settings.seconds_padding_bottom }}px;
+  }
 {%- endstyle -%}
 
 <div class="pc-countdown-timer-section">
@@ -201,97 +242,51 @@
   {% case block.type %}
     {% when 'hours' %}
       <div class="pc-bloc-time pc-hours" data-init-value="{{ block.settings.hours }}">
-        <span class="pc-count-title" style="">
-          {{ block.settings.title }}
-        </span>
-
-        <div class="pc-figure-container">
-          {% for i in (1..2) %}
-            <div class="pc-figure pc-hours-{{ i }}" style="background-color: {{ block.settings.background_color }}; color: {{ section.settings.digit_color }};">
-              <span class="pc-top">0</span>
-              <span class="pc-top-back">
-                <span>0</span>
-              </span>
-              <span class="pc-bottom">0</span>
-              <span class="pc-bottom-back"><span>0</span></span>
+            <span class="pc-count-title">{{ block.settings.title }}</span>
+            <div class="pc-figure-container">
+              {% for i in (1..2) %}
+                <div class="pc-figure pc-hours-{{ i }}">
+                  <span class="pc-top">0</span>
+                  <span class="pc-top-back"><span>0</span></span>
+                  <span class="pc-bottom">0</span>
+                  <span class="pc-bottom-back"><span>0</span></span>
+                </div>
+              {% endfor %}
             </div>
-          {% endfor %}
-        </div>
-      </div>
+          </div>
 
 
         {% when 'minutes' %}
          <div class="pc-bloc-time pc-min" data-init-value="{{ block.settings.minutes }}">
-  <span 
-    class="pc-count-title"
-    style="
-      color: {{ block.settings.minutes_text_color }};
-      font-size: {% case block.settings.minutes_text_size %}
-        {% when 'small' %} 14px;
-        {% when 'medium' %} 18px;
-        {% when 'large' %} 24px;
-        {% else %} 14px;
-      {% endcase %}
-      font-weight: {{ block.settings.minutes_font_weight }};
-      font-style: {{ block.settings.minutes_font_style }};
-      letter-spacing: {{ block.settings.minutes_letter_spacing }}px;
-      text-decoration: {{ block.settings.minutes_text_decoration }};
-      text-decoration-color: {{ block.settings.minutes_text_decoration_color }};
-      padding-top: {{ block.settings.minutes_padding_top }}px;
-      padding-bottom: {{ block.settings.minutes_padding_bottom }}px;
-    "
-  >
-    {{ block.settings.minutes_title }}
-  </span>
-  <div class="pc-figure-container">
-    {% for i in (1..2) %}
-      <div class="pc-figure pc-min-{{ i }}" style="background-color: {{ block.settings.background_color }}; color: {{ section.settings.digit_color }};">
-        <span class="pc-top">0</span>
-        <span class="pc-top-back"><span>0</span></span>
-        <span class="pc-bottom">0</span>
-        <span class="pc-bottom-back"><span>0</span></span>
-      </div>
-    {% endfor %}
-  </div>
-</div>
+            <span class="pc-count-title">{{ block.settings.minutes_title }}</span>
+            <div class="pc-figure-container">
+              {% for i in (1..2) %}
+                <div class="pc-figure pc-min-{{ i }}">
+                  <span class="pc-top">0</span>
+                  <span class="pc-top-back"><span>0</span></span>
+                  <span class="pc-bottom">0</span>
+                  <span class="pc-bottom-back"><span>0</span></span>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
 
 
         {% when 'seconds' %}
         <div class="pc-bloc-time pc-sec" data-init-value="{{ block.settings.seconds }}">
-  <span 
-    class="pc-count-title"
-    style="
-      color: {{ block.settings.seconds_text_color }};
-      font-size: 
-        {% case block.settings.seconds_text_size %}
-          {% when 'small' %}12px;
-          {% when 'medium' %}16px;
-          {% when 'large' %}20px;
-        {% endcase %}
-      font-weight: {{ block.settings.seconds_font_weight }};
-      font-style: {{ block.settings.seconds_font_style }};
-      letter-spacing: {{ block.settings.seconds_letter_spacing }}px;
-      text-decoration: {{ block.settings.seconds_text_decoration }};
-      text-decoration-color: {{ block.settings.seconds_text_decoration_color }};
-      padding-top: {{ block.settings.seconds_padding_top }}px;
-      padding-bottom: {{ block.settings.seconds_padding_bottom }}px;
-    "
-  >
-    {{ block.settings.seconds_title }}
-  </span>
-
-  <div class="pc-figure-container">
-    {% for i in (1..2) %}
-      <div class="pc-figure pc-sec-{{ i }}" style="background-color: {{ block.settings.background_color }}; color: {{ section.settings.digit_color }};">
-        <span class="pc-top">0</span>
-        <span class="pc-top-back"><span>0</span></span>
-        <span class="pc-bottom">0</span>
-        <span class="pc-bottom-back"><span>0</span></span>
-      </div>
-    {% endfor %}
-  </div>
-</div>
-
+            <span class="pc-count-title">{{ block.settings.seconds_title }}</span>
+            <div class="pc-figure-container">
+              {% for i in (1..2) %}
+                <div class="pc-figure pc-sec-{{ i }}">
+                  <span class="pc-top">0</span>
+                  <span class="pc-top-back"><span>0</span></span>
+                  <span class="pc-bottom">0</span>
+                  <span class="pc-bottom-back"><span>0</span></span>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
       {% endcase %}
     {% endfor %}
   </div>
