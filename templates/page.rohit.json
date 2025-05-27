@@ -276,8 +276,17 @@
           "type": "hours",
           "settings": {
             "hours": 24,
+            "background_color": "#d2cfdc",
             "title": "Hours",
-            "background_color": "#d2cfdc"
+            "title_text_color": "#000000",
+            "title_text_size": "medium",
+            "title_font_weight": "lighter",
+            "title_font_style": "normal",
+            "title_letter_spacing": 0,
+            "title_text_decoration": "none",
+            "title_text_decoration_color": "#dd4646",
+            "title_padding_top": 0,
+            "title_padding_bottom": 0
           }
         },
         "minutes_ctFyqg": {
@@ -306,6 +315,8 @@
       "settings": {
         "background_color": "#e4efee",
         "digit_color": "#ff6300",
+        "background_margin_top": 5,
+        "background__margin_bottom": 5,
         "heading": "Heading Text",
         "heading_text_color": "#000000",
         "heading_text_size": "medium",
@@ -323,9 +334,7 @@
         "highlighted_style": "italic",
         "highlighted_letter_spacing": 0,
         "highlighted__text_decoration": "underline",
-        "highlighted_decoration_color": "#3843e9",
-        "highlighted_padding_top": 0,
-        "highlighted__padding_bottom": 0
+        "highlighted_decoration_color": "#3843e9"
       }
     }
   },
