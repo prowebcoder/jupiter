@@ -224,11 +224,7 @@
     class="pc-count-title"
     style="
       color: {{ block.settings.title_text_color }};
-      font-size: {% case block.settings.title_text_size %}
-        {% when 'small' %}14px
-        {% when 'medium' %}18px
-        {% when 'large' %}22px
-      {% endcase %};
+      font-size: {{ block.settings.title_text_size }}px;
       font-weight: {{ block.settings.title_font_weight }};
       font-style: {{ block.settings.title_font_style }};
       letter-spacing: {{ block.settings.title_letter_spacing }}px;
