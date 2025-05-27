@@ -304,11 +304,20 @@
       ],
       "name": "PWC CDT",
       "settings": {
-        "title": "Countdown",
+        "background_color": "#ffffff",
+        "heading": "Heading Text",
+        "heading_text_color": "#000000",
+        "heading_text_size": "small",
+        "heading_font_weight": "normal",
+        "heading_style": "normal",
+        "heading_letter_spacing": 0,
+        "heading_text_decoration": "none",
+        "heading_decoration_color": "#000000",
+        "heading_padding_top": 5,
+        "heading_padding_bottom": 5,
         "highlighted_text": "Timer",
         "highlight_color": "#ea4c4c",
-        "digit_color": "#000000",
-        "background_color": "#ffffff"
+        "digit_color": "#00ff00"
       }
     }
   },
