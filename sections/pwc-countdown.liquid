@@ -363,6 +363,16 @@ document.addEventListener('DOMContentLoaded', function() {
 {
   "name": "Countdown Timer",
   "settings": [
+      {
+      "type": "header",
+      "content": "Background Color"
+    },
+     {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
     {
       "type": "header",
       "content": "Heading"
@@ -373,9 +383,15 @@ document.addEventListener('DOMContentLoaded', function() {
       "label": "Heading Text",
       "default": "Heading Text"
     },
+    {
+          "type": "color",
+          "id": "heading_text_color",
+          "label": "Heading Text Color",
+          "default": "#000"
+        },
      {
           "type": "select",
-          "id": "text_size",
+          "id": "heading_text_size",
           "label": "Heading Size",
           "options": [
             {
@@ -540,12 +556,6 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "type": "header",
       "content": "Background Color"
-    },
-     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#ffffff"
     },
     {
       "type": "color",
