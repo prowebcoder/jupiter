@@ -172,7 +172,11 @@
 }
 {%- endstyle -%}
 
-<div class="pc-countdown-timer-section" style="background-color: {{ section.settings.background_color }};">
+<div class="pc-countdown-timer-section"
+  style="background-color: {{ section.settings.background_color }};
+         margin-top: {{ section.settings.highlighted__margin_top }}px;
+         margin-bottom: {{ section.settings.highlighted__margin_bottom }}px;
+  ">
   <h1 
     style="
       color: {{ section.settings.heading_text_color }};
@@ -413,8 +417,8 @@ document.addEventListener('DOMContentLoaded', function() {
     },
      {
           "type": "range",
-          "id": "highlighted_padding_top",
-          "label": "Highlighted Padding Top (px)",
+          "id": "highlighted_margin_top",
+          "label": "Margin Top (px)",
           "default": 5,
           "min": 0,
           "max": 150,
@@ -422,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
           "type": "range",
-          "id": "highlighted__padding_bottom",
+          "id": "highlighted__margin_bottom",
           "label": "Highlighted Padding Bottom (px)",
           "default": 5,
           "min": 0,
