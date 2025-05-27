@@ -324,8 +324,8 @@
         "highlighted_letter_spacing": 0,
         "highlighted__text_decoration": "underline",
         "highlighted_decoration_color": "#ff6300",
-        "highlighted_padding_top": 0,
-        "highlighted__padding_bottom": 0
+        "highlighted_padding_top": 40,
+        "highlighted__padding_bottom": 55
       }
     }
   },
