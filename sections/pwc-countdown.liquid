@@ -294,19 +294,41 @@
 
 
         {% when 'seconds' %}
-          <div class="pc-bloc-time pc-sec" data-init-value="{{ block.settings.seconds }}">
-            <span class="pc-count-title">{{ block.settings.seconds_title }}</span>
-            <div class="pc-figure-container">
-              {% for i in (1..2) %}
-                <div class="pc-figure pc-sec-{{ i }}" style="background-color: {{ block.settings.background_color }}; color: {{ section.settings.digit_color }};">
-                  <span class="pc-top">0</span>
-                  <span class="pc-top-back"><span>0</span></span>
-                  <span class="pc-bottom">0</span>
-                  <span class="pc-bottom-back"><span>0</span></span>
-                </div>
-              {% endfor %}
-            </div>
-          </div>
+        <div class="pc-bloc-time pc-sec" data-init-value="{{ block.settings.seconds }}">
+  <span 
+    class="pc-count-title"
+    style="
+      color: {{ block.settings.seconds_text_color }};
+      font-size: 
+        {% case block.settings.seconds_text_size %}
+          {% when 'small' %}12px;
+          {% when 'medium' %}16px;
+          {% when 'large' %}20px;
+        {% endcase %}
+      font-weight: {{ block.settings.seconds_font_weight }};
+      font-style: {{ block.settings.seconds_font_style }};
+      letter-spacing: {{ block.settings.seconds_letter_spacing }}px;
+      text-decoration: {{ block.settings.seconds_text_decoration }};
+      text-decoration-color: {{ block.settings.seconds_text_decoration_color }};
+      padding-top: {{ block.settings.seconds_padding_top }}px;
+      padding-bottom: {{ block.settings.seconds_padding_bottom }}px;
+    "
+  >
+    {{ block.settings.seconds_title }}
+  </span>
+
+  <div class="pc-figure-container">
+    {% for i in (1..2) %}
+      <div class="pc-figure pc-sec-{{ i }}" style="background-color: {{ block.settings.background_color }}; color: {{ section.settings.digit_color }};">
+        <span class="pc-top">0</span>
+        <span class="pc-top-back"><span>0</span></span>
+        <span class="pc-bottom">0</span>
+        <span class="pc-bottom-back"><span>0</span></span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
       {% endcase %}
     {% endfor %}
   </div>
