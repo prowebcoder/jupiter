@@ -94,16 +94,45 @@
         "background_image": "shopify://shop_images/woman-infront-of-tree-with-berries.jpeg",
         "enable_parallax": false,
         "mobile_disable_parallax": true,
-        "text_color": "#000000",
+        "text_color": "#ffffff",
         "image_width": 80,
         "image_height": 80,
         "section_padding": 30,
         "mobile_section_padding": 15
       }
+    },
+    "slider_testimonial_pwc_BP9zDB": {
+      "type": "Slider_testimonial_Pwc",
+      "blocks": {
+        "testimonial_e47Lgt": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
+            "alignment": "center",
+            "name": "Sangeeta",
+            "name_font_size": 18,
+            "role": "Bandri",
+            "role_font_size": 14,
+            "testimonial_text": "Pehle main bahoot paressan thi phir maine shadi kar k apne pati ko",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": "#"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_e47Lgt"
+      ],
+      "name": "Testimonial Slider Pwc",
+      "settings": {
+        "page_width": 1200
+      }
     }
   },
   "order": [
     "image_counter_pwc_GHENam",
-    "pwc_circle_collection_PLLWfA"
+    "pwc_circle_collection_PLLWfA",
+    "slider_testimonial_pwc_BP9zDB"
   ]
 }
