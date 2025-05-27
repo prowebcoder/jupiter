@@ -9,11 +9,6 @@
   max-width: 1200px;
   text-align: center;
 }
-{{ sec_id }} .pc-countdown-items {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 {{ sec_id }} .pc-countdown-timer-section h1 {
   margin-bottom: 60px;
@@ -178,7 +173,6 @@
 {%- endstyle -%}
 
 <div class="pc-countdown-timer-section" style="background-color: {{ section.settings.background_color }};">
-  <div class="pc-countdown-items">
   <h1 
     style="
       color: {{ section.settings.heading_text_color }};
@@ -197,8 +191,8 @@
     "
   >
     {{ section.settings.heading }}
-  </h1>
-  <h2  style="
+    <strong
+      style="
         color: {{ section.settings.highlighted_text_color }};
         font-size: {% case section.settings.highlighted_text_size %}
                     {% when 'small' %}16px
@@ -212,10 +206,11 @@
         text-decoration-color: {{ section.settings.highlighted_decoration_color }};
         padding-top: {{ section.settings.highlighted_padding_top }}px;
         padding-bottom: {{ section.settings.highlighted__padding_bottom }}px;
-      ">
-    {{ section.settings.highlighted_text }}
-  </h2>
-    </div>
+      "
+    >
+      {{ section.settings.highlighted_text }}
+    </strong>
+  </h1>
 
   <div class="pc-countdown">
     {% for block in section.blocks %}
