@@ -162,10 +162,8 @@
 {{ sec_id }} .pc-countdown-timer-section h1 {
    color: {{ section.settings.heading_text_color }};
       font-size: {% case section.settings.heading_text_size %}
-                  {% when 'small' %}16px
-                  {% when 'medium' %}24px
-                  {% when 'large' %}32px
-                {% endcase %};
+      {% when 'small' %}16px {% when 'medium' %}24px
+      {% when 'large' %}32px {% endcase %};
       font-weight: {{ section.settings.heading_font_weight }};
       font-style: {{ section.settings.heading_style }};
       letter-spacing: {{ section.settings.heading_letter_spacing }}px;
