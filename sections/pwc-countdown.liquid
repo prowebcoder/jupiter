@@ -1,198 +1,198 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
 {%- style -%}
-  
-{{ sec_id }} .pc-countdown-timer-section {
-  position: relative;
-  margin: 0 auto;
-  padding: 40px 0;
-  max-width: 1200px;
-  text-align: center;
-}
+  {{ sec_id }} .pc-countdown-timer-section {
+    position: relative;
+    margin: 0 auto;
+    padding: 40px 0;
+    max-width: 1200px;
+    text-align: center;
+  }
 
-{{ sec_id }} .pc-countdown-timer-section h1 {
-  margin-bottom: 60px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 300;
-  font-size: 2.25em;
-  text-transform: uppercase;
-}
+  {{ sec_id }} .pc-countdown-timer-section h1 {
+    margin-bottom: 60px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 2.25em;
+    text-transform: uppercase;
+  }
 
-{{ sec_id }} .pc-countdown-timer-section h1 strong {
-  font-weight: 400;
-  color: {{ section.settings.highlight_color }};
-}
+  {{ sec_id }} .pc-countdown-timer-section h1 strong {
+    font-weight: 400;
+    color: {{ section.settings.highlight_color }};
+  }
 
-{{ sec_id }} .pc-countdown {
-  width: 720px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  gap: 45px;
-}
+  {{ sec_id }} .pc-countdown {
+    width: 720px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+  }
 
-{{ sec_id }} .pc-bloc-time {
-  text-align: center;
-}
+  {{ sec_id }} .pc-bloc-time {
+    text-align: center;
+  }
 
-{{ sec_id }} .pc-count-title {
-  display: block;
-  margin-bottom: 15px;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.94em;
-  color: #1a1a1a;
-  text-transform: uppercase;
-}
+  {{ sec_id }} .pc-count-title {
+    display: block;
+    margin-bottom: 15px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.94em;
+    color: #1a1a1a;
+    text-transform: uppercase;
+  }
 
-{{ sec_id }} .pc-figure-container {
-  display: flex;
-  gap: 10px;
-}
+  {{ sec_id }} .pc-figure-container {
+    display: flex;
+    gap: 10px;
+  }
 
-{{ sec_id }} .pc-figure {
-  position: relative;
-  height: 110px;
-  width: 100px;
-  background-color: {{ section.settings.background_color }};
-  border-radius: 8px;
-  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
-}
+  {{ sec_id }} .pc-figure {
+    position: relative;
+    height: 110px;
+    width: 100px;
+    background-color: {{ section.settings.background_color }};
+    border-radius: 8px;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), inset 2px 4px 0 0 rgba(255, 255, 255, 0.08);
+  }
 
-{{ sec_id }} .pc-figure > span {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  font-family: 'Lato', sans-serif;
-  font-size: 5.94em;
-  line-height: 107px;
-  font-weight: 700;
-  color: {{ section.settings.digit_color }};
-}
+  {{ sec_id }} .pc-figure > span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-family: 'Lato', sans-serif;
+    font-size: 5.94em;
+    line-height: 107px;
+    font-weight: 700;
+    color: {{ section.settings.digit_color }};
+  }
 
-{{ sec_id }} .pc-figure .pc-top,
-{{ sec_id }} .pc-figure .pc-bottom-back {
-  position: relative;
-}
+  {{ sec_id }} .pc-figure .pc-top,
+  {{ sec_id }} .pc-figure .pc-bottom-back {
+    position: relative;
+  }
 
-{{ sec_id }} .pc-figure .pc-top:after,
-{{ sec_id }} .pc-figure .pc-bottom-back:after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
+  {{ sec_id }} .pc-figure .pc-top:after,
+  {{ sec_id }} .pc-figure .pc-bottom-back:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
 
-{{ sec_id }} .pc-figure .pc-top {
-  z-index: 3;
-  transform-origin: 50% 100%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  transform: perspective(200px);
-  height: 50%;
-  overflow: hidden;
-  backface-visibility: hidden;
-}
+  {{ sec_id }} .pc-figure .pc-top {
+    z-index: 3;
+    transform-origin: 50% 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transform: perspective(200px);
+    height: 50%;
+    overflow: hidden;
+    backface-visibility: hidden;
+  }
 
-{{ sec_id }} .pc-figure .pc-bottom {
-  z-index: 1;
-  height: 50%;
-}
+  {{ sec_id }} .pc-figure .pc-bottom {
+    z-index: 1;
+    height: 50%;
+  }
 
-{{ sec_id }} .pc-figure .pc-bottom:before {
-  content: "";
-  position: absolute;
-  display: block;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 95%;
-  background-color: rgba(0, 0, 0, 0.02);
-}
+  {{ sec_id }} .pc-figure .pc-bottom:before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 95%;
+    background-color: rgba(0, 0, 0, 0.02);
+  }
 
-{{ sec_id }} .pc-figure .pc-bottom-back {
-  top: 0;
-  height: 50%;
-  overflow: hidden;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
+  {{ sec_id }} .pc-figure .pc-bottom-back {
+    top: 0;
+    height: 50%;
+    overflow: hidden;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
 
-{{ sec_id }} .pc-figure .pc-bottom-back span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
+  {{ sec_id }} .pc-figure .pc-bottom-back span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 
-{{ sec_id }} .pc-figure .pc-top-back {
-  z-index: 4;
-  bottom: 0;
-  background-color: {{ section.settings.background_color }};
-  transform-origin: 50% 0;
-  transform: perspective(200px) rotateX(180deg);
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  height: 50%;
-  overflow: hidden;
-  backface-visibility: hidden;
-}
+  {{ sec_id }} .pc-figure .pc-top-back {
+    z-index: 4;
+    bottom: 0;
+    background-color: {{ section.settings.background_color }};
+    transform-origin: 50% 0;
+    transform: perspective(200px) rotateX(180deg);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 50%;
+    overflow: hidden;
+    backface-visibility: hidden;
+  }
 
-{{ sec_id }} .pc-figure .pc-top-back span {
-  position: absolute;
-  top: -100%;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
+  {{ sec_id }} .pc-figure .pc-top-back span {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 
-{{ sec_id }} .pc-bottom-back {
-  display: none;
-}
+  {{ sec_id }} .pc-bottom-back {
+    display: none;
+  }
 
-{{ sec_id }} .pc-countdown-timer-section {
-  background-color: {{ section.settings.background_color }};
-  margin-top: {{ section.settings.background_margin_top }}px;
-  margin-bottom: {{ section.settings.background_margin_bottom }}px;
-}
+  {{ sec_id }} .pc-countdown-timer-section {
+    background-color: {{ section.settings.background_color }};
+    margin-top: {{ section.settings.background_margin_top }}px;
+    margin-bottom: {{ section.settings.background_margin_bottom }}px;
+  }
 
-{{ sec_id }} .pc-countdown-timer-section h5 {
-  color: {{ section.settings.heading_text_color }};
-  font-size: {% case section.settings.heading_text_size %}
-    {% when 'small' %}16px
-    {% when 'medium' %}24px
-    {% when 'large' %}32px
-  {% endcase %};
-  font-weight: {{ section.settings.heading_font_weight }};
-  font-style: {{ section.settings.heading_style }};
-  letter-spacing: {{ section.settings.heading_letter_spacing }}px;
-  text-decoration: {{ section.settings.heading_text_decoration }};
-  text-decoration-color: {{ section.settings.heading_decoration_color }};
-  padding-top: {{ section.settings.heading_padding_top }}px;
-  padding-bottom: {{ section.settings.heading_padding_bottom }}px;
-}
+  {{ sec_id }} .pc-countdown-timer-section h5 {
+    color: {{ section.settings.heading_text_color }};
+    font-size: {% case section.settings.heading_text_size %}
+      {% when 'small' %}16px
+      {% when 'medium' %}24px
+      {% when 'large' %}32px
+    {% endcase %};
+    font-weight: {{ section.settings.heading_font_weight }};
+    font-style: {{ section.settings.heading_style }};
+    letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+    text-decoration: {{ section.settings.heading_text_decoration }};
+    text-decoration-color: {{ section.settings.heading_decoration_color }};
+    padding-top: {{ section.settings.heading_padding_top }}px;
+    padding-bottom: {{ section.settings.heading_padding_bottom }}px;
+  }
 
-{{ sec_id }} .pc-countdown-items h5 {
-  margin: 0;
-}
-{{ sec_id }} .pc-countdown-items {
+  {{ sec_id }} .pc-countdown-items h5 {
+    margin: 0;
+  }
+
+  {{ sec_id }} .pc-countdown-items {
     padding-top: {{ section.settings.background_padding_top }}px;
     padding-bottom: {{ section.settings.background_padding_bottom }}px;
   }
   
-{{ sec_id }} .pc-countdown-items {
+  {{ sec_id }} .pc-countdown-items {
     display: flex;
     gap: 15px;
     justify-content: center;
     align-items: center;
-}
+  }
 
-    {{ sec_id }} .pc-countdown-items p {
+  {{ sec_id }} .pc-countdown-items p {
     color: {{ section.settings.highlighted_text_color }};
     font-size: {% case section.settings.highlighted_text_size %}
       {% when 'small' %}16px
@@ -208,7 +208,7 @@
     padding: 0;
   }
 
-/* Dynamic styles for each block instance */
+  /* Dynamic styles for each block instance */
   {% for block in section.blocks %}
     {% case block.type %}
       {% when 'hours' %}
@@ -254,7 +254,7 @@
 {%- endstyle -%}
 
 <div class="pc-countdown-timer-section">
- <div class="pc-countdown-items">
+  <div class="pc-countdown-items">
     <h5>{{ section.settings.heading }}</h5>
     <p>{{ section.settings.highlighted_text }}</p>
   </div>
