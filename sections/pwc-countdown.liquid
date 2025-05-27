@@ -261,19 +261,7 @@
   "
 >0</span>
 
-        <span class="pc-top-back"><span 
-  style="
-    color: {{ block.settings.seconds_digit_color }};
-    font-weight: {{ block.settings.seconds_digit_weight }};
-    font-size: 
-      {% case block.settings.seconds_digit_size %}
-        {% when 'small' %}16px;
-        {% when 'medium' %}24px;
-        {% when 'large' %}32px;
-      {% endcase %}
-  "
->0</span></span>
-
+        <span class="pc-top-back"><span>0</span></span>
         <span class="pc-bottom">0</span>
         <span class="pc-bottom-back"><span>0</span></span>
       </div>
@@ -862,35 +850,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "type": "hours",
       "name": "Hours",
       "settings": [
-          {
-  "type": "color",
-  "id": "seconds_digit_color",
-  "label": "Digit Color",
-  "default": "#000"
-},
-{
-  "type": "select",
-  "id": "seconds_digit_size",
-  "label": "Digit Size",
-  "options": [
-    { "value": "small", "label": "Small" },
-    { "value": "medium", "label": "Medium" },
-    { "value": "large", "label": "Large" }
-  ],
-  "default": "medium"
-},
-{
-  "type": "select",
-  "id": "seconds_digit_weight",
-  "label": "Digit Font Weight",
-  "options": [
-    { "value": "normal", "label": "Normal" },
-    { "value": "bold", "label": "Bold" },
-    { "value": "500", "label": "500" },
-    { "value": "700", "label": "700" }
-  ],
-  "default": "normal"
-},
           {
           "type": "header",
           "content": "Hours"
