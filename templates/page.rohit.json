@@ -355,40 +355,6 @@
         "highlighted_decoration_color": "#a3ba35"
       }
     },
-    "pwc_collection_list_4htUqy": {
-      "type": "pwc-collection-list",
-      "blocks": {
-        "featured_collection_H7PCcR": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "bags"
-          }
-        },
-        "featured_collection_z9kDMi": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "crossbody-bag"
-          }
-        }
-      },
-      "block_order": [
-        "featured_collection_H7PCcR",
-        "featured_collection_z9kDMi"
-      ],
-      "name": "Pwc Collection List",
-      "settings": {
-        "title": "Collections",
-        "heading_size": "h1",
-        "image_ratio": "square",
-        "columns_desktop": 2,
-        "color_scheme": "",
-        "show_view_all": false,
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "rich_text_GrEnh3": {
       "type": "rich-text",
       "blocks": {
@@ -422,7 +388,6 @@
         "text_pTMgMX",
         "button_krmrf4"
       ],
-      "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -438,7 +403,6 @@
     "pwc_marquee_1_MiwcCR",
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
-    "pwc_collection_list_4htUqy",
     "rich_text_GrEnh3"
   ]
 }
