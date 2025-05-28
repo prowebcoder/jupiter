@@ -65,7 +65,7 @@
             id="Slide-{{ section.id }}-{{ forloop.index }}"
             class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
-            {% if settings.animations_reveaview_alll_on_scroll %}
+            {% if settings.animations_reveal_on_scroll %}
               data-cascade
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
@@ -78,52 +78,84 @@
               columns: columns,
               placeholder_image: placeholder_image
             %}
-            
-            {%- if block.settings.collection_heading != blank -%}
-              <h3 class="{{ block.settings.collection_heading_size }}">
-                {{ block.settings.collection_heading }}
-              </h3>
-            {%- endif -%}
-            
-            {%- if block.settings.collection_caption != blank -%}
-              <p class="{{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.collection_text_size }}">
-                {{ block.settings.collection_caption | escape }}
+           <!-- open -->
+
+      <div class="rich-text__blocks {{ section.settings.content_alignment }}">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'heading' -%}
+              <h2
+                class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {{ block.settings.heading }}
+              </h2>
+            {%- when 'caption' -%}
+              <p
+                class="rich-text__caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {{ block.settings.caption | escape }}
               </p>
-            {%- endif -%}
-            
-            {%- if block.settings.collection_text != blank -%}
-              <div class="rte">
-                {{ block.settings.collection_text }}
+            {%- when 'text' -%}
+              <div
+                class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {{ block.settings.text }}
               </div>
-            {%- endif -%}
-            
-            {%- if block.settings.collection_button_label != blank -%}
-              <div class="rich-text__buttons">
-                <a
-                  {% if block.settings.collection_button_link == blank %}
-                    role="link" aria-disabled="true"
-                  {% else %}
-                    href="{{ block.settings.collection_button_link }}"
-                  {% endif %}
-                  class="button{% if block.settings.collection_button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
-                >
-                  {{- block.settings.collection_button_label | escape -}}
-                </a>
-                {%- if block.settings.collection_button_label_2 != blank -%}
+            {%- when 'button' -%}
+              <div
+                class="rich-text__buttons{% if block.settings.button_label != blank and block.settings.button_label_2 != blank %} rich-text__buttons--multiple{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {%- if block.settings.button_label != blank -%}
                   <a
-                    {% if block.settings.collection_button_link_2 == blank %}
+                    {% if block.settings.button_link == blank %}
                       role="link" aria-disabled="true"
                     {% else %}
-                      href="{{ block.settings.collection_button_link_2 }}"
+                      href="{{ block.settings.button_link }}"
                     {% endif %}
-                    class="button{% if block.settings.collection_button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                    class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
                   >
-                    {{- block.settings.collection_button_label_2 | escape -}}
+                    {{- block.settings.button_label | escape -}}
+                  </a>
+                {%- endif -%}
+                {%- if block.settings.button_label_2 != blank -%}
+                  <a
+                    {% if block.settings.button_link_2 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.button_link_2 }}"
+                    {% endif %}
+                    class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                  >
+                    {{- block.settings.button_label_2 | escape -}}
                   </a>
                 {%- endif -%}
               </div>
-            {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    <!-- close -->
           </li>
+        
         {%- endfor -%}
       </ul>
       
