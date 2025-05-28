@@ -78,11 +78,7 @@
               columns: columns,
               placeholder_image: placeholder_image
             %}
-          </li>
-        
-        {%- endfor -%}
-      </ul>
-       <!-- open -->
+           <!-- open -->
 
       <div class="rich-text__blocks {{ section.settings.content_alignment }}">
         {%- for block in section.blocks -%}
@@ -158,6 +154,11 @@
         {%- endfor -%}
       </div>
     <!-- close -->
+          </li>
+        
+        {%- endfor -%}
+      </ul>
+      
       {%- if show_mobile_slider -%}
         <div class="slider-buttons">
           <button

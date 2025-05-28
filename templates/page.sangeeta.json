@@ -524,7 +524,7 @@
             "position": "left",
             "image": "shopify://shop_images/delivery-status.png",
             "heading": "Your Heading",
-            "heading_size": 32,
+            "heading_size": 18,
             "text": "Your text content goes here.",
             "text_size": 14,
             "button_text": "Learn More",
