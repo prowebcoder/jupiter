@@ -580,14 +580,14 @@
         "end_date": "2025-11-27T23:59:59",
         "heading_font": "armata_n4",
         "countdown_font": "cabin_n4",
-        "heading_font_size": 32,
-        "countdown_font_size": 24,
+        "heading_font_size": 20,
+        "countdown_font_size": 20,
         "background_color": "#79ff00",
         "heading_color": "#121212",
         "countdown_color": "#121212",
         "separator_color": "#121212",
-        "padding": 20,
-        "countdown_spacing": 15
+        "padding": 18,
+        "countdown_spacing": 13
       }
     }
   },
