@@ -574,7 +574,6 @@
     },
     "black_friday_H87paL": {
       "type": "black-friday",
-      "name": "Black Friday Countdown",
       "settings": {
         "title": "BLACK FRIDAY",
         "end_date": "2025-11-27T23:59:59",
@@ -589,6 +588,83 @@
         "padding": 18,
         "countdown_spacing": 13
       }
+    },
+    "pwc_video_grid_aQmGiA": {
+      "type": "pwc-video-grid",
+      "blocks": {
+        "video_kdQUgG": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=Jc8rgeyi7fI",
+            "autoplay": true,
+            "loop": true,
+            "muted": false,
+            "heading": "YouTube Video",
+            "text": "<p>Example YouTube video</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_bg_color": "#000000",
+            "button_text_color": "#ffffff"
+          }
+        },
+        "video_WkDmxU": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=zpDza9rd9_4",
+            "autoplay": true,
+            "loop": true,
+            "muted": false,
+            "heading": "MP4 Video",
+            "text": "<p>Example uploaded MP4 video</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_bg_color": "#000000",
+            "button_text_color": "#ffffff"
+          }
+        },
+        "video_qhKJLk": {
+          "type": "video",
+          "settings": {
+            "video_url": "",
+            "video_upload": "shopify://files/videos/twb.mp4",
+            "autoplay": true,
+            "loop": false,
+            "muted": true,
+            "heading": "Vimeo Video",
+            "text": "<p>Example Vimeo video</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_bg_color": "#000000",
+            "button_text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "video_kdQUgG",
+        "video_WkDmxU",
+        "video_qhKJLk"
+      ],
+      "name": "Pwc Video Grid",
+      "settings": {
+        "heading": "Video Gallery",
+        "section_heading_size": 30,
+        "heading_spacing": 20,
+        "heading_alignment": "center",
+        "heading_color_sv": "#000000",
+        "container_width": 1200,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "background_color": "#ffffff",
+        "columns_desktop": 3,
+        "columns_mobile": 1,
+        "grid_gap": 20,
+        "text_alignment": "center",
+        "heading_font_size": 18,
+        "heading_color": "#000000",
+        "text_font_size": 14,
+        "text_color": "#333333",
+        "video_border_radius": 0
+      }
     }
   },
   "order": [
@@ -599,6 +675,7 @@
     "pwc_timer_nXVpYU",
     "pricing_plan_p_kpVXRy",
     "pwc_circle_collection_tJRayP",
-    "black_friday_H87paL"
+    "black_friday_H87paL",
+    "pwc_video_grid_aQmGiA"
   ]
 }
