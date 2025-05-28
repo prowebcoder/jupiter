@@ -433,7 +433,7 @@
           "type": "circle-icon",
           "settings": {
             "circle_collection": "",
-            "cutome_title_circle": "",
+            "cutome_title_circle": "Face masks",
             "custom_image": "shopify://shop_images/woman-poses-in-dark-room.jpg"
           }
         },
