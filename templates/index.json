@@ -88,8 +88,17 @@
         "circle_icon_HhJriH": {
           "type": "circle-icon",
           "settings": {
-            "circle_collection": "crossbody-bag",
-            "cutome_title_circle": ""
+            "circle_collection": "",
+            "cutome_title_circle": "test two",
+            "custom_image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg"
+          }
+        },
+        "circle_icon_UKYWtA": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "",
+            "cutome_title_circle": "test 3",
+            "custom_image": "shopify://shop_images/model-poses-near-bushes.jpg"
           }
         }
       },
@@ -100,7 +109,8 @@
         "circle_icon_6kFfcC",
         "circle_icon_VpUPJd",
         "circle_icon_X76P7b",
-        "circle_icon_HhJriH"
+        "circle_icon_HhJriH",
+        "circle_icon_UKYWtA"
       ],
       "settings": {
         "icon_title": "",
