@@ -76,6 +76,17 @@
   color: #fff;
 }
 
+/* Title text transition */
+{{ sec_id }} .pw-hover-title {
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+/* Hover effect for text */
+{{ sec_id }} .pw-hover-item:hover .pw-hover-title {
+  color: #000000; /* Hover text color */
+  font-weight: 700; /* Hover font weight */
+}
+
 @media screen and (max-width: 768px) {
   {{ sec_id }} .pw-hover-section-container {
     flex-direction: column;
@@ -91,7 +102,6 @@
     font-size: 24px !important;
   }
 }
-
 {% endstylesheet %}
 
 <div class="pw-container">
@@ -113,8 +123,12 @@
         <div 
           class="pw-hover-item"
           onmouseover="document.getElementById('pw-hoverImage').style.backgroundImage='url({{ block.settings.image | image_url: width: 500 }})';"
+          onmouseout="document.getElementById('pw-hoverImage').style.backgroundImage='url({{ section.settings.default_image | image_url: width: 500 }})';"
         >
-          <span style="color: {{ section.settings.block_title_color }}; font-size: {{ section.settings.block_title_size }}px; font-weight: {{ section.settings.block_title_weight }};">
+          <span 
+            class="pw-hover-title"
+            style="color: {{ section.settings.block_title_color }}; font-size: {{ section.settings.block_title_size }}px; font-weight: {{ section.settings.block_title_weight }};"
+          >
             {{ block.settings.title }}
           </span>
           {% if block.settings.collection %}
