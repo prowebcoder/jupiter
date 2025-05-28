@@ -395,28 +395,24 @@
         "collection_item_mEathy": {
           "type": "collection_item",
           "settings": {
-            "title": "",
+            "title": "New Arrival",
+            "image": "shopify://shop_images/fashion-model-in-fur.jpg",
             "collection": ""
           }
         },
         "collection_item_c6KMNL": {
           "type": "collection_item",
           "settings": {
-            "title": "",
-            "collection": ""
+            "title": "Collections",
+            "image": "shopify://shop_images/woman-poses-in-dark-room.jpg",
+            "collection": "bags"
           }
         },
         "collection_item_NWzchE": {
           "type": "collection_item",
           "settings": {
-            "title": "",
-            "collection": ""
-          }
-        },
-        "collection_item_wqHUkM": {
-          "type": "collection_item",
-          "settings": {
-            "title": "",
+            "title": "Best Suit",
+            "image": "shopify://shop_images/purchased-favorite-coffee.jpg",
             "collection": ""
           }
         }
@@ -425,8 +421,7 @@
         "collection_item_JeYdzi",
         "collection_item_mEathy",
         "collection_item_c6KMNL",
-        "collection_item_NWzchE",
-        "collection_item_wqHUkM"
+        "collection_item_NWzchE"
       ],
       "name": "Collection grid image pwc",
       "settings": {
