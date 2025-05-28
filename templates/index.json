@@ -76,6 +76,13 @@
             "cutome_title_circle": "make up accessories",
             "custom_image": "shopify://shop_images/a-model-in-red-suit-jacket-removing-sunglasses.jpg"
           }
+        },
+        "circle_icon_QUP643": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "crossbody-bag",
+            "cutome_title_circle": ""
+          }
         }
       },
       "block_order": [
@@ -83,7 +90,8 @@
         "circle_icon_UB4KfU",
         "circle_icon_mbGcPa",
         "circle_icon_6kFfcC",
-        "circle_icon_VpUPJd"
+        "circle_icon_VpUPJd",
+        "circle_icon_QUP643"
       ],
       "settings": {
         "icon_title": "",
@@ -98,6 +106,8 @@
         "text_size": 12,
         "text_margin_top": 8,
         "text_weight": "600",
+        "arrow_color": "#000000",
+        "arrow_background": "#ffffff",
         "mobile_image_width": 75,
         "mobile_image_height": 75,
         "mobile_gap": 17,
