@@ -103,7 +103,7 @@
                   style="--animation-order: {{ forloop.index }};"
                 {% endif %}
               >
-                {{ block.settings.caption | escape }}
+                {{ block.settings.collection_caption | escape }}
               </p>
             {%- when 'text' -%}
               <div
@@ -114,7 +114,7 @@
                   style="--animation-order: {{ forloop.index }};"
                 {% endif %}
               >
-                {{ block.settings.text }}
+                {{ block.settings.collection_text }}
               </div>
             {%- when 'button' -%}
               <div
