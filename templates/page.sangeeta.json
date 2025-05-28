@@ -629,6 +629,86 @@
         "icon_color_hover": "#ffffff",
         "icon_border_width": 1
       }
+    },
+    "pwc_collection_image_spotlight_6enPLK": {
+      "type": "pwc-collection-image-spotlight",
+      "blocks": {
+        "collection_item_MPNwJj": {
+          "type": "collection_item",
+          "settings": {
+            "title": "Summer Collection",
+            "image": "shopify://shop_images/fashion-model-in-fur.jpg",
+            "collection": "crossbody-bag"
+          }
+        },
+        "collection_item_K96QVF": {
+          "type": "collection_item",
+          "settings": {
+            "title": "Winter Essentials",
+            "image": "shopify://shop_images/purchased-favorite-coffee.jpg",
+            "collection": "frontpage"
+          }
+        },
+        "collection_item_CUTCtN": {
+          "type": "collection_item",
+          "settings": {
+            "title": "New Arrivals",
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "collection": "crossbody-bag"
+          }
+        },
+        "collection_item_H76fVz": {
+          "type": "collection_item",
+          "settings": {
+            "title": "Best Sellers",
+            "image": "shopify://shop_images/home-overlay-cards-2.webp",
+            "collection": "bags"
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_MPNwJj",
+        "collection_item_K96QVF",
+        "collection_item_CUTCtN",
+        "collection_item_H76fVz"
+      ],
+      "settings": {
+        "container_width": 1200,
+        "container_padding": 20,
+        "gap": 30,
+        "image_position": "right",
+        "main_title": "Featured Collections",
+        "title_color": "#000000",
+        "title_font_size": 36,
+        "title_font_weight": 700,
+        "title_alignment": "center",
+        "title_spacing": 40,
+        "default_image": "shopify://shop_images/woman-in-park-afternoon.jpeg",
+        "image_aspect_ratio": 100,
+        "image_radius": 8,
+        "image_shadow": "0 10px 30px rgba(0, 0, 0, 0.1)",
+        "content_background": "rgba(0,0,0,0)",
+        "content_radius": 8,
+        "content_padding": 20,
+        "block_title_color": "#222222",
+        "block_title_hover": "#000000",
+        "block_title_size": 20,
+        "block_title_weight": 500,
+        "block_title_weight_hover": 500,
+        "item_spacing": 26,
+        "item_padding": 12,
+        "item_border_width": 1,
+        "item_border_color": "#dcdcdc",
+        "item_border_hover": "#000000",
+        "icon_size": 26,
+        "icon_bg": "rgba(0,0,0,0)",
+        "icon_bg_hover": "#000000",
+        "icon_border_color": "#000000",
+        "icon_border_hover": "#000000",
+        "icon_color": "#000000",
+        "icon_color_hover": "#ffffff",
+        "icon_border_width": 1
+      }
     }
   },
   "order": [
@@ -639,6 +719,7 @@
     "collection_grid_pwc_WfW39c",
     "collection_grid_image_pwc_WPFmUG",
     "text_image_text_pwc_VedTK4",
-    "pwc_collection_image_spotlight_VQ6PUk"
+    "pwc_collection_image_spotlight_VQ6PUk",
+    "pwc_collection_image_spotlight_6enPLK"
   ]
 }
