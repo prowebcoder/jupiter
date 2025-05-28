@@ -1,6 +1,407 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+
+<style>
+  {{ sid }} {
+    {% if section.settings.background_image != blank %}
+      background-image: url('{{ section.settings.background_image | img_url: '2000x' }}');
+      background-size: cover;
+      background-position: center;
+      {% if section.settings.enable_parallax %}
+        background-attachment: fixed;
+      {% endif %}
+    {% endif %}
+    {% if section.settings.background_color != blank %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+    padding: {{ section.settings.section_padding }}px 0;
   }
+
+  {{ sid }} .pc_circle_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: {{ section.settings.desktop_gap }}px;
+    flex-wrap: nowrap;
+    overflow: auto;
+    position: relative;
+    z-index: 2;
+    padding: 10px 0;
+  }
+
+  {{ sid }} .pc_circle_img img {
+    border-radius: 100%;
+    width: {{ section.settings.image_width | default: '80' }}px;
+    height: {{ section.settings.image_height | default: '80' }}px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  {{ sid }} .pc_circle_img:hover img {
+    transform: scale(1.05);
+  }
+
+  {{ sid }} .pc_circle_img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-width: calc({{ section.settings.image_width | default: '80' }}px + 20px);
+  }
+
+  {{ sid }} .pc_collection_title {
+    font-size: {{ section.settings.text_size }}px;
+    font-weight: {{ section.settings.text_weight }};
+    margin-top: {{ section.settings.text_margin_top }}px;
+    color: {{ section.settings.text_color }};
+    white-space: nowrap;
+  }
+
+  {{ sid }} .pc_custom_image_above_text {
+    width: {{ section.settings.image_width | default: '80' }}px;
+    height: {{ section.settings.image_height | default: '80' }}px;
+    object-fit: cover;
+    border-radius: 100%;
+    margin-bottom: 8px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    {{ sid }} {
+      {% if section.settings.mobile_disable_parallax %}
+        background-attachment: scroll !important;
+      {% endif %}
+      padding: {{ section.settings.mobile_section_padding }}px 0;
+    }
+    
+    {{ sid }} .pc_circle_img img {
+      width: {{ section.settings.mobile_image_width | default: '60' }}px;
+      height: {{ section.settings.mobile_image_height | default: '60' }}px;
+    }
+    
+    {{ sid }} .pc_circle_icon {
+      gap: {{ section.settings.mobile_gap }}px !important;
+      justify-content: {{ section.settings.mobile_alignment }} !important;
+      padding: {{ section.settings.mobile_scroll_padding }}px 0;
+    }
+    
+    {{ sid }} .pc_circle_img {
+      min-width: calc({{ section.settings.mobile_image_width | default: '60' }}px + 10px);
+    }
+    
+    {{ sid }} .pc_collection_title {
+      font-size: {{ section.settings.mobile_text_size }}px;
+      margin-top: {{ section.settings.mobile_text_margin_top }}px;
+    }
+    
+    {% if section.settings.hide_text_mobile %}
+      {{ sid }} .pc_collection_title {
+        display: none;
+      }
+    {% endif %}
+  }
+</style>
+
+<div class="pwc_icon_circle_parent pwc_icon_circle-{{ section.id }}">
+  {% if section.settings.is_icon_enable %}
+    <div class="pc_circle_icon page-width">
+      {% for block in section.blocks %}
+        {% assign _circle_collection = block.settings.circle_collection %}
+        {% assign _collections = collections[_circle_collection] %}
+        <div class="pc_circle_img">
+          <a href="{{ _collections.url }}">
+            {% if block.settings.custom_image != blank %}
+              <img
+                class="pc_custom_image_above_text"
+                src="{{ block.settings.custom_image | img_url: '200x200' }}"
+                alt="{{ block.settings.cutome_title_circle | default: _collections.title }}"
+                loading="lazy"
+              >
+            {% else %}
+              <img 
+                src="{{ _collections.featured_image | img_url: '200x200' }}" 
+                alt="{{ _collections.title }}"
+                loading="lazy"
+              >
+            {% endif %}
+          </a>
+          <span class="pc_collection_title">
+            {% unless block.settings.cutome_title_circle == blank %}
+              {{ block.settings.cutome_title_circle }}
+            {% else %}
+              {{ _collections.title }}
+            {% endunless %}
+          </span>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "PWC Circle Collection",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "icon_title"
+    },
+    {
+      "type": "checkbox",
+      "label": "Enable Circle Icon",
+      "id": "is_icon_enable",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "color",
+      "label": "Background Color",
+      "id": "background_color"
+    },
+    {
+      "type": "image_picker",
+      "label": "Background Image",
+      "id": "background_image"
+    },
+    {
+      "type": "checkbox",
+      "label": "Enable Parallax Effect",
+      "id": "enable_parallax",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "label": "Disable Parallax on Mobile",
+      "id": "mobile_disable_parallax",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Desktop Settings"
+    },
+    {
+      "type": "range",
+      "label": "Image Width (px)",
+      "id": "image_width",
+      "min": 40,
+      "max": 200,
+      "step": 5,
+      "default": 80,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "label": "Image Height (px)",
+      "id": "image_height",
+      "min": 40,
+      "max": 200,
+      "step": 5,
+      "default": 80,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "label": "Gap Between Items (px)",
+      "id": "desktop_gap",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
+      "type": "color",
+      "label": "Text Color",
+      "id": "text_color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "label": "Text Size (px)",
+      "id": "text_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "label": "Text Margin Top (px)",
+      "id": "text_margin_top",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 8,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "label": "Text Weight",
+      "id": "text_weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "label": "Mobile Image Width (px)",
+      "id": "mobile_image_width",
+      "min": 30,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "label": "Mobile Image Height (px)",
+      "id": "mobile_image_height",
+      "min": 30,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "label": "Mobile Gap Between Items (px)",
+      "id": "mobile_gap",
+      "min": 5,
+      "max": 40,
+      "step": 1,
+      "default": 13,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "label": "Mobile Alignment",
+      "id": "mobile_alignment",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "flex-start",
+      "info": "How items align on mobile"
+    },
+    {
+      "type": "range",
+      "label": "Mobile Text Size (px)",
+      "id": "mobile_text_size",
+      "min": 8,
+      "max": 18,
+      "step": 1,
+      "default": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "label": "Mobile Text Margin Top (px)",
+      "id": "mobile_text_margin_top",
+      "min": 0,
+      "max": 15,
+      "step": 1,
+      "default": 5,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "label": "Hide Text on Mobile",
+      "id": "hide_text_mobile",
+      "default": false
+    },
+    {
+      "type": "range",
+      "label": "Mobile Scroll Padding (px)",
+      "id": "mobile_scroll_padding",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 5,
+      "unit": "px",
+      "info": "Padding around scrollable area on mobile"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "label": "Section Padding (Desktop)",
+      "id": "section_padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 30,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "label": "Section Padding (Mobile)",
+      "id": "mobile_section_padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 15,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "circle-icon",
+      "name": "Circle Icon",
+      "settings": [
+        {
+          "type": "collection",
+          "label": "Select Collection",
+          "id": "circle_collection"
+        },
+        {
+          "type": "text",
+          "label": "Custom Collection Name",
+          "id": "cutome_title_circle"
+        },
+        {
+          "type": "image_picker",
+          "label": "Custom Image (Optional)",
+          "id": "custom_image",
+          "info": "Upload an image to display above the text instead of the collection image."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC Circle Collection",
+      "blocks": [
+        {
+          "type": "circle-icon"
+        },
+        {
+          "type": "circle-icon"
+        },
+        {
+          "type": "circle-icon"
+        },
+        {
+          "type": "circle-icon"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
