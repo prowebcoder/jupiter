@@ -29,6 +29,10 @@
 
   {{ sid }} .pc-video-grid-item {
     text-align: {{ section.settings.text_alignment }};
+     {% if section.settings.countdown_font %}
+        font-family: {{ section.settings.countdown_font.family }}, {{ section.settings.countdown_font.fallback_families }};
+        font-weight: {{ section.settings.countdown_font.weight }};
+      {% endif %}
   }
 
   {{ sid }} .pc-video-grid-item__heading {
