@@ -521,7 +521,7 @@
           "type": "video",
           "settings": {
             "video_url": "https://www.youtube.com/watch?v=Jc8rgeyi7fI",
-            "autoplay": true,
+            "autoplay": false,
             "loop": true,
             "muted": false,
             "heading": "YouTube Video",
@@ -536,7 +536,7 @@
           "type": "video",
           "settings": {
             "video_url": "https://www.youtube.com/watch?v=zpDza9rd9_4",
-            "autoplay": true,
+            "autoplay": false,
             "loop": true,
             "muted": false,
             "heading": "MP4 Video",
@@ -565,6 +565,7 @@
         },
         "video_8WUy7k": {
           "type": "video",
+          "disabled": true,
           "settings": {
             "video_url": "https://www.youtube.com/watch?v=gAjRmAZWgZ8",
             "autoplay": true,
@@ -587,9 +588,9 @@
       ],
       "settings": {
         "heading": "Video Gallery",
-        "heading_font": "gluten_n4",
-        "video_font": "gluten_n4",
-        "countdown_font": "gluten_n4",
+        "heading_font": "sans-serif",
+        "video_font": "sans-serif",
+        "countdown_font": "mono",
         "section_heading_size": 30,
         "heading_spacing": 20,
         "heading_alignment": "center",
@@ -598,7 +599,7 @@
         "padding_top": 36,
         "padding_bottom": 36,
         "background_color": "#ffffff",
-        "columns_desktop": 4,
+        "columns_desktop": 3,
         "columns_mobile": 1,
         "grid_gap": 20,
         "text_alignment": "center",
