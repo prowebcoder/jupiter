@@ -596,7 +596,7 @@
         "container_width": 1200,
         "container_padding": 20,
         "gap": 30,
-        "image_position": "left",
+        "image_position": "right",
         "main_title": "Featured Collections",
         "title_color": "#000000",
         "title_font_size": 36,
