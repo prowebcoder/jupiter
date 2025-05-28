@@ -637,12 +637,28 @@
             "button_bg_color": "#000000",
             "button_text_color": "#ffffff"
           }
+        },
+        "video_8WUy7k": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=gAjRmAZWgZ8",
+            "autoplay": true,
+            "loop": false,
+            "muted": true,
+            "heading": "Video Title",
+            "text": "<p>Describe your video content here.</p>",
+            "button_label": "",
+            "button_link": "",
+            "button_bg_color": "#000000",
+            "button_text_color": "#ffffff"
+          }
         }
       },
       "block_order": [
         "video_kdQUgG",
         "video_WkDmxU",
-        "video_qhKJLk"
+        "video_qhKJLk",
+        "video_8WUy7k"
       ],
       "name": "Pwc Video Grid",
       "settings": {
