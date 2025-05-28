@@ -76,8 +76,7 @@
               card_collection: block.settings.collection,
               media_aspect_ratio: section.settings.image_ratio,
               columns: columns,
-              placeholder_image: placeholder_image,
-              title-more: block.settings['title-more']
+              placeholder_image: placeholder_image
             %}
           </li>
         {%- endfor -%}
@@ -287,11 +286,11 @@
           "label": "t:sections.collection-list.blocks.featured_collection.settings.collection.label"
         },
          {
-      "type": "text",
-      "id": "title-more",
-      "label": "Section Heading",
-      "default": "Video Gallery"
-    },
+          "type": "inline_richtext",
+          "id": "collection_heading",
+          "default": "t:sections.rich-text.blocks.heading.settings.heading.default",
+          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+        },
       ]
     }
   ],
