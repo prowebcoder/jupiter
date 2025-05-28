@@ -404,7 +404,7 @@
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "heading": "hi there",
+            "heading": "",
             "heading_size": "h1"
           }
         },
