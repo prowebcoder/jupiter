@@ -1,0 +1,218 @@
+{% stylesheet %}
+{{ sec_id }} .pw-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+{{ sec_id }} .pw-section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+{{ sec_id }} .pw-hover-section-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
+}
+
+{{ sec_id }} .pw-hover-image {
+  width: 500px;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+{{ sec_id }} .pw-hover-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+{{ sec_id }} .pw-hover-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+  margin-bottom: 40px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dcdcdc;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+{{ sec_id }} .pw-hover-item:hover {
+  border-bottom: 1px solid #000;
+}
+
+{{ sec_id }} .pw-hover-icon {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: 16px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #000;
+  font-size: 18px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+{{ sec_id }} .pw-hover-item:hover .pw-hover-icon {
+  display: inline-flex;
+}
+
+{{ sec_id }} .pw-hover-icon:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  {{ sec_id }} .pw-hover-section-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  {{ sec_id }} .pw-hover-image {
+    width: 300px;
+    height: 300px;
+  }
+
+  {{ sec_id }} .pw-hover-item span {
+    font-size: 24px !important;
+  }
+}
+
+{% endstylesheet %}
+
+<div class="pw-container">
+  {% if section.settings.main_title != blank %}
+    <h2 class="pw-section-title" style="color: {{ section.settings.title_color }}; font-size: {{ section.settings.title_font_size }}px;">
+      {{ section.settings.main_title }}
+    </h2>
+  {% endif %}
+  
+  <div class="pw-hover-section-container">
+    <div 
+      class="pw-hover-image" 
+      id="pw-hoverImage"
+      style="background-image: url({{ section.settings.default_image | image_url: width: 500 }});"
+    >
+    </div>
+    <div class="pw-hover-list">
+      {% for block in section.blocks %}
+        <div 
+          class="pw-hover-item"
+          onmouseover="document.getElementById('pw-hoverImage').style.backgroundImage='url({{ block.settings.image | image_url: width: 500 }})';"
+        >
+          <span style="color: {{ section.settings.block_title_color }}; font-size: {{ section.settings.block_title_size }}px; font-weight: {{ section.settings.block_title_weight }};">
+            {{ block.settings.title }}
+          </span>
+          {% if block.settings.collection %}
+            <a href="{{ block.settings.collection.url }}" class="pw-hover-icon" aria-label="Open Collection">→</a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection grid image pwc",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Main Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Main Title Font Size (px)",
+      "min": 16,
+      "max": 64,
+      "step": 1,
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "block_title_color",
+      "label": "Block Title Color",
+      "default": "#222222"
+    },
+    {
+      "type": "range",
+      "id": "block_title_size",
+      "label": "Block Title Font Size (px)",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "block_title_weight",
+      "label": "Block Title Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "image_picker",
+      "id": "default_image",
+      "label": "Default Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_item",
+      "name": "Collection Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Hover Image"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Link to Collection"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Collection grid image pwc",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
