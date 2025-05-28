@@ -48,12 +48,45 @@
             "button_label": "Discover",
             "button_link": ""
           }
+        },
+        "slide_kHkHjF": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/blond-woman-with-winter-pine.jpg",
+            "heading": "Collection 3",
+            "text": "<p>Limited edition items</p>",
+            "button_label": "Discover",
+            "button_link": ""
+          }
+        },
+        "slide_xbfeVb": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/blond-woman-with-winter-pine.jpg",
+            "heading": "Collection 3",
+            "text": "<p>Limited edition items</p>",
+            "button_label": "Discover",
+            "button_link": ""
+          }
+        },
+        "slide_cbdVEM": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/blond-woman-with-winter-pine.jpg",
+            "heading": "Collection 3",
+            "text": "<p>Limited edition items</p>",
+            "button_label": "Discover",
+            "button_link": ""
+          }
         }
       },
       "block_order": [
         "slide_mwLKBr",
         "slide_9dgeQg",
-        "slide_yWxXLm"
+        "slide_yWxXLm",
+        "slide_kHkHjF",
+        "slide_xbfeVb",
+        "slide_cbdVEM"
       ],
       "name": "PC Image Slider",
       "settings": {
@@ -65,11 +98,11 @@
         "image_shape": "portrait",
         "desktop_columns": 3,
         "mobile_columns": 1,
-        "show_arrows": false,
+        "show_arrows": true,
         "show_dots": false,
         "loop": true,
         "autoplay": false,
-        "autoplay_speed": 3,
+        "autoplay_speed": 7,
         "arrow_size": 40,
         "arrow_size_mobile": 30,
         "arrow_icon_size": 16,
