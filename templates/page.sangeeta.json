@@ -340,7 +340,8 @@
         "category_RfnnVh": {
           "type": "category",
           "settings": {
-            "collection": "",
+            "collection": "frontpage",
+            "image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg",
             "subtitle": "Show off your style and stay hydrated wherever you go.",
             "title_color": "#ffffff",
             "title_size": 18,
@@ -354,7 +355,8 @@
         "category_cDk4wd": {
           "type": "category",
           "settings": {
-            "collection": "",
+            "collection": "frontpage",
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
             "subtitle": "Show off your style and stay hydrated wherever you go.",
             "title_color": "#ffffff",
             "title_size": 18,
