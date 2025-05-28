@@ -361,26 +361,19 @@
         "featured_collection_H7PCcR": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "bags"
           }
         },
         "featured_collection_z9kDMi": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
-          }
-        },
-        "featured_collection_c6aGy4": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
+            "collection": "bags"
           }
         }
       },
       "block_order": [
         "featured_collection_H7PCcR",
-        "featured_collection_z9kDMi",
-        "featured_collection_c6aGy4"
+        "featured_collection_z9kDMi"
       ],
       "name": "Pwc Collection List",
       "settings": {
