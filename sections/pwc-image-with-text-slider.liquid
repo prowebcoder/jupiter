@@ -494,8 +494,11 @@ class PCImageSlider {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
- // Initialize all sliders on the page
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+  // Initialize all sliders on the page
   document.querySelectorAll('[id^="pc-image-slider-"]').forEach(slider => {
     const sectionId = slider.id.replace('pc-image-slider-', '');
     new PCImageSlider(sectionId);
@@ -511,14 +514,12 @@ if (typeof Shopify !== 'undefined' && Shopify.designMode) {
       new PCImageSlider(sectionId);
     }
   });
-
-// Initialize slider when section loads in Shopify editor
-if (typeof Shopify !== 'undefined' && Shopify.designMode) {
-  document.addEventListener('shopify:section:load', function(e) {
+  
+  document.addEventListener('shopify:section:unload', function(e) {
+    // Cleanup when section is unloaded in editor
     const slider = e.target.querySelector('[id^="pc-image-slider-"]');
     if (slider) {
-      const sectionId = slider.id.replace('pc-image-slider-', '');
-      new PCImageSlider(sectionId);
+      // Any necessary cleanup code
     }
   });
 }
