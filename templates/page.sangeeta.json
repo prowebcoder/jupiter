@@ -524,7 +524,7 @@
             "position": "left",
             "image": "shopify://shop_images/delivery-status.png",
             "heading": "Your Heading",
-            "heading_size": 21,
+            "heading_size": 32,
             "text": "Your text content goes here.",
             "text_size": 14,
             "button_text": "Learn More",
@@ -543,7 +543,6 @@
         "image_text_block_4XAdPB",
         "image_text_block_43X3Y6"
       ],
-      "name": "Text Image Text Pwc",
       "settings": {
         "main_heading": "Main Section Heading",
         "main_heading_size": 28,
