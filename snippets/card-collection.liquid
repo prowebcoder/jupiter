@@ -117,9 +117,7 @@
       {%- endif -%}
     </div>
     {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
-     
-      <div class="card__content">
-        <!-- open -->
+      <!-- open -->
     kdkdk
       <div class="rich-text__blocks {{ section.settings.content_alignment }}">
         {%- for block in section.blocks -%}
@@ -195,6 +193,7 @@
         {%- endfor -%}
       </div>
     <!-- close -->
+      <div class="card__content">
         <div class="card__information">
           <h3 class="card__heading">
             <a
