@@ -113,7 +113,6 @@
     },
     "pwc_timer_nXVpYU": {
       "type": "pwc-timer",
-      "name": "Pwc Countdown Timer",
       "settings": {
         "container_width": 1200,
         "padding_horizontal": 20,
@@ -245,7 +244,6 @@
         "pricing_plan_wxpAG8",
         "pricing_plan_VrfwUz"
       ],
-      "name": "PC - Pricing Plans",
       "settings": {
         "heading": "Pricing Plans",
         "section_padding_top": 5,
@@ -309,7 +307,7 @@
         "button_min_width": 200,
         "button_border_radius": 50,
         "button_border_width": 0,
-        "button_border_color": "transparent",
+        "button_border_color": "rgba(0,0,0,0)",
         "button_font_size": 16,
         "button_font_weight": "600",
         "button_text_color": "#ffffff",
@@ -319,7 +317,7 @@
         "button_hover_shadow_opacity": 0.1,
         "button_hover_animation_speed": 0.3,
         "button_hover_text_color": "#ffffff",
-        "button_hover_border_color": "transparent",
+        "button_hover_border_color": "rgba(0,0,0,0)",
         "popular_badge_text": "Popular",
         "badge_position_top": 15,
         "badge_position_right": 30,
@@ -339,7 +337,71 @@
         "secondary_color": "#8338ec",
         "accent_color": "#ff006e",
         "accent_color_hover": "#d80060",
-        "vip_button_border_color": "transparent"
+        "vip_button_border_color": "rgba(0,0,0,0)"
+      }
+    },
+    "pwc_video_slideshow_aKPj9R": {
+      "type": "pwc-video-slideshow",
+      "blocks": {
+        "slide_6pMY8y": {
+          "type": "slide",
+          "settings": {
+            "video_type": "shopify",
+            "youtube_url": "",
+            "video_url": "",
+            "video_upload": "shopify://files/videos/twb.mp4",
+            "heading": "Premium Quality",
+            "text": "Discover our handcrafted products made with care and attention to detail.",
+            "button_1_text": "Shop Now",
+            "button_1_link": "",
+            "button_2_text": "Learn More",
+            "button_2_link": ""
+          }
+        },
+        "slide_RBDBEi": {
+          "type": "slide",
+          "settings": {
+            "video_type": "shopify",
+            "youtube_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "video_url": "",
+            "heading": "New Collection",
+            "text": "Explore our latest arrivals for this season.",
+            "button_1_text": "Shop Now",
+            "button_1_link": "",
+            "button_2_text": "Learn More",
+            "button_2_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_6pMY8y",
+        "slide_RBDBEi"
+      ],
+      "name": "Pwc Video Slideshow",
+      "settings": {
+        "width": "section",
+        "slide_height": 600,
+        "slide_height_mobile": 400,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_top_mobile": 0,
+        "padding_bottom_mobile": 0,
+        "background_color": "#ffffff",
+        "autoplay": true,
+        "interval": 5,
+        "text_alignment": "center",
+        "text_width": 80,
+        "heading_size": 48,
+        "heading_size_mobile": 32,
+        "text_size": 18,
+        "text_size_mobile": 16,
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0.3,
+        "button_radius": 4,
+        "button_weight": "600",
+        "button_bg_color": "#ffffff",
+        "button_text_color": "#000000"
       }
     }
   },
@@ -347,6 +409,7 @@
     "main",
     "pwc_pricing_plan_simple_dP4NFK",
     "pwc_timer_nXVpYU",
-    "pricing_plan_p_kpVXRy"
+    "pricing_plan_p_kpVXRy",
+    "pwc_video_slideshow_aKPj9R"
   ]
 }
