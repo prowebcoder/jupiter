@@ -19,6 +19,7 @@
     },
     "pwc_timer_BeYrN3": {
       "type": "pwc-timer",
+      "disabled": true,
       "settings": {
         "container_width": 1200,
         "padding_horizontal": 15,
@@ -151,6 +152,7 @@
         "pricing_plan_8aYLew",
         "pricing_plan_ECdfTc"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Pricing Plans",
         "section_padding_top": 5,
@@ -423,7 +425,6 @@
         "collection_item_c6KMNL",
         "collection_item_NWzchE"
       ],
-      "name": "Collection grid image pwc",
       "settings": {
         "main_title": "50% off all suits and accessories",
         "title_color": "#ff0000",
