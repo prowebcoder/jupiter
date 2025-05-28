@@ -1,6 +1,564 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+
+<style>
+  {{ sid }} .pc-container {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 {{ section.settings.container_padding }}px;
   }
+
+  {{ sid }} .pc-section-title {
+    text-align: {{ section.settings.title_alignment }};
+    margin-bottom: {{ section.settings.title_spacing }}px;
+    color: {{ section.settings.title_color }};
+    font-size: {{ section.settings.title_font_size }}px;
+    font-weight: {{ section.settings.title_font_weight }};
+  }
+
+  {{ sid }} .pc-hover-section-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: {{ section.settings.gap }}px;
+    align-items: center;
+    {% if section.settings.image_position == 'right' %}
+      flex-direction: row-reverse;
+    {% endif %}
+  }
+
+  {{ sid }} .pc-hover-image-wrapper {
+    flex: 1 1 45%;
+    min-width: 300px;
+    position: relative;
+    border-radius: {{ section.settings.image_radius }}px;
+    overflow: hidden;
+    box-shadow: {{ section.settings.image_shadow }};
+  }
+
+  {{ sid }} .pc-hover-image {
+    width: 100%;
+    padding-bottom: {{ section.settings.image_aspect_ratio }}%;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.5s ease;
+    border-radius: {{ section.settings.image_radius }}px;
+  }
+
+  {{ sid }} .pc-hover-list {
+    flex: 1 1 45%;
+    min-width: 300px;
+    padding: {{ section.settings.content_padding }}px;
+    background: {{ section.settings.content_background }};
+    border-radius: {{ section.settings.content_radius }}px;
+  }
+
+  {{ sid }} .pc-hover-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    margin-bottom: {{ section.settings.item_spacing }}px;
+    padding-bottom: {{ section.settings.item_padding }}px;
+    border-bottom: {{ section.settings.item_border_width }}px solid {{ section.settings.item_border_color }};
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  {{ sid }} .pc-hover-item:hover {
+    border-bottom-color: {{ section.settings.item_border_hover }};
+  }
+
+  {{ sid }} .pc-hover-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    margin-left: 16px;
+    border-radius: 50%;
+    background-color: {{ section.settings.icon_bg }};
+    border: {{ section.settings.icon_border_width }}px solid {{ section.settings.icon_border_color }};
+    font-size: {{ section.settings.icon_size | times: 0.5 }}px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  {{ sid }} .pc-hover-item:hover .pc-hover-icon {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  {{ sid }} .pc-hover-icon:hover {
+    background-color: {{ section.settings.icon_bg_hover }};
+    border-color: {{ section.settings.icon_border_hover }};
+    color: {{ section.settings.icon_color_hover }};
+  }
+
+  {{ sid }} .pc-hover-title {
+    transition: all 0.3s ease;
+    color: {{ section.settings.block_title_color }};
+    font-size: {{ section.settings.block_title_size }}px;
+    font-weight: {{ section.settings.block_title_weight }};
+  }
+
+  {{ sid }} .pc-hover-item:hover .pc-hover-title {
+    color: {{ section.settings.block_title_hover }};
+    font-weight: {{ section.settings.block_title_weight_hover }};
+  }
+
+  @media screen and (max-width: 768px) {
+    {{ sid }} .pc-hover-section-container {
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    {{ sid }} .pc-hover-image-wrapper,
+    {{ sid }} .pc-hover-list {
+      flex: 1 1 100%;
+      min-width: 100%;
+    }
+    
+    {{ sid }} .pc-section-title {
+      font-size: {{ section.settings.title_font_size | times: 0.7 }}px;
+      text-align: center;
+    }
+    
+    {{ sid }} .pc-hover-title {
+      font-size: {{ section.settings.block_title_size | times: 0.8 }}px;
+    }
+    
+    {{ sid }} .pc-hover-icon {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>
+
+<div class="pc-container">
+  {% if section.settings.main_title != blank %}
+    <h2 class="pc-section-title">
+      {{ section.settings.main_title }}
+    </h2>
+  {% endif %}
+  
+  <div class="pc-hover-section-container">
+    <div class="pc-hover-image-wrapper">
+      <div 
+        class="pc-hover-image" 
+        id="pc-hoverImage-{{ section.id }}"
+        style="background-image: url({{ section.settings.default_image | image_url: width: 800 }});"
+      ></div>
+    </div>
+    
+    <div class="pc-hover-list">
+      {% for block in section.blocks %}
+        <div 
+          class="pc-hover-item"
+          data-hover-image="{{ block.settings.image | image_url: width: 800 }}"
+          onmouseover="document.getElementById('pc-hoverImage-{{ section.id }}').style.backgroundImage='url({{ block.settings.image | image_url: width: 800 }})';"
+          onmouseout="document.getElementById('pc-hoverImage-{{ section.id }}').style.backgroundImage='url({{ section.settings.default_image | image_url: width: 800 }})';"
+        >
+          <span class="pc-hover-title">
+            {{ block.settings.title }}
+          </span>
+          {% if block.settings.collection %}
+            <a href="{{ block.settings.collection.url }}" class="pc-hover-icon" aria-label="Open Collection">→</a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Add touch support for mobile
+  document.querySelectorAll('.pc-hover-item').forEach(item => {
+    item.addEventListener('touchstart', function() {
+      const hoverImage = this.closest('.pc-hover-section-container').querySelector('.pc-hover-image');
+      const imageUrl = this.getAttribute('data-hover-image');
+      if (hoverImage && imageUrl) {
+        hoverImage.style.backgroundImage = `url(${imageUrl})`;
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "PWC Collection Spotlight",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1600,
+      "step": 20,
+      "unit": "px",
+      "label": "Container Max Width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Container Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Space Between Columns",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Title Settings"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "Featured Collections"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Title Font Size (px)",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "title_font_weight",
+      "label": "Title Font Weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Title Bottom Spacing",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "default_image",
+      "label": "Default Image"
+    },
+    {
+      "type": "range",
+      "id": "image_aspect_ratio",
+      "min": 50,
+      "max": 150,
+      "step": 5,
+      "unit": "%",
+      "label": "Image Aspect Ratio",
+      "default": 100,
+      "info": "Height as percentage of width"
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Image Border Radius",
+      "default": 8
+    },
+    {
+      "type": "text",
+      "id": "image_shadow",
+      "label": "Image Shadow",
+      "default": "0 10px 30px rgba(0, 0, 0, 0.1)",
+      "info": "CSS box-shadow value"
+    },
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "color",
+      "id": "content_background",
+      "label": "Content Background",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "content_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Content Border Radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Content Padding",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "List Item Settings"
+    },
+    {
+      "type": "color",
+      "id": "block_title_color",
+      "label": "Title Color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "block_title_hover",
+      "label": "Title Hover Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "block_title_size",
+      "label": "Title Font Size (px)",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "block_title_weight",
+      "label": "Title Font Weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "block_title_weight_hover",
+      "label": "Title Hover Font Weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Item Spacing",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "item_padding",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Item Bottom Padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "item_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Item Border Width",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "item_border_color",
+      "label": "Item Border Color",
+      "default": "#dcdcdc"
+    },
+    {
+      "type": "color",
+      "id": "item_border_hover",
+      "label": "Item Border Hover Color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Icon Settings"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "icon_bg",
+      "label": "Icon Background",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "icon_bg_hover",
+      "label": "Icon Hover Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "icon_border_color",
+      "label": "Icon Border Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "icon_border_hover",
+      "label": "Icon Border Hover Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "icon_color_hover",
+      "label": "Icon Hover Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "icon_border_width",
+      "min": 0,
+      "max": 3,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon Border Width",
+      "default": 1
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_item",
+      "name": "Collection Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Collection Name"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Hover Image"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Link to Collection"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "PWC Collection Spotlight",
+      "category": "Collections",
+      "blocks": [
+        {
+          "type": "collection_item",
+          "settings": {
+            "title": "Summer Collection"
+          }
+        },
+        {
+          "type": "collection_item",
+          "settings": {
+            "title": "Winter Essentials"
+          }
+        },
+        {
+          "type": "collection_item",
+          "settings": {
+            "title": "New Arrivals"
+          }
+        },
+        {
+          "type": "collection_item",
+          "settings": {
+            "title": "Best Sellers"
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
