@@ -90,6 +90,16 @@
     font-size: {{ section.settings.section_heading_size }}px;
     margin-bottom: {{ section.settings.heading_spacing }}px;
   }
+
+   {{ sid }} .pc-section-heading {
+      {% if section.settings.heading_font %}
+        font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+        font-weight: {{ section.settings.heading_font.weight }};
+      {% endif %}
+   font-size: {{ section.settings.heading_font_size }}px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
 {%- endstyle -%}
 
 <div class="pc-section-padding">
