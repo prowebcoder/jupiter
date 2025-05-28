@@ -41,13 +41,21 @@
   }
 
   {{ sec_id }} .pw-center-image {
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   max-width: 320px;
   height: 100%;
 }
+
+{{ sec_id }} .pw-center-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 
 
   {{ sec_id }} .pw-block {
