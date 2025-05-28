@@ -1,6 +1,740 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+
+{%- style -%}
+  {{ sid }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+    {% if section.settings.width == 'full-screen' %}
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+    {% elsif section.settings.width == 'container' %}
+      max-width: {{ settings.page_width }}px;
+      margin: 0 auto;
+    {% endif %}
   }
+
+  {{ sid }} .pc-video-slideshow {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  {{ sid }} .pc-video-slideshow__container {
+    display: flex;
+    transition: transform 0.5s ease;
+    height: {{ section.settings.slide_height }}px;
+  }
+
+  {{ sid }} .pc-video-slide {
+    min-width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  {{ sid }} .pc-video-slide__media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  {{ sid }} .pc-video-slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  {{ sid }} .pc-video-slide__youtube-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+  }
+
+  {{ sid }} .pc-video-slide__youtube {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  {{ sid }} .pc-video-slide__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: {{ section.settings.text_alignment }};
+    padding: 2rem;
+    color: {{ section.settings.text_color }};
+    text-align: {{ section.settings.text_alignment }};
+    background-color: {{ section.settings.overlay_color | color_modify: 'alpha', section.settings.overlay_opacity }};
+    z-index: 2;
+  }
+
+  {{ sid }} .pc-video-slide__content h2 {
+    font-size: {{ section.settings.heading_size }}px;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    max-width: {{ section.settings.text_width }}%;
+  }
+
+  {{ sid }} .pc-video-slide__content p {
+    font-size: {{ section.settings.text_size }}px;
+    margin-bottom: 1.5rem;
+    max-width: {{ section.settings.text_width }}%;
+  }
+
+  {{ sid }} .pc-video-slide__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: {{ section.settings.text_alignment }};
+    flex-wrap: wrap;
+  }
+
+  {{ sid }} .pc-video-slide__buttons .pc-btn {
+    padding: 0.8rem 2rem;
+    border-radius: {{ section.settings.button_radius }}px;
+    font-weight: {{ section.settings.button_weight }};
+  }
+
+  {{ sid }} .pc-video-slide__buttons .pc-btn--primary {
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    border: 1px solid {{ section.settings.button_bg_color }};
+  }
+
+  {{ sid }} .pc-video-slide__buttons .pc-btn--secondary {
+    background-color: transparent;
+    color: {{ section.settings.button_text_color }};
+    border: 1px solid {{ section.settings.button_text_color }};
+  }
+
+  {{ sid }} .pc-video-slideshow__controls {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 3;
+  }
+
+  {{ sid }} .pc-video-slideshow__control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  {{ sid }} .pc-video-slideshow__control.pc-active {
+    background-color: #fff;
+    transform: scale(1.2);
+  }
+
+  {{ sid }} .pc-video-slideshow__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    z-index: 3;
+  }
+
+  {{ sid }} .pc-video-slideshow__nav-btn {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  {{ sid }} .pc-video-slideshow__nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  @media (max-width: 768px) {
+    {{ sid }} {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+    }
+
+    {{ sid }} .pc-video-slideshow__container {
+      height: {{ section.settings.slide_height_mobile }}px;
+    }
+
+    {{ sid }} .pc-video-slide__content h2 {
+      font-size: {{ section.settings.heading_size_mobile }}px;
+    }
+
+    {{ sid }} .pc-video-slide__content p {
+      font-size: {{ section.settings.text_size_mobile }}px;
+    }
+
+    {{ sid }} .pc-video-slide__content {
+      padding: 1rem;
+    }
+  }
+{%- endstyle -%}
+
+{% comment %} Arrow icons snippet {% endcomment %}
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="icon-arrow-right" viewBox="0 0 20 20">
+    <path fill="currentColor" d="M11.8 2.8L10.8 3.8 16.2 9.3 1 9.3 1 10.7 16.2 10.7 10.8 16.2 11.8 17.2 19 10z"></path>
+  </symbol>
+  <symbol id="icon-arrow-left" viewBox="0 0 20 20">
+    <path fill="currentColor" d="M8.2 17.2L9.2 16.2 3.8 10.7 19 10.7 19 9.3 3.8 9.3 9.2 3.8 8.2 2.8 1 10z"></path>
+  </symbol>
+</svg>
+
+<div
+  class="pc-video-slideshow"
+  data-autoplay="{{ section.settings.autoplay }}"
+  data-interval="{{ section.settings.interval }}"
+>
+  <div class="pc-video-slideshow__container">
+    {% for block in section.blocks %}
+      <div class="pc-video-slide" data-index="{{ forloop.index0 }}">
+        <div class="pc-video-slide__media">
+          {% if block.settings.video_type == 'youtube' and block.settings.youtube_url != blank %}
+            {%- assign youtube_id = block.settings.youtube_url | split: 'v=' | last | split: '&' | first -%}
+            <div class="pc-video-slide__youtube-container">
+              <iframe
+                class="pc-video-slide__youtube"
+                src="https://www.youtube.com/embed/{{ youtube_id }}?autoplay=1&mute=1&loop=1&playlist={{ youtube_id }}&controls=0&modestbranding=1&rel=0"
+                frameborder="0"
+                allowfullscreen
+              ></iframe>
+            </div>
+          {% elsif block.settings.video_type == 'external' and block.settings.video_url != blank %}
+            <video playsinline muted loop autoplay>
+              <source src="{{ block.settings.video_url }}" type="video/mp4">
+            </video>
+          {% elsif block.settings.video_type == 'shopify' and block.settings.video_upload != blank %}
+            {{
+              block.settings.video_upload
+              | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: 'pc-video-slide__shopify'
+            }}
+          {% endif %}
+        </div>
+
+        <div class="pc-video-slide__content">
+          {% if block.settings.heading != blank %}
+            <h2>{{ block.settings.heading }}</h2>
+          {% endif %}
+
+          {% if block.settings.text != blank %}
+            <p>{{ block.settings.text }}</p>
+          {% endif %}
+
+          {% if block.settings.button_1_text != blank or block.settings.button_2_text != blank %}
+            <div class="pc-video-slide__buttons">
+              {% if block.settings.button_1_text != blank %}
+                <a href="{{ block.settings.button_1_link }}" class="pc-btn pc-btn--primary">
+                  {{- block.settings.button_1_text -}}
+                </a>
+              {% endif %}
+
+              {% if block.settings.button_2_text != blank %}
+                <a href="{{ block.settings.button_2_link }}" class="pc-btn pc-btn--secondary">
+                  {{- block.settings.button_2_text -}}
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.blocks.size > 1 %}
+    <div class="pc-video-slideshow__controls">
+      {% for block in section.blocks %}
+        <div
+          class="pc-video-slideshow__control {% if forloop.first %}pc-active{% endif %}"
+          data-index="{{ forloop.index0 }}"
+        ></div>
+      {% endfor %}
+    </div>
+
+    <div class="pc-video-slideshow__nav">
+      <button class="pc-video-slideshow__nav-btn pc-video-slideshow__prev">
+        <svg width="20" height="20" aria-hidden="true" focusable="false">
+          <use href="#icon-arrow-left" />
+        </svg>
+      </button>
+      <button class="pc-video-slideshow__nav-btn pc-video-slideshow__next">
+        <svg width="20" height="20" aria-hidden="true" focusable="false">
+          <use href="#icon-arrow-right" />
+        </svg>
+      </button>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slideshow = document.querySelector('{{ sid }} .pc-video-slideshow');
+    if (!slideshow) return;
+    
+    const container = slideshow.querySelector('.pc-video-slideshow__container');
+    const slides = slideshow.querySelectorAll('.pc-video-slide');
+    const controls = slideshow.querySelectorAll('.pc-video-slideshow__control');
+    const prevBtn = slideshow.querySelector('.pc-video-slideshow__prev');
+    const nextBtn = slideshow.querySelector('.pc-video-slideshow__next');
+    const autoplay = slideshow.dataset.autoplay === 'true';
+    const interval = parseInt(slideshow.dataset.interval) * 1000;
+    
+    let currentIndex = 0;
+    let slideInterval;
+    
+    function goToSlide(index) {
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+      
+      container.style.transform = `translateX(-${index * 100}%)`;
+      
+      controls.forEach(control => control.classList.remove('pc-active'));
+      controls[index].classList.add('pc-active');
+      
+      currentIndex = index;
+      
+      // Reset autoplay timer
+      if (autoplay) {
+        clearInterval(slideInterval);
+        startAutoplay();
+      }
+    }
+    
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+    
+    function prevSlide() {
+      goToSlide(currentIndex - 1);
+    }
+    
+    function startAutoplay() {
+      if (autoplay && slides.length > 1) {
+        slideInterval = setInterval(nextSlide, interval);
+      }
+    }
+    
+    // Initialize
+    if (slides.length > 1) {
+      controls.forEach((control, index) => {
+        control.addEventListener('click', () => goToSlide(index));
+      });
+      
+      if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+      if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+      
+      startAutoplay();
+      
+      // Pause autoplay on hover
+      slideshow.addEventListener('mouseenter', () => {
+        if (autoplay) clearInterval(slideInterval);
+      });
+      
+      slideshow.addEventListener('mouseleave', startAutoplay);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Pwc Video Slideshow",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Section width",
+      "options": [
+        {
+          "value": "full-screen",
+          "label": "Full screen"
+        },
+        {
+          "value": "container",
+          "label": "Container width"
+        },
+        {
+          "value": "section",
+          "label": "Section width"
+        }
+      ],
+      "default": "section"
+    },
+    {
+      "type": "range",
+      "id": "slide_height",
+      "min": 300,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "label": "Slide height (desktop)",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "slide_height_mobile",
+      "min": 200,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "label": "Slide height (mobile)",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top (desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom (desktop)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding top (mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding bottom (mobile)",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Slideshow settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay slideshow",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "interval",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "sec",
+      "label": "Slide change interval",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Content settings"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "text_width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Text container width",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size (desktop)",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size (mobile)",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size (desktop)",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size (mobile)",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Overlay opacity",
+      "default": 0.3
+    },
+    {
+      "type": "header",
+      "content": "Button settings"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "button_weight",
+      "label": "Button font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Primary button background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#000000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Video"
+        },
+        {
+          "type": "select",
+          "id": "video_type",
+          "label": "Video source",
+          "options": [
+            {
+              "value": "youtube",
+              "label": "YouTube"
+            },
+            {
+              "value": "external",
+              "label": "External URL"
+            },
+            {
+              "value": "shopify",
+              "label": "Shopify hosted"
+            }
+          ],
+          "default": "youtube"
+        },
+        {
+          "type": "text",
+          "id": "youtube_url",
+          "label": "YouTube URL",
+          "info": "Paste the full YouTube video URL",
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+        },
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "Video URL",
+          "info": "Direct link to .mp4 file"
+        },
+        {
+          "type": "video",
+          "id": "video_upload",
+          "label": "Shopify video",
+          "info": "Upload a video file"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Video Slideshow"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Add compelling text here to describe your product or promotion."
+        },
+        {
+          "type": "header",
+          "content": "Buttons"
+        },
+        {
+          "type": "text",
+          "id": "button_1_text",
+          "label": "Button 1 text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_1_link",
+          "label": "Button 1 link"
+        },
+        {
+          "type": "text",
+          "id": "button_2_text",
+          "label": "Button 2 text",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_2_link",
+          "label": "Button 2 link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pwc Video Slideshow",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "video_type": "youtube",
+            "youtube_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "heading": "Premium Quality",
+            "text": "Discover our handcrafted products made with care and attention to detail."
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "video_type": "shopify",
+            "heading": "New Collection",
+            "text": "Explore our latest arrivals for this season."
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
