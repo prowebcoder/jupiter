@@ -502,8 +502,8 @@
       "settings": {
         "title": "BLACK FRIDAY",
         "end_date": "2025-11-27T23:59:59",
-        "heading_font": "armata_n4",
-        "countdown_font": "cabin_n4",
+        "heading_font": "gluten_n4",
+        "countdown_font": "gluten_n4",
         "heading_font_size": 27,
         "countdown_font_size": 15,
         "background_color": "#79ff00",
