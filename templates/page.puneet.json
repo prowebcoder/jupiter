@@ -93,7 +93,7 @@
             "title_size": 18,
             "subtitle_color": "#ffffff",
             "subtitle_size": 14,
-            "button_shape": "rounded",
+            "button_shape": "square",
             "button_background_color": "#ffffff",
             "button_text_color": "#000000"
           }
@@ -532,7 +532,8 @@
           "type": "circle-icon",
           "settings": {
             "circle_collection": "",
-            "cutome_title_circle": ""
+            "cutome_title_circle": "",
+            "custom_image": "shopify://shop_images/a-model-in-red-suit-jacket-removing-sunglasses.jpg"
           }
         }
       },
