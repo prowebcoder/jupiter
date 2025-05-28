@@ -434,6 +434,116 @@
         "block_title_weight": "600",
         "default_image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg"
       }
+    },
+    "text_image_text_pwc_VedTK4": {
+      "type": "text-image-text-pwc",
+      "blocks": {
+        "image_text_block_PRKAyL": {
+          "type": "image_text_block",
+          "settings": {
+            "position": "right",
+            "heading": "Your Heading",
+            "heading_size": 18,
+            "text": "Your text content goes here.",
+            "text_size": 14,
+            "button_text": "Learn More",
+            "button_link": "",
+            "button_bg": "#000000",
+            "button_text_color": "#ffffff",
+            "button_radius": 5
+          }
+        },
+        "image_text_block_zNrEtQ": {
+          "type": "image_text_block",
+          "settings": {
+            "position": "left",
+            "heading": "Your Heading",
+            "heading_size": 18,
+            "text": "Your text content goes here.",
+            "text_size": 14,
+            "button_text": "Learn More",
+            "button_link": "",
+            "button_bg": "#000000",
+            "button_text_color": "#ffffff",
+            "button_radius": 5
+          }
+        },
+        "image_text_block_G6TPpn": {
+          "type": "image_text_block",
+          "settings": {
+            "position": "left",
+            "heading": "Your Heading",
+            "heading_size": 18,
+            "text": "Your text content goes here.",
+            "text_size": 14,
+            "button_text": "Learn More",
+            "button_link": "",
+            "button_bg": "#000000",
+            "button_text_color": "#ffffff",
+            "button_radius": 5
+          }
+        },
+        "image_text_block_LzFenJ": {
+          "type": "image_text_block",
+          "settings": {
+            "position": "right",
+            "heading": "Your Heading",
+            "heading_size": 18,
+            "text": "Your text content goes here.",
+            "text_size": 14,
+            "button_text": "Learn More",
+            "button_link": "",
+            "button_bg": "#000000",
+            "button_text_color": "#ffffff",
+            "button_radius": 5
+          }
+        },
+        "image_text_block_4XAdPB": {
+          "type": "image_text_block",
+          "settings": {
+            "position": "right",
+            "heading": "Your Heading",
+            "heading_size": 18,
+            "text": "Your text content goes here.",
+            "text_size": 14,
+            "button_text": "Learn More",
+            "button_link": "",
+            "button_bg": "#000000",
+            "button_text_color": "#ffffff",
+            "button_radius": 5
+          }
+        },
+        "image_text_block_43X3Y6": {
+          "type": "image_text_block",
+          "settings": {
+            "position": "left",
+            "heading": "Your Heading",
+            "heading_size": 18,
+            "text": "Your text content goes here.",
+            "text_size": 14,
+            "button_text": "Learn More",
+            "button_link": "",
+            "button_bg": "#000000",
+            "button_text_color": "#ffffff",
+            "button_radius": 5
+          }
+        }
+      },
+      "block_order": [
+        "image_text_block_PRKAyL",
+        "image_text_block_zNrEtQ",
+        "image_text_block_G6TPpn",
+        "image_text_block_LzFenJ",
+        "image_text_block_4XAdPB",
+        "image_text_block_43X3Y6"
+      ],
+      "name": "Text Image Text Pwc",
+      "settings": {
+        "main_heading": "Main Section Heading",
+        "main_heading_size": 28,
+        "main_heading_color": "#000000",
+        "center_image": "shopify://shop_images/woman-poses-in-dark-room.jpg"
+      }
     }
   },
   "order": [
@@ -442,6 +552,7 @@
     "pricing_plan_p_JP9y6c",
     "image_counter_pwc_4LedYC",
     "collection_grid_pwc_WfW39c",
-    "collection_grid_image_pwc_WPFmUG"
+    "collection_grid_image_pwc_WPFmUG",
+    "text_image_text_pwc_VedTK4"
   ]
 }
