@@ -39,6 +39,10 @@
     font-size: {{ section.settings.heading_font_size }}px;
     color: {{ section.settings.heading_color }};
     margin-bottom: 10px;
+    {% if section.settings.video_font %}
+        font-family: {{ section.settings.video_font.family }}, {{ section.settings.countdown_font.fallback_families }};
+        font-weight: {{ section.settings.video_font.weight }};
+      {% endif %}
   }
 
   {{ sid }} .pc-video-grid-item__text {
@@ -209,6 +213,12 @@
     {
       "type": "font_picker",
       "id": "heading_font",
+      "label": "Heading Font",
+      "default": "helvetica_n4"
+    },
+     {
+      "type": "font_picker",
+      "id": "video_font",
       "label": "Heading Font",
       "default": "helvetica_n4"
     },
