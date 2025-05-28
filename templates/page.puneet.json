@@ -396,12 +396,12 @@
         "text_size": 18,
         "text_size_mobile": 16,
         "text_color": "#ffffff",
-        "overlay_color": "#ffffff",
+        "overlay_color": "#121212",
         "overlay_opacity": 0.3,
         "button_radius": 4,
         "button_weight": "600",
-        "button_bg_color": "#ffffff",
-        "button_text_color": "#000000"
+        "button_bg_color": "#121212",
+        "button_text_color": "#ffffff"
       }
     }
   },
