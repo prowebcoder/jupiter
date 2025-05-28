@@ -7,10 +7,10 @@
     background-color: {{ section.settings.background_color }};
   }
 
-   {% if section.settings.countdown_font %}
-      {% assign countdown_font = section.settings.countdown_font %}
-      {{ countdown_font | font_face }}
-    {% endif %}
+  {% if section.settings.countdown_font %}
+    {% assign countdown_font = section.settings.countdown_font %}
+    {{ countdown_font | font_face }}
+  {% endif %}
 
   @media screen and (min-width: 750px) {
     {{ sid }} {
@@ -29,10 +29,10 @@
 
   {{ sid }} .pc-video-grid-item {
     text-align: {{ section.settings.text_alignment }};
-     {% if section.settings.countdown_font %}
-        font-family: {{ section.settings.countdown_font.family }}, {{ section.settings.countdown_font.fallback_families }};
-        font-weight: {{ section.settings.countdown_font.weight }};
-      {% endif %}
+    {% if section.settings.countdown_font %}
+      font-family: {{ section.settings.countdown_font.family }}, {{ section.settings.countdown_font.fallback_families }};
+      font-weight: {{ section.settings.countdown_font.weight }};
+    {% endif %}
   }
 
   {{ sid }} .pc-video-grid-item__heading {
@@ -40,9 +40,9 @@
     color: {{ section.settings.heading_color }};
     margin-bottom: 10px;
     {% if section.settings.video_font %}
-        font-family: {{ section.settings.video_font.family }}, {{ section.settings.countdown_font.fallback_families }};
-        font-weight: {{ section.settings.video_font.weight }};
-      {% endif %}
+      font-family: {{ section.settings.video_font.family }}, {{ section.settings.countdown_font.fallback_families }};
+      font-weight: {{ section.settings.video_font.weight }};
+    {% endif %}
   }
 
   {{ sid }} .pc-video-grid-item__text {
@@ -63,6 +63,56 @@
     }
   }
 
+  /* Slider styles */
+  {{ sid }} .pc-video-slider {
+    display: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  {{ sid }} .pc-video-slider-container {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+  }
+
+  {{ sid }} .pc-video-slide {
+    min-width: 100%;
+    padding: 0 5px;
+    box-sizing: border-box;
+  }
+
+  {{ sid }} .pc-slider-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+
+  {{ sid }} .pc-slider-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+
+  {{ sid }} .pc-slider-dot.active {
+    background: #333;
+  }
+
+  @media screen and (max-width: 749px) {
+    {% if section.settings.enable_mobile_slider %}
+      {{ sid }} .pc-video-grid {
+        display: none;
+      }
+
+      {{ sid }} .pc-video-slider {
+        display: block;
+      }
+    {% endif %}
+  }
+
   {{ sid }} .pc-video-wrapper {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -81,7 +131,6 @@
     width: 100%;
     height: 100%;
     border: none;
-
   }
 
   {{ sid }} .pc-video-placeholder {
@@ -105,15 +154,15 @@
     margin-bottom: {{ section.settings.heading_spacing }}px;
   }
 
-   {{ sid }} .pc-section-heading {
-      {% if section.settings.heading_font %}
-        font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
-        font-weight: {{ section.settings.heading_font.weight }};
-      {% endif %}
-   font-size: {{ section.settings.heading_font_size }}px;
-      margin-bottom: 15px;
-      font-weight: bold;
-    }
+  {{ sid }} .pc-section-heading {
+    {% if section.settings.heading_font %}
+      font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+      font-weight: {{ section.settings.heading_font.weight }};
+    {% endif %}
+    font-size: {{ section.settings.heading_font_size }}px;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
 {%- endstyle -%}
 
 <div class="pc-section-padding">
@@ -197,8 +246,172 @@
       </div>
     {%- endfor -%}
   </div>
+
+  {% if section.settings.enable_mobile_slider %}
+    <div class="pc-video-slider">
+      <div class="pc-video-slider-container">
+        {%- for block in section.blocks -%}
+          <div class="pc-video-slide">
+            <div class="pc-video-grid-item" {{ block.shopify_attributes }}>
+              <div class="pc-video-wrapper">
+                {%- if block.settings.video_url != blank and block.settings.video_url.type == 'youtube' -%}
+                  <iframe
+                    src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?rel=0&showinfo=0&autoplay={% if block.settings.autoplay %}1{% else %}0{% endif %}&mute={% if block.settings.muted %}1{% else %}0{% endif %}&loop={% if block.settings.loop %}1{% else %}0{% endif %}{% if block.settings.loop %}&playlist={{ block.settings.video_url.id }}{% endif %}"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  >
+                  </iframe>
+
+                {%- elsif block.settings.video_url != blank and block.settings.video_url.type == 'vimeo' -%}
+                  <iframe
+                    src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}?autoplay={% if block.settings.autoplay %}1{% else %}0{% endif %}&muted={% if block.settings.muted %}1{% else %}0{% endif %}&loop={% if block.settings.loop %}1{% else %}0{% endif %}&color={{ settings.color_button_text | remove: '#' }}&title=0&byline=0&portrait=0"
+                    frameborder="0"
+                    allow="autoplay; fullscreen"
+                    allowfullscreen
+                  >
+                  </iframe>
+
+                {%- elsif block.settings.video_upload != blank -%}
+                  <video
+                    {% if block.settings.autoplay %}
+                      autoplay
+                    {% endif %}
+                    {% if block.settings.muted %}
+                      muted
+                    {% endif %}
+                    {% if block.settings.loop %}
+                      loop
+                    {% endif %}
+                    playsinline
+                    {% if block.settings.cover_image %}
+                      poster="{{ block.settings.cover_image | img_url: '800x' }}"
+                    {% endif %}
+                    controls
+                  >
+                    <source
+                      src="{{ block.settings.video_upload.sources[1].url }}"
+                      type="{{ block.settings.video_upload.sources[1].mime_type }}"
+                    >
+                    Your browser does not support the video tag.
+                  </video>
+
+                {%- else -%}
+                  <div class="pc-video-placeholder">
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                    <span style="position: absolute;">No video selected</span>
+                  </div>
+                {%- endif -%}
+              </div>
+
+              {%- if block.settings.heading != blank -%}
+                <h3 class="pc-video-grid-item__heading">{{ block.settings.heading }}</h3>
+              {%- endif -%}
+
+              {%- if block.settings.text != blank -%}
+                <div class="pc-video-grid-item__text">{{ block.settings.text }}</div>
+              {%- endif -%}
+
+              {%- if block.settings.button_label != blank -%}
+                <a
+                  href="{{ block.settings.button_link }}"
+                  class="button"
+                  style="background-color: {{ block.settings.button_bg_color }}; color: {{ block.settings.button_text_color }};"
+                >
+                  {{ block.settings.button_label }}
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="pc-slider-dots">
+        {%- for block in section.blocks -%}
+          <div class="pc-slider-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
+        {%- endfor -%}
+      </div>
+    </div>
+  {% endif %}
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    {% if section.settings.enable_mobile_slider %}
+      const slider = document.querySelector('{{ sid }} .pc-video-slider-container');
+      const dots = document.querySelectorAll('{{ sid }} .pc-slider-dot');
+      const slides = document.querySelectorAll('{{ sid }} .pc-video-slide');
+      let currentIndex = 0;
+      let slideInterval;
+      const slideDuration = {{ section.settings.slide_duration | default: 5000 }};
+
+      function goToSlide(index) {
+        if (index < 0) index = slides.length - 1;
+        if (index >= slides.length) index = 0;
+        
+        slider.style.transform = `translateX(-${index * 100}%)`;
+        currentIndex = index;
+        
+        // Update dots
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+      }
+
+      function startSlider() {
+        slideInterval = setInterval(() => {
+          goToSlide(currentIndex + 1);
+        }, slideDuration);
+      }
+
+      function stopSlider() {
+        clearInterval(slideInterval);
+      }
+
+      // Initialize slider
+      goToSlide(0);
+      startSlider();
+
+      // Dot click events
+      dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+          const index = parseInt(this.getAttribute('data-index'));
+          goToSlide(index);
+          stopSlider();
+          startSlider();
+        });
+      });
+
+      // Pause on hover
+      slider.addEventListener('mouseenter', stopSlider);
+      slider.addEventListener('mouseleave', startSlider);
+      
+      // Touch events for mobile swipe
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
+      slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopSlider();
+      }, {passive: true});
+      
+      slider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        startSlider();
+      }, {passive: true});
+      
+      function handleSwipe() {
+        if (touchEndX < touchStartX - 50) {
+          // Swipe left - next slide
+          goToSlide(currentIndex + 1);
+        } else if (touchEndX > touchStartX + 50) {
+          // Swipe right - previous slide
+          goToSlide(currentIndex - 1);
+        }
+      }
+    {% endif %}
+  });
+</script>
 {% schema %}
 {
   "name": "Pwc Video Grid",
@@ -217,13 +430,13 @@
       "label": "Heading Font",
       "default": "helvetica_n4"
     },
-     {
+    {
       "type": "font_picker",
       "id": "video_font",
       "label": "Heading Font",
       "default": "helvetica_n4"
     },
-     {
+    {
       "type": "font_picker",
       "id": "countdown_font",
       "label": "Countdown Font",
@@ -400,6 +613,28 @@
       "unit": "px",
       "label": "Video Border Radius",
       "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile Slider Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_slider",
+      "label": "Enable Mobile Slider",
+      "default": true,
+      "info": "Show videos as slider on mobile devices"
+    },
+    {
+      "type": "range",
+      "id": "slide_duration",
+      "min": 1000,
+      "max": 8000,
+      "step": 500,
+      "unit": "ms",
+      "label": "Auto Slide Duration",
+      "default": 5000,
+      "info": "Time between slides in milliseconds"
     }
   ],
   "blocks": [
