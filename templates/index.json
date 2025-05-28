@@ -11,7 +11,6 @@
   "sections": {
     "image_counter_pwc_GHENam": {
       "type": "Image_Counter_pwc",
-      "name": " Image Countdown Pwc",
       "settings": {
         "page_width": 1200,
         "image_position": "left",
@@ -86,15 +85,13 @@
         "circle_icon_6kFfcC",
         "circle_icon_VpUPJd"
       ],
-      "name": "PWC Circle Collection",
       "settings": {
         "icon_title": "",
         "is_icon_enable": true,
         "background_color": "",
-        "background_image": "shopify://shop_images/woman-infront-of-tree-with-berries.jpeg",
         "enable_parallax": false,
         "mobile_disable_parallax": true,
-        "text_color": "#ffffff",
+        "text_color": "#242833",
         "image_width": 80,
         "image_height": 80,
         "section_padding": 30,
@@ -124,7 +121,6 @@
       "block_order": [
         "testimonial_e47Lgt"
       ],
-      "name": "Testimonial Slider Pwc",
       "settings": {
         "page_width": 1200
       }
