@@ -605,6 +605,7 @@
         "title_font_weight": 700,
         "title_alignment": "center",
         "title_spacing": 40,
+        "default_image": "shopify://shop_images/home-overlay-cards-2.webp",
         "image_aspect_ratio": 100,
         "image_radius": 8,
         "image_shadow": "0 10px 30px rgba(0, 0, 0, 0.1)",
