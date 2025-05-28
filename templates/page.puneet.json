@@ -80,6 +80,100 @@
         "button_text_color": "#ffffff"
       }
     },
+    "pwc_circle_collection_tJRayP": {
+      "type": "pwc-circle-collection",
+      "blocks": {
+        "circle_icon_fgL9W9": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "crossbody-bag",
+            "cutome_title_circle": ""
+          }
+        },
+        "circle_icon_7rXrxM": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "frontpage",
+            "cutome_title_circle": "",
+            "custom_image": "shopify://shop_images/model-poses-near-bushes.jpg"
+          }
+        },
+        "circle_icon_WDY6tE": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "crossbody-bag",
+            "cutome_title_circle": "",
+            "custom_image": "shopify://shop_images/woman-infront-of-tree-with-berries.jpeg"
+          }
+        },
+        "circle_icon_eiiQww": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "",
+            "cutome_title_circle": "Face masks",
+            "custom_image": "shopify://shop_images/woman-poses-in-dark-room.jpg"
+          }
+        },
+        "circle_icon_hDdqX7": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "",
+            "cutome_title_circle": "Reflexes",
+            "custom_image": "shopify://shop_images/woman-in-park-afternoon.jpeg"
+          }
+        },
+        "circle_icon_jbYGr6": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "bags",
+            "cutome_title_circle": "Shaddes"
+          }
+        },
+        "circle_icon_wqqYAr": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "",
+            "cutome_title_circle": "",
+            "custom_image": "shopify://shop_images/a-model-in-red-suit-jacket-removing-sunglasses.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "circle_icon_fgL9W9",
+        "circle_icon_7rXrxM",
+        "circle_icon_WDY6tE",
+        "circle_icon_eiiQww",
+        "circle_icon_hDdqX7",
+        "circle_icon_jbYGr6",
+        "circle_icon_wqqYAr"
+      ],
+      "settings": {
+        "icon_title": "",
+        "is_icon_enable": true,
+        "background_color": "",
+        "enable_parallax": false,
+        "mobile_disable_parallax": true,
+        "image_width": 80,
+        "image_height": 80,
+        "desktop_gap": 40,
+        "text_color": "#000000",
+        "text_size": 12,
+        "text_margin_top": 8,
+        "text_weight": "600",
+        "arrow_color": "#000000",
+        "arrow_background": "#ffffff",
+        "mobile_image_width": 60,
+        "mobile_image_height": 60,
+        "mobile_gap": 13,
+        "mobile_alignment": "flex-start",
+        "mobile_text_size": 10,
+        "mobile_text_margin_top": 5,
+        "hide_text_mobile": false,
+        "mobile_scroll_padding": 5,
+        "section_padding": 30,
+        "mobile_section_padding": 15
+      }
+    },
     "pwc_pricing_plan_simple_dP4NFK": {
       "type": "pwc-pricing-plan-simple",
       "blocks": {
@@ -403,100 +497,6 @@
         "vip_button_border_color": "rgba(0,0,0,0)"
       }
     },
-    "pwc_circle_collection_tJRayP": {
-      "type": "pwc-circle-collection",
-      "blocks": {
-        "circle_icon_fgL9W9": {
-          "type": "circle-icon",
-          "settings": {
-            "circle_collection": "crossbody-bag",
-            "cutome_title_circle": ""
-          }
-        },
-        "circle_icon_7rXrxM": {
-          "type": "circle-icon",
-          "settings": {
-            "circle_collection": "frontpage",
-            "cutome_title_circle": "",
-            "custom_image": "shopify://shop_images/model-poses-near-bushes.jpg"
-          }
-        },
-        "circle_icon_WDY6tE": {
-          "type": "circle-icon",
-          "settings": {
-            "circle_collection": "crossbody-bag",
-            "cutome_title_circle": "",
-            "custom_image": "shopify://shop_images/woman-infront-of-tree-with-berries.jpeg"
-          }
-        },
-        "circle_icon_eiiQww": {
-          "type": "circle-icon",
-          "settings": {
-            "circle_collection": "",
-            "cutome_title_circle": "Face masks",
-            "custom_image": "shopify://shop_images/woman-poses-in-dark-room.jpg"
-          }
-        },
-        "circle_icon_hDdqX7": {
-          "type": "circle-icon",
-          "settings": {
-            "circle_collection": "",
-            "cutome_title_circle": "Reflexes",
-            "custom_image": "shopify://shop_images/woman-in-park-afternoon.jpeg"
-          }
-        },
-        "circle_icon_jbYGr6": {
-          "type": "circle-icon",
-          "settings": {
-            "circle_collection": "bags",
-            "cutome_title_circle": ""
-          }
-        },
-        "circle_icon_wqqYAr": {
-          "type": "circle-icon",
-          "settings": {
-            "circle_collection": "",
-            "cutome_title_circle": "",
-            "custom_image": "shopify://shop_images/a-model-in-red-suit-jacket-removing-sunglasses.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "circle_icon_fgL9W9",
-        "circle_icon_7rXrxM",
-        "circle_icon_WDY6tE",
-        "circle_icon_eiiQww",
-        "circle_icon_hDdqX7",
-        "circle_icon_jbYGr6",
-        "circle_icon_wqqYAr"
-      ],
-      "settings": {
-        "icon_title": "",
-        "is_icon_enable": true,
-        "background_color": "",
-        "enable_parallax": false,
-        "mobile_disable_parallax": true,
-        "image_width": 80,
-        "image_height": 80,
-        "desktop_gap": 40,
-        "text_color": "#000000",
-        "text_size": 12,
-        "text_margin_top": 8,
-        "text_weight": "600",
-        "arrow_color": "#000000",
-        "arrow_background": "#ffffff",
-        "mobile_image_width": 60,
-        "mobile_image_height": 60,
-        "mobile_gap": 13,
-        "mobile_alignment": "flex-start",
-        "mobile_text_size": 10,
-        "mobile_text_margin_top": 5,
-        "hide_text_mobile": false,
-        "mobile_scroll_padding": 5,
-        "section_padding": 30,
-        "mobile_section_padding": 15
-      }
-    },
     "black_friday_H87paL": {
       "type": "black-friday",
       "settings": {
@@ -610,10 +610,10 @@
   "order": [
     "main",
     "pwc_video_slideshow_aKPj9R",
+    "pwc_circle_collection_tJRayP",
     "pwc_pricing_plan_simple_dP4NFK",
     "pwc_timer_nXVpYU",
     "pricing_plan_p_kpVXRy",
-    "pwc_circle_collection_tJRayP",
     "black_friday_H87paL",
     "pwc_video_grid_aQmGiA"
   ]
