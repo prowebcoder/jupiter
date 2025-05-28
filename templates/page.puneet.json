@@ -579,14 +579,14 @@
         "end_date": "2025-11-27T23:59:59",
         "heading_font": "armata_n4",
         "countdown_font": "cabin_n4",
-        "heading_font_size": 20,
-        "countdown_font_size": 20,
+        "heading_font_size": 27,
+        "countdown_font_size": 15,
         "background_color": "#79ff00",
         "heading_color": "#121212",
         "countdown_color": "#121212",
         "separator_color": "#121212",
-        "padding": 18,
-        "countdown_spacing": 13
+        "padding": 20,
+        "countdown_spacing": 15
       }
     },
     "pwc_video_grid_aQmGiA": {
