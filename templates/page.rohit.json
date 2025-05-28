@@ -404,7 +404,7 @@
           "type": "featured_collection",
           "settings": {
             "collection": "crossbody-bag",
-            "collection_heading": "dsd",
+            "collection_heading": "",
             "collection_heading_size": "h1"
           }
         },
