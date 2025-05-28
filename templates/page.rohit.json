@@ -404,16 +404,16 @@
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "heading": "",
-            "heading_size": "h1"
+            "collection_heading": "dsd",
+            "collection_heading_size": "h1"
           }
         },
         "featured_collection_chBDPQ": {
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "heading": "",
-            "heading_size": "h1"
+            "collection_heading": "",
+            "collection_heading_size": "h1"
           }
         }
       },
