@@ -84,6 +84,14 @@
             "cutome_title_circle": "test one",
             "custom_image": "shopify://shop_images/home-overlay-cards-2.webp"
           }
+        },
+        "circle_icon_HhJriH": {
+          "type": "circle-icon",
+          "settings": {
+            "circle_collection": "",
+            "cutome_title_circle": "test two",
+            "custom_image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg"
+          }
         }
       },
       "block_order": [
@@ -92,7 +100,8 @@
         "circle_icon_mbGcPa",
         "circle_icon_6kFfcC",
         "circle_icon_VpUPJd",
-        "circle_icon_X76P7b"
+        "circle_icon_X76P7b",
+        "circle_icon_HhJriH"
       ],
       "settings": {
         "icon_title": "",
