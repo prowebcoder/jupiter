@@ -80,6 +80,82 @@
         "button_text_color": "#ffffff"
       }
     },
+    "collection_grid_pwc_VYATc8": {
+      "type": "collection-grid-pwc",
+      "blocks": {
+        "category_y9e6tt": {
+          "type": "category",
+          "settings": {
+            "collection": "crossbody-bag",
+            "image": "shopify://shop_images/model-poses-near-bushes.jpg",
+            "subtitle": "Show off your style and stay hydrated wherever you go.",
+            "title_color": "#ffffff",
+            "title_size": 18,
+            "subtitle_color": "#ffffff",
+            "subtitle_size": 14,
+            "button_shape": "rounded",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000"
+          }
+        },
+        "category_iJTKMc": {
+          "type": "category",
+          "settings": {
+            "collection": "frontpage",
+            "image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
+            "subtitle": "Show off your style and stay hydrated wherever you go.",
+            "title_color": "#ffffff",
+            "title_size": 18,
+            "subtitle_color": "#ffffff",
+            "subtitle_size": 14,
+            "button_shape": "rounded",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000"
+          }
+        },
+        "category_9JeHM8": {
+          "type": "category",
+          "settings": {
+            "collection": "crossbody-bag",
+            "image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg",
+            "subtitle": "Show off your style and stay hydrated wherever you go.",
+            "title_color": "#ffffff",
+            "title_size": 18,
+            "subtitle_color": "#ffffff",
+            "subtitle_size": 14,
+            "button_shape": "rounded",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000"
+          }
+        },
+        "category_FBTJJF": {
+          "type": "category",
+          "settings": {
+            "collection": "bags",
+            "image": "shopify://shop_images/woman-poses-in-dark-room.jpg",
+            "subtitle": "Show off your style and stay hydrated wherever you go.",
+            "title_color": "#ffffff",
+            "title_size": 18,
+            "subtitle_color": "#ffffff",
+            "subtitle_size": 14,
+            "button_shape": "rounded",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "category_y9e6tt",
+        "category_iJTKMc",
+        "category_9JeHM8",
+        "category_FBTJJF"
+      ],
+      "name": "Collection Grid pwc",
+      "settings": {
+        "heading": "Discover by Category",
+        "mobile_card_count": "1"
+      }
+    },
     "pwc_pricing_plan_simple_dP4NFK": {
       "type": "pwc-pricing-plan-simple",
       "blocks": {
@@ -402,90 +478,14 @@
         "accent_color_hover": "#d80060",
         "vip_button_border_color": "rgba(0,0,0,0)"
       }
-    },
-    "collection_grid_pwc_VYATc8": {
-      "type": "collection-grid-pwc",
-      "blocks": {
-        "category_y9e6tt": {
-          "type": "category",
-          "settings": {
-            "collection": "crossbody-bag",
-            "image": "shopify://shop_images/model-poses-near-bushes.jpg",
-            "subtitle": "Show off your style and stay hydrated wherever you go.",
-            "title_color": "#ffffff",
-            "title_size": 18,
-            "subtitle_color": "#ffffff",
-            "subtitle_size": 14,
-            "button_shape": "rounded",
-            "button_background_color": "#ffffff",
-            "button_text_color": "#000000"
-          }
-        },
-        "category_iJTKMc": {
-          "type": "category",
-          "settings": {
-            "collection": "frontpage",
-            "image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
-            "subtitle": "Show off your style and stay hydrated wherever you go.",
-            "title_color": "#ffffff",
-            "title_size": 18,
-            "subtitle_color": "#ffffff",
-            "subtitle_size": 14,
-            "button_shape": "rounded",
-            "button_background_color": "#ffffff",
-            "button_text_color": "#000000"
-          }
-        },
-        "category_9JeHM8": {
-          "type": "category",
-          "settings": {
-            "collection": "crossbody-bag",
-            "image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg",
-            "subtitle": "Show off your style and stay hydrated wherever you go.",
-            "title_color": "#ffffff",
-            "title_size": 18,
-            "subtitle_color": "#ffffff",
-            "subtitle_size": 14,
-            "button_shape": "rounded",
-            "button_background_color": "#ffffff",
-            "button_text_color": "#000000"
-          }
-        },
-        "category_FBTJJF": {
-          "type": "category",
-          "settings": {
-            "collection": "bags",
-            "image": "shopify://shop_images/woman-poses-in-dark-room.jpg",
-            "subtitle": "Show off your style and stay hydrated wherever you go.",
-            "title_color": "#ffffff",
-            "title_size": 18,
-            "subtitle_color": "#ffffff",
-            "subtitle_size": 14,
-            "button_shape": "rounded",
-            "button_background_color": "#ffffff",
-            "button_text_color": "#000000"
-          }
-        }
-      },
-      "block_order": [
-        "category_y9e6tt",
-        "category_iJTKMc",
-        "category_9JeHM8",
-        "category_FBTJJF"
-      ],
-      "name": "Collection Grid pwc",
-      "settings": {
-        "heading": "Discover by Category",
-        "mobile_card_count": "1"
-      }
     }
   },
   "order": [
     "main",
     "pwc_video_slideshow_aKPj9R",
+    "collection_grid_pwc_VYATc8",
     "pwc_pricing_plan_simple_dP4NFK",
     "pwc_timer_nXVpYU",
-    "pricing_plan_p_kpVXRy",
-    "collection_grid_pwc_VYATc8"
+    "pricing_plan_p_kpVXRy"
   ]
 }
