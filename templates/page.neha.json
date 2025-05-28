@@ -88,7 +88,6 @@
         "slide_xbfeVb",
         "slide_cbdVEM"
       ],
-      "name": "PC Image Slider",
       "settings": {
         "heading": "Featured Collections",
         "title_center": true,
@@ -101,7 +100,7 @@
         "show_arrows": true,
         "show_dots": false,
         "loop": true,
-        "autoplay": false,
+        "autoplay": true,
         "autoplay_speed": 7,
         "arrow_size": 40,
         "arrow_size_mobile": 30,
