@@ -15,9 +15,97 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "pwc_image_with_text_slider_RHBGNi": {
+      "type": "pwc-image-with-text-slider",
+      "blocks": {
+        "slide_mwLKBr": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/woman-poses-in-dark-room.jpg",
+            "heading": "Collection 1",
+            "text": "<p>Shop our latest collection</p>",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "slide_9dgeQg": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/blond-woman-with-winter-pine.jpg",
+            "heading": "Collection 2",
+            "text": "<p>New arrivals just in</p>",
+            "button_label": "Explore",
+            "button_link": ""
+          }
+        },
+        "slide_yWxXLm": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/blond-woman-with-winter-pine.jpg",
+            "heading": "Collection 3",
+            "text": "<p>Limited edition items</p>",
+            "button_label": "Discover",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_mwLKBr",
+        "slide_9dgeQg",
+        "slide_yWxXLm"
+      ],
+      "name": "PC Image Slider",
+      "settings": {
+        "heading": "Featured Collections",
+        "title_center": true,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "slide_gap": 20,
+        "image_shape": "portrait",
+        "desktop_columns": 3,
+        "mobile_columns": 1,
+        "show_arrows": false,
+        "show_dots": false,
+        "loop": true,
+        "autoplay": false,
+        "autoplay_speed": 3,
+        "arrow_size": 40,
+        "arrow_size_mobile": 30,
+        "arrow_icon_size": 16,
+        "arrow_opacity": 0.7,
+        "arrow_background": "#ffffff",
+        "arrow_color": "#000000",
+        "dot_size": 8,
+        "dot_color": "#000000",
+        "dot_active_color": "#ffffff",
+        "content_position": "flex-end",
+        "content_alignment": "flex-start",
+        "text_alignment": "left",
+        "content_padding": 20,
+        "overlay_color": "#000000",
+        "overlay_opacity": 30,
+        "text_color": "#ffffff",
+        "heading_color": "#ffffff",
+        "heading_size": 24,
+        "text_size": 16,
+        "button_font_size": 14,
+        "button_padding_top": 10,
+        "button_padding_sides": 20,
+        "button_border_radius": 5,
+        "button_border_width": 0,
+        "button_color": "#ffffff",
+        "button_text_color": "#000000",
+        "button_hover_color": "#eeeeee",
+        "button_text_hover_color": "#000000",
+        "button_border_color": "#ffffff",
+        "button_border_hover_color": "#ffffff",
+        "button_font_weight": "600"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "pwc_image_with_text_slider_RHBGNi"
   ]
 }
