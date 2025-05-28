@@ -7,6 +7,11 @@
     background-color: {{ section.settings.background_color }};
   }
 
+   {% if section.settings.countdown_font %}
+      {% assign countdown_font = section.settings.countdown_font %}
+      {{ countdown_font | font_face }}
+    {% endif %}
+
   @media screen and (min-width: 750px) {
     {{ sid }} {
       padding-top: {{ section.settings.padding_top }}px;
@@ -196,6 +201,12 @@
       "id": "heading",
       "label": "Section Heading",
       "default": "Video Gallery"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading Font",
+      "default": "helvetica_n4"
     },
     {
       "type": "range",
