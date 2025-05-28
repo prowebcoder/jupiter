@@ -588,6 +588,7 @@
       "settings": {
         "heading": "Video Gallery",
         "heading_font": "gluten_n4",
+        "video_font": "gluten_n4",
         "countdown_font": "gluten_n4",
         "section_heading_size": 30,
         "heading_spacing": 20,
