@@ -293,7 +293,7 @@ class PCImageSlider {
     this.nextArrow = document.querySelector(`#pc-image-slider-${sectionId} ~ .pc-image-slider__arrow--next`);
     this.dotsContainer = document.getElementById(`pc-image-slider-dots-${sectionId}`);
     
-    // Get settings from data attributes instead of JSON parse
+    // Get settings from data attributes
     this.settings = {
       slide_gap: parseInt(this.slider?.dataset?.slideGap) || 20,
       loop: this.slider?.dataset?.loop === 'true',
@@ -307,8 +307,10 @@ class PCImageSlider {
     this.startPos = 0;
     this.currentScroll = 0;
     this.currentIndex = 0;
+    this.slideCount = this.slider.children.length;
     this.slideWidth = this.slider.children[0]?.offsetWidth + this.settings.slide_gap || 0;
     this.autoplayInterval = null;
+    this.animationFrameId = null;
 
     this.init();
   }
@@ -318,28 +320,45 @@ class PCImageSlider {
     if (this.settings.autoplay) {
       this.startAutoplay();
     }
+    this.updateArrows();
   }
 
   setupEventListeners() {
     if (!this.slider) return;
     
+    // Mouse/touch events
     this.slider.addEventListener('mousedown', this.handleStart.bind(this));
-    this.slider.addEventListener('touchstart', this.handleStart.bind(this), { passive: true });
+    this.slider.addEventListener('touchstart', this.handleStart.bind(this), { passive: false });
     window.addEventListener('mousemove', this.handleMove.bind(this));
     window.addEventListener('touchmove', this.handleMove.bind(this), { passive: false });
     window.addEventListener('mouseup', this.handleEnd.bind(this));
     window.addEventListener('touchend', this.handleEnd.bind(this));
 
-    if (this.prevArrow) this.prevArrow.addEventListener('click', this.goToPrevSlide.bind(this));
-    if (this.nextArrow) this.nextArrow.addEventListener('click', this.goToNextSlide.bind(this));
+    // Navigation buttons
+    if (this.prevArrow) this.prevArrow.addEventListener('click', () => {
+      this.goToPrevSlide();
+      if (this.autoplayInterval) {
+        clearInterval(this.autoplayInterval);
+        this.startAutoplay();
+      }
+    });
+    
+    if (this.nextArrow) this.nextArrow.addEventListener('click', () => {
+      this.goToNextSlide();
+      if (this.autoplayInterval) {
+        clearInterval(this.autoplayInterval);
+        this.startAutoplay();
+      }
+    });
 
+    // Dot navigation
     if (this.dotsContainer) {
       this.dotsContainer.querySelectorAll('.pc-image-slider__dot').forEach((dot, index) => {
         dot.addEventListener('click', () => this.goToSlide(index));
       });
     }
 
-    // Keyboard navigation only when slider is focused
+    // Keyboard navigation
     this.slider.addEventListener('keydown', (e) => {
       if (['ArrowLeft', 'ArrowRight'].includes(e.key)) {
         e.preventDefault();
@@ -347,6 +366,9 @@ class PCImageSlider {
         if (e.key === 'ArrowRight') this.goToNextSlide();
       }
     });
+
+    // Scroll events for index tracking
+    this.slider.addEventListener('scroll', this.handleScroll.bind(this), { passive: true });
 
     // Pause autoplay on hover
     this.slider.addEventListener('mouseenter', () => {
@@ -362,7 +384,7 @@ class PCImageSlider {
     this.isDragging = true;
     this.startPos = e.clientX || e.touches[0].clientX;
     this.currentScroll = this.slider.scrollLeft;
-    this.slider.style.scrollSnapType = 'none';
+    this.slider.style.scrollBehavior = 'auto';
     this.slider.style.cursor = 'grabbing';
     if (this.autoplayInterval) clearInterval(this.autoplayInterval);
     e.preventDefault();
@@ -370,49 +392,79 @@ class PCImageSlider {
 
   handleMove(e) {
     if (!this.isDragging) return;
-    const currentX = e.clientX || e.touches[0].clientX;
-    const diff = currentX - this.startPos;
-    this.slider.scrollLeft = this.currentScroll - diff;
+    
+    cancelAnimationFrame(this.animationFrameId);
+    this.animationFrameId = requestAnimationFrame(() => {
+      const currentX = e.clientX || e.touches[0].clientX;
+      const diff = currentX - this.startPos;
+      this.slider.scrollLeft = this.currentScroll - diff;
+    });
+    
+    e.preventDefault();
   }
 
   handleEnd() {
+    if (!this.isDragging) return;
     this.isDragging = false;
-    this.slider.style.scrollSnapType = 'x mandatory';
+    this.slider.style.scrollBehavior = 'smooth';
     this.slider.style.cursor = 'grab';
     
+    // Snap to nearest slide
     const scrollPos = this.slider.scrollLeft;
     this.currentIndex = Math.round(scrollPos / this.slideWidth);
     this.goToSlide(this.currentIndex);
+    
     if (this.settings.autoplay) this.startAutoplay();
   }
 
+  handleScroll() {
+    if (this.isDragging) return;
+    
+    // Update current index based on scroll position
+    const scrollPos = this.slider.scrollLeft;
+    const newIndex = Math.round(scrollPos / this.slideWidth);
+    
+    if (newIndex !== this.currentIndex) {
+      this.currentIndex = newIndex;
+      this.updateDots();
+      this.updateArrows();
+    }
+  }
+
   goToSlide(index) {
-    // Ensure index is within bounds
-    const slides = this.slider.children;
-    if (!slides.length) return;
+    if (this.slideCount === 0) return;
     
-    this.currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+    // Handle infinite loop
+    if (this.settings.loop) {
+      if (index < 0) index = this.slideCount - 1;
+      if (index >= this.slideCount) index = 0;
+    } else {
+      index = Math.max(0, Math.min(index, this.slideCount - 1));
+    }
     
+    this.currentIndex = index;
     this.slider.scrollTo({
-      left: this.currentIndex * this.slideWidth,
+      left: index * this.slideWidth,
       behavior: 'smooth'
     });
+    
     this.updateDots();
+    this.updateArrows();
   }
 
   goToPrevSlide() {
-    if (this.currentIndex > 0) {
+    if (this.settings.loop && this.currentIndex <= 0) {
+      this.goToSlide(this.slideCount - 1);
+    } else {
       this.goToSlide(this.currentIndex - 1);
-    } else if (this.settings.loop) {
-      this.goToSlide(this.slider.children.length - 1);
     }
   }
 
   goToNextSlide() {
-    if (this.currentIndex < this.slider.children.length - 1) {
-      this.goToSlide(this.currentIndex + 1);
-    } else if (this.settings.loop) {
+    if (this.settings.loop && this.currentIndex >= this.slideCount - 1) {
       this.goToSlide(0);
+    } else {
+      this.goToSlide(this.currentIndex + 1);
     }
   }
 
@@ -422,6 +474,13 @@ class PCImageSlider {
       dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === this.currentIndex);
       });
+    }
+  }
+
+  updateArrows() {
+    if (!this.settings.loop && this.prevArrow && this.nextArrow) {
+      this.prevArrow.style.visibility = this.currentIndex <= 0 ? 'hidden' : 'visible';
+      this.nextArrow.style.visibility = this.currentIndex >= this.slideCount - 1 ? 'hidden' : 'visible';
     }
   }
 
@@ -436,12 +495,22 @@ class PCImageSlider {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize all sliders on the page
+ // Initialize all sliders on the page
   document.querySelectorAll('[id^="pc-image-slider-"]').forEach(slider => {
     const sectionId = slider.id.replace('pc-image-slider-', '');
     new PCImageSlider(sectionId);
   });
 });
+
+// Initialize slider when section loads in Shopify editor
+if (typeof Shopify !== 'undefined' && Shopify.designMode) {
+  document.addEventListener('shopify:section:load', function(e) {
+    const slider = e.target.querySelector('[id^="pc-image-slider-"]');
+    if (slider) {
+      const sectionId = slider.id.replace('pc-image-slider-', '');
+      new PCImageSlider(sectionId);
+    }
+  });
 
 // Initialize slider when section loads in Shopify editor
 if (typeof Shopify !== 'undefined' && Shopify.designMode) {
