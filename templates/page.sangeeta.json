@@ -442,6 +442,7 @@
           "type": "image_text_block",
           "settings": {
             "position": "right",
+            "image": "shopify://shop_images/delivery-status.png",
             "heading": "Your Heading",
             "heading_size": 18,
             "text": "Your text content goes here.",
@@ -457,6 +458,7 @@
           "type": "image_text_block",
           "settings": {
             "position": "left",
+            "image": "shopify://shop_images/free-shipping_1.png",
             "heading": "Your Heading",
             "heading_size": 18,
             "text": "Your text content goes here.",
@@ -472,6 +474,7 @@
           "type": "image_text_block",
           "settings": {
             "position": "left",
+            "image": "shopify://shop_images/security.png",
             "heading": "Your Heading",
             "heading_size": 18,
             "text": "Your text content goes here.",
@@ -487,6 +490,7 @@
           "type": "image_text_block",
           "settings": {
             "position": "right",
+            "image": "shopify://shop_images/free-shipping_1.png",
             "heading": "Your Heading",
             "heading_size": 18,
             "text": "Your text content goes here.",
@@ -502,6 +506,7 @@
           "type": "image_text_block",
           "settings": {
             "position": "right",
+            "image": "shopify://shop_images/security.png",
             "heading": "Your Heading",
             "heading_size": 18,
             "text": "Your text content goes here.",
@@ -517,6 +522,7 @@
           "type": "image_text_block",
           "settings": {
             "position": "left",
+            "image": "shopify://shop_images/delivery-status.png",
             "heading": "Your Heading",
             "heading_size": 18,
             "text": "Your text content goes here.",
