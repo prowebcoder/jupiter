@@ -91,7 +91,6 @@
     font-size: 24px !important;
   }
 }
-
 {% endstylesheet %}
 
 <div class="pw-container">
@@ -112,10 +111,28 @@
       {% for block in section.blocks %}
         <div 
           class="pw-hover-item"
-          onmouseover="document.getElementById('pw-hoverImage').style.backgroundImage='url({{ block.settings.image | image_url: width: 500 }})';"
+          onmouseover="
+            document.getElementById('pw-hoverImage').style.backgroundImage='url({{ block.settings.image | image_url: width: 500 }})';
+            this.querySelector('.pw-title-default').style.display='none';
+            this.querySelector('.pw-title-hover').style.display='inline';
+          "
+          onmouseout="
+            document.getElementById('pw-hoverImage').style.backgroundImage='url({{ section.settings.default_image | image_url: width: 500 }})';
+            this.querySelector('.pw-title-default').style.display='inline';
+            this.querySelector('.pw-title-hover').style.display='none';
+          "
         >
-          <span style="color: {{ section.settings.block_title_color }}; font-size: {{ section.settings.block_title_size }}px; font-weight: {{ section.settings.block_title_weight }};">
+          <span 
+            class="pw-title-default" 
+            style="color: {{ section.settings.block_title_color }}; font-size: {{ section.settings.block_title_size }}px; font-weight: {{ section.settings.block_title_weight }};"
+          >
             {{ block.settings.title }}
+          </span>
+          <span 
+            class="pw-title-hover" 
+            style="display: none; color: {{ section.settings.block_title_color }}; font-size: {{ section.settings.block_title_size }}px; font-weight: {{ section.settings.block_title_weight }};"
+          >
+            {{ block.settings.hover_title }}
           </span>
           {% if block.settings.collection %}
             <a href="{{ block.settings.collection.url }}" class="pw-hover-icon" aria-label="Open Collection">→</a>
@@ -193,6 +210,11 @@
           "type": "text",
           "id": "title",
           "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "hover_title",
+          "label": "Hover Title"
         },
         {
           "type": "image_picker",
