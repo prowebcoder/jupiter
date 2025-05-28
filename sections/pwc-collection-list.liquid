@@ -65,7 +65,7 @@
             id="Slide-{{ section.id }}-{{ forloop.index }}"
             class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
-            {% if settings.animations_reveal_on_scroll %}
+            {% if settings.animations_reveaview_alll_on_scroll %}
               data-cascade
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
@@ -78,84 +78,52 @@
               columns: columns,
               placeholder_image: placeholder_image
             %}
-           <!-- open -->
-
-      <div class="rich-text__blocks {{ section.settings.content_alignment }}">
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when 'heading' -%}
-              <h2
-                class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                {{ block.shopify_attributes }}
-                {% if settings.animations_reveal_on_scroll %}
-                  data-cascade
-                  style="--animation-order: {{ forloop.index }};"
-                {% endif %}
-              >
-                {{ block.settings.heading }}
-              </h2>
-            {%- when 'caption' -%}
-              <p
-                class="rich-text__caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                {{ block.shopify_attributes }}
-                {% if settings.animations_reveal_on_scroll %}
-                  data-cascade
-                  style="--animation-order: {{ forloop.index }};"
-                {% endif %}
-              >
-                {{ block.settings.caption | escape }}
+            
+            {%- if block.settings.collection_heading != blank -%}
+              <h3 class="{{ block.settings.collection_heading_size }}">
+                {{ block.settings.collection_heading }}
+              </h3>
+            {%- endif -%}
+            
+            {%- if block.settings.collection_caption != blank -%}
+              <p class="{{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.collection_text_size }}">
+                {{ block.settings.collection_caption | escape }}
               </p>
-            {%- when 'text' -%}
-              <div
-                class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                {{ block.shopify_attributes }}
-                {% if settings.animations_reveal_on_scroll %}
-                  data-cascade
-                  style="--animation-order: {{ forloop.index }};"
-                {% endif %}
-              >
-                {{ block.settings.text }}
+            {%- endif -%}
+            
+            {%- if block.settings.collection_text != blank -%}
+              <div class="rte">
+                {{ block.settings.collection_text }}
               </div>
-            {%- when 'button' -%}
-              <div
-                class="rich-text__buttons{% if block.settings.button_label != blank and block.settings.button_label_2 != blank %} rich-text__buttons--multiple{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                {{ block.shopify_attributes }}
-                {% if settings.animations_reveal_on_scroll %}
-                  data-cascade
-                  style="--animation-order: {{ forloop.index }};"
-                {% endif %}
-              >
-                {%- if block.settings.button_label != blank -%}
+            {%- endif -%}
+            
+            {%- if block.settings.collection_button_label != blank -%}
+              <div class="rich-text__buttons">
+                <a
+                  {% if block.settings.collection_button_link == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ block.settings.collection_button_link }}"
+                  {% endif %}
+                  class="button{% if block.settings.collection_button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                >
+                  {{- block.settings.collection_button_label | escape -}}
+                </a>
+                {%- if block.settings.collection_button_label_2 != blank -%}
                   <a
-                    {% if block.settings.button_link == blank %}
+                    {% if block.settings.collection_button_link_2 == blank %}
                       role="link" aria-disabled="true"
                     {% else %}
-                      href="{{ block.settings.button_link }}"
+                      href="{{ block.settings.collection_button_link_2 }}"
                     {% endif %}
-                    class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                    class="button{% if block.settings.collection_button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
                   >
-                    {{- block.settings.button_label | escape -}}
-                  </a>
-                {%- endif -%}
-                {%- if block.settings.button_label_2 != blank -%}
-                  <a
-                    {% if block.settings.button_link_2 == blank %}
-                      role="link" aria-disabled="true"
-                    {% else %}
-                      href="{{ block.settings.button_link_2 }}"
-                    {% endif %}
-                    class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
-                  >
-                    {{- block.settings.button_label_2 | escape -}}
+                    {{- block.settings.collection_button_label_2 | escape -}}
                   </a>
                 {%- endif -%}
               </div>
-          {%- endcase -%}
-        {%- endfor -%}
-      </div>
-    <!-- close -->
+            {%- endif -%}
           </li>
-        
         {%- endfor -%}
       </ul>
       
@@ -365,13 +333,13 @@
         },
          {
           "type": "inline_richtext",
-          "id": "heading",
+          "id": "collection_heading",
           "default": "t:sections.rich-text.blocks.heading.settings.heading.default",
           "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
         },
         {
           "type": "select",
-          "id": "heading_size",
+          "id": "collection_heading_size",
           "options": [
             {
               "value": "h2",
@@ -406,7 +374,7 @@
       "settings": [
         {
           "type": "text",
-          "id": "caption",
+          "id": "collection_caption",
           "default": "t:sections.rich-text.blocks.caption.settings.text.default",
           "label": "t:sections.rich-text.blocks.caption.settings.text.label"
         },
@@ -428,7 +396,7 @@
         },
         {
           "type": "select",
-          "id": "text_size",
+          "id": "collection_text_size",
           "options": [
             {
               "value": "small",
@@ -455,7 +423,7 @@
       "settings": [
         {
           "type": "richtext",
-          "id": "text",
+          "id": "collection_text",
           "default": "t:sections.rich-text.blocks.text.settings.text.default",
           "label": "t:sections.rich-text.blocks.text.settings.text.label"
         }
@@ -472,19 +440,19 @@
         },        
         {
           "type": "text",
-          "id": "button_label",
+          "id": "collection_button_label",
           "default": "t:sections.rich-text.blocks.buttons.settings.button_label_1.default",
           "label": "t:sections.rich-text.blocks.buttons.settings.button_label_1.label",
           "info": "t:sections.rich-text.blocks.buttons.settings.button_label_1.info"
         },
         {
           "type": "url",
-          "id": "button_link",
+          "id": "collection_button_link",
           "label": "t:sections.rich-text.blocks.buttons.settings.button_link_1.label"
         },
         {
           "type": "checkbox",
-          "id": "button_style_secondary",
+          "id": "collection_button_style_secondary",
           "default": false,
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_1.label"
         },
@@ -494,18 +462,18 @@
         },          
         {
           "type": "text",
-          "id": "button_label_2",
+          "id": "collection_button_label_2",
           "label": "t:sections.rich-text.blocks.buttons.settings.button_label_2.label",
           "info": "t:sections.rich-text.blocks.buttons.settings.button_label_2.info"
         },
         {
           "type": "url",
-          "id": "button_link_2",
+          "id": "collection_button_link_2",
           "label": "t:sections.rich-text.blocks.buttons.settings.button_link_2.label"
         },
         {
           "type": "checkbox",
-          "id": "button_style_secondary_2",
+          "id": "collection_button_style_secondary_2",
           "default": false,
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_2.label"
         }
