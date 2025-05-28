@@ -412,7 +412,7 @@
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "heading": "Talk about your brand",
+            "heading": "",
             "heading_size": "h1"
           }
         }
