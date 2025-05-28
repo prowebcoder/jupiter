@@ -587,6 +587,7 @@
       ],
       "settings": {
         "heading": "Video Gallery",
+        "heading_font": "gluten_n4",
         "section_heading_size": 30,
         "heading_spacing": 20,
         "heading_alignment": "center",
