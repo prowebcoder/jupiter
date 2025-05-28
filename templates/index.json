@@ -77,11 +77,12 @@
             "custom_image": "shopify://shop_images/a-model-in-red-suit-jacket-removing-sunglasses.jpg"
           }
         },
-        "circle_icon_QUP643": {
+        "circle_icon_X76P7b": {
           "type": "circle-icon",
           "settings": {
-            "circle_collection": "crossbody-bag",
-            "cutome_title_circle": ""
+            "circle_collection": "",
+            "cutome_title_circle": "test one",
+            "custom_image": "shopify://shop_images/home-overlay-cards-2.webp"
           }
         }
       },
@@ -91,7 +92,7 @@
         "circle_icon_mbGcPa",
         "circle_icon_6kFfcC",
         "circle_icon_VpUPJd",
-        "circle_icon_QUP643"
+        "circle_icon_X76P7b"
       ],
       "settings": {
         "icon_title": "",
