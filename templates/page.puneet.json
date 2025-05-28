@@ -450,12 +450,28 @@
             "button_background_color": "#ffffff",
             "button_text_color": "#000000"
           }
+        },
+        "category_FBTJJF": {
+          "type": "category",
+          "settings": {
+            "collection": "bags",
+            "image": "shopify://shop_images/woman-poses-in-dark-room.jpg",
+            "subtitle": "Show off your style and stay hydrated wherever you go.",
+            "title_color": "#ffffff",
+            "title_size": 18,
+            "subtitle_color": "#ffffff",
+            "subtitle_size": 14,
+            "button_shape": "rounded",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000"
+          }
         }
       },
       "block_order": [
         "category_y9e6tt",
         "category_iJTKMc",
-        "category_9JeHM8"
+        "category_9JeHM8",
+        "category_FBTJJF"
       ],
       "name": "Collection Grid pwc",
       "settings": {
