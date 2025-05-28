@@ -205,6 +205,18 @@
     {{ sid }} .pc-image-text {
       font-size: calc({{ section.settings.text_size }}px * 0.8);
     }
+     {{ sid }} .pc-image-slider.image-adaptive {
+    aspect-ratio: auto;
+  }
+  {{ sid }} .pc-image-slider.image-square {
+    aspect-ratio: 1/1;
+  }
+  {{ sid }} .pc-image-slider.image-portrait {
+    aspect-ratio: 1/4;
+  }
+  {{ sid }} .pc-image-slider.image-landscape {
+    aspect-ratio: 6/1;
+  }
   }
 {% endstyle %}
 
