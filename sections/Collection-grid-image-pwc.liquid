@@ -1,5 +1,5 @@
 {% assign sec_id = '#shopify-section-' | append: section.id %}
-{% stylesheet %}
+<style>
 {{ sec_id }} .pw-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -103,7 +103,7 @@
     font-size: 24px !important;
   }
 }
-{% endstylesheet %}
+</style>
 
 <div class="pw-container">
   {% if section.settings.main_title != blank %}
