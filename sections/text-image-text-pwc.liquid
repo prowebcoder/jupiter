@@ -43,17 +43,15 @@
     flex: 1 1 auto;
     display: flex;
     justify-content: center;
-    align-items: center; /* center vertically */
+    align-items: center; /* vertical center */
     max-width: 320px;
-    height: 100%; /* JS will set the actual height */
+    height: 100%; /* will be set by JS */
   }
 
   {{ sec_id }} .pw-center-image img {
-    width: 100%;
-    height: auto; /* maintain aspect ratio */
-    object-fit: contain; /* no cropping/distortion */
+    max-height: 100%; /* limit height to container height */
+    width: auto; /* keep aspect ratio */
     display: block;
-    max-height: 100%;
   }
 
   {{ sec_id }} .pw-block {
@@ -165,7 +163,6 @@
   </section>
 </div>
 
-<!-- JavaScript to fix center image height -->
 <script>
   function matchCenterImageHeight() {
     const container = document.querySelector("{{ sec_id }} .pw-container");
@@ -177,8 +174,8 @@
 
     if (columns.length === 2 && centerImageWrapper && centerImage) {
       const maxHeight = Math.max(columns[0].offsetHeight, columns[1].offsetHeight);
-      centerImageWrapper.style.height = maxHeight + "px";
 
+      centerImageWrapper.style.height = maxHeight + "px";
       centerImage.style.maxHeight = maxHeight + "px";
       centerImage.style.height = "auto"; // maintain aspect ratio
     }
