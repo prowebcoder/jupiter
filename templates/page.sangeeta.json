@@ -376,10 +376,21 @@
         "category_RfnnVh",
         "category_cDk4wd"
       ],
-      "name": "Collection Grid pwc",
       "settings": {
         "heading": "Discover by Category",
         "mobile_card_count": "2"
+      }
+    },
+    "collection_grid_image_pwc_WPFmUG": {
+      "type": "Collection-grid-image-pwc",
+      "name": "Collection grid image pwc",
+      "settings": {
+        "main_title": "",
+        "title_color": "#000000",
+        "title_font_size": 36,
+        "block_title_color": "#222222",
+        "block_title_size": 30,
+        "block_title_weight": "600"
       }
     }
   },
@@ -388,6 +399,7 @@
     "pwc_timer_BeYrN3",
     "pricing_plan_p_JP9y6c",
     "image_counter_pwc_4LedYC",
-    "collection_grid_pwc_WfW39c"
+    "collection_grid_pwc_WfW39c",
+    "collection_grid_image_pwc_WPFmUG"
   ]
 }
