@@ -1,6 +1,243 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+
+<style>
+    /* Font face declarations */
+    {% if section.settings.heading_font %}
+      {% assign heading_font = section.settings.heading_font %}
+      {{ heading_font | font_face }}
+    {% endif %}
+
+    {% if section.settings.countdown_font %}
+      {% assign countdown_font = section.settings.countdown_font %}
+      {{ countdown_font | font_face }}
+    {% endif %}
+
+    {{ sid }} .pc-black-friday-countdown {
+      background-color: {{ section.settings.background_color }};
+      padding: {{ section.settings.padding }}px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    {{ sid }} .pc-countdown-heading {
+      color: {{ section.settings.heading_color }};
+      {% if section.settings.heading_font %}
+        font-family: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+        font-weight: {{ section.settings.heading_font.weight }};
+      {% endif %}
+      font-size: {{ section.settings.heading_font_size }}px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    {{ sid }} .pc-countdown-timer {
+      display: flex;
+      justify-content: center;
+      gap: {{ section.settings.countdown_spacing }}px;
+    }
+   {{ sid }} .pc-countdown-item {
+      flex-direction: row;
   }
+
+
+    {{ sid }} .pc-countdown-item {
+      display: flex;
+      align-items: center;
+      color: {{ section.settings.countdown_color }};
+      {% if section.settings.countdown_font %}
+        font-family: {{ section.settings.countdown_font.family }}, {{ section.settings.countdown_font.fallback_families }};
+        font-weight: {{ section.settings.countdown_font.weight }};
+      {% endif %}
+      font-size: {{ section.settings.countdown_font_size }}px;
+    }
+
+    {{ sid }} .pc-countdown-separator {
+      color: {{ section.settings.separator_color }};
+    }
+
+    {{ sid }} .pc-countdown-value {
+      font-weight: bold;
+    }
+
+    {{ sid }} .pc-countdown-label {
+      margin-left: 5px;
+      font-size: 0.8em;
+    }
+</style>
+
+<div class="pc-black-friday-countdown">
+  <div class="pc-countdown-heading">{{ section.settings.title }}</div>
+  <div class="pc-countdown-timer" data-end-date="{{ section.settings.end_date }}">
+    <div class="pc-countdown-item">
+      <span class="pc-countdown-value" id="pc-days">175</span>
+      <span class="pc-countdown-label">D</span>
+    </div>
+    <div class="pc-countdown-item pc-countdown-separator">|</div>
+    <div class="pc-countdown-item">
+      <span class="pc-countdown-value" id="pc-hours">16</span>
+      <span class="pc-countdown-label">H</span>
+    </div>
+    <div class="pc-countdown-item pc-countdown-separator">|</div>
+    <div class="pc-countdown-item">
+      <span class="pc-countdown-value" id="pc-minutes">24</span>
+      <span class="pc-countdown-label">M</span>
+    </div>
+    <div class="pc-countdown-item pc-countdown-separator">|</div>
+    <div class="pc-countdown-item">
+      <span class="pc-countdown-value" id="pc-seconds">42</span>
+      <span class="pc-countdown-label">S</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set the date we're counting down to
+    const endDate = new Date('{{ section.settings.end_date }}').getTime();
+
+    // Update the countdown every 1 second
+    const countdownTimer = setInterval(function() {
+      // Get today's date and time
+      const now = new Date().getTime();
+
+      // Find the distance between now and the countdown date
+      const distance = endDate - now;
+
+      // If the countdown is finished, stop it
+      if (distance < 0) {
+        clearInterval(countdownTimer);
+        document.querySelector('{{ sid }} .pc-countdown-timer').innerHTML = '<div class="pc-countdown-item">Sale has ended!</div>';
+        return;
+      }
+
+      // Time calculations for days, hours, minutes and seconds
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the results
+      document.getElementById('pc-days').textContent = days;
+      document.getElementById('pc-hours').textContent = hours;
+      document.getElementById('pc-minutes').textContent = minutes;
+      document.getElementById('pc-seconds').textContent = seconds;
+
+    }, 1000);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Black Friday Countdown",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "BLACK FRIDAY"
+    },
+    {
+      "type": "text",
+      "id": "end_date",
+      "label": "Sale End Date",
+      "info": "Format: YYYY-MM-DD or YYYY-MM-DDTHH:MM:SS",
+      "default": "2023-11-27T23:59:59"
+    },
+    {
+      "type": "header",
+      "content": "Font Settings"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading Font",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "font_picker",
+      "id": "countdown_font",
+      "label": "Countdown Font",
+      "default": "helvetica_n4"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading Font Size",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "countdown_font_size",
+      "label": "Countdown Font Size",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "countdown_color",
+      "label": "Countdown Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Separator Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "countdown_spacing",
+      "label": "Countdown Spacing",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    }
+  ],
+  "presets": [
+    {
+      "name": "Black Friday Countdown",
+      "category": "Promotional"
+    }
+  ]
+}
 {% endschema %}
