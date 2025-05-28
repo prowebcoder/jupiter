@@ -286,7 +286,14 @@ class PCImageSlider {
     this.prevArrow = document.querySelector(`#pc-image-slider-${sectionId} ~ .pc-image-slider__arrow--prev`);
     this.nextArrow = document.querySelector(`#pc-image-slider-${sectionId} ~ .pc-image-slider__arrow--next`);
     this.dotsContainer = document.getElementById(`pc-image-slider-dots-${sectionId}`);
-    this.settings = JSON.parse(document.querySelector(`#shopify-section-${sectionId} [data-settings]`).textContent);
+    
+    // Get settings from data attributes instead of JSON parse
+    this.settings = {
+      slide_gap: parseInt(this.slider?.dataset?.slideGap) || 20,
+      loop: this.slider?.dataset?.loop === 'true',
+      autoplay: this.slider?.dataset?.autoplay === 'true',
+      autoplay_speed: parseInt(this.slider?.dataset?.autoplaySpeed) || 3
+    };
     
     if (!this.slider) return;
 
@@ -294,7 +301,7 @@ class PCImageSlider {
     this.startPos = 0;
     this.currentScroll = 0;
     this.currentIndex = 0;
-    this.slideWidth = this.slider.children[0].offsetWidth + parseInt(this.settings.slide_gap);
+    this.slideWidth = this.slider.children[0]?.offsetWidth + this.settings.slide_gap || 0;
     this.autoplayInterval = null;
 
     this.init();
@@ -308,13 +315,14 @@ class PCImageSlider {
   }
 
   setupEventListeners() {
+    if (!this.slider) return;
+    
     this.slider.addEventListener('mousedown', this.handleStart.bind(this));
     this.slider.addEventListener('touchstart', this.handleStart.bind(this), { passive: true });
-    this.slider.addEventListener('mousemove', this.handleMove.bind(this));
-    this.slider.addEventListener('touchmove', this.handleMove.bind(this), { passive: false });
-    this.slider.addEventListener('mouseup', this.handleEnd.bind(this));
-    this.slider.addEventListener('touchend', this.handleEnd.bind(this));
-    this.slider.addEventListener('mouseleave', this.handleEnd.bind(this));
+    window.addEventListener('mousemove', this.handleMove.bind(this));
+    window.addEventListener('touchmove', this.handleMove.bind(this), { passive: false });
+    window.addEventListener('mouseup', this.handleEnd.bind(this));
+    window.addEventListener('touchend', this.handleEnd.bind(this));
 
     if (this.prevArrow) this.prevArrow.addEventListener('click', this.goToPrevSlide.bind(this));
     if (this.nextArrow) this.nextArrow.addEventListener('click', this.goToNextSlide.bind(this));
@@ -325,13 +333,16 @@ class PCImageSlider {
       });
     }
 
-    document.addEventListener('keydown', (e) => {
-      if (this.slider.contains(document.activeElement)) {
+    // Keyboard navigation only when slider is focused
+    this.slider.addEventListener('keydown', (e) => {
+      if (['ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        e.preventDefault();
         if (e.key === 'ArrowLeft') this.goToPrevSlide();
         if (e.key === 'ArrowRight') this.goToNextSlide();
       }
     });
 
+    // Pause autoplay on hover
     this.slider.addEventListener('mouseenter', () => {
       if (this.autoplayInterval) clearInterval(this.autoplayInterval);
     });
@@ -348,11 +359,11 @@ class PCImageSlider {
     this.slider.style.scrollSnapType = 'none';
     this.slider.style.cursor = 'grabbing';
     if (this.autoplayInterval) clearInterval(this.autoplayInterval);
+    e.preventDefault();
   }
 
   handleMove(e) {
     if (!this.isDragging) return;
-    e.preventDefault();
     const currentX = e.clientX || e.touches[0].clientX;
     const diff = currentX - this.startPos;
     this.slider.scrollLeft = this.currentScroll - diff;
@@ -370,9 +381,14 @@ class PCImageSlider {
   }
 
   goToSlide(index) {
-    this.currentIndex = index;
+    // Ensure index is within bounds
+    const slides = this.slider.children;
+    if (!slides.length) return;
+    
+    this.currentIndex = Math.max(0, Math.min(index, slides.length - 1));
+    
     this.slider.scrollTo({
-      left: index * this.slideWidth,
+      left: this.currentIndex * this.slideWidth,
       behavior: 'smooth'
     });
     this.updateDots();
@@ -407,11 +423,7 @@ class PCImageSlider {
     if (this.autoplayInterval) clearInterval(this.autoplayInterval);
     this.autoplayInterval = setInterval(() => {
       if (!this.isDragging) {
-        if (this.currentIndex < this.slider.children.length - 1) {
-          this.goToSlide(this.currentIndex + 1);
-        } else if (this.settings.loop) {
-          this.goToSlide(0);
-        }
+        this.goToNextSlide();
       }
     }, this.settings.autoplay_speed * 1000);
   }
@@ -426,24 +438,61 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Initialize slider when section loads in Shopify editor
-if (Shopify.designMode) {
+if (typeof Shopify !== 'undefined' && Shopify.designMode) {
   document.addEventListener('shopify:section:load', function(e) {
-    const section = e.target;
-    if (section.querySelector('.pc-image-slider')) {
-      const sectionId = section.id.replace('shopify-section-', '');
+    const slider = e.target.querySelector('[id^="pc-image-slider-"]');
+    if (slider) {
+      const sectionId = slider.id.replace('pc-image-slider-', '');
       new PCImageSlider(sectionId);
     }
   });
 }
 </script>
 
-<div data-settings='{
-  "slide_gap": {{ section.settings.slide_gap | json }},
-  "loop": {{ section.settings.loop | json }},
-  "autoplay": {{ section.settings.autoplay | json }},
-  "autoplay_speed": {{ section.settings.autoplay_speed | json }}
-}' style="display:none;"></div>
+{% comment %} Update the slider div to use data attributes instead of JSON {% endcomment %}
+<div class="pc-image-slider image-{{ section.settings.image_shape }}" 
+     id="pc-image-slider-{{ section.id }}"
+     data-slide-gap="{{ section.settings.slide_gap }}"
+     data-loop="{{ section.settings.loop }}"
+     data-autoplay="{{ section.settings.autoplay }}"
+     data-autoplay-speed="{{ section.settings.autoplay_speed }}">
+  {%- for block in section.blocks -%}
+    <div class="pc-image-slide" {{ block.shopify_attributes }}>
+      {%- if block.settings.image != blank -%}
+        {%- liquid
+          assign image_height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio
+          assign sizes = "100vw"
+        -%}
+        {{ block.settings.image | image_url: width: 1500 | image_tag:
+          loading: 'lazy',
+          width: block.settings.image.width,
+          height: image_height,
+          sizes: sizes,
+          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+          alt: block.settings.image.alt | escape
+        }}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
 
+      <div class="pc-image-content">
+        {%- if block.settings.heading != blank -%}
+          <h3 class="pc-image-heading">{{ block.settings.heading }}</h3>
+        {%- endif -%}
+        
+        {%- if block.settings.text != blank -%}
+          <div class="pc-image-text">{{ block.settings.text }}</div>
+        {%- endif -%}
+        
+        {%- if block.settings.button_label != blank -%}
+          <a href="{{ block.settings.button_link }}" class="pc-image-button">
+            {{ block.settings.button_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endfor -%}
+</div>
 {% schema %}
 {
   "name": "PC Image Slider",
