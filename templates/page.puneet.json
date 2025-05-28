@@ -150,7 +150,6 @@
         "category_9JeHM8",
         "category_FBTJJF"
       ],
-      "name": "Collection Grid pwc",
       "settings": {
         "heading": "Discover by Category",
         "mobile_card_count": "1"
@@ -546,7 +545,6 @@
         "circle_icon_jbYGr6",
         "circle_icon_wqqYAr"
       ],
-      "name": "PWC Circle Collection",
       "settings": {
         "icon_title": "",
         "is_icon_enable": true,
@@ -573,6 +571,24 @@
         "section_padding": 30,
         "mobile_section_padding": 15
       }
+    },
+    "black_friday_H87paL": {
+      "type": "black-friday",
+      "name": "Black Friday Countdown",
+      "settings": {
+        "title": "BLACK FRIDAY",
+        "end_date": "2025-11-27T23:59:59",
+        "heading_font": "armata_n4",
+        "countdown_font": "cabin_n4",
+        "heading_font_size": 32,
+        "countdown_font_size": 24,
+        "background_color": "#79ff00",
+        "heading_color": "#121212",
+        "countdown_color": "#121212",
+        "separator_color": "#121212",
+        "padding": 20,
+        "countdown_spacing": 15
+      }
     }
   },
   "order": [
@@ -582,6 +598,7 @@
     "pwc_pricing_plan_simple_dP4NFK",
     "pwc_timer_nXVpYU",
     "pricing_plan_p_kpVXRy",
-    "pwc_circle_collection_tJRayP"
+    "pwc_circle_collection_tJRayP",
+    "black_friday_H87paL"
   ]
 }
