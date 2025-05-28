@@ -19,7 +19,6 @@
     },
     "pwc_timer_BeYrN3": {
       "type": "pwc-timer",
-      "name": "Pwc Countdown Timer",
       "settings": {
         "container_width": 1200,
         "padding_horizontal": 15,
@@ -152,7 +151,6 @@
         "pricing_plan_8aYLew",
         "pricing_plan_ECdfTc"
       ],
-      "name": "PC - Pricing Plans",
       "settings": {
         "heading": "Pricing Plans",
         "section_padding_top": 5,
@@ -252,7 +250,6 @@
     },
     "image_counter_pwc_4LedYC": {
       "type": "Image_Counter_pwc",
-      "name": " Image Countdown Pwc",
       "settings": {
         "page_width": 1200,
         "image_position": "left",
@@ -276,12 +273,119 @@
         "countdown_background_color1": "#ffa500",
         "countdown_text_color1": "#ffffff"
       }
+    },
+    "collection_grid_pwc_WfW39c": {
+      "type": "collection-grid-pwc",
+      "blocks": {
+        "category_dGb7LW": {
+          "type": "category",
+          "settings": {
+            "collection": "frontpage",
+            "image": "shopify://shop_images/woman-poses-in-dark-room.jpg",
+            "subtitle": "Show off your style and stay hydrated wherever you go.",
+            "title_color": "#ffffff",
+            "title_size": 18,
+            "subtitle_color": "#ffffff",
+            "subtitle_size": 14,
+            "button_shape": "rounded",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000"
+          }
+        },
+        "category_4qtkWc": {
+          "type": "category",
+          "settings": {
+            "collection": "frontpage",
+            "image": "shopify://shop_images/woman-infront-of-tree-with-berries.jpeg",
+            "subtitle": "Show off your style and stay hydrated wherever you go.",
+            "title_color": "#ffffff",
+            "title_size": 18,
+            "subtitle_color": "#ffffff",
+            "subtitle_size": 14,
+            "button_shape": "rounded",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000"
+          }
+        },
+        "category_fL6YMf": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/model-in-neutral-colors-by-window.jpg",
+            "subtitle": "Show off your style and stay hydrated wherever you go.",
+            "title_color": "#ffffff",
+            "title_size": 18,
+            "subtitle_color": "#ffffff",
+            "subtitle_size": 14,
+            "button_shape": "rounded",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000"
+          }
+        },
+        "category_TjFj7Q": {
+          "type": "category",
+          "settings": {
+            "collection": "frontpage",
+            "image": "shopify://shop_images/woman-in-park-afternoon.jpeg",
+            "subtitle": "Show off your style and stay hydrated wherever you go.",
+            "title_color": "#ffffff",
+            "title_size": 18,
+            "subtitle_color": "#ffffff",
+            "subtitle_size": 14,
+            "button_shape": "rounded",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000"
+          }
+        },
+        "category_RfnnVh": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "subtitle": "Show off your style and stay hydrated wherever you go.",
+            "title_color": "#ffffff",
+            "title_size": 18,
+            "subtitle_color": "#ffffff",
+            "subtitle_size": 14,
+            "button_shape": "rounded",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000"
+          }
+        },
+        "category_cDk4wd": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "subtitle": "Show off your style and stay hydrated wherever you go.",
+            "title_color": "#ffffff",
+            "title_size": 18,
+            "subtitle_color": "#ffffff",
+            "subtitle_size": 14,
+            "button_shape": "rounded",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "category_dGb7LW",
+        "category_4qtkWc",
+        "category_fL6YMf",
+        "category_TjFj7Q",
+        "category_RfnnVh",
+        "category_cDk4wd"
+      ],
+      "name": "Collection Grid pwc",
+      "settings": {
+        "heading": "Discover by Category",
+        "mobile_card_count": "2"
+      }
     }
   },
   "order": [
     "main",
     "pwc_timer_BeYrN3",
     "pricing_plan_p_JP9y6c",
-    "image_counter_pwc_4LedYC"
+    "image_counter_pwc_4LedYC",
+    "collection_grid_pwc_WfW39c"
   ]
 }
