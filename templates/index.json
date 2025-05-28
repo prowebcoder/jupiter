@@ -88,9 +88,8 @@
         "circle_icon_HhJriH": {
           "type": "circle-icon",
           "settings": {
-            "circle_collection": "",
-            "cutome_title_circle": "test two",
-            "custom_image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg"
+            "circle_collection": "crossbody-bag",
+            "cutome_title_circle": ""
           }
         }
       },
