@@ -361,16 +361,10 @@
         "featured_collection_C6PjiR": {
           "type": "featured_collection",
           "settings": {
-            "collection": ""
+            "collection": "bags"
           }
         },
         "featured_collection_YDRkwG": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "featured_collection_6EnWdx": {
           "type": "featured_collection",
           "settings": {
             "collection": ""
@@ -379,10 +373,8 @@
       },
       "block_order": [
         "featured_collection_C6PjiR",
-        "featured_collection_YDRkwG",
-        "featured_collection_6EnWdx"
+        "featured_collection_YDRkwG"
       ],
-      "name": "t:sections.collection-list.presets.name",
       "settings": {
         "title": "Collections",
         "heading_size": "h1",
