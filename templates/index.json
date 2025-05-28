@@ -73,7 +73,7 @@
           "type": "circle-icon",
           "settings": {
             "circle_collection": "",
-            "cutome_title_circle": "",
+            "cutome_title_circle": "make up accessories",
             "custom_image": "shopify://shop_images/a-model-in-red-suit-jacket-removing-sunglasses.jpg"
           }
         }
@@ -91,9 +91,21 @@
         "background_color": "",
         "enable_parallax": false,
         "mobile_disable_parallax": true,
-        "text_color": "#242833",
         "image_width": 80,
         "image_height": 80,
+        "desktop_gap": 40,
+        "text_color": "#242833",
+        "text_size": 12,
+        "text_margin_top": 8,
+        "text_weight": "600",
+        "mobile_image_width": 60,
+        "mobile_image_height": 60,
+        "mobile_gap": 13,
+        "mobile_alignment": "flex-start",
+        "mobile_text_size": 10,
+        "mobile_text_margin_top": 5,
+        "hide_text_mobile": false,
+        "mobile_scroll_padding": 5,
         "section_padding": 30,
         "mobile_section_padding": 15
       }
