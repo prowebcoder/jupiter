@@ -464,10 +464,10 @@
             "text": "Your text content goes here.",
             "text_size": 14,
             "button_text": "Learn More",
-            "button_link": "",
+            "button_link": "#",
             "button_bg": "#000000",
             "button_text_color": "#ffffff",
-            "button_radius": 5
+            "button_radius": 30
           }
         },
         "image_text_block_G6TPpn": {
@@ -480,10 +480,10 @@
             "text": "Your text content goes here.",
             "text_size": 14,
             "button_text": "Learn More",
-            "button_link": "",
+            "button_link": "#",
             "button_bg": "#000000",
             "button_text_color": "#ffffff",
-            "button_radius": 5
+            "button_radius": 30
           }
         },
         "image_text_block_LzFenJ": {
@@ -496,10 +496,10 @@
             "text": "Your text content goes here.",
             "text_size": 14,
             "button_text": "Learn More",
-            "button_link": "",
+            "button_link": "#",
             "button_bg": "#000000",
             "button_text_color": "#ffffff",
-            "button_radius": 5
+            "button_radius": 30
           }
         },
         "image_text_block_4XAdPB": {
@@ -512,10 +512,10 @@
             "text": "Your text content goes here.",
             "text_size": 14,
             "button_text": "Learn More",
-            "button_link": "",
+            "button_link": "#",
             "button_bg": "#000000",
             "button_text_color": "#ffffff",
-            "button_radius": 5
+            "button_radius": 30
           }
         },
         "image_text_block_43X3Y6": {
