@@ -343,6 +343,20 @@
     "pwc_video_slideshow_aKPj9R": {
       "type": "pwc-video-slideshow",
       "blocks": {
+        "slide_RBDBEi": {
+          "type": "slide",
+          "settings": {
+            "video_type": "youtube",
+            "youtube_url": "https://www.youtube.com/watch?v=YGQBm9Mnad8",
+            "video_url": "",
+            "heading": "New Collection",
+            "text": "Explore our latest arrivals for this season.",
+            "button_1_text": "Shop Now",
+            "button_1_link": "",
+            "button_2_text": "Learn More",
+            "button_2_link": ""
+          }
+        },
         "slide_6pMY8y": {
           "type": "slide",
           "settings": {
@@ -357,25 +371,11 @@
             "button_2_text": "Learn More",
             "button_2_link": ""
           }
-        },
-        "slide_RBDBEi": {
-          "type": "slide",
-          "settings": {
-            "video_type": "shopify",
-            "youtube_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "video_url": "",
-            "heading": "New Collection",
-            "text": "Explore our latest arrivals for this season.",
-            "button_1_text": "Shop Now",
-            "button_1_link": "",
-            "button_2_text": "Learn More",
-            "button_2_link": ""
-          }
         }
       },
       "block_order": [
-        "slide_6pMY8y",
-        "slide_RBDBEi"
+        "slide_RBDBEi",
+        "slide_6pMY8y"
       ],
       "name": "Pwc Video Slideshow",
       "settings": {
