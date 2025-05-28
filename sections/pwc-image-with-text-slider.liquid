@@ -215,44 +215,50 @@
     </h2>
   {%- endif -%}
 
-  <div class="pc-image-slider image-{{ section.settings.image_shape }}" id="{{ slider_id }}">
-    {%- for block in section.blocks -%}
-      <div class="pc-image-slide" {{ block.shopify_attributes }}>
-        {%- if block.settings.image != blank -%}
-          {%- liquid
-            assign image_height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio
-            assign sizes = "100vw"
-          -%}
-          {{ block.settings.image | image_url: width: 1500 | image_tag:
-            loading: 'lazy',
-            width: block.settings.image.width,
-            height: image_height,
-            sizes: sizes,
-            widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
-            alt: block.settings.image.alt | escape
-          }}
-        {%- else -%}
-          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-        {%- endif -%}
+ {% comment %} Update the slider div to use data attributes instead of JSON {% endcomment %}
+<div class="pc-image-slider image-{{ section.settings.image_shape }}" 
+     id="pc-image-slider-{{ section.id }}"
+     data-slide-gap="{{ section.settings.slide_gap }}"
+     data-loop="{{ section.settings.loop }}"
+     data-autoplay="{{ section.settings.autoplay }}"
+     data-autoplay-speed="{{ section.settings.autoplay_speed }}">
+  {%- for block in section.blocks -%}
+    <div class="pc-image-slide" {{ block.shopify_attributes }}>
+      {%- if block.settings.image != blank -%}
+        {%- liquid
+          assign image_height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio
+          assign sizes = "100vw"
+        -%}
+        {{ block.settings.image | image_url: width: 1500 | image_tag:
+          loading: 'lazy',
+          width: block.settings.image.width,
+          height: image_height,
+          sizes: sizes,
+          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+          alt: block.settings.image.alt | escape
+        }}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
 
-        <div class="pc-image-content">
-          {%- if block.settings.heading != blank -%}
-            <h3 class="pc-image-heading">{{ block.settings.heading }}</h3>
-          {%- endif -%}
-          
-          {%- if block.settings.text != blank -%}
-            <div class="pc-image-text">{{ block.settings.text }}</div>
-          {%- endif -%}
-          
-          {%- if block.settings.button_label != blank -%}
-            <a href="{{ block.settings.button_link }}" class="pc-image-button">
-              {{ block.settings.button_label }}
-            </a>
-          {%- endif -%}
-        </div>
+      <div class="pc-image-content">
+        {%- if block.settings.heading != blank -%}
+          <h3 class="pc-image-heading">{{ block.settings.heading }}</h3>
+        {%- endif -%}
+        
+        {%- if block.settings.text != blank -%}
+          <div class="pc-image-text">{{ block.settings.text }}</div>
+        {%- endif -%}
+        
+        {%- if block.settings.button_label != blank -%}
+          <a href="{{ block.settings.button_link }}" class="pc-image-button">
+            {{ block.settings.button_label }}
+          </a>
+        {%- endif -%}
       </div>
-    {%- endfor -%}
-  </div>
+    </div>
+  {%- endfor -%}
+</div>
 
   {%- if section.settings.show_arrows -%}
     <button class="pc-image-slider__arrow pc-image-slider__arrow--prev" aria-label="Previous slide">
@@ -449,50 +455,7 @@ if (typeof Shopify !== 'undefined' && Shopify.designMode) {
 }
 </script>
 
-{% comment %} Update the slider div to use data attributes instead of JSON {% endcomment %}
-<div class="pc-image-slider image-{{ section.settings.image_shape }}" 
-     id="pc-image-slider-{{ section.id }}"
-     data-slide-gap="{{ section.settings.slide_gap }}"
-     data-loop="{{ section.settings.loop }}"
-     data-autoplay="{{ section.settings.autoplay }}"
-     data-autoplay-speed="{{ section.settings.autoplay_speed }}">
-  {%- for block in section.blocks -%}
-    <div class="pc-image-slide" {{ block.shopify_attributes }}>
-      {%- if block.settings.image != blank -%}
-        {%- liquid
-          assign image_height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio
-          assign sizes = "100vw"
-        -%}
-        {{ block.settings.image | image_url: width: 1500 | image_tag:
-          loading: 'lazy',
-          width: block.settings.image.width,
-          height: image_height,
-          sizes: sizes,
-          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
-          alt: block.settings.image.alt | escape
-        }}
-      {%- else -%}
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-      {%- endif -%}
 
-      <div class="pc-image-content">
-        {%- if block.settings.heading != blank -%}
-          <h3 class="pc-image-heading">{{ block.settings.heading }}</h3>
-        {%- endif -%}
-        
-        {%- if block.settings.text != blank -%}
-          <div class="pc-image-text">{{ block.settings.text }}</div>
-        {%- endif -%}
-        
-        {%- if block.settings.button_label != blank -%}
-          <a href="{{ block.settings.button_link }}" class="pc-image-button">
-            {{ block.settings.button_label }}
-          </a>
-        {%- endif -%}
-      </div>
-    </div>
-  {%- endfor -%}
-</div>
 {% schema %}
 {
   "name": "PC Image Slider",
