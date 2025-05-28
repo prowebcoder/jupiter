@@ -355,26 +355,34 @@
         "highlighted_decoration_color": "#a3ba35"
       }
     },
-    "collection_list_CwNkq7": {
-      "type": "collection-list",
+    "pwc_collection_list_4htUqy": {
+      "type": "pwc-collection-list",
       "blocks": {
-        "featured_collection_C6PjiR": {
+        "featured_collection_H7PCcR": {
           "type": "featured_collection",
           "settings": {
-            "collection": "bags"
+            "collection": ""
           }
         },
-        "featured_collection_YDRkwG": {
+        "featured_collection_z9kDMi": {
           "type": "featured_collection",
           "settings": {
-            "collection": "crossbody-bag"
+            "collection": ""
+          }
+        },
+        "featured_collection_c6aGy4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
           }
         }
       },
       "block_order": [
-        "featured_collection_C6PjiR",
-        "featured_collection_YDRkwG"
+        "featured_collection_H7PCcR",
+        "featured_collection_z9kDMi",
+        "featured_collection_c6aGy4"
       ],
+      "name": "Pwc Collection List",
       "settings": {
         "title": "Collections",
         "heading_size": "h1",
@@ -394,6 +402,6 @@
     "pwc_marquee_1_MiwcCR",
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
-    "collection_list_CwNkq7"
+    "pwc_collection_list_4htUqy"
   ]
 }
