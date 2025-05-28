@@ -383,14 +383,60 @@
     },
     "collection_grid_image_pwc_WPFmUG": {
       "type": "Collection-grid-image-pwc",
+      "blocks": {
+        "collection_item_JeYdzi": {
+          "type": "collection_item",
+          "settings": {
+            "title": "BodySuits",
+            "image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
+            "collection": "crossbody-bag"
+          }
+        },
+        "collection_item_mEathy": {
+          "type": "collection_item",
+          "settings": {
+            "title": "",
+            "collection": ""
+          }
+        },
+        "collection_item_c6KMNL": {
+          "type": "collection_item",
+          "settings": {
+            "title": "",
+            "collection": ""
+          }
+        },
+        "collection_item_NWzchE": {
+          "type": "collection_item",
+          "settings": {
+            "title": "",
+            "collection": ""
+          }
+        },
+        "collection_item_wqHUkM": {
+          "type": "collection_item",
+          "settings": {
+            "title": "",
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_JeYdzi",
+        "collection_item_mEathy",
+        "collection_item_c6KMNL",
+        "collection_item_NWzchE",
+        "collection_item_wqHUkM"
+      ],
       "name": "Collection grid image pwc",
       "settings": {
-        "main_title": "",
-        "title_color": "#000000",
+        "main_title": "50% off all suits and accessories",
+        "title_color": "#ff0000",
         "title_font_size": 36,
         "block_title_color": "#222222",
         "block_title_size": 30,
-        "block_title_weight": "600"
+        "block_title_weight": "600",
+        "default_image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg"
       }
     }
   },
