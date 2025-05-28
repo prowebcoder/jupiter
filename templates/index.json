@@ -98,16 +98,16 @@
         "text_size": 12,
         "text_margin_top": 8,
         "text_weight": "600",
-        "mobile_image_width": 60,
-        "mobile_image_height": 60,
-        "mobile_gap": 13,
-        "mobile_alignment": "flex-start",
-        "mobile_text_size": 10,
-        "mobile_text_margin_top": 5,
+        "mobile_image_width": 75,
+        "mobile_image_height": 75,
+        "mobile_gap": 17,
+        "mobile_alignment": "center",
+        "mobile_text_size": 12,
+        "mobile_text_margin_top": 3,
         "hide_text_mobile": false,
-        "mobile_scroll_padding": 5,
-        "section_padding": 30,
-        "mobile_section_padding": 40
+        "mobile_scroll_padding": 6,
+        "section_padding": 35,
+        "mobile_section_padding": 25
       }
     },
     "slider_testimonial_pwc_BP9zDB": {
