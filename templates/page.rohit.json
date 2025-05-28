@@ -361,13 +361,15 @@
         "featured_collection_P4EPGK": {
           "type": "featured_collection",
           "settings": {
-            "collection": "crossbody-bag"
+            "collection": "crossbody-bag",
+            "collection_heading": "Hello Heading"
           }
         },
         "featured_collection_chBDPQ": {
           "type": "featured_collection",
           "settings": {
-            "collection": "bags"
+            "collection": "bags",
+            "collection_heading": "Collection Heading"
           }
         }
       },
