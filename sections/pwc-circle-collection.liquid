@@ -14,6 +14,7 @@
       background-color: {{ section.settings.background_color }};
     {% endif %}
     padding: {{ section.settings.section_padding }}px 0;
+    position: relative;
   }
 
   {{ sid }} .pc_circle_icon {
@@ -22,10 +23,17 @@
     align-items: center;
     gap: {{ section.settings.desktop_gap }}px;
     flex-wrap: nowrap;
-    overflow: auto;
+    overflow-x: auto;
     position: relative;
     z-index: 2;
     padding: 10px 0;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+  }
+
+  {{ sid }} .pc_circle_icon::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
   }
 
   {{ sid }} .pc_circle_img img {
@@ -47,6 +55,7 @@
     align-items: center;
     text-align: center;
     min-width: calc({{ section.settings.image_width | default: '80' }}px + 20px);
+    flex-shrink: 0;
   }
 
   {{ sid }} .pc_collection_title {
@@ -65,6 +74,48 @@
     margin-bottom: 8px;
   }
 
+  /* Navigation arrows */
+  {{ sid }} .pc_navigation_arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: {{ section.settings.arrow_background }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  {{ sid }} .pc_navigation_arrow:hover {
+    opacity: 1;
+  }
+
+  {{ sid }} .pc_navigation_arrow svg {
+    width: 20px;
+    height: 20px;
+    fill: {{ section.settings.arrow_color }};
+  }
+
+  {{ sid }} .pc_arrow_left {
+    left: 10px;
+  }
+
+  {{ sid }} .pc_arrow_right {
+    right: 10px;
+  }
+
+  /* Hide arrows when not needed */
+  {{ sid }} .pc_navigation_arrow.pc_hidden {
+    display: none;
+  }
+
   @media only screen and (max-width: 768px) {
     {{ sid }} {
       {% if section.settings.mobile_disable_parallax %}
@@ -79,7 +130,7 @@
     }
     
     {{ sid }} .pc_circle_icon {
-      /* gap: {{ section.settings.mobile_gap }}px !important; */
+      gap: {{ section.settings.mobile_gap }}px !important;
       justify-content: {{ section.settings.mobile_alignment }} !important;
       padding: {{ section.settings.mobile_scroll_padding }}px 0;
     }
@@ -98,44 +149,168 @@
         display: none;
       }
     {% endif %}
+    
+    /* Adjust arrow size and position for mobile */
+    {{ sid }} .pc_navigation_arrow {
+      width: 30px;
+      height: 30px;
+    }
+    
+    {{ sid }} .pc_navigation_arrow svg {
+      width: 15px;
+      height: 15px;
+    }
+    
+    {{ sid }} .pc_arrow_left {
+      left: 5px;
+    }
+    
+    {{ sid }} .pc_arrow_right {
+      right: 5px;
+    }
   }
 </style>
 
 <div class="pwc_icon_circle_parent pwc_icon_circle-{{ section.id }}">
   {% if section.settings.is_icon_enable %}
-    <div class="pc_circle_icon page-width">
-      {% for block in section.blocks %}
-        {% assign _circle_collection = block.settings.circle_collection %}
-        {% assign _collections = collections[_circle_collection] %}
-        <div class="pc_circle_img">
-          <a href="{{ _collections.url }}">
-            {% if block.settings.custom_image != blank %}
-              <img
-                class="pc_custom_image_above_text"
-                src="{{ block.settings.custom_image | img_url: '200x200' }}"
-                alt="{{ block.settings.cutome_title_circle | default: _collections.title }}"
-                loading="lazy"
-              >
-            {% else %}
-              <img 
-                src="{{ _collections.featured_image | img_url: '200x200' }}" 
-                alt="{{ _collections.title }}"
-                loading="lazy"
-              >
-            {% endif %}
-          </a>
-          <span class="pc_collection_title">
-            {% unless block.settings.cutome_title_circle == blank %}
-              {{ block.settings.cutome_title_circle }}
-            {% else %}
-              {{ _collections.title }}
-            {% endunless %}
-          </span>
-        </div>
-      {% endfor %}
+    <div class="pc_circle_icon_wrapper">
+      <div class="pc_navigation_arrow pc_arrow_left pc_hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+        </svg>
+      </div>
+      
+      <div class="pc_circle_icon page-width" id="circle-collection-{{ section.id }}">
+        {% for block in section.blocks %}
+          {% assign _circle_collection = block.settings.circle_collection %}
+          {% assign _collections = collections[_circle_collection] %}
+          <div class="pc_circle_img">
+            <a href="{{ _collections.url }}">
+              {% if block.settings.custom_image != blank %}
+                <img
+                  class="pc_custom_image_above_text"
+                  src="{{ block.settings.custom_image | img_url: '200x200' }}"
+                  alt="{{ block.settings.cutome_title_circle | default: _collections.title }}"
+                  loading="lazy"
+                >
+              {% else %}
+                <img 
+                  src="{{ _collections.featured_image | img_url: '200x200' }}" 
+                  alt="{{ _collections.title }}"
+                  loading="lazy"
+                >
+              {% endif %}
+            </a>
+            <span class="pc_collection_title">
+              {% unless block.settings.cutome_title_circle == blank %}
+                {{ block.settings.cutome_title_circle }}
+              {% else %}
+                {{ _collections.title }}
+              {% endunless %}
+            </span>
+          </div>
+        {% endfor %}
+      </div>
+      
+      <div class="pc_navigation_arrow pc_arrow_right">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+        </svg>
+      </div>
     </div>
   {% endif %}
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionId = 'circle-collection-{{ section.id }}';
+  const scrollContainer = document.getElementById(sectionId);
+  const leftArrow = document.querySelector('{{ sid }} .pc_arrow_left');
+  const rightArrow = document.querySelector('{{ sid }} .pc_arrow_right');
+  
+  if (!scrollContainer) return;
+  
+  // Check if arrows are needed
+  function checkArrows() {
+    const containerWidth = scrollContainer.clientWidth;
+    const contentWidth = scrollContainer.scrollWidth;
+    
+    if (contentWidth <= containerWidth) {
+      leftArrow.classList.add('pc_hidden');
+      rightArrow.classList.add('pc_hidden');
+    } else {
+      leftArrow.classList.remove('pc_hidden');
+      rightArrow.classList.remove('pc_hidden');
+      updateArrowVisibility();
+    }
+  }
+  
+  // Update arrow visibility based on scroll position
+  function updateArrowVisibility() {
+    const scrollLeft = scrollContainer.scrollLeft;
+    const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+    
+    if (scrollLeft <= 10) {
+      leftArrow.classList.add('pc_hidden');
+    } else {
+      leftArrow.classList.remove('pc_hidden');
+    }
+    
+    if (scrollLeft >= maxScroll - 10) {
+      rightArrow.classList.add('pc_hidden');
+    } else {
+      rightArrow.classList.remove('pc_hidden');
+    }
+  }
+  
+  // Scroll functions
+  function scrollLeft() {
+    scrollContainer.scrollBy({
+      left: -scrollContainer.clientWidth * 0.7,
+      behavior: 'smooth'
+    });
+  }
+  
+  function scrollRight() {
+    scrollContainer.scrollBy({
+      left: scrollContainer.clientWidth * 0.7,
+      behavior: 'smooth'
+    });
+  }
+  
+  // Event listeners
+  leftArrow.addEventListener('click', scrollLeft);
+  rightArrow.addEventListener('click', scrollRight);
+  
+  scrollContainer.addEventListener('scroll', updateArrowVisibility);
+  window.addEventListener('resize', checkArrows);
+  
+  // Initialize
+  checkArrows();
+  
+  // Touch event for mobile swipe
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  scrollContainer.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, {passive: true});
+  
+  scrollContainer.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, {passive: true});
+  
+  function handleSwipe() {
+    const difference = touchStartX - touchEndX;
+    if (difference > 50) { // Swipe left
+      scrollRight();
+    } else if (difference < -50) { // Swipe right
+      scrollLeft();
+    }
+  }
+});
+</script>
 
 {% schema %}
 {
@@ -252,6 +427,22 @@
         { "value": "700", "label": "Bold" }
       ],
       "default": "600"
+    },
+    {
+      "type": "header",
+      "content": "Arrow Navigation Settings"
+    },
+    {
+      "type": "color",
+      "label": "Arrow Color",
+      "id": "arrow_color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "label": "Arrow Background",
+      "id": "arrow_background",
+      "default": "#ffffff"
     },
     {
       "type": "header",
