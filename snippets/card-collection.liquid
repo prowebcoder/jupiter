@@ -104,6 +104,7 @@
                 {%- endif %}
               </a>
             </h3>
+            <h4>{{ block.settings['heading-one'] }}</h4>
             {%- if card_collection.description != blank -%}
               <p class="card__caption">
                 {{- card_collection.description | strip_html | truncatewords: 12 -}}
@@ -141,6 +142,7 @@
               {%- endif %}
             </a>
           </h3>
+          <h4>{{ block.settings['heading-one'] }}</h4>
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
             <p class="card__caption">
               {{- card_collection.description | strip_html | truncatewords: 12 -}}
@@ -239,6 +241,7 @@
               </span>
             </a>
           </h3>
+          thth
         </div>
       </div>
     {%- endif -%}

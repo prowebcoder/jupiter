@@ -403,7 +403,7 @@
         "featured_collection_P4EPGK": {
           "type": "featured_collection",
           "settings": {
-            "collection": "",
+            "collection": "crossbody-bag",
             "collection_heading": "dsd",
             "collection_heading_size": "h1"
           }
@@ -411,7 +411,7 @@
         "featured_collection_chBDPQ": {
           "type": "featured_collection",
           "settings": {
-            "collection": "",
+            "collection": "bags",
             "collection_heading": "",
             "collection_heading_size": "h1"
           }
