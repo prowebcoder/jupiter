@@ -173,7 +173,7 @@
         "number_color": "#ffffff",
         "number_background_color": "#000000",
         "label_color": "#333333",
-        "background_color": "#f5f5f5",
+        "background_color": "#ffff00",
         "parallax_effect": false,
         "parallax_speed": 0.5,
         "background_size": "cover",
