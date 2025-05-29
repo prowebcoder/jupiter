@@ -128,14 +128,6 @@
             "circle_collection": "bags",
             "cutome_title_circle": "Shaddes"
           }
-        },
-        "circle_icon_wqqYAr": {
-          "type": "circle-icon",
-          "settings": {
-            "circle_collection": "",
-            "cutome_title_circle": "",
-            "custom_image": "shopify://shop_images/a-model-in-red-suit-jacket-removing-sunglasses.jpg"
-          }
         }
       },
       "block_order": [
@@ -144,8 +136,7 @@
         "circle_icon_WDY6tE",
         "circle_icon_eiiQww",
         "circle_icon_hDdqX7",
-        "circle_icon_jbYGr6",
-        "circle_icon_wqqYAr"
+        "circle_icon_jbYGr6"
       ],
       "settings": {
         "icon_title": "",
