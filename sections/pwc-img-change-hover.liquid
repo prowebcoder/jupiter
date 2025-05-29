@@ -55,10 +55,6 @@
     >
       {% for block in section.blocks %}
         <div class="pc-inner-image {% if forloop.first %}pc-active{% endif %}" data-index="{{ forloop.index0 }}">
-          {% if block.settings.product != blank %}
-            <a href="{{ block.settings.product.url }}" class="pc-image-link">
-          {% endif %}
-
           {% if block.settings.image != blank %}
             <img
               src="{{ block.settings.image | img_url: '800x' }}"
@@ -73,10 +69,6 @@
             >
           {% else %}
             {{ 'product-apparel-1' | placeholder_svg_tag: 'pc-placeholder-svg' }}
-          {% endif %}
-
-          {% if block.settings.product != blank %}
-            </a>
           {% endif %}
         </div>
       {% endfor %}
@@ -163,7 +155,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10rem;
+    gap: 20rem;
     max-width: var(--pc-container-width);
     margin: 0 auto;
   }
@@ -192,12 +184,6 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-  }
-
-  {{ sid }} .pc-image-link {
-    display: block;
-    width: 100%;
-    height: 100%;
   }
 
   {{ sid }} .pc-text-container-right,
@@ -375,7 +361,7 @@
 
 {% schema %}
 {
-  "name": "PWC - Hotspot",
+  "name": "PC - Hover Image Gallery",
   "settings": [
     {
       "type": "text",
@@ -541,7 +527,7 @@
   ],
   "presets": [
     {
-      "name": "PWC - Hotspot",
+      "name": "PC - Hover Image Gallery",
       "blocks": [
         {
           "type": "image_item"
