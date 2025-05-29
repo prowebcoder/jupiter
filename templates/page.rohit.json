@@ -387,9 +387,9 @@
       ],
       "settings": {
         "title": "Multicolumn",
-        "heading_size": "h1",
+        "heading_size": "h0",
         "image_width": "full",
-        "image_ratio": "adapt",
+        "image_ratio": "portrait",
         "button_label": "",
         "button_link": "",
         "columns_desktop": 2,
