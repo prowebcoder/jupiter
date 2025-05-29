@@ -355,41 +355,6 @@
         "highlighted_decoration_color": "#a3ba35"
       }
     },
-    "pwc_collection_list_Fy3nia": {
-      "type": "pwc-collection-list",
-      "blocks": {
-        "featured_collection_P4EPGK": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "crossbody-bag",
-            "collection_heading": "Hello Heading asmr"
-          }
-        },
-        "featured_collection_chBDPQ": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "bags",
-            "collection_heading": "Collection Heading"
-          }
-        }
-      },
-      "block_order": [
-        "featured_collection_P4EPGK",
-        "featured_collection_chBDPQ"
-      ],
-      "settings": {
-        "title": "hi there",
-        "heading_size": "h1",
-        "image_ratio": "square",
-        "columns_desktop": 2,
-        "color_scheme": "",
-        "show_view_all": false,
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
     "rich_text_GrEnh3": {
       "type": "rich-text",
       "blocks": {
@@ -438,7 +403,6 @@
     "pwc_marquee_1_MiwcCR",
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
-    "pwc_collection_list_Fy3nia",
     "rich_text_GrEnh3"
   ]
 }
