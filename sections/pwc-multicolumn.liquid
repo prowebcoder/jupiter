@@ -131,7 +131,7 @@
                 {%- if block.settings.button_label != blank -%}
                   <a
                     class="link animate-arrow"
-                    {% if block.settings.link == blank %}
+                    {% if block.settings.button_label == blank %}
                       role="link" aria-disabled="true"
                     {% else %}
                       href="{{ block.settings.button_label }}"
