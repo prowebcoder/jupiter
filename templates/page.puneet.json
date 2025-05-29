@@ -610,24 +610,24 @@
           "type": "product",
           "settings": {
             "product": "crossbody-bags",
-            "top": 0,
-            "left": 0
+            "top": 16,
+            "left": 48
           }
         },
         "product_ygAtad": {
           "type": "product",
           "settings": {
             "product": "product-name-2",
-            "top": 0,
-            "left": 0
+            "top": 37,
+            "left": 100
           }
         },
         "product_WHdzqB": {
           "type": "product",
           "settings": {
             "product": "product-name-9",
-            "top": 0,
-            "left": 0
+            "top": 41,
+            "left": 32
           }
         }
       },
@@ -636,10 +636,9 @@
         "product_ygAtad",
         "product_WHdzqB"
       ],
-      "name": "Home",
       "settings": {
-        "title": "",
-        "subtitle": "",
+        "title": "ffrrfghth",
+        "subtitle": "thth",
         "cta_text": "VIEW PRODUCT",
         "cta_text_mobile": "VIEW PRODUCTS",
         "button-class": "",
