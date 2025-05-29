@@ -588,7 +588,7 @@
       ],
       "settings": {
         "heading": "Video Gallery",
-        "heading_font": "sans-serif",
+        "heading_font": "gluten_n4",
         "video_font": "sans-serif",
         "countdown_font": "mono",
         "section_heading_size": 30,
