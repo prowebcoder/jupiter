@@ -737,8 +737,8 @@
             "text_alignment": "left",
             "caption_position": "bottom",
             "custom_height": "",
-            "custom_width": 1,
-            "image_max_height": 500
+            "custom_width": 4,
+            "image_max_height": 1000
           }
         },
         "image_A76Vfr": {
@@ -751,7 +751,7 @@
             "text_alignment": "left",
             "caption_position": "bottom",
             "custom_height": "",
-            "custom_width": 1,
+            "custom_width": 3,
             "image_max_height": 500
           }
         },
@@ -765,7 +765,7 @@
             "text_alignment": "left",
             "caption_position": "bottom",
             "custom_height": "",
-            "custom_width": 1,
+            "custom_width": 4,
             "image_max_height": 500
           }
         },
@@ -779,7 +779,7 @@
             "text_alignment": "left",
             "caption_position": "bottom",
             "custom_height": "",
-            "custom_width": 1,
+            "custom_width": 3,
             "image_max_height": 500
           }
         },
@@ -793,7 +793,7 @@
             "text_alignment": "left",
             "caption_position": "bottom",
             "custom_height": "",
-            "custom_width": 1,
+            "custom_width": 4,
             "image_max_height": 500
           }
         },
@@ -807,7 +807,21 @@
             "text_alignment": "left",
             "caption_position": "bottom",
             "custom_height": "",
-            "custom_width": 1,
+            "custom_width": 5,
+            "image_max_height": 500
+          }
+        },
+        "image_7Qd3Gy": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/here-you-go.jpg",
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 3,
             "image_max_height": 500
           }
         }
@@ -818,7 +832,8 @@
         "image_RRDkRc",
         "image_Er4xgW",
         "image_nfmGtq",
-        "image_Pyttha"
+        "image_Pyttha",
+        "image_7Qd3Gy"
       ],
       "name": "PWC Masonry Collage",
       "settings": {
