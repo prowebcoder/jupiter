@@ -355,47 +355,35 @@
         "highlighted_decoration_color": "#a3ba35"
       }
     },
-    "rich_text_4wdaNf": {
-      "type": "rich-text",
+    "pwc_multicolumn_Cm4piz": {
+      "type": "pwc-multicolumn",
       "blocks": {
-        "heading_37BYzt": {
-          "type": "heading",
+        "slide_MxFCXA": {
+          "type": "slide",
           "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
+            "image": "shopify://shop_images/home-overlay-cards-2.webp",
+            "heading": "Slide Heading",
+            "description": "Slide description text goes here.",
+            "link_text": "Learn More",
+            "link_url": ""
           }
         },
-        "text_nd8nEA": {
-          "type": "text",
+        "slide_cgTaYh": {
+          "type": "slide",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
-          }
-        },
-        "button_GH9d9c": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "heading": "Slide Heading",
+            "description": "Slide description text goes here.",
+            "link_text": "Learn More",
+            "link_url": ""
           }
         }
       },
       "block_order": [
-        "heading_37BYzt",
-        "text_nd8nEA",
-        "button_GH9d9c"
+        "slide_MxFCXA",
+        "slide_cgTaYh"
       ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
+      "name": "Pwc Multicolumn",
+      "settings": {}
     }
   },
   "order": [
@@ -403,6 +391,6 @@
     "pwc_marquee_1_MiwcCR",
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
-    "rich_text_4wdaNf"
+    "pwc_multicolumn_Cm4piz"
   ]
 }
