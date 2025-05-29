@@ -623,7 +623,7 @@
             "heading": "Boat",
             "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
             "product": "green-snowboard",
-            "link_image": false,
+            "link_image": true,
             "link_text": "Shop Now",
             "show_price": true
           }
