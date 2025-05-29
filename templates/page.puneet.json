@@ -603,58 +603,32 @@
         "slide_duration": 4500
       }
     },
-    "pwc_shop_the_look_3EPWiL": {
-      "type": "pwc-shop-the-look",
+    "pwc_img_change_hover_w6pExT": {
+      "type": "pwc-img-change-hover",
       "blocks": {
-        "product_PMPJCq": {
-          "type": "product",
+        "heading_tVJEnp": {
+          "type": "heading",
           "settings": {
-            "product": "crossbody-bags",
-            "top": 16,
-            "left": 48
+            "heading": "New Arrivals",
+            "image": "shopify://shop_images/headphones-design-3d-rendering-for-product-mockup-free-png.png"
           }
         },
-        "product_ygAtad": {
-          "type": "product",
+        "heading_qydgkD": {
+          "type": "heading",
           "settings": {
-            "product": "product-name-2",
-            "top": 37,
-            "left": 100
-          }
-        },
-        "product_WHdzqB": {
-          "type": "product",
-          "settings": {
-            "product": "product-name-9",
-            "top": 41,
-            "left": 32
+            "heading": "Image banner",
+            "image": "shopify://shop_images/Main_c8ff0b5d-c712-429a-be00-b29bd55cbc9d.jpg"
           }
         }
       },
       "block_order": [
-        "product_PMPJCq",
-        "product_ygAtad",
-        "product_WHdzqB"
+        "heading_tVJEnp",
+        "heading_qydgkD"
       ],
+      "name": "On Hover Image Change",
       "settings": {
-        "full_width": true,
-        "container_width": 1200,
-        "content_width": 1200,
-        "section-margin": 0,
-        "title": "ffrrfghth",
-        "subtitle": "thth",
-        "image_position": "right",
-        "image_width": 50,
-        "image_max_height": 450,
-        "layout": "grid",
-        "cta_text": "VIEW PRODUCT",
-        "cta_text_mobile": "VIEW PRODUCTS",
-        "button_bg_color": "#000000",
-        "button_text_color": "#ffffff",
-        "button_bg_hover_color": "#333333",
-        "button_text_hover_color": "#ffffff",
-        "button_border_radius": 0,
-        "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg"
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     }
   },
@@ -667,6 +641,6 @@
     "pricing_plan_p_kpVXRy",
     "black_friday_H87paL",
     "pwc_video_grid_aQmGiA",
-    "pwc_shop_the_look_3EPWiL"
+    "pwc_img_change_hover_w6pExT"
   ]
 }
