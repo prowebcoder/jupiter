@@ -647,7 +647,7 @@
           "settings": {
             "heading": "Apple",
             "image": "shopify://shop_images/vecteezy_headphone-png-with-ai-generated_26773824.png",
-            "product": "",
+            "product": "product-name-6",
             "link_text": "Shop Now"
           }
         },
@@ -672,9 +672,9 @@
         "image_item_aHg4wy": {
           "type": "image_item",
           "settings": {
-            "heading": "Image title",
+            "heading": "Beats",
             "image": "shopify://shop_images/headphones-design-3d-rendering-for-product-mockup-free-png.png",
-            "product": "",
+            "product": "product-name",
             "link_text": "Shop Now"
           }
         }
