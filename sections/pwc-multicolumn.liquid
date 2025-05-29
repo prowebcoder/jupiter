@@ -128,19 +128,16 @@
                   <div class="rte">{{ block.settings.text }}</div>
                 {%- endif -%}
           
-                {%- if block.settings.button_label != blank -%}
+               {%- if block.settings.button_label != blank -%}
                   <a
-                    class="link animate-arrow"
-                    {% if block.settings.button_label == blank %}
+                    {% if block.settings.button_link == blank %}
                       role="link" aria-disabled="true"
                     {% else %}
-                      href="{{ block.settings.button_label }}"
+                      href="{{ block.settings.button_link }}"
                     {% endif %}
+                    class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
                   >
-                    {{- block.settings.link_label | escape -}}
-                    <span class="svg-wrapper"
-                      ><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span
-                    >
+                    {{- block.settings.button_label | escape -}}
                   </a>
                 {%- endif -%}
               </div>
