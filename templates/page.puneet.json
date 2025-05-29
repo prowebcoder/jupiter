@@ -699,9 +699,9 @@
       ],
       "settings": {
         "section_title": "Featured Collection",
-        "heading_color": "#000000",
+        "heading_color": "#334fb4",
         "section_subheading": "<p>Browse our featured products</p>",
-        "subheading_color": "#666666",
+        "subheading_color": "#000000",
         "background_color": "#e6e6e6",
         "background_gradient": "",
         "container_width": 1600,
