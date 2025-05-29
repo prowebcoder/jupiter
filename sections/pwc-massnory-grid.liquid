@@ -1,6 +1,774 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+
+<style>
+  {{ sid }} {
+    position: relative;
   }
+
+  {{ sid }} .pcg-collage-gallery {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    padding: {{ section.settings.container_padding }}px;
+  }
+
+  {{ sid }} .pcg-section-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: {{ section.settings.heading_font_size }}px;
+  }
+
+  /* Masonry Collage Layout */
+  {{ sid }} .pcg-masonry-layout {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: {{ section.settings.grid_gap }}px;
+  }
+
+  {{ sid }} .pcg-collage-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: {{ section.settings.image_border_radius }}px;
+    {% if section.settings.collage_item_height != 'auto' %}
+      height: {{ section.settings.collage_item_height }}px;
+    {% endif %}
+  }
+
+  /* First 6 items get special collage layout */
+  {{ sid }} .pcg-collage-item:nth-child(6n+1) {
+    grid-column: span {{ section.settings.large_item_columns }};
+    grid-row: span {{ section.settings.large_item_rows }};
+  }
+  {{ sid }} .pcg-collage-item:nth-child(6n+2),
+  {{ sid }} .pcg-collage-item:nth-child(6n+3),
+  {{ sid }} .pcg-collage-item:nth-child(6n+4),
+  {{ sid }} .pcg-collage-item:nth-child(6n+5) {
+    grid-column: span {{ section.settings.medium_item_columns }};
+    grid-row: span {{ section.settings.medium_item_rows }};
+  }
+  {{ sid }} .pcg-collage-item:nth-child(6n+6) {
+    grid-column: span {{ section.settings.wide_item_columns }};
+    grid-row: span {{ section.settings.wide_item_rows }};
+  }
+
+  /* Items after 6th get equal size */
+  {{ sid }} .pcg-collage-item:nth-child(n+7) {
+    grid-column: span {{ section.settings.default_item_columns }};
+    grid-row: span {{ section.settings.default_item_rows }};
+  }
+
+  {{ sid }} .pcg-collage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: {{ section.settings.image_fit }};
+    display: block;
+    transition: transform {{ section.settings.zoom_duration }}ms ease;
+    {% if section.settings.image_max_height != 'none' %}
+      max-height: {{ section.settings.image_max_height }}px;
+    {% endif %}
+  }
+
+  {{ sid }} .pcg-collage-item:hover img {
+    transform: scale({{ section.settings.zoom_scale | times: 0.01 }});
+  }
+
+  {{ sid }} .pcg-collage-caption {
+    position: absolute;
+    {% if section.settings.caption_position contains 'top' %}
+      top: 0;
+      bottom: auto;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    {% elsif section.settings.caption_position contains 'middle' %}
+      top: 50%;
+      bottom: auto;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.7);
+    {% else %}
+      bottom: 0;
+      top: auto;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+    {% endif %}
+    left: 0;
+    right: 0;
+    padding: 12px;
+    color: {{ section.settings.caption_text_color }};
+    opacity: {{ section.settings.caption_opacity }};
+    transition: opacity {{ section.settings.zoom_duration }}ms ease;
+    text-align: {{ section.settings.text_alignment }};
+  }
+
+  {{ sid }} .pcg-collage-item:hover .pcg-collage-caption {
+    opacity: 1;
+  }
+
+  {{ sid }} .pcg-collage-title {
+    font-size: {{ section.settings.title_font_size }}px;
+    margin-bottom: 5px;
+    font-weight: {{ section.settings.title_font_weight }};
+    color: {{ section.settings.caption_text_color }};
+  }
+
+  {{ sid }} .pcg-collage-description {
+    font-size: {{ section.settings.description_font_size }}px;
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 991px) {
+    {{ sid }} .pcg-masonry-layout {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    {{ sid }} .pcg-collage-item:nth-child(6n+1) {
+      grid-column: span {{ section.settings.large_item_columns_tablet }};
+      grid-row: span {{ section.settings.large_item_rows_tablet }};
+    }
+    {{ sid }} .pcg-collage-item:nth-child(6n+2),
+    {{ sid }} .pcg-collage-item:nth-child(6n+3),
+    {{ sid }} .pcg-collage-item:nth-child(6n+4),
+    {{ sid }} .pcg-collage-item:nth-child(6n+5) {
+      grid-column: span {{ section.settings.medium_item_columns_tablet }};
+      grid-row: span {{ section.settings.medium_item_rows_tablet }};
+    }
+    {{ sid }} .pcg-collage-item:nth-child(6n+6) {
+      grid-column: span {{ section.settings.wide_item_columns_tablet }};
+      grid-row: span {{ section.settings.wide_item_rows_tablet }};
+    }
+    {{ sid }} .pcg-collage-item:nth-child(n+7) {
+      grid-column: span {{ section.settings.default_item_columns_tablet }};
+      grid-row: span {{ section.settings.default_item_rows_tablet }};
+    }
+
+    {% if section.settings.collage_item_height_mobile != 'none' %}
+      {{ sid }} .pcg-collage-item {
+        height: {{ section.settings.collage_item_height_mobile }}px;
+      }
+    {% endif %}
+  }
+
+  @media (max-width: 767px) {
+    {{ sid }} .pcg-masonry-layout {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    {{ sid }} .pcg-collage-item {
+      grid-column: span {{ section.settings.mobile_item_columns }} !important;
+      grid-row: span {{ section.settings.mobile_item_rows }} !important;
+    }
+
+    {{ sid }} .pcg-collage-caption {
+      padding: 8px;
+      text-align: {{ section.settings.text_alignment_mobile }};
+    }
+
+    {{ sid }} .pcg-collage-title {
+      font-size: {{ section.settings.title_font_size_mobile }}px;
+    }
+
+    {{ sid }} .pcg-collage-description {
+      font-size: {{ section.settings.description_font_size_mobile }}px;
+    }
+
+    {{ sid }} .pcg-section-heading {
+      font-size: {{ section.settings.heading_font_size_mobile }}px;
+      margin-bottom: 15px;
+    }
+  }
+</style>
+
+<div class="pcg-collage-gallery">
+  <div class="pcg-collage-container">
+    {% if section.settings.heading != blank %}
+      <h2 class="pcg-section-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="pcg-masonry-layout">
+      {% for block in section.blocks %}
+        <div
+          class="pcg-collage-item"
+          {{ block.shopify_attributes }}
+          style="
+            {% if block.settings.custom_height != blank %}height: {{ block.settings.custom_height }}px;{% endif %}
+            {% if block.settings.custom_width != blank %}grid-column: span {{ block.settings.custom_width }};{% endif %}
+          "
+        >
+          {% if block.settings.image != blank %}
+            {% if block.settings.link != blank %}<a href="{{ block.settings.link }}">{% endif %}
+            <img
+              src="{{ block.settings.image | img_url: '1000x' }}"
+              alt="{{ block.settings.image.alt | escape }}"
+              loading="lazy"
+              width="{{ block.settings.image.width }}"
+              height="{{ block.settings.image.height }}"
+              style="{% if block.settings.image_max_height != blank %}max-height: {{ block.settings.image_max_height }}px;{% endif %}"
+            >
+            {% if block.settings.title != blank or block.settings.description != blank %}
+              <div
+                class="pcg-collage-caption"
+                style="
+                  {% if block.settings.text_alignment != blank %}text-align: {{ block.settings.text_alignment }};{% endif %}
+                  {% if block.settings.caption_position != blank %}
+                    {% if block.settings.caption_position contains 'top' %}
+                      top: 0; bottom: auto; background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+                    {% elsif block.settings.caption_position contains 'middle' %}
+                      top: 50%; bottom: auto; transform: translateY(-50%); background: rgba(0,0,0,0.7);
+                    {% else %}
+                      bottom: 0; top: auto; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+                    {% endif %}
+                  {% endif %}
+                "
+              >
+                {% if block.settings.title != blank %}
+                  <h3 class="pcg-collage-title">{{ block.settings.title }}</h3>
+                {% endif %}
+                {% if block.settings.description != blank %}
+                  <p class="pcg-collage-description">{{ block.settings.description }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+            {% if block.settings.link != blank %}</a>{% endif %}
+          {% else %}
+            {{ 'image' | placeholder_svg_tag: 'pcg-placeholder-svg' }}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "PWC Masonry Collage",
+  "tag": "section",
+  "class": "pcg-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Gallery"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1800,
+      "step": 50,
+      "unit": "px",
+      "label": "Container max width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Container padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Grid gap spacing",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "zoom_scale",
+      "min": 100,
+      "max": 150,
+      "step": 5,
+      "unit": "%",
+      "label": "Image zoom scale on hover",
+      "default": 105
+    },
+    {
+      "type": "range",
+      "id": "zoom_duration",
+      "min": 100,
+      "max": 1000,
+      "step": 50,
+      "unit": "ms",
+      "label": "Zoom animation duration",
+      "default": 300
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image fit style",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" },
+        { "value": "fill", "label": "Fill" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "header",
+      "content": "Text Alignment"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Caption text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment_mobile",
+      "label": "Caption text alignment (mobile)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "caption_position",
+      "label": "Caption vertical position",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "middle", "label": "Middle" },
+        { "value": "bottom", "label": "Bottom" }
+      ],
+      "default": "bottom"
+    },
+    {
+      "type": "header",
+      "content": "Collage Item Sizing"
+    },
+    {
+      "type": "select",
+      "id": "collage_item_height",
+      "label": "Default collage item height",
+      "options": [
+        { "value": "auto", "label": "Auto (natural height)" },
+        { "value": "200", "label": "Small (200px)" },
+        { "value": "300", "label": "Medium (300px)" },
+        { "value": "400", "label": "Large (400px)" },
+        { "value": "500", "label": "Extra Large (500px)" }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "select",
+      "id": "collage_item_height_mobile",
+      "label": "Mobile collage item height",
+      "options": [
+        { "value": "none", "label": "Same as desktop" },
+        { "value": "150", "label": "Small (150px)" },
+        { "value": "200", "label": "Medium (200px)" },
+        { "value": "250", "label": "Large (250px)" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "image_max_height",
+      "min": 100,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "label": "Max image height (0 for none)",
+      "default": 500
+    },
+    {
+      "type": "header",
+      "content": "Desktop Grid Layout"
+    },
+    {
+      "type": "range",
+      "id": "large_item_columns",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "label": "Large item columns (1st item)",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "large_item_rows",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Large item rows (1st item)",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "medium_item_columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Medium item columns (items 2-5)",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "medium_item_rows",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Medium item rows (items 2-5)",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "wide_item_columns",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "label": "Wide item columns (6th item)",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "wide_item_rows",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Wide item rows (6th item)",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "default_item_columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Default item columns (items 7+)",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "default_item_rows",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Default item rows (items 7+)",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Tablet Grid Layout"
+    },
+    {
+      "type": "range",
+      "id": "large_item_columns_tablet",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Large item columns (1st item)",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "large_item_rows_tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Large item rows (1st item)",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "medium_item_columns_tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Medium item columns (items 2-5)",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "medium_item_rows_tablet",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Medium item rows (items 2-5)",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "wide_item_columns_tablet",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Wide item columns (6th item)",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "wide_item_rows_tablet",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Wide item rows (6th item)",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "default_item_columns_tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Default item columns (items 7+)",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "default_item_rows_tablet",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Default item rows (items 7+)",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Mobile Grid Layout"
+    },
+    {
+      "type": "range",
+      "id": "mobile_item_columns",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Mobile item columns",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "mobile_item_rows",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Mobile item rows",
+      "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 16,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size (mobile)",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Caption Settings"
+    },
+    {
+      "type": "color",
+      "id": "caption_text_color",
+      "label": "Caption text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "caption_opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Caption default opacity",
+      "default": 0.8
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Title font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "title_font_size_mobile",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Title font size (mobile)",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Description font size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "description_font_size_mobile",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Description font size (mobile)",
+      "default": 11
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Image title"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Image description"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text alignment (override)",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "select",
+          "id": "caption_position",
+          "label": "Caption position (override)",
+          "options": [
+            { "value": "top", "label": "Top" },
+            { "value": "middle", "label": "Middle" },
+            { "value": "bottom", "label": "Bottom" }
+          ],
+          "default": "bottom"
+        },
+        {
+          "type": "header",
+          "content": "Custom Sizing (optional)"
+        },
+        {
+          "type": "text",
+          "id": "custom_height",
+          "label": "Custom height (px)",
+          "info": "Overrides default height for this item"
+        },
+        {
+          "type": "range",
+          "id": "custom_width",
+          "min": 1,
+          "max": 12,
+          "step": 1,
+          "label": "Custom column span",
+          "info": "Overrides default width for this item",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "image_max_height",
+          "min": 100,
+          "max": 1000,
+          "step": 50,
+          "unit": "px",
+          "label": "Max image height (0 for none)",
+          "default": 500
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC Masonry Collage",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
