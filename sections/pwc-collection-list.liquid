@@ -134,6 +134,7 @@
       </div>
     {%- endif -%}
     kjhugiuug
+    
  <div class="rich-text__blocks {{ section.settings.content_alignment }}">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
@@ -146,7 +147,7 @@
                   style="--animation-order: {{ forloop.index }};"
                 {% endif %}
               >
-             
+              {{ block.settings.collection_heading }}
               </h2>
             {%- when 'caption' -%}
               <p
