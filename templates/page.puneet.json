@@ -637,13 +637,24 @@
         "product_WHdzqB"
       ],
       "settings": {
+        "full_width": true,
+        "container_width": 1200,
+        "content_width": 1200,
+        "section-margin": 0,
         "title": "ffrrfghth",
         "subtitle": "thth",
+        "image_position": "right",
+        "image_width": 50,
+        "image_max_height": 450,
+        "layout": "grid",
         "cta_text": "VIEW PRODUCT",
         "cta_text_mobile": "VIEW PRODUCTS",
-        "button-class": "",
-        "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
-        "section-margin": 0
+        "button_bg_color": "#000000",
+        "button_text_color": "#ffffff",
+        "button_bg_hover_color": "#333333",
+        "button_text_hover_color": "#ffffff",
+        "button_border_radius": 0,
+        "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg"
       }
     }
   },
