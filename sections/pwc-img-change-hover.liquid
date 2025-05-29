@@ -9,7 +9,7 @@
     {% for block in section.blocks %}
       <div class="inner-image {% if forloop.first %} active {% endif %}" data-image-index="{{ forloop.index }}">
         {% if block.settings.image -%}
-          <img src="{{ block.settings.image | img_url:"small" }}">
+          <img src="{{ block.settings.image | img_url:"medium" }}">
         {%- else %}
           {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
         {% endif %}
