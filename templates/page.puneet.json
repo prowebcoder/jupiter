@@ -880,7 +880,6 @@
         "image_APngEn",
         "image_cGkM6b"
       ],
-      "name": "PWC Masonry Collage",
       "settings": {
         "heading": "Our Gallery",
         "container_width": 1800,
@@ -924,6 +923,118 @@
         "description_font_size": 12,
         "description_font_size_mobile": 11
       }
+    },
+    "pwc_video_slider_FCDgmf": {
+      "type": "pwc-video-slider",
+      "blocks": {
+        "video_AnCxn4": {
+          "type": "video",
+          "settings": {
+            "video_type": "youtube",
+            "video_id": "dQw4w9WgXcQ",
+            "video_url": "",
+            "caption": "Featured video 1",
+            "autoplay_video": false,
+            "loop_video": false,
+            "muted": true,
+            "controls": true
+          }
+        },
+        "video_VLGchM": {
+          "type": "video",
+          "settings": {
+            "video_type": "youtube",
+            "video_id": "9bZkp7q19f0",
+            "video_url": "",
+            "caption": "Featured video 2",
+            "autoplay_video": false,
+            "loop_video": false,
+            "muted": true,
+            "controls": true
+          }
+        },
+        "video_K3C7P8": {
+          "type": "video",
+          "settings": {
+            "video_type": "youtube",
+            "video_id": "",
+            "video_url": "",
+            "caption": "",
+            "autoplay_video": false,
+            "loop_video": false,
+            "muted": true,
+            "controls": true
+          }
+        },
+        "video_KH4FmY": {
+          "type": "video",
+          "settings": {
+            "video_type": "youtube",
+            "video_id": "",
+            "video_url": "",
+            "caption": "",
+            "autoplay_video": false,
+            "loop_video": false,
+            "muted": true,
+            "controls": true
+          }
+        },
+        "video_8AtbMP": {
+          "type": "video",
+          "settings": {
+            "video_type": "youtube",
+            "video_id": "",
+            "video_url": "",
+            "caption": "",
+            "autoplay_video": false,
+            "loop_video": false,
+            "muted": true,
+            "controls": true
+          }
+        },
+        "video_CeJxfG": {
+          "type": "video",
+          "settings": {
+            "video_type": "youtube",
+            "video_id": "",
+            "video_url": "",
+            "caption": "",
+            "autoplay_video": false,
+            "loop_video": false,
+            "muted": true,
+            "controls": true
+          }
+        }
+      },
+      "block_order": [
+        "video_AnCxn4",
+        "video_VLGchM",
+        "video_K3C7P8",
+        "video_KH4FmY",
+        "video_8AtbMP",
+        "video_CeJxfG"
+      ],
+      "name": "Video Carousel",
+      "settings": {
+        "heading": "Video Gallery",
+        "heading_size": "h1",
+        "description": "",
+        "heading_alignment": "center",
+        "description_alignment": "center",
+        "heading_color": "#000000",
+        "description_color": "#000000",
+        "caption_color": "#000000",
+        "heading_spacing": 20,
+        "show_navigation": true,
+        "show_pagination": true,
+        "autoplay": false,
+        "autoplay_speed": 5000,
+        "background_color": "transparent",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_top_mobile": 24,
+        "padding_bottom_mobile": 24
+      }
     }
   },
   "order": [
@@ -936,6 +1047,7 @@
     "black_friday_H87paL",
     "pwc_video_grid_aQmGiA",
     "pwc_img_change_hover_w6pExT",
-    "pwc_massnory_grid_gQEggH"
+    "pwc_massnory_grid_gQEggH",
+    "pwc_video_slider_FCDgmf"
   ]
 }
