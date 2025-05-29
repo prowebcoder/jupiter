@@ -7,55 +7,6 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  .image-overlay-wrapper {
-  position: relative;
-  overflow: hidden;
-}
-
-.overlay-card-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-.image-overlay-wrapper:hover .overlay-card-image {
-  transform: scale(1.05);
-}
-
-.overlay-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: 2rem;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.6); /* dark overlay */
-  color: white;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.image-overlay-wrapper:hover .overlay-content {
-  opacity: 1;
-}
-
-.overlay-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.overlay-description {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
-.overlay-button {
-  background-color: black;
-  color: white;
-  padding: 0.75rem 1.25rem;
-  text-decoration: none;
-}
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
