@@ -849,7 +849,21 @@
             "text_alignment": "left",
             "caption_position": "bottom",
             "custom_height": "",
-            "custom_width": 1,
+            "custom_width": 4,
+            "image_max_height": 500
+          }
+        },
+        "image_cGkM6b": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 4,
             "image_max_height": 500
           }
         }
@@ -863,7 +877,8 @@
         "image_Pyttha",
         "image_7Qd3Gy",
         "image_i9ceHL",
-        "image_APngEn"
+        "image_APngEn",
+        "image_cGkM6b"
       ],
       "name": "PWC Masonry Collage",
       "settings": {
