@@ -609,18 +609,18 @@
         "image_item_k3NUep": {
           "type": "image_item",
           "settings": {
-            "heading": "Image title",
+            "heading": "Sony",
             "image": "shopify://shop_images/headphones-design-3d-rendering-for-product-mockup-free-png.png",
             "product": "green-snowboard",
             "link_text": "Shop Now"
           }
         },
-        "image_item_AnYtRw": {
+        "image_item_WGN9AF": {
           "type": "image_item",
           "settings": {
-            "heading": "Image title",
-            "image": "shopify://shop_images/close-up-metallic-headphones.jpg",
-            "product": "",
+            "heading": "Boat",
+            "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
+            "product": "green-snowboard",
             "link_text": "Shop Now"
           }
         },
@@ -681,7 +681,7 @@
       },
       "block_order": [
         "image_item_k3NUep",
-        "image_item_AnYtRw",
+        "image_item_WGN9AF",
         "image_item_VemEtr",
         "image_item_KjFqdh",
         "image_item_qwyRkt",
