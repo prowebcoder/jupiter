@@ -612,7 +612,8 @@
             "heading": "Sony",
             "image": "shopify://shop_images/headphones-design-3d-rendering-for-product-mockup-free-png.png",
             "product": "green-snowboard",
-            "link_text": "Shop Now"
+            "link_text": "Shop Now",
+            "show_price": true
           }
         },
         "image_item_WGN9AF": {
@@ -621,7 +622,8 @@
             "heading": "Boat",
             "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
             "product": "green-snowboard",
-            "link_text": "Shop Now"
+            "link_text": "Shop Now",
+            "show_price": true
           }
         },
         "image_item_VemEtr": {
@@ -630,7 +632,8 @@
             "heading": "Samsung",
             "image": "shopify://shop_images/vecteezy_overear-headphones-red-leather-blue-accents-premium-audio_55244231.png",
             "product": "product-name-2",
-            "link_text": "Shop Now"
+            "link_text": "Shop Now",
+            "show_price": true
           }
         },
         "image_item_KjFqdh": {
@@ -639,7 +642,8 @@
             "heading": "JBL",
             "image": "shopify://shop_images/vecteezy_vibrant-green-and-blue-headphones-with-modern-design_55716678.png",
             "product": "product-name-2",
-            "link_text": "Shop Now"
+            "link_text": "Shop Now",
+            "show_price": true
           }
         },
         "image_item_qwyRkt": {
@@ -648,7 +652,8 @@
             "heading": "Apple",
             "image": "shopify://shop_images/vecteezy_headphone-png-with-ai-generated_26773824.png",
             "product": "orange-snowboard",
-            "link_text": "Shop Now"
+            "link_text": "Shop Now",
+            "show_price": true
           }
         },
         "image_item_c9iqxK": {
@@ -657,7 +662,8 @@
             "heading": "Bose",
             "image": "shopify://shop_images/vecteezy_overear-headphones-red-leather-blue-accents-premium-audio_55244231.png",
             "product": "green-snowboard",
-            "link_text": "Shop Now"
+            "link_text": "Shop Now",
+            "show_price": true
           }
         },
         "image_item_ambpbD": {
@@ -666,7 +672,8 @@
             "heading": "Sennheiser",
             "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
             "product": "product-name-5",
-            "link_text": "Shop Now"
+            "link_text": "Shop Now",
+            "show_price": true
           }
         },
         "image_item_aHg4wy": {
@@ -675,7 +682,8 @@
             "heading": "Beats",
             "image": "shopify://shop_images/headphones-design-3d-rendering-for-product-mockup-free-png.png",
             "product": "product-name",
-            "link_text": "Shop Now"
+            "link_text": "Shop Now",
+            "show_price": true
           }
         }
       },
@@ -690,11 +698,18 @@
         "image_item_aHg4wy"
       ],
       "settings": {
+        "section_title": "Featured Collection",
+        "heading_color": "#000000",
+        "section_subheading": "<p>Browse our featured products</p>",
+        "subheading_color": "#666666",
+        "background_color": "#e6e6e6",
+        "background_gradient": "",
         "container_width": 1600,
         "image_width": 500,
         "text_color": "#000000",
         "active_color": "#ffa05e",
         "link_color": "#0066cc",
+        "price_color": "#333333",
         "font_size": 19,
         "padding_top": 40,
         "padding_bottom": 52
