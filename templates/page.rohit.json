@@ -355,35 +355,54 @@
         "highlighted_decoration_color": "#a3ba35"
       }
     },
-    "pwc_collection_list_bQmMfp": {
-      "type": "pwc-collection-list",
+    "multicolumn_tzPJTk": {
+      "type": "multicolumn",
       "blocks": {
-        "featured_collection_LA6n98": {
-          "type": "featured_collection",
+        "column_LHLNdK": {
+          "type": "column",
           "settings": {
-            "collection": "",
-            "text-new": "<p>Life Changing Breathing dfdf</p>"
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
           }
         },
-        "featured_collection_iVpYc3": {
-          "type": "featured_collection",
+        "column_tjFXgL": {
+          "type": "column",
           "settings": {
-            "collection": "",
-            "text-new": "<p>Life Changing Breathing</p>"
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_hg8awb": {
+          "type": "column",
+          "settings": {
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
           }
         }
       },
       "block_order": [
-        "featured_collection_LA6n98",
-        "featured_collection_iVpYc3"
+        "column_LHLNdK",
+        "column_tjFXgL",
+        "column_hg8awb"
       ],
+      "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "title": "Collections",
+        "title": "Multicolumn",
         "heading_size": "h1",
-        "image_ratio": "square",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "Button label",
+        "button_link": "",
         "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
         "color_scheme": "",
-        "show_view_all": false,
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
@@ -396,6 +415,6 @@
     "pwc_marquee_1_MiwcCR",
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
-    "pwc_collection_list_bQmMfp"
+    "multicolumn_tzPJTk"
   ]
 }
