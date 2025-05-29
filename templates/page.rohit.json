@@ -354,45 +354,12 @@
         "highlighted__text_decoration": "underline",
         "highlighted_decoration_color": "#a3ba35"
       }
-    },
-    "pwc_multicolumn_6xCCkV": {
-      "type": "pwc-multicolumn",
-      "blocks": {
-        "slide_pDrb8h": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/home-overlay-cards-1.webp",
-            "overlay_color": "#303030",
-            "heading": "first slide",
-            "description": "Slide description text goes here. first one",
-            "link_text": "Learn More",
-            "link_url": ""
-          }
-        },
-        "slide_iEz9nQ": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
-            "overlay_color": "#303030",
-            "heading": "Slide Heading",
-            "description": "Slide description text goes here.",
-            "link_text": "Learn More",
-            "link_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "slide_pDrb8h",
-        "slide_iEz9nQ"
-      ],
-      "settings": {}
     }
   },
   "order": [
     "main",
     "pwc_marquee_1_MiwcCR",
     "pwc_pricing_card_NHeMiK",
-    "pwc_countdown_HfHr9w",
-    "pwc_multicolumn_6xCCkV"
+    "pwc_countdown_HfHr9w"
   ]
 }
