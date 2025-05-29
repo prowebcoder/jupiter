@@ -362,7 +362,7 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/home-overlay-cards-1.webp",
-            "title": "Column",
+            "title": "Heading First",
             "sub-heading": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
