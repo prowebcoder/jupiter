@@ -354,57 +354,12 @@
         "highlighted__text_decoration": "underline",
         "highlighted_decoration_color": "#a3ba35"
       }
-    },
-    "pwc_multicolumn_qtPUgn": {
-      "type": "pwc-multicolumn",
-      "blocks": {
-        "slide_Wtj8gL": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/home-overlay-cards-2.webp",
-            "overlay_color": "#303030",
-            "heading": "Slide Heading",
-            "description": "Slide description text goes here.",
-            "link_text": "Learn More",
-            "link_url": ""
-          }
-        },
-        "slide_dkLRCk": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/home-overlay-cards-1.webp",
-            "overlay_color": "#303030",
-            "heading": "Slide Heading",
-            "description": "Slide description text goes here.",
-            "link_text": "Learn More",
-            "link_url": ""
-          }
-        },
-        "slide_Ri4a4L": {
-          "type": "slide",
-          "settings": {
-            "overlay_color": "#303030",
-            "heading": "Slide Heading",
-            "description": "Slide description text goes here.",
-            "link_text": "Learn More",
-            "link_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "slide_Wtj8gL",
-        "slide_dkLRCk",
-        "slide_Ri4a4L"
-      ],
-      "name": "Pwc Image Slider",
-      "settings": {}
     }
   },
   "order": [
     "main",
     "pwc_marquee_1_MiwcCR",
     "pwc_pricing_card_NHeMiK",
-    "pwc_countdown_HfHr9w",
-    "pwc_multicolumn_qtPUgn"
+    "pwc_countdown_HfHr9w"
   ]
 }
