@@ -355,48 +355,6 @@
         "highlighted_decoration_color": "#a3ba35"
       }
     },
-    "rich_text_GrEnh3": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_kRcyJh": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
-          }
-        },
-        "text_pTMgMX": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
-          }
-        },
-        "button_krmrf4": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_kRcyJh",
-        "text_pTMgMX",
-        "button_krmrf4"
-      ],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
     "pwc_collection_list_bQmMfp": {
       "type": "pwc-collection-list",
       "blocks": {
@@ -404,7 +362,7 @@
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "heading": "Talk about your brand",
+            "collection_heading": "Talk about your brand",
             "heading_size": "h1"
           }
         },
@@ -412,7 +370,7 @@
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "heading": "Talk about your brand",
+            "collection_heading": "Talk about your brand",
             "heading_size": "h1"
           }
         }
@@ -421,7 +379,6 @@
         "featured_collection_LA6n98",
         "featured_collection_iVpYc3"
       ],
-      "name": "Pwc Collection List",
       "settings": {
         "title": "Collections",
         "heading_size": "h1",
@@ -441,7 +398,6 @@
     "pwc_marquee_1_MiwcCR",
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
-    "rich_text_GrEnh3",
     "pwc_collection_list_bQmMfp"
   ]
 }
