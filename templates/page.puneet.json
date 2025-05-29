@@ -606,27 +606,25 @@
     "pwc_img_change_hover_w6pExT": {
       "type": "pwc-img-change-hover",
       "blocks": {
-        "heading_tVJEnp": {
-          "type": "heading",
+        "image_item_k3NUep": {
+          "type": "image_item",
           "settings": {
-            "heading": "New Arrivals",
-            "image": "shopify://shop_images/headphones-design-3d-rendering-for-product-mockup-free-png.png"
-          }
-        },
-        "heading_qydgkD": {
-          "type": "heading",
-          "settings": {
-            "heading": "Image banner",
-            "image": "shopify://shop_images/Main_c8ff0b5d-c712-429a-be00-b29bd55cbc9d.jpg"
+            "heading": "Image title",
+            "product": "green-snowboard",
+            "link_text": "Shop Now"
           }
         }
       },
       "block_order": [
-        "heading_tVJEnp",
-        "heading_qydgkD"
+        "image_item_k3NUep"
       ],
-      "name": "On Hover Image Change",
       "settings": {
+        "container_width": 1200,
+        "image_width": 500,
+        "text_color": "#000000",
+        "active_color": "#ffa05e",
+        "link_color": "#0066cc",
+        "font_size": 16,
         "padding_top": 40,
         "padding_bottom": 52
       }
