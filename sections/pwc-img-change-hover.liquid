@@ -239,105 +239,106 @@
 {% endstyle %}
 
 {% javascript %}
-  document.addEventListener('DOMContentLoaded', function() {
-    const textContainers = document.querySelectorAll('{{ sid }} .pc-inner-text-container');
-    const textContainersMobile = document.querySelectorAll('{{ sid }} .pc-text-container-mobile .pc-inner-text-container');
-    const imageContainers = document.querySelectorAll('{{ sid }} .pc-inner-image');
-    let activeImageIndex = 0;
-    let transitionTimer;
+document.addEventListener('DOMContentLoaded', function() {
+  const sid = '{{ sid }}';
+  const textContainers = document.querySelectorAll(`${sid} .pc-inner-text-container`);
+  const textContainersMobile = document.querySelectorAll(`${sid} .pc-text-container-mobile .pc-inner-text-container`);
+  const imageContainers = document.querySelectorAll(`${sid} .pc-inner-image`);
+  let activeImageIndex = 0;
+  let transitionTimer;
 
-    function handleHover(index) {
-      clearTimeout(transitionTimer);
-
-      // Get the text index from the hovered element
-      const textIndex = textContainers[index]?.getAttribute('data-text-index');
-      if (!textIndex) return;
-
-      // Find the matching image and activate it with fade effect
-      imageContainers.forEach(image => {
-        const imageIndex = image.getAttribute('data-image-index');
-        if (textIndex === imageIndex) {
-          // Start fade out all images
-          imageContainers.forEach(img => {
-            img.classList.remove('pc-active');
-          });
-
-          // Then fade in the active one
-          transitionTimer = setTimeout(() => {
-            image.classList.add('pc-active');
-          }, 50);
-
-          // Update mobile indicators
-          textContainersMobile.forEach((el, i) => {
-            if (i === index) {
-              el.classList.add('pc-active');
-            } else {
-              el.classList.remove('pc-active');
-            }
-          });
-
-          activeImageIndex = index;
-        }
-      });
-    }
-
-    function showImage(index) {
-      if (index >= 0 && index < textContainers.length) {
-        handleHover(index);
+  function handleHover(index) {
+    clearTimeout(transitionTimer);
+    
+    // Get the text index from the hovered element
+    const textIndex = textContainers[index]?.getAttribute('data-text-index');
+    if (!textIndex) return;
+    
+    // Find and activate the matching image with fade effect
+    imageContainers.forEach(image => {
+      const imageIndex = image.getAttribute('data-image-index');
+      if (textIndex === imageIndex) {
+        // Start fade out all images
+        imageContainers.forEach(img => {
+          img.classList.remove('pc-active');
+        });
+        
+        // Then fade in the active one
+        transitionTimer = setTimeout(() => {
+          image.classList.add('pc-active');
+        }, 50);
+        
+        // Update mobile indicators
+        textContainersMobile.forEach((el, i) => {
+          if (i === index) {
+            el.classList.add('pc-active');
+          } else {
+            el.classList.remove('pc-active');
+          }
+        });
+        
+        activeImageIndex = index;
       }
-    }
-
-    // Desktop hover events
-    textContainers.forEach((container, i) => {
-      container.addEventListener('mouseenter', () => {
-        handleHover(i);
-      });
-
-      container.addEventListener('click', () => {
-        textContainers.forEach(el => el.classList.remove('pc-active'));
-        handleHover(i);
-        container.classList.add('pc-active');
-      });
     });
+  }
 
-    // Mobile touch events
-    textContainersMobile.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        textContainersMobile.forEach(el => el.classList.remove('pc-active'));
-        handleHover(i);
-        dot.classList.add('pc-active');
-      });
+  // Desktop hover events
+  textContainers.forEach((container, i) => {
+    container.addEventListener('mouseenter', () => {
+      handleHover(i);
     });
-
-    // Swipe functionality for mobile
-    const imageContainer = document.querySelector('{{ sid }} .pc-image-container');
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    if (imageContainer) {
-      imageContainer.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-      }, {passive: true});
-
-      imageContainer.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-      }, {passive: true});
-    }
-
-    function handleSwipe() {
-      const threshold = 50;
-      const deltaX = touchEndX - touchStartX;
-
-      if (deltaX > threshold) {
-        // Swipe right - previous image
-        showImage((activeImageIndex - 1 + textContainers.length) % textContainers.length);
-      } else if (deltaX < -threshold) {
-        // Swipe left - next image
-        showImage((activeImageIndex + 1) % textContainers.length);
-      }
-    }
+    
+    container.addEventListener('click', () => {
+      textContainers.forEach(el => el.classList.remove('pc-active'));
+      handleHover(i);
+      container.classList.add('pc-active');
+    });
   });
+
+  // Mobile touch events
+  textContainersMobile.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      textContainersMobile.forEach(el => el.classList.remove('pc-active'));
+      handleHover(i);
+      dot.classList.add('pc-active');
+    });
+  });
+
+  // Swipe functionality for mobile
+  const imageContainer = document.querySelector(`${sid} .pc-image-container`);
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  if (imageContainer) {
+    imageContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+
+    imageContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, {passive: true});
+  }
+
+  function handleSwipe() {
+    const threshold = 50;
+    const deltaX = touchEndX - touchStartX;
+
+    if (deltaX > threshold) {
+      // Swipe right - previous image
+      showImage((activeImageIndex - 1 + textContainers.length) % textContainers.length);
+    } else if (deltaX < -threshold) {
+      // Swipe left - next image
+      showImage((activeImageIndex + 1) % textContainers.length);
+    }
+  }
+
+  function showImage(index) {
+    if (index >= 0 && index < textContainers.length) {
+      handleHover(index);
+    }
+  }
+});
 {% endjavascript %}
 
 {% schema %}
