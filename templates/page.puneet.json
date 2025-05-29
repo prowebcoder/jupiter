@@ -602,6 +602,50 @@
         "enable_mobile_slider": true,
         "slide_duration": 4500
       }
+    },
+    "pwc_shop_the_look_3EPWiL": {
+      "type": "pwc-shop-the-look",
+      "blocks": {
+        "product_PMPJCq": {
+          "type": "product",
+          "settings": {
+            "product": "crossbody-bags",
+            "top": 0,
+            "left": 0
+          }
+        },
+        "product_ygAtad": {
+          "type": "product",
+          "settings": {
+            "product": "product-name-2",
+            "top": 0,
+            "left": 0
+          }
+        },
+        "product_WHdzqB": {
+          "type": "product",
+          "settings": {
+            "product": "product-name-9",
+            "top": 0,
+            "left": 0
+          }
+        }
+      },
+      "block_order": [
+        "product_PMPJCq",
+        "product_ygAtad",
+        "product_WHdzqB"
+      ],
+      "name": "Home",
+      "settings": {
+        "title": "",
+        "subtitle": "",
+        "cta_text": "VIEW PRODUCT",
+        "cta_text_mobile": "VIEW PRODUCTS",
+        "button-class": "",
+        "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+        "section-margin": 0
+      }
     }
   },
   "order": [
@@ -612,6 +656,7 @@
     "pwc_timer_nXVpYU",
     "pricing_plan_p_kpVXRy",
     "black_friday_H87paL",
-    "pwc_video_grid_aQmGiA"
+    "pwc_video_grid_aQmGiA",
+    "pwc_shop_the_look_3EPWiL"
   ]
 }
