@@ -723,6 +723,159 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "pwc_video_slider_hd8Q6G": {
+      "type": "pwc-video-slider",
+      "blocks": {
+        "video_MGcAW4": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/twb.mp4",
+            "title": "Product Demo",
+            "title_color": "#ffffff",
+            "description": "<p>See our product in action</p>",
+            "description_color": "#ffffff",
+            "link": "",
+            "button_text": "Shop Now",
+            "button_color": "#ffffff",
+            "button_bg_color": "#000000",
+            "button_hover_bg_color": ""
+          }
+        },
+        "video_93gVDm": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/twb.mp4",
+            "title": "Customer Stories",
+            "title_color": "#ffffff",
+            "description": "<p>Hear from our happy customers</p>",
+            "description_color": "#ffffff",
+            "link": "",
+            "button_text": "Read Reviews",
+            "button_color": "#ffffff",
+            "button_bg_color": "#000000",
+            "button_hover_bg_color": ""
+          }
+        },
+        "video_hkJ3z4": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/twb.mp4",
+            "title": "How To Use",
+            "title_color": "#ffffff",
+            "description": "<p>Learn how to use our product</p>",
+            "description_color": "#ffffff",
+            "link": "",
+            "button_text": "View Guide",
+            "button_color": "#ffffff",
+            "button_bg_color": "#000000",
+            "button_hover_bg_color": ""
+          }
+        },
+        "video_pCUPaQ": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/twb.mp4",
+            "title": "Video Title",
+            "title_color": "#ffffff",
+            "description": "<p>Video description</p>",
+            "description_color": "#ffffff",
+            "link": "",
+            "button_text": "Learn More",
+            "button_color": "#ffffff",
+            "button_bg_color": "#000000",
+            "button_hover_bg_color": ""
+          }
+        },
+        "video_DiPDRb": {
+          "type": "video",
+          "settings": {
+            "title": "Video Title",
+            "title_color": "#ffffff",
+            "description": "<p>Video description</p>",
+            "description_color": "#ffffff",
+            "link": "",
+            "button_text": "Learn More",
+            "button_color": "#ffffff",
+            "button_bg_color": "#000000",
+            "button_hover_bg_color": ""
+          }
+        },
+        "video_rLWFJp": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/twb.mp4",
+            "title": "Video Title",
+            "title_color": "#ffffff",
+            "description": "<p>Video description</p>",
+            "description_color": "#ffffff",
+            "link": "",
+            "button_text": "Learn More",
+            "button_color": "#ffffff",
+            "button_bg_color": "#000000",
+            "button_hover_bg_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_MGcAW4",
+        "video_93gVDm",
+        "video_hkJ3z4",
+        "video_pCUPaQ",
+        "video_DiPDRb",
+        "video_rLWFJp"
+      ],
+      "name": "PWC Video Carousel",
+      "settings": {
+        "container_width": "page-width",
+        "desktop_height": 600,
+        "mobile_height": 400,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "slide_border_radius": 8,
+        "background_color": "#ffffff",
+        "background_gradient": false,
+        "gradient": "",
+        "heading": "Featured Videos",
+        "heading_color": "#000000",
+        "heading_size": 36,
+        "heading_weight": "700",
+        "heading_letter_spacing": 0,
+        "heading_transform": "none",
+        "description": "<p>Explore our collection of featured videos</p>",
+        "description_color": "#333333",
+        "description_size": 16,
+        "description_weight": "400",
+        "text_alignment": "center",
+        "vertical_alignment": "center",
+        "horizontal_alignment": "center",
+        "content_alignment": "center",
+        "slides_to_show": 3,
+        "slides_to_show_tablet": 2,
+        "slides_to_show_mobile": 1,
+        "slide_spacing": 15,
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_arrows": true,
+        "show_dots": true,
+        "infinite_scroll": true,
+        "show_play_button": true,
+        "mute_videos": true,
+        "loop_videos": true,
+        "show_video_controls": true,
+        "show_overlay": false,
+        "overlay_color": "#000000",
+        "overlay_opacity": 30,
+        "slide_shadow_color": "#000000",
+        "slide_shadow_horizontal": 0,
+        "slide_shadow_vertical": 10,
+        "slide_shadow_blur": 20,
+        "slide_shadow_spread": 0,
+        "slide_shadow_opacity": 20,
+        "button_border_radius": 4
+      }
     }
   },
   "order": [
@@ -734,6 +887,7 @@
     "pricing_plan_p_kpVXRy",
     "black_friday_H87paL",
     "pwc_video_grid_aQmGiA",
-    "pwc_img_change_hover_w6pExT"
+    "pwc_img_change_hover_w6pExT",
+    "pwc_video_slider_hd8Q6G"
   ]
 }
