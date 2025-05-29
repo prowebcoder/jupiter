@@ -123,12 +123,11 @@
                 {%- if block.settings.heading != blank -%}
                   <h3 class="inline-richtext">{{ block.settings.heading }}</h3>
                 {%- endif -%}
-                {%- if block.settings['sub-heading'] != blank -%}
-                  <div class="rte">{{ block.settings['sub-heading'] }}</div>
-                {%- endif -%}
+
                 {%- if block.settings.text != blank -%}
                   <div class="rte">{{ block.settings.text }}</div>
                 {%- endif -%}
+          
                 {%- if block.settings.link_label != blank -%}
                   <a
                     class="link animate-arrow"
@@ -416,12 +415,6 @@
         {
           "type": "inline_richtext",
           "id": "title",
-          "default": "t:sections.multicolumn.blocks.column.settings.title.default",
-          "label": "t:sections.multicolumn.blocks.column.settings.title.label"
-        },
-         {
-          "type": "inline_richtext",
-          "id": "sub-heading",
           "default": "t:sections.multicolumn.blocks.column.settings.title.default",
           "label": "t:sections.multicolumn.blocks.column.settings.title.label"
         },
