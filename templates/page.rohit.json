@@ -374,7 +374,7 @@
           "settings": {
             "image": "shopify://shop_images/home-overlay-cards-2.webp",
             "title": "Column",
-            "sub-heading": "Column",
+            "sub-heading": "",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
             "link": ""
