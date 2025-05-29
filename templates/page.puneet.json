@@ -723,6 +723,147 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "pwc_massnory_grid_gQEggH": {
+      "type": "pwc-massnory-grid",
+      "blocks": {
+        "image_X3UfyF": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/fashion-model-in-fur.jpg",
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 1,
+            "image_max_height": 500
+          }
+        },
+        "image_A76Vfr": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/a-model-in-red-suit-jacket-removing-sunglasses.jpg",
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 1,
+            "image_max_height": 500
+          }
+        },
+        "image_RRDkRc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 1,
+            "image_max_height": 500
+          }
+        },
+        "image_Er4xgW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/purchased-favorite-coffee.jpg",
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 1,
+            "image_max_height": 500
+          }
+        },
+        "image_nfmGtq": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg",
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 1,
+            "image_max_height": 500
+          }
+        },
+        "image_Pyttha": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/woman-in-park-afternoon.jpeg",
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 1,
+            "image_max_height": 500
+          }
+        }
+      },
+      "block_order": [
+        "image_X3UfyF",
+        "image_A76Vfr",
+        "image_RRDkRc",
+        "image_Er4xgW",
+        "image_nfmGtq",
+        "image_Pyttha"
+      ],
+      "name": "PWC Masonry Collage",
+      "settings": {
+        "heading": "Our Gallery",
+        "container_width": 1200,
+        "container_padding": 20,
+        "grid_gap": 10,
+        "image_border_radius": 8,
+        "zoom_scale": 105,
+        "zoom_duration": 300,
+        "image_fit": "cover",
+        "text_alignment": "left",
+        "text_alignment_mobile": "center",
+        "caption_position": "bottom",
+        "collage_item_height": "500",
+        "collage_item_height_mobile": "150",
+        "image_max_height": 500,
+        "large_item_columns": 3,
+        "large_item_rows": 2,
+        "medium_item_columns": 3,
+        "medium_item_rows": 1,
+        "wide_item_columns": 6,
+        "wide_item_rows": 1,
+        "default_item_columns": 4,
+        "default_item_rows": 1,
+        "large_item_columns_tablet": 3,
+        "large_item_rows_tablet": 2,
+        "medium_item_columns_tablet": 3,
+        "medium_item_rows_tablet": 1,
+        "wide_item_columns_tablet": 6,
+        "wide_item_rows_tablet": 1,
+        "default_item_columns_tablet": 2,
+        "default_item_rows_tablet": 1,
+        "mobile_item_columns": 1,
+        "mobile_item_rows": 1,
+        "heading_font_size": 32,
+        "heading_font_size_mobile": 24,
+        "caption_text_color": "#ffffff",
+        "caption_opacity": 0.8,
+        "title_font_size": 16,
+        "title_font_size_mobile": 14,
+        "title_font_weight": "600",
+        "description_font_size": 12,
+        "description_font_size_mobile": 11
+      }
     }
   },
   "order": [
@@ -734,6 +875,7 @@
     "pricing_plan_p_kpVXRy",
     "black_friday_H87paL",
     "pwc_video_grid_aQmGiA",
-    "pwc_img_change_hover_w6pExT"
+    "pwc_img_change_hover_w6pExT",
+    "pwc_massnory_grid_gQEggH"
   ]
 }

@@ -1,6 +1,482 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+<style>
+/* -------------------------------- 
+Primary style
+-------------------------------- */
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 100%;
+  font-family: "Open Sans", sans-serif;
+  color: #445b7c;
+  background-color: #445b7c;
+}
+
+a {
+  color: #dc717d;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* -------------------------------- 
+Main components 
+-------------------------------- */
+header {
+  position: relative;
+  height: 160px;
+  line-height: 160px;
+  text-align: center;
+}
+header h1 {
+  font-size: 22px;
+  font-size: 1.375rem;
+  color: #ffffff;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+header h4{
+  font-size: 9px;
+  color: #fff;
+}
+@media only screen and (min-width: 768px) {
+  header {
+    height: 240px;
+    line-height: 240px;
   }
+  header h1 {
+    font-size: 32px;
+    font-size: 2rem;
+  }
+}
+
+.cd-image-container {
+  position: relative;
+  width: 90%;
+  max-width: 768px;
+  margin: 0em auto;
+}
+.cd-image-container img {
+  display: block;
+}
+
+.cd-image-label {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #ffffff;
+  padding: 1em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+  -moz-transform: translateY(20px);
+  -ms-transform: translateY(20px);
+  -o-transform: translateY(20px);
+  transform: translateY(20px);
+  -webkit-transition: -webkit-transform 0.3s 0.7s, opacity 0.3s 0.7s;
+  -moz-transition: -moz-transform 0.3s 0.7s, opacity 0.3s 0.7s;
+  transition: transform 0.3s 0.7s, opacity 0.3s 0.7s;
+}
+.cd-image-label.is-hidden {
+  visibility: hidden;
+}
+.is-visible .cd-image-label {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.cd-resize-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  overflow: hidden;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.cd-resize-img img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+}
+.cd-resize-img .cd-image-label {
+  right: auto;
+  left: 0;
+}
+.is-visible .cd-resize-img {
+  width: 50%;
+  -webkit-animation: cd-bounce-in 0.7s;
+  -moz-animation: cd-bounce-in 0.7s;
+  animation: cd-bounce-in 0.7s;
+}
+
+@-webkit-keyframes cd-bounce-in {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 55%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+@-moz-keyframes cd-bounce-in {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 55%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+@keyframes cd-bounce-in {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 55%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+.cd-handle {
+  position: absolute;
+  height: 44px;
+  width: 44px;
+  left: 50%;
+  top: 50%;
+  margin-left: -22px;
+  margin-top: -22px;
+  border-radius: 50%;
+  background: #dc717d url("{{ 'cd-arrows.svg' | asset_url }}") no-repeat center center;
+  cursor: move;
+  box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  -webkit-transform: translate3d(0, 0, 0) scale(0);
+  -moz-transform: translate3d(0, 0, 0) scale(0);
+  -ms-transform: translate3d(0, 0, 0) scale(0);
+  -o-transform: translate3d(0, 0, 0) scale(0);
+  transform: translate3d(0, 0, 0) scale(0);
+}
+.cd-handle.draggable {
+  background-color: #445b7c;
+}
+.is-visible .cd-handle {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0) scale(1);
+  -moz-transform: translate3d(0, 0, 0) scale(1);
+  -ms-transform: translate3d(0, 0, 0) scale(1);
+  -o-transform: translate3d(0, 0, 0) scale(1);
+  transform: translate3d(0, 0, 0) scale(1);
+  -webkit-transition: -webkit-transform 0.3s 0.7s, opacity 0s 0.7s;
+  -moz-transition: -moz-transform 0.3s 0.7s, opacity 0s 0.7s;
+  transition: transform 0.3s 0.7s, opacity 0s 0.7s;
+}
+</style>
+
+<figure class="cd-image-container">
+  <img src="{{ 'img-original.jpg' | asset_url }}" alt="Original Image">
+  <span class="cd-image-label" data-type="original">Original</span>
+
+  <div class="cd-resize-img"> <!-- the resizable image on top -->
+    <img src="{{ 'img-modified.jpg' | asset_url }}" alt="Modified Image">
+    <span class="cd-image-label" data-type="modified">Modified</span>
+  </div>
+
+  <span class="cd-handle"></span>
+</figure>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  let dragging = false;
+  let scrolling = false;
+  let resizing = false;
+  
+  // Cache elements
+  const imageComparisonContainers = document.querySelectorAll('.cd-image-container');
+  
+  // Check if the .cd-image-container is in the viewport
+  checkPosition(imageComparisonContainers);
+  
+  window.addEventListener('scroll', function() {
+    if (!scrolling) {
+      scrolling = true;
+      window.requestAnimationFrame(function() {
+        checkPosition(imageComparisonContainers);
+      });
+    }
+  });
+  
+  // Make the .cd-handle element draggable
+  imageComparisonContainers.forEach(function(container) {
+    const handle = container.querySelector('.cd-handle');
+    const resizeImg = container.querySelector('.cd-resize-img');
+    const originalLabel = container.querySelector('.cd-image-label[data-type="original"]');
+    const modifiedLabel = container.querySelector('.cd-image-label[data-type="modified"]');
+    
+    drags(handle, resizeImg, container, originalLabel, modifiedLabel);
+  });
+  
+  // Update images label visibility
+  window.addEventListener('resize', function() {
+    if (!resizing) {
+      resizing = true;
+      window.requestAnimationFrame(function() {
+        checkLabel(imageComparisonContainers);
+      });
+    }
+  });
+  
+  function checkPosition(containers) {
+    containers.forEach(function(container) {
+      const containerTop = container.getBoundingClientRect().top;
+      if (window.scrollY + window.innerHeight * 0.5 > containerTop + window.scrollY) {
+        container.classList.add('is-visible');
+      }
+    });
+    
+    scrolling = false;
+  }
+  
+  function checkLabel(containers) {
+    containers.forEach(function(container) {
+      const modifiedLabel = container.querySelector('.cd-image-label[data-type="modified"]');
+      const resizeImg = container.querySelector('.cd-resize-img');
+      const originalLabel = container.querySelector('.cd-image-label[data-type="original"]');
+      
+      updateLabel(modifiedLabel, resizeImg, 'left');
+      updateLabel(originalLabel, resizeImg, 'right');
+    });
+    
+    resizing = false;
+  }
+  
+  // Draggable functionality
+  function drags(dragElement, resizeElement, container, labelContainer, labelResizeElement) {
+    dragElement.addEventListener('mousedown', function(e) {
+      dragElement.classList.add('draggable');
+      resizeElement.classList.add('resizable');
+      
+      const dragWidth = dragElement.offsetWidth;
+      const xPosition = dragElement.getBoundingClientRect().left + dragWidth - e.clientX;
+      const containerOffset = container.getBoundingClientRect().left;
+      const containerWidth = container.offsetWidth;
+      const minLeft = containerOffset + 10;
+      const maxLeft = containerOffset + containerWidth - dragWidth - 10;
+      
+      function moveHandler(e) {
+        if (!dragging) {
+          dragging = true;
+          window.requestAnimationFrame(function() {
+            animateDraggedHandle(e, xPosition, dragWidth, minLeft, maxLeft, containerOffset, containerWidth, resizeElement, labelContainer, labelResizeElement);
+          });
+        }
+      }
+      
+      function upHandler() {
+        dragElement.classList.remove('draggable');
+        resizeElement.classList.remove('resizable');
+        document.removeEventListener('mousemove', moveHandler);
+        document.removeEventListener('mouseup', upHandler);
+      }
+      
+      document.addEventListener('mousemove', moveHandler);
+      document.addEventListener('mouseup', upHandler);
+      
+      e.preventDefault();
+    });
+  }
+  
+  function animateDraggedHandle(e, xPosition, dragWidth, minLeft, maxLeft, containerOffset, containerWidth, resizeElement, labelContainer, labelResizeElement) {
+    let leftValue = e.clientX + xPosition - dragWidth;
+    
+    // Constrain the draggable element
+    if (leftValue < minLeft) {
+      leftValue = minLeft;
+    } else if (leftValue > maxLeft) {
+      leftValue = maxLeft;
+    }
+    
+    const widthValue = (leftValue + dragWidth / 2 - containerOffset) * 100 / containerWidth + '%';
+    
+    document.querySelector('.draggable').style.left = widthValue;
+    document.querySelector('.resizable').style.width = widthValue;
+    
+    updateLabel(labelResizeElement, resizeElement, 'left');
+    updateLabel(labelContainer, resizeElement, 'right');
+    dragging = false;
+  }
+  
+  function updateLabel(label, resizeElement, position) {
+    const labelRect = label.getBoundingClientRect();
+    const resizeRect = resizeElement.getBoundingClientRect();
+    
+    if (position === 'left') {
+      (labelRect.left + label.offsetWidth < resizeRect.left + resizeElement.offsetWidth) 
+        ? label.classList.remove('is-hidden') 
+        : label.classList.add('is-hidden');
+    } else {
+      (labelRect.left > resizeRect.left + resizeElement.offsetWidth) 
+        ? label.classList.remove('is-hidden') 
+        : label.classList.add('is-hidden');
+    }
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Image Comparison Slider",
+  "class": "image-comparison-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Image Comparison"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "original_image",
+      "label": "Original Image",
+      "info": "This will be the base image (left side)"
+    },
+    {
+      "type": "image_picker",
+      "id": "modified_image",
+      "label": "Modified Image",
+      "info": "This will be the comparison image (right side)"
+    },
+    {
+      "type": "header",
+      "content": "Labels"
+    },
+    {
+      "type": "text",
+      "id": "original_label",
+      "label": "Original Image Label",
+      "default": "Original"
+    },
+    {
+      "type": "text",
+      "id": "modified_label",
+      "label": "Modified Image Label",
+      "default": "Modified"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "label_bg_color",
+      "label": "Label Background Color",
+      "default": "rgba(0,0,0,0.5)"
+    },
+    {
+      "type": "header",
+      "content": "Slider Handle"
+    },
+    {
+      "type": "color",
+      "id": "handle_color",
+      "label": "Handle Color",
+      "default": "#dc717d"
+    },
+    {
+      "type": "color",
+      "id": "handle_active_color",
+      "label": "Handle Active Color",
+      "default": "#445b7c"
+    },
+    {
+      "type": "range",
+      "id": "handle_size",
+      "min": 30,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Handle Size",
+      "default": 44
+    },
+    {
+      "type": "header",
+      "content": "Section Design"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 500,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum Width",
+      "default": 500
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Background Color",
+      "default": "#445b7c"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Comparison Slider",
+      "category": "Image"
+    }
+  ]
+}
 {% endschema %}
