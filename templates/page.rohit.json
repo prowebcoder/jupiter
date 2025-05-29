@@ -372,6 +372,17 @@
         "slide_dkLRCk": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/home-overlay-cards-1.webp",
+            "overlay_color": "#303030",
+            "heading": "Slide Heading",
+            "description": "Slide description text goes here.",
+            "link_text": "Learn More",
+            "link_url": ""
+          }
+        },
+        "slide_Ri4a4L": {
+          "type": "slide",
+          "settings": {
             "overlay_color": "#303030",
             "heading": "Slide Heading",
             "description": "Slide description text goes here.",
@@ -382,7 +393,8 @@
       },
       "block_order": [
         "slide_Wtj8gL",
-        "slide_dkLRCk"
+        "slide_dkLRCk",
+        "slide_Ri4a4L"
       ],
       "name": "Pwc Image Slider",
       "settings": {}
