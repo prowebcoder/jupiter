@@ -1,27 +1,36 @@
 {%- assign sid = '#shopify-section-' | append: section.id -%}
 
-{{ 'mobile.css' | asset_url | stylesheet_tag }}
 <div class="pc-container section-{{ section.id }}-padding">
   <div class="pc-text-container-left">
-    {% for block in section.blocks limit: 4 %}
-      <div class="pc-inner-text-container" data-text-index="{{ forloop.index }}">
-        {{ block.settings.heading }}
-        {% if block.settings.product != blank %}
-          <a
-            href="{{ block.settings.product.url }}"
-            class="pc-product-link"
-            style="color: {{ section.settings.text_color }};"
+    {% for block in section.blocks %}
+      {% if forloop.index <= 4 %}
+        <div class="pc-inner-text-container" data-index="{{ forloop.index0 }}">
+          <div
+            class="pc-title"
+            style="color: {{ section.settings.text_color }}; font-size: {{ section.settings.font_size }}px;"
           >
-            {{ block.settings.link_text | default: 'Shop Now' }}
-          </a>
-        {% endif %}
-      </div>
+            {{ block.settings.heading }}
+          </div>
+          {% if block.settings.product != blank %}
+            <a
+              href="{{ block.settings.product.url }}"
+              class="pc-product-link"
+              style="color: {{ section.settings.link_color }};"
+            >
+              {{ block.settings.link_text | default: 'Shop Now' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
     {% endfor %}
   </div>
 
-  <div class="pc-image-container" style="width: {{ section.settings.image_width }}px;">
+  <div
+    class="pc-image-container"
+    style="width: {{ section.settings.image_width }}px; height: {{ section.settings.image_width }}px;"
+  >
     {% for block in section.blocks %}
-      <div class="pc-inner-image {% if forloop.first %} pc-active {% endif %}" data-image-index="{{ forloop.index }}">
+      <div class="pc-inner-image {% if forloop.first %}pc-active{% endif %}" data-index="{{ forloop.index0 }}">
         {% if block.settings.image != blank %}
           <img
             src="{{ block.settings.image | img_url: '800x' }}"
@@ -44,13 +53,18 @@
   <div class="pc-text-container-right">
     {% for block in section.blocks %}
       {% if forloop.index > 4 %}
-        <div class="pc-inner-text-container" data-text-index="{{ forloop.index }}">
-          {{ block.settings.heading }}
+        <div class="pc-inner-text-container" data-index="{{ forloop.index0 }}">
+          <div
+            class="pc-title"
+            style="color: {{ section.settings.text_color }}; font-size: {{ section.settings.font_size }}px;"
+          >
+            {{ block.settings.heading }}
+          </div>
           {% if block.settings.product != blank %}
             <a
               href="{{ block.settings.product.url }}"
               class="pc-product-link"
-              style="color: {{ section.settings.text_color }};"
+              style="color: {{ section.settings.link_color }};"
             >
               {{ block.settings.link_text | default: 'Shop Now' }}
             </a>
@@ -62,300 +76,218 @@
 
   <div class="pc-text-container-mobile">
     {% for block in section.blocks %}
-      <div
-        class="pc-inner-text-container {% if forloop.first %} pc-active{% endif %}"
-        data-text-index="{{ forloop.index }}"
-      >
+      <div class="pc-inner-text-container {% if forloop.first %}pc-active{% endif %}" data-index="{{ forloop.index0 }}">
         <span class="pc-dot"></span>
       </div>
     {% endfor %}
   </div>
 </div>
 
-{% style %}
-    {{ sid }} {
-      --pc-text-color: {{ section.settings.text_color }};
-      --pc-active-color: {{ section.settings.active_color }};
-      --pc-link-color: {{ section.settings.link_color }};
-      --pc-font-size: {{ section.settings.font_size }}px;
-      --pc-container-width: {{ section.settings.container_width }}px;
-    }
+<style>
+  {{ sid }} {
+    --pc-text-color: {{ section.settings.text_color }};
+    --pc-active-color: {{ section.settings.active_color }};
+    --pc-link-color: {{ section.settings.link_color }};
+    --pc-font-size: {{ section.settings.font_size }}px;
+    --pc-container-width: {{ section.settings.container_width }}px;
+  }
 
-    {{ sid }} .pc-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10rem;
-      max-width: var(--pc-container-width);
-      margin: 0 auto;
-    }
+  {{ sid }} .pc-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+    max-width: var(--pc-container-width);
+    margin: 0 auto;
+  }
 
-    {{ sid }} .pc-inner-text-container {
-      display: inline-block;
-      padding: 5px;
-      cursor: pointer;
-      position: relative;
-      transition: all 0.3s ease;
-      scale: 1;
-      color: var(--pc-text-color);
-      font-size: var(--pc-font-size);
-    }
+  {{ sid }} .pc-image-container {
+    position: relative;
+    width: {{ section.settings.image_width }}px;
+    height: {{ section.settings.image_width }}px;
+  }
 
-    {{ sid }} .pc-inner-text-container:hover {
-      scale: 1.1;
-    }
   {{ sid }} .pc-inner-image {
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease;
     width: 100%;
     height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
   }
 
   {{ sid }} .pc-inner-image.pc-active {
     opacity: 1;
   }
-    {{ sid }} .pc-dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background-color: var(--pc-text-color);
-      transition: background-color 0.3s ease;
-    }
 
-    {{ sid }} .pc-inner-text-container.pc-active .pc-dot {
-      background: var(--pc-active-color);
-    }
+  {{ sid }} .pc-inner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 
-    {{ sid }} .pc-image-container {
-      position: relative;
-      width: {{ section.settings.image_width }}px;
-      height: {{ section.settings.image_width }}px;
-    }
+  {{ sid }} .pc-text-container-right,
+  {{ sid }} .pc-text-container-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    position: relative;
+  }
 
-    {{ sid }} .pc-inner-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      width: 100%;
-      height: 100%;
-    }
+  {{ sid }} .pc-inner-text-container {
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
 
-    {{ sid }} .pc-inner-image.pc-active {
-      opacity: 1;
-    }
+  {{ sid }} .pc-inner-text-container:hover {
+    transform: scale(1.05);
+  }
 
-    {{ sid }} .pc-inner-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
+  {{ sid }} .pc-text-container-left .pc-inner-text-container:before {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 1px;
+    right: -80px;
+    background: var(--pc-text-color);
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
-    {{ sid }} .pc-placeholder-svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-      background: #f5f5f5;
+  {{ sid }} .pc-text-container-right .pc-inner-text-container:before {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 1px;
+    left: -80px;
+    background: var(--pc-text-color);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  {{ sid }} .pc-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--pc-text-color);
+    transition: background-color 0.3s ease;
+  }
+
+  {{ sid }} .pc-inner-text-container.pc-active .pc-dot {
+    background: var(--pc-active-color);
+  }
+
+  {{ sid }} .pc-product-link {
+    display: block;
+    margin-top: 8px;
+    font-size: calc(var(--pc-font-size) - 2px);
+    color: var(--pc-link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  {{ sid }} .pc-product-link:hover {
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 749px) {
+    {{ sid }} .pc-text-container-mobile {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
     }
 
     {{ sid }} .pc-text-container-right,
     {{ sid }} .pc-text-container-left {
-      display: flex;
+      display: none;
+    }
+
+    {{ sid }} .pc-container {
       flex-direction: column;
-      gap: 4rem;
-      position: relative;
+      gap: 2rem;
     }
 
-    {{ sid }} .pc-text-container-left .pc-inner-text-container:before {
-      content: "";
-      position: absolute;
-      width: 60px;
-      height: 1px;
-      right: -80px;
-      background: var(--pc-text-color);
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 999;
+    {{ sid }} .pc-image-container {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1;
     }
+  }
 
-    {{ sid }} .pc-text-container-right .pc-inner-text-container:before {
-      content: "";
-      position: absolute;
-      width: 60px;
-      height: 1px;
-      left: -80px;
-      background: var(--pc-text-color);
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 999;
-    }
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
 
-    {{ sid }} .pc-product-link {
-      display: block;
-      margin-top: 8px;
-      font-size: calc(var(--pc-font-size) - 2px);
-      color: var(--pc-link-color);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    {{ sid }} .pc-product-link:hover {
-      text-decoration: underline;
-    }
-
-    @media screen and (max-width: 749px) {
-      {{ sid }} .pc-text-container-mobile {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-top: 2rem;
-      }
-
-      {{ sid }} .pc-text-container-right,
-      {{ sid }} .pc-text-container-left {
-        display: none;
-      }
-
-      {{ sid }} .pc-container {
-        flex-direction: column;
-        gap: 2rem;
-      }
-
-      {{ sid }} .pc-image-container {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1/1;
-      }
-    }
-
+  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
 
-    @media screen and (min-width: 750px) {
-      .section-{{ section.id }}-padding {
-        padding-top: {{ section.settings.padding_top }}px;
-        padding-bottom: {{ section.settings.padding_bottom }}px;
-      }
-
-      {{ sid }} .pc-text-container-mobile {
-        display: none;
-      }
+    {{ sid }} .pc-text-container-mobile {
+      display: none;
     }
-{% endstyle %}
-
-{% javascript %}
-document.addEventListener('DOMContentLoaded', function() {
-  const sid = '{{ sid }}';
-  const textContainers = document.querySelectorAll(`${sid} .pc-inner-text-container`);
-  const textContainersMobile = document.querySelectorAll(`${sid} .pc-text-container-mobile .pc-inner-text-container`);
-  const imageContainers = document.querySelectorAll(`${sid} .pc-inner-image`);
-  let activeImageIndex = 0;
-  let transitionTimer;
-
-  function handleHover(index) {
-    clearTimeout(transitionTimer);
-    
-    // Get the text index from the hovered element
-    const textIndex = textContainers[index]?.getAttribute('data-text-index');
-    if (!textIndex) return;
-    
-    // Find and activate the matching image with fade effect
-    imageContainers.forEach(image => {
-      const imageIndex = image.getAttribute('data-image-index');
-      if (textIndex === imageIndex) {
-        // Start fade out all images
-        imageContainers.forEach(img => {
-          img.classList.remove('pc-active');
-        });
-        
-        // Then fade in the active one
-        transitionTimer = setTimeout(() => {
-          image.classList.add('pc-active');
-        }, 50);
-        
-        // Update mobile indicators
-        textContainersMobile.forEach((el, i) => {
-          if (i === index) {
-            el.classList.add('pc-active');
-          } else {
-            el.classList.remove('pc-active');
-          }
-        });
-        
-        activeImageIndex = index;
-      }
-    });
   }
+</style>
 
-  // Desktop hover events
-  textContainers.forEach((container, i) => {
-    container.addEventListener('mouseenter', () => {
-      handleHover(i);
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const textItems = document.querySelectorAll('.pc-inner-text-container');
+    const imageItems = document.querySelectorAll('.pc-inner-image');
+    const mobileDots = document.querySelectorAll('.pc-text-container-mobile .pc-inner-text-container');
+
+    function activateImage(index) {
+      // Hide all images
+      imageItems.forEach(image => {
+        image.classList.remove('pc-active');
+      });
+
+      // Show the selected image
+      imageItems[index].classList.add('pc-active');
+
+      // Update active state for mobile dots
+      mobileDots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.add('pc-active');
+        } else {
+          dot.classList.remove('pc-active');
+        }
+      });
+    }
+
+    // Add hover events to text items
+    textItems.forEach((textItem, index) => {
+      textItem.addEventListener('mouseenter', () => {
+        activateImage(index);
+      });
+
+      textItem.addEventListener('click', () => {
+        activateImage(index);
+      });
     });
-    
-    container.addEventListener('click', () => {
-      textContainers.forEach(el => el.classList.remove('pc-active'));
-      handleHover(i);
-      container.classList.add('pc-active');
+
+    // Add click events to mobile dots
+    mobileDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        activateImage(index);
+      });
     });
+
+    // Initialize first image as active
+    if (imageItems.length > 0) {
+      imageItems[0].classList.add('pc-active');
+    }
   });
-
-  // Mobile touch events
-  textContainersMobile.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      textContainersMobile.forEach(el => el.classList.remove('pc-active'));
-      handleHover(i);
-      dot.classList.add('pc-active');
-    });
-  });
-
-  // Swipe functionality for mobile
-  const imageContainer = document.querySelector(`${sid} .pc-image-container`);
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  if (imageContainer) {
-    imageContainer.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, {passive: true});
-
-    imageContainer.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, {passive: true});
-  }
-
-  function handleSwipe() {
-    const threshold = 50;
-    const deltaX = touchEndX - touchStartX;
-
-    if (deltaX > threshold) {
-      // Swipe right - previous image
-      showImage((activeImageIndex - 1 + textContainers.length) % textContainers.length);
-    } else if (deltaX < -threshold) {
-      // Swipe left - next image
-      showImage((activeImageIndex + 1) % textContainers.length);
-    }
-  }
-
-  function showImage(index) {
-    if (index >= 0 && index < textContainers.length) {
-      handleHover(index);
-    }
-  }
-});
-{% endjavascript %}
+</script>
 
 {% schema %}
 {
-  "name": "PWC - Hover Image Gallery",
+  "name": "PC - Hover Image Gallery",
   "settings": [
     {
       "type": "range",
@@ -430,7 +362,6 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "type": "image_item",
       "name": "Image Item",
-      "limit": 10,
       "settings": [
         {
           "type": "inline_richtext",
@@ -459,7 +390,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ],
   "presets": [
     {
-      "name": "PWC - Hover Image Gallery",
+      "name": "PC - Hover Image Gallery",
       "blocks": [
         {
           "type": "image_item"
