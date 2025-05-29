@@ -638,7 +638,7 @@
           "settings": {
             "heading": "JBL",
             "image": "shopify://shop_images/vecteezy_vibrant-green-and-blue-headphones-with-modern-design_55716678.png",
-            "product": "",
+            "product": "product-name-2",
             "link_text": "Shop Now"
           }
         },
@@ -663,9 +663,9 @@
         "image_item_ambpbD": {
           "type": "image_item",
           "settings": {
-            "heading": "Image title",
+            "heading": "Sennheiser",
             "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
-            "product": "",
+            "product": "product-name-5",
             "link_text": "Shop Now"
           }
         },
