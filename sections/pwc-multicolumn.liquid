@@ -7,96 +7,6 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  /* Animation CSS */
-  .multicolumn-card {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-
-  .multicolumn-card .slide {
-    width: 100%;
-    height: 100%;
-    transition: 0.5s;
-  }
-
-  .multicolumn-card .slide.slide1 {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    transition: .7s;
-    transform: translateY(100px);
-    background: #2c73df;
-  }
-
-  .multicolumn-card:hover .slide.slide1 {
-    transform: translateY(0px);
-  }
-
-  .multicolumn-card .slide.slide2 {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
-    transition: .8s;
-    transform: translateY(-100px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    background: white;
-  }
-
-  .multicolumn-card:hover .slide.slide2 {
-    transform: translateY(0);
-  }
-
-  .multicolumn-card .slide.slide2::after {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 4px;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #2c73df;
-  }
-
-  .multicolumn-card .slide.slide2 .content p {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    color: #414141;
-  }
-
-  .multicolumn-card .slide.slide2 .content h3 {
-    margin: 0 0 10px 0;
-    padding: 0;
-    font-size: 24px;
-    text-align: center;
-    color: #414141;
-  }
-
-  .multicolumn-card .icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #2c73df;
-  }
-
-  .multicolumn-card .icon .fa {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 80px;
-    color: #fff;
-  }
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
@@ -104,6 +14,8 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+ 
 {%- endstyle -%}
 
 {%- liquid
@@ -166,49 +78,40 @@
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
           >
-            <div class="multicolumn-card content-container">
-              <div class="slide slide1">
-                {%- if block.settings.image != blank -%}
-                  <div class="icon">
-                    {{
-                      block.settings.image
-                      | image_url: width: 300
-                      | image_tag:
-                        loading: 'lazy',
-                        widths: '165, 360, 535, 750, 1070, 1500',
-                        class: 'multicolumn-card__image'
-                    }}
-                  </div>
-                {%- else -%}
-                  <div class="icon">
-                    <span class="fa">{{ block.settings.icon | default: '★' }}</span>
-                  </div>
-                {%- endif -%}
-              </div>
-              <div class="slide slide2">
-                <div class="content">
-                  {%- if block.settings.title != blank -%}
-                    <h3>{{ block.settings.title | escape }}</h3>
-                  {%- endif -%}
-                  {%- if block.settings.text != blank -%}
-                    <p>{{ block.settings.text | escape }}</p>
-                  {%- endif -%}
-                  {%- if block.settings.link_label != blank -%}
-                    <a
-                      {% if block.settings.link == blank %}
-                        role="link" aria-disabled="true"
-                      {% else %}
-                        href="{{ block.settings.link }}"
-                      {% endif %}
-                      class="link animate-arrow"
-                    >
-                      {{- block.settings.link_label | escape -}}
-                      <span class="icon-wrap">&nbsp;{% render 'icon-arrow' %}</span>
-                    </a>
-                  {%- endif -%}
-                </div>
-              </div>
-            </div>
+           <div class="multicolumn-card content-container image-overlay-card">
+  {%- if block.settings.image != blank -%}
+    <div class="image-overlay-wrapper">
+      {{
+        block.settings.image
+        | image_url: width: 3200
+        | image_tag:
+          widths: '400, 800, 1200, 1600, 2000',
+          class: 'overlay-card-image'
+      }}
+      <div class="overlay-content">
+        {%- if block.settings.heading != blank -%}
+          <h3 class="overlay-title">{{ block.settings.heading }}</h3>
+        {%- endif -%}
+        {%- if block.settings.text != blank -%}
+          <p class="overlay-description">{{ block.settings.text }}</p>
+        {%- endif -%}
+        {%- if block.settings.button_label != blank -%}
+          <a
+            {% if block.settings.button_link == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ block.settings.button_link }}"
+            {% endif %}
+            class="button overlay-button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+          >
+            {{- block.settings.button_label | escape -}}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
           </li>
         {%- endfor -%}
       </ul>
