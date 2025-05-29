@@ -52,9 +52,28 @@
     cursor: pointer;
     padding: 10px;
   }
+  .video-carousel__button svg {
+    width: 24px;
+    height: 24px;
+  }
+  .video-carousel__button--next svg {
+    transform: rotate(180deg);
+  }
   .video-carousel__pagination {
     text-align: center;
     margin-top: 20px;
+  }
+  .video-carousel__pagination .pagination-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  .video-carousel__pagination .pagination-dot.active {
+    background: #000;
   }
   @media (max-width: 749px) {
     .video-carousel {
@@ -127,13 +146,17 @@
             class="video-carousel__button video-carousel__button--prev"
             aria-label="{{ 'general.slider.previous_slide' | t }}"
           >
-            {% render 'icon-arrow' %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+            </svg>
           </button>
           <button
             class="video-carousel__button video-carousel__button--next"
             aria-label="{{ 'general.slider.next_slide' | t }}"
           >
-            {% render 'icon-arrow' %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+            </svg>
           </button>
         </div>
       {%- endif -%}
@@ -266,19 +289,19 @@
       "options": [
         {
           "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
+          "label": "Medium"
         },
         {
           "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
+          "label": "Large"
         },
         {
           "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
+          "label": "Extra Large"
         }
       ],
       "default": "h1",
-      "label": "t:sections.all.heading_size.label"
+      "label": "Heading size"
     },
     {
       "type": "richtext",

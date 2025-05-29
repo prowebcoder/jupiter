@@ -362,8 +362,9 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/home-overlay-cards-1.webp",
-            "heading": "Slide Heading",
-            "description": "Slide description text goes here.",
+            "overlay_color": "#303030",
+            "heading": "first slide",
+            "description": "Slide description text goes here. first one",
             "link_text": "Learn More",
             "link_url": ""
           }
@@ -372,6 +373,7 @@
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "overlay_color": "#303030",
             "heading": "Slide Heading",
             "description": "Slide description text goes here.",
             "link_text": "Learn More",
@@ -383,7 +385,6 @@
         "slide_pDrb8h",
         "slide_iEz9nQ"
       ],
-      "name": "Pwc Multicolumn",
       "settings": {}
     }
   },
