@@ -1,77 +1,107 @@
 {%- assign sid = '#shopify-section-' | append: section.id -%}
 
-<div class="pc-container section-{{ section.id }}-padding">
-  <div class="pc-text-container-left">
-    {% for block in section.blocks %}
-      {% if forloop.index <= 4 %}
-        <div class="pc-inner-text-container" data-index="{{ forloop.index0 }}">
-          <div
-            class="pc-title"
-            style="color: {{ section.settings.text_color }}; font-size: {{ section.settings.font_size }}px;"
-          >
-            {{ block.settings.heading }}
-          </div>
-          {% if block.settings.product != blank %}
-            <a
-              href="{{ block.settings.product.url }}"
-              class="pc-product-link"
-              style="color: {{ section.settings.link_color }};"
-            >
-              {{ block.settings.link_text | default: 'Shop Now' }}
-            </a>
-          {% endif %}
+<div
+  class="pc-container section-{{ section.id }}-padding"
+  style="{% if section.settings.background_color != blank %}background-color: {{ section.settings.background_color }};{% endif %}{% if section.settings.background_gradient != blank %}background: {{ section.settings.background_gradient }};{% endif %}"
+>
+  {% if section.settings.section_title != blank or section.settings.section_subheading != blank %}
+    <div class="pc-section-header">
+      {% if section.settings.section_title != blank %}
+        <h2 class="pc-section-title" style="color: {{ section.settings.heading_color }};">
+          {{ section.settings.section_title }}
+        </h2>
+      {% endif %}
+      {% if section.settings.section_subheading != blank %}
+        <div class="pc-section-subheading" style="color: {{ section.settings.subheading_color }};">
+          {{ section.settings.section_subheading }}
         </div>
       {% endif %}
-    {% endfor %}
-  </div>
+    </div>
+  {% endif %}
 
-  <div
-    class="pc-image-container"
-    style="width: {{ section.settings.image_width }}px; height: {{ section.settings.image_width }}px;"
-  >
-    {% for block in section.blocks %}
-      <div class="pc-inner-image {% if forloop.first %}pc-active{% endif %}" data-index="{{ forloop.index0 }}">
-        {% if block.settings.image != blank %}
-          <img
-            src="{{ block.settings.image | img_url: '800x' }}"
-            alt="{{ block.settings.image.alt | escape }}"
-            loading="lazy"
-          >
-        {% elsif block.settings.product != blank and block.settings.product.featured_image != blank %}
-          <img
-            src="{{ block.settings.product.featured_image | img_url: '800x' }}"
-            alt="{{ block.settings.product.title | escape }}"
-            loading="lazy"
-          >
-        {% else %}
-          {{ 'product-apparel-1' | placeholder_svg_tag: 'pc-placeholder-svg' }}
+  <div class="pc-content-wrapper">
+    <div class="pc-text-container-left">
+      {% for block in section.blocks %}
+        {% if forloop.index <= 4 %}
+          <div class="pc-inner-text-container" data-index="{{ forloop.index0 }}">
+            <div
+              class="pc-title"
+              style="color: {{ section.settings.text_color }}; font-size: {{ section.settings.font_size }}px;"
+            >
+              {{ block.settings.heading }}
+            </div>
+            {% if block.settings.product != blank %}
+              <a
+                href="{{ block.settings.product.url }}"
+                class="pc-product-link"
+                style="color: {{ section.settings.link_color }};"
+              >
+                {{ block.settings.link_text | default: 'Shop Now' }}
+                {% if block.settings.show_price %}
+                  <span class="pc-product-price" style="color: {{ section.settings.price_color }};">
+                    {{ block.settings.product.price | money }}
+                  </span>
+                {% endif %}
+              </a>
+            {% endif %}
+          </div>
         {% endif %}
-      </div>
-    {% endfor %}
-  </div>
+      {% endfor %}
+    </div>
 
-  <div class="pc-text-container-right">
-    {% for block in section.blocks %}
-      {% if forloop.index > 4 %}
-        <div class="pc-inner-text-container" data-index="{{ forloop.index0 }}">
-          <div
-            class="pc-title"
-            style="color: {{ section.settings.text_color }}; font-size: {{ section.settings.font_size }}px;"
-          >
-            {{ block.settings.heading }}
-          </div>
-          {% if block.settings.product != blank %}
-            <a
-              href="{{ block.settings.product.url }}"
-              class="pc-product-link"
-              style="color: {{ section.settings.link_color }};"
+    <div
+      class="pc-image-container"
+      style="width: {{ section.settings.image_width }}px; height: {{ section.settings.image_width }}px;"
+    >
+      {% for block in section.blocks %}
+        <div class="pc-inner-image {% if forloop.first %}pc-active{% endif %}" data-index="{{ forloop.index0 }}">
+          {% if block.settings.image != blank %}
+            <img
+              src="{{ block.settings.image | img_url: '800x' }}"
+              alt="{{ block.settings.image.alt | escape }}"
+              loading="lazy"
             >
-              {{ block.settings.link_text | default: 'Shop Now' }}
-            </a>
+          {% elsif block.settings.product != blank and block.settings.product.featured_image != blank %}
+            <img
+              src="{{ block.settings.product.featured_image | img_url: '800x' }}"
+              alt="{{ block.settings.product.title | escape }}"
+              loading="lazy"
+            >
+          {% else %}
+            {{ 'product-apparel-1' | placeholder_svg_tag: 'pc-placeholder-svg' }}
           {% endif %}
         </div>
-      {% endif %}
-    {% endfor %}
+      {% endfor %}
+    </div>
+
+    <div class="pc-text-container-right">
+      {% for block in section.blocks %}
+        {% if forloop.index > 4 %}
+          <div class="pc-inner-text-container" data-index="{{ forloop.index0 }}">
+            <div
+              class="pc-title"
+              style="color: {{ section.settings.text_color }}; font-size: {{ section.settings.font_size }}px;"
+            >
+              {{ block.settings.heading }}
+            </div>
+            {% if block.settings.product != blank %}
+              <a
+                href="{{ block.settings.product.url }}"
+                class="pc-product-link"
+                style="color: {{ section.settings.link_color }};"
+              >
+                {{ block.settings.link_text | default: 'Shop Now' }}
+                {% if block.settings.show_price %}
+                  <span class="pc-product-price" style="color: {{ section.settings.price_color }};">
+                    {{ block.settings.product.price | money }}
+                  </span>
+                {% endif %}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 
   <div class="pc-text-container-mobile">
@@ -90,13 +120,42 @@
     --pc-link-color: {{ section.settings.link_color }};
     --pc-font-size: {{ section.settings.font_size }}px;
     --pc-container-width: {{ section.settings.container_width }}px;
+    --pc-heading-color: {{ section.settings.heading_color }};
+    --pc-subheading-color: {{ section.settings.subheading_color }};
+    --pc-price-color: {{ section.settings.price_color }};
   }
 
   {{ sid }} .pc-container {
+    padding: 40px 20px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  {{ sid }} .pc-section-header {
+    text-align: center;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  {{ sid }} .pc-section-title {
+    color: var(--pc-heading-color);
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+
+  {{ sid }} .pc-section-subheading {
+    color: var(--pc-subheading-color);
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  {{ sid }} .pc-content-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 25rem;
+    gap: 20rem;
     max-width: var(--pc-container-width);
     margin: 0 auto;
   }
@@ -193,6 +252,13 @@
     text-decoration: underline;
   }
 
+  {{ sid }} .pc-product-price {
+    display: block;
+    margin-top: 4px;
+    font-weight: bold;
+    color: var(--pc-price-color);
+  }
+
   @media screen and (max-width: 749px) {
     {{ sid }} .pc-text-container-mobile {
       display: flex;
@@ -206,7 +272,7 @@
       display: none;
     }
 
-    {{ sid }} .pc-container {
+    {{ sid }} .pc-content-wrapper {
       flex-direction: column;
       gap: 2rem;
     }
@@ -215,6 +281,14 @@
       width: 100%;
       height: auto;
       aspect-ratio: 1/1;
+    }
+
+    {{ sid }} .pc-section-title {
+      font-size: 24px;
+    }
+
+    {{ sid }} .pc-section-subheading {
+      font-size: 16px;
     }
   }
 
@@ -290,6 +364,48 @@
   "name": "PC - Hover Image Gallery",
   "settings": [
     {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Featured Collection"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "richtext",
+      "id": "section_subheading",
+      "label": "Section Subheading",
+      "default": "<p>Browse our featured products</p>"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background Gradient"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
       "type": "range",
       "id": "container_width",
       "min": 800,
@@ -310,6 +426,10 @@
       "default": 500
     },
     {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
       "type": "color",
       "id": "text_color",
       "label": "Text Color",
@@ -328,6 +448,12 @@
       "default": "#0066cc"
     },
     {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price Color",
+      "default": "#333333"
+    },
+    {
       "type": "range",
       "id": "font_size",
       "min": 12,
@@ -336,6 +462,10 @@
       "unit": "px",
       "label": "Font Size",
       "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
     },
     {
       "type": "range",
@@ -372,7 +502,8 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image"
+          "label": "Image",
+          "info": "Will use product image if left empty and product is selected"
         },
         {
           "type": "product",
@@ -384,6 +515,12 @@
           "id": "link_text",
           "label": "Link Text",
           "default": "Shop Now"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_price",
+          "label": "Show Product Price",
+          "default": true
         }
       ]
     }
