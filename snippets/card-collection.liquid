@@ -29,7 +29,6 @@
     assign card_color_scheme = settings.collection_card_color_scheme
     assign card_style = settings.collection_card_style
   endif
-  assign title-more = settings['title-more']
 -%}
 
 <div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
@@ -119,7 +118,6 @@
     </div>
     {%- if card_collection != blank and card_style == 'card' or card_collection.featured_image -%}
       <div class="card__content">
-        <h2>{{ block.settings.collection_heading }}</h2>
         <div class="card__information">
           <h3 class="card__heading">
             <a
@@ -142,7 +140,6 @@
               {%- endif %}
             </a>
           </h3>
-          <h2>{{ block.settings['title-more'] }}</h2>
           {%- if card_collection.featured_image == null and card_collection.description != blank -%}
             <p class="card__caption">
               {{- card_collection.description | strip_html | truncatewords: 12 -}}
@@ -168,16 +165,5 @@
         </div>
       </div>
     {%- endif -%}
-
-    <div
-      class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-      {{ block.shopify_attributes }}
-      {% if settings.animations_reveal_on_scroll %}
-        data-cascade
-        style="--animation-order: {{ forloop.index }};"
-      {% endif %}
-    >
-      {{ block.settings.text }}
-    </div>
   </div>
 </div>
