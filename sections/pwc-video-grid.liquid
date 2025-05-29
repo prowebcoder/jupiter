@@ -82,6 +82,40 @@
     box-sizing: border-box;
   }
 
+  {{ sid }} .pc-slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  {{ sid }} .pc-slider-arrow {
+    pointer-events: auto;
+    background: rgba(255,255,255,0.7);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+  }
+
+  {{ sid }} .pc-slider-arrow:hover {
+    background: rgba(255,255,255,0.9);
+  }
+
+  {{ sid }} .pc-slider-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
   {{ sid }} .pc-slider-dots {
     display: flex;
     justify-content: center;
@@ -326,6 +360,19 @@
         {%- endfor -%}
       </div>
 
+      <div class="pc-slider-nav">
+        <button class="pc-slider-arrow pc-slider-prev" aria-label="Previous slide">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+          </svg>
+        </button>
+        <button class="pc-slider-arrow pc-slider-next" aria-label="Next slide">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+          </svg>
+        </button>
+      </div>
+
       <div class="pc-slider-dots">
         {%- for block in section.blocks -%}
           <div class="pc-slider-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
@@ -341,6 +388,8 @@
       const slider = document.querySelector('{{ sid }} .pc-video-slider-container');
       const dots = document.querySelectorAll('{{ sid }} .pc-slider-dot');
       const slides = document.querySelectorAll('{{ sid }} .pc-video-slide');
+      const prevBtn = document.querySelector('{{ sid }} .pc-slider-prev');
+      const nextBtn = document.querySelector('{{ sid }} .pc-slider-next');
       let currentIndex = 0;
       let slideInterval;
       const slideDuration = {{ section.settings.slide_duration | default: 5000 }};
@@ -370,6 +419,19 @@
       // Initialize slider
       goToSlide(0);
       startSlider();
+
+      // Arrow click events
+      prevBtn.addEventListener('click', function() {
+        goToSlide(currentIndex - 1);
+        stopSlider();
+        startSlider();
+      });
+
+      nextBtn.addEventListener('click', function() {
+        goToSlide(currentIndex + 1);
+        stopSlider();
+        startSlider();
+      });
 
       // Dot click events
       dots.forEach(dot => {
