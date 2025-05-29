@@ -852,7 +852,7 @@
         "vertical_alignment": "center",
         "horizontal_alignment": "center",
         "content_alignment": "center",
-        "slides_to_show": 3,
+        "slides_to_show": 4,
         "slides_to_show_tablet": 2,
         "slides_to_show_mobile": 1,
         "slide_spacing": 15,
