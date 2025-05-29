@@ -5,7 +5,12 @@
   style="{% if section.settings.background_color != blank %}background-color: {{ section.settings.background_color }};{% endif %}{% if section.settings.background_gradient != blank %}background: {{ section.settings.background_gradient }};{% endif %}"
 >
   {% if section.settings.section_title != blank or section.settings.section_subheading != blank %}
-    <div class="pc-section-header">
+    <div
+      class="pc-section-header"
+      {% if section.settings.container_type == 'full-width' %}
+        style="max-width: {{ section.settings.container_width }}px; margin: 0 auto;"
+      {% endif %}
+    >
       {% if section.settings.section_title != blank %}
         <h2 class="pc-section-title" style="color: {{ section.settings.heading_color }};">
           {{ section.settings.section_title }}
@@ -19,7 +24,12 @@
     </div>
   {% endif %}
 
-  <div class="pc-content-wrapper">
+  <div
+    class="pc-content-wrapper"
+    {% if section.settings.container_type == 'full-width' %}
+      style="max-width: {{ section.settings.container_width }}px;"
+    {% endif %}
+  >
     <div class="pc-text-container-left">
       {% for block in section.blocks %}
         {% if forloop.index <= 4 %}
@@ -119,7 +129,6 @@
     --pc-active-color: {{ section.settings.active_color }};
     --pc-link-color: {{ section.settings.link_color }};
     --pc-font-size: {{ section.settings.font_size }}px;
-    --pc-container-width: {{ section.settings.container_width }}px;
     --pc-heading-color: {{ section.settings.heading_color }};
     --pc-subheading-color: {{ section.settings.subheading_color }};
     --pc-price-color: {{ section.settings.price_color }};
@@ -129,14 +138,22 @@
     padding: 40px 20px;
     background-size: cover;
     background-position: center;
+    {% if section.settings.container_type == 'full-width' %}
+      max-width: 100%;
+    {% else %}
+      max-width: {{ section.settings.container_width }}px;
+      margin: 0 auto;
+    {% endif %}
   }
 
   {{ sid }} .pc-section-header {
     text-align: center;
     margin-bottom: 40px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    {% unless section.settings.container_type == 'full-width' %}
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    {% endunless %}
   }
 
   {{ sid }} .pc-section-title {
@@ -156,8 +173,14 @@
     justify-content: center;
     align-items: center;
     gap: 20rem;
-    max-width: var(--pc-container-width);
-    margin: 0 auto;
+    {% if section.settings.container_type == 'full-width' %}
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+    {% else %}
+      max-width: 100%;
+      margin: 0 auto;
+    {% endif %}
   }
 
   {{ sid }} .pc-image-container {
@@ -389,6 +412,47 @@
     },
     {
       "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "select",
+      "id": "container_type",
+      "label": "Container Type",
+      "options": [
+        {
+          "value": "fixed",
+          "label": "Fixed Width"
+        },
+        {
+          "value": "full-width",
+          "label": "Full Width (with inner max-width)"
+        }
+      ],
+      "default": "fixed"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 2400,
+      "step": 100,
+      "unit": "px",
+      "label": "Container Max Width",
+      "default": 1400,
+      "info": "Works for both container types"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "Image Width",
+      "default": 500
+    },
+    {
+      "type": "header",
       "content": "Background Settings"
     },
     {
@@ -400,30 +464,6 @@
       "type": "color_background",
       "id": "background_gradient",
       "label": "Background Gradient"
-    },
-    {
-      "type": "header",
-      "content": "Layout Settings"
-    },
-    {
-      "type": "range",
-      "id": "container_width",
-      "min": 800,
-      "max": 1600,
-      "step": 50,
-      "unit": "px",
-      "label": "Container Width",
-      "default": 1200
-    },
-    {
-      "type": "range",
-      "id": "image_width",
-      "min": 300,
-      "max": 800,
-      "step": 50,
-      "unit": "px",
-      "label": "Image Width",
-      "default": 500
     },
     {
       "type": "header",
