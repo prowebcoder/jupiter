@@ -610,6 +610,7 @@
           "type": "image_item",
           "settings": {
             "heading": "Image title",
+            "image": "shopify://shop_images/Main_5127218a-8f6c-498f-b489-09242c0fab0a.jpg",
             "product": "green-snowboard",
             "link_text": "Shop Now"
           }
@@ -620,7 +621,7 @@
       ],
       "settings": {
         "container_width": 1200,
-        "image_width": 500,
+        "image_width": 350,
         "text_color": "#000000",
         "active_color": "#ffa05e",
         "link_color": "#0066cc",
