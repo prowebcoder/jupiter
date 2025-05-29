@@ -612,6 +612,7 @@
             "heading": "Sony",
             "image": "shopify://shop_images/headphones-design-3d-rendering-for-product-mockup-free-png.png",
             "product": "green-snowboard",
+            "link_image": true,
             "link_text": "Shop Now",
             "show_price": true
           }
@@ -622,6 +623,7 @@
             "heading": "Boat",
             "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
             "product": "green-snowboard",
+            "link_image": false,
             "link_text": "Shop Now",
             "show_price": true
           }
@@ -632,6 +634,7 @@
             "heading": "Samsung",
             "image": "shopify://shop_images/vecteezy_overear-headphones-red-leather-blue-accents-premium-audio_55244231.png",
             "product": "product-name-2",
+            "link_image": false,
             "link_text": "Shop Now",
             "show_price": true
           }
@@ -642,6 +645,7 @@
             "heading": "JBL",
             "image": "shopify://shop_images/vecteezy_vibrant-green-and-blue-headphones-with-modern-design_55716678.png",
             "product": "product-name-2",
+            "link_image": false,
             "link_text": "Shop Now",
             "show_price": true
           }
@@ -652,6 +656,7 @@
             "heading": "Apple",
             "image": "shopify://shop_images/vecteezy_headphone-png-with-ai-generated_26773824.png",
             "product": "orange-snowboard",
+            "link_image": false,
             "link_text": "Shop Now",
             "show_price": true
           }
@@ -662,6 +667,7 @@
             "heading": "Bose",
             "image": "shopify://shop_images/vecteezy_overear-headphones-red-leather-blue-accents-premium-audio_55244231.png",
             "product": "green-snowboard",
+            "link_image": false,
             "link_text": "Shop Now",
             "show_price": true
           }
@@ -672,6 +678,7 @@
             "heading": "Sennheiser",
             "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
             "product": "product-name-5",
+            "link_image": false,
             "link_text": "Shop Now",
             "show_price": true
           }
@@ -682,6 +689,7 @@
             "heading": "Beats",
             "image": "shopify://shop_images/headphones-design-3d-rendering-for-product-mockup-free-png.png",
             "product": "product-name",
+            "link_image": false,
             "link_text": "Shop Now",
             "show_price": true
           }
@@ -702,10 +710,11 @@
         "heading_color": "#334fb4",
         "section_subheading": "<p>Browse our featured products</p>",
         "subheading_color": "#000000",
-        "background_color": "#e6e6e6",
-        "background_gradient": "",
+        "container_type": "fixed",
         "container_width": 1900,
         "image_width": 500,
+        "background_color": "#e6e6e6",
+        "background_gradient": "",
         "text_color": "#000000",
         "active_color": "#ffa05e",
         "link_color": "#0066cc",
