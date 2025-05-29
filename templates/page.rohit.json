@@ -396,42 +396,6 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
-    },
-    "pwc_collection_list_CUFPTq": {
-      "type": "pwc-collection-list",
-      "blocks": {
-        "featured_collection_f8bJEh": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "",
-            "heading": "Collection Heading"
-          }
-        },
-        "featured_collection_CC4JYX": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "",
-            "heading": "Collection Heading"
-          }
-        }
-      },
-      "block_order": [
-        "featured_collection_f8bJEh",
-        "featured_collection_CC4JYX"
-      ],
-      "name": "Pwc Collection List",
-      "settings": {
-        "title": "Collections",
-        "heading_size": "h1",
-        "image_ratio": "square",
-        "columns_desktop": 2,
-        "color_scheme": "",
-        "show_view_all": false,
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
@@ -439,7 +403,6 @@
     "pwc_marquee_1_MiwcCR",
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
-    "rich_text_GrEnh3",
-    "pwc_collection_list_CUFPTq"
+    "rich_text_GrEnh3"
   ]
 }
