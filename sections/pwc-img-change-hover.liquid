@@ -1,207 +1,405 @@
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+
 {{ 'mobile.css' | asset_url | stylesheet_tag }}
-<div class="container1 section-{{ section.id }}-padding">
-  <div class="text-container-left">
+<div class="pc-container section-{{ section.id }}-padding">
+  <div class="pc-text-container-left">
     {% for block in section.blocks limit: 4 %}
-      <div class="inner-text-container" data-text-index="{{ forloop.index }}">{{ block.settings.heading }}</div>
-    {% endfor %}
-  </div>
-  <div class="image-container">
-    {% for block in section.blocks %}
-      <div class="inner-image {% if forloop.first %} active {% endif %}" data-image-index="{{ forloop.index }}">
-        {% if block.settings.image -%}
-          <img src="{{ block.settings.image | img_url:"medium" }}">
-        {%- else %}
-          {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      <div class="pc-inner-text-container" data-text-index="{{ forloop.index }}">
+        {{ block.settings.heading }}
+        {% if block.settings.product != blank %}
+          <a
+            href="{{ block.settings.product.url }}"
+            class="pc-product-link"
+            style="color: {{ section.settings.text_color }};"
+          >
+            {{ block.settings.link_text | default: 'Shop Now' }}
+          </a>
         {% endif %}
       </div>
     {% endfor %}
   </div>
 
-  <div class="text-container-right">
+  <div class="pc-image-container" style="width: {{ section.settings.image_width }}px;">
+    {% for block in section.blocks %}
+      <div class="pc-inner-image {% if forloop.first %} pc-active {% endif %}" data-image-index="{{ forloop.index }}">
+        {% if block.settings.image != blank %}
+          <img
+            src="{{ block.settings.image | img_url: '800x' }}"
+            alt="{{ block.settings.image.alt | escape }}"
+            loading="lazy"
+          >
+        {% elsif block.settings.product != blank and block.settings.product.featured_image != blank %}
+          <img
+            src="{{ block.settings.product.featured_image | img_url: '800x' }}"
+            alt="{{ block.settings.product.title | escape }}"
+            loading="lazy"
+          >
+        {% else %}
+          {{ 'product-apparel-1' | placeholder_svg_tag: 'pc-placeholder-svg' }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="pc-text-container-right">
     {% for block in section.blocks %}
       {% if forloop.index > 4 %}
-        <div class="inner-text-container" data-text-index="{{ forloop.index }}">{{ block.settings.heading }}</div>
+        <div class="pc-inner-text-container" data-text-index="{{ forloop.index }}">
+          {{ block.settings.heading }}
+          {% if block.settings.product != blank %}
+            <a
+              href="{{ block.settings.product.url }}"
+              class="pc-product-link"
+              style="color: {{ section.settings.text_color }};"
+            >
+              {{ block.settings.link_text | default: 'Shop Now' }}
+            </a>
+          {% endif %}
+        </div>
       {% endif %}
     {% endfor %}
   </div>
 
-  <div class="text-container-mobile">
+  <div class="pc-text-container-mobile">
     {% for block in section.blocks %}
-      <div class="inner-text-container {% if forloop.first %} active{% endif %}" data-text-index="{{ forloop.index }}">
-        <span class="dot"></span>
+      <div
+        class="pc-inner-text-container {% if forloop.first %} pc-active{% endif %}"
+        data-text-index="{{ forloop.index }}"
+      >
+        <span class="pc-dot"></span>
       </div>
     {% endfor %}
   </div>
 </div>
 
 {% style %}
-    /* Define the styles for the dots */
-  .inner-text-container {
-  	display:inline-block;
-  	padding: 5px;
-  	/* Adjust the padding to control the dot size */
+  {{ sid }} {
+    --pc-text-color: {{ section.settings.text_color }};
+    --pc-active-color: {{ section.settings.active_color }};
+    --pc-link-color: {{ section.settings.link_color }};
+    --pc-font-size: {{ section.settings.font_size }}px;
+    --pc-container-width: {{ section.settings.container_width }}px;
   }
-  /* Style the dots as small circles */
-  .dot {
-  	display:inline-block;
-  	width:5px;
-  	/* Adjust the width and height to control the dot size */
-  	height:5px;
-  	border-radius:50%;
-  	background-color:black;
-  	/* Default dot color */
+
+  {{ sid }} .pc-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+    max-width: var(--pc-container-width);
+    margin: 0 auto;
   }
-  svg.my-custom-class {
-  	display:block;
-  	width:400px;
-  	height: 400px;
+
+  {{ sid }} .pc-inner-text-container {
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    scale: 1;
+    color: var(--pc-text-color);
+    font-size: var(--pc-font-size);
   }
-  /* Change the dot color to red on hover */
-  .inner-image {
-  	display:none;
+
+  {{ sid }} .pc-inner-text-container:hover {
+    scale: 1.1;
   }
-  .inner-image.active {
-  	display:block;
+
+  {{ sid }} .pc-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--pc-text-color);
+    transition: background-color 0.3s ease;
   }
-  .text-container-right,.text-container-left {
-  	display:flex;
-  	flex-direction:column;
-  	gap:4rem;
-  	position:relative;
+
+  {{ sid }} .pc-inner-text-container.pc-active .pc-dot {
+    background: var(--pc-active-color);
   }
-  .inner-text-container {
-  	cursor:pointer;
-  	position:relative;
-  	transition-property:scale;
-  	transition-duration:.2s;
-  	scale:1;
+
+  {{ sid }} .pc-image-container {
+    position: relative;
+    width: {{ section.settings.image_width }}px;
+    height: {{ section.settings.image_width }}px;
   }
-  .inner-text-container.active span.dot {
-  	background:#ffa05e;
+
+  {{ sid }} .pc-inner-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    width: 100%;
+    height: 100%;
   }
-  .text-container-left .inner-text-container:before {
-  	content:"";
-  	position:absolute;
-  	width:60px;
-  	height:1px;
-  	right:-80px;
-  	background:#000;
-  	top:10px;
-  	z-index:999;
+
+  {{ sid }} .pc-inner-image.pc-active {
+    opacity: 1;
   }
-  .text-container-right .inner-text-container:before {
-  	content:"";
-  	position:absolute;
-  	width:60px;
-  	height:1px;
-  	left:-80px;
-  	background:#000;
-  	top:10px;
-  	z-index:999;
+
+  {{ sid }} .pc-inner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
-  .container1 {
-  	display:flex;
-  	justify-content:center;
-  	align-items:center;
-  	gap:10rem;
+
+  {{ sid }} .pc-placeholder-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
   }
-  .inner-text-container:hover {
-  	scale: 1.1;
+
+  {{ sid }} .pc-text-container-right,
+  {{ sid }} .pc-text-container-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    position: relative;
   }
+
+  {{ sid }} .pc-text-container-left .pc-inner-text-container:before {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 1px;
+    right: -80px;
+    background: var(--pc-text-color);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+  }
+
+  {{ sid }} .pc-text-container-right .pc-inner-text-container:before {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 1px;
+    left: -80px;
+    background: var(--pc-text-color);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+  }
+
+  {{ sid }} .pc-product-link {
+    display: block;
+    margin-top: 8px;
+    font-size: calc(var(--pc-font-size) - 2px);
+    color: var(--pc-link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  {{ sid }} .pc-product-link:hover {
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 749px) {
+    {{ sid }} .pc-text-container-mobile {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    {{ sid }} .pc-text-container-right,
+    {{ sid }} .pc-text-container-left {
+      display: none;
+    }
+
+    {{ sid }} .pc-container {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    {{ sid }} .pc-image-container {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1;
+    }
+  }
+
   .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
-  .section-{{ section.id }}-padding {
+    .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 1.5 }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    {{ sid }} .pc-text-container-mobile {
+      display: none;
+    }
   }
-  .text-container-mobile {
-              display: none;
-  }
-                  }
 {% endstyle %}
 
 {% javascript %}
-  const textContainers = document.querySelectorAll('.inner-text-container');
-  const textContainersMobile = document.querySelectorAll('.text-container-mobile .inner-text-container');
-  const imageContainers = document.querySelectorAll('.inner-image');
-  let activeImageIndex = 0;
+  document.addEventListener('DOMContentLoaded', function() {
+    const textContainers = document.querySelectorAll('{{ sid }} .pc-inner-text-container');
+    const textContainersMobile = document.querySelectorAll('{{ sid }} .pc-text-container-mobile .pc-inner-text-container');
+    const imageContainers = document.querySelectorAll('{{ sid }} .pc-inner-image');
+    let activeImageIndex = 0;
+    let transitionTimer;
 
-  function handleHover(index) {
-    const textIndex = textContainers[index].getAttribute('data-text-index');
-    for (let i = 0; i < imageContainers.length; i++) {
-      const imageIndex = imageContainers[i].getAttribute('data-image-index');
-      if (textIndex === imageIndex) {
-        imageContainers[i].classList.add('active');
-        textContainersMobile[i].classList.add('active');
-      } else {
-        imageContainers[i].classList.remove('active');
-        textContainersMobile[i].classList.remove('active');
+    function handleHover(index) {
+      clearTimeout(transitionTimer);
+
+      // Get the text index from the hovered element
+      const textIndex = textContainers[index]?.getAttribute('data-text-index');
+      if (!textIndex) return;
+
+      // Find the matching image and activate it with fade effect
+      imageContainers.forEach(image => {
+        const imageIndex = image.getAttribute('data-image-index');
+        if (textIndex === imageIndex) {
+          // Start fade out all images
+          imageContainers.forEach(img => {
+            img.classList.remove('pc-active');
+          });
+
+          // Then fade in the active one
+          transitionTimer = setTimeout(() => {
+            image.classList.add('pc-active');
+          }, 50);
+
+          // Update mobile indicators
+          textContainersMobile.forEach((el, i) => {
+            if (i === index) {
+              el.classList.add('pc-active');
+            } else {
+              el.classList.remove('pc-active');
+            }
+          });
+
+          activeImageIndex = index;
+        }
+      });
+    }
+
+    function showImage(index) {
+      if (index >= 0 && index < textContainers.length) {
+        handleHover(index);
       }
     }
-    activeImageIndex = index;
-  }
 
-  function showImage(index) {
-    if (index >= 0 && index < textContainers.length) {
-      handleHover(index);
-    }
-  }
-
-  for (let i = 0; i < textContainers.length; i++) {
-    textContainers[i].addEventListener('mouseover', () => {
-      handleHover(i);
-    });
-
-    textContainers[i].addEventListener('click', () => {
-      textContainers.forEach((el) => {
-        el.classList.remove('active');
+    // Desktop hover events
+    textContainers.forEach((container, i) => {
+      container.addEventListener('mouseenter', () => {
+        handleHover(i);
       });
-      handleHover(i);
-      textContainers[i].classList.add('active');
+
+      container.addEventListener('click', () => {
+        textContainers.forEach(el => el.classList.remove('pc-active'));
+        handleHover(i);
+        container.classList.add('pc-active');
+      });
     });
-  }
 
-  // Touch events for swipe gestures on image container
-  let touchStartX = 0;
-  let touchEndX = 0;
+    // Mobile touch events
+    textContainersMobile.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        textContainersMobile.forEach(el => el.classList.remove('pc-active'));
+        handleHover(i);
+        dot.classList.add('pc-active');
+      });
+    });
 
-  document.querySelector('.image-container').addEventListener('touchstart', (event) => {
-    touchStartX = event.touches[0].clientX;
-  });
+    // Swipe functionality for mobile
+    const imageContainer = document.querySelector('{{ sid }} .pc-image-container');
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-  document.querySelector('.image-container').addEventListener('touchend', (event) => {
-    touchEndX = event.changedTouches[0].clientX;
-    const deltaX = touchEndX - touchStartX;
+    if (imageContainer) {
+      imageContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, {passive: true});
 
-    // Adjust the threshold value to control swipe sensitivity
-    const threshold = 50;
+      imageContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, {passive: true});
+    }
 
-    if (deltaX > threshold) {
-      // Swipe right, show previous image
-      showImage(activeImageIndex - 1);
-    } else if (deltaX < -threshold) {
-      // Swipe left, show next image
-      showImage(activeImageIndex + 1);
+    function handleSwipe() {
+      const threshold = 50;
+      const deltaX = touchEndX - touchStartX;
+
+      if (deltaX > threshold) {
+        // Swipe right - previous image
+        showImage((activeImageIndex - 1 + textContainers.length) % textContainers.length);
+      } else if (deltaX < -threshold) {
+        // Swipe left - next image
+        showImage((activeImageIndex + 1) % textContainers.length);
+      }
     }
   });
 {% endjavascript %}
 
 {% schema %}
 {
-  "name": "On Hover Image Change",
+  "name": "PWC - Hover Image Gallery",
   "settings": [
-     {
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Container Width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "Image Width",
+      "default": 500
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "active_color",
+      "label": "Active Dot Color",
+      "default": "#ffa05e"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link Color",
+      "default": "#0066cc"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 16
+    },
+    {
       "type": "range",
       "id": "padding_top",
       "min": 0,
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
+      "label": "Padding Top",
       "default": 40
     },
     {
@@ -211,38 +409,56 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
+      "label": "Padding Bottom",
       "default": 52
     }
   ],
-   "blocks": [
-      {
-    "type": "heading",
-    "name": "t:sections.image-banner.blocks.heading.name",
-    "limit": 10,
-    "settings": [
-      {
-        "type": "inline_richtext",
-        "id": "heading",
-        "default": "Image banner",
-        "label": "t:sections.image-banner.blocks.heading.settings.heading.label"
-      },
-       {
-    "type": "image_picker",
-    "id": "image",
-    "label": "t:sections.image-banner.settings.image.label"
-  }]
-      }],
-
-"presets": [
-  {
-    "name": "On Hover Image Change",
-    "blocks": [
-      {
-        "type": "heading"
-      }
-    ]
-  }
-]
+  "blocks": [
+    {
+      "type": "image_item",
+      "name": "Image Item",
+      "limit": 10,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Image title",
+          "label": "Heading"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Linked Product"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Shop Now"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC - Hover Image Gallery",
+      "blocks": [
+        {
+          "type": "image_item"
+        },
+        {
+          "type": "image_item"
+        },
+        {
+          "type": "image_item"
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
