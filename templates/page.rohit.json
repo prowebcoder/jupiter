@@ -385,26 +385,6 @@
       ],
       "name": "Pwc Image Slider",
       "settings": {}
-    },
-    "pwc_image_comparison_Uc6PEf": {
-      "type": "pwc-image-comparison",
-      "name": "Pwc Image Comparison Slider",
-      "settings": {
-        "title": "Image Comparison",
-        "original_image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg",
-        "modified_image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
-        "original_label": "Original",
-        "modified_label": "Modified",
-        "label_color": "#ffffff",
-        "label_bg_color": "rgba(0,0,0,0.5)",
-        "handle_color": "#dc717d",
-        "handle_active_color": "#445b7c",
-        "handle_size": 44,
-        "max_width": 500,
-        "section_bg": "#445b7c",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
     }
   },
   "order": [
@@ -412,7 +392,6 @@
     "pwc_marquee_1_MiwcCR",
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
-    "pwc_multicolumn_iz6myC",
-    "pwc_image_comparison_Uc6PEf"
+    "pwc_multicolumn_iz6myC"
   ]
 }
