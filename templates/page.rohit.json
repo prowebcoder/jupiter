@@ -362,16 +362,14 @@
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "collection_heading": "Talk about your brandsdsd",
-            "heading_size": "h1"
+            "text-new": "<p>Life Changing Breathing dfdf</p>"
           }
         },
         "featured_collection_iVpYc3": {
           "type": "featured_collection",
           "settings": {
             "collection": "",
-            "collection_heading": "Talk about your brand",
-            "heading_size": "h1"
+            "text-new": "<p>Life Changing Breathing</p>"
           }
         }
       },
