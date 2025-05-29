@@ -1,3 +1,14 @@
+.multicolumn-card__info {
+    position: absolute;
+    bottom: 0;
+    left: 32px;
+    color: #fff;
+ }
+
+.multicolumn-card {
+    position: relative;
+}
+
 .multicolumn .title {
   margin: 0;
 }
