@@ -146,7 +146,7 @@
                   style="--animation-order: {{ forloop.index }};"
                 {% endif %}
               >
-              {{ block.settings.collection_heading }}
+              {{ block.settings.heading }}
               </h2>
             {%- when 'caption' -%}
               <p
@@ -364,7 +364,7 @@
         },
           {
           "type": "inline_richtext",
-          "id": "collection_heading",
+          "id": "heading",
           "default": "Collection Heading",
           "label": "Collection Heading"
         },
