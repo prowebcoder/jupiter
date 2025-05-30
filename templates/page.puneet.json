@@ -644,13 +644,54 @@
             "link_text": "Shop Now",
             "show_price": true
           }
+        },
+        "image_item_GmtTex": {
+          "type": "image_item",
+          "settings": {
+            "heading": "Siguno",
+            "product": "crossbody-bags",
+            "link_text": "Shop Now",
+            "show_price": true
+          }
+        },
+        "image_item_Pdm3di": {
+          "type": "image_item",
+          "settings": {
+            "heading": "Zebot",
+            "product": "green-snowboard",
+            "link_text": "Shop Now",
+            "show_price": true
+          }
+        },
+        "image_item_wd3fFH": {
+          "type": "image_item",
+          "settings": {
+            "heading": "Miffo",
+            "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
+            "product": "",
+            "link_text": "Shop Now",
+            "show_price": true
+          }
+        },
+        "image_item_qFy99A": {
+          "type": "image_item",
+          "settings": {
+            "heading": "Camous",
+            "product": "product-name",
+            "link_text": "Shop Now",
+            "show_price": true
+          }
         }
       },
       "block_order": [
         "image_item_MG4ndL",
         "image_item_aQxrzX",
         "image_item_BFdWFJ",
-        "image_item_Qtmg6i"
+        "image_item_Qtmg6i",
+        "image_item_GmtTex",
+        "image_item_Pdm3di",
+        "image_item_wd3fFH",
+        "image_item_qFy99A"
       ],
       "settings": {
         "section_title": "Featured Collection",
