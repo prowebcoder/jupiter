@@ -1,3 +1,523 @@
+{% schema %}
+{
+  "name": "Advanced Multi-Column",
+  "class": "section-advanced-columns",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container Width",
+      "options": [
+        {
+          "value": "full-width",
+          "label": "Full Width"
+        },
+        {
+          "value": "wide",
+          "label": "Wide (1400px)"
+        },
+        {
+          "value": "normal",
+          "label": "Normal (1200px)"
+        },
+        {
+          "value": "narrow",
+          "label": "Narrow (1000px)"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "section_parallax",
+      "label": "Enable Parallax Effect",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Column Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Number of Columns",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "column_alignment",
+      "label": "Column Alignment",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ],
+      "default": "top"
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Column Gap",
+      "default": 30
+    },
+    {
+      "type": "checkbox",
+      "id": "equal_height",
+      "label": "Equal Height Columns",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Animation Effects"
+    },
+    {
+      "type": "select",
+      "id": "hover_effect",
+      "label": "Hover Effect",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "lift",
+          "label": "Lift Up"
+        },
+        {
+          "value": "shadow",
+          "label": "Shadow Expand"
+        },
+        {
+          "value": "scale",
+          "label": "Scale Up"
+        },
+        {
+          "value": "tilt",
+          "label": "3D Tilt"
+        }
+      ],
+      "default": "lift"
+    },
+    {
+      "type": "select",
+      "id": "entrance_animation",
+      "label": "Entrance Animation",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "fade",
+          "label": "Fade In"
+        },
+        {
+          "value": "slide-up",
+          "label": "Slide Up"
+        },
+        {
+          "value": "slide-down",
+          "label": "Slide Down"
+        },
+        {
+          "value": "zoom",
+          "label": "Zoom In"
+        },
+        {
+          "value": "stagger",
+          "label": "Staggered"
+        }
+      ],
+      "default": "fade"
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "min": 100,
+      "max": 1000,
+      "step": 50,
+      "unit": "ms",
+      "label": "Animation Duration",
+      "default": 300
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image Position",
+          "options": [
+            {
+              "value": "top",
+              "label": "Top"
+            },
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            },
+            {
+              "value": "background",
+              "label": "Background"
+            }
+          ],
+          "default": "top"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "label": "Image Width",
+          "default": 100
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Add your text here</p>"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Column Heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading Size",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "default": "h3"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Content Alignment",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "shopping-cart",
+              "label": "Cart"
+            },
+            {
+              "value": "star",
+              "label": "Star"
+            },
+            {
+              "value": "heart",
+              "label": "Heart"
+            },
+            {
+              "value": "check",
+              "label": "Check"
+            },
+            {
+              "value": "truck",
+              "label": "Truck"
+            },
+            {
+              "value": "shield",
+              "label": "Shield"
+            },
+            {
+              "value": "phone",
+              "label": "Phone"
+            },
+            {
+              "value": "email",
+              "label": "Email"
+            },
+            {
+              "value": "user",
+              "label": "User"
+            },
+            {
+              "value": "clock",
+              "label": "Clock"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Button Style",
+          "options": [
+            {
+              "value": "primary",
+              "label": "Primary"
+            },
+            {
+              "value": "secondary",
+              "label": "Secondary"
+            },
+            {
+              "value": "outline",
+              "label": "Outline"
+            },
+            {
+              "value": "text",
+              "label": "Text Only"
+            }
+          ],
+          "default": "primary"
+        },
+        {
+          "type": "header",
+          "content": "Style"
+        },
+        {
+          "type": "color",
+          "id": "column_bg",
+          "label": "Column Background",
+          "default": "transparent"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Text Size",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Border Radius",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "padding",
+          "min": 0,
+          "max": 50,
+          "step": 5,
+          "unit": "px",
+          "label": "Padding",
+          "default": 20
+        },
+        {
+          "type": "checkbox",
+          "id": "add_shadow",
+          "label": "Add Shadow",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "add_border",
+          "label": "Add Border",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border Color",
+          "default": "#e0e0e0"
+        },
+        {
+          "type": "header",
+          "content": "Advanced"
+        },
+        {
+          "type": "range",
+          "id": "column_width",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "label": "Custom Column Width",
+          "info": "Overrides default equal width",
+          "default": 25
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Advanced Multi-Column",
+      "category": "Custom Sections",
+      "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
 <style>
   .section-advanced-columns {
     position: relative;
@@ -310,7 +830,148 @@
 
               {% if block.settings.icon != 'none' %}
                 <div class="column-icon">
-                  {% include 'icon-' | append: block.settings.icon %}
+                  {% case block.settings.icon %}
+                    {% when 'shopping-cart' %}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                      </svg>
+                    {% when 'star' %}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                      </svg>
+                    {% when 'heart' %}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                      </svg>
+                    {% when 'check' %}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    {% when 'truck' %}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle>
+                      </svg>
+                    {% when 'shield' %}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                      </svg>
+                    {% when 'phone' %}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                      </svg>
+                    {% when 'email' %}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
+                    {% when 'user' %}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>
+                      </svg>
+                    {% when 'clock' %}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+                      </svg>
+                  {% endcase %}
                 </div>
               {% endif %}
 
@@ -396,503 +1057,3 @@
     // Add any JavaScript interactions here if needed
   });
 </script>
-
-{% schema %}
-{
-  "name": "Advanced Multi-Column",
-  "class": "section-advanced-columns",
-  "settings": [
-    {
-      "type": "header",
-      "content": "Section Settings"
-    },
-    {
-      "type": "select",
-      "id": "container_width",
-      "label": "Container Width",
-      "options": [
-        {
-          "value": "full-width",
-          "label": "Full Width"
-        },
-        {
-          "value": "wide",
-          "label": "Wide (1400px)"
-        },
-        {
-          "value": "normal",
-          "label": "Normal (1200px)"
-        },
-        {
-          "value": "narrow",
-          "label": "Narrow (1000px)"
-        }
-      ],
-      "default": "normal"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Padding Top",
-      "default": 50
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Padding Bottom",
-      "default": 50
-    },
-    {
-      "type": "range",
-      "id": "margin_top",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Margin Top",
-      "default": 0
-    },
-    {
-      "type": "range",
-      "id": "margin_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "unit": "px",
-      "label": "Margin Bottom",
-      "default": 0
-    },
-    {
-      "type": "color",
-      "id": "section_bg",
-      "label": "Section Background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "checkbox",
-      "id": "section_parallax",
-      "label": "Enable Parallax Effect",
-      "default": false
-    },
-    {
-      "type": "header",
-      "content": "Column Layout"
-    },
-    {
-      "type": "range",
-      "id": "columns",
-      "min": 1,
-      "max": 6,
-      "step": 1,
-      "label": "Number of Columns",
-      "default": 3
-    },
-    {
-      "type": "select",
-      "id": "column_alignment",
-      "label": "Column Alignment",
-      "options": [
-        {
-          "value": "top",
-          "label": "Top"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "bottom",
-          "label": "Bottom"
-        }
-      ],
-      "default": "top"
-    },
-    {
-      "type": "range",
-      "id": "column_gap",
-      "min": 0,
-      "max": 50,
-      "step": 5,
-      "unit": "px",
-      "label": "Column Gap",
-      "default": 30
-    },
-    {
-      "type": "checkbox",
-      "id": "equal_height",
-      "label": "Equal Height Columns",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Animation Effects"
-    },
-    {
-      "type": "select",
-      "id": "hover_effect",
-      "label": "Hover Effect",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "lift",
-          "label": "Lift Up"
-        },
-        {
-          "value": "shadow",
-          "label": "Shadow Expand"
-        },
-        {
-          "value": "scale",
-          "label": "Scale Up"
-        },
-        {
-          "value": "tilt",
-          "label": "3D Tilt"
-        }
-      ],
-      "default": "lift"
-    },
-    {
-      "type": "select",
-      "id": "entrance_animation",
-      "label": "Entrance Animation",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "fade",
-          "label": "Fade In"
-        },
-        {
-          "value": "slide-up",
-          "label": "Slide Up"
-        },
-        {
-          "value": "slide-down",
-          "label": "Slide Down"
-        },
-        {
-          "value": "zoom",
-          "label": "Zoom In"
-        },
-        {
-          "value": "stagger",
-          "label": "Staggered"
-        }
-      ],
-      "default": "fade"
-    },
-    {
-      "type": "range",
-      "id": "animation_duration",
-      "min": 100,
-      "max": 1000,
-      "step": 50,
-      "unit": "ms",
-      "label": "Animation Duration",
-      "default": 300
-    }
-  ],
-  "blocks": [
-    {
-      "type": "column",
-      "name": "Column",
-      "settings": [
-        {
-          "type": "header",
-          "content": "Content"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "select",
-          "id": "image_position",
-          "label": "Image Position",
-          "options": [
-            {
-              "value": "top",
-              "label": "Top"
-            },
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            },
-            {
-              "value": "background",
-              "label": "Background"
-            }
-          ],
-          "default": "top"
-        },
-        {
-          "type": "range",
-          "id": "image_width",
-          "min": 10,
-          "max": 100,
-          "step": 5,
-          "unit": "%",
-          "label": "Image Width",
-          "default": 100
-        },
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": "Text",
-          "default": "<p>Add your text here</p>"
-        },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Column Heading"
-        },
-        {
-          "type": "select",
-          "id": "heading_size",
-          "label": "Heading Size",
-          "options": [
-            {
-              "value": "h1",
-              "label": "H1"
-            },
-            {
-              "value": "h2",
-              "label": "H2"
-            },
-            {
-              "value": "h3",
-              "label": "H3"
-            },
-            {
-              "value": "h4",
-              "label": "H4"
-            },
-            {
-              "value": "h5",
-              "label": "H5"
-            },
-            {
-              "value": "h6",
-              "label": "H6"
-            }
-          ],
-          "default": "h3"
-        },
-        {
-          "type": "select",
-          "id": "icon",
-          "label": "Icon",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "shopping-cart",
-              "label": "Cart"
-            },
-            {
-              "value": "star",
-              "label": "Star"
-            },
-            {
-              "value": "heart",
-              "label": "Heart"
-            },
-            {
-              "value": "check",
-              "label": "Check"
-            },
-            {
-              "value": "truck",
-              "label": "Truck"
-            },
-            {
-              "value": "shield",
-              "label": "Shield"
-            },
-            {
-              "value": "phone",
-              "label": "Phone"
-            },
-            {
-              "value": "email",
-              "label": "Email"
-            },
-            {
-              "value": "user",
-              "label": "User"
-            },
-            {
-              "value": "clock",
-              "label": "Clock"
-            }
-          ],
-          "default": "none"
-        },
-        {
-          "type": "header",
-          "content": "Button"
-        },
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Button Text",
-          "default": "Learn More"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button Link"
-        },
-        {
-          "type": "select",
-          "id": "button_style",
-          "label": "Button Style",
-          "options": [
-            {
-              "value": "primary",
-              "label": "Primary"
-            },
-            {
-              "value": "secondary",
-              "label": "Secondary"
-            },
-            {
-              "value": "outline",
-              "label": "Outline"
-            },
-            {
-              "value": "text",
-              "label": "Text Only"
-            }
-          ],
-          "default": "primary"
-        },
-        {
-          "type": "header",
-          "content": "Style"
-        },
-        {
-          "type": "color",
-          "id": "column_bg",
-          "label": "Column Background",
-          "default": "transparent"
-        },
-        {
-          "type": "color",
-          "id": "text_color",
-          "label": "Text Color",
-          "default": "#000000"
-        },
-        {
-          "type": "color",
-          "id": "heading_color",
-          "label": "Heading Color",
-          "default": "#000000"
-        },
-        {
-          "type": "range",
-          "id": "text_size",
-          "min": 12,
-          "max": 24,
-          "step": 1,
-          "unit": "px",
-          "label": "Text Size",
-          "default": 16
-        },
-        {
-          "type": "range",
-          "id": "border_radius",
-          "min": 0,
-          "max": 50,
-          "step": 1,
-          "unit": "px",
-          "label": "Border Radius",
-          "default": 0
-        },
-        {
-          "type": "range",
-          "id": "padding",
-          "min": 0,
-          "max": 50,
-          "step": 5,
-          "unit": "px",
-          "label": "Padding",
-          "default": 20
-        },
-        {
-          "type": "checkbox",
-          "id": "add_shadow",
-          "label": "Add Shadow",
-          "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "add_border",
-          "label": "Add Border",
-          "default": false
-        },
-        {
-          "type": "color",
-          "id": "border_color",
-          "label": "Border Color",
-          "default": "#e0e0e0"
-        },
-        {
-          "type": "header",
-          "content": "Advanced"
-        },
-        {
-          "type": "range",
-          "id": "column_width",
-          "min": 10,
-          "max": 100,
-          "step": 5,
-          "unit": "%",
-          "label": "Custom Column Width",
-          "info": "Overrides default equal width",
-          "default": 20
-        }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Advanced Multi-Column",
-      "category": "Custom Sections",
-      "blocks": [
-        {
-          "type": "column"
-        },
-        {
-          "type": "column"
-        },
-        {
-          "type": "column"
-        }
-      ]
-    }
-  ]
-}
-{% endschema %}
