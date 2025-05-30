@@ -592,6 +592,7 @@
         "collection_item_HaHPtQ",
         "collection_item_YLWHwV"
       ],
+      "disabled": true,
       "settings": {
         "container_width": 1200,
         "container_padding": 20,
@@ -672,6 +673,7 @@
         "collection_item_CUTCtN",
         "collection_item_H76fVz"
       ],
+      "disabled": true,
       "settings": {
         "container_width": 1200,
         "container_padding": 20,
@@ -709,6 +711,61 @@
         "icon_color_hover": "#ffffff",
         "icon_border_width": 1
       }
+    },
+    "split_banner_image_hover_pwc_BPzf8E": {
+      "type": "split-banner-image-hover-pwc",
+      "blocks": {
+        "image_phWVxH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
+            "title": "Collection Title",
+            "title_font_size": 32,
+            "title_color": "#ffffff",
+            "title_hover_color": "#ffcc00",
+            "description": "<p>Add your product description here</p>",
+            "description_font_size": 16,
+            "description_color": "#f5f5f5",
+            "description_hover_color": "#eeeeee",
+            "button_text": "Shop Now",
+            "link": "",
+            "hover_bg": "#333333",
+            "button_bg": "#ffffff",
+            "button_text_color": "#000000",
+            "hover_width": 60
+          }
+        },
+        "image_jXpMd6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/stylish-skirt-purse.jpg",
+            "title": "Collection Title",
+            "title_font_size": 32,
+            "title_color": "#ffffff",
+            "title_hover_color": "#ffcc00",
+            "description": "<p>Add your product description here</p>",
+            "description_font_size": 16,
+            "description_color": "#f5f5f5",
+            "description_hover_color": "#eeeeee",
+            "button_text": "Shop Now",
+            "link": "",
+            "hover_bg": "#717b3e",
+            "button_bg": "#ffffff",
+            "button_text_color": "#000000",
+            "hover_width": 60
+          }
+        }
+      },
+      "block_order": [
+        "image_phWVxH",
+        "image_jXpMd6"
+      ],
+      "name": "split banner hover pwc",
+      "settings": {
+        "page_width": "wide",
+        "gap_between": 20,
+        "image_height": 500
+      }
     }
   },
   "order": [
@@ -720,6 +777,7 @@
     "collection_grid_image_pwc_WPFmUG",
     "text_image_text_pwc_VedTK4",
     "pwc_collection_image_spotlight_VQ6PUk",
-    "pwc_collection_image_spotlight_6enPLK"
+    "pwc_collection_image_spotlight_6enPLK",
+    "split_banner_image_hover_pwc_BPzf8E"
   ]
 }
