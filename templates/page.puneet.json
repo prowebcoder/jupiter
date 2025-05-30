@@ -1230,6 +1230,7 @@
         "column_zk7wPC": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/vecteezy_vibrant-green-and-blue-headphones-with-modern-design_55716678.png",
             "image_position": "top",
             "image_width": 100,
             "text": "<p>Add your text here</p>",
