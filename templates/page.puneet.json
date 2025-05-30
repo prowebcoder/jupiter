@@ -1235,7 +1235,7 @@
             "heading": "Column Heading",
             "text": "<p>Add your text here</p>",
             "button_text": "Learn More",
-            "button_link": ""
+            "button_link": "shopify://collections"
           }
         },
         "column_yMB4BW": {
@@ -1305,7 +1305,7 @@
         "text_color": "#666666",
         "text_size": 16,
         "link_color": "#3366cc",
-        "button_bg": "#3366cc",
+        "button_bg": "#121212",
         "button_text": "#ffffff",
         "button_radius": 5,
         "icon_color": "#3366cc",
