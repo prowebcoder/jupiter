@@ -1238,17 +1238,6 @@
             "button_link": ""
           }
         },
-        "column_RFnGT3": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/headphones-design-3d-rendering-for-product-mockup-free-png.png",
-            "image_link": "",
-            "title": "Column title",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "button_label": "Button label",
-            "button_link": ""
-          }
-        },
         "column_YgDYde": {
           "type": "column",
           "settings": {
@@ -1274,7 +1263,6 @@
       },
       "block_order": [
         "column_jwgGwU",
-        "column_RFnGT3",
         "column_YgDYde",
         "column_XQbAn4"
       ],
