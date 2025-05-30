@@ -847,6 +847,7 @@
         "video_AnCxn4": {
           "type": "video",
           "settings": {
+            "video_format": "landscape",
             "video_url": "",
             "uploaded_video": "https://cdn.shopify.com/videos/c/o/v/eee7eea0d93c435895a6c7206eecb800.mp4"
           }
@@ -854,6 +855,7 @@
         "video_VLGchM": {
           "type": "video",
           "settings": {
+            "video_format": "landscape",
             "video_url": "https://www.youtube.com/watch?v=sQ22pm-xvrE&pp=ygUgcHJvZHVjdHMgdmlkZW8gYmFja2dyb3VuZCB2aWRlb3M%3D",
             "uploaded_video": ""
           }
@@ -861,6 +863,7 @@
         "video_K3C7P8": {
           "type": "video",
           "settings": {
+            "video_format": "landscape",
             "video_url": "https://www.youtube.com/watch?v=YGQBm9Mnad8&pp=ygUgcHJvZHVjdHMgdmlkZW8gYmFja2dyb3VuZCB2aWRlb3M%3D",
             "uploaded_video": ""
           }
@@ -868,6 +871,7 @@
         "video_KH4FmY": {
           "type": "video",
           "settings": {
+            "video_format": "landscape",
             "video_url": "",
             "uploaded_video": "https://cdn.shopify.com/videos/c/o/v/190a06ea8e0c485cabe98158bfc57a22.mp4"
           }
@@ -875,6 +879,7 @@
         "video_8AtbMP": {
           "type": "video",
           "settings": {
+            "video_format": "landscape",
             "video_url": "https://www.youtube.com/watch?v=YGQBm9Mnad8&pp=ygUgcHJvZHVjdHMgdmlkZW8gYmFja2dyb3VuZCB2aWRlb3M%3D",
             "uploaded_video": ""
           }
@@ -882,6 +887,7 @@
         "video_CeJxfG": {
           "type": "video",
           "settings": {
+            "video_format": "landscape",
             "video_url": "https://www.youtube.com/watch?v=sQ22pm-xvrE&pp=ygUgcHJvZHVjdHMgdmlkZW8gYmFja2dyb3VuZCB2aWRlb3M%3D",
             "uploaded_video": ""
           }
@@ -897,7 +903,17 @@
       ],
       "name": "Video Carousel",
       "settings": {
-        "items_per_row": 4,
+        "title": "Video Gallery",
+        "subheading": "<p>Watch our latest videos</p>",
+        "heading_alignment": "center",
+        "heading_spacing": 20,
+        "heading_font_size": 24,
+        "subheading_font_size": 16,
+        "mobile_heading_font_size": 20,
+        "mobile_subheading_font_size": 14,
+        "heading_color": "#000000",
+        "subheading_color": "#666666",
+        "items_per_row": 3,
         "items_per_row_tablet": 2,
         "gap": 16,
         "mobile_gap": 8,
