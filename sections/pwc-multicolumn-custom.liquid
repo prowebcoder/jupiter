@@ -1,373 +1,181 @@
 {%- assign sid = '#shopify-section-' | append: section.id -%}
 
 <style>
-    {{ sid }} {
-      --pc-section-bg: {{ section.settings.section_bg }};
-      --pc-section-padding-y: {{ section.settings.section_padding_y }}px;
-      --pc-section-padding-x: {{ section.settings.section_padding_x }}px;
-      --pc-container-width: {{ section.settings.container_width }}px;
-      --pc-column-gap: {{ section.settings.column_gap }}px;
-      --pc-row-gap: {{ section.settings.row_gap }}px;
-      --pc-column-radius: {{ section.settings.column_radius }}px;
-      --pc-column-bg: {{ section.settings.column_bg }};
-      --pc-column-padding: {{ section.settings.column_padding }}px;
-      --pc-text-color: {{ section.settings.text_color }};
-      --pc-heading-color: {{ section.settings.heading_color }};
-      --pc-link-color: {{ section.settings.link_color }};
-      --pc-button-bg: {{ section.settings.button_bg }};
-      --pc-button-text: {{ section.settings.button_text }};
-      --pc-button-radius: {{ section.settings.button_radius }}px;
-      --pc-image-ratio: {{ section.settings.image_ratio }};
-      --pc-image-radius: {{ section.settings.image_radius }};
-      --pc-image-width: {{ section.settings.image_width }}px;
-      --pc-content-align: {{ section.settings.content_alignment }};
-      --pc-animation-type: {{ section.settings.animation_type }};
-      --pc-animation-duration: {{ section.settings.animation_duration }}s;
-      background-color: var(--pc-section-bg);
-      padding: var(--pc-section-padding-y) var(--pc-section-padding-x);
-      {% if section.settings.section_full_width %}
-        width: 100%;
-      {% endif %}
-    }
-
-    {{ sid }} .pc-container {
-      max-width: var(--pc-container-width);
-      margin: 0 auto;
-      overflow: hidden;
-    }
-
-    {{ sid }} .pc-columns {
-      display: grid;
-      grid-template-columns: repeat({{ section.settings.columns_number }}, minmax(0, 1fr));
-      gap: var(--pc-row-gap) var(--pc-column-gap);
-    }
-   .pc-columns {
-
-
+  {{ sid }} {
+    --pc-section-bg: {{ section.settings.section_bg }};
+    --pc-section-padding-y: {{ section.settings.section_padding_y }}px;
+    --pc-section-padding-x: {{ section.settings.section_padding_x }}px;
+    --pc-container-width: {{ section.settings.container_width }}px;
+    --pc-column-gap: {{ section.settings.column_gap }}px;
+    --pc-row-gap: {{ section.settings.row_gap }}px;
+    --pc-column-radius: {{ section.settings.column_radius }}px;
+    --pc-column-bg: {{ section.settings.column_bg }};
+    --pc-column-padding: {{ section.settings.column_padding }}px;
+    --pc-text-color: {{ section.settings.text_color }};
+    --pc-heading-color: {{ section.settings.heading_color }};
+    --pc-link-color: {{ section.settings.link_color }};
+    --pc-button-bg: {{ section.settings.button_bg }};
+    --pc-button-text: {{ section.settings.button_text }};
+    --pc-button-radius: {{ section.settings.button_radius }}px;
+    --pc-image-ratio: {{ section.settings.image_ratio }};
+    --pc-image-radius: {{ section.settings.image_radius }};
+    --pc-content-align: {{ section.settings.content_alignment }};
+    background-color: var(--pc-section-bg);
+    padding: var(--pc-section-padding-y) var(--pc-section-padding-x);
+    {% if section.settings.section_full_width %}
+      width: 100%;
+    {% endif %}
   }
-    {{ sid }} .pc-column {
-      background-color: var(--pc-column-bg);
-      border-radius: var(--pc-column-radius);
-      padding: var(--pc-column-padding);
-      position: relative;
-      overflow: hidden;
-      transition: all var(--pc-animation-duration) ease;
-      {% if section.settings.animation_type == 'fade' %}
-        opacity: 0;
-        animation: pcFadeIn var(--pc-animation-duration) ease forwards;
-      {% elsif section.settings.animation_type == 'slide-up' %}
-        opacity: 0;
-        transform: translateY(30px);
-        animation: pcSlideUp var(--pc-animation-duration) ease forwards;
-      {% elsif section.settings.animation_type == 'zoom-in' %}
-        opacity: 0;
-        transform: scale(0.95);
-        animation: pcZoomIn var(--pc-animation-duration) ease forwards;
-      {% endif %}
+
+  {{ sid }} .pc-container {
+    max-width: var(--pc-container-width);
+    margin: 0 auto;
+  }
+
+  {{ sid }} .pc-columns {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns_number }}, 1fr);
+    gap: var(--pc-column-gap) var(--pc-row-gap);
+  }
+
+  {{ sid }} .pc-column {
+    background-color: var(--pc-column-bg);
+    border-radius: var(--pc-column-radius);
+    padding: var(--pc-column-padding);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  {{ sid }} .pc-column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+
+  {{ sid }} .pc-column-content {
+    text-align: var(--pc-content-align);
+    color: var(--pc-text-color);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  {{ sid }} .pc-column-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--pc-image-radius);
+    margin-bottom: 20px;
+  }
+
+  {{ sid }} .pc-column-image::before {
+    content: '';
+    display: block;
+    padding-top: var(--pc-image-ratio);
+  }
+
+  {{ sid }} .pc-column-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  {{ sid }} .pc-column:hover .pc-column-image img {
+    transform: scale(1.05);
+  }
+
+  {{ sid }} .pc-column-heading {
+    color: var(--pc-heading-color);
+    margin-bottom: 15px;
+    font-size: {{ section.settings.heading_size }}px;
+    transition: all 0.3s ease;
+  }
+
+  {{ sid }} .pc-column-text {
+    margin-bottom: 20px;
+    font-size: {{ section.settings.text_size }}px;
+    flex-grow: 1;
+  }
+
+  {{ sid }} .pc-column-link {
+    color: var(--pc-link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  {{ sid }} .pc-column-link:hover {
+    color: var(--pc-button-bg);
+  }
+
+  {{ sid }} .pc-column-button {
+    display: inline-block;
+    background-color: var(--pc-button-bg);
+    color: var(--pc-button-text);
+    padding: 12px 25px;
+    border-radius: var(--pc-button-radius);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    align-self: {{ section.settings.content_alignment }};
+  }
+
+  {{ sid }} .pc-column-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    opacity: 0.9;
+  }
+
+  {{ sid }} .pc-icon {
+    margin-bottom: 15px;
+    font-size: {{ section.settings.icon_size }}px;
+    color: {{ section.settings.icon_color }};
+    transition: all 0.3s ease;
+  }
+
+  {{ sid }} .pc-column:hover .pc-icon {
+    transform: rotate(10deg) scale(1.1);
+  }
+
+  @media (max-width: 991px) {
+    {{ sid }} .pc-columns {
+      grid-template-columns: repeat({{ section.settings.columns_number_tablet }}, 1fr);
+    }
+  }
+
+  @media (max-width: 767px) {
+    {{ sid }} .pc-columns {
+      grid-template-columns: repeat({{ section.settings.columns_number_mobile }}, 1fr);
     }
 
-    @keyframes pcFadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    {{ sid }} {
+      --pc-section-padding-y: {{ section.settings.section_padding_y_mobile }}px;
+      --pc-section-padding-x: {{ section.settings.section_padding_x_mobile }}px;
     }
-
-    @keyframes pcSlideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pcZoomIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    {{ sid }} .pc-column:hover {
-      {% if section.settings.hover_effect == 'lift' %}
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.12);
-      {% elsif section.settings.hover_effect == 'shadow' %}
-        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      {% elsif section.settings.hover_effect == 'scale' %}
-        transform: scale(1.02);
-      {% elsif section.settings.hover_effect == 'tilt' %}
-        transform: rotate(1deg) scale(1.02);
-      {% endif %}
-      {% if section.settings.hover_bg_change %}
-        background-color: {{ section.settings.column_hover_bg }};
-      {% endif %}
-    }
-
-    {{ sid }} .pc-column-content {
-      text-align: var(--pc-content-align);
-      color: var(--pc-text-color);
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    {{ sid }} .pc-column-image-wrapper {
-      margin: 0 auto;
-      width: var(--pc-image-width);
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--pc-image-radius);
-      margin-bottom: 20px;
-    }
-
-    {{ sid }} .pc-column-image-wrapper::before {
-      content: '';
-      display: block;
-      padding-top: var(--pc-image-ratio);
-    }
-
-    {{ sid }} .pc-column-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: all calc(var(--pc-animation-duration) * 1.5) ease;
-    }
-
-    {{ sid }} .pc-column:hover .pc-column-image {
-      {% if section.settings.image_hover_effect == 'zoom' %}
-        transform: scale(1.1);
-      {% elsif section.settings.image_hover_effect == 'grayscale' %}
-        filter: grayscale(100%);
-      {% elsif section.settings.image_hover_effect == 'blur' %}
-        filter: blur(2px);
-      {% elsif section.settings.image_hover_effect == 'darken' %}
-        filter: brightness(0.8);
-      {% endif %}
-    }
-
-    {{ sid }} .pc-column-heading {
-      color: var(--pc-heading-color);
-      margin-bottom: 15px;
-      font-size: {{ section.settings.heading_size }}px;
-      line-height: 1.2;
-      transition: all var(--pc-animation-duration) ease;
-    }
-
-    {{ sid }} .pc-column:hover .pc-column-heading {
-      {% if section.settings.heading_hover_effect == 'color' %}
-        color: {{ section.settings.heading_hover_color }};
-      {% elsif section.settings.heading_hover_effect == 'underline' %}
-        text-decoration: underline;
-      {% endif %}
-    }
-
-    {{ sid }} .pc-column-text {
-      margin-bottom: 20px;
-      font-size: {{ section.settings.text_size }}px;
-      flex-grow: 1;
-      transition: all var(--pc-animation-duration) ease;
-    }
-
-    {{ sid }} .pc-column:hover .pc-column-text {
-      {% if section.settings.text_hover_effect == 'color' %}
-        color: {{ section.settings.text_hover_color }};
-      {% endif %}
-    }
-
-    {{ sid }} .pc-column-link {
-      color: var(--pc-link-color);
-      text-decoration: none;
-      transition: all var(--pc-animation-duration) ease;
-    }
-
-    {{ sid }} .pc-column-link:hover {
-      color: var(--pc-button-bg);
-    }
-
-    {{ sid }} .pc-column-button {
-      display: inline-block;
-      background-color: var(--pc-button-bg);
-      color: var(--pc-button-text);
-      padding: 12px 25px;
-      border-radius: var(--pc-button-radius);
-      text-decoration: none;
-      transition: all var(--pc-animation-duration) ease;
-      margin-top: auto;
-      align-self: {{ section.settings.content_alignment }};
-      {% if section.settings.button_hover_effect == 'fill' %}
-        background-image: linear-gradient(to right, var(--pc-button-bg) 50%, {{ section.settings.button_hover_bg }} 50%);
-        background-size: 200% 100%;
-        background-position: right bottom;
-      {% endif %}
-    }
-
-    {{ sid }} .pc-column-button:hover {
-      {% if section.settings.button_hover_effect == 'fill' %}
-        background-position: left bottom;
-        color: {{ section.settings.button_hover_text }};
-      {% elsif section.settings.button_hover_effect == 'slide' %}
-        transform: translateX(5px);
-      {% elsif section.settings.button_hover_effect == 'pulse' %}
-        animation: pcPulse 0.5s ease;
-      {% endif %}
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    @keyframes pcPulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    {{ sid }} .pc-section-heading {
-      text-align: {{ section.settings.heading_alignment }};
-      margin-bottom: {{ section.settings.heading_spacing }}px;
-      {% if section.settings.heading_animation != 'none' %}
-        opacity: 0;
-        animation: pc{{ section.settings.heading_animation | capitalize }} var(--pc-animation-duration) ease forwards;
-        animation-delay: 0.2s;
-      {% endif %}
-    }
-
-    @keyframes pcFadeInLeft {
-      from { opacity: 0; transform: translateX(-20px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes pcFadeInRight {
-      from { opacity: 0; transform: translateX(20px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes pcBounceIn {
-      from { opacity: 0; transform: scale(0.8); }
-      50% { transform: scale(1.05); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    /* Slider styles */
-    {{ sid }} .pc-slider {
-      display: none;
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-    }
-
-    {{ sid }} .pc-slider-track {
-      display: flex;
-      transition: transform 0.5s ease;
-      will-change: transform;
-    }
-
-    {{ sid }} .pc-slide {
-      flex: 0 0 100%;
-      min-width: 100%;
-      padding: 0 10px;
-      box-sizing: border-box;
-    }
-
-    {{ sid }} .pc-slider-nav {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      gap: 8px;
-    }
-
-    {{ sid }} .pc-slider-dot {
-      width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    border-width: 1px;
-    border-style: hidden;
-    }
-
-    {{ sid }} .pc-slider-dot.active {
-      background: {{ section.settings.button_bg }};
-    }
-
-    {{ sid }} .pc-slider-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      background: rgba(255,255,255,0.9);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 1;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      border: none;
-      color: {{ section.settings.button_bg }};
-      font-size: 18px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    {{ sid }} .pc-slider:hover .pc-slider-arrow {
-      opacity: 1;
-    }
-
-    {{ sid }} .pc-slider-arrow.prev {
-      left: 15px;
-    }
-
-    {{ sid }} .pc-slider-arrow.next {
-      right: 15px;
-    }
-
-    {{ sid }} .pc-slider-arrow svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
-
-    /* Responsive styles */
-    @media (max-width: 991px) {
-      {{ sid }} .pc-columns {
-        grid-template-columns: repeat({{ section.settings.columns_number_tablet }}, minmax(0, 1fr));
-      }
-      {{ sid }} {
-        --pc-image-width: {{ section.settings.image_width_tablet }}px;
-      }
-    }
-
-    @media (max-width: 767px) {
-      {{ sid }} .pc-columns {
-        display: none;
-      }
-
-      {{ sid }} .pc-slider {
-        display: block;
-      }
-
-      {{ sid }} {
-        --pc-section-padding-y: {{ section.settings.section_padding_y_mobile }}px;
-        --pc-section-padding-x: {{ section.settings.section_padding_x_mobile }}px;
-        --pc-image-width: {{ section.settings.image_width_mobile }}px;
-      }
-    }
+  }
 </style>
 
 <div class="pc-container">
   {% if section.settings.heading != blank %}
-    <h2 class="pc-section-heading" style="font-size: {{ section.settings.heading_size }}px;">
-      {{ section.settings.heading }}
-    </h2>
+    <h2 class="pc-section-heading">{{ section.settings.heading }}</h2>
   {% endif %}
 
   {% if section.settings.subheading != blank %}
-    <p class="pc-section-subheading center">{{ section.settings.subheading }}</p>
+    <p class="pc-section-subheading">{{ section.settings.subheading }}</p>
   {% endif %}
 
-  <!-- Grid layout for desktop/tablet -->
   <div class="pc-columns">
     {% for block in section.blocks %}
       <div class="pc-column" {{ block.shopify_attributes }}>
         <div class="pc-column-content">
+          {% if block.settings.icon != blank %}
+            <div class="pc-icon">{{ block.settings.icon }}</div>
+          {% endif %}
+
           {% if block.settings.image != blank %}
-            <div class="pc-column-image-wrapper">
+            <div class="pc-column-image">
               {%- liquid
                 assign image_height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio
                 assign sizes = '375, 550, 750'
@@ -376,15 +184,13 @@
               {{
                 block.settings.image
                 | image_url: width: 1500
-                | image_tag: loading: 'lazy', widths: widths, sizes: sizes, class: 'pc-column-image'
+                | image_tag: loading: 'lazy', widths: widths, sizes: sizes
               }}
             </div>
           {% endif %}
 
           {% if block.settings.heading != blank %}
-            <h3 class="pc-column-heading" style="font-size: {{ section.settings.heading_size }}px;">
-              {{ block.settings.heading }}
-            </h3>
+            <h3 class="pc-column-heading">{{ block.settings.heading }}</h3>
           {% endif %}
 
           {% if block.settings.text != blank %}
@@ -400,251 +206,11 @@
       </div>
     {% endfor %}
   </div>
-
-  <!-- Slider layout for mobile -->
-  <div class="pc-slider">
-    <div class="pc-slider-track">
-      {% for block in section.blocks %}
-        <div class="pc-slide">
-          <div class="pc-column">
-            <div class="pc-column-content">
-              {% if block.settings.image != blank %}
-                <div class="pc-column-image-wrapper">
-                  {%- liquid
-                    assign image_height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio
-                    assign sizes = '375, 550, 750'
-                    assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
-                  -%}
-                  {{
-                    block.settings.image
-                    | image_url: width: 1500
-                    | image_tag: loading: 'lazy', widths: widths, sizes: sizes, class: 'pc-column-image'
-                  }}
-                </div>
-              {% endif %}
-
-              {% if block.settings.heading != blank %}
-                <h3 class="pc-column-heading" style="font-size: {{ section.settings.heading_size }}px;">
-                  {{ block.settings.heading }}
-                </h3>
-              {% endif %}
-
-              {% if block.settings.text != blank %}
-                <div class="pc-column-text">{{ block.settings.text }}</div>
-              {% endif %}
-
-              {% if block.settings.button_text != blank and block.settings.button_link != blank %}
-                <a href="{{ block.settings.button_link }}" class="pc-column-button">
-                  {{ block.settings.button_text }}
-                </a>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-
-    <div class="pc-slider-nav">
-      {% for block in section.blocks %}
-        <button
-          class="pc-slider-dot {% if forloop.first %}active{% endif %}"
-          data-index="{{ forloop.index0 }}"
-          aria-label="Go to slide {{ forloop.index }}"
-        ></button>
-      {% endfor %}
-    </div>
-
-    <button class="pc-slider-arrow prev" aria-label="Previous slide">
-      <svg viewBox="0 0 24 24">
-        <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
-      </svg>
-    </button>
-    <button class="pc-slider-arrow next" aria-label="Next slide">
-      <svg viewBox="0 0 24 24">
-        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-      </svg>
-    </button>
-  </div>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const slider = document.querySelector('{{ sid }} .pc-slider');
-  if (!slider) return;
-  
-  const track = slider.querySelector('.pc-slider-track');
-  const slides = slider.querySelectorAll('.pc-slide');
-  const dots = slider.querySelectorAll('.pc-slider-dot');
-  const prevBtn = slider.querySelector('.pc-slider-arrow.prev');
-  const nextBtn = slider.querySelector('.pc-slider-arrow.next');
-  
-  let currentIndex = 0;
-  const slideCount = slides.length;
-  let autoSlideInterval;
-  let isDragging = false;
-  let startPos = 0;
-  let currentTranslate = 0;
-  let prevTranslate = 0;
-  let animationID;
-  
-  // Set initial position
-  slides.forEach((slide, index) => {
-    slide.addEventListener('dragstart', (e) => e.preventDefault());
-    
-    // Touch events
-    slide.addEventListener('touchstart', touchStart(index));
-    slide.addEventListener('touchend', touchEnd);
-    slide.addEventListener('touchmove', touchMove);
-    
-    // Mouse events
-    slide.addEventListener('mousedown', touchStart(index));
-    slide.addEventListener('mouseup', touchEnd);
-    slide.addEventListener('mouseleave', touchEnd);
-    slide.addEventListener('mousemove', touchMove);
-  });
-  
-  // Disable context menu
-  window.oncontextmenu = function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    return false;
-  }
-  
-  function touchStart(index) {
-    return function(event) {
-      currentIndex = index;
-      startPos = getPositionX(event);
-      isDragging = true;
-      
-      // Cancel auto-slide if dragging
-      clearInterval(autoSlideInterval);
-      
-      animationID = requestAnimationFrame(animation);
-      slider.classList.add('grabbing');
-    }
-  }
-  
-  function touchEnd() {
-    if (!isDragging) return;
-    isDragging = false;
-    cancelAnimationFrame(animationID);
-    
-    const movedBy = currentTranslate - prevTranslate;
-    
-    if (movedBy < -100 && currentIndex < slideCount - 1) {
-      currentIndex += 1;
-    }
-    
-    if (movedBy > 100 && currentIndex > 0) {
-      currentIndex -= 1;
-    }
-    
-    setPositionByIndex();
-    slider.classList.remove('grabbing');
-    
-    // Restart auto-slide if enabled
-    {% if section.settings.auto_advance %}
-      startAutoSlide();
-    {% endif %}
-  }
-  
-  function touchMove(event) {
-    if (!isDragging) return;
-    const currentPosition = getPositionX(event);
-    currentTranslate = prevTranslate + currentPosition - startPos;
-  }
-  
-  function getPositionX(event) {
-    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-  }
-  
-  function animation() {
-    setSliderPosition();
-    if (isDragging) requestAnimationFrame(animation);
-  }
-  
-  function setSliderPosition() {
-    track.style.transform = `translateX(${currentTranslate}px)`;
-  }
-  
-  function setPositionByIndex() {
-    currentTranslate = currentIndex * -track.offsetWidth;
-    prevTranslate = currentTranslate;
-    setSliderPosition();
-    updateDots();
-  }
-  
-  function updateSlider() {
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-    updateDots();
-  }
-  
-  function updateDots() {
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentIndex);
-    });
-  }
-  
-  function goToSlide(index) {
-    currentIndex = index;
-    updateSlider();
-  }
-  
-  function nextSlide() {
-    currentIndex = (currentIndex + 1) % slideCount;
-    updateSlider();
-  }
-  
-  function prevSlide() {
-    currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-    updateSlider();
-  }
-  
-  function startAutoSlide() {
-    {% if section.settings.auto_advance %}
-      autoSlideInterval = setInterval(nextSlide, {{ section.settings.auto_advance_speed | times: 1000 }});
-    {% endif %}
-  }
-  
-  // Navigation dots
-  dots.forEach(dot => {
-    dot.addEventListener('click', function() {
-      goToSlide(parseInt(this.dataset.index));
-    });
-  });
-  
-  // Arrow buttons
-  prevBtn.addEventListener('click', prevSlide);
-  nextBtn.addEventListener('click', nextSlide);
-  
-  // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') nextSlide();
-    if (e.key === 'ArrowLeft') prevSlide();
-  });
-  
-  // Start auto-slide
-  startAutoSlide();
-  
-  // Pause on hover
-  slider.addEventListener('mouseenter', () => {
-    clearInterval(autoSlideInterval);
-  });
-  
-  slider.addEventListener('mouseleave', () => {
-    startAutoSlide();
-  });
-  
-  // Handle window resize
-  window.addEventListener('resize', () => {
-    setPositionByIndex();
-  });
-});
-</script>
 
 {% schema %}
 {
-  "name": "PC - Enhanced Columns",
+  "name": "PWC - Multi Columns",
   "settings": [
     {
       "type": "header",
@@ -725,60 +291,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "default": "Discover what makes us different"
     },
     {
-      "type": "select",
-      "id": "heading_alignment",
-      "label": "Heading Alignment",
-      "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "center"
-    },
-    {
-      "type": "range",
-      "id": "heading_spacing",
-      "label": "Heading Bottom Spacing",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "default": 20,
-      "unit": "px"
-    },
-    {
-      "type": "select",
-      "id": "heading_animation",
-      "label": "Heading Animation",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "fadeInLeft",
-          "label": "Fade In Left"
-        },
-        {
-          "value": "fadeInRight",
-          "label": "Fade In Right"
-        },
-        {
-          "value": "bounceIn",
-          "label": "Bounce In"
-        }
-      ],
-      "default": "none"
-    },
-    {
       "type": "header",
       "content": "Columns Layout"
     },
@@ -787,9 +299,9 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "columns_number",
       "label": "Number of Columns (Desktop)",
       "min": 1,
-      "max": 8,
+      "max": 6,
       "step": 1,
-      "default": 4
+      "default": 3
     },
     {
       "type": "range",
@@ -840,12 +352,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "default": "#f8f8f8"
     },
     {
-      "type": "color",
-      "id": "column_hover_bg",
-      "label": "Column Hover Background",
-      "default": "#eeeeee"
-    },
-    {
       "type": "range",
       "id": "column_radius",
       "label": "Column Border Radius",
@@ -888,36 +394,6 @@ document.addEventListener('DOMContentLoaded', function() {
     {
       "type": "header",
       "content": "Image Settings"
-    },
-    {
-      "type": "range",
-      "id": "image_width",
-      "label": "Image Width (Desktop)",
-      "min": 50,
-      "max": 500,
-      "step": 10,
-      "default": 200,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "image_width_tablet",
-      "label": "Image Width (Tablet)",
-      "min": 50,
-      "max": 400,
-      "step": 10,
-      "default": 180,
-      "unit": "px"
-    },
-    {
-      "type": "range",
-      "id": "image_width_mobile",
-      "label": "Image Width (Mobile)",
-      "min": 50,
-      "max": 300,
-      "step": 10,
-      "default": 150,
-      "unit": "px"
     },
     {
       "type": "select",
@@ -968,34 +444,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "default": "5px"
     },
     {
-      "type": "select",
-      "id": "image_hover_effect",
-      "label": "Image Hover Effect",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "zoom",
-          "label": "Zoom In"
-        },
-        {
-          "value": "grayscale",
-          "label": "Grayscale"
-        },
-        {
-          "value": "blur",
-          "label": "Blur"
-        },
-        {
-          "value": "darken",
-          "label": "Darken"
-        }
-      ],
-      "default": "zoom"
-    },
-    {
       "type": "header",
       "content": "Typography & Colors"
     },
@@ -1006,53 +454,20 @@ document.addEventListener('DOMContentLoaded', function() {
       "default": "#333333"
     },
     {
-      "type": "color",
-      "id": "heading_hover_color",
-      "label": "Heading Hover Color",
-      "default": "#3366cc"
-    },
-   {
-  "type": "select",
-  "id": "heading_size",
-  "label": "Heading Size",
-  "options": [
-    { "value": "h1", "label": "Heading 1" },
-    { "value": "h2", "label": "Heading 2" },
-    { "value": "h3", "label": "Heading 3" }
-  ],
-  "default": "h2"
-},
-    {
-      "type": "select",
-      "id": "heading_hover_effect",
-      "label": "Heading Hover Effect",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "color",
-          "label": "Color Change"
-        },
-        {
-          "value": "underline",
-          "label": "Underline"
-        }
-      ],
-      "default": "none"
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "default": 22,
+      "unit": "px"
     },
     {
       "type": "color",
       "id": "text_color",
       "label": "Text Color",
       "default": "#666666"
-    },
-    {
-      "type": "color",
-      "id": "text_hover_color",
-      "label": "Text Hover Color",
-      "default": "#444444"
     },
     {
       "type": "range",
@@ -1063,22 +478,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "step": 1,
       "default": 16,
       "unit": "px"
-    },
-    {
-      "type": "select",
-      "id": "text_hover_effect",
-      "label": "Text Hover Effect",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "color",
-          "label": "Color Change"
-        }
-      ],
-      "default": "none"
     },
     {
       "type": "color",
@@ -1099,18 +498,6 @@ document.addEventListener('DOMContentLoaded', function() {
       "default": "#ffffff"
     },
     {
-      "type": "color",
-      "id": "button_hover_bg",
-      "label": "Button Hover Background",
-      "default": "#224488"
-    },
-    {
-      "type": "color",
-      "id": "button_hover_text",
-      "label": "Button Hover Text",
-      "default": "#ffffff"
-    },
-    {
       "type": "range",
       "id": "button_radius",
       "label": "Button Radius",
@@ -1121,120 +508,24 @@ document.addEventListener('DOMContentLoaded', function() {
       "unit": "px"
     },
     {
-      "type": "select",
-      "id": "button_hover_effect",
-      "label": "Button Hover Effect",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "fill",
-          "label": "Color Fill"
-        },
-        {
-          "value": "slide",
-          "label": "Slide Right"
-        },
-        {
-          "value": "pulse",
-          "label": "Pulse"
-        }
-      ],
-      "default": "fill"
-    },
-    {
       "type": "header",
-      "content": "Animation Settings"
+      "content": "Icon Settings"
     },
     {
-      "type": "select",
-      "id": "animation_type",
-      "label": "Column Entrance Animation",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "fade",
-          "label": "Fade In"
-        },
-        {
-          "value": "slide-up",
-          "label": "Slide Up"
-        },
-        {
-          "value": "zoom-in",
-          "label": "Zoom In"
-        }
-      ],
-      "default": "slide-up"
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon Color",
+      "default": "#3366cc"
     },
     {
       "type": "range",
-      "id": "animation_duration",
-      "label": "Animation Duration",
-      "min": 0.1,
-      "max": 2,
-      "step": 0.1,
-      "default": 0.6,
-      "unit": "s"
-    },
-    {
-      "type": "select",
-      "id": "hover_effect",
-      "label": "Column Hover Effect",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "lift",
-          "label": "Lift Up"
-        },
-        {
-          "value": "shadow",
-          "label": "Shadow"
-        },
-        {
-          "value": "scale",
-          "label": "Scale Up"
-        },
-        {
-          "value": "tilt",
-          "label": "Tilt"
-        }
-      ],
-      "default": "lift"
-    },
-    {
-      "type": "checkbox",
-      "id": "hover_bg_change",
-      "label": "Change Background on Hover",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Slider Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "auto_advance",
-      "label": "Auto-advance Slides",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "auto_advance_speed",
-      "label": "Auto-advance Speed",
-      "min": 2,
-      "max": 10,
+      "id": "icon_size",
+      "label": "Icon Size",
+      "min": 12,
+      "max": 50,
       "step": 1,
-      "default": 5,
-      "unit": "s"
+      "default": 24,
+      "unit": "px"
     }
   ],
   "blocks": [
@@ -1246,6 +537,12 @@ document.addEventListener('DOMContentLoaded', function() {
           "type": "image_picker",
           "id": "image",
           "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (SVG code)",
+          "info": "Paste SVG code directly or use an icon font class"
         },
         {
           "type": "text",
@@ -1275,7 +572,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ],
   "presets": [
     {
-      "name": "PC - Enhanced Columns",
+      "name": "PWC - Multi Columns",
       "category": "Custom",
       "blocks": [
         {
