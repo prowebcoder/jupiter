@@ -987,7 +987,7 @@
         "video_aspect_ratio": "56.25%",
         "mobile_video_aspect_ratio": "75%",
         "show_navigation": false,
-        "show_pagination": false,
+        "show_pagination": true,
         "autoplay_carousel": true,
         "autoplay_delay": 5,
         "dot_color": "#000000",
