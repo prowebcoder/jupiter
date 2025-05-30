@@ -640,6 +640,7 @@
           "type": "image_item",
           "settings": {
             "heading": "Boat",
+            "image": "shopify://shop_images/vecteezy_overear-headphones-red-leather-blue-accents-premium-audio_55244231.png",
             "product": "green-snowboard",
             "link_text": "Shop Now",
             "show_price": true
@@ -658,6 +659,7 @@
           "type": "image_item",
           "settings": {
             "heading": "Zebot",
+            "image": "shopify://shop_images/vecteezy_vibrant-green-and-blue-headphones-with-modern-design_55716678.png",
             "product": "green-snowboard",
             "link_text": "Shop Now",
             "show_price": true
