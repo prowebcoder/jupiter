@@ -138,6 +138,7 @@
         "circle_icon_hDdqX7",
         "circle_icon_jbYGr6"
       ],
+      "disabled": true,
       "settings": {
         "icon_title": "",
         "is_icon_enable": true,
@@ -240,6 +241,7 @@
         "pricing_card_Uq3XWK",
         "pricing_card_AhCrBt"
       ],
+      "disabled": true,
       "settings": {
         "title": "Choose Your Plan",
         "show_section_title": true,
@@ -261,6 +263,7 @@
     },
     "pwc_timer_nXVpYU": {
       "type": "pwc-timer",
+      "disabled": true,
       "settings": {
         "container_width": 1200,
         "padding_horizontal": 20,
@@ -623,6 +626,7 @@
         "video_qhKJLk",
         "video_8WUy7k"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Video Gallery",
         "heading_font": "gluten_n4",
@@ -918,6 +922,7 @@
         "image_APngEn",
         "image_cGkM6b"
       ],
+      "disabled": true,
       "settings": {
         "heading": "Our Gallery",
         "container_width": 1800,
@@ -1123,6 +1128,7 @@
         "counter_gV4PpP",
         "counter_PG7X4M"
       ],
+      "disabled": true,
       "name": "PWC Animated Counter",
       "settings": {
         "container_width": "container",
@@ -1185,6 +1191,7 @@
         "promo_item_VJpzdy",
         "promo_item_DYQQEc"
       ],
+      "disabled": true,
       "name": "PWC Promo Grid",
       "settings": {
         "heading": "Promotional Grid",
@@ -1207,7 +1214,7 @@
         "overlay_color": "#000000",
         "overlay_gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) 100%)",
         "overlay_opacity": 30,
-        "button_background": "transparent",
+        "button_background": "rgba(0,0,0,0)",
         "button_text_color": "#ffffff",
         "button_border_color": "#ffffff",
         "button_border_radius": 4,
