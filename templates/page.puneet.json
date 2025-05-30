@@ -677,6 +677,7 @@
           "type": "image_item",
           "settings": {
             "heading": "Camous",
+            "image": "shopify://shop_images/vecteezy_headphone-png-with-ai-generated_26773824.png",
             "product": "product-name",
             "link_text": "Shop Now",
             "show_price": true
