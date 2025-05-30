@@ -1284,7 +1284,7 @@
         "heading_alignment": "center",
         "heading_color": "#000000",
         "heading_spacing": 32,
-        "columns_desktop": 3,
+        "columns_desktop": 4,
         "columns_mobile": 1.2,
         "column_gap": 20,
         "column_gap_mobile": 15,
