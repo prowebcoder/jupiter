@@ -61,6 +61,7 @@
         "image_7VBcJ8": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg",
             "title": "Collection Title",
             "title_font_size": 32,
             "title_color": "#ffffff",
@@ -71,7 +72,7 @@
             "description_hover_color": "#eeeeee",
             "button_text": "Shop Now",
             "link": "",
-            "hover_bg": "#333333",
+            "hover_bg": "#a3ba35",
             "button_bg": "#ffffff",
             "button_text_color": "#000000",
             "hover_width": 60
