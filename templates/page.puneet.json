@@ -747,6 +747,7 @@
         "image_item_wd3fFH",
         "image_item_qFy99A"
       ],
+      "disabled": true,
       "settings": {
         "section_title": "Featured Collection",
         "heading_color": "#000000",
