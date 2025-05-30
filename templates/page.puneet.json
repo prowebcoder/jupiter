@@ -1280,7 +1280,7 @@
       ],
       "name": "Advanced Multi-Column",
       "settings": {
-        "section_full_width": false,
+        "section_full_width": true,
         "container_width": 1470,
         "section_bg": "#ffffff",
         "section_padding_y": 50,
@@ -1292,7 +1292,7 @@
         "columns_number": 4,
         "columns_number_tablet": 2,
         "columns_number_mobile": 2,
-        "column_gap": 17,
+        "column_gap": 10,
         "row_gap": 21,
         "column_bg": "#f8f8f8",
         "column_radius": 15,
