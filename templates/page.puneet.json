@@ -1235,7 +1235,7 @@
             "text": "<p>Add your text here</p>",
             "heading": "Column Heading",
             "heading_size": "h3",
-            "icon": "none",
+            "icon": "shopping-cart",
             "button_text": "Learn More",
             "button_link": "",
             "button_style": "primary",
