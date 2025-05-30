@@ -786,9 +786,9 @@ document.addEventListener('DOMContentLoaded', function() {
       "id": "columns_number",
       "label": "Number of Columns (Desktop)",
       "min": 1,
-      "max": 6,
+      "max": 8,
       "step": 1,
-      "default": 3
+      "default": 4
     },
     {
       "type": "range",
@@ -1010,16 +1010,17 @@ document.addEventListener('DOMContentLoaded', function() {
       "label": "Heading Hover Color",
       "default": "#3366cc"
     },
-    {
-      "type": "range",
-      "id": "heading_size",
-      "label": "Heading Size",
-      "min": 12,
-      "max": 50,
-      "step": 1,
-      "default": 22,
-      "unit": "px"
-    },
+   {
+  "type": "select",
+  "id": "heading_size",
+  "label": "Heading Size",
+  "options": [
+    { "value": "h1", "label": "Heading 1" },
+    { "value": "h2", "label": "Heading 2" },
+    { "value": "h3", "label": "Heading 3" }
+  ],
+  "default": "h2"
+},
     {
       "type": "select",
       "id": "heading_hover_effect",
