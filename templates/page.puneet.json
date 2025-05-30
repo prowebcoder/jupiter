@@ -1323,7 +1323,7 @@
         "animation_duration": 0.6,
         "hover_effect": "lift",
         "hover_bg_change": true,
-        "auto_advance": true,
+        "auto_advance": false,
         "auto_advance_speed": 5
       }
     }
