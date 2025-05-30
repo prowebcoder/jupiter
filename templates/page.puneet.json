@@ -635,12 +635,22 @@
             "link_text": "Shop Now",
             "show_price": true
           }
+        },
+        "image_item_Qtmg6i": {
+          "type": "image_item",
+          "settings": {
+            "heading": "Boat",
+            "product": "green-snowboard",
+            "link_text": "Shop Now",
+            "show_price": true
+          }
         }
       },
       "block_order": [
         "image_item_MG4ndL",
         "image_item_aQxrzX",
-        "image_item_BFdWFJ"
+        "image_item_BFdWFJ",
+        "image_item_Qtmg6i"
       ],
       "settings": {
         "section_title": "Featured Collection",
