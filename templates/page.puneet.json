@@ -1244,7 +1244,7 @@
             "text_color": "#000000",
             "heading_color": "#000000",
             "text_size": 16,
-            "border_radius": 12,
+            "border_radius": 10,
             "padding": 20,
             "add_shadow": false,
             "add_border": false,
