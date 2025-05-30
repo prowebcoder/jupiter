@@ -1336,7 +1336,7 @@
       ],
       "name": "Advanced Multi-Column",
       "settings": {
-        "container_width": "full-width",
+        "container_width": "wide",
         "padding_top": 50,
         "padding_bottom": 50,
         "margin_top": 0,
@@ -1345,7 +1345,7 @@
         "section_parallax": false,
         "columns": 4,
         "column_alignment": "center",
-        "column_gap": 15,
+        "column_gap": 20,
         "equal_height": true,
         "hover_effect": "lift",
         "entrance_animation": "fade",
