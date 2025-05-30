@@ -1298,7 +1298,7 @@
         "column_radius": 15,
         "column_padding": 25,
         "content_alignment": "center",
-        "image_ratio": "75%",
+        "image_ratio": "100%",
         "image_radius": "0px",
         "heading_color": "#333333",
         "heading_size": 22,
