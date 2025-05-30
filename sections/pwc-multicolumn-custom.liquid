@@ -38,8 +38,8 @@
 
     {{ sid }} .pc-columns {
       display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-
+      grid-template-columns: repeat({{ section.settings.columns_number }}, minmax(0, 1fr));
+      gap: var(--pc-row-gap) var(--pc-column-gap);
     }
    .pc-columns {
 
