@@ -763,7 +763,7 @@
       "name": "split banner hover pwc",
       "settings": {
         "page_width": "wide",
-        "gap_between": 20,
+        "gap_between": 15,
         "image_height": 500
       }
     }
