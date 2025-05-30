@@ -46,6 +46,7 @@
     overflow: hidden;
   }
 
+  /* Video format styles */
   {{ sid }} .pc-video-carousel__slide--portrait .pc-video-carousel__slide-inner {
     padding-bottom: 125%;
   }
@@ -56,6 +57,14 @@
 
   {{ sid }} .pc-video-carousel__slide--landscape .pc-video-carousel__slide-inner {
     padding-bottom: 56.25%;
+  }
+
+  {{ sid }} .pc-video-carousel__slide--widescreen .pc-video-carousel__slide-inner {
+    padding-bottom: 41.67%;
+  }
+
+  {{ sid }} .pc-video-carousel__slide--cinematic .pc-video-carousel__slide-inner {
+    padding-bottom: 37.5%;
   }
 
   {{ sid }} .pc-video-carousel__slide--custom .pc-video-carousel__slide-inner {
@@ -71,6 +80,7 @@
     height: 100%;
     border: none;
     border-radius: {{ section.settings.border_radius }}px;
+    object-fit: cover;
   }
 
   {{ sid }} .pc-video-carousel__controls {
@@ -110,6 +120,12 @@
     align-items: center;
     justify-content: center;
     z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  {{ sid }} .pc-video-carousel:hover .pc-video-carousel__nav {
+    opacity: 1;
   }
 
   {{ sid }} .pc-video-carousel__nav--prev {
@@ -150,6 +166,14 @@
 
     {{ sid }} .pc-video-carousel__slide--landscape .pc-video-carousel__slide-inner {
       padding-bottom: 56.25%;
+    }
+
+    {{ sid }} .pc-video-carousel__slide--widescreen .pc-video-carousel__slide-inner {
+      padding-bottom: 41.67%;
+    }
+
+    {{ sid }} .pc-video-carousel__slide--cinematic .pc-video-carousel__slide-inner {
+      padding-bottom: 37.5%;
     }
 
     {{ sid }} .pc-video-carousel__slide--custom .pc-video-carousel__slide-inner {
@@ -226,7 +250,7 @@
     {%- endfor -%}
   </div>
 
-  {%- if section.settings.show_navigation -%}
+  {%- if section.settings.show_navigation and section.blocks.size > 1 -%}
     <button class="pc-video-carousel__nav pc-video-carousel__nav--prev" aria-label="Previous video">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -251,12 +275,13 @@
     </button>
   {%- endif -%}
 
-  {%- if section.settings.show_pagination -%}
+  {%- if section.settings.show_pagination and section.blocks.size > 1 -%}
     <div class="pc-video-carousel__controls">
       {%- for block in section.blocks -%}
         <button
           class="pc-video-carousel__button {% if forloop.first %}active{% endif %}"
           aria-label="Go to slide {{ forloop.index }}"
+          data-index="{{ forloop.index0 }}"
         ></button>
       {%- endfor -%}
     </div>
@@ -271,37 +296,81 @@
     const nextBtn = document.querySelector('{{ sid }} .pc-video-carousel__nav--next');
     const dots = document.querySelectorAll('{{ sid }} .pc-video-carousel__button');
     let currentIndex = 0;
-    const itemsPerRow = window.innerWidth > 1024 ? {{ section.settings.items_per_row }} : 
-                        window.innerWidth > 768 ? {{ section.settings.items_per_row_tablet }} : 1;
+    let itemsPerRow = getItemsPerRow();
+    let isAnimating = false;
+    
+    function getItemsPerRow() {
+      if (window.innerWidth > 1024) {
+        return {{ section.settings.items_per_row }};
+      } else if (window.innerWidth > 768) {
+        return {{ section.settings.items_per_row_tablet }};
+      } else {
+        return 1;
+      }
+    }
     
     function updateCarousel() {
+      if (slides.length === 0) return;
+      
+      isAnimating = true;
       const slideWidth = slides[0].offsetWidth;
+      carousel.style.transition = 'transform 0.5s ease';
       carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
       
+      // Update dots if they exist
       if (dots.length > 0) {
         dots.forEach((dot, index) => {
           dot.classList.toggle('active', index === currentIndex);
         });
       }
+      
+      // Reset animation flag after transition ends
+      carousel.addEventListener('transitionend', function handler() {
+        isAnimating = false;
+        carousel.removeEventListener('transitionend', handler);
+        
+        // Check if we need to loop to the beginning
+        const maxIndex = Math.ceil(slides.length / itemsPerRow) - 1;
+        if (currentIndex > maxIndex) {
+          currentIndex = 0;
+          carousel.style.transition = 'none';
+          carousel.style.transform = `translateX(0)`;
+          // Force reflow
+          void carousel.offsetWidth;
+        }
+        
+        // Check if we need to loop to the end
+        if (currentIndex < 0) {
+          currentIndex = maxIndex;
+          carousel.style.transition = 'none';
+          carousel.style.transform = `translateX(-${maxIndex * slideWidth}px)`;
+          // Force reflow
+          void carousel.offsetWidth;
+        }
+      });
     }
     
     {% if section.settings.show_navigation %}
-      prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : Math.ceil(slides.length / itemsPerRow) - 1;
-        updateCarousel();
-      });
-      
-      nextBtn.addEventListener('click', () => {
-        const maxIndex = Math.ceil(slides.length / itemsPerRow) - 1;
-        currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
-        updateCarousel();
-      });
+      if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+          if (isAnimating) return;
+          currentIndex--;
+          updateCarousel();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+          if (isAnimating) return;
+          currentIndex++;
+          updateCarousel();
+        });
+      }
     {% endif %}
     
     {% if section.settings.show_pagination %}
-      dots.forEach((dot, index) => {
+      dots.forEach((dot) => {
         dot.addEventListener('click', () => {
-          currentIndex = index;
+          if (isAnimating) return;
+          currentIndex = parseInt(dot.dataset.index);
           updateCarousel();
         });
       });
@@ -309,8 +378,8 @@
     
     {% if section.settings.autoplay_carousel and section.settings.autoplay_delay > 0 %}
       let autoplayInterval = setInterval(() => {
-        const maxIndex = Math.ceil(slides.length / itemsPerRow) - 1;
-        currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
+        if (isAnimating) return;
+        currentIndex++;
         updateCarousel();
       }, {{ section.settings.autoplay_delay | times: 1000 }});
       
@@ -320,8 +389,8 @@
       
       carousel.parentElement.addEventListener('mouseleave', () => {
         autoplayInterval = setInterval(() => {
-          const maxIndex = Math.ceil(slides.length / itemsPerRow) - 1;
-          currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
+          if (isAnimating) return;
+          currentIndex++;
           updateCarousel();
         }, {{ section.settings.autoplay_delay | times: 1000 }});
       });
@@ -329,8 +398,12 @@
 
     // Handle window resize
     window.addEventListener('resize', function() {
+      itemsPerRow = getItemsPerRow();
       updateCarousel();
     });
+    
+    // Initialize carousel
+    updateCarousel();
   });
 </script>
 
@@ -787,22 +860,31 @@
           "options": [
             {
               "value": "portrait",
-              "label": "Portrait"
+              "label": "Portrait (5:4)"
             },
             {
               "value": "square",
-              "label": "Square"
+              "label": "Square (1:1)"
             },
             {
               "value": "landscape",
-              "label": "Landscape"
+              "label": "Landscape (16:9)"
+            },
+            {
+              "value": "widescreen",
+              "label": "Widescreen (21:9)"
+            },
+            {
+              "value": "cinematic",
+              "label": "Cinematic (2.39:1)"
             },
             {
               "value": "custom",
               "label": "Custom"
             }
           ],
-          "default": "landscape"
+          "default": "landscape",
+          "info": "Choose the aspect ratio for this video"
         },
         {
           "type": "video_url",
@@ -850,7 +932,7 @@
           "type": "video",
           "settings": {
             "video_url": "https://vimeo.com/148751763",
-            "video_format": "custom"
+            "video_format": "widescreen"
           }
         }
       ]
