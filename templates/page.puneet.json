@@ -1241,7 +1241,7 @@
         "column_RFnGT3": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/vecteezy_headphone-png-with-ai-generated_26773824.png",
+            "image": "shopify://shop_images/headphones-design-3d-rendering-for-product-mockup-free-png.png",
             "image_link": "",
             "title": "Column title",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
@@ -1259,12 +1259,23 @@
             "button_label": "Button label",
             "button_link": ""
           }
+        },
+        "column_XQbAn4": {
+          "type": "column",
+          "settings": {
+            "image_link": "",
+            "title": "Column title",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Button label",
+            "button_link": ""
+          }
         }
       },
       "block_order": [
         "column_jwgGwU",
         "column_RFnGT3",
-        "column_YgDYde"
+        "column_YgDYde",
+        "column_XQbAn4"
       ],
       "name": "Custom Multi-Column",
       "settings": {
@@ -1278,7 +1289,7 @@
         "column_gap": 20,
         "column_gap_mobile": 15,
         "column_padding": 20,
-        "column_background": "transparent",
+        "column_background": "rgba(0,0,0,0)",
         "column_border_radius": 0,
         "content_alignment": "center",
         "image_spacing": 20,
@@ -1298,7 +1309,7 @@
         "button_padding_x": 20,
         "padding_top": 36,
         "padding_bottom": 36,
-        "background_color": "transparent"
+        "background_color": "rgba(0,0,0,0)"
       }
     }
   },
