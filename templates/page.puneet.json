@@ -988,7 +988,7 @@
         "mobile_subheading_font_size": 14,
         "heading_color": "#000000",
         "subheading_color": "#666666",
-        "items_per_row": 3,
+        "items_per_row": 4,
         "items_per_row_tablet": 2,
         "gap": 16,
         "mobile_gap": 8,
