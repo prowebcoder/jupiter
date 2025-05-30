@@ -14,9 +14,18 @@
   }
 
   .video-carousel__slide {
-    min-width: 100%;
+    flex: 0 0 calc(100% / {{ section.settings.items_per_row }});
+    padding: 0 {{ section.settings.gap | divided_by: 2 }}px;
+    position: relative;
+    border-radius: {{ section.settings.border_radius }}px;
+    overflow: hidden;
+  }
+
+  .video-carousel__slide-inner {
     position: relative;
     padding-bottom: {{ section.settings.video_aspect_ratio }};
+    border-radius: {{ section.settings.border_radius }}px;
+    overflow: hidden;
   }
 
   .video-carousel__slide iframe,
@@ -27,6 +36,7 @@
     width: 100%;
     height: 100%;
     border: none;
+    border-radius: {{ section.settings.border_radius }}px;
   }
 
   .video-carousel__controls {
@@ -76,6 +86,7 @@
     right: 20px;
   }
 
+  /* Single item view for mobile */
   @media (max-width: 768px) {
     .video-carousel {
       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
@@ -83,6 +94,11 @@
     }
 
     .video-carousel__slide {
+      flex: 0 0 100%;
+      padding: 0 {{ section.settings.mobile_gap | divided_by: 2 }}px;
+    }
+
+    .video-carousel__slide-inner {
       padding-bottom: {{ section.settings.mobile_video_aspect_ratio }};
     }
 
@@ -91,44 +107,53 @@
       height: 30px;
     }
   }
+
+  /* Responsive items per row */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .video-carousel__slide {
+      flex: 0 0 calc(100% / {{ section.settings.items_per_row_tablet }});
+    }
+  }
 {%- endstyle -%}
 
 <div class="video-carousel color-{{ section.settings.color_scheme }}">
   <div class="video-carousel__container" id="VideoCarousel-{{ section.id }}">
     {%- for block in section.blocks -%}
       <div class="video-carousel__slide" {{ block.shopify_attributes }}>
-        {%- if block.settings.video_url.type == 'youtube' -%}
-          <iframe
-            src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?autoplay={{ section.settings.autoplay }}&mute={{ section.settings.mute }}&loop={{ section.settings.loop }}&controls={{ section.settings.controls }}&playsinline=1"
-            allow="autoplay; encrypted-media"
-            allowfullscreen
-          ></iframe>
-        {%- elsif block.settings.video_url.type == 'vimeo' -%}
-          <iframe
-            src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}?autoplay={{ section.settings.autoplay }}&muted={{ section.settings.mute }}&loop={{ section.settings.loop }}&controls={{ section.settings.controls }}&playsinline=1"
-            allow="autoplay; encrypted-media"
-            allowfullscreen
-          ></iframe>
-        {%- elsif block.settings.uploaded_video != blank -%}
-          <video
-            {% if section.settings.autoplay %}
-              autoplay
-            {% endif %}
-            {% if section.settings.mute %}
-              muted
-            {% endif %}
-            {% if section.settings.loop %}
-              loop
-            {% endif %}
-            {% if section.settings.controls %}
-              controls
-            {% endif %}
-            playsinline
-          >
-            <source src="{{ block.settings.uploaded_video }}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        {%- endif -%}
+        <div class="video-carousel__slide-inner">
+          {%- if block.settings.video_url.type == 'youtube' -%}
+            <iframe
+              src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?autoplay={{ section.settings.autoplay }}&mute={{ section.settings.mute }}&loop={{ section.settings.loop }}&controls={{ section.settings.controls }}&playsinline=1"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+            ></iframe>
+          {%- elsif block.settings.video_url.type == 'vimeo' -%}
+            <iframe
+              src="https://player.vimeo.com/video/{{ block.settings.video_url.id }}?autoplay={{ section.settings.autoplay }}&muted={{ section.settings.mute }}&loop={{ section.settings.loop }}&controls={{ section.settings.controls }}&playsinline=1"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+            ></iframe>
+          {%- elsif block.settings.uploaded_video != blank -%}
+            <video
+              {% if section.settings.autoplay %}
+                autoplay
+              {% endif %}
+              {% if section.settings.mute %}
+                muted
+              {% endif %}
+              {% if section.settings.loop %}
+                loop
+              {% endif %}
+              {% if section.settings.controls %}
+                controls
+              {% endif %}
+              playsinline
+            >
+              <source src="{{ block.settings.uploaded_video }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          {%- endif -%}
+        </div>
       </div>
     {%- endfor -%}
   </div>
@@ -162,9 +187,12 @@
     const nextBtn = document.querySelector('.video-carousel__nav--next');
     const dots = document.querySelectorAll('.video-carousel__button');
     let currentIndex = 0;
+    const itemsPerRow = window.innerWidth > 1024 ? {{ section.settings.items_per_row }} : 
+                        window.innerWidth > 768 ? {{ section.settings.items_per_row_tablet }} : 1;
     
     function updateCarousel() {
-      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+      const slideWidth = slides[0].offsetWidth;
+      carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
       
       if (dots.length > 0) {
         dots.forEach((dot, index) => {
@@ -175,12 +203,13 @@
     
     {% if section.settings.show_navigation %}
       prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : Math.ceil(slides.length / itemsPerRow) - 1;
         updateCarousel();
       });
       
       nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+        const maxIndex = Math.ceil(slides.length / itemsPerRow) - 1;
+        currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
         updateCarousel();
       });
     {% endif %}
@@ -194,9 +223,10 @@
       });
     {% endif %}
     
-    {% if section.settings.autoplay and section.settings.autoplay_delay > 0 %}
+    {% if section.settings.autoplay_carousel and section.settings.autoplay_delay > 0 %}
       let autoplayInterval = setInterval(() => {
-        currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+        const maxIndex = Math.ceil(slides.length / itemsPerRow) - 1;
+        currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
         updateCarousel();
       }, {{ section.settings.autoplay_delay | times: 1000 }});
       
@@ -206,11 +236,17 @@
       
       carousel.parentElement.addEventListener('mouseleave', () => {
         autoplayInterval = setInterval(() => {
-          currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+          const maxIndex = Math.ceil(slides.length / itemsPerRow) - 1;
+          currentIndex = (currentIndex < maxIndex) ? currentIndex + 1 : 0;
           updateCarousel();
         }, {{ section.settings.autoplay_delay | times: 1000 }});
       });
     {% endif %}
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      updateCarousel();
+    });
   });
 </script>
 
@@ -220,6 +256,58 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "items_per_row",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "label": "Items per row (desktop)",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "items_per_row_tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Items per row (tablet)",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Space between items (desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Space between items (mobile)",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
     {
       "type": "header",
       "content": "Video Settings"
@@ -531,6 +619,18 @@
           "type": "video",
           "settings": {
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "video_url": "https://vimeo.com/148751763"
+          }
+        },
+        {
+          "type": "video",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=9xwazD5SyVg"
           }
         },
         {
