@@ -906,7 +906,7 @@
         "mute": true,
         "loop": true,
         "controls": true,
-        "video_aspect_ratio": "56.25%",
+        "video_aspect_ratio": "60.25%",
         "mobile_video_aspect_ratio": "75%",
         "show_navigation": true,
         "show_pagination": true,
