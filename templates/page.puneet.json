@@ -1280,6 +1280,7 @@
         "column_nFAxzB": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/vecteezy_overear-headphones-red-leather-blue-accents-premium-audio_55244231.png",
             "image_position": "top",
             "image_width": 100,
             "text": "<p>Add your text here</p>",
@@ -1289,7 +1290,7 @@
             "button_text": "Learn More",
             "button_link": "",
             "button_style": "primary",
-            "column_bg": "transparent",
+            "column_bg": "#f8f5f5",
             "text_color": "#000000",
             "heading_color": "#000000",
             "text_size": 16,
@@ -1304,8 +1305,9 @@
         "column_9kxKMX": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/vecteezy_headphone-png-with-ai-generated_26773824.png",
             "image_position": "top",
-            "image_width": 100,
+            "image_width": 40,
             "text": "<p>Add your text here</p>",
             "heading": "Column Heading",
             "heading_size": "h3",
@@ -1322,7 +1324,7 @@
             "add_shadow": false,
             "add_border": false,
             "border_color": "#e0e0e0",
-            "column_width": 20
+            "column_width": 25
           }
         }
       },
