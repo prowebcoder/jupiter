@@ -615,10 +615,21 @@
             "link_text": "Shop Now",
             "show_price": true
           }
+        },
+        "image_item_aQxrzX": {
+          "type": "image_item",
+          "settings": {
+            "heading": "Sony",
+            "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
+            "product": "green-snowboard",
+            "link_text": "Shop Now",
+            "show_price": true
+          }
         }
       },
       "block_order": [
-        "image_item_MG4ndL"
+        "image_item_MG4ndL",
+        "image_item_aQxrzX"
       ],
       "settings": {
         "section_title": "Featured Collection",
