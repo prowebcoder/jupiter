@@ -1288,7 +1288,7 @@
         "heading_alignment": "center",
         "heading_spacing": 32,
         "heading_animation": "none",
-        "columns_number": 1,
+        "columns_number": 4,
         "columns_number_tablet": 2,
         "columns_number_mobile": 1,
         "column_gap": 20,
