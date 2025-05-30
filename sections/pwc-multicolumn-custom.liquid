@@ -1,159 +1,184 @@
 {%- assign sid = '#shopify-section-' | append: section.id -%}
 
 <style>
-  {{ sid }} {
-    --pc-section-bg: {{ section.settings.section_bg }};
-    --pc-section-padding-y: {{ section.settings.section_padding_y }}px;
-    --pc-section-padding-x: {{ section.settings.section_padding_x }}px;
-    --pc-container-width: {{ section.settings.container_width }}px;
-    --pc-column-gap: {{ section.settings.column_gap }}px;
-    --pc-row-gap: {{ section.settings.row_gap }}px;
-    --pc-column-radius: {{ section.settings.column_radius }}px;
-    --pc-column-bg: {{ section.settings.column_bg }};
-    --pc-column-padding: {{ section.settings.column_padding }}px;
-    --pc-text-color: {{ section.settings.text_color }};
-    --pc-heading-color: {{ section.settings.heading_color }};
-    --pc-link-color: {{ section.settings.link_color }};
-    --pc-button-bg: {{ section.settings.button_bg }};
-    --pc-button-text: {{ section.settings.button_text }};
-    --pc-button-radius: {{ section.settings.button_radius }}px;
-    --pc-image-ratio: {{ section.settings.image_ratio }};
-    --pc-image-radius: {{ section.settings.image_radius }};
-    --pc-content-align: {{ section.settings.content_alignment }};
-    background-color: var(--pc-section-bg);
-    padding: var(--pc-section-padding-y) var(--pc-section-padding-x);
-    {% if section.settings.section_full_width %}
-      width: 100%;
-    {% endif %}
-  }
-
-  {{ sid }} .pc-container {
-    max-width: var(--pc-container-width);
-    margin: 0 auto;
-  }
-
-  {{ sid }} .pc-columns {
-    display: grid;
-    grid-template-columns: repeat({{ section.settings.columns_number }}, 1fr);
-    gap: var(--pc-column-gap) var(--pc-row-gap);
-  }
-
-  {{ sid }} .pc-column {
-    background-color: var(--pc-column-bg);
-    border-radius: var(--pc-column-radius);
-    padding: var(--pc-column-padding);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-
-  {{ sid }} .pc-column:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  }
-
-  {{ sid }} .pc-column-content {
-    text-align: var(--pc-content-align);
-    color: var(--pc-text-color);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  {{ sid }} .pc-column-image {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--pc-image-radius);
-    margin-bottom: 20px;
-  }
-
-  {{ sid }} .pc-column-image::before {
-    content: '';
-    display: block;
-    padding-top: var(--pc-image-ratio);
-  }
-
-  {{ sid }} .pc-column-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  {{ sid }} .pc-column:hover .pc-column-image img {
-    transform: scale(1.05);
-  }
-
-  {{ sid }} .pc-column-heading {
-    color: var(--pc-heading-color);
-    margin-bottom: 15px;
-    transition: all 0.3s ease;
-  }
-
-  {{ sid }} .pc-column-text {
-    margin-bottom: 20px;
-    font-size: {{ section.settings.text_size }}px;
-    flex-grow: 1;
-  }
-
-  {{ sid }} .pc-column-link {
-    color: var(--pc-link-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  {{ sid }} .pc-column-link:hover {
-    color: var(--pc-button-bg);
-  }
-
-  {{ sid }} .pc-column-button {
-    display: inline-block;
-    background-color: var(--pc-button-bg);
-    color: var(--pc-button-text);
-    padding: 12px 25px;
-    border-radius: var(--pc-button-radius);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    margin-top: auto;
-    align-self: {{ section.settings.content_alignment }};
-  }
-
-  {{ sid }} .pc-column-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    opacity: 0.9;
-  }
-
-  {{ sid }} .pc-icon {
-    margin-bottom: 15px;
-    font-size: {{ section.settings.icon_size }}px;
-    color: {{ section.settings.icon_color }};
-    transition: all 0.3s ease;
-  }
-
-  {{ sid }} .pc-column:hover .pc-icon {
-    transform: rotate(10deg) scale(1.1);
-  }
-
-  @media (max-width: 991px) {
-    {{ sid }} .pc-columns {
-      grid-template-columns: repeat({{ section.settings.columns_number_tablet }}, 1fr);
-    }
-  }
-
-  @media (max-width: 767px) {
-    {{ sid }} .pc-columns {
-      grid-template-columns: repeat({{ section.settings.columns_number_mobile }}, 1fr);
-    }
-
     {{ sid }} {
-      --pc-section-padding-y: {{ section.settings.section_padding_y_mobile }}px;
-      --pc-section-padding-x: {{ section.settings.section_padding_x_mobile }}px;
+      --pc-section-bg: {{ section.settings.section_bg }};
+      --pc-section-padding-y: {{ section.settings.section_padding_y }}px;
+      --pc-section-padding-x: {{ section.settings.section_padding_x }}px;
+      --pc-container-width: {{ section.settings.container_width }}px;
+      --pc-column-gap: {{ section.settings.column_gap }}px;
+      --pc-row-gap: {{ section.settings.row_gap }}px;
+      --pc-column-radius: {{ section.settings.column_radius }}px;
+      --pc-column-bg: {{ section.settings.column_bg }};
+      --pc-column-padding: {{ section.settings.column_padding }}px;
+      --pc-text-color: {{ section.settings.text_color }};
+      --pc-heading-color: {{ section.settings.heading_color }};
+      --pc-link-color: {{ section.settings.link_color }};
+      --pc-button-bg: {{ section.settings.button_bg }};
+      --pc-button-text: {{ section.settings.button_text }};
+      --pc-button-radius: {{ section.settings.button_radius }}px;
+      --pc-image-ratio: {{ section.settings.image_ratio }};
+      --pc-image-radius: {{ section.settings.image_radius }};
+      --pc-content-align: {{ section.settings.content_alignment }};
+      background-color: var(--pc-section-bg);
+      padding: var(--pc-section-padding-y) var(--pc-section-padding-x);
+      {% if section.settings.section_full_width %}
+        width: 100%;
+      {% endif %}
     }
+
+    {{ sid }} .pc-container {
+      max-width: var(--pc-container-width);
+      margin: 0 auto;
+    }
+
+    {{ sid }} .pc-section-heading {
+      font-size: {{ section.settings.heading_size }}px;
+      text-align: {{ section.settings.heading_alignment }};
+      margin-bottom: 15px;
+    }
+
+    {{ sid }} .pc-section-subheading {
+      font-size: {{ section.settings.subheading_size }}px;
+      text-align: {{ section.settings.heading_alignment }};
+      margin-bottom: 30px;
+    }
+   {{ sid }} h2.pc-section-heading {
+      text-transform: uppercase;
   }
+
+
+    {{ sid }} .pc-columns {
+      display: grid;
+      grid-template-columns: repeat({{ section.settings.columns_number }}, 1fr);
+      gap: var(--pc-column-gap) var(--pc-row-gap);
+    }
+
+    {{ sid }} .pc-column {
+      background-color: var(--pc-column-bg);
+      border-radius: var(--pc-column-radius);
+      padding: var(--pc-column-padding);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    {{ sid }} .pc-column:hover {
+      transform: translateY(-5px);
+      /* box-shadow: 0 10px 25px rgba(0,0,0,0.1); */
+    }
+
+    {{ sid }} .pc-column-content {
+      text-align: var(--pc-content-align);
+      color: var(--pc-text-color);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    {{ sid }} .pc-column-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--pc-image-radius);
+      margin: 0 auto;
+      width:20%;
+
+    }
+
+    {{ sid }} .pc-column-image::before {
+      content: '';
+      display: block;
+      padding-top: var(--pc-image-ratio);
+    }
+
+    {{ sid }} .pc-column-image img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+
+
+    {{ sid }} .pc-column-heading {
+      color: var(--pc-heading-color);
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+      font-size: {{ section.settings.column_heading_size }}px;
+    }
+
+    {{ sid }} .pc-column-text {
+      margin-bottom: 20px;
+      font-size: {{ section.settings.column_text_size }}px;
+      flex-grow: 1;
+    }
+
+    {{ sid }} .pc-column-link {
+      color: var(--pc-link-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    {{ sid }} .pc-column-link:hover {
+      color: var(--pc-button-bg);
+    }
+
+    {{ sid }} .pc-column-button {
+      display: inline-block;
+      background-color: var(--pc-button-bg);
+      color: var(--pc-button-text);
+      padding: 12px 25px;
+      border-radius: var(--pc-button-radius);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-top: auto;
+      align-self: {{ section.settings.content_alignment }};
+      font-size: {{ section.settings.button_text_size }}px;
+    }
+
+    {{ sid }} .pc-column-button:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    {{ sid }} .pc-icon {
+      margin-bottom: 15px;
+      font-size: {{ section.settings.icon_size }}px;
+      color: {{ section.settings.icon_color }};
+      transition: all 0.3s ease;
+    }
+
+    {{ sid }} .pc-column:hover .pc-icon {
+      transform: rotate(10deg) scale(1.1);
+    }
+
+    @media (max-width: 991px) {
+      {{ sid }} .pc-columns {
+        grid-template-columns: repeat({{ section.settings.columns_number_tablet }}, 1fr);
+      }
+
+      {{ sid }} .pc-section-heading {
+        font-size: {{ section.settings.heading_size_mobile }}px;
+      }
+
+      {{ sid }} .pc-section-subheading {
+        font-size: {{ section.settings.subheading_size_mobile }}px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      {{ sid }} .pc-columns {
+        grid-template-columns: repeat({{ section.settings.columns_number_mobile }}, 1fr);
+      }
+
+      {{ sid }} {
+        --pc-section-padding-y: {{ section.settings.section_padding_y_mobile }}px;
+        --pc-section-padding-x: {{ section.settings.section_padding_x_mobile }}px;
+      }
+    }
 </style>
 
 <div class="pc-container">
@@ -176,13 +201,14 @@
           {% if block.settings.image != blank %}
             <div class="pc-column-image">
               {%- liquid
-                assign image_height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio
+                assign image_width = block.settings.image_width | default: 800
+                assign image_height = image_width | divided_by: block.settings.image.aspect_ratio
                 assign sizes = '375, 550, 750'
                 assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
               -%}
               {{
                 block.settings.image
-                | image_url: width: 1500
+                | image_url: width: image_width
                 | image_tag: loading: 'lazy', widths: widths, sizes: sizes
               }}
             </div>
@@ -278,16 +304,80 @@
       "unit": "px"
     },
     {
+      "type": "header",
+      "content": "Headings"
+    },
+    {
       "type": "text",
       "id": "heading",
       "label": "Heading",
       "default": "Our Features"
     },
     {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size (Desktop)",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Size (Mobile)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 24,
+      "unit": "px"
+    },
+    {
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
       "default": "Discover what makes us different"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Size (Desktop)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 18,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size_mobile",
+      "label": "Subheading Size (Mobile)",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
     },
     {
       "type": "header",
@@ -452,7 +542,16 @@
       "label": "Heading Color",
       "default": "#333333"
     },
-
+    {
+      "type": "range",
+      "id": "column_heading_size",
+      "label": "Column Heading Size",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "default": 22,
+      "unit": "px"
+    },
     {
       "type": "color",
       "id": "text_color",
@@ -461,8 +560,8 @@
     },
     {
       "type": "range",
-      "id": "text_size",
-      "label": "Text Size",
+      "id": "column_text_size",
+      "label": "Column Text Size",
       "min": 12,
       "max": 24,
       "step": 1,
@@ -486,6 +585,16 @@
       "id": "button_text",
       "label": "Button Text",
       "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button Text Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
     },
     {
       "type": "range",
@@ -529,6 +638,17 @@
           "label": "Image"
         },
         {
+          "type": "range",
+          "id": "image_width",
+          "label": "Image Width (px)",
+          "info": "Set the width in pixels for better quality (recommended min: 800px)",
+          "min": 400,
+          "max": 2000,
+          "step": 50,
+          "default": 800,
+          "unit": "px"
+        },
+        {
           "type": "text",
           "id": "icon",
           "label": "Icon (SVG code)",
@@ -570,7 +690,8 @@
           "settings": {
             "heading": "Fast Shipping",
             "text": "<p>Get your products delivered within 2-3 business days with our premium shipping service.</p>",
-            "button_text": "Learn More"
+            "button_text": "Learn More",
+            "image_width": 800
           }
         },
         {
@@ -578,7 +699,8 @@
           "settings": {
             "heading": "24/7 Support",
             "text": "<p>Our customer service team is available around the clock to assist you with any questions.</p>",
-            "button_text": "Contact Us"
+            "button_text": "Contact Us",
+            "image_width": 800
           }
         },
         {
@@ -586,7 +708,8 @@
           "settings": {
             "heading": "Easy Returns",
             "text": "<p>Not satisfied? Return any product within 30 days for a full refund, no questions asked.</p>",
-            "button_text": "Return Policy"
+            "button_text": "Return Policy",
+            "image_width": 800
           }
         }
       ]
