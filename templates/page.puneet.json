@@ -997,7 +997,7 @@
         "mute": true,
         "loop": true,
         "controls": false,
-        "video_aspect_ratio": "100%",
+        "video_aspect_ratio": " 56.25%",
         "mobile_video_aspect_ratio": "75%",
         "show_navigation": false,
         "show_pagination": true,
