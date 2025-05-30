@@ -1145,6 +1145,73 @@
         "icon_size": 38,
         "icon_color": "#ffffff"
       }
+    },
+    "pwc_promo_grid_HX4yVX": {
+      "type": "pwc-promo-grid",
+      "blocks": {
+        "promo_item_ghJAgK": {
+          "type": "promo_item",
+          "settings": {
+            "heading": "Promotional heading",
+            "text": "<p>Promotional text goes here</p>",
+            "button_label": "Shop now",
+            "button_link": ""
+          }
+        },
+        "promo_item_VJpzdy": {
+          "type": "promo_item",
+          "settings": {
+            "heading": "Promotional heading",
+            "text": "<p>Promotional text goes here</p>",
+            "button_label": "Shop now",
+            "button_link": ""
+          }
+        },
+        "promo_item_DYQQEc": {
+          "type": "promo_item",
+          "settings": {
+            "heading": "Promotional heading",
+            "text": "<p>Promotional text goes here</p>",
+            "button_label": "Shop now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "promo_item_ghJAgK",
+        "promo_item_VJpzdy",
+        "promo_item_DYQQEc"
+      ],
+      "name": "PWC Promo Grid",
+      "settings": {
+        "heading": "Promotional Grid",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "section_width": 1550,
+        "background_color": "#ffffff",
+        "columns_desktop": 3,
+        "columns_mobile": 1,
+        "grid_gap_desktop": 20,
+        "grid_gap_mobile": 10,
+        "border_radius": 8,
+        "image_aspect_ratio": "3/4",
+        "content_position": "center",
+        "content_alignment": "center",
+        "text_alignment": "center",
+        "text_color": "#ffffff",
+        "heading_size": 24,
+        "text_size": 16,
+        "overlay_color": "#000000",
+        "overlay_gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) 100%)",
+        "overlay_opacity": 30,
+        "button_background": "transparent",
+        "button_text_color": "#ffffff",
+        "button_border_color": "#ffffff",
+        "button_border_radius": 4,
+        "button_text_size": 14,
+        "button_background_hover": "#ffffff",
+        "button_text_color_hover": "#000000"
+      }
     }
   },
   "order": [
@@ -1160,6 +1227,7 @@
     "pwc_img_change_hover_w6pExT",
     "pwc_massnory_grid_gQEggH",
     "pwc_video_slider_FCDgmf",
-    "pwc_counter_3ye4Wc"
+    "pwc_counter_3ye4Wc",
+    "pwc_promo_grid_HX4yVX"
   ]
 }
