@@ -42,7 +42,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
-            "title": "Collection Title",
+            "title": "Shoulder bags",
             "title_font_size": 32,
             "title_color": "#ffffff",
             "title_hover_color": "#ffcc00",
@@ -62,7 +62,7 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg",
-            "title": "Collection Title",
+            "title": "Crossbody bags",
             "title_font_size": 32,
             "title_color": "#ffffff",
             "title_hover_color": "#ffcc00",
