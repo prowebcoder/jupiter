@@ -625,11 +625,22 @@
             "link_text": "Shop Now",
             "show_price": true
           }
+        },
+        "image_item_BFdWFJ": {
+          "type": "image_item",
+          "settings": {
+            "heading": "Bose",
+            "image": "shopify://shop_images/close-up-metallic-headphones.jpg",
+            "product": "green-snowboard",
+            "link_text": "Shop Now",
+            "show_price": true
+          }
         }
       },
       "block_order": [
         "image_item_MG4ndL",
-        "image_item_aQxrzX"
+        "image_item_aQxrzX",
+        "image_item_BFdWFJ"
       ],
       "settings": {
         "section_title": "Featured Collection",
