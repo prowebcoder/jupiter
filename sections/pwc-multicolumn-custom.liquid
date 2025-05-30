@@ -1,3 +1,170 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  .custom-multi-column__heading {
+    text-align: {{ section.settings.heading_alignment }};
+    color: {{ section.settings.heading_color }};
+    margin-bottom: {{ section.settings.heading_spacing }}px;
+  }
+
+  .custom-multi-column__grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+    gap: {{ section.settings.column_gap }}px;
+  }
+
+  .custom-multi-column__item {
+    text-align: {{ section.settings.content_alignment }};
+    padding: {{ section.settings.column_padding }}px;
+    background: {{ section.settings.column_background }};
+    border-radius: {{ section.settings.column_border_radius }}px;
+    height: 100%;
+  }
+
+  .custom-multi-column__item-image {
+    margin-bottom: {{ section.settings.image_spacing }}px;
+    border-radius: {{ section.settings.image_border_radius }}px;
+    overflow: hidden;
+  }
+
+  .custom-multi-column__item-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: {{ section.settings.image_fit }};
+  }
+
+  .custom-multi-column__item-title {
+    color: {{ section.settings.title_color }};
+    margin-bottom: {{ section.settings.title_spacing }}px;
+  }
+
+  .custom-multi-column__item-text {
+    color: {{ section.settings.text_color }};
+    margin-bottom: {{ section.settings.text_spacing }}px;
+  }
+
+  .custom-multi-column__item-button {
+    display: inline-block;
+    padding: {{ section.settings.button_padding_y }}px {{ section.settings.button_padding_x }}px;
+    background: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    border-radius: {{ section.settings.button_border_radius }}px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .custom-multi-column__item-button:hover {
+    background: {{ section.settings.button_hover_background }};
+    color: {{ section.settings.button_hover_text_color }};
+    transform: translateY(-2px);
+  }
+
+  /* Mobile slider styles */
+  @media screen and (max-width: 749px) {
+    .custom-multi-column__grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: {{ section.settings.column_gap_mobile }}px;
+      padding-bottom: 20px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .custom-multi-column__grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .custom-multi-column__item {
+      scroll-snap-align: start;
+      min-width: calc({{ 100 | divided_by: section.settings.columns_mobile }}% - {{ section.settings.column_gap_mobile | times: section.settings.columns_mobile | minus: 1 | divided_by: section.settings.columns_mobile }}px);
+      flex: 0 0 auto;
+    }
+  }
+
+  /* Responsive adjustments */
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .custom-multi-column__grid {
+      grid-template-columns: repeat({{ section.settings.columns_tablet | default: 2 }}, 1fr);
+    }
+  }
+{%- endstyle -%}
+
+<div class="custom-multi-column page-width">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="custom-multi-column__heading {{ section.settings.heading_size }}">
+      {{ section.settings.heading | escape }}
+    </h2>
+  {%- endif -%}
+
+  <div class="custom-multi-column__grid">
+    {%- for block in section.blocks -%}
+      <div class="custom-multi-column__item" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+          <div class="custom-multi-column__item-image">
+            {%- if block.settings.image_link != blank -%}
+              <a href="{{ block.settings.image_link }}">
+            {%- endif -%}
+
+            {%- liquid
+              assign image_height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio
+              assign sizes = '(min-width: 990px) calc((100vw - 130px) / ' | append: section.settings.columns_desktop | append: '), (min-width: 750px) calc((100vw - 120px) / ' | append: section.settings.columns_tablet | default: 2 | append: '), calc((100vw - 35px) / ' | append: section.settings.columns_mobile | append: ')'
+            -%}
+
+            {{
+              block.settings.image
+              | image_url: width: 1500
+              | image_tag:
+                loading: 'lazy',
+                width: block.settings.image.width,
+                height: image_height,
+                sizes: sizes,
+                widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+                alt: block.settings.image.alt
+              | escape
+            }}
+
+            {%- if block.settings.image_link != blank -%}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- if block.settings.title != blank -%}
+          <h3 class="custom-multi-column__item-title {{ section.settings.title_size }}">
+            {{ block.settings.title | escape }}
+          </h3>
+        {%- endif -%}
+
+        {%- if block.settings.text != blank -%}
+          <div class="custom-multi-column__item-text">
+            {{ block.settings.text }}
+          </div>
+        {%- endif -%}
+
+        {%- if block.settings.button_label != blank -%}
+          <a
+            {% if block.settings.button_link != blank %}
+              href="{{ block.settings.button_link }}"
+            {% endif %}
+            class="custom-multi-column__item-button"
+            {% if block.settings.button_link == blank %}
+              aria-disabled="true"
+            {% endif %}
+          >
+            {{ block.settings.button_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
 {% schema %}
 {
   "name": "Custom Multi-Column",
