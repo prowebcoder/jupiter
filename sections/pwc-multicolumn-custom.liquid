@@ -90,7 +90,6 @@
   {{ sid }} .pc-column-heading {
     color: var(--pc-heading-color);
     margin-bottom: 15px;
-    font-size: {{ section.settings.heading_size }}px;
     transition: all 0.3s ease;
   }
 
@@ -453,16 +452,7 @@
       "label": "Heading Color",
       "default": "#333333"
     },
-    {
-      "type": "range",
-      "id": "heading_size",
-      "label": "Heading Size",
-      "min": 12,
-      "max": 50,
-      "step": 1,
-      "default": 22,
-      "unit": "px"
-    },
+
     {
       "type": "color",
       "id": "text_color",
