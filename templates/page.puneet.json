@@ -1089,7 +1089,7 @@
         "bg_repeat": "no-repeat",
         "bg_attachment": "scroll",
         "overlay_opacity": 40,
-        "number_size": 50,
+        "number_size": 32,
         "number_weight": "700",
         "number_color": "#ffffff",
         "suffix_size": 22,
