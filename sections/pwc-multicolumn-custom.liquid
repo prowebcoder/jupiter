@@ -23,6 +23,9 @@
     --pc-content-align: {{ section.settings.content_alignment }};
     --pc-animation-type: {{ section.settings.animation_type }};
     --pc-animation-duration: {{ section.settings.animation_duration }}s;
+    --pc-heading-size: {{ section.settings.heading_size_top }}px;
+    --pc-heading-align: {{ section.settings.heading_alignment }};
+    --pc-subheading-size: {{ section.settings.subheading_size_top }}px;
     background-color: var(--pc-section-bg);
     padding: var(--pc-section-padding-y) var(--pc-section-padding-x);
     {% if section.settings.section_full_width %}
@@ -33,6 +36,25 @@
   {{ sid }} .pc-container {
     max-width: var(--pc-container-width);
     margin: 0 auto;
+  }
+
+  {{ sid }} .pc-section-heading {
+    font-size: var(--pc-heading-size);
+    text-align: var(--pc-heading-align);
+    margin-bottom: {{ section.settings.heading_spacing }}px;
+    color: {{ section.settings.heading_color_top }};
+    {% if section.settings.heading_animation != 'none' %}
+      opacity: 0;
+      animation: pc{{ section.settings.heading_animation | capitalize }} var(--pc-animation-duration) ease forwards;
+      animation-delay: 0.2s;
+    {% endif %}
+  }
+
+  {{ sid }} .pc-section-subheading {
+    font-size: var(--pc-subheading-size);
+    text-align: var(--pc-heading-align);
+    margin-bottom: {{ section.settings.subheading_spacing }}px;
+    color: {{ section.settings.subheading_color }};
   }
 
   {{ sid }} .pc-columns {
@@ -77,6 +99,22 @@
     to { opacity: 1; transform: scale(1); }
   }
 
+  @keyframes pcFadeInLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes pcFadeInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes pcBounceIn {
+    from { opacity: 0; transform: scale(0.8); }
+    50% { transform: scale(1.05); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
   {{ sid }} .pc-column:hover {
     {% if section.settings.hover_effect == 'lift' %}
       transform: translateY(-10px);
@@ -108,6 +146,11 @@
     overflow: hidden;
     border-radius: var(--pc-image-radius);
     margin-bottom: 20px;
+    {% if section.settings.image_full_width %}
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    {% endif %}
   }
 
   {{ sid }} .pc-column-image-wrapper::before {
@@ -122,8 +165,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: {% if section.settings.image_fit == 'cover' %}cover{% else %}contain{% endif %};
     transition: all calc(var(--pc-animation-duration) * 1.5) ease;
+    {% if section.settings.image_position != 'center' %}
+      object-position: {{ section.settings.image_position }};
+    {% endif %}
   }
 
   {{ sid }} .pc-column:hover .pc-column-image {
@@ -211,38 +257,21 @@
     100% { transform: scale(1); }
   }
 
-  {{ sid }} .pc-section-heading {
-    text-align: {{ section.settings.heading_alignment }};
-    margin-bottom: {{ section.settings.heading_spacing }}px;
-    {% if section.settings.heading_animation != 'none' %}
-      opacity: 0;
-      animation: pc{{ section.settings.heading_animation | capitalize }} var(--pc-animation-duration) ease forwards;
-      animation-delay: 0.2s;
-    {% endif %}
-  }
-
-  @keyframes pcFadeInLeft {
-    from { opacity: 0; transform: translateX(-20px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  @keyframes pcFadeInRight {
-    from { opacity: 0; transform: translateX(20px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  @keyframes pcBounceIn {
-    from { opacity: 0; transform: scale(0.8); }
-    50% { transform: scale(1.05); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
   @media (max-width: 991px) {
     {{ sid }} .pc-columns {
       grid-template-columns: repeat({{ section.settings.columns_number_tablet }}, 1fr);
     }
     {{ sid }} {
       --pc-image-width: {{ section.settings.image_width_tablet }}px;
+      {% if section.settings.image_full_width_mobile %}
+        --pc-image-width: 100%;
+      {% endif %}
+    }
+    {{ sid }} .pc-section-heading {
+      font-size: {{ section.settings.heading_size_mobile }}px;
+    }
+    {{ sid }} .pc-section-subheading {
+      font-size: {{ section.settings.subheading_size_mobile }}px;
     }
   }
 
@@ -253,7 +282,11 @@
     {{ sid }} {
       --pc-section-padding-y: {{ section.settings.section_padding_y_mobile }}px;
       --pc-section-padding-x: {{ section.settings.section_padding_x_mobile }}px;
-      --pc-image-width: {{ section.settings.image_width_mobile }}px;
+      {% if section.settings.image_full_width_mobile %}
+        --pc-image-width: 100%;
+      {% else %}
+        --pc-image-width: {{ section.settings.image_width_mobile }}px;
+      {% endif %}
     }
   }
 </style>
@@ -307,7 +340,7 @@
 
 {% schema %}
 {
-  "name": "PC - Enhanced Columns",
+  "name": "PWC - Multi Columns",
   "settings": [
     {
       "type": "header",
@@ -376,16 +409,40 @@
       "unit": "px"
     },
     {
+      "type": "header",
+      "content": "Heading Settings"
+    },
+    {
       "type": "text",
       "id": "heading",
       "label": "Heading",
       "default": "Our Features"
     },
     {
-      "type": "text",
-      "id": "subheading",
-      "label": "Subheading",
-      "default": "Discover what makes us different"
+      "type": "range",
+      "id": "heading_size_top",
+      "label": "Heading Size (Desktop)",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "default": 36,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Size (Mobile)",
+      "min": 12,
+      "max": 50,
+      "step": 1,
+      "default": 28,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "heading_color_top",
+      "label": "Heading Color",
+      "default": "#333333"
     },
     {
       "type": "select",
@@ -440,6 +497,52 @@
         }
       ],
       "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "Subheading Settings"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Discover what makes us different"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size_top",
+      "label": "Subheading Size (Desktop)",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "default": 18,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size_mobile",
+      "label": "Subheading Size (Mobile)",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "subheading_spacing",
+      "label": "Subheading Bottom Spacing",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 30,
+      "unit": "px"
     },
     {
       "type": "header",
@@ -583,6 +686,79 @@
       "unit": "px"
     },
     {
+      "type": "checkbox",
+      "id": "image_full_width",
+      "label": "Full Width Images (Desktop)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "image_full_width_mobile",
+      "label": "Full Width Images (Mobile)",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image Fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover (may crop)"
+        },
+        {
+          "value": "contain",
+          "label": "Contain (no cropping)"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "top left",
+          "label": "Top Left"
+        },
+        {
+          "value": "top right",
+          "label": "Top Right"
+        },
+        {
+          "value": "bottom left",
+          "label": "Bottom Left"
+        },
+        {
+          "value": "bottom right",
+          "label": "Bottom Right"
+        }
+      ],
+      "default": "center",
+      "info": "Only applies when Image Fit is set to Cover"
+    },
+    {
       "type": "select",
       "id": "image_ratio",
       "label": "Image Aspect Ratio",
@@ -602,6 +778,10 @@
         {
           "value": "56.25%",
           "label": "Widescreen (16:9)"
+        },
+        {
+          "value": "0%",
+          "label": "Natural (Original Ratio)"
         }
       ],
       "default": "100%"
@@ -677,7 +857,7 @@
     {
       "type": "range",
       "id": "heading_size",
-      "label": "Heading Size",
+      "label": "Column Heading Size",
       "min": 12,
       "max": 50,
       "step": 1,
@@ -917,7 +1097,7 @@
   ],
   "presets": [
     {
-      "name": "PC - Enhanced Columns",
+      "name": "PWC - Multi Columns",
       "category": "Custom",
       "blocks": [
         {
