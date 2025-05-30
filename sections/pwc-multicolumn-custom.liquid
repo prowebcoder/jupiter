@@ -38,8 +38,8 @@
 
   {{ sid }} .pc-columns {
     display: grid;
-    grid-template-columns: repeat({{ section.settings.columns_number }}, 1fr);
-    gap: var(--pc-column-gap) var(--pc-row-gap);
+    grid-template-columns: repeat({{ section.settings.columns_number }}, minmax(0, 1fr));
+    gap: var(--pc-row-gap) var(--pc-column-gap);
   }
 
   {{ sid }} .pc-column {
@@ -143,6 +143,7 @@
     color: var(--pc-heading-color);
     margin-bottom: 15px;
     font-size: {{ section.settings.heading_size }}px;
+    line-height: 1.2;
     transition: all var(--pc-animation-duration) ease;
   }
 
@@ -321,7 +322,7 @@
   /* Responsive styles */
   @media (max-width: 991px) {
     {{ sid }} .pc-columns {
-      grid-template-columns: repeat({{ section.settings.columns_number_tablet }}, 1fr);
+      grid-template-columns: repeat({{ section.settings.columns_number_tablet }}, minmax(0, 1fr));
     }
     {{ sid }} {
       --pc-image-width: {{ section.settings.image_width_tablet }}px;
@@ -347,7 +348,9 @@
 
 <div class="pc-container">
   {% if section.settings.heading != blank %}
-    <h2 class="pc-section-heading">{{ section.settings.heading }}</h2>
+    <h2 class="pc-section-heading" style="font-size: {{ section.settings.heading_size }}px;">
+      {{ section.settings.heading }}
+    </h2>
   {% endif %}
 
   {% if section.settings.subheading != blank %}
@@ -375,7 +378,9 @@
           {% endif %}
 
           {% if block.settings.heading != blank %}
-            <h3 class="pc-column-heading">{{ block.settings.heading }}</h3>
+            <h3 class="pc-column-heading" style="font-size: {{ section.settings.heading_size }}px;">
+              {{ block.settings.heading }}
+            </h3>
           {% endif %}
 
           {% if block.settings.text != blank %}
@@ -415,7 +420,9 @@
               {% endif %}
 
               {% if block.settings.heading != blank %}
-                <h3 class="pc-column-heading">{{ block.settings.heading }}</h3>
+                <h3 class="pc-column-heading" style="font-size: {{ section.settings.heading_size }}px;">
+                  {{ block.settings.heading }}
+                </h3>
               {% endif %}
 
               {% if block.settings.text != blank %}
