@@ -1027,6 +1027,7 @@
         "video_8AtbMP",
         "video_CeJxfG"
       ],
+      "disabled": true,
       "name": "Video Carousel",
       "settings": {
         "title": "Video Gallery",
@@ -1222,6 +1223,130 @@
         "button_background_hover": "#ffffff",
         "button_text_color_hover": "#000000"
       }
+    },
+    "pwc_multicolumn_custom_NmLER9": {
+      "type": "pwc-multicolumn-custom",
+      "blocks": {
+        "column_zk7wPC": {
+          "type": "column",
+          "settings": {
+            "image_position": "top",
+            "image_width": 100,
+            "text": "<p>Add your text here</p>",
+            "heading": "Column Heading",
+            "heading_size": "h3",
+            "icon": "none",
+            "button_text": "Learn More",
+            "button_link": "",
+            "button_style": "primary",
+            "column_bg": "transparent",
+            "text_color": "#000000",
+            "heading_color": "#000000",
+            "text_size": 16,
+            "border_radius": 0,
+            "padding": 20,
+            "add_shadow": false,
+            "add_border": false,
+            "border_color": "#e0e0e0",
+            "column_width": 20
+          }
+        },
+        "column_yMB4BW": {
+          "type": "column",
+          "settings": {
+            "image_position": "top",
+            "image_width": 100,
+            "text": "<p>Add your text here</p>",
+            "heading": "Column Heading",
+            "heading_size": "h3",
+            "icon": "none",
+            "button_text": "Learn More",
+            "button_link": "",
+            "button_style": "primary",
+            "column_bg": "transparent",
+            "text_color": "#000000",
+            "heading_color": "#000000",
+            "text_size": 16,
+            "border_radius": 0,
+            "padding": 20,
+            "add_shadow": false,
+            "add_border": false,
+            "border_color": "#e0e0e0",
+            "column_width": 20
+          }
+        },
+        "column_nFAxzB": {
+          "type": "column",
+          "settings": {
+            "image_position": "top",
+            "image_width": 100,
+            "text": "<p>Add your text here</p>",
+            "heading": "Column Heading",
+            "heading_size": "h3",
+            "icon": "none",
+            "button_text": "Learn More",
+            "button_link": "",
+            "button_style": "primary",
+            "column_bg": "transparent",
+            "text_color": "#000000",
+            "heading_color": "#000000",
+            "text_size": 16,
+            "border_radius": 0,
+            "padding": 20,
+            "add_shadow": false,
+            "add_border": false,
+            "border_color": "#e0e0e0",
+            "column_width": 20
+          }
+        },
+        "column_9kxKMX": {
+          "type": "column",
+          "settings": {
+            "image_position": "top",
+            "image_width": 100,
+            "text": "<p>Add your text here</p>",
+            "heading": "Column Heading",
+            "heading_size": "h3",
+            "icon": "none",
+            "button_text": "Learn More",
+            "button_link": "",
+            "button_style": "primary",
+            "column_bg": "transparent",
+            "text_color": "#000000",
+            "heading_color": "#000000",
+            "text_size": 16,
+            "border_radius": 0,
+            "padding": 20,
+            "add_shadow": false,
+            "add_border": false,
+            "border_color": "#e0e0e0",
+            "column_width": 20
+          }
+        }
+      },
+      "block_order": [
+        "column_zk7wPC",
+        "column_yMB4BW",
+        "column_nFAxzB",
+        "column_9kxKMX"
+      ],
+      "name": "Advanced Multi-Column",
+      "settings": {
+        "container_width": "full-width",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "section_bg": "#ffffff",
+        "section_parallax": false,
+        "columns": 4,
+        "column_alignment": "center",
+        "column_gap": 15,
+        "equal_height": true,
+        "hover_effect": "lift",
+        "entrance_animation": "fade",
+        "animation_duration": 300
+      }
     }
   },
   "order": [
@@ -1238,6 +1363,7 @@
     "pwc_massnory_grid_gQEggH",
     "pwc_video_slider_FCDgmf",
     "pwc_counter_3ye4Wc",
-    "pwc_promo_grid_HX4yVX"
+    "pwc_promo_grid_HX4yVX",
+    "pwc_multicolumn_custom_NmLER9"
   ]
 }
