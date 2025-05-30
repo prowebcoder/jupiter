@@ -1255,6 +1255,7 @@
         "column_yMB4BW": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
             "image_position": "top",
             "image_width": 100,
             "text": "<p>Add your text here</p>",
@@ -1264,7 +1265,7 @@
             "button_text": "Learn More",
             "button_link": "",
             "button_style": "primary",
-            "column_bg": "transparent",
+            "column_bg": "#f8f5f5",
             "text_color": "#000000",
             "heading_color": "#000000",
             "text_size": 16,
