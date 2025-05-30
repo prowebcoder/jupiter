@@ -650,6 +650,7 @@
           "type": "image_item",
           "settings": {
             "heading": "Siguno",
+            "image": "shopify://shop_images/headphones-design-3d-rendering-for-product-mockup-free-png.png",
             "product": "crossbody-bags",
             "link_text": "Shop Now",
             "show_price": true
@@ -704,7 +705,7 @@
         "container_type": "fixed",
         "container_width": 1400,
         "image_width": 500,
-        "background_color": "",
+        "background_color": "#f3f3f3",
         "background_gradient": "",
         "text_color": "#000000",
         "active_color": "#ffa05e",
