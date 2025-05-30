@@ -1099,6 +1099,52 @@
         "icon_size": 38,
         "icon_color": "#ffffff"
       }
+    },
+    "pwc_image_with_typingtext_FJ8dKc": {
+      "type": "pwc-image-with-typingtext",
+      "name": "Typing Text",
+      "settings": {
+        "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
+        "image_width": 40,
+        "image_position": "left",
+        "static_text": "Call me",
+        "typing_words": "Mike,John,Cindy,Daisy",
+        "after_text": ".",
+        "paragraph_text": "<p>Add your descriptive text here that will appear below the typing text.</p>",
+        "button_text": "Shop Now",
+        "button_link": "",
+        "button_bg_color": "#000000",
+        "button_text_color": "#ffffff",
+        "button_font_size": 16,
+        "button_padding_horizontal": 20,
+        "button_padding_vertical": 10,
+        "button_border_radius": 0,
+        "button_width": "auto",
+        "left_horizontal_alignment": "left",
+        "font_family": "'IBM Plex Mono', monospace",
+        "font_size_desktop": 48,
+        "font_size_mobile": 32,
+        "paragraph_font_size_desktop": 18,
+        "paragraph_font_size_mobile": 16,
+        "paragraph_color": "#666666",
+        "paragraph_margin_top": 15,
+        "paragraph_line_height": 1.6,
+        "paragraph_font_weight": "400",
+        "section_height_desktop": 100,
+        "section_height_mobile": 80,
+        "bg_color": "#b47f33",
+        "text_color": "#121212",
+        "typing_text_color": "#33b478",
+        "typing_border_color": "#000000",
+        "typing_border_width": 2,
+        "container_width": 90,
+        "type_speed": 100,
+        "back_speed": 50,
+        "back_delay": 2000,
+        "loop": true,
+        "show_cursor": true,
+        "cursor_char": "|"
+      }
     }
   },
   "order": [
@@ -1113,6 +1159,7 @@
     "pwc_img_change_hover_w6pExT",
     "pwc_massnory_grid_gQEggH",
     "pwc_video_slider_FCDgmf",
-    "pwc_counter_3ye4Wc"
+    "pwc_counter_3ye4Wc",
+    "pwc_image_with_typingtext_FJ8dKc"
   ]
 }
