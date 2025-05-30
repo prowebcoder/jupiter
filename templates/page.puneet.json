@@ -1152,6 +1152,7 @@
         "promo_item_ghJAgK": {
           "type": "promo_item",
           "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
             "heading": "Promotional heading",
             "text": "<p>Promotional text goes here</p>",
             "button_label": "Shop now",
@@ -1161,6 +1162,7 @@
         "promo_item_VJpzdy": {
           "type": "promo_item",
           "settings": {
+            "image": "shopify://shop_images/home-overlay-cards-2.webp",
             "heading": "Promotional heading",
             "text": "<p>Promotional text goes here</p>",
             "button_label": "Shop now",
@@ -1170,6 +1172,7 @@
         "promo_item_DYQQEc": {
           "type": "promo_item",
           "settings": {
+            "image": "shopify://shop_images/home-overlay-cards-1.webp",
             "heading": "Promotional heading",
             "text": "<p>Promotional text goes here</p>",
             "button_label": "Shop now",
