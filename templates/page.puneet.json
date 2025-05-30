@@ -1326,7 +1326,7 @@
         "link_color": "#3366cc",
         "button_bg": "#121212",
         "button_text": "#ffffff",
-        "button_hover_bg": "#224488",
+        "button_hover_bg": "#121212",
         "button_hover_text": "#ffffff",
         "button_radius": 5,
         "button_hover_effect": "fill",
