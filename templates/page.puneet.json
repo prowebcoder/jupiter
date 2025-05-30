@@ -1244,7 +1244,7 @@
             "heading": "Column Heading",
             "text": "<p>Add your text here</p>",
             "button_text": "Learn More",
-            "button_link": ""
+            "button_link": "shopify://collections"
           }
         },
         "column_nFAxzB": {
@@ -1254,7 +1254,7 @@
             "heading": "Column Heading",
             "text": "<p>Add your text here</p>",
             "button_text": "Learn More",
-            "button_link": ""
+            "button_link": "shopify://products/product-name-5"
           }
         },
         "column_9kxKMX": {
@@ -1264,7 +1264,7 @@
             "heading": "Column Heading",
             "text": "<p>Add your text here</p>",
             "button_text": "Learn More",
-            "button_link": ""
+            "button_link": "shopify://collections/crossbody-bag"
           }
         }
       },
