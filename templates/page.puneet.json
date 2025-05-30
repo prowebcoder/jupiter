@@ -1224,116 +1224,81 @@
         "button_text_color_hover": "#000000"
       }
     },
-    "pwc_multicolumn_custom_NmLER9": {
+    "pwc_multicolumn_custom_ExinDf": {
       "type": "pwc-multicolumn-custom",
       "blocks": {
-        "column_zk7wPC": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/vecteezy_vibrant-green-and-blue-headphones-with-modern-design_55716678.png",
-            "heading": "Column Heading",
-            "text": "<p>Add your text here</p>",
-            "button_text": "Learn More",
-            "button_link": "shopify://collections"
-          }
-        },
-        "column_yMB4BW": {
+        "column_jwgGwU": {
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
-            "heading": "Column Heading",
-            "text": "<p>Add your text here</p>",
-            "button_text": "Learn More",
-            "button_link": "shopify://collections"
+            "image_link": "",
+            "title": "Column title",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Button label",
+            "button_link": ""
           }
         },
-        "column_nFAxzB": {
+        "column_RFnGT3": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/vecteezy_overear-headphones-red-leather-blue-accents-premium-audio_55244231.png",
-            "heading": "Column Heading",
-            "text": "<p>Add your text here</p>",
-            "button_text": "Learn More",
-            "button_link": "shopify://products/product-name-5"
+            "image": "shopify://shop_images/vecteezy_headphone-png-with-ai-generated_26773824.png",
+            "image_link": "",
+            "title": "Column title",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Button label",
+            "button_link": ""
           }
         },
-        "column_9kxKMX": {
+        "column_YgDYde": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/headphones-design-3d-rendering-for-product-mockup-free-png.png",
-            "heading": "Column Heading",
-            "text": "<p>Add your text here</p>",
-            "button_text": "Learn More",
-            "button_link": "shopify://collections/crossbody-bag"
+            "image": "shopify://shop_images/vecteezy_vibrant-green-and-blue-headphones-with-modern-design_55716678.png",
+            "image_link": "",
+            "title": "Column title",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Button label",
+            "button_link": ""
           }
         }
       },
       "block_order": [
-        "column_zk7wPC",
-        "column_yMB4BW",
-        "column_nFAxzB",
-        "column_9kxKMX"
+        "column_jwgGwU",
+        "column_RFnGT3",
+        "column_YgDYde"
       ],
-      "name": "Advanced Multi-Column",
+      "name": "Custom Multi-Column",
       "settings": {
-        "section_full_width": false,
-        "container_width": 1290,
-        "section_bg": "#ffffff",
-        "section_padding_y": 50,
-        "section_padding_x": 20,
-        "section_padding_y_mobile": 30,
-        "section_padding_x_mobile": 15,
-        "heading": "Our Features",
-        "heading_size_top": 36,
-        "heading_size_mobile": 28,
-        "heading_color_top": "#333333",
+        "heading": "Multi-column section",
+        "heading_size": "h1",
         "heading_alignment": "center",
-        "heading_spacing": 20,
-        "heading_animation": "fadeInLeft",
-        "subheading": "Discover what makes us different",
-        "subheading_size_top": 20,
-        "subheading_size_mobile": 16,
-        "subheading_color": "#666666",
-        "subheading_spacing": 30,
-        "columns_number": 4,
-        "columns_number_tablet": 2,
-        "columns_number_mobile": 2,
-        "column_gap": 10,
-        "row_gap": 21,
-        "column_bg": "#f8f8f8",
-        "column_hover_bg": "#eeeeee",
-        "column_radius": 15,
-        "column_padding": 25,
+        "heading_color": "#000000",
+        "heading_spacing": 32,
+        "columns_desktop": 3,
+        "columns_mobile": 1.2,
+        "column_gap": 20,
+        "column_gap_mobile": 15,
+        "column_padding": 20,
+        "column_background": "transparent",
+        "column_border_radius": 0,
         "content_alignment": "center",
-        "image_width": 140,
-        "image_width_tablet": 180,
-        "image_width_mobile": 150,
-        "image_full_width": false,
-        "image_full_width_mobile": false,
+        "image_spacing": 20,
+        "image_border_radius": 0,
         "image_fit": "cover",
-        "image_position": "center",
-        "image_ratio": "100%",
-        "image_radius": "0px",
-        "image_hover_effect": "zoom",
-        "heading_color": "#333333",
-        "heading_hover_color": "#3366cc",
-        "heading_size": 22,
-        "heading_hover_effect": "none",
-        "text_color": "#666666",
-        "text_hover_color": "#444444",
-        "text_size": 16,
-        "text_hover_effect": "none",
-        "link_color": "#3366cc",
-        "button_bg": "#121212",
-        "button_text": "#ffffff",
-        "button_hover_bg": "#121212",
-        "button_hover_text": "#ffffff",
-        "button_radius": 5,
-        "button_hover_effect": "fill",
-        "animation_type": "slide-up",
-        "animation_duration": 0.6,
-        "hover_effect": "lift",
-        "hover_bg_change": true
+        "title_size": "h2",
+        "title_color": "#000000",
+        "title_spacing": 12,
+        "text_color": "#333333",
+        "text_spacing": 20,
+        "button_background": "#000000",
+        "button_text_color": "#ffffff",
+        "button_hover_background": "#333333",
+        "button_hover_text_color": "#ffffff",
+        "button_border_radius": 0,
+        "button_padding_y": 10,
+        "button_padding_x": 20,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "background_color": "transparent"
       }
     }
   },
@@ -1352,6 +1317,6 @@
     "pwc_video_slider_FCDgmf",
     "pwc_counter_3ye4Wc",
     "pwc_promo_grid_HX4yVX",
-    "pwc_multicolumn_custom_NmLER9"
+    "pwc_multicolumn_custom_ExinDf"
   ]
 }
