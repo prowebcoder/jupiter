@@ -130,29 +130,39 @@
     let charIndex = 0;
     let isDeleting = false;
 
-    function type() {
-      const currentWord = words[wordIndex];
-      if (isDeleting) {
-        el.textContent = currentWord.substring(0, charIndex--);
-      } else {
-        el.textContent = currentWord.substring(0, charIndex++);
-      }
+function type() {
+  const currentWord = words[wordIndex];
 
-      let delay = isDeleting ? backSpeed : typeSpeed;
+  if (isDeleting) {
+    el.textContent = currentWord.substring(0, charIndex--);
+  } else {
+    el.textContent = currentWord.substring(0, charIndex++);
+  }
 
-      if (!isDeleting && charIndex === currentWord.length) {
-        delay = backDelay;
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
+  let delay = isDeleting ? backSpeed : typeSpeed;
 
-        // Stop if loop is false and last word finished
-        if (!loop && wordIndex === 0) return;
-      }
+  // If typing complete
+  if (!isDeleting && charIndex === currentWord.length) {
+    isDeleting = true;
+    delay = backDelay;
+  }
 
-      setTimeout(type, delay);
-    }
+  // If word deleted completely
+  if (isDeleting && charIndex < 0) {
+    isDeleting = false;
+    wordIndex = (wordIndex + 1) % words.length;
+
+    // Prevent content disappearing
+    charIndex = 0;
+    delay = typeSpeed;
+
+    // Stop looping if loop is false
+    if (!loop && wordIndex === 0) return;
+  }
+
+  setTimeout(type, delay);
+}
+
 
     type();
   });
