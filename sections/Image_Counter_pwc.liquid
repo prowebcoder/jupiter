@@ -109,7 +109,7 @@
     <div class="pw-section-image">
       {{-
         section.settings.image
-        | image_url: widths: '200, 300, 400'  
+        | image_url: width: section.settings.image.width, height: section.settings.image.height   
         |  image_tag: loading: 'lazy'
       -}}
     </div>
