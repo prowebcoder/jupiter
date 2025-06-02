@@ -323,7 +323,7 @@
       "name": "Black Friday Countdown",
       "settings": {
         "title": "BLACK FRIDAY",
-        "end_date": "2023-11-27T23:59:59",
+        "end_date": "2026-11-27T23:59:59",
         "heading_font": "helvetica_n4",
         "countdown_font": "helvetica_n4",
         "heading_font_size": 32,
