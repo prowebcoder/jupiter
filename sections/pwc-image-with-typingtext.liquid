@@ -118,11 +118,12 @@
     const typeSpeed = {{ section.settings.type_speed }};
     const backSpeed = {{ section.settings.back_speed }};
     const backDelay = {{ section.settings.back_delay }};
-      const startDelay = 500;
+    const startDelay = 500;  // Pause before starting next word
     const loop = {{ section.settings.loop }};
     const showCursor = {{ section.settings.show_cursor }};
     const cursorChar = '{{ section.settings.cursor_char }}';
 
+    // Initialize cursor if enabled
     if (showCursor && cursor) {
       cursor.textContent = cursorChar;
     }
@@ -131,35 +132,41 @@
     let charIndex = 0;
     let isDeleting = false;
 
-function type() {
-        const currentWord = words[wordIndex];
-        let displayText;
+    function type() {
+      const currentWord = words[wordIndex];
+      let displayText = currentWord.substring(0, charIndex);
+      
+      // Update DOM
+      el.textContent = displayText;
+      
+      // Set timing based on current state
+      let delay = isDeleting ? backSpeed : typeSpeed;
 
-        if (isDeleting) {
-          charIndex--;
-          displayText = currentWord.substring(0, charIndex);
-        } else {
-          charIndex++;
-          displayText = currentWord.substring(0, charIndex);
-        }
-
-        el.textContent = displayText;
-
-        let delay = isDeleting ? backSpeed : typeSpeed;
-
-        if (!isDeleting && charIndex === currentWord.length) {
-          delay = backDelay;
-          isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-          isDeleting = false;
-          wordIndex = (wordIndex + 1) % words.length;
-          delay = startDelay; // pause before next word starts
-        }
-
-        setTimeout(type, delay);
+      // State transitions:
+      if (!isDeleting && charIndex === currentWord.length) {
+        // Finished typing - start deleting after delay
+        isDeleting = true;
+        delay = backDelay;
+      } 
+      else if (isDeleting && charIndex === 0) {
+        // Finished deleting - move to next word
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        delay = startDelay;
+        
+        // Stop animation if not looping
+        if (!loop && wordIndex === 0) return;
+      } 
+      else {
+        // Continue current operation (typing/deleting)
+        isDeleting ? charIndex-- : charIndex++;
       }
 
+      // Continue animation
+      setTimeout(type, delay);
+    }
 
+    // Start animation
     type();
   });
 </script>
