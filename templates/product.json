@@ -239,13 +239,13 @@
             "hours": 69,
             "background_color": "#ffffff",
             "title": "Hours",
-            "title_text_color": "#000",
+            "title_text_color": "#000000",
             "title_text_size": "small",
             "title_font_weight": "normal",
             "title_font_style": "normal",
             "title_letter_spacing": 0,
             "title_text_decoration": "none",
-            "title_text_decoration_color": "#000",
+            "title_text_decoration_color": "#000000",
             "title_padding_top": 5,
             "title_padding_bottom": 5
           }
@@ -256,13 +256,13 @@
             "background_color": "#ffffff",
             "minutes": 28,
             "minutes_title": "Minutes",
-            "minutes_text_color": "#000",
+            "minutes_text_color": "#000000",
             "minutes_text_size": "small",
             "minutes_font_weight": "normal",
             "minutes_font_style": "normal",
             "minutes_letter_spacing": 0,
             "minutes_text_decoration": "none",
-            "minutes_text_decoration_color": "#000",
+            "minutes_text_decoration_color": "#000000",
             "minutes_padding_top": 5,
             "minutes_padding_bottom": 5
           }
@@ -273,13 +273,13 @@
             "seconds": 22,
             "background_color": "#ffffff",
             "seconds_title": "Seconds",
-            "seconds_text_color": "#000",
+            "seconds_text_color": "#000000",
             "seconds_text_size": "small",
             "seconds_font_weight": "normal",
             "seconds_font_style": "normal",
             "seconds_letter_spacing": 0,
             "seconds_text_decoration": "none",
-            "seconds_text_decoration_color": "#000",
+            "seconds_text_decoration_color": "#000000",
             "seconds_padding_top": 5,
             "seconds_padding_bottom": 5
           }
@@ -299,23 +299,41 @@
         "background_margin_top": 5,
         "background__margin_bottom": 5,
         "heading": "Heading Text",
-        "heading_text_color": "#000",
+        "heading_text_color": "#000000",
         "heading_text_size": "small",
         "heading_font_weight": "normal",
         "heading_style": "normal",
         "heading_letter_spacing": 0,
         "heading_text_decoration": "none",
-        "heading_decoration_color": "#000",
+        "heading_decoration_color": "#000000",
         "heading_padding_top": 5,
         "heading_padding_bottom": 5,
         "highlighted_text": "Countdown",
-        "highlighted_text_color": "#000",
+        "highlighted_text_color": "#000000",
         "highlighted_text_size": "small",
         "highlighted__font_weight": "normal",
         "highlighted_style": "normal",
         "highlighted_letter_spacing": 0,
         "highlighted__text_decoration": "none",
-        "highlighted_decoration_color": "#000"
+        "highlighted_decoration_color": "#000000"
+      }
+    },
+    "black_friday_Ne7fpz": {
+      "type": "black-friday",
+      "name": "Black Friday Countdown",
+      "settings": {
+        "title": "BLACK FRIDAY",
+        "end_date": "2023-11-27T23:59:59",
+        "heading_font": "helvetica_n4",
+        "countdown_font": "helvetica_n4",
+        "heading_font_size": 32,
+        "countdown_font_size": 24,
+        "background_color": "#000000",
+        "heading_color": "#FFFFFF",
+        "countdown_color": "#FFFFFF",
+        "separator_color": "#FFFFFF",
+        "padding": 20,
+        "countdown_spacing": 15
       }
     }
   },
@@ -324,6 +342,7 @@
     "image-with-text",
     "multicolumn",
     "related-products",
-    "pwc_countdown_cXBb47"
+    "pwc_countdown_cXBb47",
+    "black_friday_Ne7fpz"
   ]
 }
