@@ -1,6 +1,6 @@
 {% assign sec_id = '#shopify-section-' | append: section.id %}
 
-<style>
+{% style %}
   
   {{ sec_id }} .pc-section-container {
     {% case section.settings.page_width %}
@@ -209,7 +209,8 @@
       opacity: 1;
     }
   }
-</style>
+  
+{% endstyle %}}
 
 <div class="pc-section-container">
   <div class="pc-split-container">
