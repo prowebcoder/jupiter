@@ -230,7 +230,7 @@
         {% if block.settings.image != blank %}
           {{-
             block.settings.image
-            | image_url: width: 650, height: 550
+            | image_url: width: 600, height: 570
             | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt
           -}}
         {% endif %}
