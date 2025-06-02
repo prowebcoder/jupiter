@@ -549,6 +549,61 @@
         "main_heading_color": "#000000",
         "center_image": "shopify://shop_images/woman-poses-in-dark-room.jpg"
       }
+    },
+    "image_hover_pro_pwc_Qhgcdx": {
+      "type": "image_hover_pro_pwc",
+      "blocks": {
+        "image_GJbTKA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
+            "title": "Collection Title",
+            "title_font_size": 32,
+            "title_color": "#ffffff",
+            "title_hover_color": "#ffcc00",
+            "description": "<p>Add your product description here</p>",
+            "description_font_size": 16,
+            "description_color": "#f5f5f5",
+            "description_hover_color": "#eeeeee",
+            "button_text": "Shop Now",
+            "link": "",
+            "hover_bg": "#333333",
+            "button_bg": "#ffffff",
+            "button_text_color": "#000000",
+            "hover_width": 60
+          }
+        },
+        "image_Vcpa3Q": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/stylish-skirt-purse.jpg",
+            "title": "Collection Title",
+            "title_font_size": 32,
+            "title_color": "#ffffff",
+            "title_hover_color": "#ffcc00",
+            "description": "<p>Add your product description here</p>",
+            "description_font_size": 16,
+            "description_color": "#f5f5f5",
+            "description_hover_color": "#eeeeee",
+            "button_text": "Shop Now",
+            "link": "",
+            "hover_bg": "#333333",
+            "button_bg": "#ffffff",
+            "button_text_color": "#000000",
+            "hover_width": 60
+          }
+        }
+      },
+      "block_order": [
+        "image_GJbTKA",
+        "image_Vcpa3Q"
+      ],
+      "name": "Image Hover Pro Pwc",
+      "settings": {
+        "page_width": "wide",
+        "gap_between": 20,
+        "image_height": 500
+      }
     }
   },
   "order": [
@@ -558,6 +613,7 @@
     "image_counter_pwc_4LedYC",
     "collection_grid_pwc_WfW39c",
     "collection_grid_image_pwc_WPFmUG",
-    "text_image_text_pwc_VedTK4"
+    "text_image_text_pwc_VedTK4",
+    "image_hover_pro_pwc_Qhgcdx"
   ]
 }
