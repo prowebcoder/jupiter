@@ -355,10 +355,10 @@
         "highlighted_decoration_color": "#a3ba35"
       }
     },
-    "pwc_split_image_hover_YgNLCz": {
+    "pwc_split_image_hover_7pCa4i": {
       "type": "pwc-split-image-hover",
       "blocks": {
-        "image_n4izjp": {
+        "image_Y7fedy": {
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
@@ -407,10 +407,10 @@
             "hover_width": 60
           }
         },
-        "image_cdDP8H": {
+        "image_QHMhT8": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/stylish-skirt-purse.jpg",
+            "image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg",
             "title": "Collection 2",
             "title_font_size": 32,
             "title_font_weight": "normal",
@@ -458,15 +458,15 @@
         }
       },
       "block_order": [
-        "image_n4izjp",
-        "image_cdDP8H"
+        "image_Y7fedy",
+        "image_QHMhT8"
       ],
       "name": "PWC Split Image Hover Banner ",
       "settings": {
         "page_width": "wide",
         "gap_between": 10,
         "image_height": 500,
-        "custom_border_radius": "12"
+        "custom_border_radius": "10"
       }
     }
   },
@@ -475,6 +475,6 @@
     "pwc_marquee_1_MiwcCR",
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
-    "pwc_split_image_hover_YgNLCz"
+    "pwc_split_image_hover_7pCa4i"
   ]
 }
