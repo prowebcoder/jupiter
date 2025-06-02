@@ -13,14 +13,12 @@
     padding: 0 15px;
   }
 
-  {{ sec_id }} .pc-image-description {
-  color: var(--desc-color);
- }
-
-  {{ sec_id }} .pc-image-description {
-  /* other styles */
-  color: {{ section.settings.description_color }} /* This is overriding your block-specific colors */
-}
+{% for block in section.blocks %}
+  {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] {
+    --desc-color: {{ block.settings.description_color }};
+    --desc-hover-color: {{ block.settings.description_hover_color }};
+  }
+{% endfor %}
   
   {{ sec_id }} .pc-section-container {
     padding-top: {{ section.settings.padding_top }}px;
