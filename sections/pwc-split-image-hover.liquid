@@ -12,6 +12,16 @@
     margin: 0 auto;
     padding: 0 15px;
   }
+
+  {{ sec_id }} .pc-image-description,
+  {{ sec_id }} .pc-image-description p {
+  color: var(--desc-color);
+  }
+
+{{ sec_id }} .pc-image-box:hover .pc-image-description,
+{{ sec_id }} .pc-image-box:hover .pc-image-description p {
+  color: var(--desc-hover-color);
+}
   
   {{ sec_id }} .pc-section-container {
     padding-top: {{ section.settings.padding_top }}px;
