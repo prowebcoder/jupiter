@@ -604,6 +604,27 @@
         "gap_between": 20,
         "image_height": 500
       }
+    },
+    "text_image_video_pwc_RtUCTd": {
+      "type": "text-image-video-pwc",
+      "name": "PC Text + Image + Video",
+      "settings": {
+        "heading": "100% transparent and direct contact with you, our customers",
+        "width_option": "boxed",
+        "media_position": "right",
+        "heading_font_size": 32,
+        "heading_font_weight": "400",
+        "heading_color": "#000000",
+        "button_text": "Shop Now",
+        "button_link": "shopify://collections/bags",
+        "button_bg_color": "#ffffff",
+        "button_text_color": "#000000",
+        "button_shape": "square",
+        "button_alignment": "left",
+        "text_position": "flex-start",
+        "image": "shopify://shop_images/woman-in-park-afternoon.jpeg",
+        "shopify_video": "shopify://files/videos/7614397-sd_506_960_25fps.mp4"
+      }
     }
   },
   "order": [
@@ -614,6 +635,7 @@
     "collection_grid_pwc_WfW39c",
     "collection_grid_image_pwc_WPFmUG",
     "text_image_text_pwc_VedTK4",
-    "image_hover_pro_pwc_Qhgcdx"
+    "image_hover_pro_pwc_Qhgcdx",
+    "text_image_video_pwc_RtUCTd"
   ]
 }
