@@ -614,7 +614,7 @@
         "media_position": "right",
         "heading_font_size": 32,
         "heading_font_weight": "400",
-        "heading_color": "#000000",
+        "heading_color": "#a3ba35",
         "button_text": "Shop Now",
         "button_link": "shopify://collections/bags",
         "button_bg_color": "#ffffff",
@@ -623,7 +623,8 @@
         "button_alignment": "left",
         "text_position": "flex-start",
         "image": "shopify://shop_images/woman-in-park-afternoon.jpeg",
-        "shopify_video": "shopify://files/videos/7614397-sd_506_960_25fps.mp4"
+        "shopify_video": "shopify://files/videos/7614397-sd_506_960_25fps.mp4",
+        "video_url": ""
       }
     }
   },
