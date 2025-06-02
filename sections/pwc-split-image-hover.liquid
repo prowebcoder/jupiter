@@ -12,13 +12,6 @@
     margin: 0 auto;
     padding: 0 15px;
   }
-
-{% for block in section.blocks %}
-  {{ sec_id }} .pc-image-box[data-block-id="{{ block.id }}"] {
-    --desc-color: {{ block.settings.description_color }};
-    --desc-hover-color: {{ block.settings.description_hover_color }};
-  }
-{% endfor %}
   
   {{ sec_id }} .pc-section-container {
     padding-top: {{ section.settings.padding_top }}px;
