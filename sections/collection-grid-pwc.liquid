@@ -212,7 +212,10 @@
             >
               {{ collection.title | upcase }}
             </h3>
-            <div class="pw-card-rating">★ ★ ★ ★ ☆</div>
+            {% comment %}
+              <div class="pw-card-rating">★ ★ ★ ★ ☆</div>
+            {% endcomment %}
+
             <p
               class="pw-card-subtext"
               style="color: {{ block.settings.subtitle_color }}; font-size: {{ block.settings.subtitle_size }}px;"
