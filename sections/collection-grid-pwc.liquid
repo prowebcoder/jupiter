@@ -1,106 +1,106 @@
 {% assign sec_id = '#shopify-section-' | append: section.id %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 <style>
-{{ sec_id }} .pw-discover-by-category {
-  padding: 40px 20px;
-  background: #fff;
-}
+  {{ sec_id }} .pw-discover-by-category {
+    padding: 40px 20px;
+    background: #fff;
+  }
 
-{{ sec_id }} .pw-category-heading {
-  text-align: center;
-  font-size: 2.2rem;
-  font-weight: bold;
-  margin-bottom: 30px;
-}
+  {{ sec_id }} .pw-category-heading {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
 
-{{ sec_id }} .swiper {
-  overflow: visible;
-}
+  {{ sec_id }} .swiper {
+    overflow: visible;
+  }
 
-{{ sec_id }} .swiper-slide {
-  background-size: cover;
-  background-position: center;
-  border-radius: 16px;
-  color: white;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  text-decoration: none;
-  overflow: hidden;
-  height: 340px;
-  transition: transform 0.3s ease;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-}
-
-{{ sec_id }} .swiper-slide:hover {
-  transform: scale(1.05);
-}
-
-{{ sec_id }} .pw-card-content {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.05));
-  padding: 16px;
-  width: 100%;
-}
-
-{{ sec_id }} .pw-card-title {
-  font-weight: bold;
-  margin-bottom: 6px;
-}
-
-{{ sec_id }} .pw-card-rating {
-  font-size: 0.95rem;
-  margin-bottom: 6px;
-}
-
-{{ sec_id }} .pw-card-subtext {
-  margin-bottom: 10px;
-  line-height: 1.4;
-}
-
-{{ sec_id }} .pw-shop-now-button {
-  padding: 7px 16px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-/* Button shape classes */
-{{ sec_id }} .pw-shop-now-button.pill {
-  border-radius: 9999px;
-}
-
-{{ sec_id }} .pw-shop-now-button.rounded {
-  border-radius: 12px;
-}
-
-{{ sec_id }} .pw-shop-now-button.square {
-  border-radius: 0;
-}
-
-/* Responsive sizes */
-@media (max-width: 767px) {
   {{ sec_id }} .swiper-slide {
-    height: 280px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    color: white;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    text-decoration: none;
+    overflow: hidden;
+    height: 340px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  }
+
+  {{ sec_id }} .swiper-slide:hover {
+    transform: scale(1.05);
+  }
+
+  {{ sec_id }} .pw-card-content {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.05));
+    padding: 16px;
+    width: 100%;
   }
 
   {{ sec_id }} .pw-card-title {
-    font-size: 16px !important;
-  }
-
-  {{ sec_id }} .pw-card-subtext {
-    font-size: 13px !important;
+    font-weight: bold;
+    margin-bottom: 6px;
   }
 
   {{ sec_id }} .pw-card-rating {
-    font-size: 13px;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+
+  {{ sec_id }} .pw-card-subtext {
+    margin-bottom: 10px;
+    line-height: 1.4;
   }
 
   {{ sec_id }} .pw-shop-now-button {
-    padding: 5px 12px;
-    font-size: 13px;
+    padding: 7px 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
   }
-}
+
+  /* Button shape classes */
+  {{ sec_id }} .pw-shop-now-button.pill {
+    border-radius: 9999px;
+  }
+
+  {{ sec_id }} .pw-shop-now-button.rounded {
+    border-radius: 12px;
+  }
+
+  {{ sec_id }} .pw-shop-now-button.square {
+    border-radius: 0;
+  }
+
+  /* Responsive sizes */
+  @media (max-width: 767px) {
+    {{ sec_id }} .swiper-slide {
+      height: 280px;
+    }
+
+    {{ sec_id }} .pw-card-title {
+      font-size: 16px !important;
+    }
+
+    {{ sec_id }} .pw-card-subtext {
+      font-size: 13px !important;
+    }
+
+    {{ sec_id }} .pw-card-rating {
+      font-size: 13px;
+    }
+
+    {{ sec_id }} .pw-shop-now-button {
+      padding: 5px 12px;
+      font-size: 13px;
+    }
+  }
 </style>
 
 <div class="pw-discover-by-category">
@@ -112,16 +112,29 @@
     <div class="swiper-wrapper">
       {% for block in section.blocks %}
         {% assign collection = collections[block.settings.collection] %}
-        <a href="{{ collection.url }}" class="swiper-slide" style="background-image: url({{ block.settings.image | img_url: '800x' }});">
+        <a
+          href="{{ collection.url }}"
+          class="swiper-slide"
+          style="background-image: url({{ block.settings.image | img_url: '800x' }});"
+        >
           <div class="pw-card-content">
-            <h3 class="pw-card-title" style="color: {{ block.settings.title_color }}; font-size: {{ block.settings.title_size }}px;">
+            <h3
+              class="pw-card-title"
+              style="color: {{ block.settings.title_color }}; font-size: {{ block.settings.title_size }}px;"
+            >
               {{ collection.title | upcase }}
             </h3>
             <div class="pw-card-rating">★ ★ ★ ★ ☆</div>
-            <p class="pw-card-subtext" style="color: {{ block.settings.subtitle_color }}; font-size: {{ block.settings.subtitle_size }}px;">
+            <p
+              class="pw-card-subtext"
+              style="color: {{ block.settings.subtitle_color }}; font-size: {{ block.settings.subtitle_size }}px;"
+            >
               {{ block.settings.subtitle }}
             </p>
-            <button class="pw-shop-now-button {{ block.settings.button_shape }}" style="background-color: {{ block.settings.button_background_color }}; color: {{ block.settings.button_text_color }};">
+            <button
+              class="pw-shop-now-button {{ block.settings.button_shape }}"
+              style="background-color: {{ block.settings.button_background_color }}; color: {{ block.settings.button_text_color }};"
+            >
               Shop now
             </button>
           </div>
