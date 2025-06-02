@@ -85,7 +85,7 @@
   style="color: var(--typing-text-color); border-bottom: var(--typing-border-width) solid var(--typing-border-color);"
 ></span>
 
-          {{ section.settings.after_text }} 
+          {{ section.settings.after_text }} <span id="cursor-{{ section.id }}" class="typed-cursor">|</span>
 
         </h1>
 
@@ -150,7 +150,7 @@ function type() {
   // If word deleted completely
   if (isDeleting && charIndex < 0) {
     isDeleting = false;
-    wordIndex = (wordIndex + 1) % words.length;
+    wordIndex = (wordIndex + 2) % words.length;
 
     // Prevent content disappearing
     charIndex = 0;
