@@ -131,38 +131,41 @@
     let isDeleting = false;
 
 function type() {
-  const currentWord = words[wordIndex];
+      const currentWord = words[wordIndex];
 
-  if (isDeleting) {
-    el.textContent = currentWord.substring(0, charIndex--);
-  } else {
-    el.textContent = currentWord.substring(0, charIndex++);
-  }
+      if (isDeleting) {
+        el.textContent = currentWord.substring(0, charIndex--);
+      } else {
+        el.textContent = currentWord.substring(0, charIndex++);
+      }
 
-  let delay = isDeleting ? backSpeed : typeSpeed;
+      let delay = isDeleting ? backSpeed : typeSpeed;
 
-  // If typing complete
-  if (!isDeleting && charIndex === currentWord.length) {
-    isDeleting = true;
-    delay = backDelay;
-  }
+      // If typing complete
+      if (!isDeleting && charIndex === currentWord.length) {
+        isDeleting = true;
+        delay = backDelay;
+      }
 
-  // If word deleted completely
-  if (isDeleting && charIndex < 0) {
-    isDeleting = false;
-    wordIndex = (wordIndex + 1) % words.length;
+      // FIX: Start next word immediately after deletion completes
+      if (isDeleting && charIndex < 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
 
+        if (!loop && wordIndex === 0) return;
 
-    // Prevent content disappearing
-    charIndex = 0;
-    delay = typeSpeed;
+        // Immediately show first character of next word
+        const nextWord = words[wordIndex];
+        charIndex = 1;  // Start at first character (already shown)
+        el.textContent = nextWord.substring(0, 1);
 
-    // Stop looping if loop is false
-    if (!loop && wordIndex === 0) return;
-  }
+        // Schedule next character after normal typing speed
+        setTimeout(type, typeSpeed);
+        return;  // Skip the final setTimeout
+      }
 
-  setTimeout(type, delay);
-}
+      setTimeout(type, delay);
+    }
 
 
     type();
