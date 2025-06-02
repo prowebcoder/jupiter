@@ -7,6 +7,7 @@
     --typing-text-color: {{ section.settings.typing_text_color }};
     --typing-border-color: {{ section.settings.typing_border_color }};
     --font-size: {{ section.settings.font_size_mobile }}px;
+    --font-family: {{ section.settings.font_family.family }}, {{  section.settings.font_family.fallback_families }};
     --container-width: {{ section.settings.container_width }}%;
     --typing-border-width: {{ section.settings.typing_border_width }}px;
     --section-height-mobile: {{ section.settings.section_height_mobile }}vh;
@@ -76,7 +77,7 @@
       <main class="pc-typing-text__main">
         <h1
           class="pc-typing-text__title"
-          style="color: var(--section-text-color); font-size: var(--font-size);"
+          style="color: var(--section-text-color); font-family: var(--font-family); font-size: var(--font-size);"
         >
           {{ section.settings.static_text }}
           <span
