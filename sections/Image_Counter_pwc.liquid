@@ -109,8 +109,8 @@
     <div class="pw-section-image">
       {{-
         section.settings.image
-        | image_url: width: section.settings.image.width, height: section.settings.image.height  
-        | image_tag
+        | image_url: width: section.settings.image.width, height: section.settings.image.height   
+        |  image_tag: loading: 'lazy'
       -}}
     </div>
     <div class="pw-section-content">
