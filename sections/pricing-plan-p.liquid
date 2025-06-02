@@ -1,5 +1,6 @@
+{%- assign sid = '#shopify-section-' | append: section.id -%}
 {%- style -%}
-    .pc-pricing-section {
+    {{ sid }} .pc-pricing-section {
       padding: {{ section.settings.section_padding_top }}rem 0 {{ section.settings.section_padding_bottom }}rem;
       background-color: {{ section.settings.background_color }};
       font-family: {{ section.settings.font_family }};
@@ -14,7 +15,7 @@
     }
 
     {% if section.settings.background_image != blank %}
-      .pc-pricing-section::before {
+      {{ sid }} .pc-pricing-section::before {
         content: '';
         position: absolute;
         top: 0;
@@ -25,14 +26,14 @@
       }
     {% endif %}
 
-    .pc-container {
+    {{ sid }} .pc-container {
       max-width: {{ section.settings.container_width }}px;
       margin: 0 auto;
       padding: 0 {{ section.settings.container_padding }}px;
       position: relative;
     }
 
-    .pc-section-title {
+    {{ sid }} .pc-section-title {
       text-align: {{ section.settings.heading_alignment }};
       margin-bottom: {{ section.settings.heading_margin_bottom }}rem;
       font-size: {{ section.settings.heading_font_size }}px;
@@ -43,14 +44,14 @@
       line-height: {{ section.settings.heading_line_height }};
     }
 
-    .pc-pricing-plans {
+    {{ sid }} .pc-pricing-plans {
       display: flex;
       justify-content: {{ section.settings.plans_alignment }};
       flex-wrap: wrap;
       gap: {{ section.settings.plans_gap }}px;
     }
 
-    .pc-pricing-card {
+    {{ sid }} .pc-pricing-card {
       background-color: {{ section.settings.card_background_color }};
       border-radius: {{ section.settings.card_border_radius }}px;
       box-shadow: {{ section.settings.card_box_shadow_horizontal }}px {{ section.settings.card_box_shadow_vertical }}px {{ section.settings.card_box_shadow_blur }}px rgba(0, 0, 0, {{ section.settings.card_box_shadow_opacity }});
@@ -66,12 +67,12 @@
       border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color }};
     }
 
-    .pc-pricing-card:hover {
+    {{ sid }} .pc-pricing-card:hover {
       transform: translateY(-{{ section.settings.card_hover_lift }}px);
       box-shadow: {{ section.settings.card_hover_box_shadow_horizontal }}px {{ section.settings.card_hover_box_shadow_vertical }}px {{ section.settings.card_hover_box_shadow_blur }}px rgba(0, 0, 0, {{ section.settings.card_hover_box_shadow_opacity }});
     }
 
-    .pc-pricing-card.popular::before {
+    {{ sid }} .pc-pricing-card.popular::before {
       content: "{{ section.settings.popular_badge_text }}";
       position: absolute;
       top: {{ section.settings.badge_position_top }}px;
@@ -86,32 +87,32 @@
       text-align: center;
     }
 
-    .pc-plan-name {
+    {{ sid }} .pc-plan-name {
       font-size: {{ section.settings.plan_name_font_size }}px;
       font-weight: {{ section.settings.plan_name_font_weight }};
       margin-bottom: {{ section.settings.plan_name_margin_bottom }}px;
       color: {{ section.settings.plan_name_color }};
     }
 
-    .pc-plan-price {
+    {{ sid }} .pc-plan-price {
       font-size: {{ section.settings.plan_price_font_size }}px;
       font-weight: {{ section.settings.plan_price_font_weight }};
       margin-bottom: {{ section.settings.plan_price_margin_bottom }}px;
       color: {{ section.settings.primary_color }};
     }
 
-    .pc-plan-price span {
+    {{ sid }} .pc-plan-price span {
       font-size: {{ section.settings.plan_price_small_font_size }}px;
       font-weight: {{ section.settings.plan_price_small_font_weight }};
     }
 
-    .pc-plan-features {
+    {{ sid }} .pc-plan-features {
       list-style: none;
       margin-bottom: {{ section.settings.features_margin_bottom }}px;
       padding: 0;
     }
 
-    .pc-plan-features li {
+    {{ sid }} .pc-plan-features li {
       padding: {{ section.settings.feature_padding_vertical }}px 0;
       border-bottom: {{ section.settings.feature_border_width }}px solid {{ section.settings.feature_border_color }};
       color: {{ section.settings.feature_text_color }};
@@ -119,11 +120,11 @@
       line-height: {{ section.settings.feature_line_height }};
     }
 
-    .pc-plan-features li:last-child {
+    {{ sid }} .pc-plan-features li:last-child {
       border-bottom: none;
     }
 
-    .pc-btn {
+    {{ sid }} .pc-btn {
       display: inline-block;
       padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
       background-color: {{ section.settings.primary_color }};
@@ -141,7 +142,7 @@
       border: {{ section.settings.button_border_width }}px solid {{ section.settings.button_border_color }};
     }
 
-    .pc-btn:hover {
+    {{ sid }} .pc-btn:hover {
       background-color: {{ section.settings.secondary_color }};
       transform: translateY(-{{ section.settings.button_hover_lift }}px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, {{ section.settings.button_hover_shadow_opacity }});
@@ -149,18 +150,18 @@
       border-color: {{ section.settings.button_hover_border_color }};
     }
 
-    .pc-btn-vip {
+    {{ sid }} .pc-btn-vip {
       background-color: {{ section.settings.accent_color }};
       {% if section.settings.vip_button_border_color != blank %}
         border-color: {{ section.settings.vip_button_border_color }};
       {% endif %}
     }
 
-    .pc-btn-vip:hover {
+    {{ sid }} .pc-btn-vip:hover {
       background-color: {{ section.settings.accent_color_hover }};
     }
 
-    .pc-plan-image {
+    {{ sid }} .pc-plan-image {
       margin-bottom: {{ section.settings.plan_image_margin_bottom }}px;
       border-radius: {{ section.settings.plan_image_border_radius }}px;
       overflow: hidden;
@@ -170,7 +171,7 @@
       justify-content: center;
     }
 
-    .pc-plan-image img {
+    {{ sid }} .pc-plan-image img {
       width: 100%;
       height: 100%;
       object-fit: {{ section.settings.plan_image_fit }};
@@ -179,27 +180,27 @@
       {% endif %}
     }
     @media screen and (max-width: 768px) {
-    .pc-plan-image img {
+    {{ sid }} .pc-plan-image img {
       width: 36%;
   }
   }
 
     @media (max-width: 768px) {
-      .pc-pricing-plans {
+      {{ sid }} .pc-pricing-plans {
         flex-direction: column;
         align-items: center;
       }
 
-      .pc-pricing-card {
+      {{ sid }} .pc-pricing-card {
         flex: 1 1 100%;
         max-width: 100%;
       }
 
-      .pc-section-title {
+      {{ sid }} .pc-section-title {
         font-size: {{ section.settings.heading_font_size_mobile }}px;
       }
 
-      .pc-plan-image {
+      {{ sid }} .pc-plan-image {
         height: auto;
         max-height: {{ section.settings.plan_image_height_mobile }}px;
       }
