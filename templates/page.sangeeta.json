@@ -567,7 +567,7 @@
             "description_hover_color": "#eeeeee",
             "button_text": "Shop Now",
             "link": "",
-            "hover_bg": "#333333",
+            "hover_bg": "#5f663b",
             "button_bg": "#ffffff",
             "button_text_color": "#000000",
             "hover_width": 60
@@ -587,7 +587,7 @@
             "description_hover_color": "#eeeeee",
             "button_text": "Shop Now",
             "link": "",
-            "hover_bg": "#333333",
+            "hover_bg": "#a3ba35",
             "button_bg": "#ffffff",
             "button_text_color": "#000000",
             "hover_width": 60
