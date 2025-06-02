@@ -410,6 +410,7 @@
         "image_cdDP8H": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/stylish-skirt-purse.jpg",
             "title": "Collection 2",
             "title_font_size": 32,
             "title_font_weight": "normal",
