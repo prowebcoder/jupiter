@@ -353,7 +353,7 @@
         "image_position": "left",
         "static_text": "Call me",
         "typing_words": "Mike,John,Cindy,Daisy",
-        "after_text": ".",
+        "after_text": "",
         "paragraph_text": "<p>Add your descriptive text here that will appear below the typing text.</p>",
         "button_text": "Shop Now",
         "button_link": "",
