@@ -150,7 +150,7 @@ function type() {
   // If word deleted completely
   if (isDeleting && charIndex < 0) {
     isDeleting = false;
-    wordIndex = (wordIndex + 2) % words.length;
+    wordIndex = (wordIndex + 0) % words.length;
 
     // Prevent content disappearing
     charIndex = 0;
