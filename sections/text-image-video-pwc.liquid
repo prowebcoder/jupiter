@@ -105,7 +105,10 @@
     border: none;
     object-fit: cover;
   }
-
+ {{ sec_id }} .pc-button:hover {
+    background-color: {{ section.settings.button_hover_bg_color }};
+    color: {{ section.settings.button_hover_text_color }};
+  }
   @media screen and (max-width: 768px) {
     {{ sec_id }} .pc-section {
       flex-direction: column;
@@ -312,6 +315,18 @@
       "label": "Button Text Color",
       "default": "#000000"
     },
+    {
+    "type": "color",
+    "id": "button_hover_bg_color",
+    "label": "Button Hover Background Color",
+    "default": "#000000"
+  },
+  {
+    "type": "color",
+    "id": "button_hover_text_color",
+    "label": "Button Hover Text Color",
+    "default": "#ffffff"
+  },
     {
       "type": "select",
       "id": "button_shape",
