@@ -79,12 +79,14 @@
           style="color: var(--section-text-color); font-size: var(--font-size);"
         >
           {{ section.settings.static_text }}
-          <span
-            class="pc-typing-text__word"
-            id="typed-{{ section.id }}"
-            style="color: var(--typing-text-color); border-bottom: var(--typing-border-width) solid var(--typing-border-color);"
-          ></span>
-          {{ section.settings.after_text }}
+       <span
+  class="pc-typing-text__word"
+  id="typed-{{ section.id }}"
+  style="color: var(--typing-text-color); border-bottom: var(--typing-border-width) solid var(--typing-border-color);"
+></span>
+
+          {{ section.settings.after_text }} <span id="cursor-{{ section.id }}" class="typed-cursor">|</span>
+
         </h1>
 
         {%- if section.settings.paragraph_text != blank -%}
@@ -108,20 +110,54 @@
     </div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" async></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const typed = new Typed("#typed-{{ section.id }}", {
-      strings: {{ section.settings.typing_words | split: ',' | json }},
-      typeSpeed: {{ section.settings.type_speed }},
-      backSpeed: {{ section.settings.back_speed }},
-      backDelay: {{ section.settings.back_delay }},
-      loop: {{ section.settings.loop }},
-      showCursor: {{ section.settings.show_cursor }},
-      cursorChar: '{{ section.settings.cursor_char }}'
-    });
+  document.addEventListener('DOMContentLoaded', function () {
+    const el = document.getElementById("typed-{{ section.id }}");
+    const cursor = document.getElementById("cursor-{{ section.id }}");
+    const words = {{ section.settings.typing_words | split: ',' | json }};
+    const typeSpeed = {{ section.settings.type_speed }};
+    const backSpeed = {{ section.settings.back_speed }};
+    const backDelay = {{ section.settings.back_delay }};
+    const loop = {{ section.settings.loop }};
+    const showCursor = {{ section.settings.show_cursor }};
+    const cursorChar = '{{ section.settings.cursor_char }}';
+
+    if (showCursor && cursor) {
+      cursor.textContent = cursorChar;
+    }
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+      const currentWord = words[wordIndex];
+      if (isDeleting) {
+        el.textContent = currentWord.substring(0, charIndex--);
+      } else {
+        el.textContent = currentWord.substring(0, charIndex++);
+      }
+
+      let delay = isDeleting ? backSpeed : typeSpeed;
+
+      if (!isDeleting && charIndex === currentWord.length) {
+        delay = backDelay;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+
+        // Stop if loop is false and last word finished
+        if (!loop && wordIndex === 0) return;
+      }
+
+      setTimeout(type, delay);
+    }
+
+    type();
   });
 </script>
+
 
 <style>
   {{ sid }} .pc-typing-text-section {
@@ -212,6 +248,17 @@
   @keyframes typedjsBlink {
     50% { opacity: 0.0; }
   }
+.typed-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  opacity: 1;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
 
   @-webkit-keyframes typedjsBlink {
     0% { opacity: 1; }
