@@ -410,6 +410,7 @@
         "image_Vw9kMQ": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
             "title": "Second Image",
             "title_font_size": 32,
             "title_font_weight": "normal",
