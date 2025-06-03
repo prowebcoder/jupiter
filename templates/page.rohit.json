@@ -466,63 +466,6 @@
         "padding_top": 36,
         "padding_bottom": 0
       }
-    },
-    "pwc_before_after_1_gCEqJF": {
-      "type": "pwc-before-after-1",
-      "blocks": {
-        "icon_left_XHmUwk": {
-          "type": "icon_left",
-          "settings": {
-            "icon_heading": "Blemishes",
-            "icon_text": "Removes oil buildup and reduces the appearance of pores and blemishes.",
-            "heading_font_size1": 30,
-            "subheading_font_size1": 18
-          }
-        },
-        "icon_left_m7E9ch": {
-          "type": "icon_left",
-          "settings": {
-            "icon_heading": "Blemishes",
-            "icon_text": "Removes oil buildup and reduces the appearance of pores and blemishes.",
-            "heading_font_size1": 30,
-            "subheading_font_size1": 18
-          }
-        },
-        "icon_right_zLmqqh": {
-          "type": "icon_right",
-          "settings": {
-            "icon_heading": "Radiance",
-            "icon_text": "Polishes and resurfaces skin to improve radiance and deliver glowing skin.",
-            "heading_font_size2": 30,
-            "subheading_font_size2": 18
-          }
-        },
-        "icon_right_dW3aJD": {
-          "type": "icon_right",
-          "settings": {
-            "icon_heading": "Radiance",
-            "icon_text": "Polishes and resurfaces skin to improve radiance and deliver glowing skin.",
-            "heading_font_size2": 30,
-            "subheading_font_size2": 18
-          }
-        }
-      },
-      "block_order": [
-        "icon_left_XHmUwk",
-        "icon_left_m7E9ch",
-        "icon_right_zLmqqh",
-        "icon_right_dW3aJD"
-      ],
-      "name": "Before & After Image #1",
-      "settings": {
-        "page_width": 1200,
-        "heading_font_size": 30,
-        "subheading_font_size": 18,
-        "heading": "Proven Results",
-        "subheading": "Based on an independent, third-party clinical study of participants.",
-        "before_image": "shopify://shop_images/person-fishing-on-the-beach-is-silhouetted-at-sunset.jpg",
-        "after_image": "shopify://shop_images/stylish-skirt-purse.jpg"
-      }
     }
   },
   "order": [
@@ -530,7 +473,6 @@
     "pwc_marquee_1_MiwcCR",
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
-    "pwc_split_image_hover_aGrP4r",
-    "pwc_before_after_1_gCEqJF"
+    "pwc_split_image_hover_aGrP4r"
   ]
 }
