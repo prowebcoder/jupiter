@@ -1,6 +1,626 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+
+{%- style -%}
+  {{ sid }} {
+    --pc-accordion-bg: {{ section.settings.accordion_bg }};
+    --pc-accordion-header-bg: {{ section.settings.accordion_header_bg }};
+    --pc-accordion-header-text: {{ section.settings.accordion_header_text }};
+    --pc-accordion-title-text: {{ section.settings.accordion_title_text }};
+    --pc-accordion-content-text: {{ section.settings.accordion_content_text }};
+    --pc-accordion-hover-bg: {{ section.settings.accordion_hover_bg }};
+    --pc-accordion-active-shadow: {{ section.settings.accordion_active_shadow }};
+    --pc-section-padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
   }
+
+  {{ sid }} .pc-accordion-with-image {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: var(--pc-section-padding);
+    max-width: {{ section.settings.section_max_width }}px;
+    margin: 0 auto;
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion-container {
+    flex: 1;
+    min-width: 300px;
+    {% if section.settings.image_position == 'right' %}
+      order: 1;
+    {% else %}
+      order: 2;
+    {% endif %}
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion-image-container {
+    flex: 1;
+    min-width: 300px;
+    {% if section.settings.image == blank and section.settings.hide_image_if_empty %}
+      display: none;
+    {% else %}
+      display: block;
+    {% endif %}
+    {% if section.settings.image_position == 'right' %}
+      order: 2;
+    {% else %}
+      order: 1;
+    {% endif %}
+  }
+
+  {{ sid }} .pc-accordion-with-image.pc-full-width .pc-accordion-container,
+  {{ sid }} .pc-accordion-with-image .pc-accordion-container.pc-full-width {
+    flex: 0 0 100%;
+    max-width: 100%;
+    order: 1;
+  }
+
+  {{ sid }} .pc-accordion-with-image.pc-full-width .pc-accordion-image-container,
+  {{ sid }} .pc-accordion-with-image .pc-accordion-image-container.pc-hidden {
+    display: none;
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion {
+    width: 100%;
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion input {
+    display: none;
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion .pc-box {
+    position: relative;
+    background: var(--pc-accordion-bg);
+    height: {{ section.settings.item_height }}px;
+    transition: all {{ section.settings.transition_speed }}s ease-in-out;
+    margin-bottom: 10px;
+    border-radius: {{ section.settings.border_radius }}px;
+    overflow: hidden;
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion .pc-box::before {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion header.pc-box {
+    background: var(--pc-accordion-header-bg);
+    z-index: 100;
+    cursor: initial;
+    box-shadow: 0 -1px 0 rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: {{ section.settings.border_radius }}px;
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion header .pc-box-title {
+    margin: 0;
+    font-weight: {{ section.settings.header_font_weight }};
+    font-size: {{ section.settings.header_font_size }}px;
+    color: var(--pc-accordion-header-text);
+    cursor: initial;
+    padding: 0 20px;
+    height: {{ section.settings.item_height }}px;
+    line-height: {{ section.settings.item_height }}px;
+    display: block;
+  }
+
+  {{ sid }} .pc-box-title {
+    font-size: {{ section.settings.header_font_size }}px;
+    font-weight: {{ section.settings.header_font_weight }};
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion .pc-box-title {
+    width: 100%;
+    height: {{ section.settings.item_height }}px;
+    line-height: {{ section.settings.item_height }}px;
+    padding: 0 20px;
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+    font-size: {{ section.settings.title_font_size }}px;
+    font-weight: {{ section.settings.title_font_weight }};
+    color: var(--pc-accordion-title-text);
+    transition: all 0.2s ease;
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion .pc-box-title:hover {
+    background: var(--pc-accordion-hover-bg);
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion .pc-box-content {
+    width: 100%;
+    padding: 20px;
+    font-size: {{ section.settings.content_font_size }}px;
+    color: var(--pc-accordion-content-text);
+    display: none;
+    line-height: 1.6;
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion .pc-box-close {
+    position: absolute;
+    height: {{ section.settings.item_height }}px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    display: none;
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion input:checked + .pc-box {
+    height: auto;
+    margin: 16px 0;
+    box-shadow: var(--pc-accordion-active-shadow);
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion input:checked + .pc-box .pc-box-title {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion input:checked + .pc-box .pc-box-content,
+  {{ sid }} .pc-accordion-with-image .pc-accordion input:checked + .pc-box .pc-box-close {
+    display: inline-block;
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion .pc-box-title:before {
+    position: absolute;
+    display: block;
+    content: '+';
+    font-size: 24px;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform {{ section.settings.transition_speed }}s ease-in-out;
+    color: var(--pc-accordion-title-text);
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion input:checked + .pc-box .pc-box-title:before {
+    content: '-';
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion-image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: {{ section.settings.image_border_radius }}px;
+    object-fit: cover;
+    max-height: {{ section.settings.image_max_height }}px;
+  }
+
+  {{ sid }} .pc-accordion-with-image .pc-accordion-image-container {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    {{ sid }} .pc-accordion-with-image {
+      flex-direction: column;
+    }
+
+    {{ sid }} .pc-accordion-with-image .pc-accordion-image-container {
+      order: {{ section.settings.mobile_image_position }};
+    }
+
+    {{ sid }} .pc-accordion-with-image .pc-accordion header .pc-box-title {
+      font-size: {{ section.settings.mobile_header_font_size }}px;
+    }
+
+    {{ sid }} .pc-accordion-with-image .pc-accordion .pc-box-title {
+      font-size: {{ section.settings.mobile_title_font_size }}px;
+    }
+
+    {{ sid }} .pc-accordion-with-image .pc-accordion .pc-box-content {
+      font-size: {{ section.settings.mobile_content_font_size }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="pc-accordion-with-image {% unless section.settings.show_image or section.settings.image != blank %}pc-full-width{% endunless %}">
+  <div class="pc-accordion-container {% unless section.settings.show_image or section.settings.image != blank %}pc-full-width{% endunless %}">
+    {%- if section.settings.heading != blank -%}
+      <header class="pc-box">
+        <label class="pc-box-title">{{ section.settings.heading }}</label>
+      </header>
+    {%- endif -%}
+
+    <nav class="pc-accordion">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'accordion_item' -%}
+            <input
+              type="radio"
+              name="pc-accordion-{{ section.id }}"
+              id="pc-cb-{{ block.id }}"
+              {% if forloop.first and section.settings.open_first_item %}
+                checked
+              {% endif %}
+            >
+            <section class="pc-box" {{ block.shopify_attributes }}>
+              <label class="pc-box-title" for="pc-cb-{{ block.id }}">{{ block.settings.title }}</label>
+              <label class="pc-box-close" for="pc-acc-close-{{ section.id }}"></label>
+              <div class="pc-box-content">{{ block.settings.content }}</div>
+            </section>
+        {%- endcase -%}
+      {%- endfor -%}
+
+      <input type="radio" name="pc-accordion-{{ section.id }}" id="pc-acc-close-{{ section.id }}">
+    </nav>
+  </div>
+
+  {%- if section.settings.show_image and section.settings.image != blank -%}
+    <div class="pc-accordion-image-container {% unless section.settings.show_image %}pc-hidden{% endunless %}">
+      {%- liquid
+        assign image_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio
+        assign sizes = '(min-width: 1200px) calc((1200px - 19.5rem) / 2), (min-width: 750px) calc((100vw - 19.5rem) / 2), calc(100vw - 3rem)'
+      -%}
+      {{-
+        section.settings.image
+        | image_url: width: section.settings.image.width, height: section.settings.image.height
+        | image_tag: loading: 'lazy', preload: true, alt: section.settings.image.alt
+      -}}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "PWC - Accordion",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_max_width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Section max width",
+      "default": 1200
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Show image",
+      "default": true,
+      "info": "Uncheck to hide the image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_image_if_empty",
+      "label": "Hide image section if no image",
+      "default": true,
+      "info": "When checked and no image is uploaded, accordion will expand to full width"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_max_height",
+      "min": 200,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "label": "Image max height",
+      "default": 500
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first_item",
+      "label": "Open first item by default",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_position",
+      "label": "Mobile image position",
+      "options": [
+        {
+          "value": "1",
+          "label": "Above accordion"
+        },
+        {
+          "value": "2",
+          "label": "Below accordion"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding right",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Accordion Style"
+    },
+    {
+      "type": "range",
+      "id": "item_height",
+      "min": 40,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Item height",
+      "default": 65
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "transition_speed",
+      "min": 0.1,
+      "max": 1,
+      "step": 0.1,
+      "unit": "s",
+      "label": "Transition speed",
+      "default": 0.3
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "header_font_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Header font size",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "mobile_header_font_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile header font size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "header_font_weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "label": "Header font weight",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Title font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile title font size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "title_font_weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "label": "Title font weight",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "content_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Content font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile content font size",
+      "default": 13
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "accordion_bg",
+      "label": "Accordion background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accordion_header_bg",
+      "label": "Header background",
+      "default": "#00BCD4"
+    },
+    {
+      "type": "color",
+      "id": "accordion_header_text",
+      "label": "Header text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accordion_title_text",
+      "label": "Title text",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "accordion_content_text",
+      "label": "Content text",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "accordion_hover_bg",
+      "label": "Hover background",
+      "default": "#f7f7f7"
+    },
+    {
+      "type": "color_background",
+      "id": "accordion_active_shadow",
+      "label": "Active item shadow",
+      "default": "0 0 6px rgba(0,0,0,0.16),0 6px 12px rgba(0,0,0,0.32)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "accordion_item",
+      "name": "Accordion item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Accordion item title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Accordion item content. You can add any HTML here including images, links, etc.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC - Accordion",
+      "blocks": [
+        {
+          "type": "accordion_item",
+          "settings": {
+            "title": "First question",
+            "content": "<p>Answer to the first question goes here.</p>"
+          }
+        },
+        {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Second question",
+            "content": "<p>Answer to the second question goes here.</p>"
+          }
+        },
+        {
+          "type": "accordion_item",
+          "settings": {
+            "title": "Third question",
+            "content": "<p>Answer to the third question goes here.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
