@@ -10,6 +10,9 @@
     --pc-accordion-hover-bg: {{ section.settings.accordion_hover_bg }};
     --pc-accordion-active-shadow: {{ section.settings.accordion_active_shadow }};
     --pc-section-padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+    --pc-heading-font-family: {% if section.settings.heading_font_family == 'inherit' %}inherit{% else %}var({{ section.settings.heading_font_family }}){% endif %};
+    --pc-title-font-family: {% if section.settings.title_font_family == 'inherit' %}inherit{% else %}var({{ section.settings.title_font_family }}){% endif %};
+    --pc-content-font-family: {% if section.settings.content_font_family == 'inherit' %}inherit{% else %}var({{ section.settings.content_font_family }}){% endif %};
   }
 
   {{ sid }} .pc-accordion-with-image {
@@ -98,6 +101,7 @@
 
   {{ sid }} .pc-accordion-with-image .pc-accordion header .pc-box-title {
     margin: 0;
+    font-family: var(--pc-heading-font-family);
     font-weight: {{ section.settings.header_font_weight }};
     font-size: {{ section.settings.header_font_size }}px;
     color: var(--pc-accordion-header-text);
@@ -121,6 +125,7 @@
     display: inline-block;
     cursor: pointer;
     user-select: none;
+    font-family: var(--pc-title-font-family);
     font-size: {{ section.settings.title_font_size }}px;
     font-weight: {{ section.settings.title_font_weight }};
     color: var(--pc-accordion-title-text);
@@ -134,6 +139,7 @@
   {{ sid }} .pc-accordion-with-image .pc-accordion .pc-box-content {
     width: 100%;
     padding: 20px;
+    font-family: var(--pc-content-font-family);
     font-size: {{ section.settings.content_font_size }}px;
     color: var(--pc-accordion-content-text);
     display: none;
@@ -448,6 +454,66 @@
     {
       "type": "header",
       "content": "Typography"
+    },
+    {
+      "type": "select",
+      "id": "heading_font_family",
+      "label": "Heading font family",
+      "options": [
+        {
+          "value": "inherit",
+          "label": "Inherit from theme"
+        },
+        {
+          "value": "font-heading",
+          "label": "Heading font"
+        },
+        {
+          "value": "font-body",
+          "label": "Body font"
+        }
+      ],
+      "default": "font-heading"
+    },
+    {
+      "type": "select",
+      "id": "title_font_family",
+      "label": "Title font family",
+      "options": [
+        {
+          "value": "inherit",
+          "label": "Inherit from theme"
+        },
+        {
+          "value": "font-heading",
+          "label": "Heading font"
+        },
+        {
+          "value": "font-body",
+          "label": "Body font"
+        }
+      ],
+      "default": "font-body"
+    },
+    {
+      "type": "select",
+      "id": "content_font_family",
+      "label": "Content font family",
+      "options": [
+        {
+          "value": "inherit",
+          "label": "Inherit from theme"
+        },
+        {
+          "value": "font-heading",
+          "label": "Heading font"
+        },
+        {
+          "value": "font-body",
+          "label": "Body font"
+        }
+      ],
+      "default": "font-body"
     },
     {
       "type": "range",
