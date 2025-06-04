@@ -1,4 +1,4 @@
-<div class="custom-blog-layout">
+<div class="custom-blog-layout" style="max-width: {{ section.settings.container_width }}%">
   <!-- Heading -->
   <h3 class="section-heading">{{ section.settings.heading | default: "FROM THE BLOG" }}</h3>
 
@@ -35,7 +35,8 @@
       {% else %}
         left: {{ section.settings.content_offset }}px;
         right: auto;
-      {% endif %}
+      {% endif %};
+      border: {{ section.settings.content_border_thickness }}px solid {{ section.settings.content_border_color }};
     ">
       <div class="content-wrapper">
         <h4 class="post-title">{{ section.settings.blog_title }}</h4>
@@ -51,7 +52,7 @@
 
 <style>
   .custom-blog-layout {
-    max-width: {{ section.settings.max_container_width }}px;
+    width: 100%;
     margin: 0 auto;
     font-family: {{ section.settings.font_family }};
     padding: 20px;
@@ -70,6 +71,8 @@
     display: flex;
     align-items: center;
     position: relative;
+    max-width: {{ section.settings.max_container_width }}px;
+    margin: 0 auto;
   }
 
   .image-block {
@@ -145,6 +148,7 @@
 
     .content-block {
       padding: 20px;
+      border: none !important;
     }
   }
 </style>
@@ -155,16 +159,26 @@
   "settings": [
     {
       "type": "header",
-      "content": "Layout Settings"
+      "content": "Container Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container Width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "default": 100,
+      "unit": "%"
     },
     {
       "type": "range",
       "id": "max_container_width",
-      "label": "Max Container Width",
+      "label": "Max Content Width",
       "min": 600,
       "max": 1600,
       "step": 50,
-      "default": 1000,
+      "default": 1200,
       "unit": "px"
     },
     {
@@ -335,7 +349,7 @@
       "type": "checkbox",
       "id": "content_border",
       "label": "Show Content Border",
-      "default": false
+      "default": true
     },
     {
       "type": "range",
