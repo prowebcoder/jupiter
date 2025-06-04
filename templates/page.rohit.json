@@ -493,7 +493,7 @@
         "content_background": "#ffffff",
         "content_border": true,
         "content_border_thickness": 1,
-        "content_border_color": "#cf2626",
+        "content_border_color": "#ffffff",
         "content_rounded_corners": false,
         "content_corner_radius": 0,
         "font_family": "sans-serif",
