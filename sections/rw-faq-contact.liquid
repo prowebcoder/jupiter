@@ -1,89 +1,124 @@
 {% stylesheet %}
-  .faq-contact-section {
+  .faq-contact-wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
-    padding: 2rem;
-    background: var(--bg-color);
+    gap: 40px;
+    padding: 40px 20px;
+    background-color: var(--bg-color);
     color: var(--text-color);
   }
 
-  .faq-box, .contact-box {
-    flex: 1 1 100%;
-    background: var(--card-bg);
-    padding: 2rem;
+  .faq-column {
+    flex: 1 1 60%;
+    background-color: #fff;
+    padding: 24px;
     border-radius: 12px;
   }
 
-  .faq-box h2, .contact-box h3 {
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
+  .faq-column h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
   }
 
-  .faq-box p, .contact-box p {
-    margin-bottom: 1rem;
-    color: var(--text-muted);
+  .faq-column p {
+    color: var(--muted-color);
+    margin-bottom: 20px;
   }
 
   .faq-item {
-    border-top: 1px solid #ddd;
-    padding: 1rem 0;
+    border-top: 1px solid #e5e5e5;
+    padding: 16px 0;
     cursor: pointer;
   }
 
   .faq-item:last-child {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #e5e5e5;
   }
 
   .faq-question {
     display: flex;
     justify-content: space-between;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 17px;
   }
 
   .faq-answer {
     display: none;
-    margin-top: 0.5rem;
+    margin-top: 10px;
+    font-size: 15px;
+    color: var(--muted-color);
   }
 
   .faq-item.open .faq-answer {
     display: block;
   }
 
-  .contact-form input,
-  .contact-form textarea {
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
+  .contact-column {
+    flex: 1 1 35%;
   }
 
-  .contact-form button {
-    background: var(--button-bg);
+  .contact-box {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .contact-box h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .contact-box p {
+    color: var(--muted-color);
+    margin-bottom: 20px;
+  }
+
+  .contact-box input,
+  .contact-box textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+
+  .contact-box button {
+    background-color: var(--button-bg);
     color: var(--button-text);
+    padding: 12px 24px;
     border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    cursor: pointer;
+    border-radius: 25px;
     font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .contact-box button:hover {
+    opacity: 0.9;
+  }
+
+  @media screen and (max-width: 768px) {
+    .faq-contact-wrapper {
+      flex-direction: column;
+    }
   }
 {% endstylesheet %}
 
 <div
-  class="faq-contact-section"
+  class="faq-contact-wrapper"
   style="
     --bg-color: {{ section.settings.bg_color }};
     --text-color: {{ section.settings.text_color }};
-    --text-muted: {{ section.settings.text_muted }};
-    --card-bg: {{ section.settings.card_bg }};
+    --muted-color: {{ section.settings.text_muted }};
     --button-bg: {{ section.settings.button_bg }};
     --button-text: {{ section.settings.button_text }}
   "
 >
-  <!-- FAQ Section -->
-  <div class="faq-box">
+  <!-- Left FAQ Column -->
+  <div class="faq-column">
     <h2>{{ section.settings.faq_heading }}</h2>
     <p>{{ section.settings.faq_subtext }}</p>
 
@@ -100,23 +135,25 @@
     {% endfor %}
   </div>
 
-  <!-- Contact Form Section -->
-  <div class="contact-box">
-    <h3>{{ section.settings.contact_heading }}</h3>
-    <p>{{ section.settings.contact_subtext }}</p>
+  <!-- Right Contact Form -->
+  <div class="contact-column">
+    <div class="contact-box">
+      <h3>{{ section.settings.contact_heading }}</h3>
+      <p>{{ section.settings.contact_subtext }}</p>
 
-    <form class="contact-form" method="post" action="/contact">
-      <input type="text" name="contact[name]" placeholder="Name" required>
-      <input type="email" name="contact[email]" placeholder="Email" required>
-      <textarea name="contact[body]" rows="5" placeholder="Message" required></textarea>
-      <button type="submit">{{ section.settings.button_label }}</button>
-    </form>
+      <form method="post" action="/contact">
+        <input type="text" name="contact[name]" placeholder="Name" required>
+        <input type="email" name="contact[email]" placeholder="Email" required>
+        <textarea name="contact[body]" rows="5" placeholder="Message" required></textarea>
+        <button type="submit">{{ section.settings.button_label }}</button>
+      </form>
+    </div>
   </div>
 </div>
 
 {% schema %}
 {
-  "name": "FAQ + Contact",
+  "name": "FAQ & Contact",
   "settings": [
     {
       "type": "text",
@@ -151,8 +188,8 @@
     {
       "type": "color",
       "id": "bg_color",
-      "label": "Background Color",
-      "default": "#f9f9f9"
+      "label": "Section Background",
+      "default": "#ffffff"
     },
     {
       "type": "color",
@@ -168,14 +205,8 @@
     },
     {
       "type": "color",
-      "id": "card_bg",
-      "label": "Card Background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
       "id": "button_bg",
-      "label": "Button Background",
+      "label": "Button Background Color",
       "default": "#111111"
     },
     {
@@ -193,20 +224,21 @@
         {
           "type": "text",
           "id": "question",
-          "label": "Question"
+          "label": "Question",
+          "default": "Do you ship internationally?"
         },
         {
           "type": "textarea",
           "id": "answer",
-          "label": "Answer"
+          "label": "Answer",
+          "default": "Yes, we ship worldwide with affordable rates and delivery times."
         }
       ]
     }
   ],
-  "max_blocks": 10,
   "presets": [
     {
-      "name": "FAQ + Contact",
+      "name": "FAQ & Contact",
       "category": "Custom"
     }
   ]
