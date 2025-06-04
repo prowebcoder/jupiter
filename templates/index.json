@@ -189,10 +189,26 @@
             "question": "Hello",
             "answer": ""
           }
+        },
+        "faq_Jrcp3x": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "Yes, we ship worldwide with affordable rates and delivery times."
+          }
+        },
+        "faq_6zKPXR": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "Yes, we ship worldwide with affordable rates and delivery times."
+          }
         }
       },
       "block_order": [
-        "faq_z3znt7"
+        "faq_z3znt7",
+        "faq_Jrcp3x",
+        "faq_6zKPXR"
       ],
       "name": "FAQ + Contact",
       "settings": {
@@ -204,7 +220,6 @@
         "bg_color": "#f9f9f9",
         "text_color": "#111111",
         "text_muted": "#666666",
-        "card_bg": "#ffffff",
         "button_bg": "#111111",
         "button_text": "#ffffff"
       }
