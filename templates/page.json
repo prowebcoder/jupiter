@@ -16,84 +16,21 @@
         "padding_bottom": 28
       }
     },
-    "pwc_countdown_timer_3JLp4U": {
-      "type": "pwc-countdown-timer",
-      "blocks": {
-        "hours_9EpgKz": {
-          "type": "hours",
-          "settings": {
-            "hours": 24,
-            "background_color": "#d2b6b6"
-          }
-        },
-        "minutes_j6GEFm": {
-          "type": "minutes",
-          "settings": {
-            "minutes": 59,
-            "background_color": "#d2b6b6"
-          }
-        },
-        "seconds_83xT8a": {
-          "type": "seconds",
-          "settings": {
-            "seconds": 59,
-            "background_color": "#d2b6b6"
-          }
-        }
-      },
-      "block_order": [
-        "hours_9EpgKz",
-        "minutes_j6GEFm",
-        "seconds_83xT8a"
-      ],
-      "name": "Pwc Countdown Timer Rohit",
+    "rw_image_with_text_rEUxht": {
+      "type": "rw-image-with-text",
+      "name": "Blog Post Card",
       "settings": {
-        "title": "countdown",
-        "highlighted_text": "Timer",
-        "highlight_color": "#ea4c4c"
-      }
-    },
-    "pwc_countdown_timer_yqnNik": {
-      "type": "pwc-countdown-timer",
-      "blocks": {
-        "hours_Jd9WUz": {
-          "type": "hours",
-          "settings": {
-            "hours": 24,
-            "background_color": "#ffffff"
-          }
-        },
-        "minutes_4DtAAD": {
-          "type": "minutes",
-          "settings": {
-            "minutes": 0,
-            "background_color": "#ffffff"
-          }
-        },
-        "seconds_RKqPPm": {
-          "type": "seconds",
-          "settings": {
-            "seconds": 0,
-            "background_color": "#ffffff"
-          }
-        }
-      },
-      "block_order": [
-        "hours_Jd9WUz",
-        "minutes_4DtAAD",
-        "seconds_RKqPPm"
-      ],
-      "name": "PWC Countdown Timer",
-      "settings": {
-        "title": "Draft Countdown",
-        "highlighted_text": "Countdown",
-        "highlight_color": "#ea4c4c"
+        "heading": "FROM THE BLOG",
+        "blog_image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
+        "blog_title": "Color pop",
+        "blog_excerpt": "As much as we live and breath monochrome styles (and we can all agree a majority of our daily wear is crisp whites and deep blacks), a gals gotta have a...",
+        "post_date": "Posted on Apr 28, 2017",
+        "blog_category": "Clothing Fashion"
       }
     }
   },
   "order": [
     "main",
-    "pwc_countdown_timer_3JLp4U",
-    "pwc_countdown_timer_yqnNik"
+    "rw_image_with_text_rEUxht"
   ]
 }
