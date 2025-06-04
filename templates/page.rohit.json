@@ -491,14 +491,7 @@
             "answer": "<p>Licorice root has been used for centuries in Ayurvedic medicine.</p>"
           }
         },
-        "faq_item_NaF7dM": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Question",
-            "answer": "<p>Answer</p>"
-          }
-        },
-        "faq_item_kG3wkq": {
+        "faq_item_3Q3RFE": {
           "type": "faq_item",
           "settings": {
             "question": "Question",
@@ -568,8 +561,7 @@
         "faq_item_hmHCeY",
         "faq_item_fdj8iT",
         "faq_item_kjQDrq",
-        "faq_item_NaF7dM",
-        "faq_item_kG3wkq",
+        "faq_item_3Q3RFE",
         "contact_form_9VReAR"
       ],
       "name": "Custom FAQ Section",
