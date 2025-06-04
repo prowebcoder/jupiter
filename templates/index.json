@@ -294,7 +294,6 @@
         "description": "Below are some common questions about shipping, returns, and exchanges",
         "contact_title": "Didn't find your answer?",
         "contact_description": "Don't hesitate to contact us",
-        "footer_text": "© 2025 Company Name. All rights reserved.",
         "primary_color": "#2c3e50",
         "accent_color": "#3498db",
         "accent_hover": "#2980b9",
@@ -306,10 +305,10 @@
         "header_padding": 40,
         "heading_size": 40,
         "text_size": 16,
-        "border_radius": 12,
+        "border_radius": 3,
         "shadow_size": 4,
         "shadow_blur": 6,
-        "shadow_opacity": 0
+        "shadow_opacity": 0.1
       }
     }
   },
