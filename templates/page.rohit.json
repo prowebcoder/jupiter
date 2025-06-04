@@ -628,18 +628,6 @@
         "border_thickness": 1,
         "lazy": true
       }
-    },
-    "rw_image_with_text_CQgjpV": {
-      "type": "rw-image-with-text",
-      "name": "Blog Post Card",
-      "settings": {
-        "heading": "FROM THE BLOG",
-        "blog_image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
-        "blog_title": "Color pop",
-        "blog_excerpt": "As much as we live and breath monochrome styles (and we can all agree a majority of our daily wear is crisp whites and deep blacks), a gals gotta have a...",
-        "post_date": "Posted on Apr 28, 2017",
-        "blog_category": "Clothing Fashion"
-      }
     }
   },
   "order": [
@@ -648,7 +636,6 @@
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
     "pwc_split_image_hover_aGrP4r",
-    "pwc_custom_faq_dkpEcx",
-    "rw_image_with_text_CQgjpV"
+    "pwc_custom_faq_dkpEcx"
   ]
 }
