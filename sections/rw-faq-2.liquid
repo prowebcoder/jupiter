@@ -1,6 +1,526 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+{%- assign pc = 'pc-' -%}
+
+<style>
+  {{ sid }} {
+    --pc-primary: {{ section.settings.primary_color }};
+    --pc-accent: {{ section.settings.accent_color }};
+    --pc-text: {{ section.settings.text_color }};
+    --pc-light-bg: {{ section.settings.light_bg }};
+    --pc-border: {{ section.settings.border_color }};
+    --pc-header-padding: {{ section.settings.header_padding }}px;
+    --pc-section-padding: {{ section.settings.section_padding }}px;
+    --pc-heading-size: {{ section.settings.heading_size }}px;
+    --pc-text-size: {{ section.settings.text_size }}px;
+    --pc-border-radius: {{ section.settings.border_radius }}px;
+    --pc-shadow: 0 {{ section.settings.shadow_size }}px {{ section.settings.shadow_blur }}px rgba(0,0,0,{{ section.settings.shadow_opacity }});
+    padding: var(--pc-section-padding) 20px;
   }
+
+  {{ sid }} .{{ pc }}container {
+    max-width: {{ section.settings.max_width }}px;
+    margin: 0 auto;
+    background: white;
+    border-radius: var(--pc-border-radius);
+    overflow: hidden;
+    box-shadow: var(--pc-shadow);
+  }
+
+  {{ sid }} .{{ pc }}header {
+    background: var(--pc-primary);
+    padding: var(--pc-header-padding);
+    color: white;
+    text-align: center;
+  }
+
+  {{ sid }} .{{ pc }}header h1 {
+    font-size: var(--pc-heading-size);
+    margin-bottom: 10px;
+    color: inherit;
+  }
+
+  {{ sid }} .{{ pc }}header p {
+    font-size: calc(var(--pc-text-size) * 1.1);
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto;
+    color: inherit;
+  }
+
+  {{ sid }} .{{ pc }}content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  {{ sid }} .{{ pc }}questions {
+    flex: 1;
+    min-width: 300px;
+    padding: 30px;
+    background: var(--pc-light-bg);
+  }
+
+  {{ sid }} .{{ pc }}item {
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--pc-border);
+    padding-bottom: 20px;
+    cursor: pointer;
+  }
+
+  {{ sid }} .{{ pc }}item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  {{ sid }} .{{ pc }}question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: calc(var(--pc-text-size) * 1.1);
+    font-weight: 600;
+    padding: 10px 0;
+    color: var(--pc-text);
+  }
+
+  {{ sid }} .{{ pc }}question::after {
+    content: '+';
+    font-size: calc(var(--pc-text-size) * 1.4);
+    transition: transform 0.3s ease;
+  }
+
+  {{ sid }} .{{ pc }}item.active .{{ pc }}question::after {
+    transform: rotate(45deg);
+    color: var(--pc-accent);
+  }
+
+  {{ sid }} .{{ pc }}answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding-left: 20px;
+    border-left: 3px solid transparent;
+    color: var(--pc-text);
+    font-size: var(--pc-text-size);
+  }
+
+  {{ sid }} .{{ pc }}item.active .{{ pc }}answer {
+    max-height: 500px;
+    border-left-color: var(--pc-accent);
+    padding: 10px 0 10px 20px;
+  }
+
+  {{ sid }} .{{ pc }}contact {
+    flex: 1;
+    min-width: 300px;
+    padding: 30px;
+    background: white;
+  }
+
+  {{ sid }} .{{ pc }}contact-header {
+    margin-bottom: 25px;
+  }
+
+  {{ sid }} .{{ pc }}contact-header h2 {
+    color: var(--pc-primary);
+    margin-bottom: 10px;
+    font-size: calc(var(--pc-heading-size) * 0.8);
+  }
+
+  {{ sid }} .{{ pc }}contact-header p {
+    color: var(--pc-text);
+    font-size: var(--pc-text-size);
+  }
+
+  {{ sid }} .{{ pc }}contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  {{ sid }} .{{ pc }}form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  {{ sid }} .{{ pc }}form-group label {
+    font-weight: 600;
+    color: var(--pc-primary);
+    font-size: var(--pc-text-size);
+  }
+
+  {{ sid }} .{{ pc }}form-group input,
+  {{ sid }} .{{ pc }}form-group textarea {
+    padding: 12px 15px;
+    border: 1px solid var(--pc-border);
+    border-radius: calc(var(--pc-border-radius) * 0.5);
+    font-size: var(--pc-text-size);
+    transition: all 0.3s ease;
+  }
+
+  {{ sid }} .{{ pc }}form-group input:focus,
+  {{ sid }} .{{ pc }}form-group textarea:focus {
+    outline: none;
+    border-color: var(--pc-accent);
+    box-shadow: 0 0 0 2px rgba(var(--pc-accent-rgb), 0.2);
+  }
+
+  {{ sid }} .{{ pc }}form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  {{ sid }} .{{ pc }}submit-btn {
+    background: var(--pc-accent);
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: calc(var(--pc-border-radius) * 0.5);
+    font-size: calc(var(--pc-text-size) * 1.1);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+  }
+
+  {{ sid }} .{{ pc }}submit-btn:hover {
+    background: {{ section.settings.accent_hover }};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  {{ sid }} .{{ pc }}footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--pc-light-bg);
+    color: #666;
+    font-size: calc(var(--pc-text-size) * 0.9);
+  }
+
+  @media (max-width: 768px) {
+    {{ sid }} .{{ pc }}content {
+      flex-direction: column;
+    }
+
+    {{ sid }} .{{ pc }}header {
+      padding: calc(var(--pc-header-padding) * 0.7);
+    }
+
+    {{ sid }} .{{ pc }}header h1 {
+      font-size: calc(var(--pc-heading-size) * 0.8);
+    }
+
+    {{ sid }} .{{ pc }}questions,
+    {{ sid }} .{{ pc }}contact {
+      padding: 20px;
+    }
+  }
+</style>
+
+<div class="{{ pc }}container">
+  <div class="{{ pc }}header">
+    <h1>{{ section.settings.title }}</h1>
+    <p>{{ section.settings.description }}</p>
+  </div>
+
+  <div class="{{ pc }}content">
+    <div class="{{ pc }}questions">
+      {% for block in section.blocks %}
+        {% if block.type == 'faq' %}
+          <div class="{{ pc }}item {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
+            <div class="{{ pc }}question">{{ block.settings.question }}</div>
+            <div class="{{ pc }}answer">{{ block.settings.answer }}</div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="{{ pc }}contact">
+      <div class="{{ pc }}contact-header">
+        <h2>{{ section.settings.contact_title }}</h2>
+        <p>{{ section.settings.contact_description }}</p>
+      </div>
+
+      <div class="{{ pc }}contact-form">
+        {% form 'contact' %}
+          <div class="{{ pc }}form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="contact[name]" placeholder="Your full name" required>
+          </div>
+
+          <div class="{{ pc }}form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="contact[email]" placeholder="your.email@example.com" required>
+          </div>
+
+          <div class="{{ pc }}form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="contact[body]" placeholder="How can we help you?" required></textarea>
+          </div>
+
+          <button type="submit" class="{{ pc }}submit-btn">Send message</button>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+
+  <div class="{{ pc }}footer">
+    <p>{{ section.settings.footer_text }}</p>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('{{ sid }} .{{ pc }}item');
+
+    faqItems.forEach(item => {
+      const question = item.querySelector('.{{ pc }}question');
+
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // Close all items
+        faqItems.forEach(i => i.classList.remove('active'));
+
+        // Open the clicked item if it wasn't active
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "PWC - FAQ Section #1",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Shipping & Returns"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Section Description",
+      "default": "Below are some common questions about shipping, returns, and exchanges"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Title",
+      "default": "Didn't find your answer?"
+    },
+    {
+      "type": "text",
+      "id": "contact_description",
+      "label": "Contact Description",
+      "default": "Don't hesitate to contact us"
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "© 2025 Company Name. All rights reserved."
+    },
+    {
+      "type": "header",
+      "content": "Style Settings"
+    },
+    {
+      "type": "color",
+      "id": "primary_color",
+      "label": "Primary Color",
+      "default": "#2c3e50"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#3498db"
+    },
+    {
+      "type": "color",
+      "id": "accent_hover",
+      "label": "Accent Hover Color",
+      "default": "#2980b9"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "light_bg",
+      "label": "Light Background",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#dddddd"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max Section Width",
+      "min": 800,
+      "max": 1400,
+      "step": 50,
+      "default": 1000,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section Padding",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "header_padding",
+      "label": "Header Padding",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text Font Size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 12,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Shadow Settings"
+    },
+    {
+      "type": "range",
+      "id": "shadow_size",
+      "label": "Shadow Size",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "shadow_blur",
+      "label": "Shadow Blur",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 6,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "shadow_opacity",
+      "label": "Shadow Opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 1,
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Do you ship internationally?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Yes, we ship to over 100 countries worldwide. International orders typically take 7-14 business days to arrive.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC - FAQ Section #1",
+      "category": "Custom Sections",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "<p>Yes, we ship to over 100 countries worldwide. International orders typically take 7-14 business days to arrive.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "When will my order be shipped?",
+            "answer": "<p>Orders placed before 2 PM EST Monday-Friday are processed and shipped the same day.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day money-back guarantee on all purchases. Items must be in their original condition.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How long until I receive my order?",
+            "answer": "<p>Shipping times vary based on your location and the shipping method selected at checkout.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
