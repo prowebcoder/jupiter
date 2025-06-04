@@ -249,11 +249,74 @@
         "button_text": "#ffffff",
         "button_text_size": "15px"
       }
+    },
+    "rw_faq_2_6fRfMg": {
+      "type": "rw-faq-2",
+      "blocks": {
+        "faq_Dk4LiR": {
+          "type": "faq",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "<p>Yes, we ship to over 100 countries worldwide. International orders typically take 7-14 business days to arrive.</p>"
+          }
+        },
+        "faq_WRQNw8": {
+          "type": "faq",
+          "settings": {
+            "question": "When will my order be shipped?",
+            "answer": "<p>Orders placed before 2 PM EST Monday-Friday are processed and shipped the same day.</p>"
+          }
+        },
+        "faq_JdBVLg": {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>We offer a 30-day money-back guarantee on all purchases. Items must be in their original condition.</p>"
+          }
+        },
+        "faq_hqfVQj": {
+          "type": "faq",
+          "settings": {
+            "question": "How long until I receive my order?",
+            "answer": "<p>Shipping times vary based on your location and the shipping method selected at checkout.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_Dk4LiR",
+        "faq_WRQNw8",
+        "faq_JdBVLg",
+        "faq_hqfVQj"
+      ],
+      "name": "PWC - FAQ Section #1",
+      "settings": {
+        "title": "Shipping & Returns",
+        "description": "Below are some common questions about shipping, returns, and exchanges",
+        "contact_title": "Didn't find your answer?",
+        "contact_description": "Don't hesitate to contact us",
+        "footer_text": "© 2025 Company Name. All rights reserved.",
+        "primary_color": "#2c3e50",
+        "accent_color": "#3498db",
+        "accent_hover": "#2980b9",
+        "text_color": "#333333",
+        "light_bg": "#f8f9fa",
+        "border_color": "#dddddd",
+        "max_width": 1400,
+        "section_padding": 40,
+        "header_padding": 40,
+        "heading_size": 40,
+        "text_size": 16,
+        "border_radius": 12,
+        "shadow_size": 4,
+        "shadow_blur": 6,
+        "shadow_opacity": 0
+      }
     }
   },
   "order": [
     "image_counter_pwc_GHENam",
     "pricing_plan_p_xxhtV4",
-    "rw_faq_contact_gDDH38"
+    "rw_faq_contact_gDDH38",
+    "rw_faq_2_6fRfMg"
   ]
 }
