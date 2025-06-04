@@ -650,7 +650,7 @@
         "content_height": 200,
         "content_position": "right",
         "content_offset": 40,
-        "content_padding": 10,
+        "content_padding": 15,
         "content_background": "#ffffff",
         "content_border_thickness": 1,
         "content_border_color": "#e1e1e1",
