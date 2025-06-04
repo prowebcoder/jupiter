@@ -640,7 +640,7 @@
         "enable_placeholder": true,
         "image_width": 50,
         "image_height": 500,
-        "image_fit": "fill",
+        "image_fit": "cover",
         "image_border": false,
         "image_border_thickness": 1,
         "image_border_color": "#e1e1e1",
