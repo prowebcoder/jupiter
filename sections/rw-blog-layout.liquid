@@ -23,9 +23,6 @@
     position: relative;
     max-width: {{ section.settings.max_container_width }}px;
     margin: 0 auto;
-    {% if section.settings.image_position == 'right' %}
-      flex-direction: row-reverse;
-    {% endif %}
   }
 
   {{ sec_id }} .pc-image-block {
@@ -49,13 +46,6 @@
     align-items: center;
     {% if section.settings.content_border %}
       border: {{ section.settings.content_border_thickness }}px solid {{ section.settings.content_border_color }};
-    {% endif %}
-    {% if section.settings.image_position == 'right' %}
-      right: {{ section.settings.content_offset }}px;
-      left: auto;
-    {% else %}
-      left: {{ section.settings.content_offset }}px;
-      right: auto;
     {% endif %}
   }
 
@@ -103,6 +93,7 @@
       width: 100% !important;
       height: auto !important;
       position: static !important;
+      order: 0 !important;
     }
 
     {{ sec_id }} .pc-content-block {
@@ -122,6 +113,7 @@
     <div class="pc-image-block" style="
       width: {{ section.settings.image_width }}%;
       height: {{ section.settings.image_height }}px;
+      order: {{ section.settings.image_position }};
     ">
       {% if section.settings.blog_image != blank %}
         <img
@@ -142,6 +134,14 @@
     <div class="pc-content-block" style="
       width: {{ section.settings.content_width }}%;
       height: {{ section.settings.content_height }}px;
+      {% if section.settings.content_position == 'right' %}
+        right: {{ section.settings.content_offset }}px;
+        left: auto;
+      {% else %}
+        left: {{ section.settings.content_offset }}px;
+        right: auto;
+      {% endif %};
+      border: {{ section.settings.content_border_thickness }}px solid {{ section.settings.content_border_color }};
     ">
       <div class="pc-content-wrapper">
         <h4 class="pc-post-title">{{ section.settings.blog_title }}</h4>
@@ -198,10 +198,10 @@
       "id": "image_position",
       "label": "Image Position",
       "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "right", "label": "Right" }
+        { "value": "0", "label": "Left" },
+        { "value": "1", "label": "Right" }
       ],
-      "default": "left"
+      "default": "0"
     },
     {
       "type": "header",
@@ -310,6 +310,16 @@
       "step": 50,
       "default": 300,
       "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "right"
     },
     {
       "type": "range",
