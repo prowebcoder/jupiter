@@ -1,47 +1,51 @@
-<div class="custom-blog-card">
+<div class="custom-blog-layout">
   <!-- Heading -->
-  <h3 class="blog-heading">{{ section.settings.heading | default: "FROM THE BLOG" }}</h3>
+  <h3 class="section-heading">{{ section.settings.heading | default: "FROM THE BLOG" }}</h3>
 
-  <!-- Image Block (Full Width) -->
-  <div class="image-block" style="height: {{ section.settings.image_height }}px;">
-    {% if section.settings.blog_image != blank %}
-      <img 
-        src="{{ section.settings.blog_image | img_url: '1200x' }}" 
-        alt="{{ section.settings.blog_image.alt }}" 
-        class="blog-image"
-        loading="lazy"
-        style="height: 100%; width: 100%; object-fit: cover;"
-      >
-    {% else %}
-      <div class="placeholder-image" style="height: 100%; background: #f5f5f5; display: flex; align-items: center; justify-content: center;">
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-      </div>
-    {% endif %}
-  </div>
+  <!-- Image & Content Container -->
+  <div class="blog-container">
+    <!-- Image Block (Left) -->
+    <div class="image-column" style="height: {{ section.settings.image_height }}px;">
+      {% if section.settings.blog_image != blank %}
+        <img
+          src="{{ section.settings.blog_image | img_url: '1200x' }}"
+          alt="{{ section.settings.blog_image.alt }}"
+          class="blog-featured-image"
+          loading="lazy"
+          style="height: 100%; width: 100%; object-fit: cover;"
+        >
+      {% else %}
+        <div class="image-placeholder" style="height: 100%;">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {% endif %}
+    </div>
 
-  <!-- Content Block (Half Height of Image) -->
-  <div class="content-block" style="height: calc({{ section.settings.image_height }}px / 2);">
-    <div class="content-inner">
-      <h4 class="blog-title">{{ section.settings.blog_title | default: "Color pop" }}</h4>
-      <p class="blog-excerpt">
-        {{ section.settings.blog_excerpt | default: "As much as we live and breath monochrome styles (and we can all agree a majority of our daily wear is crisp whites and deep blacks), a gals gotta have a..." }}
-      </p>
-      <div class="blog-meta">
-        <span class="post-date">{{ section.settings.post_date | default: "Posted on Apr 28, 2017" }}</span>
-        <span class="post-category">{{ section.settings.blog_category | default: "Clothing Fashion" }}</span>
+    <!-- Content Block (Right, Centered) -->
+    <div class="content-column" style="height: {{ section.settings.image_height }}px;">
+      <div class="content-wrapper" style="height: calc({{ section.settings.image_height }}px / 2);">
+        <h4 class="post-title">{{ section.settings.blog_title | default: "Color pop" }}</h4>
+        <p class="post-excerpt">
+          {{ section.settings.blog_excerpt | default: "As much as we live and breath monochrome styles (and we can all agree a majority of our daily wear is crisp whites and deep blacks), a gals gotta have a..." }}
+        </p>
+        <div class="post-meta">
+          <span class="meta-date">{{ section.settings.post_date | default: "Posted on Apr 28, 2017" }}</span>
+          <span class="meta-category">{{ section.settings.blog_category | default: "Clothing Fashion" }}</span>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <style>
-  .custom-blog-card {
+  .custom-blog-layout {
     max-width: 1000px;
     margin: 0 auto;
     font-family: sans-serif;
+    padding: 20px;
   }
 
-  .blog-heading {
+  .section-heading {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -50,41 +54,46 @@
     color: #333;
   }
 
-  .image-block {
-    width: 100%;
+  .blog-container {
+    display: flex;
+    border: 1px solid #e1e1e1;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+
+  .image-column {
+    flex: 0 0 50%;
     overflow: hidden;
   }
 
-  .content-block {
-    width: 100%;
-    padding: 30px;
-    border: 1px solid #e1e1e1;
-    border-top: none;
-    box-sizing: border-box;
+  .content-column {
+    flex: 0 0 50%;
+    padding: 0 30px;
+    display: flex;
+    align-items: center; /* Vertically centers the content */
+    justify-content: center; /* Horizontally centers (optional) */
   }
 
-  .content-inner {
-    height: 100%;
+  .content-wrapper {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center; /* Centers text vertically inside its half-height container */
   }
 
-  .blog-title {
+  .post-title {
     font-size: 24px;
     margin: 0 0 15px 0;
     color: #222;
   }
 
-  .blog-excerpt {
+  .post-excerpt {
     font-size: 16px;
     line-height: 1.5;
     color: #666;
     margin-bottom: 15px;
-    flex-grow: 1;
   }
 
-  .blog-meta {
+  .post-meta {
     display: flex;
     justify-content: space-between;
     font-size: 14px;
@@ -93,20 +102,37 @@
     padding-top: 15px;
   }
 
+  .image-placeholder {
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   @media (max-width: 768px) {
-    .content-block {
+    .blog-container {
+      flex-direction: column;
+    }
+
+    .image-column,
+    .content-column {
+      flex: 1 1 100%;
+    }
+
+    .content-column {
+      height: auto !important;
       padding: 20px;
     }
-    
-    .blog-title {
-      font-size: 20px;
+
+    .content-wrapper {
+      height: auto !important;
     }
   }
 </style>
 
 {% schema %}
 {
-  "name": "Split Blog Card",
+  "name": "Centered Blog Layout",
   "settings": [
     {
       "type": "text",
@@ -126,7 +152,7 @@
       "min": 300,
       "max": 1000,
       "step": 50,
-      "default": 600,
+      "default": 500,
       "unit": "px"
     },
     {
@@ -156,7 +182,7 @@
   ],
   "presets": [
     {
-      "name": "Split Blog Card",
+      "name": "Centered Blog Layout",
       "category": "Blog"
     }
   ]
