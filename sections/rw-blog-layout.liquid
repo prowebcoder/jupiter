@@ -134,13 +134,6 @@
     <div class="pc-content-block" style="
       width: {{ section.settings.content_width }}%;
       height: {{ section.settings.content_height }}px;
-      {% if section.settings.content_position == 'right' %}
-        right: {{ section.settings.content_offset }}px;
-        left: auto;
-      {% else %}
-        left: {{ section.settings.content_offset }}px;
-        right: auto;
-      {% endif %};
       border: {{ section.settings.content_border_thickness }}px solid {{ section.settings.content_border_color }};
     ">
       <div class="pc-content-wrapper">
@@ -310,16 +303,6 @@
       "step": 50,
       "default": 300,
       "unit": "px"
-    },
-    {
-      "type": "select",
-      "id": "content_position",
-      "label": "Content Position",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "right", "label": "Right" }
-      ],
-      "default": "right"
     },
     {
       "type": "range",
