@@ -1,64 +1,14 @@
-<div class="custom-blog-layout" style="max-width: {{ section.settings.container_width }}%">
-  <!-- Heading -->
-  <h3 class="section-heading">{{ section.settings.heading | default: "FROM THE BLOG" }}</h3>
-
-  <!-- Image & Content Container -->
-  <div class="blog-container" style="gap: {{ section.settings.gap_between_blocks }}px;">
-    <!-- Image Block -->
-    <div class="image-block" style="
-      width: {{ section.settings.image_width }}%;
-      height: {{ section.settings.image_height }}px;
-      order: {{ section.settings.image_position }};
-    ">
-      {% if section.settings.blog_image != blank %}
-        <img
-          src="{{ section.settings.blog_image | img_url: '2000x' }}"
-          alt="{{ section.settings.blog_image.alt }}"
-          class="blog-featured-image"
-          loading="lazy"
-          style="height: 100%; width: 100%; object-fit: {{ section.settings.image_fit }};"
-        >
-      {% else %}
-        <div class="image-placeholder">
-          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-        </div>
-      {% endif %}
-    </div>
-
-    <!-- Content Block -->
-    <div class="content-block" style="
-      width: {{ section.settings.content_width }}%;
-      height: {{ section.settings.content_height }}px;
-      {% if section.settings.content_position == 'right' %}
-        right: {{ section.settings.content_offset }}px;
-        left: auto;
-      {% else %}
-        left: {{ section.settings.content_offset }}px;
-        right: auto;
-      {% endif %};
-      border: {{ section.settings.content_border_thickness }}px solid {{ section.settings.content_border_color }};
-    ">
-      <div class="content-wrapper">
-        <h4 class="post-title">{{ section.settings.blog_title }}</h4>
-        <p class="post-excerpt">{{ section.settings.blog_excerpt }}</p>
-        <div class="post-meta">
-          <span class="meta-date">{{ section.settings.post_date }}</span>
-          <span class="meta-category">{{ section.settings.blog_category }}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
 <style>
-  .custom-blog-layout {
+  {{ sec_id }} .pc-custom-blog-layout {
     width: 100%;
     margin: 0 auto;
     font-family: {{ section.settings.font_family }};
     padding: 20px;
   }
 
-  .section-heading {
+  {{ sec_id }} .pc-section-heading {
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -67,7 +17,7 @@
     color: {{ section.settings.heading_color }};
   }
 
-  .blog-container {
+  {{ sec_id }} .pc-blog-container {
     display: flex;
     align-items: center;
     position: relative;
@@ -75,7 +25,7 @@
     margin: 0 auto;
   }
 
-  .image-block {
+  {{ sec_id }} .pc-image-block {
     overflow: hidden;
     {% if section.settings.image_border %}
       border: {{ section.settings.image_border_thickness }}px solid {{ section.settings.image_border_color }};
@@ -85,7 +35,7 @@
     {% endif %}
   }
 
-  .content-block {
+  {{ sec_id }} .pc-content-block {
     position: absolute;
     padding: {{ section.settings.content_padding }}px;
     {% if section.settings.content_rounded_corners %}
@@ -99,24 +49,24 @@
     {% endif %}
   }
 
-  .content-wrapper {
+  {{ sec_id }} .pc-content-wrapper {
     width: 100%;
   }
 
-  .post-title {
+  {{ sec_id }} .pc-post-title {
     font-size: {{ section.settings.title_size }}px;
     margin: 0 0 15px 0;
     color: {{ section.settings.title_color }};
   }
 
-  .post-excerpt {
+  {{ sec_id }} .pc-post-excerpt {
     font-size: {{ section.settings.excerpt_size }}px;
     line-height: 1.5;
     color: {{ section.settings.excerpt_color }};
     margin-bottom: 15px;
   }
 
-  .post-meta {
+  {{ sec_id }} .pc-post-meta {
     display: flex;
     justify-content: space-between;
     font-size: {{ section.settings.meta_size }}px;
@@ -125,7 +75,7 @@
     padding-top: 15px;
   }
 
-  .image-placeholder {
+  {{ sec_id }} .pc-image-placeholder {
     background: #f5f5f5;
     height: 100%;
     display: flex;
@@ -134,24 +84,76 @@
   }
 
   @media (max-width: 768px) {
-    .blog-container {
+    {{ sec_id }} .pc-blog-container {
       flex-direction: column;
     }
 
-    .image-block,
-    .content-block {
+    {{ sec_id }} .pc-image-block,
+    .pc-content-block {
       width: 100% !important;
       height: auto !important;
       position: static !important;
       order: 0 !important;
     }
 
-    .content-block {
+    {{ sec_id }} .pc-content-block {
       padding: 20px;
       border: none !important;
     }
   }
 </style>
+
+<div class="pc-custom-blog-layout" style="max-width: {{ section.settings.container_width }}%">
+  <!-- Heading -->
+  <h3 class="pc-section-heading">{{ section.settings.heading | default: "FROM THE BLOG" }}</h3>
+
+  <!-- Image & Content Container -->
+  <div class="pc-blog-container" style="gap: {{ section.settings.gap_between_blocks }}px;">
+    <!-- Image Block -->
+    <div class="pc-image-block" style="
+      width: {{ section.settings.image_width }}%;
+      height: {{ section.settings.image_height }}px;
+      order: {{ section.settings.image_position }};
+    ">
+      {% if section.settings.blog_image != blank %}
+        <img
+          src="{{ section.settings.blog_image | img_url: '2000x' }}"
+          alt="{{ section.settings.blog_image.alt }}"
+          class="pc-blog-featured-image"
+          loading="lazy"
+          style="height: 100%; width: 100%; object-fit: {{ section.settings.image_fit }};"
+        >
+      {% else %}
+        <div class="pc-image-placeholder">
+          {{ 'image' | placeholder_svg_tag: 'pc-placeholder-svg' }}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Content Block -->
+    <div class="pc-content-block" style="
+      width: {{ section.settings.content_width }}%;
+      height: {{ section.settings.content_height }}px;
+      {% if section.settings.content_position == 'right' %}
+        right: {{ section.settings.content_offset }}px;
+        left: auto;
+      {% else %}
+        left: {{ section.settings.content_offset }}px;
+        right: auto;
+      {% endif %};
+      border: {{ section.settings.content_border_thickness }}px solid {{ section.settings.content_border_color }};
+    ">
+      <div class="pc-content-wrapper">
+        <h4 class="pc-post-title">{{ section.settings.blog_title }}</h4>
+        <p class="pc-post-excerpt">{{ section.settings.blog_excerpt }}</p>
+        <div class="pc-post-meta">
+          <span class="pc-meta-date">{{ section.settings.post_date }}</span>
+          <span class="pc-meta-category">{{ section.settings.blog_category }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% schema %}
 {
@@ -491,7 +493,7 @@
   ],
   "presets": [
     {
-      "name": "Advanced Blog Layout",
+      "name": "RW Blog layout",
       "category": "Blog"
     }
   ]
