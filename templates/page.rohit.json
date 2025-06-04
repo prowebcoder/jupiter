@@ -467,104 +467,45 @@
         "padding_bottom": 0
       }
     },
-    "pwc_custom_faq_cm44TH": {
+    "pwc_custom_faq_dkpEcx": {
       "type": "pwc-custom-faq",
       "blocks": {
-        "faq_item_hgkYiT": {
+        "faq_item_hmHCeY": {
           "type": "faq_item",
           "settings": {
             "question": "BREAKS DOWN FOOD",
             "answer": "<p>Everything we eat is broken down by the digestive enzymes we produce in our salvia.</p>"
           }
         },
-        "faq_item_aPywEq": {
+        "faq_item_fdj8iT": {
           "type": "faq_item",
           "settings": {
             "question": "REDUCES GAS",
             "answer": "<p>Alpha galactosidase is 1 of the 17 digestive enzymes found in DEBLOAT+.</p>"
           }
         },
-        "faq_item_EC8LdP": {
+        "faq_item_kjQDrq": {
           "type": "faq_item",
           "settings": {
             "question": "IMPROVES GUT HEALTH",
             "answer": "<p>Licorice root has been used for centuries in Ayurvedic medicine.</p>"
           }
-        },
-        "contact_form_X6e4r7": {
-          "type": "contact_form",
-          "settings": {
-            "heading": "Contact Us",
-            "form_width": 500,
-            "form_padding": 20,
-            "form_background": "#FFFFFF",
-            "form_border_color": "#E1E1E1",
-            "form_border_width": 1,
-            "text_size": "small",
-            "title_font_weight": "normal",
-            "form_border_radius": 8,
-            "form_heading_custom": false,
-            "form_heading_font": "josefin_sans_n4",
-            "form_heading_size": 32,
-            "form_heading_text_size": "small",
-            "form_heading_font_weight": "normal",
-            "form_heading_size_mobile": 24,
-            "form_heading_color": "#000000",
-            "form_heading_margin_bottom": 20,
-            "form_label_custom": false,
-            "form_label_font": "josefin_sans_n4",
-            "form_label_size": 14,
-            "form_label_text_size": "small",
-            "form_label_title_font_weight": "normal",
-            "form_label_color": "#333333",
-            "form_label_margin_bottom": 8,
-            "form_input_height": 48,
-            "form_input_padding": 12,
-            "form_input_background": "#FFFFFF",
-            "form_input_border_color": "#CCCCCC",
-            "form_input_border_width": 1,
-            "form_input_border_radius": 4,
-            "form_input_text_color": "#333333",
-            "form_input_text_size": 16,
-            "form_input_focus_border_color": "#000000",
-            "form_textarea_min_height": 120,
-            "form_button_custom": false,
-            "form_button_font": "josefin_sans_n4",
-            "form_button_size": 16,
-            "form_button_padding_vertical": 12,
-            "form_button_padding_horizontal": 24,
-            "form_button_background": "#000000",
-            "form_button_text_color": "#FFFFFF",
-            "form_button_hover_background": "#333333",
-            "form_button_hover_text_color": "#FFFFFF",
-            "form_button_border_radius": 4,
-            "form_button_border_width": 0,
-            "form_button_border_color": "transparent",
-            "form_message_size": 14,
-            "form_success_color": "#28A745",
-            "form_error_color": "#DC3545",
-            "form_message_margin_top": 8,
-            "show_marketing_opt_in": true,
-            "marketing_text": "I would like to receive marketing communications",
-            "button_text": "Submit Form"
-          }
         }
       },
       "block_order": [
-        "faq_item_hgkYiT",
-        "faq_item_aPywEq",
-        "faq_item_EC8LdP",
-        "contact_form_X6e4r7"
+        "faq_item_hmHCeY",
+        "faq_item_fdj8iT",
+        "faq_item_kjQDrq"
       ],
       "name": "Custom FAQ Section",
       "settings": {
         "layout_gap": 0,
         "layout_gap_mobile": 0,
-        "image_position": "2",
+        "image_position": "1",
         "heading": "<p>HOW IT WORKS</p>",
         "heading_custom": false,
         "heading_font": "josefin_sans_n4",
-        "heading_size": 82,
+        "heading_size": 54,
         "heading_size_mobile": 32,
         "heading_height": 150,
         "heading_align": "left",
@@ -628,6 +569,6 @@
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
     "pwc_split_image_hover_aGrP4r",
-    "pwc_custom_faq_cm44TH"
+    "pwc_custom_faq_dkpEcx"
   ]
 }
