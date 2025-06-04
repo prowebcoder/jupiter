@@ -467,14 +467,14 @@
         "padding_bottom": 0
       }
     },
-    "rw_image_with_text_bMAjAk": {
-      "type": "rw-image-with-text",
-      "name": "Advanced Blog Layout",
+    "rw_blog_layout_CzHG9j": {
+      "type": "rw-blog-layout",
+      "name": "RW Blog layout",
       "settings": {
         "container_width": 100,
         "max_container_width": 1200,
         "gap_between_blocks": 20,
-        "image_position": "1",
+        "image_position": "0",
         "blog_image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
         "enable_placeholder": true,
         "image_width": 50,
@@ -493,7 +493,7 @@
         "content_background": "#ffffff",
         "content_border": true,
         "content_border_thickness": 1,
-        "content_border_color": "#ffffff",
+        "content_border_color": "#ff0000",
         "content_rounded_corners": false,
         "content_corner_radius": 0,
         "font_family": "sans-serif",
@@ -519,6 +519,6 @@
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
     "pwc_split_image_hover_aGrP4r",
-    "rw_image_with_text_bMAjAk"
+    "rw_blog_layout_CzHG9j"
   ]
 }
