@@ -1,91 +1,165 @@
-{% style %}
-.featured-blog-post-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.featured-blog-post-image {
-  flex: 1;
-  min-width: 300px;
-}
-.featured-blog-post-image img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-.featured-blog-post-content {
-  flex: 1;
-  min-width: 300px;
-}
-.featured-blog-post-content h2 {
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-.featured-blog-post-content p {
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-.featured-blog-post-meta {
-  font-size: 14px;
-  color: #555;
-}
-.featured-blog-post-meta a {
-  margin-right: 10px;
-  text-decoration: underline;
-}
-{% endstyle %}
+<style>
+  .blog-card {
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: sans-serif;
+    padding: 20px;
+  }
+  
+  .blog-card__heading {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  .blog-card__container {
+    border: 1px solid #e1e1e1;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  
+  .blog-card__image-wrapper {
+    overflow: hidden;
+  }
+  
+  .blog-card__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  .blog-card__image:hover {
+    transform: scale(1.03);
+  }
+  
+  .placeholder-image {
+    background-color: #f5f5f5;
+    padding: 20px;
+  }
+  
+  .blog-card__content {
+    padding: 20px;
+  }
+  
+  .blog-card__title {
+    font-size: 24px;
+    margin: 0 0 15px 0;
+    color: #222;
+  }
+  
+  .blog-card__excerpt {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 15px;
+  }
+  
+  .blog-card__meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #999;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+  }
+  
+  @media (max-width: 480px) {
+    .blog-card__content {
+      padding: 15px;
+    }
+    
+    .blog-card__title {
+      font-size: 20px;
+    }
+  }
+</style>
 
-<div class="featured-blog-post-container">
-  {% assign blog = blogs[section.settings.blog] %}
-  {% if blog.articles.size > 0 %}
-    {% assign article = blog.articles.first %}
-    <div class="featured-blog-post-image">
-      <a href="{{ article.url }}">
-        <img src="{{ article.image | image_url: width: 800 }}" alt="{{ article.title | escape }}">
-      </a>
+<div class="blog-card">
+  <!-- Heading Section -->
+  <h3 class="blog-card__heading">{{ section.settings.heading | default: "FROM THE BLOG" }}</h3>
+  
+  <!-- Blog Post Card -->
+  <div class="blog-card__container">
+    <!-- Featured Image -->
+    <div class="blog-card__image-wrapper">
+      {% if section.settings.blog_image != blank %}
+        <img src="{{ section.settings.blog_image | img_url: '600x' }}" 
+             alt="{{ section.settings.blog_image.alt }}" 
+             class="blog-card__image"
+             loading="lazy">
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'blog-card__image placeholder-image' }}
+      {% endif %}
     </div>
-    <div class="featured-blog-post-content">
-      <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
-      <p>{{ article.excerpt_or_content | strip_html | truncate: 220 }}</p>
-      <div class="featured-blog-post-meta">
-        <p>Posted on {{ article.published_at | date: "%b %d, %Y" }}</p>
-        {% for tag in article.tags %}
-          <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
-        {% endfor %}
+    
+    <!-- Content Section -->
+    <div class="blog-card__content">
+      <!-- Title -->
+      <h4 class="blog-card__title">{{ section.settings.blog_title | default: "Color pop" }}</h4>
+      
+      <!-- Excerpt -->
+      <p class="blog-card__excerpt">
+        {{ section.settings.blog_excerpt | default: "As much as we live and breath monochrome styles (and we can all agree a majority of our daily wear is crisp whites and deep blacks), a gals gotta have a..." }}
+      </p>
+      
+      <!-- Metadata -->
+      <div class="blog-card__meta">
+        <span class="blog-card__date">{{ section.settings.post_date | default: "Posted on Apr 28, 2017" }}</span>
+        <span class="blog-card__category">{{ section.settings.blog_category | default: "Clothing Fashion" }}</span>
       </div>
     </div>
-  {% else %}
-    <p>No blog post found. Please add one to the selected blog.</p>
-  {% endif %}
+  </div>
 </div>
+
+
 
 {% schema %}
 {
-  "name": "Featured Blog Post",
-  "tag": "section",
-  "class": "featured-blog-post",
+  "name": "Blog Post Card",
   "settings": [
     {
-      "type": "blog",
-      "id": "blog",
-      "label": "Select Blog"
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "FROM THE BLOG"
     },
     {
-      "type": "number",
-      "id": "post_limit",
-      "label": "Number of posts to show",
-      "default": 1
+      "type": "image_picker",
+      "id": "blog_image",
+      "label": "Blog Post Image"
+    },
+    {
+      "type": "text",
+      "id": "blog_title",
+      "label": "Blog Post Title",
+      "default": "Color pop"
+    },
+    {
+      "type": "textarea",
+      "id": "blog_excerpt",
+      "label": "Blog Excerpt",
+      "default": "As much as we live and breath monochrome styles (and we can all agree a majority of our daily wear is crisp whites and deep blacks), a gals gotta have a..."
+    },
+    {
+      "type": "text",
+      "id": "post_date",
+      "label": "Post Date",
+      "default": "Posted on Apr 28, 2017"
+    },
+    {
+      "type": "text",
+      "id": "blog_category",
+      "label": "Blog Category",
+      "default": "Clothing Fashion"
     }
   ],
   "presets": [
     {
-      "name": "Featured Blog Post"
+      "name": "Blog Post Card",
+      "category": "Blog"
     }
   ]
 }
