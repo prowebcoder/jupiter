@@ -1,6 +1,92 @@
+{% style %}
+.featured-blog-post-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.featured-blog-post-image {
+  flex: 1;
+  min-width: 300px;
+}
+.featured-blog-post-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.featured-blog-post-content {
+  flex: 1;
+  min-width: 300px;
+}
+.featured-blog-post-content h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.featured-blog-post-content p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.featured-blog-post-meta {
+  font-size: 14px;
+  color: #555;
+}
+.featured-blog-post-meta a {
+  margin-right: 10px;
+  text-decoration: underline;
+}
+{% endstyle %}
+
+<div class="featured-blog-post-container">
+  {% assign blog = blogs[section.settings.blog] %}
+  {% if blog.articles.size > 0 %}
+    {% assign article = blog.articles.first %}
+    <div class="featured-blog-post-image">
+      <a href="{{ article.url }}">
+        <img src="{{ article.image | image_url: width: 800 }}" alt="{{ article.title | escape }}">
+      </a>
+    </div>
+    <div class="featured-blog-post-content">
+      <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+      <p>{{ article.excerpt_or_content | strip_html | truncate: 220 }}</p>
+      <div class="featured-blog-post-meta">
+        <p>Posted on {{ article.published_at | date: "%b %d, %Y" }}</p>
+        {% for tag in article.tags %}
+          <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <p>No blog post found. Please add one to the selected blog.</p>
+  {% endif %}
+</div>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Featured Blog Post",
+  "tag": "section",
+  "class": "featured-blog-post",
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select Blog"
+    },
+    {
+      "type": "number",
+      "id": "post_limit",
+      "label": "Number of posts to show",
+      "default": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Blog Post"
+    }
+  ]
+}
 {% endschema %}
