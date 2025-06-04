@@ -635,7 +635,7 @@
       "settings": {
         "max_container_width": 1000,
         "gap_between_blocks": 20,
-        "image_position": "0",
+        "image_position": "1",
         "blog_image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
         "enable_placeholder": true,
         "image_width": 50,
@@ -649,7 +649,6 @@
         "content_height": 300,
         "content_padding": 30,
         "content_background": "#ffffff",
-        "content_border": true,
         "content_border_thickness": 1,
         "content_border_color": "#e1e1e1",
         "content_rounded_corners": false,
