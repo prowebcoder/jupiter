@@ -1,151 +1,162 @@
-{% stylesheet %}
-  .faq-contact-wrapper {
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+
+{% style %}
+  {{ sid }} .faq-contact-wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--gap);
-    padding: var(--section-padding);
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    gap: {{ section.settings.column_gap }}px;
+    padding-top: {{ section.settings.section_padding_top }}px;
+    padding-bottom: {{ section.settings.section_padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
   }
 
-  .faq-column {
+  {{ sid }} .faq-column {
     flex: 1 1 60%;
     background-color: #fff;
-    padding: var(--faq-padding);
-    border-radius: 12px;
+    padding: {{ section.settings.faq_padding }}px;
+    border-radius: {{ section.settings.faq_radius }}px;
   }
 
-  .faq-column h2 {
-    font-size: var(--faq-heading-size);
+  {{ sid }} .faq-column h2 {
+    font-size: {{ section.settings.faq_heading_size }}px;
     font-weight: 700;
     margin-bottom: 8px;
-    color: var(--faq-heading-color);
+    color: {{ section.settings.faq_heading_color }};
   }
 
-  .faq-column p {
-    font-size: var(--faq-subtext-size);
-    color: var(--muted-color);
+  {{ sid }} .faq-column p {
+    font-size: {{ section.settings.faq_subtext_size }}px;
+    color: {{ section.settings.text_muted }};
     margin-bottom: 20px;
   }
 
-  .faq-item {
-    border-top: 1px solid #e5e5e5;
-    padding: var(--faq-item-padding);
+  {{ sid }} .faq-item {
+    border-top: {{ section.settings.faq_border_width }}px solid #e5e5e5;
+    padding: {{ section.settings.faq_item_padding }}px 0;
     cursor: pointer;
   }
 
-  .faq-item:last-child {
-    border-bottom: 1px solid #e5e5e5;
+  {{ sid }} .faq-item:last-child {
+    border-bottom: {{ section.settings.faq_border_width }}px solid #e5e5e5;
   }
 
-  .faq-question {
+  {{ sid }} .faq-question {
     display: flex;
     justify-content: space-between;
     font-weight: 600;
-    font-size: var(--faq-question-size);
-    color: var(--faq-question-color);
+    font-size: {{ section.settings.faq_question_size }}px;
+    color: {{ section.settings.faq_question_color }};
   }
 
-  .faq-answer {
+  {{ sid }} .faq-answer {
     display: none;
     margin-top: 10px;
-    font-size: var(--faq-answer-size);
-    color: var(--faq-answer-color);
+    font-size: {{ section.settings.faq_answer_size }}px;
+    color: {{ section.settings.faq_answer_color }};
   }
 
-  .faq-item.open .faq-answer {
+  {{ sid }} .faq-item.open .faq-answer {
     display: block;
   }
 
-  .contact-column {
+  {{ sid }} .contact-column {
     flex: 1 1 35%;
   }
 
-  .contact-box {
+  {{ sid }} .contact-box {
     background-color: #f9f9f9;
-    border-radius: 12px;
-    padding: var(--contact-padding);
+    border-radius: {{ section.settings.contact_radius }}px;
+    padding: {{ section.settings.contact_padding }}px;
   }
 
-  .contact-box h3 {
-    font-size: var(--contact-heading-size);
+  {{ sid }} .contact-box h3 {
+    font-size: {{ section.settings.contact_heading_size }}px;
     font-weight: 700;
     margin-bottom: 8px;
-    color: var(--contact-heading-color);
+    color: {{ section.settings.contact_heading_color }};
   }
 
-  .contact-box p {
-    font-size: var(--contact-subtext-size);
-    color: var(--muted-color);
+  {{ sid }} .contact-box p {
+    font-size: {{ section.settings.contact_subtext_size }}px;
+    color: {{ section.settings.text_muted }};
     margin-bottom: 20px;
   }
 
-  .contact-box input,
-  .contact-box textarea {
+  {{ sid }} .contact-box input,
+  {{ sid }} .contact-box textarea {
     width: 100%;
     padding: 14px;
     margin-bottom: 14px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: var(--form-text-size);
-    color: var(--form-text-color);
+    border: {{ section.settings.form_border_width }}px solid #ccc;
+    border-radius: {{ section.settings.form_radius }}px;
+    font-size: {{ section.settings.form_text_size }}px;
+    color: {{ section.settings.form_text_color }};
   }
 
-  .contact-box button {
-    background-color: var(--button-bg);
-    color: var(--button-text);
+  {{ sid }} .contact-box button {
+    background-color: {{ section.settings.button_bg }};
+    color: {{ section.settings.button_text }};
     padding: 12px 24px;
     border: none;
-    border-radius: 25px;
+    border-radius: {{ section.settings.button_radius }}px;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
-    font-size: var(--button-text-size);
+    font-size: {{ section.settings.button_text_size }}px;
   }
 
-  .contact-box button:hover {
+  {{ sid }} .contact-box button:hover {
     opacity: 0.9;
   }
 
   @media screen and (max-width: 768px) {
-    .faq-contact-wrapper {
+    {{ sid }} .faq-contact-wrapper {
       flex-direction: column;
+      gap: {{ section.settings.mobile_column_gap }}px;
+    }
+
+    {{ sid }} .faq-column,
+    {{ sid }} .contact-column {
+      flex: 1 1 100%;
+    }
+
+    {{ sid }} .faq-column h2 {
+      font-size: {{ section.settings.mobile_faq_heading_size }}px;
+    }
+
+    {{ sid }} .faq-column p {
+      font-size: {{ section.settings.mobile_faq_subtext_size }}px;
+    }
+
+    {{ sid }} .faq-question {
+      font-size: {{ section.settings.mobile_faq_question_size }}px;
+    }
+
+    {{ sid }} .faq-answer {
+      font-size: {{ section.settings.mobile_faq_answer_size }}px;
+    }
+
+    {{ sid }} .contact-box h3 {
+      font-size: {{ section.settings.mobile_contact_heading_size }}px;
+    }
+
+    {{ sid }} .contact-box p {
+      font-size: {{ section.settings.mobile_contact_subtext_size }}px;
+    }
+
+    {{ sid }} .contact-box input,
+    {{ sid }} .contact-box textarea {
+      font-size: {{ section.settings.mobile_form_text_size }}px;
+    }
+
+    {{ sid }} .contact-box button {
+      font-size: {{ section.settings.mobile_button_text_size }}px;
     }
   }
-{% endstylesheet %}
+{% endstyle %}
 
-<div
-  class="faq-contact-wrapper"
-  style="
-    --section-padding: {{ section.settings.section_padding }};
-    --gap: {{ section.settings.column_gap }};
-    --bg-color: {{ section.settings.bg_color }};
-    --text-color: {{ section.settings.text_color }};
-    --muted-color: {{ section.settings.text_muted }};
-
-    --faq-padding: {{ section.settings.faq_padding }};
-    --faq-heading-size: {{ section.settings.faq_heading_size }};
-    --faq-heading-color: {{ section.settings.faq_heading_color }};
-    --faq-subtext-size: {{ section.settings.faq_subtext_size }};
-
-    --faq-item-padding: {{ section.settings.faq_item_padding }};
-    --faq-question-size: {{ section.settings.faq_question_size }};
-    --faq-question-color: {{ section.settings.faq_question_color }};
-    --faq-answer-size: {{ section.settings.faq_answer_size }};
-    --faq-answer-color: {{ section.settings.faq_answer_color }};
-
-    --contact-padding: {{ section.settings.contact_padding }};
-    --contact-heading-size: {{ section.settings.contact_heading_size }};
-    --contact-heading-color: {{ section.settings.contact_heading_color }};
-    --contact-subtext-size: {{ section.settings.contact_subtext_size }};
-
-    --form-text-size: {{ section.settings.form_text_size }};
-    --form-text-color: {{ section.settings.form_text_color }};
-    --button-bg: {{ section.settings.button_bg }};
-    --button-text: {{ section.settings.button_text }};
-    --button-text-size: {{ section.settings.button_text_size }};
-  "
->
+<div class="faq-contact-wrapper">
   <!-- FAQ Column -->
   <div class="faq-column">
     <h2>{{ section.settings.faq_heading }}</h2>
@@ -184,54 +195,447 @@
 {
   "name": "FAQ & Contact Custom",
   "settings": [
-    { "type": "text", "id": "faq_heading", "label": "FAQ Heading", "default": "Shipping & Returns" },
-    { "type": "text", "id": "faq_subtext", "label": "FAQ Subtext", "default": "Below are some common questions..." },
-    { "type": "text", "id": "contact_heading", "label": "Contact Heading", "default": "Didn’t find your answer?" },
-    { "type": "text", "id": "contact_subtext", "label": "Contact Subtext", "default": "Don't hesitate to contact us" },
-    { "type": "text", "id": "button_label", "label": "Submit Button Text", "default": "Send message" },
-
-    { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
-    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#111111" },
-    { "type": "color", "id": "text_muted", "label": "Muted Text Color", "default": "#666666" },
-
-    { "type": "text", "id": "section_padding", "label": "Section Padding", "default": "40px 20px" },
-    { "type": "text", "id": "column_gap", "label": "Gap Between Columns", "default": "40px" },
-
-    { "type": "text", "id": "faq_padding", "label": "FAQ Column Padding", "default": "24px" },
-    { "type": "text", "id": "faq_heading_size", "label": "FAQ Heading Size", "default": "26px" },
-    { "type": "color", "id": "faq_heading_color", "label": "FAQ Heading Color", "default": "#111111" },
-    { "type": "text", "id": "faq_subtext_size", "label": "FAQ Subtext Size", "default": "15px" },
-    { "type": "text", "id": "faq_item_padding", "label": "FAQ Item Padding", "default": "16px 0" },
-    { "type": "text", "id": "faq_question_size", "label": "FAQ Question Font Size", "default": "17px" },
-    { "type": "color", "id": "faq_question_color", "label": "FAQ Question Color", "default": "#111111" },
-    { "type": "text", "id": "faq_answer_size", "label": "FAQ Answer Font Size", "default": "15px" },
-    { "type": "color", "id": "faq_answer_color", "label": "FAQ Answer Color", "default": "#555555" },
-
-    { "type": "text", "id": "contact_padding", "label": "Contact Box Padding", "default": "24px" },
-    { "type": "text", "id": "contact_heading_size", "label": "Contact Heading Size", "default": "22px" },
-    { "type": "color", "id": "contact_heading_color", "label": "Contact Heading Color", "default": "#111111" },
-    { "type": "text", "id": "contact_subtext_size", "label": "Contact Subtext Size", "default": "15px" },
-
-    { "type": "text", "id": "form_text_size", "label": "Form Text Size", "default": "15px" },
-    { "type": "color", "id": "form_text_color", "label": "Form Text Color", "default": "#000000" },
-    { "type": "color", "id": "button_bg", "label": "Button Background", "default": "#111111" },
-    { "type": "color", "id": "button_text", "label": "Button Text Color", "default": "#ffffff" },
-    { "type": "text", "id": "button_text_size", "label": "Button Font Size", "default": "15px" }
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "FAQ Heading",
+      "default": "Shipping & Returns"
+    },
+    {
+      "type": "text",
+      "id": "faq_subtext",
+      "label": "FAQ Subtext",
+      "default": "Below are some common questions..."
+    },
+    {
+      "type": "text",
+      "id": "contact_heading",
+      "label": "Contact Heading",
+      "default": "Didn’t find your answer?"
+    },
+    {
+      "type": "text",
+      "id": "contact_subtext",
+      "label": "Contact Subtext",
+      "default": "Don't hesitate to contact us"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Submit Button Text",
+      "default": "Send message"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "text_muted",
+      "label": "Muted Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "faq_heading_color",
+      "label": "FAQ Heading Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "faq_question_color",
+      "label": "FAQ Question Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "faq_answer_color",
+      "label": "FAQ Answer Color",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "contact_heading_color",
+      "label": "Contact Heading Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "form_text_color",
+      "label": "Form Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Spacing & Sizing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section Padding Bottom",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Column Gap",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "faq_padding",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "FAQ Column Padding",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "faq_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "FAQ Column Radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "faq_item_padding",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "FAQ Item Padding",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "faq_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "FAQ Border Width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "contact_padding",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Contact Box Padding",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "contact_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Contact Box Radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "form_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Form Border Width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "form_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Form Border Radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Radius",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "faq_heading_size",
+      "min": 16,
+      "max": 42,
+      "step": 1,
+      "unit": "px",
+      "label": "FAQ Heading Size",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "faq_subtext_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "FAQ Subtext Size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "faq_question_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "FAQ Question Size",
+      "default": 17
+    },
+    {
+      "type": "range",
+      "id": "faq_answer_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "FAQ Answer Size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "contact_heading_size",
+      "min": 16,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Contact Heading Size",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "contact_subtext_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Contact Subtext Size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "form_text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Form Text Size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_column_gap",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile Column Gap",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_faq_heading_size",
+      "min": 16,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile FAQ Heading Size",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "mobile_faq_subtext_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile FAQ Subtext Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_faq_question_size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile FAQ Question Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_faq_answer_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile FAQ Answer Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_contact_heading_size",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Contact Heading Size",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_contact_subtext_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Contact Subtext Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_form_text_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Form Text Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_button_text_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Button Font Size",
+      "default": 14
+    }
   ],
   "blocks": [
     {
       "type": "faq",
       "name": "FAQ Item",
       "settings": [
-        { "type": "text", "id": "question", "label": "Question", "default": "Do you ship internationally?" },
-        { "type": "textarea", "id": "answer", "label": "Answer", "default": "Yes, we ship globally with reliable carriers." }
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Do you ship internationally?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Yes, we ship globally with reliable carriers."
+        }
       ]
     }
   ],
   "presets": [
     {
       "name": "Fully Custom FAQ + Contact",
-      "category": "Custom"
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "Domestic orders typically arrive in 3-5 business days."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "We accept returns within 30 days of purchase."
+          }
+        }
+      ]
     }
   ]
 }
