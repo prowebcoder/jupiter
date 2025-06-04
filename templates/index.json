@@ -35,61 +35,6 @@
         "countdown_text_color1": "#ffffff"
       }
     },
-    "split_banner_image_hover_pwc_XKdCpk": {
-      "type": "split-banner-image-hover-pwc",
-      "blocks": {
-        "image_QfGdrj": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
-            "title": "Shoulder bags",
-            "title_font_size": 32,
-            "title_color": "#ffffff",
-            "title_hover_color": "#ffcc00",
-            "description": "<p>Add your product description here</p>",
-            "description_font_size": 16,
-            "description_color": "#f5f5f5",
-            "description_hover_color": "#eeeeee",
-            "button_text": "Shop Now",
-            "link": "shopify://collections/crossbody-bag",
-            "hover_bg": "#717b3e",
-            "button_bg": "#ffffff",
-            "button_text_color": "#000000",
-            "hover_width": 60
-          }
-        },
-        "image_7VBcJ8": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/stylish-skirt-purse.jpg",
-            "title": "Crossbody bags",
-            "title_font_size": 32,
-            "title_color": "#ffffff",
-            "title_hover_color": "#ffcc00",
-            "description": "<p>Add your product description here</p>",
-            "description_font_size": 16,
-            "description_color": "#f5f5f5",
-            "description_hover_color": "#eeeeee",
-            "button_text": "Shop Now",
-            "link": "shopify://collections/frontpage",
-            "hover_bg": "#a3ba35",
-            "button_bg": "#ffffff",
-            "button_text_color": "#000000",
-            "hover_width": 60
-          }
-        }
-      },
-      "block_order": [
-        "image_QfGdrj",
-        "image_7VBcJ8"
-      ],
-      "name": "split banner hover pwc",
-      "settings": {
-        "page_width": "wide",
-        "gap_between": 20,
-        "image_height": 500
-      }
-    },
     "pricing_plan_p_xxhtV4": {
       "type": "pricing-plan-p",
       "blocks": {
@@ -202,7 +147,7 @@
         "button_min_width": 200,
         "button_border_radius": 50,
         "button_border_width": 0,
-        "button_border_color": "transparent",
+        "button_border_color": "rgba(0,0,0,0)",
         "button_font_size": 16,
         "button_font_weight": "600",
         "button_text_color": "#ffffff",
@@ -212,7 +157,7 @@
         "button_hover_shadow_opacity": 0.1,
         "button_hover_animation_speed": 0.3,
         "button_hover_text_color": "#ffffff",
-        "button_hover_border_color": "transparent",
+        "button_hover_border_color": "rgba(0,0,0,0)",
         "popular_badge_text": "Popular",
         "badge_position_top": 15,
         "badge_position_right": 30,
@@ -232,13 +177,42 @@
         "secondary_color": "#8338ec",
         "accent_color": "#ff006e",
         "accent_color_hover": "#d80060",
-        "vip_button_border_color": "transparent"
+        "vip_button_border_color": "rgba(0,0,0,0)"
+      }
+    },
+    "rw_faq_contact_gDDH38": {
+      "type": "rw-faq-contact",
+      "blocks": {
+        "faq_z3znt7": {
+          "type": "faq",
+          "settings": {
+            "question": "Hello",
+            "answer": ""
+          }
+        }
+      },
+      "block_order": [
+        "faq_z3znt7"
+      ],
+      "name": "FAQ + Contact",
+      "settings": {
+        "faq_heading": "Shipping & Returns",
+        "faq_subtext": "Below are some common questions about shipping, returns, and exchanges",
+        "contact_heading": "Didn’t find your answer?",
+        "contact_subtext": "Don't hesitate to contact us",
+        "button_label": "Send message",
+        "bg_color": "#f9f9f9",
+        "text_color": "#111111",
+        "text_muted": "#666666",
+        "card_bg": "#ffffff",
+        "button_bg": "#111111",
+        "button_text": "#ffffff"
       }
     }
   },
   "order": [
     "image_counter_pwc_GHENam",
-    "split_banner_image_hover_pwc_XKdCpk",
-    "pricing_plan_p_xxhtV4"
+    "pricing_plan_p_xxhtV4",
+    "rw_faq_contact_gDDH38"
   ]
 }
