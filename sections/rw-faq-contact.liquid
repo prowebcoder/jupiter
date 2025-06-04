@@ -2,57 +2,54 @@
   .faq-contact-wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--gap, 40px);
-    padding: var(--padding-y, 40)px var(--padding-x, 20)px;
-    margin: var(--margin-y, 0)px var(--margin-x, auto);
+    gap: var(--gap);
+    padding: var(--section-padding);
     background-color: var(--bg-color);
     color: var(--text-color);
   }
 
   .faq-column {
     flex: 1 1 60%;
-    background-color: var(--faq-bg);
-    padding: var(--faq-padding, 24)px;
-    margin: var(--faq-box-margin, 0)px;
-    border: var(--border-width, 1)px solid var(--border-color);
-    border-radius: var(--border-radius, 12)px;
+    background-color: #fff;
+    padding: var(--faq-padding);
+    border-radius: 12px;
   }
 
   .faq-column h2 {
-    font-size: var(--faq-heading-size, 26)px;
+    font-size: var(--faq-heading-size);
     font-weight: 700;
     margin-bottom: 8px;
     color: var(--faq-heading-color);
   }
 
   .faq-column p {
-    font-size: var(--faq-subtext-size, 15)px;
+    font-size: var(--faq-subtext-size);
     color: var(--muted-color);
     margin-bottom: 20px;
   }
 
   .faq-item {
-    border-top: 1px solid var(--border-color);
-    padding: var(--faq-item-padding, 16)px 0;
+    border-top: 1px solid #e5e5e5;
+    padding: var(--faq-item-padding);
     cursor: pointer;
   }
 
   .faq-item:last-child {
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid #e5e5e5;
   }
 
   .faq-question {
     display: flex;
     justify-content: space-between;
     font-weight: 600;
-    font-size: var(--faq-question-size, 17)px;
+    font-size: var(--faq-question-size);
     color: var(--faq-question-color);
   }
 
   .faq-answer {
     display: none;
     margin-top: 10px;
-    font-size: var(--faq-answer-size, 15)px;
+    font-size: var(--faq-answer-size);
     color: var(--faq-answer-color);
   }
 
@@ -65,22 +62,20 @@
   }
 
   .contact-box {
-    background-color: var(--contact-bg);
-    border-radius: var(--border-radius, 12)px;
-    padding: var(--contact-padding, 24)px;
-    margin: var(--contact-box-margin, 0)px;
-    border: var(--border-width, 1)px solid var(--border-color);
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: var(--contact-padding);
   }
 
   .contact-box h3 {
-    font-size: var(--contact-heading-size, 22)px;
+    font-size: var(--contact-heading-size);
     font-weight: 700;
     margin-bottom: 8px;
     color: var(--contact-heading-color);
   }
 
   .contact-box p {
-    font-size: var(--contact-subtext-size, 15)px;
+    font-size: var(--contact-subtext-size);
     color: var(--muted-color);
     margin-bottom: 20px;
   }
@@ -92,7 +87,7 @@
     margin-bottom: 14px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: var(--form-text-size, 15)px;
+    font-size: var(--form-text-size);
     color: var(--form-text-color);
   }
 
@@ -105,7 +100,7 @@
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
-    font-size: var(--button-text-size, 15)px;
+    font-size: var(--button-text-size);
   }
 
   .contact-box button:hover {
@@ -115,11 +110,6 @@
   @media screen and (max-width: 768px) {
     .faq-contact-wrapper {
       flex-direction: column;
-      padding: var(--mobile-padding-y, 24)px var(--mobile-padding-x, 16)px;
-    }
-    .faq-column,
-    .contact-column {
-      flex: 1 1 100%;
     }
   }
 {% endstylesheet %}
@@ -127,36 +117,28 @@
 <div
   class="faq-contact-wrapper"
   style="
-    --padding-x: {{ section.settings.padding_x }};
-    --padding-y: {{ section.settings.padding_y }};
-    --margin-x: {{ section.settings.margin_x }};
-    --margin-y: {{ section.settings.margin_y }};
-    --mobile-padding-x: {{ section.settings.mobile_padding_x }};
-    --mobile-padding-y: {{ section.settings.mobile_padding_y }};
+    --section-padding: {{ section.settings.section_padding }};
     --gap: {{ section.settings.column_gap }};
     --bg-color: {{ section.settings.bg_color }};
     --text-color: {{ section.settings.text_color }};
     --muted-color: {{ section.settings.text_muted }};
-    --border-radius: {{ section.settings.border_radius }};
-    --border-width: {{ section.settings.border_width }};
-    --border-color: {{ section.settings.border_color }};
+
     --faq-padding: {{ section.settings.faq_padding }};
-    --faq-box-margin: {{ section.settings.faq_box_margin }};
-    --faq-bg: {{ section.settings.faq_bg_color }};
     --faq-heading-size: {{ section.settings.faq_heading_size }};
     --faq-heading-color: {{ section.settings.faq_heading_color }};
     --faq-subtext-size: {{ section.settings.faq_subtext_size }};
+
     --faq-item-padding: {{ section.settings.faq_item_padding }};
     --faq-question-size: {{ section.settings.faq_question_size }};
     --faq-question-color: {{ section.settings.faq_question_color }};
     --faq-answer-size: {{ section.settings.faq_answer_size }};
     --faq-answer-color: {{ section.settings.faq_answer_color }};
+
     --contact-padding: {{ section.settings.contact_padding }};
-    --contact-box-margin: {{ section.settings.contact_box_margin }};
-    --contact-bg: {{ section.settings.contact_bg_color }};
     --contact-heading-size: {{ section.settings.contact_heading_size }};
     --contact-heading-color: {{ section.settings.contact_heading_color }};
     --contact-subtext-size: {{ section.settings.contact_subtext_size }};
+
     --form-text-size: {{ section.settings.form_text_size }};
     --form-text-color: {{ section.settings.form_text_color }};
     --button-bg: {{ section.settings.button_bg }};
@@ -164,27 +146,34 @@
     --button-text-size: {{ section.settings.button_text_size }};
   "
 >
+  <!-- FAQ Column -->
   <div class="faq-column">
     <h2>{{ section.settings.faq_heading }}</h2>
     <p>{{ section.settings.faq_subtext }}</p>
+
     {% for block in section.blocks %}
       {% if block.type == 'faq' %}
         <div class="faq-item" onclick="this.classList.toggle('open')">
-          <div class="faq-question">{{ block.settings.question }}</div>
+          <div class="faq-question">
+            {{ block.settings.question }}
+            <span>+</span>
+          </div>
           <div class="faq-answer">{{ block.settings.answer }}</div>
         </div>
       {% endif %}
     {% endfor %}
   </div>
 
+  <!-- Contact Column -->
   <div class="contact-column">
     <div class="contact-box">
       <h3>{{ section.settings.contact_heading }}</h3>
       <p>{{ section.settings.contact_subtext }}</p>
+
       <form method="post" action="/contact">
-        <input type="text" name="contact[name]" placeholder="Your name" required>
-        <input type="email" name="contact[email]" placeholder="Your email" required>
-        <textarea name="contact[body]" rows="4" placeholder="Your message" required></textarea>
+        <input type="text" name="contact[name]" placeholder="Name" required>
+        <input type="email" name="contact[email]" placeholder="Email" required>
+        <textarea name="contact[body]" rows="5" placeholder="Message" required></textarea>
         <button type="submit">{{ section.settings.button_label }}</button>
       </form>
     </div>
@@ -193,69 +182,55 @@
 
 {% schema %}
 {
-  "name": "FAQ + Contact Section",
+  "name": "FAQ & Contact Custom",
   "settings": [
-    { "type": "text", "id": "faq_heading", "label": "FAQ Heading", "default": "Frequently Asked Questions" },
-    { "type": "text", "id": "faq_subtext", "label": "FAQ Subtext", "default": "Here are some common questions" },
+    { "type": "text", "id": "faq_heading", "label": "FAQ Heading", "default": "Shipping & Returns" },
+    { "type": "text", "id": "faq_subtext", "label": "FAQ Subtext", "default": "Below are some common questions..." },
+    { "type": "text", "id": "contact_heading", "label": "Contact Heading", "default": "Didn’t find your answer?" },
+    { "type": "text", "id": "contact_subtext", "label": "Contact Subtext", "default": "Don't hesitate to contact us" },
+    { "type": "text", "id": "button_label", "label": "Submit Button Text", "default": "Send message" },
 
-    { "type": "text", "id": "contact_heading", "label": "Contact Heading", "default": "Need help?" },
-    { "type": "text", "id": "contact_subtext", "label": "Contact Subtext", "default": "Reach out to us anytime" },
-    { "type": "text", "id": "button_label", "label": "Button Label", "default": "Send Message" },
-
-    { "type": "number", "id": "padding_x", "label": "Horizontal Padding", "default": 20 },
-    { "type": "number", "id": "padding_y", "label": "Vertical Padding", "default": 40 },
-    { "type": "number", "id": "margin_x", "label": "Horizontal Margin", "default": 0 },
-    { "type": "number", "id": "margin_y", "label": "Vertical Margin", "default": 0 },
-    { "type": "number", "id": "mobile_padding_x", "label": "Mobile Horizontal Padding", "default": 16 },
-    { "type": "number", "id": "mobile_padding_y", "label": "Mobile Vertical Padding", "default": 24 },
-    { "type": "number", "id": "column_gap", "label": "Column Gap", "default": 40 },
-
-    { "type": "color", "id": "bg_color", "label": "Background Color", "default": "#f6f6f6" },
+    { "type": "color", "id": "bg_color", "label": "Section Background", "default": "#ffffff" },
     { "type": "color", "id": "text_color", "label": "Text Color", "default": "#111111" },
-    { "type": "color", "id": "text_muted", "label": "Muted Text Color", "default": "#999999" },
+    { "type": "color", "id": "text_muted", "label": "Muted Text Color", "default": "#666666" },
 
-    { "type": "number", "id": "border_radius", "label": "Border Radius", "default": 12 },
-    { "type": "number", "id": "border_width", "label": "Border Width", "default": 1 },
-    { "type": "color", "id": "border_color", "label": "Border Color", "default": "#e0e0e0" },
+    { "type": "text", "id": "section_padding", "label": "Section Padding", "default": "40px 20px" },
+    { "type": "text", "id": "column_gap", "label": "Gap Between Columns", "default": "40px" },
 
-    { "type": "number", "id": "faq_padding", "label": "FAQ Padding", "default": 24 },
-    { "type": "number", "id": "faq_box_margin", "label": "FAQ Box Margin", "default": 0 },
-    { "type": "color", "id": "faq_bg_color", "label": "FAQ Box Background", "default": "#ffffff" },
-    { "type": "number", "id": "faq_heading_size", "label": "FAQ Heading Size", "default": 26 },
-    { "type": "color", "id": "faq_heading_color", "label": "FAQ Heading Color", "default": "#000000" },
-    { "type": "number", "id": "faq_subtext_size", "label": "FAQ Subtext Size", "default": 15 },
-    { "type": "number", "id": "faq_item_padding", "label": "FAQ Item Padding", "default": 16 },
-    { "type": "number", "id": "faq_question_size", "label": "FAQ Question Size", "default": 17 },
-    { "type": "color", "id": "faq_question_color", "label": "FAQ Question Color", "default": "#000000" },
-    { "type": "number", "id": "faq_answer_size", "label": "FAQ Answer Size", "default": 15 },
-    { "type": "color", "id": "faq_answer_color", "label": "FAQ Answer Color", "default": "#333333" },
+    { "type": "text", "id": "faq_padding", "label": "FAQ Column Padding", "default": "24px" },
+    { "type": "text", "id": "faq_heading_size", "label": "FAQ Heading Size", "default": "26px" },
+    { "type": "color", "id": "faq_heading_color", "label": "FAQ Heading Color", "default": "#111111" },
+    { "type": "text", "id": "faq_subtext_size", "label": "FAQ Subtext Size", "default": "15px" },
+    { "type": "text", "id": "faq_item_padding", "label": "FAQ Item Padding", "default": "16px 0" },
+    { "type": "text", "id": "faq_question_size", "label": "FAQ Question Font Size", "default": "17px" },
+    { "type": "color", "id": "faq_question_color", "label": "FAQ Question Color", "default": "#111111" },
+    { "type": "text", "id": "faq_answer_size", "label": "FAQ Answer Font Size", "default": "15px" },
+    { "type": "color", "id": "faq_answer_color", "label": "FAQ Answer Color", "default": "#555555" },
 
-    { "type": "number", "id": "contact_padding", "label": "Contact Padding", "default": 24 },
-    { "type": "number", "id": "contact_box_margin", "label": "Contact Box Margin", "default": 0 },
-    { "type": "color", "id": "contact_bg_color", "label": "Contact Box Background", "default": "#ffffff" },
-    { "type": "number", "id": "contact_heading_size", "label": "Contact Heading Size", "default": 22 },
-    { "type": "color", "id": "contact_heading_color", "label": "Contact Heading Color", "default": "#000000" },
-    { "type": "number", "id": "contact_subtext_size", "label": "Contact Subtext Size", "default": 15 },
+    { "type": "text", "id": "contact_padding", "label": "Contact Box Padding", "default": "24px" },
+    { "type": "text", "id": "contact_heading_size", "label": "Contact Heading Size", "default": "22px" },
+    { "type": "color", "id": "contact_heading_color", "label": "Contact Heading Color", "default": "#111111" },
+    { "type": "text", "id": "contact_subtext_size", "label": "Contact Subtext Size", "default": "15px" },
 
-    { "type": "number", "id": "form_text_size", "label": "Form Text Size", "default": 15 },
+    { "type": "text", "id": "form_text_size", "label": "Form Text Size", "default": "15px" },
     { "type": "color", "id": "form_text_color", "label": "Form Text Color", "default": "#000000" },
-    { "type": "color", "id": "button_bg", "label": "Button Background Color", "default": "#000000" },
+    { "type": "color", "id": "button_bg", "label": "Button Background", "default": "#111111" },
     { "type": "color", "id": "button_text", "label": "Button Text Color", "default": "#ffffff" },
-    { "type": "number", "id": "button_text_size", "label": "Button Text Size", "default": 15 }
+    { "type": "text", "id": "button_text_size", "label": "Button Font Size", "default": "15px" }
   ],
   "blocks": [
     {
       "type": "faq",
       "name": "FAQ Item",
       "settings": [
-        { "type": "text", "id": "question", "label": "Question", "default": "What is your return policy?" },
-        { "type": "textarea", "id": "answer", "label": "Answer", "default": "We offer 30-day returns..." }
+        { "type": "text", "id": "question", "label": "Question", "default": "Do you ship internationally?" },
+        { "type": "textarea", "id": "answer", "label": "Answer", "default": "Yes, we ship globally with reliable carriers." }
       ]
     }
   ],
   "presets": [
     {
-      "name": "FAQ + Contact",
+      "name": "Fully Custom FAQ + Contact",
       "category": "Custom"
     }
   ]
