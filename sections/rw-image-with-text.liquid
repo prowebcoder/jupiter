@@ -3,34 +3,39 @@
   <h3 class="section-heading">{{ section.settings.heading | default: "FROM THE BLOG" }}</h3>
 
   <!-- Image & Content Container -->
-  <div class="blog-container">
-    <!-- Image Block (Left) -->
-    <div class="image-column" style="height: {{ section.settings.image_height }}px;">
+  <div class="blog-container" style="gap: {{ section.settings.gap_between_blocks }}px;">
+    <!-- Image Block -->
+    <div class="image-block" style="
+      width: {{ section.settings.image_width }}%;
+      height: {{ section.settings.image_height }}px;
+      order: {{ section.settings.image_position }};
+    ">
       {% if section.settings.blog_image != blank %}
         <img
-          src="{{ section.settings.blog_image | img_url: '1200x' }}"
+          src="{{ section.settings.blog_image | img_url: '2000x' }}"
           alt="{{ section.settings.blog_image.alt }}"
           class="blog-featured-image"
           loading="lazy"
-          style="height: 100%; width: 100%; object-fit: cover;"
+          style="height: 100%; width: 100%; object-fit: {{ section.settings.image_fit }};"
         >
       {% else %}
-        <div class="image-placeholder" style="height: 100%;">
+        <div class="image-placeholder">
           {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
         </div>
       {% endif %}
     </div>
 
-    <!-- Content Block (Right, Centered) -->
-    <div class="content-column" style="height: {{ section.settings.image_height }}px;">
-      <div class="content-wrapper" style="height: calc({{ section.settings.image_height }}px / 2);">
-        <h4 class="post-title">{{ section.settings.blog_title | default: "Color pop" }}</h4>
-        <p class="post-excerpt">
-          {{ section.settings.blog_excerpt | default: "As much as we live and breath monochrome styles (and we can all agree a majority of our daily wear is crisp whites and deep blacks), a gals gotta have a..." }}
-        </p>
+    <!-- Content Block -->
+    <div class="content-block" style="
+      width: {{ 100 | minus: section.settings.image_width }}%;
+      height: {{ section.settings.content_height }}px;
+    ">
+      <div class="content-wrapper">
+        <h4 class="post-title">{{ section.settings.blog_title }}</h4>
+        <p class="post-excerpt">{{ section.settings.blog_excerpt }}</p>
         <div class="post-meta">
-          <span class="meta-date">{{ section.settings.post_date | default: "Posted on Apr 28, 2017" }}</span>
-          <span class="meta-category">{{ section.settings.blog_category | default: "Clothing Fashion" }}</span>
+          <span class="meta-date">{{ section.settings.post_date }}</span>
+          <span class="meta-category">{{ section.settings.blog_category }}</span>
         </div>
       </div>
     </div>
@@ -39,9 +44,9 @@
 
 <style>
   .custom-blog-layout {
-    max-width: 1000px;
+    max-width: {{ section.settings.max_container_width }}px;
     margin: 0 auto;
-    font-family: sans-serif;
+    font-family: {{ section.settings.font_family }};
     padding: 20px;
   }
 
@@ -51,57 +56,66 @@
     letter-spacing: 1px;
     font-size: 16px;
     margin-bottom: 30px;
-    color: #333;
+    color: {{ section.settings.heading_color }};
   }
 
   .blog-container {
     display: flex;
+    align-items: center;
   }
 
-  .image-column {
-    flex: 0 0 50%;
+  .image-block {
     overflow: hidden;
+    {% if section.settings.image_border %}
+      border: {{ section.settings.image_border_thickness }}px solid {{ section.settings.image_border_color }};
+    {% endif %}
+    {% if section.settings.image_rounded_corners %}
+      border-radius: {{ section.settings.image_corner_radius }}px;
+    {% endif %}
   }
 
-  .content-column {
-    flex: 0 0 50%;
-    padding: 0 30px;
+  .content-block {
+    padding: {{ section.settings.content_padding }}px;
+    {% if section.settings.content_border %}
+      border: {{ section.settings.content_border_thickness }}px solid {{ section.settings.content_border_color }};
+    {% endif %}
+    {% if section.settings.content_rounded_corners %}
+      border-radius: {{ section.settings.content_corner_radius }}px;
+    {% endif %}
+    background: {{ section.settings.content_background }};
     display: flex;
-    align-items: center; /* Vertically centers the content */
-    justify-content: center; /* Horizontally centers (optional) */
+    align-items: center;
   }
 
   .content-wrapper {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centers text vertically inside its half-height container */
   }
 
   .post-title {
-    font-size: 24px;
+    font-size: {{ section.settings.title_size }}px;
     margin: 0 0 15px 0;
-    color: #222;
+    color: {{ section.settings.title_color }};
   }
 
   .post-excerpt {
-    font-size: 16px;
+    font-size: {{ section.settings.excerpt_size }}px;
     line-height: 1.5;
-    color: #666;
+    color: {{ section.settings.excerpt_color }};
     margin-bottom: 15px;
   }
 
   .post-meta {
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
-    color: #999;
-    border-top: 1px solid #eee;
+    font-size: {{ section.settings.meta_size }}px;
+    color: {{ section.settings.meta_color }};
+    border-top: 1px solid {{ section.settings.meta_divider_color }};
     padding-top: 15px;
   }
 
   .image-placeholder {
     background: #f5f5f5;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,26 +126,211 @@
       flex-direction: column;
     }
 
-    .image-column,
-    .content-column {
-      flex: 1 1 100%;
+    .image-block,
+    .content-block {
+      width: 100% !important;
+      height: auto !important;
     }
 
-    .content-column {
-      height: auto !important;
+    .content-block {
       padding: 20px;
-    }
-
-    .content-wrapper {
-      height: auto !important;
     }
   }
 </style>
 
 {% schema %}
 {
-  "name": "Centered Blog Layout",
+  "name": "Advanced Blog Layout",
   "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "max_container_width",
+      "label": "Max Container Width",
+      "min": 600,
+      "max": 1600,
+      "step": 50,
+      "default": 1000,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "gap_between_blocks",
+      "label": "Gap Between Blocks",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        { "value": "0", "label": "Left" },
+        { "value": "1", "label": "Right" }
+      ],
+      "default": "0"
+    },
+    {
+      "type": "header",
+      "content": "Image Block Settings"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Image Width",
+      "min": 30,
+      "max": 70,
+      "step": 5,
+      "default": 50,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Image Height",
+      "min": 200,
+      "max": 1000,
+      "step": 50,
+      "default": 500,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Image Fit",
+      "options": [
+        { "value": "cover", "label": "Cover" },
+        { "value": "contain", "label": "Contain" }
+      ],
+      "default": "cover"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_border",
+      "label": "Show Image Border",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "image_border_thickness",
+      "label": "Image Border Thickness",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "image_border_color",
+      "label": "Image Border Color",
+      "default": "#e1e1e1"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_rounded_corners",
+      "label": "Rounded Corners",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "image_corner_radius",
+      "label": "Corner Radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 10,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Content Block Settings"
+    },
+    {
+      "type": "range",
+      "id": "content_height",
+      "label": "Content Height",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "default": 300,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "label": "Content Padding",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 30,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "content_background",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "content_border",
+      "label": "Show Content Border",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "content_border_thickness",
+      "label": "Border Thickness",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 1,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "content_border_color",
+      "label": "Border Color",
+      "default": "#e1e1e1"
+    },
+    {
+      "type": "checkbox",
+      "id": "content_rounded_corners",
+      "label": "Rounded Corners",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "content_corner_radius",
+      "label": "Corner Radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font Family",
+      "options": [
+        { "value": "sans-serif", "label": "Sans-serif" },
+        { "value": "serif", "label": "Serif" },
+        { "value": "monospace", "label": "Monospace" }
+      ],
+      "default": "sans-serif"
+    },
     {
       "type": "text",
       "id": "heading",
@@ -139,19 +338,10 @@
       "default": "FROM THE BLOG"
     },
     {
-      "type": "image_picker",
-      "id": "blog_image",
-      "label": "Blog Post Image"
-    },
-    {
-      "type": "range",
-      "id": "image_height",
-      "label": "Image Height",
-      "min": 300,
-      "max": 1000,
-      "step": 50,
-      "default": 500,
-      "unit": "px"
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#333333"
     },
     {
       "type": "text",
@@ -160,10 +350,42 @@
       "default": "Color pop"
     },
     {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title Font Size",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#222222"
+    },
+    {
       "type": "textarea",
       "id": "blog_excerpt",
       "label": "Blog Excerpt",
       "default": "As much as we live and breath monochrome styles (and we can all agree a majority of our daily wear is crisp whites and deep blacks), a gals gotta have a..."
+    },
+    {
+      "type": "range",
+      "id": "excerpt_size",
+      "label": "Excerpt Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "excerpt_color",
+      "label": "Excerpt Color",
+      "default": "#666666"
     },
     {
       "type": "text",
@@ -176,11 +398,33 @@
       "id": "blog_category",
       "label": "Blog Category",
       "default": "Clothing Fashion"
+    },
+    {
+      "type": "range",
+      "id": "meta_size",
+      "label": "Meta Font Size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "meta_color",
+      "label": "Meta Text Color",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "meta_divider_color",
+      "label": "Meta Divider Color",
+      "default": "#eeeeee"
     }
   ],
   "presets": [
     {
-      "name": "Centered Blog Layout",
+      "name": "Advanced Blog Layout",
       "category": "Blog"
     }
   ]
