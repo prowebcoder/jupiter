@@ -121,7 +121,7 @@
           | image_url: width: section.settings.blog_image.width, height: section.settings.blog_image.height
           | image_tag: loading: 'lazy', preload: true, alt: section.settings.blog_image.alt, 
             class: 'pc-blog-featured-image',
-            style: 'height: 100%; width: 100%; object-fit: ' | append: section.settings.image_fit | append: ';'
+            style: 'height: 100%;  ' | append: section.settings.image_fit | append: ';'
         -}}
       {% else %}
         <div class="pc-image-placeholder">
