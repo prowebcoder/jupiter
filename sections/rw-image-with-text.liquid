@@ -27,8 +27,15 @@
 
     <!-- Content Block -->
     <div class="content-block" style="
-      width: {{ 100 | minus: section.settings.image_width }}%;
+      width: {{ section.settings.content_width }}%;
       height: {{ section.settings.content_height }}px;
+      {% if section.settings.content_position == 'right' %}
+        right: {{ section.settings.content_offset }}px;
+        left: auto;
+      {% else %}
+        left: {{ section.settings.content_offset }}px;
+        right: auto;
+      {% endif %}
     ">
       <div class="content-wrapper">
         <h4 class="post-title">{{ section.settings.blog_title }}</h4>
@@ -62,6 +69,7 @@
   .blog-container {
     display: flex;
     align-items: center;
+    position: relative;
   }
 
   .image-block {
@@ -75,6 +83,7 @@
   }
 
   .content-block {
+    position: absolute;
     padding: {{ section.settings.content_padding }}px;
     {% if section.settings.content_rounded_corners %}
       border-radius: {{ section.settings.content_corner_radius }}px;
@@ -82,6 +91,9 @@
     background: {{ section.settings.content_background }};
     display: flex;
     align-items: center;
+    {% if section.settings.content_border %}
+      border: {{ section.settings.content_border_thickness }}px solid {{ section.settings.content_border_color }};
+    {% endif %}
   }
 
   .content-wrapper {
@@ -127,21 +139,14 @@
     .content-block {
       width: 100% !important;
       height: auto !important;
+      position: static !important;
+      order: 0 !important;
     }
 
     .content-block {
       padding: 20px;
     }
   }
-
-  .content-block {
-    position: absolute;
-    right: 39px;
- }
-
-  .blog-container {
-    position: relative;
-}
 </style>
 
 {% schema %}
@@ -272,12 +277,42 @@
     },
     {
       "type": "range",
+      "id": "content_width",
+      "label": "Content Width",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "default": 40,
+      "unit": "%"
+    },
+    {
+      "type": "range",
       "id": "content_height",
       "label": "Content Height",
       "min": 200,
       "max": 800,
       "step": 50,
       "default": 300,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "range",
+      "id": "content_offset",
+      "label": "Content Offset from Edge",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
       "unit": "px"
     },
     {
@@ -295,6 +330,12 @@
       "id": "content_background",
       "label": "Background Color",
       "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "content_border",
+      "label": "Show Content Border",
+      "default": false
     },
     {
       "type": "range",
