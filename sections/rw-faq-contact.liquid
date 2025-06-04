@@ -1,0 +1,214 @@
+{% stylesheet %}
+  .faq-contact-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    background: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .faq-box, .contact-box {
+    flex: 1 1 100%;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+  }
+
+  .faq-box h2, .contact-box h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .faq-box p, .contact-box p {
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+  }
+
+  .faq-item {
+    border-top: 1px solid #ddd;
+    padding: 1rem 0;
+    cursor: pointer;
+  }
+
+  .faq-item:last-child {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+
+  .faq-answer {
+    display: none;
+    margin-top: 0.5rem;
+  }
+
+  .faq-item.open .faq-answer {
+    display: block;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+
+  .contact-form button {
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+{% endstylesheet %}
+
+<div
+  class="faq-contact-section"
+  style="
+    --bg-color: {{ section.settings.bg_color }};
+    --text-color: {{ section.settings.text_color }};
+    --text-muted: {{ section.settings.text_muted }};
+    --card-bg: {{ section.settings.card_bg }};
+    --button-bg: {{ section.settings.button_bg }};
+    --button-text: {{ section.settings.button_text }}
+  "
+>
+  <!-- FAQ Section -->
+  <div class="faq-box">
+    <h2>{{ section.settings.faq_heading }}</h2>
+    <p>{{ section.settings.faq_subtext }}</p>
+
+    {% for block in section.blocks %}
+      {% if block.type == 'faq' %}
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+          <div class="faq-question">
+            {{ block.settings.question }}
+            <span>+</span>
+          </div>
+          <div class="faq-answer">{{ block.settings.answer }}</div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Contact Form Section -->
+  <div class="contact-box">
+    <h3>{{ section.settings.contact_heading }}</h3>
+    <p>{{ section.settings.contact_subtext }}</p>
+
+    <form class="contact-form" method="post" action="/contact">
+      <input type="text" name="contact[name]" placeholder="Name" required>
+      <input type="email" name="contact[email]" placeholder="Email" required>
+      <textarea name="contact[body]" rows="5" placeholder="Message" required></textarea>
+      <button type="submit">{{ section.settings.button_label }}</button>
+    </form>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "FAQ + Contact",
+  "settings": [
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "FAQ Heading",
+      "default": "Shipping & Returns"
+    },
+    {
+      "type": "text",
+      "id": "faq_subtext",
+      "label": "FAQ Subtext",
+      "default": "Below are some common questions about shipping, returns, and exchanges"
+    },
+    {
+      "type": "text",
+      "id": "contact_heading",
+      "label": "Contact Heading",
+      "default": "Didn’t find your answer?"
+    },
+    {
+      "type": "text",
+      "id": "contact_subtext",
+      "label": "Contact Subtext",
+      "default": "Don't hesitate to contact us"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Submit Button Text",
+      "default": "Send message"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "text_muted",
+      "label": "Muted Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "FAQ + Contact",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
