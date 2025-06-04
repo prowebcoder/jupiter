@@ -1,6 +1,46 @@
+<div class="blog-card-horizontal">
+  <!-- Heading Section -->
+  <h3 class="blog-card__heading">{{ section.settings.heading | default: "FROM THE BLOG" }}</h3>
+  
+  <!-- Blog Post Card - Horizontal Layout -->
+  <div class="blog-card__container-horizontal">
+    <!-- Featured Image - Left Side -->
+    <div class="blog-card__image-wrapper-horizontal">
+      {% if section.settings.blog_image != blank %}
+        <img src="{{ section.settings.blog_image | img_url: '600x' }}" 
+             alt="{{ section.settings.blog_image.alt }}" 
+             class="blog-card__image-horizontal"
+             loading="lazy"
+             style="height: {{ section.settings.image_height }}px; object-fit: cover;">
+      {% else %}
+        <div class="placeholder-image-horizontal" style="height: {{ section.settings.image_height }}px;">
+          {{ 'image' | placeholder_svg_tag: 'blog-card__image-horizontal' }}
+        </div>
+      {% endif %}
+    </div>
+    
+    <!-- Content Section - Right Side -->
+    <div class="blog-card__content-horizontal" style="height: {{ section.settings.image_height }}px;">
+      <!-- Title -->
+      <h4 class="blog-card__title-horizontal">{{ section.settings.blog_title | default: "Color pop" }}</h4>
+      
+      <!-- Excerpt -->
+      <p class="blog-card__excerpt-horizontal">
+        {{ section.settings.blog_excerpt | default: "As much as we live and breath monochrome styles (and we can all agree a majority of our daily wear is crisp whites and deep blacks), a gals gotta have a..." }}
+      </p>
+      
+      <!-- Metadata -->
+      <div class="blog-card__meta-horizontal">
+        <span class="blog-card__date-horizontal">{{ section.settings.post_date | default: "Posted on Apr 28, 2017" }}</span>
+        <span class="blog-card__category-horizontal">{{ section.settings.blog_category | default: "Clothing Fashion" }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <style>
-  .blog-card {
-    max-width: 600px;
+  .blog-card-horizontal {
+    max-width: 900px;
     margin: 0 auto;
     font-family: sans-serif;
     padding: 20px;
@@ -15,49 +55,54 @@
     color: #333;
   }
   
-  .blog-card__container {
+  .blog-card__container-horizontal {
+    display: flex;
     border: 1px solid #e1e1e1;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
   
-  .blog-card__image-wrapper {
+  .blog-card__image-wrapper-horizontal {
+    flex: 0 0 50%;
     overflow: hidden;
   }
   
-  .blog-card__image {
+  .blog-card__image-horizontal {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
     transition: transform 0.3s ease;
   }
   
-  .blog-card__image:hover {
-    transform: scale(1.03);
-  }
-  
-  .placeholder-image {
+  .placeholder-image-horizontal {
     background-color: #f5f5f5;
-    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
-  .blog-card__content {
-    padding: 20px;
+  .blog-card__content-horizontal {
+    flex: 0 0 50%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   
-  .blog-card__title {
+  .blog-card__title-horizontal {
     font-size: 24px;
     margin: 0 0 15px 0;
     color: #222;
   }
   
-  .blog-card__excerpt {
+  .blog-card__excerpt-horizontal {
     font-size: 16px;
     line-height: 1.5;
     color: #666;
     margin-bottom: 15px;
+    flex-grow: 1;
   }
   
-  .blog-card__meta {
+  .blog-card__meta-horizontal {
     display: flex;
     justify-content: space-between;
     font-size: 14px;
@@ -66,59 +111,26 @@
     padding-top: 15px;
   }
   
-  @media (max-width: 480px) {
-    .blog-card__content {
-      padding: 15px;
+  @media (max-width: 768px) {
+    .blog-card__container-horizontal {
+      flex-direction: column;
     }
     
-    .blog-card__title {
-      font-size: 20px;
+    .blog-card__image-wrapper-horizontal,
+    .blog-card__content-horizontal {
+      flex: 1 1 100%;
+    }
+    
+    .blog-card__content-horizontal {
+      height: auto !important;
+      padding: 20px;
     }
   }
 </style>
 
-<div class="blog-card">
-  <!-- Heading Section -->
-  <h3 class="blog-card__heading">{{ section.settings.heading | default: "FROM THE BLOG" }}</h3>
-  
-  <!-- Blog Post Card -->
-  <div class="blog-card__container">
-    <!-- Featured Image -->
-    <div class="blog-card__image-wrapper">
-      {% if section.settings.blog_image != blank %}
-        <img src="{{ section.settings.blog_image | img_url: '600x' }}" 
-             alt="{{ section.settings.blog_image.alt }}" 
-             class="blog-card__image"
-             loading="lazy">
-      {% else %}
-        {{ 'image' | placeholder_svg_tag: 'blog-card__image placeholder-image' }}
-      {% endif %}
-    </div>
-    
-    <!-- Content Section -->
-    <div class="blog-card__content">
-      <!-- Title -->
-      <h4 class="blog-card__title">{{ section.settings.blog_title | default: "Color pop" }}</h4>
-      
-      <!-- Excerpt -->
-      <p class="blog-card__excerpt">
-        {{ section.settings.blog_excerpt | default: "As much as we live and breath monochrome styles (and we can all agree a majority of our daily wear is crisp whites and deep blacks), a gals gotta have a..." }}
-      </p>
-      
-      <!-- Metadata -->
-      <div class="blog-card__meta">
-        <span class="blog-card__date">{{ section.settings.post_date | default: "Posted on Apr 28, 2017" }}</span>
-        <span class="blog-card__category">{{ section.settings.blog_category | default: "Clothing Fashion" }}</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
 {% schema %}
 {
-  "name": "Blog Post Card",
+  "name": "Horizontal Blog Card",
   "settings": [
     {
       "type": "text",
@@ -130,6 +142,16 @@
       "type": "image_picker",
       "id": "blog_image",
       "label": "Blog Post Image"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Image/Content Height",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "default": 400,
+      "unit": "px"
     },
     {
       "type": "text",
@@ -154,11 +176,17 @@
       "id": "blog_category",
       "label": "Blog Category",
       "default": "Clothing Fashion"
+    },
+    {
+      "type": "checkbox",
+      "id": "swap_sides",
+      "label": "Swap Image and Content Sides",
+      "default": false
     }
   ],
   "presets": [
     {
-      "name": "Blog Post Card",
+      "name": "Horizontal Blog Card",
       "category": "Blog"
     }
   ]
