@@ -76,9 +76,6 @@
 
   .content-block {
     padding: {{ section.settings.content_padding }}px;
-    {% if section.settings.content_border %}
-      border: {{ section.settings.content_border_thickness }}px solid {{ section.settings.content_border_color }};
-    {% endif %}
     {% if section.settings.content_rounded_corners %}
       border-radius: {{ section.settings.content_corner_radius }}px;
     {% endif %}
@@ -289,12 +286,6 @@
       "id": "content_background",
       "label": "Background Color",
       "default": "#ffffff"
-    },
-    {
-      "type": "checkbox",
-      "id": "content_border",
-      "label": "Show Content Border",
-      "default": true
     },
     {
       "type": "range",
