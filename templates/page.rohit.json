@@ -471,7 +471,7 @@
       "type": "rw-image-with-text",
       "name": "Advanced Blog Layout",
       "settings": {
-        "container_width": 100,
+        "container_width": 90,
         "max_container_width": 1200,
         "gap_between_blocks": 20,
         "image_position": "1",
