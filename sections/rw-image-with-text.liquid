@@ -91,9 +91,6 @@
     background: {{ section.settings.content_background }};
     display: flex;
     align-items: center;
-    {% if section.settings.content_border %}
-      border: {{ section.settings.content_border_thickness }}px solid {{ section.settings.content_border_color }};
-    {% endif %}
   }
 
   .content-wrapper {
@@ -331,12 +328,7 @@
       "label": "Background Color",
       "default": "#ffffff"
     },
-    {
-      "type": "checkbox",
-      "id": "content_border",
-      "label": "Show Content Border",
-      "default": false
-    },
+   
     {
       "type": "range",
       "id": "content_border_thickness",
