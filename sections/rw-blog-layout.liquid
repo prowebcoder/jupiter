@@ -116,13 +116,11 @@
       order: {{ section.settings.image_position }};
     ">
       {% if section.settings.blog_image != blank %}
-        <img
-          src="{{ section.settings.blog_image | img_url: '2000x' }}"
-          alt="{{ section.settings.blog_image.alt }}"
-          class="pc-blog-featured-image"
-          loading="lazy"
-          style="height: 100%; width: 100%; object-fit: {{ section.settings.image_fit }};"
-        >
+       "{{-
+        section.settings.blog_image
+        | image_url: width: section.settings.blog_image, height: section.settings.image.height
+        | image_tag: loading: 'lazy', preload: true, alt: section.settings.image.alt
+        -}}"
       {% else %}
         <div class="pc-image-placeholder">
           {{ 'image' | placeholder_svg_tag: 'pc-placeholder-svg' }}
