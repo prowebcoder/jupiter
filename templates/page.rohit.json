@@ -646,7 +646,7 @@
         "image_border_color": "#e1e1e1",
         "image_rounded_corners": false,
         "image_corner_radius": 10,
-        "content_height": 500,
+        "content_height": 200,
         "content_padding": 10,
         "content_background": "#ffffff",
         "content_border_thickness": 1,
