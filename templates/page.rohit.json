@@ -605,7 +605,7 @@
         "horizontal_line_height": 2,
         "horizontal_line_color": "#34b7d7",
         "text_alignment": "center",
-        "paragraph_width": 70,
+        "paragraph_width": 100,
         "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
