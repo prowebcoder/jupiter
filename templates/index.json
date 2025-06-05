@@ -534,6 +534,7 @@
           "settings": {
             "image": "shopify://shop_images/vecteezy_vibrant-green-and-blue-headphones-with-modern-design_55716678.png",
             "alignment": "center",
+            "small_image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
             "name": "John Doe",
             "name_font_size": 18,
             "name_margin_top": 10,
@@ -552,7 +553,9 @@
         "testimonial_6rNkDb": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/vecteezy_overear-headphones-red-leather-blue-accents-premium-audio_55244231.png",
             "alignment": "center",
+            "small_image": "shopify://shop_images/fashion-model-in-fur.jpg",
             "name": "John Doe",
             "name_font_size": 18,
             "name_margin_top": 10,
