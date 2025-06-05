@@ -510,15 +510,15 @@
         "meta_divider_color": "#3bf486"
       }
     },
-    "rw_mulitcolumn_3VjxQq": {
-      "type": "rw-mulitcolumn",
+    "rw_text_with_icon_ADAT3T": {
+      "type": "rw-text-with-icon",
       "blocks": {
-        "column_pNmLRm": {
+        "column_QzT4x9": {
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/vecteezy_overear-headphones-red-leather-blue-accents-premium-audio_55244231.png",
             "title": "CLICK AND COLLECT",
-            "title_font_size": 18,
+            "title_font_size": 37,
             "title_font_weight": "bold",
             "title_color": "#000000",
             "title_text_decoration": "none",
@@ -537,10 +537,9 @@
             "link": ""
           }
         },
-        "column_4nKeMK": {
+        "column_HAyVf6": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
             "title": "WE SHIP WORLDWIDE",
             "title_font_size": 18,
             "title_font_weight": "bold",
@@ -561,10 +560,9 @@
             "link": ""
           }
         },
-        "column_q4QQN8": {
+        "column_zRk9DK": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/vecteezy_vibrant-green-and-blue-headphones-with-modern-design_55716678.png",
             "title": "OVER 20,000 PRODUCTS",
             "title_font_size": 18,
             "title_font_weight": "bold",
@@ -584,60 +582,35 @@
             "link_label": "",
             "link": ""
           }
-        },
-        "column_aHat3L": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
-            "title": "Feature title",
-            "title_font_size": 18,
-            "title_font_weight": "bold",
-            "title_color": "#000000",
-            "title_text_decoration": "none",
-            "title_font_style": "normal",
-            "title_padding_top": 0,
-            "title_padding_bottom": 10,
-            "text": "<p>Feature description</p>",
-            "text_font_size": 14,
-            "text_font_weight": "normal",
-            "text_color": "#000000",
-            "text_text_decoration": "none",
-            "text_font_style": "normal",
-            "text_padding_top": 0,
-            "text_padding_bottom": 0,
-            "link_label": "",
-            "link": ""
-          }
         }
       },
       "block_order": [
-        "column_pNmLRm",
-        "column_4nKeMK",
-        "column_q4QQN8",
-        "column_aHat3L"
+        "column_QzT4x9",
+        "column_HAyVf6",
+        "column_zRk9DK"
       ],
-      "name": "RW Multicolumn",
+      "name": "RW Text With Icon",
       "settings": {
-        "title": "",
+        "title": "Featured columns",
         "heading_size": "h1",
-        "image_width_size": 30,
-        "image_height": 100,
+        "image_width_size": 100,
+        "image_height": 300,
         "image_border_radius": 0,
         "image_position": "center",
         "image_ratio": "adapt",
         "show_horizontal_line": true,
-        "horizontal_line_width": 70,
+        "horizontal_line_width": 80,
         "horizontal_line_height": 2,
-        "horizontal_line_color": "#34b7d7",
+        "horizontal_line_color": "#000000",
         "text_alignment": "center",
-        "paragraph_width": 75,
-        "button_label": "",
+        "paragraph_width": 100,
+        "button_label": "View all",
         "button_link": "",
         "columns_desktop": 3,
         "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "",
-        "columns_mobile": "2",
+        "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
@@ -651,6 +624,6 @@
     "pwc_countdown_HfHr9w",
     "pwc_split_image_hover_aGrP4r",
     "rw_blog_layout_rnwDVH",
-    "rw_mulitcolumn_3VjxQq"
+    "rw_text_with_icon_ADAT3T"
   ]
 }
