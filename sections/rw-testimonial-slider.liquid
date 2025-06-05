@@ -1,6 +1,328 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+
+<div id="{{ sec_id | remove: '#' }}">
+  <testimonial-slider data-section-id="{{ section.id }}"></testimonial-slider>
+</div>
+
+<style>
+  {{ sec_id }} testimonial-slider {
+    display: block;
+    max-width: {{ section.settings.page_width }}px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
   }
+
+  {{ sec_id }} .pc-container {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 20px;
+  }
+
+  {{ sec_id }} .pc-slide {
+    flex: 0 0 30%;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  {{ sec_id }} .pc-main-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+
+  {{ sec_id }} .pc-small-image {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 10px;
+  }
+
+  {{ sec_id }} .pc-check-post {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: {{ section.settings.button_bg }};
+    color: {{ section.settings.button_color }};
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+  }
+
+  {{ sec_id }} .pc-arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 20px;
+    background: {{ section.settings.arrow_bg }};
+    color: {{ section.settings.arrow_color }};
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transform: translateY(-50%);
+  }
+
+  {{ sec_id }} .pc-arrow:hover {
+    background: {{ section.settings.arrow_hover_bg }};
+    color: {{ section.settings.arrow_hover_color }};
+  }
+
+  {{ sec_id }} .pc-arrow.pc-left {
+    left: 10px;
+  }
+
+  {{ sec_id }} .pc-arrow.pc-right {
+    right: 10px;
+  }
+
+  {{ sec_id }} .pc-social-links a {
+    margin: 0 8px;
+    font-size: 20px;
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} .pc-container {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+    }
+
+    {{ sec_id }} .pc-slide {
+      flex: 0 0 80%;
+      scroll-snap-align: center;
+    }
+
+    {{ sec_id }} .pc-arrow {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  class TestimonialSlider extends HTMLElement {
+    connectedCallback() {
+      const id = this.dataset.sectionId;
+      const sec = document.querySelector(`#shopify-section-${id}`);
+      const container = sec.querySelector('.pc-container');
+      const slides = container.querySelectorAll('.pc-slide');
+      let index = 0;
+      const slidesToShow = 3;
+
+      const updateSlide = () => {
+        const slideWidth = slides[0].offsetWidth + 20;
+        container.style.transform = `translateX(${-index * slideWidth}px)`;
+      };
+
+      const leftArrow = sec.querySelector('.pc-arrow.pc-left');
+      const rightArrow = sec.querySelector('.pc-arrow.pc-right');
+
+      if (leftArrow && rightArrow) {
+        leftArrow.addEventListener('click', () => {
+          index = index > 0 ? index - 1 : slides.length - slidesToShow;
+          updateSlide();
+        });
+
+        rightArrow.addEventListener('click', () => {
+          index = index < slides.length - slidesToShow ? index + 1 : 0;
+          updateSlide();
+        });
+
+        setInterval(() => {
+          index = index < slides.length - slidesToShow ? index + 1 : 0;
+          updateSlide();
+        }, 5000);
+      }
+    }
+  }
+
+  if (!customElements.get('testimonial-slider')) {
+    customElements.define('testimonial-slider', TestimonialSlider);
+  }
+</script>
+
+<div class="pc-arrow pc-left">&#10094;</div>
+<div class="pc-container">
+  {% for block in section.blocks %}
+    <div class="pc-slide">
+      <img class="pc-main-image" src="{{ block.settings.image | img_url: '600x600' | default: 'https://via.placeholder.com/600x600?text=Image' }}" alt="{{ block.settings.name }}">
+      <div style="text-align: {{ block.settings.alignment }}">
+        <img class="pc-small-image" src="{{ block.settings.small_image | img_url: '70x70' | default: 'https://via.placeholder.com/70x70?text=Avatar' }}" alt="{{ block.settings.name }}">
+        <h3 style="font-size: {{ block.settings.name_font_size }}px">{{ block.settings.name }}</h3>
+        <p style="font-size: {{ block.settings.role_font_size }}px">{{ block.settings.role }}</p>
+        <p style="font-size: {{ block.settings.testimonial_font_size }}px">{{ block.settings.testimonial_text }}</p>
+        {% if block.settings.post_link %}
+          <a class="pc-check-post" href="{{ block.settings.post_link }}">+ Check full post</a>
+        {% endif %}
+        <div class="pc-social-links">
+          {% if block.settings.instagram_link %}
+            <a href="{{ block.settings.instagram_link }}" style="color: #E4405F;" target="_blank">Instagram</a>
+          {% endif %}
+          {% if block.settings.youtube_link %}
+            <a href="{{ block.settings.youtube_link }}" style="color: #FF0000;" target="_blank">YouTube</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+<div class="pc-arrow pc-right">&#10095;</div>
+
+{% schema %}
+{
+  "name": "PC - Testimonial Slider",
+  "settings": [
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Page Width",
+      "min": 600,
+      "max": 1600,
+      "step": 50,
+      "default": 1200
+    },
+    {
+      "type": "color",
+      "id": "arrow_bg",
+      "label": "Arrow Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "arrow_color",
+      "label": "Arrow Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_bg",
+      "label": "Arrow Hover Background",
+      "default": "#dddddd"
+    },
+    {
+      "type": "color",
+      "id": "arrow_hover_color",
+      "label": "Arrow Hover Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Post Button Background",
+      "default": "#FFD700"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Post Button Text Color",
+      "default": "#333333"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Profile Image"
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Content Alignment",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "image_picker",
+          "id": "small_image",
+          "label": "Avatar"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "John Doe"
+        },
+        {
+          "type": "range",
+          "id": "name_font_size",
+          "label": "Name Font Size",
+          "min": 14,
+          "max": 28,
+          "default": 18,
+          "unit": "px"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role",
+          "default": "Designer"
+        },
+        {
+          "type": "range",
+          "id": "role_font_size",
+          "label": "Role Font Size",
+          "min": 12,
+          "max": 24,
+          "default": 14,
+          "unit": "px"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_text",
+          "label": "Testimonial",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna."
+        },
+        {
+          "type": "range",
+          "id": "testimonial_font_size",
+          "label": "Testimonial Font Size",
+          "min": 12,
+          "max": 20,
+          "default": 16,
+          "unit": "px"
+        },
+        {
+          "type": "url",
+          "id": "post_link",
+          "label": "Link to Full Post"
+        },
+        {
+          "type": "url",
+          "id": "instagram_link",
+          "label": "Instagram Link"
+        },
+        {
+          "type": "url",
+          "id": "youtube_link",
+          "label": "YouTube Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default Testimonials",
+      "category": "Testimonials",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
 {% endschema %}
