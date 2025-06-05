@@ -9,7 +9,7 @@
           {% if block.settings.image != blank %}
             {{-
               block.settings.image
-              | image_url: width: section.settings.main_image_height, height: section.settings.main_image_height
+              | image_url: width: section.settings.image.width, height: section.settings.image.height
               | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-main-image'
             -}}
           {% else %}
@@ -19,7 +19,7 @@
             {% if block.settings.small_image != blank %}
               {{-
                 block.settings.small_image
-                | image_url: width: section.settings.small_image_size, height: section.settings.small_image_size
+                | image_url: width: section.settings.small_image.width, height: section.settings.small_image.height
                 | image_tag: loading: 'lazy', preload: true, alt: block.settings.small_image.alt, class: 'pc-small-image'
               -}}
             {% else %}
