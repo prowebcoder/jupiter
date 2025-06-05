@@ -518,7 +518,7 @@
           "settings": {
             "image": "shopify://shop_images/vecteezy_overear-headphones-red-leather-blue-accents-premium-audio_55244231.png",
             "title": "CLICK AND COLLECT",
-            "title_font_size": 37,
+            "title_font_size": 28,
             "title_font_weight": "bold",
             "title_color": "#000000",
             "title_text_decoration": "none",
@@ -592,9 +592,9 @@
       "name": "RW Text With Icon",
       "settings": {
         "title": "Featured columns",
-        "heading_size": "h1",
-        "image_width_size": 100,
-        "image_height": 300,
+        "heading_size": "h2",
+        "image_width_size": 30,
+        "image_height": 100,
         "image_border_radius": 0,
         "image_position": "center",
         "image_ratio": "adapt",
