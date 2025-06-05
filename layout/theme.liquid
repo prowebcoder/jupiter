@@ -372,5 +372,46 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    <script>
+  class TestimonialSlider extends HTMLElement {
+    connectedCallback() {
+      const id = this.dataset.sectionId;
+      const sec = document.querySelector(`#shopify-section-${id}`);
+      const container = sec.querySelector('.pc-container');
+      const slides = container.querySelectorAll('.pc-slide');
+      let index = 0;
+      const slidesToShow = 3;
+
+      const updateSlide = () => {
+        const slideWidth = slides[0].offsetWidth + 20;
+        container.style.transform = `translateX(${-index * slideWidth}px)`;
+      };
+
+      const leftArrow = sec.querySelector('.pc-arrow.pc-left');
+      const rightArrow = sec.querySelector('.pc-arrow.pc-right');
+
+      if (leftArrow && rightArrow) {
+        leftArrow.addEventListener('click', () => {
+          index = index > 0 ? index - 1 : slides.length - slidesToShow;
+          updateSlide();
+        });
+
+        rightArrow.addEventListener('click', () => {
+          index = index < slides.length - slidesToShow ? index + 1 : 0;
+          updateSlide();
+        });
+
+        setInterval(() => {
+          index = index < slides.length - slidesToShow ? index + 1 : 0;
+          updateSlide();
+        }, 5000);
+      }
+    }
+  }
+
+  if (!customElements.get('testimonial-slider')) {
+    customElements.define('testimonial-slider', TestimonialSlider);
+  }
+</script>
   </body>
 </html>
