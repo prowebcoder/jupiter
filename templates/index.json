@@ -585,6 +585,87 @@
         "button_bg": "#FFD700",
         "button_color": "#333333"
       }
+    },
+    "rw_testimonial_slider_cH6Bft": {
+      "type": "rw-testimonial-slider",
+      "blocks": {
+        "testimonial_GaYXVN": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "role": "Designer",
+            "role_font_size": 14,
+            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna.",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_DJKaz7": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "role": "Designer",
+            "role_font_size": 14,
+            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna.",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_M8TbgM": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "role": "Designer",
+            "role_font_size": 14,
+            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna.",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_bPQ3tn": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "role": "Designer",
+            "role_font_size": 14,
+            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna.",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_GaYXVN",
+        "testimonial_DJKaz7",
+        "testimonial_M8TbgM",
+        "testimonial_bPQ3tn"
+      ],
+      "name": "Default Testimonials",
+      "settings": {
+        "page_width": 650,
+        "arrow_bg": "#000000",
+        "arrow_color": "#ffffff",
+        "arrow_hover_bg": "#dddddd",
+        "arrow_hover_color": "#000000",
+        "button_bg": "#FFD700",
+        "button_color": "#333333"
+      }
     }
   },
   "order": [
@@ -594,6 +675,7 @@
     "rw_faq_2_6fRfMg",
     "pwc_counter_aTT7wW",
     "slider_testimonial_pwc_PfkbTh",
-    "rw_testimonial_slider_qzwcyX"
+    "rw_testimonial_slider_qzwcyX",
+    "rw_testimonial_slider_cH6Bft"
   ]
 }
