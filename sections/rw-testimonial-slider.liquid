@@ -1,7 +1,50 @@
 {% assign sec_id = '#shopify-section-' | append: section.id %}
 
 <div id="{{ sec_id | remove: '#' }}">
-  <testimonial-slider data-section-id="{{ section.id }}"></testimonial-slider>
+  <testimonial-slider data-section-id="{{ section.id }}">
+    <div class="pc-arrow pc-left">‹</div>
+    <div class="pc-container">
+      {% for block in section.blocks %}
+        <div class="pc-slide">
+          {% if block.settings.image != blank %}
+            {{-
+              block.settings.image
+              | image_url: width: section.settings.main_image_height, height: section.settings.main_image_height
+              | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-main-image'
+            -}}
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'pc-main-image' }}
+          {% endif %}
+          <div style="text-align: {{ block.settings.alignment }};">
+            {% if block.settings.small_image != blank %}
+              {{-
+                block.settings.small_image
+                | image_url: width: section.settings.small_image_size, height: section.settings.small_image_size
+                | image_tag: loading: 'lazy', preload: true, alt: block.settings.small_image.alt, class: 'pc-small-image'
+              -}}
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'pc-small-image' }}
+            {% endif %}
+            <h3 style="font-size: {{ block.settings.name_font_size }}px; margin: {{ block.settings.name_margin_top }}px 0;">{{ block.settings.name }}</h3>
+            <p style="font-size: {{ block.settings.role_font_size }}px; margin: {{ block.settings.role_margin_top }}px 0;">{{ block.settings.role }}</p>
+            <p style="font-size: {{ block.settings.testimonial_font_size }}px; margin: {{ block.settings.testimonial_margin_top }}px 0;">{{ block.settings.testimonial_text }}</p>
+            {% if block.settings.post_link %}
+              <a href="{{ block.settings.post_link }}" class="pc-check-post">+ {{ section.settings.post_button_text }}</a>
+            {% endif %}
+            <div class="pc-social-links" style="margin-top: {{ block.settings.social_margin_top }}px;">
+              {% if block.settings.instagram_link %}
+                <a href="{{ block.settings.instagram_link }}" target="_blank" style="color: {{ section.settings.instagram_icon_color }};">Instagram</a>
+              {% endif %}
+              {% if block.settings.youtube_link %}
+                <a href="{{ block.settings.youtube_link }}" target="_blank" style="color: {{ section.settings.youtube_icon_color }};">YouTube</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="pc-arrow pc-right">›</div>
+  </testimonial-slider>
 </div>
 
 <style>
@@ -114,41 +157,33 @@
 <script>
 class TestimonialSlider extends HTMLElement {
   connectedCallback() {
-    const sectionId = this.dataset.sectionId;
-    const wrapper = document.querySelector(`#shopify-section-${sectionId}`);
-    const leftArrow = document.createElement('div');
-    leftArrow.classList.add('pc-arrow', 'pc-left');
-    leftArrow.innerHTML = '‹';
-    const rightArrow = document.createElement('div');
-    rightArrow.classList.add('pc-arrow', 'pc-right');
-    rightArrow.innerHTML = '›';
-    const container = document.createElement('div');
-    container.classList.add('pc-container');
-    const existingSlides = Array.from(wrapper.querySelectorAll('.pc-slide'));
-    existingSlides.forEach(slide => container.appendChild(slide));
-    wrapper.querySelectorAll('.pc-slide').forEach(el => el.remove());
-    wrapper.querySelectorAll('.pc-container').forEach(el => el.remove());
-    this.appendChild(leftArrow);
-    this.appendChild(container);
-    this.appendChild(rightArrow);
+    const container = this.querySelector('.pc-container');
+    const leftArrow = this.querySelector('.pc-arrow.pc-left');
+    const rightArrow = this.querySelector('.pc-arrow.pc-right');
     const slides = container.querySelectorAll('.pc-slide');
+    
+    if (!slides.length) return;
+    
     let index = 0;
     const slidesToShow = 3;
     const totalSlides = slides.length;
+    
     const updateSlide = () => {
-      if (!slides[0]) return;
       const gap = parseInt(getComputedStyle(container).getPropertyValue('gap'));
-      const slideWidth = slides[0].getBoundingClientRect().width + gap;
+      const slideWidth = slides[0].offsetWidth + gap;
       container.style.transform = `translateX(${-index * slideWidth}px)`;
     };
+    
     leftArrow.addEventListener('click', () => {
       index = index > 0 ? index - 1 : totalSlides - slidesToShow;
       updateSlide();
     });
+    
     rightArrow.addEventListener('click', () => {
       index = index < totalSlides - slidesToShow ? index + 1 : 0;
       updateSlide();
     });
+    
     if ({{ section.settings.autoplay_enabled | default: false }}) {
       const intervalSpeed = {{ section.settings.autoplay_speed }};
       this._autoPlayInterval = setInterval(() => {
@@ -156,59 +191,22 @@ class TestimonialSlider extends HTMLElement {
         updateSlide();
       }, intervalSpeed);
     }
+    
+    // Initialize on load and resize
     updateSlide();
+    window.addEventListener('resize', updateSlide);
   }
+  
   disconnectedCallback() {
     if (this._autoPlayInterval) clearInterval(this._autoPlayInterval);
+    window.removeEventListener('resize', this.updateSlide);
   }
 }
+
 if (!customElements.get('testimonial-slider')) {
   customElements.define('testimonial-slider', TestimonialSlider);
 }
 </script>
-
-<div class="pc-arrow pc-left">‹</div>
-<div class="pc-container">
-  {% for block in section.blocks %}
-    <div class="pc-slide">
-      {% if block.settings.image != blank %}
-        {{-
-          block.settings.image
-          | image_url: width: section.settings.main_image_height, height: section.settings.main_image_height
-          | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt
-        -}}
-      {% else %}
-        {{ 'product-1' | placeholder_svg_tag }}
-      {% endif %}
-      <div style="text-align: {{ block.settings.alignment }};">
-        {% if block.settings.small_image != blank %}
-          {{-
-            block.settings.small_image
-            | image_url: width: section.settings.small_image_size, height: section.settings.small_image_size
-            | image_tag: loading: 'lazy', preload: true, alt: block.settings.small_image.alt
-          -}}
-        {% else %}
-          {{ 'product-1' | placeholder_svg_tag }}
-        {% endif %}
-        <h3 style="font-size: {{ block.settings.name_font_size }}px; margin: {{ block.settings.name_margin_top }}px 0;">{{ block.settings.name }}</h3>
-        <p style="font-size: {{ block.settings.role_font_size }}px; margin: {{ block.settings.role_margin_top }}px 0;">{{ block.settings.role }}</p>
-        <p style="font-size: {{ block.settings.testimonial_font_size }}px; margin: {{ block.settings.testimonial_margin_top }}px 0;">{{ block.settings.testimonial_text }}</p>
-        {% if block.settings.post_link %}
-          <a href="{{ block.settings.post_link }}" class="pc-check-post">+ {{ section.settings.post_button_text }}</a>
-        {% endif %}
-        <div class="pc-social-links" style="margin-top: {{ block.settings.social_margin_top }}px;">
-          {% if block.settings.instagram_link %}
-            <a href="{{ block.settings.instagram_link }}" target="_blank" style="color: {{ section.settings.instagram_icon_color }};">Instagram</a>
-          {% endif %}
-          {% if block.settings.youtube_link %}
-            <a href="{{ block.settings.youtube_link }}" target="_blank" style="color: {{ section.settings.youtube_icon_color }};">YouTube</a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  {% endfor %}
-</div>
-<div class="pc-arrow pc-right">›</div>
 
 {% schema %}
 {
