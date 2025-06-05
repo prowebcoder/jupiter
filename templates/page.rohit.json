@@ -485,7 +485,7 @@
         "image_corner_radius": 10,
         "content_width": 50,
         "content_height": 200,
-        "content_position": "right",
+        "content_position": "left",
         "content_offset": 265,
         "content_padding": 40,
         "content_background": "#ffffff",
