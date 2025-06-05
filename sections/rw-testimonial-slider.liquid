@@ -5,307 +5,200 @@
 </div>
 
 <style>
-  /* ================= NAMESPACE EVERYTHING UNDER {{ sec_id }} ================= */
+{{ sec_id }} testimonial-slider {
+  display: block;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  max-width: {{ section.settings.page_width }}px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: {{ section.settings.background_color }};
+  padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_sides }}px {{ section.settings.desktop_padding_bottom }}px;
+  color: {{ section.settings.text_color }};
+  font-family: {{ section.settings.font_family }};
+}
+{{ sec_id }} .pc-container {
+  display: flex;
+  gap: {{ section.settings.slide_gap }}px;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+{{ sec_id }} .pc-slide {
+  flex: 0 0 30%;
+  min-width: 30%;
+  background: {{ section.settings.slide_background }};
+  border-radius: {{ section.settings.slide_border_radius }}px;
+  box-shadow: {{ section.settings.slide_box_shadow }};
+  padding: {{ section.settings.slide_padding_top }}px {{ section.settings.slide_padding_sides }}px {{ section.settings.slide_padding_bottom }}px;
+  text-align: center;
+  overflow: hidden;
+}
+{{ sec_id }} .pc-main-image {
+  width: 100%;
+  height: {{ section.settings.main_image_height }}px;
+  object-fit: cover;
+  border-radius: {{ section.settings.main_image_border_radius }}px {{ section.settings.main_image_border_radius }}px 0 0;
+  margin-bottom: {{ section.settings.main_image_margin_bottom }}px;
+}
+{{ sec_id }} .pc-small-image {
+  width: {{ section.settings.small_image_size }}px;
+  height: {{ section.settings.small_image_size }}px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-top: {{ section.settings.small_image_margin_top }}px;
+  margin-bottom: {{ section.settings.small_image_margin_bottom }}px;
+}
+{{ sec_id }} .pc-check-post {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: {{ section.settings.button_background }};
+  color: {{ section.settings.button_text_color }};
+  border-radius: {{ section.settings.button_border_radius }}px;
+  text-decoration: none;
+  font-size: {{ section.settings.button_font_size }}px;
+  margin-top: {{ section.settings.button_margin_top }}px;
+}
+{{ sec_id }} .pc-social-links a {
+  margin: 0 {{ section.settings.social_icon_gap }}px;
+  font-size: {{ section.settings.social_icon_size }}px;
+  text-decoration: none;
+}
+{{ sec_id }} .pc-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: {{ section.settings.arrow_background }};
+  color: {{ section.settings.arrow_color }};
+  border-radius: 50%;
+  width: {{ section.settings.arrow_size }}px;
+  height: {{ section.settings.arrow_size }}px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: {{ section.settings.arrow_font_size }}px;
+  cursor: pointer;
+  z-index: 10;
+}
+{{ sec_id }} .pc-arrow.pc-left {
+  left: {{ section.settings.arrow_offset_sides }}px;
+}
+{{ sec_id }} .pc-arrow.pc-right {
+  right: {{ section.settings.arrow_offset_sides }}px;
+}
+{{ sec_id }} .pc-arrow:hover {
+  background-color: {{ section.settings.arrow_hover_background }};
+  color: {{ section.settings.arrow_hover_color }};
+}
+@media (max-width: 768px) {
   {{ sec_id }} testimonial-slider {
-    display: block;
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    max-width: {{ section.settings.page_width }}px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: {{ section.settings.background_color }};
-    padding: {{ section.settings.desktop_padding_top }}px 
-              {{ section.settings.desktop_padding_sides }}px 
-              {{ section.settings.desktop_padding_bottom }}px;
-    color: {{ section.settings.text_color }};
-    font-family: {{ section.settings.font_family }};
+    padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_sides }}px {{ section.settings.mobile_padding_bottom }}px;
   }
-
-  /* Slider Container → flex items laid out in a row, clipped by overflow:hidden */
   {{ sec_id }} .pc-container {
-    display: flex;
-    gap: {{ section.settings.slide_gap }}px;
-    transition: transform 0.5s ease;
-    will-change: transform;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
   }
-
-  /* Each Slide → a “card” */
   {{ sec_id }} .pc-slide {
-    flex: 0 0 30%;
-    min-width: 30%;
-    background: {{ section.settings.slide_background }};
-    border-radius: {{ section.settings.slide_border_radius }}px;
-    box-shadow: {{ section.settings.slide_box_shadow }};
-    padding: {{ section.settings.slide_padding_top }}px 
-             {{ section.settings.slide_padding_sides }}px 
-             {{ section.settings.slide_padding_bottom }}px;
-    text-align: center;
-    overflow: hidden;
+    flex: 0 0 80%;
+    min-width: 80%;
+    scroll-snap-align: center;
   }
-
-  /* Main image fills the top of each card */
-  {{ sec_id }} .pc-main-image {
-    width: 100%;
-    height: {{ section.settings.main_image_height }}px;
-    object-fit: cover;
-    border-radius: {{ section.settings.main_image_border_radius }}px 
-                    {{ section.settings.main_image_border_radius }}px 0 0;
-    margin-bottom: {{ section.settings.main_image_margin_bottom }}px;
-  }
-
-  /* Avatar / small image below */
-  {{ sec_id }} .pc-small-image {
-    width: {{ section.settings.small_image_size }}px;
-    height: {{ section.settings.small_image_size }}px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-top: {{ section.settings.small_image_margin_top }}px;
-    margin-bottom: {{ section.settings.small_image_margin_bottom }}px;
-  }
-
-  /* “Check full post” button */
-  {{ sec_id }} .pc-check-post {
-    display: inline-block;
-    padding: 8px 15px;
-    background-color: {{ section.settings.button_background }};
-    color: {{ section.settings.button_text_color }};
-    border-radius: {{ section.settings.button_border_radius }}px;
-    text-decoration: none;
-    font-size: {{ section.settings.button_font_size }}px;
-    margin-top: {{ section.settings.button_margin_top }}px;
-  }
-
-  /* Social links */
-  {{ sec_id }} .pc-social-links a {
-    margin: 0 {{ section.settings.social_icon_gap }}px;
-    font-size: {{ section.settings.social_icon_size }}px;
-    text-decoration: none;
-  }
-
-  /* ARROWS: absolute‐positioned inside <testimonial-slider> */
   {{ sec_id }} .pc-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: {{ section.settings.arrow_background }};
-    color: {{ section.settings.arrow_color }};
-    border-radius: 50%;
-    width: {{ section.settings.arrow_size }}px;
-    height: {{ section.settings.arrow_size }}px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: {{ section.settings.arrow_font_size }}px;
-    cursor: pointer;
-    z-index: 10;
+    display: none;
   }
-
-  /* Left‐click arrow on the left side */
-  {{ sec_id }} .pc-arrow.pc-left {
-    left: {{ section.settings.arrow_offset_sides }}px;
-  }
-
-  /* Right‐click arrow on the right side */
-  {{ sec_id }} .pc-arrow.pc-right {
-    right: {{ section.settings.arrow_offset_sides }}px;
-  }
-
-  {{ sec_id }} .pc-arrow:hover {
-    background-color: {{ section.settings.arrow_hover_background }};
-    color: {{ section.settings.arrow_hover_color }};
-  }
-
-  /* MOBILE OVERRIDES: adjust padding, hide arrows, make slides 80% width, etc. */
-  @media (max-width: 768px) {
-    {{ sec_id }} testimonial-slider {
-      padding: {{ section.settings.mobile_padding_top }}px 
-               {{ section.settings.mobile_padding_sides }}px 
-               {{ section.settings.mobile_padding_bottom }}px;
-    }
-
-    {{ sec_id }} .pc-container {
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-    }
-
-    {{ sec_id }} .pc-slide {
-      flex: 0 0 80%;
-      min-width: 80%;
-      scroll-snap-align: center;
-    }
-
-    {{ sec_id }} .pc-arrow {
-      display: none;
-    }
-  }
+}
 </style>
 
 <script>
-  /* =========================================================================
-     ========== DEFINE A CUSTOM ELEMENT: <testimonial-slider> ===============
-     ========================================================================== */
-  class TestimonialSlider extends HTMLElement {
-    connectedCallback() {
-      const sectionId = this.dataset.sectionId;
-      const wrapper = document.querySelector(`#shopify-section-${sectionId}`);
-
-      // 1) CREATE ARROW ELEMENTS
-      const leftArrow = document.createElement('div');
-      leftArrow.classList.add('pc-arrow', 'pc-left');
-      leftArrow.innerHTML = wrapper.querySelector('.pc-arrow.pc-left').innerHTML;
-
-      const rightArrow = document.createElement('div');
-      rightArrow.classList.add('pc-arrow', 'pc-right');
-      rightArrow.innerHTML = wrapper.querySelector('.pc-arrow.pc-right').innerHTML;
-
-      // 2) CREATE SLIDER CONTAINER
-      const container = document.createElement('div');
-      container.classList.add('pc-container');
-
-      // 3) POPULATE SLIDES BASED ON BLOCKS (ALREADY RENDERED IN LIQUID)
-      const existingSlides = Array.from(wrapper.querySelectorAll('.pc-slide'));
-      existingSlides.forEach(slide => container.appendChild(slide));
-
-      // 4) REMOVE ANY PREVIOUS “PC‐CONTAINER” OR “PC‐SLIDE” MARKUP
-      wrapper.querySelectorAll('.pc-slide').forEach(el => el.remove());
-      wrapper.querySelectorAll('.pc-container').forEach(el => el.remove());
-
-      // 5) APPEND LEFT ARROW, CONTAINER, RIGHT ARROW INSIDE <testimonial-slider>
-      this.appendChild(leftArrow);
-      this.appendChild(container);
-      this.appendChild(rightArrow);
-
-      // 6) SLIDER LOGIC
-      const slides = container.querySelectorAll('.pc-slide');
-      let index = 0;
-      const slidesToShow = 3;
-      const totalSlides = slides.length;
-
-      const updateSlide = () => {
-        if (!slides[0]) return;
-        const gap = parseInt(
-          getComputedStyle(container).getPropertyValue('gap')
-        );
-        const slideWidth = slides[0].getBoundingClientRect().width + gap;
-        container.style.transform = `translateX(${-index * slideWidth}px)`;
-      };
-
-      // CLICK HANDLERS
-      leftArrow.addEventListener('click', () => {
-        index = index > 0 ? index - 1 : totalSlides - slidesToShow;
-        updateSlide();
-      });
-      rightArrow.addEventListener('click', () => {
+class TestimonialSlider extends HTMLElement {
+  connectedCallback() {
+    const sectionId = this.dataset.sectionId;
+    const wrapper = document.querySelector(`#shopify-section-${sectionId}`);
+    const leftArrow = document.createElement('div');
+    leftArrow.classList.add('pc-arrow', 'pc-left');
+    leftArrow.innerHTML = wrapper.querySelector('.pc-arrow.pc-left').innerHTML;
+    const rightArrow = document.createElement('div');
+    rightArrow.classList.add('pc-arrow', 'pc-right');
+    rightArrow.innerHTML = wrapper.querySelector('.pc-arrow.pc-right').innerHTML;
+    const container = document.createElement('div');
+    container.classList.add('pc-container');
+    const existingSlides = Array.from(wrapper.querySelectorAll('.pc-slide'));
+    existingSlides.forEach(slide => container.appendChild(slide));
+    wrapper.querySelectorAll('.pc-slide').forEach(el => el.remove());
+    wrapper.querySelectorAll('.pc-container').forEach(el => el.remove());
+    this.appendChild(leftArrow);
+    this.appendChild(container);
+    this.appendChild(rightArrow);
+    const slides = container.querySelectorAll('.pc-slide');
+    let index = 0;
+    const slidesToShow = 3;
+    const totalSlides = slides.length;
+    const updateSlide = () => {
+      if (!slides[0]) return;
+      const gap = parseInt(getComputedStyle(container).getPropertyValue('gap'));
+      const slideWidth = slides[0].getBoundingClientRect().width + gap;
+      container.style.transform = `translateX(${-index * slideWidth}px)`;
+    };
+    leftArrow.addEventListener('click', () => {
+      index = index > 0 ? index - 1 : totalSlides - slidesToShow;
+      updateSlide();
+    });
+    rightArrow.addEventListener('click', () => {
+      index = index < totalSlides - slidesToShow ? index + 1 : 0;
+      updateSlide();
+    });
+    if ({{ section.settings.autoplay_enabled | default: false }}) {
+      const intervalSpeed = {{ section.settings.autoplay_speed }};
+      this._autoPlayInterval = setInterval(() => {
         index = index < totalSlides - slidesToShow ? index + 1 : 0;
         updateSlide();
-      });
-
-      // AUTOPLAY
-      if ({{ section.settings.autoplay_enabled | default: false }}) {
-        const intervalSpeed = {{ section.settings.autoplay_speed }};
-        this._autoPlayInterval = setInterval(() => {
-          index = index < totalSlides - slidesToShow ? index + 1 : 0;
-          updateSlide();
-        }, intervalSpeed);
-      }
-
-      // INITIAL POSITION
-      updateSlide();
+      }, intervalSpeed);
     }
-
-    disconnectedCallback() {
-      if (this._autoPlayInterval) clearInterval(this._autoPlayInterval);
-    }
+    updateSlide();
   }
-
-  if (!customElements.get('testimonial-slider')) {
-    customElements.define('testimonial-slider', TestimonialSlider);
+  disconnectedCallback() {
+    if (this._autoPlayInterval) clearInterval(this._autoPlayInterval);
   }
+}
+if (!customElements.get('testimonial-slider')) {
+  customElements.define('testimonial-slider', TestimonialSlider);
+}
 </script>
 
-<!-- ==============================================================================
-     ========== STATIC MARKUP FOR ARROWS + SLIDES (WILL BE RE‐APPENDED BY JS) =
-     ============================================================================== -->
-<div class="pc-arrow pc-left">
-  {{ section.settings.left_arrow_text }}
-</div>
+<div class="pc-arrow pc-left">{{ section.settings.left_arrow_text }}</div>
 <div class="pc-container">
   {% for block in section.blocks %}
     <div class="pc-slide">
-      {% comment %} MAIN IMAGE (FALLBACK TO SHOPIFY PLACEHOLDER) {% endcomment %}
       {% if block.settings.image != blank %}
-        <img
-          class="pc-main-image"
-          src="{{ block.settings.image | img_url: '600x600' }}"
-          alt="{{ block.settings.name }}"
-        />
+        <img class="pc-main-image" src="{{ block.settings.image | img_url: '600x600' }}" alt="{{ block.settings.name }}" />
       {% else %}
-        <img
-          class="pc-main-image"
-          src="https://via.placeholder.com/600x600?text=No+Image"
-          alt="Fallback Image"
-        />
+        {{ 'product-1' | placeholder_svg_tag }}
       {% endif %}
-
       <div style="text-align: {{ block.settings.alignment }};">
-        {% comment %} SMALL IMAGE (FALLBACK TO PLACEHOLDER) {% endcomment %}
         {% if block.settings.small_image != blank %}
-          <img
-            class="pc-small-image"
-            src="{{ block.settings.small_image | img_url: '70x70' }}"
-            alt="{{ block.settings.name }}"
-          />
+          <img class="pc-small-image" src="{{ block.settings.small_image | img_url: '70x70' }}" alt="{{ block.settings.name }}" />
         {% else %}
-          <img
-            class="pc-small-image"
-            src="https://via.placeholder.com/70x70?text=Avatar"
-            alt="Fallback Avatar"
-          />
+          {{ 'product-1' | placeholder_svg_tag }}
         {% endif %}
-
-        <h3 style="font-size: {{ block.settings.name_font_size }}px; margin: {{ block.settings.name_margin_top }}px 0;">
-          {{ block.settings.name }}
-        </h3>
-        <p style="font-size: {{ block.settings.role_font_size }}px; margin: {{ block.settings.role_margin_top }}px 0;">
-          {{ block.settings.role }}
-        </p>
-        <p style="font-size: {{ block.settings.testimonial_font_size }}px; margin: {{ block.settings.testimonial_margin_top }}px 0;">
-          {{ block.settings.testimonial_text }}
-        </p>
-
+        <h3 style="font-size: {{ block.settings.name_font_size }}px; margin: {{ block.settings.name_margin_top }}px 0;">{{ block.settings.name }}</h3>
+        <p style="font-size: {{ block.settings.role_font_size }}px; margin: {{ block.settings.role_margin_top }}px 0;">{{ block.settings.role }}</p>
+        <p style="font-size: {{ block.settings.testimonial_font_size }}px; margin: {{ block.settings.testimonial_margin_top }}px 0;">{{ block.settings.testimonial_text }}</p>
         {% if block.settings.post_link %}
-          <a
-            href="{{ block.settings.post_link }}"
-            class="pc-check-post"
-          >
-            + {{ section.settings.post_button_text }}
-          </a>
+          <a href="{{ block.settings.post_link }}" class="pc-check-post">+ {{ section.settings.post_button_text }}</a>
         {% endif %}
-
         <div class="pc-social-links" style="margin-top: {{ block.settings.social_margin_top }}px;">
           {% if block.settings.instagram_link %}
-            <a
-              href="{{ block.settings.instagram_link }}"
-              target="_blank"
-              style="color: {{ section.settings.instagram_icon_color }};"
-            >Instagram</a>
+            <a href="{{ block.settings.instagram_link }}" target="_blank" style="color: {{ section.settings.instagram_icon_color }};">Instagram</a>
           {% endif %}
           {% if block.settings.youtube_link %}
-            <a
-              href="{{ block.settings.youtube_link }}"
-              target="_blank"
-              style="color: {{ section.settings.youtube_icon_color }};"
-            >YouTube</a>
+            <a href="{{ block.settings.youtube_link }}" target="_blank" style="color: {{ section.settings.youtube_icon_color }};">YouTube</a>
           {% endif %}
         </div>
       </div>
     </div>
   {% endfor %}
 </div>
-<div class="pc-arrow pc-right">
-  {{ section.settings.right_arrow_text }}
-</div>
+<div class="pc-arrow pc-right">{{ section.settings.right_arrow_text }}</div>
 
 {% schema %}
 {
