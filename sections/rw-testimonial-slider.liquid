@@ -5,96 +5,133 @@
 </div>
 
 <style>
+  /* ================= NAMESPACE EVERYTHING UNDER {{ sec_id }} ================= */
   {{ sec_id }} testimonial-slider {
     display: block;
-    max-width: {{ section.settings.page_width }}px;
-    margin: 0 auto;
     position: relative;
+    width: 100%;
+    overflow: hidden;
+    max-width: {{ section.settings.page_width }}px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: {{ section.settings.background_color }};
+    padding: {{ section.settings.desktop_padding_top }}px 
+              {{ section.settings.desktop_padding_sides }}px 
+              {{ section.settings.desktop_padding_bottom }}px;
+    color: {{ section.settings.text_color }};
+    font-family: {{ section.settings.font_family }};
+  }
+
+  /* Slider Container → flex items laid out in a row, clipped by overflow:hidden */
+  {{ sec_id }} .pc-container {
+    display: flex;
+    gap: {{ section.settings.slide_gap }}px;
+    transition: transform 0.5s ease;
+    will-change: transform;
+  }
+
+  /* Each Slide → a “card” */
+  {{ sec_id }} .pc-slide {
+    flex: 0 0 30%;
+    min-width: 30%;
+    background: {{ section.settings.slide_background }};
+    border-radius: {{ section.settings.slide_border_radius }}px;
+    box-shadow: {{ section.settings.slide_box_shadow }};
+    padding: {{ section.settings.slide_padding_top }}px 
+             {{ section.settings.slide_padding_sides }}px 
+             {{ section.settings.slide_padding_bottom }}px;
+    text-align: center;
     overflow: hidden;
   }
 
-  {{ sec_id }} .pc-container {
-    display: flex;
-    transition: transform 0.5s ease;
-    gap: 20px;
-  }
-
-  {{ sec_id }} .pc-slide {
-    flex: 0 0 30%;
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
+  /* Main image fills the top of each card */
   {{ sec_id }} .pc-main-image {
     width: 100%;
-    height: 300px;
+    height: {{ section.settings.main_image_height }}px;
     object-fit: cover;
-    margin-bottom: 10px;
-    border-radius: 10px;
+    border-radius: {{ section.settings.main_image_border_radius }}px 
+                    {{ section.settings.main_image_border_radius }}px 0 0;
+    margin-bottom: {{ section.settings.main_image_margin_bottom }}px;
   }
 
+  /* Avatar / small image below */
   {{ sec_id }} .pc-small-image {
-    width: 70px;
-    height: 70px;
+    width: {{ section.settings.small_image_size }}px;
+    height: {{ section.settings.small_image_size }}px;
     object-fit: cover;
     border-radius: 50%;
-    margin-top: 10px;
+    margin-top: {{ section.settings.small_image_margin_top }}px;
+    margin-bottom: {{ section.settings.small_image_margin_bottom }}px;
   }
 
+  /* “Check full post” button */
   {{ sec_id }} .pc-check-post {
     display: inline-block;
     padding: 8px 15px;
-    background-color: {{ section.settings.button_bg }};
-    color: {{ section.settings.button_color }};
-    border-radius: 5px;
+    background-color: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    border-radius: {{ section.settings.button_border_radius }}px;
     text-decoration: none;
-    margin-top: 10px;
+    font-size: {{ section.settings.button_font_size }}px;
+    margin-top: {{ section.settings.button_margin_top }}px;
   }
 
+  /* Social links */
+  {{ sec_id }} .pc-social-links a {
+    margin: 0 {{ section.settings.social_icon_gap }}px;
+    font-size: {{ section.settings.social_icon_size }}px;
+    text-decoration: none;
+  }
+
+  /* ARROWS: absolute‐positioned inside <testimonial-slider> */
   {{ sec_id }} .pc-arrow {
     position: absolute;
     top: 50%;
-    font-size: 20px;
-    background: {{ section.settings.arrow_bg }};
+    transform: translateY(-50%);
+    background-color: {{ section.settings.arrow_background }};
     color: {{ section.settings.arrow_color }};
-    padding: 8px;
     border-radius: 50%;
+    width: {{ section.settings.arrow_size }}px;
+    height: {{ section.settings.arrow_size }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: {{ section.settings.arrow_font_size }}px;
     cursor: pointer;
     z-index: 10;
-    transform: translateY(-50%);
+  }
+
+  /* Left‐click arrow on the left side */
+  {{ sec_id }} .pc-arrow.pc-left {
+    left: {{ section.settings.arrow_offset_sides }}px;
+  }
+
+  /* Right‐click arrow on the right side */
+  {{ sec_id }} .pc-arrow.pc-right {
+    right: {{ section.settings.arrow_offset_sides }}px;
   }
 
   {{ sec_id }} .pc-arrow:hover {
-    background: {{ section.settings.arrow_hover_bg }};
+    background-color: {{ section.settings.arrow_hover_background }};
     color: {{ section.settings.arrow_hover_color }};
   }
 
-  {{ sec_id }} .pc-arrow.pc-left {
-    left: 10px;
-  }
-
-  {{ sec_id }} .pc-arrow.pc-right {
-    right: 10px;
-  }
-
-  {{ sec_id }} .pc-social-links a {
-    margin: 0 8px;
-    font-size: 20px;
-    text-decoration: none;
-  }
-
+  /* MOBILE OVERRIDES: adjust padding, hide arrows, make slides 80% width, etc. */
   @media (max-width: 768px) {
+    {{ sec_id }} testimonial-slider {
+      padding: {{ section.settings.mobile_padding_top }}px 
+               {{ section.settings.mobile_padding_sides }}px 
+               {{ section.settings.mobile_padding_bottom }}px;
+    }
+
     {{ sec_id }} .pc-container {
-      flex-wrap: nowrap;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
     }
 
     {{ sec_id }} .pc-slide {
       flex: 0 0 80%;
+      min-width: 80%;
       scroll-snap-align: center;
     }
 
@@ -105,39 +142,80 @@
 </style>
 
 <script>
+  /* =========================================================================
+     ========== DEFINE A CUSTOM ELEMENT: <testimonial-slider> ===============
+     ========================================================================== */
   class TestimonialSlider extends HTMLElement {
     connectedCallback() {
-      const id = this.dataset.sectionId;
-      const sec = document.querySelector(`#shopify-section-${id}`);
-      const container = sec.querySelector('.pc-container');
+      const sectionId = this.dataset.sectionId;
+      const wrapper = document.querySelector(`#shopify-section-${sectionId}`);
+
+      // 1) CREATE ARROW ELEMENTS
+      const leftArrow = document.createElement('div');
+      leftArrow.classList.add('pc-arrow', 'pc-left');
+      leftArrow.innerHTML = wrapper.querySelector('.pc-arrow.pc-left').innerHTML;
+
+      const rightArrow = document.createElement('div');
+      rightArrow.classList.add('pc-arrow', 'pc-right');
+      rightArrow.innerHTML = wrapper.querySelector('.pc-arrow.pc-right').innerHTML;
+
+      // 2) CREATE SLIDER CONTAINER
+      const container = document.createElement('div');
+      container.classList.add('pc-container');
+
+      // 3) POPULATE SLIDES BASED ON BLOCKS (ALREADY RENDERED IN LIQUID)
+      const existingSlides = Array.from(wrapper.querySelectorAll('.pc-slide'));
+      existingSlides.forEach(slide => container.appendChild(slide));
+
+      // 4) REMOVE ANY PREVIOUS “PC‐CONTAINER” OR “PC‐SLIDE” MARKUP
+      wrapper.querySelectorAll('.pc-slide').forEach(el => el.remove());
+      wrapper.querySelectorAll('.pc-container').forEach(el => el.remove());
+
+      // 5) APPEND LEFT ARROW, CONTAINER, RIGHT ARROW INSIDE <testimonial-slider>
+      this.appendChild(leftArrow);
+      this.appendChild(container);
+      this.appendChild(rightArrow);
+
+      // 6) SLIDER LOGIC
       const slides = container.querySelectorAll('.pc-slide');
       let index = 0;
       const slidesToShow = 3;
+      const totalSlides = slides.length;
 
       const updateSlide = () => {
-        const slideWidth = slides[0].offsetWidth + 20;
+        if (!slides[0]) return;
+        const gap = parseInt(
+          getComputedStyle(container).getPropertyValue('gap')
+        );
+        const slideWidth = slides[0].getBoundingClientRect().width + gap;
         container.style.transform = `translateX(${-index * slideWidth}px)`;
       };
 
-      const leftArrow = sec.querySelector('.pc-arrow.pc-left');
-      const rightArrow = sec.querySelector('.pc-arrow.pc-right');
+      // CLICK HANDLERS
+      leftArrow.addEventListener('click', () => {
+        index = index > 0 ? index - 1 : totalSlides - slidesToShow;
+        updateSlide();
+      });
+      rightArrow.addEventListener('click', () => {
+        index = index < totalSlides - slidesToShow ? index + 1 : 0;
+        updateSlide();
+      });
 
-      if (leftArrow && rightArrow) {
-        leftArrow.addEventListener('click', () => {
-          index = index > 0 ? index - 1 : slides.length - slidesToShow;
+      // AUTOPLAY
+      if ({{ section.settings.autoplay_enabled | default: false }}) {
+        const intervalSpeed = {{ section.settings.autoplay_speed }};
+        this._autoPlayInterval = setInterval(() => {
+          index = index < totalSlides - slidesToShow ? index + 1 : 0;
           updateSlide();
-        });
-
-        rightArrow.addEventListener('click', () => {
-          index = index < slides.length - slidesToShow ? index + 1 : 0;
-          updateSlide();
-        });
-
-        setInterval(() => {
-          index = index < slides.length - slidesToShow ? index + 1 : 0;
-          updateSlide();
-        }, 5000);
+        }, intervalSpeed);
       }
+
+      // INITIAL POSITION
+      updateSlide();
+    }
+
+    disconnectedCallback() {
+      if (this._autoPlayInterval) clearInterval(this._autoPlayInterval);
     }
   }
 
@@ -146,32 +224,88 @@
   }
 </script>
 
-<div class="pc-arrow pc-left">&#10094;</div>
+<!-- ==============================================================================
+     ========== STATIC MARKUP FOR ARROWS + SLIDES (WILL BE RE‐APPENDED BY JS) =
+     ============================================================================== -->
+<div class="pc-arrow pc-left">
+  {{ section.settings.left_arrow_text }}
+</div>
 <div class="pc-container">
   {% for block in section.blocks %}
     <div class="pc-slide">
-      <img class="pc-main-image" src="{{ block.settings.image | img_url: '600x600' | default: 'https://via.placeholder.com/600x600?text=Image' }}" alt="{{ block.settings.name }}">
-      <div style="text-align: {{ block.settings.alignment }}">
-        <img class="pc-small-image" src="{{ block.settings.small_image | img_url: '70x70' | default: 'https://via.placeholder.com/70x70?text=Avatar' }}" alt="{{ block.settings.name }}">
-        <h3 style="font-size: {{ block.settings.name_font_size }}px">{{ block.settings.name }}</h3>
-        <p style="font-size: {{ block.settings.role_font_size }}px">{{ block.settings.role }}</p>
-        <p style="font-size: {{ block.settings.testimonial_font_size }}px">{{ block.settings.testimonial_text }}</p>
-        {% if block.settings.post_link %}
-          <a class="pc-check-post" href="{{ block.settings.post_link }}">+ Check full post</a>
+      {% comment %} MAIN IMAGE (FALLBACK TO SHOPIFY PLACEHOLDER) {% endcomment %}
+      {% if block.settings.image != blank %}
+        <img
+          class="pc-main-image"
+          src="{{ block.settings.image | img_url: '600x600' }}"
+          alt="{{ block.settings.name }}"
+        />
+      {% else %}
+        <img
+          class="pc-main-image"
+          src="https://via.placeholder.com/600x600?text=No+Image"
+          alt="Fallback Image"
+        />
+      {% endif %}
+
+      <div style="text-align: {{ block.settings.alignment }};">
+        {% comment %} SMALL IMAGE (FALLBACK TO PLACEHOLDER) {% endcomment %}
+        {% if block.settings.small_image != blank %}
+          <img
+            class="pc-small-image"
+            src="{{ block.settings.small_image | img_url: '70x70' }}"
+            alt="{{ block.settings.name }}"
+          />
+        {% else %}
+          <img
+            class="pc-small-image"
+            src="https://via.placeholder.com/70x70?text=Avatar"
+            alt="Fallback Avatar"
+          />
         {% endif %}
-        <div class="pc-social-links">
+
+        <h3 style="font-size: {{ block.settings.name_font_size }}px; margin: {{ block.settings.name_margin_top }}px 0;">
+          {{ block.settings.name }}
+        </h3>
+        <p style="font-size: {{ block.settings.role_font_size }}px; margin: {{ block.settings.role_margin_top }}px 0;">
+          {{ block.settings.role }}
+        </p>
+        <p style="font-size: {{ block.settings.testimonial_font_size }}px; margin: {{ block.settings.testimonial_margin_top }}px 0;">
+          {{ block.settings.testimonial_text }}
+        </p>
+
+        {% if block.settings.post_link %}
+          <a
+            href="{{ block.settings.post_link }}"
+            class="pc-check-post"
+          >
+            + {{ section.settings.post_button_text }}
+          </a>
+        {% endif %}
+
+        <div class="pc-social-links" style="margin-top: {{ block.settings.social_margin_top }}px;">
           {% if block.settings.instagram_link %}
-            <a href="{{ block.settings.instagram_link }}" style="color: #E4405F;" target="_blank">Instagram</a>
+            <a
+              href="{{ block.settings.instagram_link }}"
+              target="_blank"
+              style="color: {{ section.settings.instagram_icon_color }};"
+            >Instagram</a>
           {% endif %}
           {% if block.settings.youtube_link %}
-            <a href="{{ block.settings.youtube_link }}" style="color: #FF0000;" target="_blank">YouTube</a>
+            <a
+              href="{{ block.settings.youtube_link }}"
+              target="_blank"
+              style="color: {{ section.settings.youtube_icon_color }};"
+            >YouTube</a>
           {% endif %}
         </div>
       </div>
     </div>
   {% endfor %}
 </div>
-<div class="pc-arrow pc-right">&#10095;</div>
+<div class="pc-arrow pc-right">
+  {{ section.settings.right_arrow_text }}
+</div>
 
 {% schema %}
 {
@@ -180,7 +314,7 @@
     {
       "type": "range",
       "id": "page_width",
-      "label": "Page Width",
+      "label": "Max Page Width (px)",
       "min": 600,
       "max": 1600,
       "step": 50,
@@ -188,7 +322,283 @@
     },
     {
       "type": "color",
-      "id": "arrow_bg",
+      "id": "background_color",
+      "label": "Section Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "text",
+      "id": "font_family",
+      "label": "Font Family",
+      "default": "sans-serif"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Top Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_sides",
+      "label": "Side Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_sides",
+      "label": "Side Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "slide_gap",
+      "label": "Gap Between Slides (px)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "slide_background",
+      "label": "Slide Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "slide_box_shadow",
+      "label": "Slide Box Shadow (CSS)",
+      "default": "0px 4px 8px rgba(0,0,0,0.1)"
+    },
+    {
+      "type": "range",
+      "id": "slide_border_radius",
+      "label": "Slide Border Radius (px)",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "slide_padding_top",
+      "label": "Slide Padding Top (px)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "slide_padding_sides",
+      "label": "Slide Padding Sides (px)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "slide_padding_bottom",
+      "label": "Slide Padding Bottom (px)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "main_image_height",
+      "label": "Main Image Height (px)",
+      "min": 100,
+      "max": 600,
+      "step": 50,
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "main_image_border_radius",
+      "label": "Main Image Border Radius (px)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "main_image_margin_bottom",
+      "label": "Main Image Bottom Margin (px)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "small_image_size",
+      "label": "Avatar Size (px)",
+      "min": 30,
+      "max": 150,
+      "step": 10,
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "small_image_margin_top",
+      "label": "Avatar Top Margin (px)",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "small_image_margin_bottom",
+      "label": "Avatar Bottom Margin (px)",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "post_button_text",
+      "label": "Check-Full-Post Button Text",
+      "default": "Check full post"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button Background Color",
+      "default": "#FFD700"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button Border Radius (px)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button Font Size (px)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_margin_top",
+      "label": "Button Top Margin (px)",
+      "min": 0,
+      "max": 30,
+      "step": 5,
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "instagram_icon_color",
+      "label": "Instagram Icon Color",
+      "default": "#E4405F"
+    },
+    {
+      "type": "color",
+      "id": "youtube_icon_color",
+      "label": "YouTube Icon Color",
+      "default": "#FF0000"
+    },
+    {
+      "type": "range",
+      "id": "social_icon_size",
+      "label": "Social Icon Size (px)",
+      "min": 12,
+      "max": 36,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "social_icon_gap",
+      "label": "Social Icon Gap (px)",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "text",
+      "id": "left_arrow_text",
+      "label": "Left Arrow Text (HTML Entities OK)",
+      "default": "&#10094;"
+    },
+    {
+      "type": "text",
+      "id": "right_arrow_text",
+      "label": "Right Arrow Text (HTML Entities OK)",
+      "default": "&#10095;"
+    },
+    {
+      "type": "color",
+      "id": "arrow_background",
       "label": "Arrow Background",
       "default": "#000000"
     },
@@ -200,7 +610,7 @@
     },
     {
       "type": "color",
-      "id": "arrow_hover_bg",
+      "id": "arrow_hover_background",
       "label": "Arrow Hover Background",
       "default": "#dddddd"
     },
@@ -211,16 +621,47 @@
       "default": "#000000"
     },
     {
-      "type": "color",
-      "id": "button_bg",
-      "label": "Post Button Background",
-      "default": "#FFD700"
+      "type": "range",
+      "id": "arrow_size",
+      "label": "Arrow Size (px)",
+      "min": 24,
+      "max": 60,
+      "step": 4,
+      "default": 40
     },
     {
-      "type": "color",
-      "id": "button_color",
-      "label": "Post Button Text Color",
-      "default": "#333333"
+      "type": "range",
+      "id": "arrow_font_size",
+      "label": "Arrow Font Size (px)",
+      "min": 12,
+      "max": 36,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "arrow_offset_sides",
+      "label": "Arrow Offset from Sides (px)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay_enabled",
+      "label": "Enable Autoplay?",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay Speed (ms)",
+      "min": 2000,
+      "max": 9000,
+      "step": 500,
+      "unit": "ms",
+      "default": 5000
     }
   ],
   "blocks": [
@@ -247,7 +688,7 @@
         {
           "type": "image_picker",
           "id": "small_image",
-          "label": "Avatar"
+          "label": "Avatar (Small Image)"
         },
         {
           "type": "text",
@@ -258,11 +699,22 @@
         {
           "type": "range",
           "id": "name_font_size",
-          "label": "Name Font Size",
+          "label": "Name Font Size (px)",
           "min": 14,
           "max": 28,
-          "default": 18,
-          "unit": "px"
+          "step": 1,
+          "unit": "px",
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "name_margin_top",
+          "label": "Name Top Margin (px)",
+          "min": 0,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "default": 10
         },
         {
           "type": "text",
@@ -273,31 +725,63 @@
         {
           "type": "range",
           "id": "role_font_size",
-          "label": "Role Font Size",
+          "label": "Role Font Size (px)",
           "min": 12,
           "max": 24,
-          "default": 14,
-          "unit": "px"
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "type": "range",
+          "id": "role_margin_top",
+          "label": "Role Top Margin (px)",
+          "min": 0,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "default": 8
         },
         {
           "type": "textarea",
           "id": "testimonial_text",
-          "label": "Testimonial",
-          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna."
+          "label": "Testimonial Text",
+          "default": "This is the best service I’ve ever used!"
         },
         {
           "type": "range",
           "id": "testimonial_font_size",
-          "label": "Testimonial Font Size",
+          "label": "Testimonial Font Size (px)",
           "min": 12,
           "max": 20,
-          "default": 16,
-          "unit": "px"
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "testimonial_margin_top",
+          "label": "Testimonial Top Margin (px)",
+          "min": 0,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "default": 8
         },
         {
           "type": "url",
           "id": "post_link",
           "label": "Link to Full Post"
+        },
+        {
+          "type": "range",
+          "id": "social_margin_top",
+          "label": "Social Links Top Margin (px)",
+          "min": 0,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "default": 10
         },
         {
           "type": "url",
@@ -314,7 +798,7 @@
   ],
   "presets": [
     {
-      "name": "Default Testimonials",
+      "name": "Default Four Testimonials",
       "category": "Testimonials",
       "blocks": [
         { "type": "testimonial" },
