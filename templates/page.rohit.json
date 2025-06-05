@@ -540,6 +540,7 @@
         "column_HAyVf6": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
             "title": "WE SHIP WORLDWIDE",
             "title_font_size": 18,
             "title_font_weight": "bold",
@@ -591,7 +592,7 @@
       ],
       "name": "RW Text With Icon",
       "settings": {
-        "title": "Featured columns",
+        "title": "",
         "heading_size": "h2",
         "image_width_size": 30,
         "image_height": 100,
