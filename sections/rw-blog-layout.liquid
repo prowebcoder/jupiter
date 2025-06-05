@@ -23,6 +23,9 @@
     position: relative;
     max-width: {{ section.settings.max_container_width }}px;
     margin: 0 auto;
+    {% if section.settings.image_position == '1' %}
+      flex-direction: row-reverse;
+    {% endif %}
   }
 
   {{ sec_id }} .pc-image-block {
@@ -33,10 +36,12 @@
     {% if section.settings.image_rounded_corners %}
       border-radius: {{ section.settings.image_corner_radius }}px;
     {% endif %}
+    width: {{ section.settings.image_width }}%;
+    height: {{ section.settings.image_height }}px;
+    position: relative;
   }
 
   {{ sec_id }} .pc-content-block {
-    position: absolute;
     padding: {{ section.settings.content_padding }}px;
     {% if section.settings.content_rounded_corners %}
       border-radius: {{ section.settings.content_corner_radius }}px;
@@ -47,6 +52,17 @@
     {% if section.settings.content_border %}
       border: {{ section.settings.content_border_thickness }}px solid {{ section.settings.content_border_color }};
     {% endif %}
+    width: {{ section.settings.content_width }}%;
+    height: {{ section.settings.content_height }}px;
+    {% if section.settings.content_position == 'right' %}
+      margin-left: -{{ section.settings.content_width | divided_by: 2 }}%;
+      left: {{ section.settings.content_offset }}px;
+    {% else %}
+      margin-right: -{{ section.settings.content_width | divided_by: 2 }}%;
+      right: {{ section.settings.content_offset }}px;
+    {% endif %}
+    position: relative;
+    z-index: 2;
   }
 
   {{ sec_id }} .pc-content-wrapper {
@@ -83,56 +99,33 @@
     justify-content: center;
   }
 
-  @media (max-width: 768px) {
-    {{ sec_id }} .pc-blog-container {
-      flex-direction: column;
-    }
-
-    {{ sec_id }} .pc-image-block,
-    .pc-content-block {
-      width: 100% !important;
-      height: auto !important;
-      position: static !important;
-      order: 0 !important;
-    }
-
-    {{ sec_id }} .pc-content-block {
-      padding: 20px;
-      border: none !important;
-    }
-  }
-  
   .pc-blog-featured-image {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: {{ section.settings.image_fit }};
     object-position: center;
   }
   
-  .pc-image-block {
-    position: relative;
-    overflow: hidden;
-  }
-  
   @media (max-width: 768px) {
-    .pc-blog-container {
+    {{ sec_id }} .pc-blog-container {
       flex-direction: column !important;
     }
     
-    .pc-image-block,
-    .pc-content-block {
+    {{ sec_id }} .pc-image-block,
+    {{ sec_id }} .pc-content-block {
       width: 100% !important;
-      order: 0 !important;
+      height: auto !important;
     }
     
-    .pc-content-block {
+    {{ sec_id }} .pc-content-block {
       position: relative !important;
+      margin: 20px 0 0 0 !important;
       left: 0 !important;
       right: 0 !important;
-      margin-top: 20px;
+    }
+    
+    {{ sec_id }} .pc-image-block {
+      height: {{ section.settings.image_height | divided_by: 2 }}px !important;
     }
   }
 </style>
@@ -142,15 +135,9 @@
   <h3 class="pc-section-heading">{{ section.settings.heading | default: "FROM THE BLOG" }}</h3>
 
   <!-- Image & Content Container -->
-  <div class="pc-blog-container" style="gap: {{ section.settings.gap_between_blocks }}px;">
+  <div class="pc-blog-container">
     <!-- Image Block -->
-    <div class="pc-image-block" style="
-      width: {{ section.settings.image_width }}%;
-      height: {{ section.settings.image_height }}px;
-      order: {{ section.settings.image_position }};
-      position: relative;
-      overflow: hidden;
-    ">
+    <div class="pc-image-block">
       {% if section.settings.blog_image != blank %}
         {{-
           section.settings.blog_image
@@ -159,29 +146,17 @@
             loading: 'lazy',
             widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
             alt: section.settings.blog_image.alt,
-            class: 'pc-blog-featured-image',
-            style: 'width: 100%; height: 100%; object-fit: ' | append: section.settings.image_fit | append: '; object-position: center;'
+            class: 'pc-blog-featured-image'
         -}}
       {% else %}
-        <div class="pc-image-placeholder" style="width: 100%; height: 100%; background: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+        <div class="pc-image-placeholder">
           {{ 'image' | placeholder_svg_tag: 'pc-placeholder-svg' }}
         </div>
       {% endif %}
     </div>
 
     <!-- Content Block -->
-    <div class="pc-content-block" style="
-      width: {{ section.settings.content_width }}%;
-      height: {{ section.settings.content_height }}px;
-      {% if section.settings.content_position == 'right' %}
-        right: {{ section.settings.content_offset }}px;
-        left: auto;
-      {% else %}
-        left: {{ section.settings.content_offset }}px;
-        right: auto;
-      {% endif %};
-      border: {{ section.settings.content_border_thickness }}px solid {{ section.settings.content_border_color }};
-    ">
+    <div class="pc-content-block">
       <div class="pc-content-wrapper">
         <h4 class="pc-post-title">{{ section.settings.blog_title }}</h4>
         <p class="pc-post-excerpt">{{ section.settings.blog_excerpt }}</p>
@@ -223,16 +198,6 @@
       "unit": "px"
     },
     {
-      "type": "range",
-      "id": "gap_between_blocks",
-      "label": "Gap Between Blocks",
-      "min": 0,
-      "max": 100,
-      "step": 5,
-      "default": 20,
-      "unit": "px"
-    },
-    {
       "type": "select",
       "id": "image_position",
       "label": "Image Position",
@@ -250,12 +215,6 @@
       "type": "image_picker",
       "id": "blog_image",
       "label": "Blog Featured Image"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_placeholder",
-      "label": "Show Placeholder When No Image",
-      "default": true
     },
     {
       "type": "range",
@@ -353,7 +312,7 @@
     {
       "type": "select",
       "id": "content_position",
-      "label": "Content Position",
+      "label": "Content Position Relative to Image",
       "options": [
         { "value": "left", "label": "Left" },
         { "value": "right", "label": "Right" }
