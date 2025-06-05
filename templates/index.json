@@ -499,9 +499,91 @@
         "testimonial_RL8qaJ",
         "testimonial_xkNK8g"
       ],
+      "disabled": true,
       "name": "Testimonial Slider Pwc",
       "settings": {
         "page_width": 1200
+      }
+    },
+    "rw_testimonial_slider_qzwcyX": {
+      "type": "rw-testimonial-slider",
+      "blocks": {
+        "testimonial_zmypPq": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "role": "Designer",
+            "role_font_size": 14,
+            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna.",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_wKAbzB": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "role": "Designer",
+            "role_font_size": 14,
+            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna.",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_xcPRXT": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "role": "Designer",
+            "role_font_size": 14,
+            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna.",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_y96nmT": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "role": "Designer",
+            "role_font_size": 14,
+            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna.",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_zmypPq",
+        "testimonial_wKAbzB",
+        "testimonial_xcPRXT",
+        "testimonial_y96nmT"
+      ],
+      "name": "Default Testimonials",
+      "settings": {
+        "page_width": 650,
+        "arrow_bg": "#000000",
+        "arrow_color": "#ffffff",
+        "arrow_hover_bg": "#dddddd",
+        "arrow_hover_color": "#000000",
+        "button_bg": "#FFD700",
+        "button_color": "#333333"
       }
     }
   },
@@ -511,6 +593,7 @@
     "rw_faq_contact_gDDH38",
     "rw_faq_2_6fRfMg",
     "pwc_counter_aTT7wW",
-    "slider_testimonial_pwc_PfkbTh"
+    "slider_testimonial_pwc_PfkbTh",
+    "rw_testimonial_slider_qzwcyX"
   ]
 }
