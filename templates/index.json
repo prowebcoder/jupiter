@@ -377,7 +377,8 @@
       "name": "PWC Animated Counter",
       "settings": {
         "container_width": "container",
-        "section_padding": 60,
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
         "item_padding": 30,
         "item_gap": 15,
         "bg_color": "#333333",
@@ -394,7 +395,11 @@
         "label_weight": "400",
         "text_color": "#ffffff",
         "icon_size": 48,
-        "icon_color": "#ffffff"
+        "icon_color": "#ffffff",
+        "mobile_number_size": 22,
+        "mobile_suffix_size": 13,
+        "mobile_label_size": 13,
+        "mobile_icon_size": 38
       }
     }
   },
