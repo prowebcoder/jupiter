@@ -382,6 +382,7 @@
         "item_padding": 30,
         "item_gap": 15,
         "bg_color": "#333333",
+        "bg_image": "shopify://shop_images/person-fishing-on-the-beach-is-silhouetted-at-sunset.jpg",
         "bg_size": "cover",
         "bg_position": "center center",
         "bg_repeat": "no-repeat",
