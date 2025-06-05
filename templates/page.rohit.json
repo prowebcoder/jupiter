@@ -584,12 +584,37 @@
             "link_label": "",
             "link": ""
           }
+        },
+        "column_aHat3L": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
+            "title": "Feature title",
+            "title_font_size": 18,
+            "title_font_weight": "bold",
+            "title_color": "#000000",
+            "title_text_decoration": "none",
+            "title_font_style": "normal",
+            "title_padding_top": 0,
+            "title_padding_bottom": 10,
+            "text": "<p>Feature description</p>",
+            "text_font_size": 14,
+            "text_font_weight": "normal",
+            "text_color": "#000000",
+            "text_text_decoration": "none",
+            "text_font_style": "normal",
+            "text_padding_top": 0,
+            "text_padding_bottom": 0,
+            "link_label": "",
+            "link": ""
+          }
         }
       },
       "block_order": [
         "column_pNmLRm",
         "column_4nKeMK",
-        "column_q4QQN8"
+        "column_q4QQN8",
+        "column_aHat3L"
       ],
       "name": "RW Multicolumn",
       "settings": {
