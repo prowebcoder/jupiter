@@ -583,13 +583,33 @@
             "instagram_link": "",
             "youtube_link": ""
           }
+        },
+        "testimonial_E9W3LE": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "name_margin_top": 10,
+            "role": "Designer",
+            "role_font_size": 14,
+            "role_margin_top": 8,
+            "testimonial_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna.",
+            "testimonial_font_size": 16,
+            "testimonial_margin_top": 8,
+            "post_link": "",
+            "social_margin_top": 10,
+            "instagram_link": "",
+            "youtube_link": ""
+          }
         }
       },
       "block_order": [
         "testimonial_GaYXVN",
         "testimonial_DJKaz7",
         "testimonial_M8TbgM",
-        "testimonial_bPQ3tn"
+        "testimonial_bPQ3tn",
+        "testimonial_E9W3LE"
       ],
       "name": "Default Testimonials",
       "settings": {
@@ -606,14 +626,14 @@
         "slide_gap": 20,
         "slide_background": "#ffffff",
         "slide_box_shadow": "0px 4px 8px rgba(0,0,0,0.1)",
-        "slide_border_radius": 10,
+        "slide_border_radius": 26,
         "slide_padding_top": 20,
         "slide_padding_sides": 20,
         "slide_padding_bottom": 20,
-        "main_image_height": 300,
+        "main_image_height": 100,
         "main_image_border_radius": 10,
         "main_image_margin_bottom": 10,
-        "small_image_size": 70,
+        "small_image_size": 40,
         "small_image_margin_top": 10,
         "small_image_margin_bottom": 10,
         "post_button_text": "Check full post",
@@ -635,7 +655,7 @@
         "arrow_size": 40,
         "arrow_font_size": 20,
         "arrow_offset_sides": 10,
-        "autoplay_enabled": false,
+        "autoplay_enabled": true,
         "autoplay_speed": 5000
       }
     }
