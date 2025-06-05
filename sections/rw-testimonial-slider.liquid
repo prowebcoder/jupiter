@@ -16,7 +16,7 @@
   background-color: {{ section.settings.background_color }};
   padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_sides }}px {{ section.settings.desktop_padding_bottom }}px;
   color: {{ section.settings.text_color }};
-  font-family: {{ section.settings.font_family }};
+  font-family: {{ section.settings.type_header_font }};
 }
 {{ sec_id }} .pc-container {
   display: flex;
@@ -226,10 +226,10 @@ if (!customElements.get('testimonial-slider')) {
       "default": "#333333"
     },
     {
-      "type": "text",
-      "id": "font_family",
-      "label": "Font Family",
-      "default": "sans-serif"
+      "type": "font_picker",
+      "id": "type_header_font",
+      "default": "assistant_n4",
+      "label": "Font Family"
     },
     {
       "type": "range",
