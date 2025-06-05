@@ -473,7 +473,7 @@
       "settings": {
         "container_width": 100,
         "max_container_width": 1200,
-        "image_position": "0",
+        "image_position": "1",
         "blog_image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
         "image_width": 50,
         "image_height": 500,
