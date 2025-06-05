@@ -319,12 +319,90 @@
         "shadow_blur": 6,
         "shadow_opacity": 0.1
       }
+    },
+    "pwc_counter_aTT7wW": {
+      "type": "pwc-counter",
+      "blocks": {
+        "counter_WVUMJA": {
+          "type": "counter",
+          "settings": {
+            "icon": "heart",
+            "label": "Our Locations",
+            "start_value": 50,
+            "end_value": 107,
+            "duration": 1000,
+            "suffix": "35"
+          }
+        },
+        "counter_JpVq4Y": {
+          "type": "counter",
+          "settings": {
+            "icon": "people",
+            "label": "Happy Clients",
+            "start_value": 9911,
+            "end_value": 10000,
+            "duration": 1000,
+            "suffix": "+"
+          }
+        },
+        "counter_xYxWxJ": {
+          "type": "counter",
+          "settings": {
+            "icon": "trophy",
+            "label": "Awards Won",
+            "start_value": 0,
+            "end_value": 21,
+            "duration": 1000,
+            "suffix": "35"
+          }
+        },
+        "counter_aJJyd8": {
+          "type": "counter",
+          "settings": {
+            "icon": "graph-up",
+            "label": "Annual Revenue",
+            "start_value": 10,
+            "end_value": 56,
+            "duration": 1000,
+            "suffix": "m"
+          }
+        }
+      },
+      "block_order": [
+        "counter_WVUMJA",
+        "counter_JpVq4Y",
+        "counter_xYxWxJ",
+        "counter_aJJyd8"
+      ],
+      "name": "PWC Animated Counter",
+      "settings": {
+        "container_width": "container",
+        "section_padding": 60,
+        "item_padding": 30,
+        "item_gap": 15,
+        "bg_color": "#333333",
+        "bg_size": "cover",
+        "bg_position": "center center",
+        "bg_repeat": "no-repeat",
+        "bg_attachment": "scroll",
+        "overlay_opacity": 50,
+        "number_size": 74,
+        "number_weight": "700",
+        "number_color": "#ffffff",
+        "suffix_size": 20,
+        "label_size": 18,
+        "label_weight": "400",
+        "text_color": "#ffffff",
+        "icon_size": 48,
+        "icon_color": "#ffffff"
+      }
     }
   },
   "order": [
     "image_counter_pwc_GHENam",
     "pricing_plan_p_xxhtV4",
     "rw_faq_contact_gDDH38",
-    "rw_faq_2_6fRfMg"
+    "rw_faq_2_6fRfMg",
+    "pwc_counter_aTT7wW"
   ]
 }
