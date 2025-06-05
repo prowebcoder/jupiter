@@ -486,7 +486,7 @@
         "content_width": 50,
         "content_height": 250,
         "content_position": "right",
-        "content_offset": 60,
+        "content_offset": 100,
         "content_padding": 40,
         "content_background": "#ffffff",
         "content_border": true,
