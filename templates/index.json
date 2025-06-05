@@ -402,6 +402,107 @@
         "mobile_label_size": 13,
         "mobile_icon_size": 38
       }
+    },
+    "slider_testimonial_pwc_PfkbTh": {
+      "type": "Slider_testimonial_Pwc",
+      "blocks": {
+        "testimonial_Q9Xbnn": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/person-fishing-on-the-beach-is-silhouetted-at-sunset.jpg",
+            "alignment": "center",
+            "small_image": "shopify://shop_images/vecteezy_headphone-png-with-ai-generated_26773824.png",
+            "name": "Rahul",
+            "name_font_size": 18,
+            "role": "Data",
+            "role_font_size": 14,
+            "testimonial_text": "Yo NOw Akllkasd",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_waQ4qF": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/person-fishing-on-the-beach-is-silhouetted-at-sunset.jpg",
+            "alignment": "center",
+            "small_image": "shopify://shop_images/vecteezy_headphone-png-with-ai-generated_26773824.png",
+            "name": "Rahul",
+            "name_font_size": 18,
+            "role": "Data",
+            "role_font_size": 14,
+            "testimonial_text": "Yo NOw Akllkasd",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_zjjKHE": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/person-fishing-on-the-beach-is-silhouetted-at-sunset.jpg",
+            "alignment": "center",
+            "small_image": "shopify://shop_images/vecteezy_headphone-png-with-ai-generated_26773824.png",
+            "name": "Rahul",
+            "name_font_size": 18,
+            "role": "Data",
+            "role_font_size": 14,
+            "testimonial_text": "Yo NOw Akllkasd",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_RL8qaJ": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/person-fishing-on-the-beach-is-silhouetted-at-sunset.jpg",
+            "alignment": "center",
+            "small_image": "shopify://shop_images/vecteezy_headphone-png-with-ai-generated_26773824.png",
+            "name": "Rahul",
+            "name_font_size": 18,
+            "role": "Data",
+            "role_font_size": 14,
+            "testimonial_text": "Yo NOw Akllkasd",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_xkNK8g": {
+          "type": "testimonial",
+          "settings": {
+            "image": "shopify://shop_images/person-fishing-on-the-beach-is-silhouetted-at-sunset.jpg",
+            "alignment": "center",
+            "small_image": "shopify://shop_images/vecteezy_headphone-png-with-ai-generated_26773824.png",
+            "name": "Rahul",
+            "name_font_size": 18,
+            "role": "Data",
+            "role_font_size": 14,
+            "testimonial_text": "Yo NOw Akllkasd",
+            "testimonial_font_size": 16,
+            "post_link": "",
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_Q9Xbnn",
+        "testimonial_waQ4qF",
+        "testimonial_zjjKHE",
+        "testimonial_RL8qaJ",
+        "testimonial_xkNK8g"
+      ],
+      "name": "Testimonial Slider Pwc",
+      "settings": {
+        "page_width": 1200
+      }
     }
   },
   "order": [
@@ -409,6 +510,7 @@
     "pricing_plan_p_xxhtV4",
     "rw_faq_contact_gDDH38",
     "rw_faq_2_6fRfMg",
-    "pwc_counter_aTT7wW"
+    "pwc_counter_aTT7wW",
+    "slider_testimonial_pwc_PfkbTh"
   ]
 }
