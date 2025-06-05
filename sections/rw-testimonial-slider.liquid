@@ -11,12 +11,10 @@
   width: 100%;
   overflow: hidden;
   max-width: {{ section.settings.page_width }}px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   background-color: {{ section.settings.background_color }};
   padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_sides }}px {{ section.settings.desktop_padding_bottom }}px;
   color: {{ section.settings.text_color }};
-  font-family: {{ section.settings.type_header_font }};
 }
 {{ sec_id }} .pc-container {
   display: flex;
@@ -29,7 +27,7 @@
   min-width: 30%;
   background: {{ section.settings.slide_background }};
   border-radius: {{ section.settings.slide_border_radius }}px;
-  box-shadow: {{ section.settings.slide_box_shadow }};
+  {% if section.settings.enable_box_shadow %}box-shadow: 0px 4px 8px rgba(0,0,0,0.1);{% else %}box-shadow: none;{% endif %}
   padding: {{ section.settings.slide_padding_top }}px {{ section.settings.slide_padding_sides }}px {{ section.settings.slide_padding_bottom }}px;
   text-align: center;
   overflow: hidden;
@@ -41,6 +39,10 @@
   border-radius: {{ section.settings.main_image_border_radius }}px {{ section.settings.main_image_border_radius }}px 0 0;
   margin-bottom: {{ section.settings.main_image_margin_bottom }}px;
 }
+{{ sec_id }} .pc-main-image svg {
+  width: 100%;
+  height: 100%;
+}
 {{ sec_id }} .pc-small-image {
   width: {{ section.settings.small_image_size }}px;
   height: {{ section.settings.small_image_size }}px;
@@ -48,6 +50,10 @@
   border-radius: 50%;
   margin-top: {{ section.settings.small_image_margin_top }}px;
   margin-bottom: {{ section.settings.small_image_margin_bottom }}px;
+}
+{{ sec_id }} .pc-small-image svg {
+  width: {{ section.settings.small_image_size }}px;
+  height: {{ section.settings.small_image_size }}px;
 }
 {{ sec_id }} .pc-check-post {
   display: inline-block;
@@ -68,27 +74,23 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: {{ section.settings.arrow_background }};
-  color: {{ section.settings.arrow_color }};
+  background-color: #000;
+  color: #fff;
   border-radius: 50%;
-  width: {{ section.settings.arrow_size }}px;
-  height: {{ section.settings.arrow_size }}px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: {{ section.settings.arrow_font_size }}px;
+  font-size: 20px;
   cursor: pointer;
   z-index: 10;
 }
 {{ sec_id }} .pc-arrow.pc-left {
-  left: {{ section.settings.arrow_offset_sides }}px;
+  left: 10px;
 }
 {{ sec_id }} .pc-arrow.pc-right {
-  right: {{ section.settings.arrow_offset_sides }}px;
-}
-{{ sec_id }} .pc-arrow:hover {
-  background-color: {{ section.settings.arrow_hover_background }};
-  color: {{ section.settings.arrow_hover_color }};
+  right: 10px;
 }
 @media (max-width: 768px) {
   {{ sec_id }} testimonial-slider {
@@ -116,10 +118,10 @@ class TestimonialSlider extends HTMLElement {
     const wrapper = document.querySelector(`#shopify-section-${sectionId}`);
     const leftArrow = document.createElement('div');
     leftArrow.classList.add('pc-arrow', 'pc-left');
-    leftArrow.innerHTML = wrapper.querySelector('.pc-arrow.pc-left').innerHTML;
+    leftArrow.innerHTML = '‹';
     const rightArrow = document.createElement('div');
     rightArrow.classList.add('pc-arrow', 'pc-right');
-    rightArrow.innerHTML = wrapper.querySelector('.pc-arrow.pc-right').innerHTML;
+    rightArrow.innerHTML = '›';
     const container = document.createElement('div');
     container.classList.add('pc-container');
     const existingSlides = Array.from(wrapper.querySelectorAll('.pc-slide'));
@@ -165,7 +167,7 @@ if (!customElements.get('testimonial-slider')) {
 }
 </script>
 
-<div class="pc-arrow pc-left">{{ section.settings.left_arrow_text }}</div>
+<div class="pc-arrow pc-left">‹</div>
 <div class="pc-container">
   {% for block in section.blocks %}
     <div class="pc-slide">
@@ -206,7 +208,7 @@ if (!customElements.get('testimonial-slider')) {
     </div>
   {% endfor %}
 </div>
-<div class="pc-arrow pc-right">{{ section.settings.right_arrow_text }}</div>
+<div class="pc-arrow pc-right">›</div>
 
 {% schema %}
 {
@@ -232,12 +234,6 @@ if (!customElements.get('testimonial-slider')) {
       "id": "text_color",
       "label": "Text Color",
       "default": "#333333"
-    },
-    {
-      "type": "font_picker",
-      "id": "type_header_font",
-      "default": "assistant_n4",
-      "label": "Font Family"
     },
     {
       "type": "range",
@@ -315,10 +311,10 @@ if (!customElements.get('testimonial-slider')) {
       "default": "#FFFFFF"
     },
     {
-      "type": "text",
-      "id": "slide_box_shadow",
-      "label": "Slide Box Shadow (CSS)",
-      "default": "0px 4px 8px rgba(0,0,0,0.1)"
+      "type": "checkbox",
+      "id": "enable_box_shadow",
+      "label": "Enable Box Shadow on Slides",
+      "default": true
     },
     {
       "type": "range",
@@ -484,69 +480,6 @@ if (!customElements.get('testimonial-slider')) {
       "max": 20,
       "step": 2,
       "default": 8
-    },
-    {
-      "type": "text",
-      "id": "left_arrow_text",
-      "label": "Left Arrow Text (HTML Entities OK)",
-      "default": "&#10094;"
-    },
-    {
-      "type": "text",
-      "id": "right_arrow_text",
-      "label": "Right Arrow Text (HTML Entities OK)",
-      "default": "&#10095;"
-    },
-    {
-      "type": "color",
-      "id": "arrow_background",
-      "label": "Arrow Background",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "arrow_color",
-      "label": "Arrow Color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "arrow_hover_background",
-      "label": "Arrow Hover Background",
-      "default": "#dddddd"
-    },
-    {
-      "type": "color",
-      "id": "arrow_hover_color",
-      "label": "Arrow Hover Color",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "arrow_size",
-      "label": "Arrow Size (px)",
-      "min": 24,
-      "max": 60,
-      "step": 4,
-      "default": 40
-    },
-    {
-      "type": "range",
-      "id": "arrow_font_size",
-      "label": "Arrow Font Size (px)",
-      "min": 12,
-      "max": 36,
-      "step": 2,
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "arrow_offset_sides",
-      "label": "Arrow Offset from Sides (px)",
-      "min": 0,
-      "max": 50,
-      "step": 5,
-      "default": 10
     },
     {
       "type": "checkbox",
