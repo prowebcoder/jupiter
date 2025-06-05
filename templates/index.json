@@ -616,7 +616,7 @@
         "page_width": 1350,
         "background_color": "#ffffff",
         "text_color": "#333333",
-        "font_family": "sans-serif",
+        "type_header_font": "arimo_n4",
         "desktop_padding_top": 40,
         "desktop_padding_sides": 20,
         "desktop_padding_bottom": 40,
