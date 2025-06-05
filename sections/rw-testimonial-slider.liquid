@@ -170,13 +170,21 @@ if (!customElements.get('testimonial-slider')) {
   {% for block in section.blocks %}
     <div class="pc-slide">
       {% if block.settings.image != blank %}
-        <img class="pc-main-image" src="{{ block.settings.image | img_url: '600x600' }}" alt="{{ block.settings.name }}" />
+        {{-
+          block.settings.image
+          | image_url: width: section.settings.main_image_height, height: section.settings.main_image_height
+          | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt
+        -}}
       {% else %}
         {{ 'product-1' | placeholder_svg_tag }}
       {% endif %}
       <div style="text-align: {{ block.settings.alignment }};">
         {% if block.settings.small_image != blank %}
-          <img class="pc-small-image" src="{{ block.settings.small_image | img_url: '70x70' }}" alt="{{ block.settings.name }}" />
+          {{-
+            block.settings.small_image
+            | image_url: width: section.settings.small_image_size, height: section.settings.small_image_size
+            | image_tag: loading: 'lazy', preload: true, alt: block.settings.small_image.alt
+          -}}
         {% else %}
           {{ 'product-1' | placeholder_svg_tag }}
         {% endif %}
