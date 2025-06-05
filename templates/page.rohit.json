@@ -484,7 +484,7 @@
         "image_rounded_corners": true,
         "image_corner_radius": 10,
         "content_width": 50,
-        "content_height": 250,
+        "content_height": 200,
         "content_position": "right",
         "content_offset": 265,
         "content_padding": 40,
