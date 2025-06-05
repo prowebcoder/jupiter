@@ -540,6 +540,7 @@
         "column_4nKeMK": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/vecteezy_stylish-neon-headphones-showcase-for-modern-audiophiles_55716679.png",
             "title": "WE SHIP WORLDWIDE",
             "title_font_size": 18,
             "title_font_weight": "bold",
@@ -563,6 +564,7 @@
         "column_q4QQN8": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/vecteezy_headphone-png-with-ai-generated_26773824.png",
             "title": "OVER 20,000 PRODUCTS",
             "title_font_size": 18,
             "title_font_weight": "bold",
