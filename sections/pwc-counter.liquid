@@ -1,7 +1,6 @@
 {%- assign sid = '#shopify-section-' | append: section.id -%}
 
-{%- style -%}
-
+{% style %}
   {{ sid }} .pc-pwc-counter-wrapper {
     background-color: {{ section.settings.bg_color }};
     {% if section.settings.bg_image != blank %}
@@ -12,7 +11,8 @@
       background-attachment: {{ section.settings.bg_attachment }};
     {% endif %}
     position: relative;
-    padding: {{ section.settings.section_padding }}px 0;
+    padding-top: {{ section.settings.section_padding_top }}px;
+    padding-bottom: {{ section.settings.section_padding_bottom }}px;
     overflow: hidden;
   }
 
@@ -92,10 +92,28 @@
 
   @media (max-width: 767px) {
     {{ sid }} .pc-pwc-counter-item {
-      flex: 1 0 100%;
+      flex: 1 0 calc(50% - {{ section.settings.item_gap | times: 2 }}px);
+      min-width: auto;
+    }
+    
+    {{ sid }} .pc-pwc-count {
+      font-size: {{ section.settings.mobile_number_size }}px;
+    }
+    
+    {{ sid }} .pc-pwc-suffix {
+      font-size: {{ section.settings.mobile_suffix_size }}px;
+    }
+    
+    {{ sid }} .pc-pwc-label {
+      font-size: {{ section.settings.mobile_label_size }}px;
+    }
+    
+    {{ sid }} .pc-pwc-count-icon {
+      width: {{ section.settings.mobile_icon_size }}px;
+      height: {{ section.settings.mobile_icon_size }}px;
     }
   }
-{%- endstyle -%}
+{% endstyle %}
 
 <section class="pc-pwc-counter-wrapper">
   <div class="pc-pwc-counter-inner">
@@ -180,7 +198,7 @@
        step = Math.abs(Math.floor(duration / range)),
        timer = setInterval(() => {
         current += increment;
-        obj.textContent = current;
+        obj.textContent = current.toLocaleString();
         if (current == end) {
          clearInterval(timer);
         }
@@ -216,12 +234,22 @@
     },
     {
       "type": "range",
-      "id": "section_padding",
+      "id": "section_padding_top",
       "min": 0,
       "max": 100,
       "step": 5,
       "unit": "px",
-      "label": "Section padding",
+      "label": "Section padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Section padding bottom",
       "default": 60
     },
     {
@@ -470,6 +498,50 @@
       "id": "icon_color",
       "label": "Icon color",
       "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_number_size",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile number size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "mobile_suffix_size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile suffix size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_label_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile label size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_icon_size",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile icon size",
+      "default": 36
     }
   ],
   "blocks": [
