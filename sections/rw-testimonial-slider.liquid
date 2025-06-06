@@ -109,7 +109,7 @@
   }
 {%- endstyle -%}
 <div id="{{ sec_id | remove: '#' }}">
-  <testimonial-slider data-section-id="{{ section.id }}">
+  <testimonial-slider-{{ last_part }} data-section-id="{{ section.id }}">
     <div class="pc-arrow pc-left">‹</div>
     <div class="pc-container">
       {% for block in section.blocks %}
@@ -174,11 +174,11 @@
       {% endfor %}
     </div>
     <div class="pc-arrow pc-right">›</div>
-  </testimonial-slider>
+  </testimonial-slider-{{ last_part }}>
 </div>
 
 <script>
-class TestimonialSlider extends HTMLElement {
+class TestimonialSlider_{{last_part}} extends HTMLElement {
   connectedCallback() {
     const container = this.querySelector('.pc-container');
     const leftArrow = this.querySelector('.pc-arrow.pc-left');
@@ -226,8 +226,8 @@ class TestimonialSlider extends HTMLElement {
   }
 }
 
-if (!customElements.get('testimonial-slider')) {
-  customElements.define('testimonial-slider', TestimonialSlider);
+if (!customElements.get('testimonial-slider-{{ last_part }}')) {
+  customElements.define('testimonial-slider-{{ last_part }}', TestimonialSlider-{{last_part}});
 }
 </script>
 
