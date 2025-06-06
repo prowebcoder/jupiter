@@ -1,5 +1,8 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
-<style>
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+{%- style -%}
   {{ sec_id }} testimonial-slider {
     display: block;
     position: relative;
@@ -104,8 +107,7 @@
       display: none;
     }
   }
-</style>
-
+{%- endstyle -%}
 <div id="{{ sec_id | remove: '#' }}">
   <testimonial-slider data-section-id="{{ section.id }}">
     <div class="pc-arrow pc-left">‹</div>

@@ -2,7 +2,7 @@
 {%- assign parts = sec_id | split: '_' -%}
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
-<style>
+{%- style -%}
   {{ sec_id }} .pc-testimonial-container {
     max-width: {{ section.settings.max_width }}px;
     margin: 0 auto;
@@ -159,7 +159,7 @@
       font-size: {{ section.settings.mobile_quote_size }}px;
     }
   }
-</style>
+{%- endstyle -%}
 
 <div class="pc-testimonial-container">
   {% if section.settings.heading != blank %}
