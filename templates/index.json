@@ -573,7 +573,7 @@
         "button_margin_top": 10,
         "instagram_icon_color": "#e4405f",
         "youtube_icon_color": "#ff0000",
-        "social_icon_size": 20,
+        "social_icon_size": 36,
         "social_icon_gap": 8,
         "autoplay_enabled": true,
         "autoplay_speed": 5000
