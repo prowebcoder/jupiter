@@ -1,74 +1,4 @@
-{% assign sec_id = '#shopify-section-' | append: section.id %}
-
-<div id="{{ sec_id | remove: '#' }}">
-  <testimonial-slider data-section-id="{{ section.id }}">
-    <div class="pc-arrow pc-left">‹</div>
-    <div class="pc-container">
-      {% for block in section.blocks %}
-        <div class="pc-slide">
-          {% if block.settings.image != blank %}
-            {{-
-              block.settings.image
-              | image_url: width: section.settings.image.width, height: section.settings.image.height
-              | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-main-image'
-            -}}
-          {% else %}
-            {{ 'product-1' | placeholder_svg_tag: 'pc-main-image' }}
-          {% endif %}
-          <div style="text-align: {{ block.settings.alignment }};">
-            {% if block.settings.small_image != blank %}
-              {{-
-                block.settings.small_image
-                | image_url: width: section.settings.small_image.width, height: section.settings.small_image.height
-                | image_tag:
-                  loading: 'lazy',
-                  preload: true,
-                  alt: block.settings.small_image.alt,
-                  class: 'pc-small-image'
-              -}}
-            {% else %}
-              {{ 'product-1' | placeholder_svg_tag: 'pc-small-image' }}
-            {% endif %}
-            <h3 style="font-size: {{ block.settings.name_font_size }}px; margin: {{ block.settings.name_margin_top }}px 0;">
-              {{ block.settings.name }}
-            </h3>
-            <p style="font-size: {{ block.settings.role_font_size }}px; margin: {{ block.settings.role_margin_top }}px 0;">
-              {{ block.settings.role }}
-            </p>
-            <p style="font-size: {{ block.settings.testimonial_font_size }}px; margin: {{ block.settings.testimonial_margin_top }}px 0;">
-              {{ block.settings.testimonial_text }}
-            </p>
-            {% if block.settings.post_link %}
-              <a href="{{ block.settings.post_link }}" class="pc-check-post"
-                >+ {{ section.settings.post_button_text -}}
-              </a>
-            {% endif %}
-            <div class="pc-social-links" style="margin-top: {{ block.settings.social_margin_top }}px;">
-              {% if block.settings.instagram_link %}
-                <a
-                  href="{{ block.settings.instagram_link }}"
-                  target="_blank"
-                  style="color: {{ section.settings.instagram_icon_color }};"
-                  >Instagram</a
-                >
-              {% endif %}
-              {% if block.settings.youtube_link %}
-                <a
-                  href="{{ block.settings.youtube_link }}"
-                  target="_blank"
-                  style="color: {{ section.settings.youtube_icon_color }};"
-                  >YouTube</a
-                >
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-    <div class="pc-arrow pc-right">›</div>
-  </testimonial-slider>
-</div>
-
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
 <style>
   {{ sec_id }} testimonial-slider {
     display: block;
@@ -175,6 +105,75 @@
     }
   }
 </style>
+
+<div id="{{ sec_id | remove: '#' }}">
+  <testimonial-slider data-section-id="{{ section.id }}">
+    <div class="pc-arrow pc-left">‹</div>
+    <div class="pc-container">
+      {% for block in section.blocks %}
+        <div class="pc-slide">
+          {% if block.settings.image != blank %}
+            {{-
+              block.settings.image
+              | image_url: width: section.settings.image.width, height: section.settings.image.height
+              | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-main-image'
+            -}}
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'pc-main-image' }}
+          {% endif %}
+          <div style="text-align: {{ block.settings.alignment }};">
+            {% if block.settings.small_image != blank %}
+              {{-
+                block.settings.small_image
+                | image_url: width: section.settings.small_image.width, height: section.settings.small_image.height
+                | image_tag:
+                  loading: 'lazy',
+                  preload: true,
+                  alt: block.settings.small_image.alt,
+                  class: 'pc-small-image'
+              -}}
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'pc-small-image' }}
+            {% endif %}
+            <h3 style="font-size: {{ block.settings.name_font_size }}px; margin: {{ block.settings.name_margin_top }}px 0;">
+              {{ block.settings.name }}
+            </h3>
+            <p style="font-size: {{ block.settings.role_font_size }}px; margin: {{ block.settings.role_margin_top }}px 0;">
+              {{ block.settings.role }}
+            </p>
+            <p style="font-size: {{ block.settings.testimonial_font_size }}px; margin: {{ block.settings.testimonial_margin_top }}px 0;">
+              {{ block.settings.testimonial_text }}
+            </p>
+            {% if block.settings.post_link %}
+              <a href="{{ block.settings.post_link }}" class="pc-check-post"
+                >+ {{ section.settings.post_button_text -}}
+              </a>
+            {% endif %}
+            <div class="pc-social-links" style="margin-top: {{ block.settings.social_margin_top }}px;">
+              {% if block.settings.instagram_link %}
+                <a
+                  href="{{ block.settings.instagram_link }}"
+                  target="_blank"
+                  style="color: {{ section.settings.instagram_icon_color }};"
+                  >Instagram</a
+                >
+              {% endif %}
+              {% if block.settings.youtube_link %}
+                <a
+                  href="{{ block.settings.youtube_link }}"
+                  target="_blank"
+                  style="color: {{ section.settings.youtube_icon_color }};"
+                  >YouTube</a
+                >
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="pc-arrow pc-right">›</div>
+  </testimonial-slider>
+</div>
 
 <script>
 class TestimonialSlider extends HTMLElement {
