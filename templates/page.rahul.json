@@ -117,12 +117,14 @@
         "testimonial_x7Hw4m": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/vecteezy_vibrant-green-and-blue-headphones-with-modern-design_55716678.png",
             "author": "John Doe"
           }
         },
         "testimonial_bNmDEY": {
           "type": "testimonial",
           "settings": {
+            "image": "shopify://shop_images/vecteezy_vibrant-green-and-blue-headphones-with-modern-design_55716678.png",
             "author": "John Doe"
           }
         },
