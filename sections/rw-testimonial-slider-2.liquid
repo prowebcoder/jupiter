@@ -225,56 +225,62 @@ class PCTestimonialSlider extends HTMLElement {
     this.prevBtn = this.querySelector('.pc-slider-btn.prev');
     this.nextBtn = this.querySelector('.pc-slider-btn.next');
     this.dotsContainer = this.querySelector('.pc-slider-dots');
-    
+
     this.slidesToShow = parseInt(this.dataset.slidesToShow) || 1;
     this.autoplay = this.dataset.autoplay === 'true';
     this.autoplaySpeed = parseInt(this.dataset.autoplaySpeed) || 5000;
-    this.currentIndex = 0;
+    this.currentIndex = this.slidesToShow; // Start from first real slide after clone
     this.autoplayInterval = null;
     this.isAnimating = false;
-    
+
     this.initSlider();
     this.createDots();
     this.setActiveDot();
-    
+
     this.prevBtn.addEventListener('click', () => this.prevSlide());
     this.nextBtn.addEventListener('click', () => this.nextSlide());
-    
+
     if (this.autoplay) this.startAutoplay();
-    
+
     window.addEventListener('resize', () => {
       this.updateSlidePosition();
     });
   }
-  
+
   initSlider() {
     this.slideWidth = 100 / this.slidesToShow;
     this.slides.forEach(slide => {
       slide.style.flex = `0 0 ${this.slideWidth}%`;
     });
-    
-    // Clone slides for infinite effect
-    this.cloneFirstAndLast();
+
+    this.cloneSlides();
     this.updateSlidePosition();
   }
-  
-  cloneFirstAndLast() {
-    const firstSlide = this.slides[0].cloneNode(true);
-    const lastSlide = this.slides[this.slides.length - 1].cloneNode(true);
-    
-    firstSlide.classList.add('pc-cloned');
-    lastSlide.classList.add('pc-cloned');
-    
-    this.slider.appendChild(firstSlide);
-    this.slider.insertBefore(lastSlide, this.slides[0]);
-    
-    // Update slides list
+
+  cloneSlides() {
+    // Clone last N slides and append to start
+    for (let i = this.slides.length - this.slidesToShow; i < this.slides.length; i++) {
+      const clone = this.slides[i].cloneNode(true);
+      clone.classList.add('pc-cloned');
+      this.slider.insertBefore(clone, this.slider.firstChild);
+    }
+
+    // Clone first N slides and append to end
+    for (let i = 0; i < this.slidesToShow; i++) {
+      const clone = this.slides[i].cloneNode(true);
+      clone.classList.add('pc-cloned');
+      this.slider.appendChild(clone);
+    }
+
+    // Update slides list after cloning
     this.slides = this.querySelectorAll('.pc-testimonial-slide');
   }
-  
+
   createDots() {
+    this.totalSlides = this.slides.length - this.slidesToShow * 2;
     this.dotsContainer.innerHTML = '';
-    for (let i = 0; i < this.slides.length - 2; i++) {
+
+    for (let i = 0; i < this.totalSlides; i++) {
       const dot = document.createElement('div');
       dot.classList.add('pc-slider-dot');
       dot.dataset.index = i;
@@ -282,94 +288,105 @@ class PCTestimonialSlider extends HTMLElement {
       this.dotsContainer.appendChild(dot);
     }
   }
-  
+
   setActiveDot() {
     this.dotsContainer.querySelectorAll('.pc-slider-dot').forEach(dot => {
       dot.classList.remove('active');
     });
-    const activeIndex = (this.currentIndex + this.slides.length - 2) % (this.slides.length - 2);
+
+    let activeIndex = this.currentIndex - this.slidesToShow;
+    if (activeIndex >= this.totalSlides) activeIndex = 0;
+    if (activeIndex < 0) activeIndex = this.totalSlides - 1;
+
     const activeDot = this.dotsContainer.querySelector(`.pc-slider-dot[data-index="${activeIndex}"]`);
     if (activeDot) activeDot.classList.add('active');
   }
-  
+
   updateSlidePosition() {
-    this.slider.style.transform = `translateX(-${this.currentIndex * this.slideWidth}%)`;
+    this.slider.style.transition = 'transform 0.5s ease';
+    const translateX = -this.currentIndex * this.slideWidth;
+    this.slider.style.transform = `translateX(${translateX}%)`;
   }
-  
+
   prevSlide() {
     if (this.isAnimating) return;
     this.isAnimating = true;
-    
+
     this.currentIndex--;
-    if (this.currentIndex < 0) {
-      this.currentIndex = this.slides.length - 1;
-      this.slider.style.transition = 'none';
-      this.updateSlidePosition();
-      
-      setTimeout(() => {
-        this.slider.style.transition = 'transform 0.5s ease';
-        this.currentIndex--;
-        this.updateSlidePosition();
-      }, 50);
-    } else {
-      this.updateSlidePosition();
-    }
-    
+    this.updateSlidePosition();
     this.setActiveDot();
+
+    this.slider.addEventListener('transitionend', this.handleTransitionEndPrev);
     this.resetAutoplay();
-    
-    setTimeout(() => {
-      this.isAnimating = false;
-    }, 500);
   }
-  
+
   nextSlide() {
     if (this.isAnimating) return;
     this.isAnimating = true;
-    
+
     this.currentIndex++;
-    if (this.currentIndex >= this.slides.length) {
-      this.currentIndex = 0;
-      this.slider.style.transition = 'none';
-      this.updateSlidePosition();
-      
-      setTimeout(() => {
-        this.slider.style.transition = 'transform 0.5s ease';
-        this.currentIndex++;
-        this.updateSlidePosition();
-      }, 50);
-    } else {
-      this.updateSlidePosition();
-    }
-    
+    this.updateSlidePosition();
     this.setActiveDot();
+
+    this.slider.addEventListener('transitionend', this.handleTransitionEndNext);
     this.resetAutoplay();
-    
-    setTimeout(() => {
-      this.isAnimating = false;
-    }, 500);
   }
-  
+
+  handleTransitionEndPrev = () => {
+    this.slider.removeEventListener('transitionend', this.handleTransitionEndPrev);
+
+    if (this.currentIndex < this.slidesToShow) {
+      this.slider.style.transition = 'none';
+      this.currentIndex = this.totalSlides + this.slidesToShow - 1;
+      this.updateSlidePositionWithoutAnimation();
+    }
+
+    this.isAnimating = false;
+  };
+
+  handleTransitionEndNext = () => {
+    this.slider.removeEventListener('transitionend', this.handleTransitionEndNext);
+
+    if (this.currentIndex >= this.totalSlides + this.slidesToShow) {
+      this.slider.style.transition = 'none';
+      this.currentIndex = this.slidesToShow;
+      this.updateSlidePositionWithoutAnimation();
+    }
+
+    this.isAnimating = false;
+  };
+
+  updateSlidePositionWithoutAnimation() {
+    const translateX = -this.currentIndex * this.slideWidth;
+    this.slider.style.transform = `translateX(${translateX}%)`;
+
+    // Force browser repaint so next transition works
+    this.slider.offsetHeight;
+    this.slider.style.transition = 'transform 0.5s ease';
+    this.setActiveDot();
+  }
+
   goToSlide(index) {
     if (this.isAnimating) return;
     this.isAnimating = true;
-    
-    this.currentIndex = index + 1;
+
+    this.currentIndex = index + this.slidesToShow;
     this.updateSlidePosition();
     this.setActiveDot();
-    this.resetAutoplay();
-    
+
     setTimeout(() => {
       this.isAnimating = false;
     }, 500);
+
+    this.resetAutoplay();
   }
-  
+
   startAutoplay() {
     this.autoplayInterval = setInterval(() => {
       this.nextSlide();
     }, this.autoplaySpeed);
   }
-  
+
   resetAutoplay() {
     if (this.autoplay) {
       clearInterval(this.autoplayInterval);
