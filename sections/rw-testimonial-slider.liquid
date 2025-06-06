@@ -185,9 +185,9 @@ class TestimonialSlider_{{last_part}} extends HTMLElement {
     this.leftArrow = this.querySelector('.pc-arrow.pc-left');
     this.rightArrow = this.querySelector('.pc-arrow.pc-right');
     this.slides = this.container.querySelectorAll('.pc-slide');
-    
+
     if (!this.slides.length) return;
-    
+
     this.index = 0;
     this.slidesToShow = 3;
     this.totalSlides = this.slides.length;
@@ -195,21 +195,60 @@ class TestimonialSlider_{{last_part}} extends HTMLElement {
     this.updateSlide = this.updateSlide.bind(this); // make it class-bound for resize
 
     this.leftArrow.addEventListener('click', () => {
-      this.index = this.index > 0 ? this.index - 1 : this.totalSlides - this.slidesToShow;
-      this.updateSlide();
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile) {
+        // On mobile → scroll left by one slide
+        const slide = this.slides[0];
+        const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
+        const slideWidth = slide.offsetWidth + gap;
+        this.container.scrollBy({
+          left: -slideWidth,
+          behavior: 'smooth'
+        });
+      } else {
+        // Desktop → change index
+        this.index = this.index > 0 ? this.index - 1 : this.totalSlides - this.slidesToShow;
+        this.updateSlide();
+      }
     });
 
     this.rightArrow.addEventListener('click', () => {
-      this.index = this.index < this.totalSlides - this.slidesToShow ? this.index + 1 : 0;
-      this.updateSlide();
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile) {
+        // On mobile → scroll right by one slide
+        const slide = this.slides[0];
+        const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
+        const slideWidth = slide.offsetWidth + gap;
+        this.container.scrollBy({
+          left: slideWidth,
+          behavior: 'smooth'
+        });
+      } else {
+        // Desktop → change index
+        this.index = this.index < this.totalSlides - this.slidesToShow ? this.index + 1 : 0;
+        this.updateSlide();
+      }
     });
 
     // Autoplay support
     if ({{ section.settings.autoplay_enabled | default: false }}) {
       const intervalSpeed = {{ section.settings.autoplay_speed }};
       this._autoPlayInterval = setInterval(() => {
-        this.index = this.index < this.totalSlides - this.slidesToShow ? this.index + 1 : 0;
-        this.updateSlide();
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+          // Mobile autoplay → scroll right by one slide
+          const slide = this.slides[0];
+          const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
+          const slideWidth = slide.offsetWidth + gap;
+          this.container.scrollBy({
+            left: slideWidth,
+            behavior: 'smooth'
+          });
+        } else {
+          // Desktop autoplay → update index
+          this.index = this.index < this.totalSlides - this.slidesToShow ? this.index + 1 : 0;
+          this.updateSlide();
+        }
       }, intervalSpeed);
     }
 
@@ -218,31 +257,30 @@ class TestimonialSlider_{{last_part}} extends HTMLElement {
     window.addEventListener('resize', this.updateSlide);
   }
 
-updateSlide() {
-  const containerWidth = this.container.offsetWidth;
-  const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
-  const isMobile = window.innerWidth <= 768;
-  const visibleSlideCount = isMobile ? 1 : this.slidesToShow;
+  updateSlide() {
+    const containerWidth = this.container.offsetWidth;
+    const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
+    const isMobile = window.innerWidth <= 768;
+    const visibleSlideCount = isMobile ? 1 : this.slidesToShow;
 
-  const slideWidth = (containerWidth - gap * (visibleSlideCount - 1)) / visibleSlideCount;
+    const slideWidth = (containerWidth - gap * (visibleSlideCount - 1)) / visibleSlideCount;
 
-  this.slides.forEach(slide => {
-    if (isMobile) {
-      slide.style.minWidth = ''; // Let CSS handle minWidth
-      slide.style.transform = ''; // Reset transform
+    this.slides.forEach(slide => {
+      if (isMobile) {
+        slide.style.minWidth = ''; // Let CSS handle minWidth
+        slide.style.transform = ''; // Reset transform
+      } else {
+        slide.style.minWidth = `${slideWidth}px`;
+      }
+    });
+
+    if (!isMobile) {
+      const translateX = -this.index * (slideWidth + gap);
+      this.container.style.transform = `translateX(${translateX}px)`;
     } else {
-      slide.style.minWidth = `${slideWidth}px`;
+      this.container.style.transform = ''; // Reset transform for mobile
     }
-  });
-
-  if (!isMobile) {
-    const translateX = -this.index * (slideWidth + gap);
-    this.container.style.transform = `translateX(${translateX}px)`;
-  } else {
-    this.container.style.transform = ''; // Reset transform for mobile
   }
-}
-
 
   disconnectedCallback() {
     if (this._autoPlayInterval) clearInterval(this._autoPlayInterval);
