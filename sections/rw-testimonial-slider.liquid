@@ -3,114 +3,143 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 {%- style -%}
-  {{ sec_id }} testimonial-slider-{{last_part}} {
-    display: block;
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    max-width: {{ section.settings.page_width }}px;
-    margin: 0 auto;
-    background-color: {{ section.settings.background_color }};
-    padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_sides }}px {{ section.settings.desktop_padding_bottom }}px;
-    color: {{ section.settings.text_color }};
-  }
-  {{ sec_id }} .pc-container {
-    display: flex;
-    gap: {{ section.settings.slide_gap }}px;
-    transition: transform 0.5s ease;
-    will-change: transform;
-  }
-  {{ sec_id }} .pc-slide {
-    flex: 0 0 32.33%;
-    min-width: 32.33%;
-    background: {{ section.settings.slide_background }};
-    border-radius: {{ section.settings.slide_border_radius }}px;
-    /* {% if section.settings.enable_box_shadow %}box-shadow: 0px 0px 8px rgba(0,0,0,0.1);{% else %}box-shadow: none;{% endif %} */
-  border:1px solid rgba(0,0,0,0.1);
-    padding: {{ section.settings.slide_padding_top }}px {{ section.settings.slide_padding_sides }}px {{ section.settings.slide_padding_bottom }}px;
-    text-align: center;
-    overflow: hidden;
-    /* margin: 10px; */
-  }
-  {{ sec_id }} .pc-main-image {
-    width: auto;
-    height: {{ section.settings.main_image_height }}px;
-    object-fit: cover;
-    border-radius: {{ section.settings.main_image_border_radius }}px {{ section.settings.main_image_border_radius }}px 0 0;
-    margin-bottom: {{ section.settings.main_image_margin_bottom }}px;
-  }
-  {{ sec_id }} .pc-main-image svg {
-    width: 100%;
-    height: 100%;
-  }
-  {{ sec_id }} .pc-small-image {
-    width: {{ section.settings.small_image_size }}px;
-    height: {{ section.settings.small_image_size }}px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-top: {{ section.settings.small_image_margin_top }}px;
-    margin-bottom: {{ section.settings.small_image_margin_bottom }}px;
-  }
-  {{ sec_id }} .pc-small-image svg {
-    width: {{ section.settings.small_image_size }}px;
-    height: {{ section.settings.small_image_size }}px;
-  }
-  {{ sec_id }} .pc-check-post {
-    display: inline-block;
-    padding: 8px 15px;
-    background-color: {{ section.settings.button_background }};
-    color: {{ section.settings.button_text_color }};
-    border-radius: {{ section.settings.button_border_radius }}px;
-    text-decoration: none;
-    font-size: {{ section.settings.button_font_size }}px;
-    margin-top: {{ section.settings.button_margin_top }}px;
-  }
-  {{ sec_id }} .pc-social-links a {
-    margin: 0 {{ section.settings.social_icon_gap }}px;
-    font-size: {{ section.settings.social_icon_size }}px;
-    text-decoration: none;
-  }
-  {{ sec_id }} .pc-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #000;
-    color: #fff;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 10;
-  }
-  {{ sec_id }} .pc-arrow.pc-left {
-    left: 10px;
-  }
-  {{ sec_id }} .pc-arrow.pc-right {
-    right: 10px;
-  }
-  @media (max-width: 768px) {
     {{ sec_id }} testimonial-slider-{{last_part}} {
-      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_sides }}px {{ section.settings.mobile_padding_bottom }}px;
+      display: block;
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      max-width: {{ section.settings.page_width }}px;
+      margin: 0 auto;
+      background-color: {{ section.settings.background_color }};
+      padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_sides }}px {{ section.settings.desktop_padding_bottom }}px;
+      color: {{ section.settings.text_color }};
     }
     {{ sec_id }} .pc-container {
-     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-
+      display: flex;
+      gap: {{ section.settings.slide_gap }}px;
+      transition: transform 0.5s ease;
+      will-change: transform;
     }
     {{ sec_id }} .pc-slide {
-      flex: 0 0 95%;
-      min-width: 95%;
-      scroll-snap-align: center;
+      flex: 0 0 32.33%;
+      min-width: 32.33%;
+      background: {{ section.settings.slide_background }};
+      border-radius: {{ section.settings.slide_border_radius }}px;
+      /* {% if section.settings.enable_box_shadow %}box-shadow: 0px 0px 8px rgba(0,0,0,0.1);{% else %}box-shadow: none;{% endif %} */
+    border:1px solid rgba(0,0,0,0.1);
+      padding: {{ section.settings.slide_padding_top }}px {{ section.settings.slide_padding_sides }}px {{ section.settings.slide_padding_bottom }}px;
+      text-align: center;
+      overflow: hidden;
+      /* margin: 10px; */
     }
-    /* {{ sec_id }} .pc-arrow {
-      display: none;
-    } */
+    {{ sec_id }} .pc-main-image {
+      width: auto;
+      height: {{ section.settings.main_image_height }}px;
+      object-fit: cover;
+      border-radius: {{ section.settings.main_image_border_radius }}px {{ section.settings.main_image_border_radius }}px 0 0;
+      margin-bottom: {{ section.settings.main_image_margin_bottom }}px;
+    }
+    {{ sec_id }} .pc-main-image svg {
+      width: 100%;
+      height: 100%;
+    }
+    {{ sec_id }} .pc-small-image {
+      width: {{ section.settings.small_image_size }}px;
+      height: {{ section.settings.small_image_size }}px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-top: {{ section.settings.small_image_margin_top }}px;
+      margin-bottom: {{ section.settings.small_image_margin_bottom }}px;
+    }
+    {{ sec_id }} .pc-small-image svg {
+      width: {{ section.settings.small_image_size }}px;
+      height: {{ section.settings.small_image_size }}px;
+    }
+    {{ sec_id }} .pc-check-post {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: {{ section.settings.button_background }};
+      color: {{ section.settings.button_text_color }};
+      border-radius: {{ section.settings.button_border_radius }}px;
+      text-decoration: none;
+      font-size: {{ section.settings.button_font_size }}px;
+      margin-top: {{ section.settings.button_margin_top }}px;
+    }
+    {{ sec_id }} .pc-social-links a {
+      margin: 0 {{ section.settings.social_icon_gap }}px;
+      font-size: {{ section.settings.social_icon_size }}px;
+      text-decoration: none;
+    }
+    {{ sec_id }} .pc-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #000;
+      color: #fff;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 10;
+    }
+    {{ sec_id }} .pc-arrow.pc-left {
+      left: 10px;
+    }
+    {{ sec_id }} .pc-arrow.pc-right {
+      right: 10px;
+    }
+    {{ sec_id }} .pc-social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: {{ section.settings.social_icon_gap }}px;
   }
+
+  {{ sec_id }} .pc-social-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: {{ section.settings.social_icon_size }}px;
+    height: {{ section.settings.social_icon_size }}px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.05); /* subtle bg circle */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  {{ sec_id }} .pc-social-links a:hover {
+    background-color: rgba(0,0,0,0.1);
+    transform: scale(1.1);
+  }
+
+  {{ sec_id }} .pc-social-links svg {
+    width: 70%;
+    height: 70%;
+    fill: currentColor;
+  }
+
+    @media (max-width: 768px) {
+      {{ sec_id }} testimonial-slider-{{last_part}} {
+        padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_sides }}px {{ section.settings.mobile_padding_bottom }}px;
+      }
+      {{ sec_id }} .pc-container {
+       overflow-x: auto;
+      scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+
+      }
+      {{ sec_id }} .pc-slide {
+        flex: 0 0 95%;
+        min-width: 95%;
+        scroll-snap-align: center;
+      }
+      /* {{ sec_id }} .pc-arrow {
+        display: none;
+      } */
+    }
 {%- endstyle -%}
 <div id="{{ sec_id | remove: '#' }}">
   <testimonial-slider-{{ last_part }} data-section-id="{{ section.id }}">
