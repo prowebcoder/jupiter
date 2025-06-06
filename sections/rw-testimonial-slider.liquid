@@ -187,77 +187,95 @@ class TestimonialSlider_{{last_part}} extends HTMLElement {
     this.container = this.querySelector('.pc-container');
     this.leftArrow = this.querySelector('.pc-arrow.pc-left');
     this.rightArrow = this.querySelector('.pc-arrow.pc-right');
+    this.originalSlides = Array.from(this.container.querySelectorAll('.pc-slide'));
+
+    if (!this.originalSlides.length) return;
+
+    this.slidesToShow = 3;
+    this.index = this.slidesToShow; // because we will prepend clones
+    this.totalSlides = this.originalSlides.length;
+
+    this.updateSlide = this.updateSlide.bind(this);
+
+    // Clone slides for infinite effect
+    this.cloneSlides();
+
     this.slides = this.container.querySelectorAll('.pc-slide');
 
-    if (!this.slides.length) return;
-
-    this.index = 0;
-    this.slidesToShow = 3;
-    this.totalSlides = this.slides.length;
-
-    this.updateSlide = this.updateSlide.bind(this); // make it class-bound for resize
-
-    this.leftArrow.addEventListener('click', () => {
-      const isMobile = window.innerWidth <= 768;
-      if (isMobile) {
-        // On mobile → scroll left by one slide
-        const slide = this.slides[0];
-        const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
-        const slideWidth = slide.offsetWidth + gap;
-        this.container.scrollBy({
-          left: -slideWidth,
-          behavior: 'smooth'
-        });
-      } else {
-        // Desktop → change index
-        this.index = this.index > 0 ? this.index - 1 : this.totalSlides - this.slidesToShow;
-        this.updateSlide();
-      }
-    });
-
-    this.rightArrow.addEventListener('click', () => {
-      const isMobile = window.innerWidth <= 768;
-      if (isMobile) {
-        // On mobile → scroll right by one slide
-        const slide = this.slides[0];
-        const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
-        const slideWidth = slide.offsetWidth + gap;
-        this.container.scrollBy({
-          left: slideWidth,
-          behavior: 'smooth'
-        });
-      } else {
-        // Desktop → change index
-        this.index = this.index < this.totalSlides - this.slidesToShow ? this.index + 1 : 0;
-        this.updateSlide();
-      }
-    });
+    this.leftArrow.addEventListener('click', () => this.prevSlide());
+    this.rightArrow.addEventListener('click', () => this.nextSlide());
 
     // Autoplay support
     if ({{ section.settings.autoplay_enabled | default: false }}) {
       const intervalSpeed = {{ section.settings.autoplay_speed }};
       this._autoPlayInterval = setInterval(() => {
-        const isMobile = window.innerWidth <= 768;
-        if (isMobile) {
-          // Mobile autoplay → scroll right by one slide
-          const slide = this.slides[0];
-          const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
-          const slideWidth = slide.offsetWidth + gap;
-          this.container.scrollBy({
-            left: slideWidth,
-            behavior: 'smooth'
-          });
-        } else {
-          // Desktop autoplay → update index
-          this.index = this.index < this.totalSlides - this.slidesToShow ? this.index + 1 : 0;
-          this.updateSlide();
-        }
+        this.nextSlide();
       }, intervalSpeed);
     }
 
-    // Initialize
+    // Initial update
     this.updateSlide();
+
+    // Handle transition end for seamless looping
+    this.container.addEventListener('transitionend', () => {
+      if (this.index >= this.totalSlides + this.slidesToShow) {
+        this.index = this.slidesToShow;
+        this.jumpToSlide();
+      } else if (this.index < this.slidesToShow) {
+        this.index = this.totalSlides + this.slidesToShow - 1;
+        this.jumpToSlide();
+      }
+    });
+
     window.addEventListener('resize', this.updateSlide);
+  }
+
+  cloneSlides() {
+    // Clear existing clones if any
+    this.container.innerHTML = '';
+
+    // Clone last slides to beginning
+    const prependSlides = this.originalSlides.slice(-this.slidesToShow).map(slide => slide.cloneNode(true));
+    prependSlides.forEach(clone => this.container.appendChild(clone));
+
+    // Append original slides
+    this.originalSlides.forEach(slide => this.container.appendChild(slide));
+
+    // Clone first slides to end
+    const appendSlides = this.originalSlides.slice(0, this.slidesToShow).map(slide => slide.cloneNode(true));
+    appendSlides.forEach(clone => this.container.appendChild(clone));
+  }
+
+  prevSlide() {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      const slide = this.slides[0];
+      const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
+      const slideWidth = slide.offsetWidth + gap;
+      this.container.scrollBy({
+        left: -slideWidth,
+        behavior: 'smooth'
+      });
+    } else {
+      this.index--;
+      this.updateSlide();
+    }
+  }
+
+  nextSlide() {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      const slide = this.slides[0];
+      const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
+      const slideWidth = slide.offsetWidth + gap;
+      this.container.scrollBy({
+        left: slideWidth,
+        behavior: 'smooth'
+      });
+    } else {
+      this.index++;
+      this.updateSlide();
+    }
   }
 
   updateSlide() {
@@ -270,8 +288,8 @@ class TestimonialSlider_{{last_part}} extends HTMLElement {
 
     this.slides.forEach(slide => {
       if (isMobile) {
-        slide.style.minWidth = ''; // Let CSS handle minWidth
-        slide.style.transform = ''; // Reset transform
+        slide.style.minWidth = '';
+        slide.style.transform = '';
       } else {
         slide.style.minWidth = `${slideWidth}px`;
       }
@@ -279,10 +297,20 @@ class TestimonialSlider_{{last_part}} extends HTMLElement {
 
     if (!isMobile) {
       const translateX = -this.index * (slideWidth + gap);
+      this.container.style.transition = 'transform 0.5s ease';
       this.container.style.transform = `translateX(${translateX}px)`;
     } else {
-      this.container.style.transform = ''; // Reset transform for mobile
+      this.container.style.transform = '';
     }
+  }
+
+  jumpToSlide() {
+    const containerWidth = this.container.offsetWidth;
+    const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
+    const slideWidth = (containerWidth - gap * (this.slidesToShow - 1)) / this.slidesToShow;
+    const translateX = -this.index * (slideWidth + gap);
+    this.container.style.transition = 'none';
+    this.container.style.transform = `translateX(${translateX}px)`;
   }
 
   disconnectedCallback() {
