@@ -110,10 +110,62 @@
         "mobile_press_font_size": 14,
         "mobile_press_gap": 12
       }
+    },
+    "rw_testimonial_slider_2_e7K8mQ": {
+      "type": "rw-testimonial-slider-2",
+      "blocks": {
+        "testimonial_x7Hw4m": {
+          "type": "testimonial",
+          "settings": {
+            "author": "John Doe"
+          }
+        },
+        "testimonial_bNmDEY": {
+          "type": "testimonial",
+          "settings": {
+            "author": "John Doe"
+          }
+        },
+        "testimonial_J7BFzN": {
+          "type": "testimonial",
+          "settings": {
+            "author": "John Doe"
+          }
+        },
+        "testimonial_drtawK": {
+          "type": "testimonial",
+          "settings": {
+            "author": "John Doe"
+          }
+        },
+        "testimonial_rjgzH3": {
+          "type": "testimonial",
+          "settings": {
+            "author": "John Doe"
+          }
+        },
+        "testimonial_ArnrA6": {
+          "type": "testimonial",
+          "settings": {
+            "author": "John Doe"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_x7Hw4m",
+        "testimonial_bNmDEY",
+        "testimonial_J7BFzN",
+        "testimonial_drtawK",
+        "testimonial_rjgzH3",
+        "testimonial_ArnrA6"
+      ],
+      "name": "Testimonial Slider #1",
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "pwc_video_text_CkAfqn"
+    "pwc_video_text_CkAfqn",
+    "rw_testimonial_slider_2_e7K8mQ"
   ]
 }
