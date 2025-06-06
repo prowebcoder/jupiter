@@ -218,22 +218,31 @@ class TestimonialSlider_{{last_part}} extends HTMLElement {
     window.addEventListener('resize', this.updateSlide);
   }
 
-  updateSlide() {
-    const containerWidth = this.container.offsetWidth;
-    const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
-    const visibleSlideCount = window.innerWidth <= 768 ? 1 : this.slidesToShow;
-    
-    // Calculate slide width based on container / visible slides
-    const slideWidth = (containerWidth - gap * (visibleSlideCount - 1)) / visibleSlideCount;
+updateSlide() {
+  const containerWidth = this.container.offsetWidth;
+  const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
+  const isMobile = window.innerWidth <= 768;
+  const visibleSlideCount = isMobile ? 1 : this.slidesToShow;
 
-    this.slides.forEach(slide => {
+  const slideWidth = (containerWidth - gap * (visibleSlideCount - 1)) / visibleSlideCount;
+
+  this.slides.forEach(slide => {
+    if (isMobile) {
+      slide.style.minWidth = ''; // Let CSS handle minWidth
+      slide.style.transform = ''; // Reset transform
+    } else {
       slide.style.minWidth = `${slideWidth}px`;
-    });
+    }
+  });
 
-    // Translate the container
+  if (!isMobile) {
     const translateX = -this.index * (slideWidth + gap);
     this.container.style.transform = `translateX(${translateX}px)`;
+  } else {
+    this.container.style.transform = ''; // Reset transform for mobile
   }
+}
+
 
   disconnectedCallback() {
     if (this._autoPlayInterval) clearInterval(this._autoPlayInterval);
