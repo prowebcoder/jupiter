@@ -110,69 +110,10 @@
         "mobile_press_font_size": 14,
         "mobile_press_gap": 12
       }
-    },
-    "rw_testimonial_slider_2_zfGdnm": {
-      "type": "rw-testimonial-slider-2",
-      "blocks": {
-        "testimonial_9bMieV": {
-          "type": "testimonial",
-          "settings": {
-            "text": "This is an example testimonial.",
-            "author": "John Doe"
-          }
-        },
-        "testimonial_8FekMC": {
-          "type": "testimonial",
-          "settings": {
-            "text": "This is an example testimonial.",
-            "author": "John Doe"
-          }
-        },
-        "testimonial_8j6XeU": {
-          "type": "testimonial",
-          "settings": {
-            "text": "This is an example testimonial.",
-            "author": "John Doe"
-          }
-        },
-        "testimonial_NjUKNK": {
-          "type": "testimonial",
-          "settings": {
-            "text": "This is an example testimonial.",
-            "author": "John Doe"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_9bMieV",
-        "testimonial_8FekMC",
-        "testimonial_8j6XeU",
-        "testimonial_NjUKNK"
-      ],
-      "name": "Testimonial Slider #1",
-      "settings": {
-        "desktop_padding_top": 40,
-        "desktop_padding_bottom": 40,
-        "desktop_background_color": "#ffffff",
-        "desktop_box_shadow": false,
-        "desktop_font_size": 16,
-        "desktop_text_color": "#000000",
-        "desktop_author_font_size": 14,
-        "desktop_author_color": "#333333",
-        "mobile_padding_top": 20,
-        "mobile_padding_bottom": 20,
-        "mobile_background_color": "#ffffff",
-        "mobile_box_shadow": false,
-        "mobile_font_size": 14,
-        "mobile_text_color": "#000000",
-        "mobile_author_font_size": 12,
-        "mobile_author_color": "#333333"
-      }
     }
   },
   "order": [
     "main",
-    "pwc_video_text_CkAfqn",
-    "rw_testimonial_slider_2_zfGdnm"
+    "pwc_video_text_CkAfqn"
   ]
 }
