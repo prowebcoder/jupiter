@@ -20,23 +20,45 @@
               {{-
                 block.settings.small_image
                 | image_url: width: section.settings.small_image.width, height: section.settings.small_image.height
-                | image_tag: loading: 'lazy', preload: true, alt: block.settings.small_image.alt, class: 'pc-small-image'
+                | image_tag:
+                  loading: 'lazy',
+                  preload: true,
+                  alt: block.settings.small_image.alt,
+                  class: 'pc-small-image'
               -}}
             {% else %}
               {{ 'product-1' | placeholder_svg_tag: 'pc-small-image' }}
             {% endif %}
-            <h3 style="font-size: {{ block.settings.name_font_size }}px; margin: {{ block.settings.name_margin_top }}px 0;">{{ block.settings.name }}</h3>
-            <p style="font-size: {{ block.settings.role_font_size }}px; margin: {{ block.settings.role_margin_top }}px 0;">{{ block.settings.role }}</p>
-            <p style="font-size: {{ block.settings.testimonial_font_size }}px; margin: {{ block.settings.testimonial_margin_top }}px 0;">{{ block.settings.testimonial_text }}</p>
+            <h3 style="font-size: {{ block.settings.name_font_size }}px; margin: {{ block.settings.name_margin_top }}px 0;">
+              {{ block.settings.name }}
+            </h3>
+            <p style="font-size: {{ block.settings.role_font_size }}px; margin: {{ block.settings.role_margin_top }}px 0;">
+              {{ block.settings.role }}
+            </p>
+            <p style="font-size: {{ block.settings.testimonial_font_size }}px; margin: {{ block.settings.testimonial_margin_top }}px 0;">
+              {{ block.settings.testimonial_text }}
+            </p>
             {% if block.settings.post_link %}
-              <a href="{{ block.settings.post_link }}" class="pc-check-post">+ {{ section.settings.post_button_text }}</a>
+              <a href="{{ block.settings.post_link }}" class="pc-check-post"
+                >+ {{ section.settings.post_button_text -}}
+              </a>
             {% endif %}
             <div class="pc-social-links" style="margin-top: {{ block.settings.social_margin_top }}px;">
               {% if block.settings.instagram_link %}
-                <a href="{{ block.settings.instagram_link }}" target="_blank" style="color: {{ section.settings.instagram_icon_color }};">Instagram</a>
+                <a
+                  href="{{ block.settings.instagram_link }}"
+                  target="_blank"
+                  style="color: {{ section.settings.instagram_icon_color }};"
+                  >Instagram</a
+                >
               {% endif %}
               {% if block.settings.youtube_link %}
-                <a href="{{ block.settings.youtube_link }}" target="_blank" style="color: {{ section.settings.youtube_icon_color }};">YouTube</a>
+                <a
+                  href="{{ block.settings.youtube_link }}"
+                  target="_blank"
+                  style="color: {{ section.settings.youtube_icon_color }};"
+                  >YouTube</a
+                >
               {% endif %}
             </div>
           </div>
@@ -48,110 +70,110 @@
 </div>
 
 <style>
-{{ sec_id }} testimonial-slider {
-  display: block;
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  max-width: {{ section.settings.page_width }}px;
-  margin: 0 auto;
-  background-color: {{ section.settings.background_color }};
-  padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_sides }}px {{ section.settings.desktop_padding_bottom }}px;
-  color: {{ section.settings.text_color }};
-}
-{{ sec_id }} .pc-container {
-  display: flex;
-  gap: {{ section.settings.slide_gap }}px;
-  transition: transform 0.5s ease;
-  will-change: transform;
-}
-{{ sec_id }} .pc-slide {
-  flex: 0 0 30%;
-  min-width: 30%;
-  background: {{ section.settings.slide_background }};
-  border-radius: {{ section.settings.slide_border_radius }}px;
-  {% if section.settings.enable_box_shadow %}box-shadow: 0px 4px 8px rgba(0,0,0,0.1);{% else %}box-shadow: none;{% endif %}
-  padding: {{ section.settings.slide_padding_top }}px {{ section.settings.slide_padding_sides }}px {{ section.settings.slide_padding_bottom }}px;
-  text-align: center;
-  overflow: hidden;
-}
-{{ sec_id }} .pc-main-image {
-  width: 100%;
-  height: {{ section.settings.main_image_height }}px;
-  object-fit: cover;
-  border-radius: {{ section.settings.main_image_border_radius }}px {{ section.settings.main_image_border_radius }}px 0 0;
-  margin-bottom: {{ section.settings.main_image_margin_bottom }}px;
-}
-{{ sec_id }} .pc-main-image svg {
-  width: 100%;
-  height: 100%;
-}
-{{ sec_id }} .pc-small-image {
-  width: {{ section.settings.small_image_size }}px;
-  height: {{ section.settings.small_image_size }}px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-top: {{ section.settings.small_image_margin_top }}px;
-  margin-bottom: {{ section.settings.small_image_margin_bottom }}px;
-}
-{{ sec_id }} .pc-small-image svg {
-  width: {{ section.settings.small_image_size }}px;
-  height: {{ section.settings.small_image_size }}px;
-}
-{{ sec_id }} .pc-check-post {
-  display: inline-block;
-  padding: 8px 15px;
-  background-color: {{ section.settings.button_background }};
-  color: {{ section.settings.button_text_color }};
-  border-radius: {{ section.settings.button_border_radius }}px;
-  text-decoration: none;
-  font-size: {{ section.settings.button_font_size }}px;
-  margin-top: {{ section.settings.button_margin_top }}px;
-}
-{{ sec_id }} .pc-social-links a {
-  margin: 0 {{ section.settings.social_icon_gap }}px;
-  font-size: {{ section.settings.social_icon_size }}px;
-  text-decoration: none;
-}
-{{ sec_id }} .pc-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #000;
-  color: #fff;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  cursor: pointer;
-  z-index: 10;
-}
-{{ sec_id }} .pc-arrow.pc-left {
-  left: 10px;
-}
-{{ sec_id }} .pc-arrow.pc-right {
-  right: 10px;
-}
-@media (max-width: 768px) {
   {{ sec_id }} testimonial-slider {
-    padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_sides }}px {{ section.settings.mobile_padding_bottom }}px;
+    display: block;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    max-width: {{ section.settings.page_width }}px;
+    margin: 0 auto;
+    background-color: {{ section.settings.background_color }};
+    padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_sides }}px {{ section.settings.desktop_padding_bottom }}px;
+    color: {{ section.settings.text_color }};
   }
   {{ sec_id }} .pc-container {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    display: flex;
+    gap: {{ section.settings.slide_gap }}px;
+    transition: transform 0.5s ease;
+    will-change: transform;
   }
   {{ sec_id }} .pc-slide {
-    flex: 0 0 80%;
-    min-width: 80%;
-    scroll-snap-align: center;
+    flex: 0 0 30%;
+    min-width: 30%;
+    background: {{ section.settings.slide_background }};
+    border-radius: {{ section.settings.slide_border_radius }}px;
+    {% if section.settings.enable_box_shadow %}box-shadow: 0px 4px 8px rgba(0,0,0,0.1);{% else %}box-shadow: none;{% endif %}
+    padding: {{ section.settings.slide_padding_top }}px {{ section.settings.slide_padding_sides }}px {{ section.settings.slide_padding_bottom }}px;
+    text-align: center;
+    overflow: hidden;
+  }
+  {{ sec_id }} .pc-main-image {
+    width: 100%;
+    height: {{ section.settings.main_image_height }}px;
+    object-fit: cover;
+    border-radius: {{ section.settings.main_image_border_radius }}px {{ section.settings.main_image_border_radius }}px 0 0;
+    margin-bottom: {{ section.settings.main_image_margin_bottom }}px;
+  }
+  {{ sec_id }} .pc-main-image svg {
+    width: 100%;
+    height: 100%;
+  }
+  {{ sec_id }} .pc-small-image {
+    width: {{ section.settings.small_image_size }}px;
+    height: {{ section.settings.small_image_size }}px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: {{ section.settings.small_image_margin_top }}px;
+    margin-bottom: {{ section.settings.small_image_margin_bottom }}px;
+  }
+  {{ sec_id }} .pc-small-image svg {
+    width: {{ section.settings.small_image_size }}px;
+    height: {{ section.settings.small_image_size }}px;
+  }
+  {{ sec_id }} .pc-check-post {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    border-radius: {{ section.settings.button_border_radius }}px;
+    text-decoration: none;
+    font-size: {{ section.settings.button_font_size }}px;
+    margin-top: {{ section.settings.button_margin_top }}px;
+  }
+  {{ sec_id }} .pc-social-links a {
+    margin: 0 {{ section.settings.social_icon_gap }}px;
+    font-size: {{ section.settings.social_icon_size }}px;
+    text-decoration: none;
   }
   {{ sec_id }} .pc-arrow {
-    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
   }
-}
+  {{ sec_id }} .pc-arrow.pc-left {
+    left: 10px;
+  }
+  {{ sec_id }} .pc-arrow.pc-right {
+    right: 10px;
+  }
+  @media (max-width: 768px) {
+    {{ sec_id }} testimonial-slider {
+      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_sides }}px {{ section.settings.mobile_padding_bottom }}px;
+    }
+    {{ sec_id }} .pc-container {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+    }
+    {{ sec_id }} .pc-slide {
+      flex: 0 0 80%;
+      min-width: 80%;
+      scroll-snap-align: center;
+    }
+    {{ sec_id }} .pc-arrow {
+      display: none;
+    }
+  }
 </style>
 
 <script>
@@ -210,7 +232,7 @@ if (!customElements.get('testimonial-slider')) {
 
 {% schema %}
 {
-  "name": "PC - Testimonial Slider",
+  "name": "PWCTestimonialSlider #2",
   "settings": [
     {
       "type": "range",
@@ -630,7 +652,7 @@ if (!customElements.get('testimonial-slider')) {
   ],
   "presets": [
     {
-      "name": "Default Four Testimonials",
+      "name": "PWCTestimonialSlider #2",
       "category": "Testimonials",
       "blocks": [
         { "type": "testimonial" },
