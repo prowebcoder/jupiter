@@ -1,6 +1,311 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+
+<pc-testimonial-slider data-section-id="{{ section.id }}">
+  <div class="pc-testimonial-slider__container">
+    {% for block in section.blocks %}
+      <div class="pc-testimonial-slider__item">
+        <div class="pc-testimonial-slider__image">
+          {% if block.settings.image != blank %}
+            {{-
+              block.settings.image
+              | image_url: width: block.settings.image.width, height: block.settings.image.height
+              | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt
+            -}}
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+        <div class="pc-testimonial-slider__content">
+          <p class="pc-testimonial-slider__text">{{ block.settings.text }}</p>
+          <p class="pc-testimonial-slider__author">{{ block.settings.author }}</p>
+        </div>
+      </div>
+    {% endfor %}
+    <div class="pc-testimonial-slider__arrows">
+      <button class="pc-testimonial-slider__arrow pc-testimonial-slider__arrow--prev" aria-label="Previous">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="pc-testimonial-slider__arrow pc-testimonial-slider__arrow--next" aria-label="Next">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</pc-testimonial-slider>
+
+<style>
+  {{ sec_id }} .pc-testimonial-slider__container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+    background-color: {{ section.settings.desktop_background_color }};
+    box-shadow: {% if section.settings.desktop_box_shadow %}0 4px 10px rgba(0,0,0,0.1){% else %}none{% endif %};
   }
+
+  {{ sec_id }} .pc-testimonial-slider__item {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+  }
+
+  {{ sec_id }} .pc-testimonial-slider__image img {
+    max-width: 100px;
+    border-radius: 50%;
+  }
+
+  {{ sec_id }} .pc-testimonial-slider__text {
+    font-size: {{ section.settings.desktop_font_size }}px;
+    color: {{ section.settings.desktop_text_color }};
+    margin-top: 15px;
+  }
+
+  {{ sec_id }} .pc-testimonial-slider__author {
+    font-size: {{ section.settings.desktop_author_font_size }}px;
+    color: {{ section.settings.desktop_author_color }};
+    margin-top: 5px;
+  }
+
+  {{ sec_id }} .pc-testimonial-slider__arrows {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 10px;
+  }
+
+  {{ sec_id }} .pc-testimonial-slider__arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-testimonial-slider__container {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      background-color: {{ section.settings.mobile_background_color }};
+      box-shadow: {% if section.settings.mobile_box_shadow %}0 4px 10px rgba(0,0,0,0.1){% else %}none{% endif %};
+    }
+
+    {{ sec_id }} .pc-testimonial-slider__text {
+      font-size: {{ section.settings.mobile_font_size }}px;
+      color: {{ section.settings.mobile_text_color }};
+    }
+
+    {{ sec_id }} .pc-testimonial-slider__author {
+      font-size: {{ section.settings.mobile_author_font_size }}px;
+      color: {{ section.settings.mobile_author_color }};
+    }
+  }
+</style>
+
+<script>
+  class PcTestimonialSlider extends HTMLElement {
+    constructor() {
+      super();
+      this.currentIndex = 0;
+    }
+
+    connectedCallback() {
+      this.items = this.querySelectorAll('.pc-testimonial-slider__item');
+      this.totalItems = this.items.length;
+      this.showItem(this.currentIndex);
+
+      this.querySelector('.pc-testimonial-slider__arrow--prev')?.addEventListener('click', () => this.prev());
+      this.querySelector('.pc-testimonial-slider__arrow--next')?.addEventListener('click', () => this.next());
+    }
+
+    showItem(index) {
+      this.items.forEach((item, i) => {
+        item.style.display = i === index ? 'block' : 'none';
+      });
+    }
+
+    prev() {
+      this.currentIndex = (this.currentIndex - 1 + this.totalItems) % this.totalItems;
+      this.showItem(this.currentIndex);
+    }
+
+    next() {
+      this.currentIndex = (this.currentIndex + 1) % this.totalItems;
+      this.showItem(this.currentIndex);
+    }
+  }
+
+  customElements.define('pc-testimonial-slider', PcTestimonialSlider);
+</script>
+
+{% schema %}
+{
+  "name": "Testimonial Slider #1",
+  "settings": [
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Top Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "desktop_background_color",
+      "label": "Background Color (Desktop)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "desktop_box_shadow",
+      "label": "Enable Box Shadow (Desktop)",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "desktop_font_size",
+      "label": "Text Font Size (Desktop)",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "desktop_text_color",
+      "label": "Text Color (Desktop)",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "desktop_author_font_size",
+      "label": "Author Font Size (Desktop)",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "desktop_author_color",
+      "label": "Author Color (Desktop)",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "mobile_background_color",
+      "label": "Background Color (Mobile)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_box_shadow",
+      "label": "Enable Box Shadow (Mobile)",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "label": "Text Font Size (Mobile)",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "mobile_text_color",
+      "label": "Text Color (Mobile)",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "mobile_author_font_size",
+      "label": "Author Font Size (Mobile)",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "mobile_author_color",
+      "label": "Author Color (Mobile)",
+      "default": "#333333"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Author Image"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Testimonial Text",
+          "default": "This is an example testimonial."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "John Doe"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial Slider #1",
+      "category": "Testimonials"
+    }
+  ]
+}
 {% endschema %}
