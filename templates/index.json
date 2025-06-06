@@ -530,7 +530,7 @@
         "mobile_padding_top": 20,
         "mobile_padding_sides": 10,
         "mobile_padding_bottom": 20,
-        "slide_gap": 20,
+        "slide_gap": 0,
         "slide_background": "#ffffff",
         "enable_box_shadow": true,
         "slide_border_radius": 10,
