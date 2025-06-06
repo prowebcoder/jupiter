@@ -481,13 +481,73 @@
             "instagram_link": "",
             "youtube_link": ""
           }
+        },
+        "testimonial_cRJniK": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "name_margin_top": 10,
+            "role": "Designer",
+            "role_font_size": 14,
+            "role_margin_top": 8,
+            "testimonial_text": "This is the best service I’ve ever used!",
+            "testimonial_font_size": 16,
+            "testimonial_margin_top": 8,
+            "post_link": "",
+            "social_margin_top": 10,
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_6VwCjh": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "name_margin_top": 10,
+            "role": "Designer",
+            "role_font_size": 14,
+            "role_margin_top": 8,
+            "testimonial_text": "This is the best service I’ve ever used!",
+            "testimonial_font_size": 16,
+            "testimonial_margin_top": 8,
+            "post_link": "",
+            "social_margin_top": 10,
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_CEGWhx": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "name_margin_top": 10,
+            "role": "Designer",
+            "role_font_size": 14,
+            "role_margin_top": 8,
+            "testimonial_text": "This is the best service I’ve ever used!",
+            "testimonial_font_size": 16,
+            "testimonial_margin_top": 8,
+            "post_link": "",
+            "social_margin_top": 10,
+            "instagram_link": "",
+            "youtube_link": ""
+          }
         }
       },
       "block_order": [
         "testimonial_CKUTWG",
         "testimonial_e6rHCN",
         "testimonial_9YkEwA",
-        "testimonial_Fz4tbx"
+        "testimonial_Fz4tbx",
+        "testimonial_cRJniK",
+        "testimonial_6VwCjh",
+        "testimonial_CEGWhx"
       ],
       "name": "PWCTestimonialSlider #2",
       "settings": {
