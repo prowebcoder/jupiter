@@ -69,7 +69,7 @@
         "content_radius": 20,
         "media_radius": 20,
         "content_padding": 30,
-        "review_color": "#1E81B0",
+        "review_color": "#1e81b0",
         "review_size": 16,
         "review_spacing": 0,
         "heading_color": "#000000",
@@ -79,20 +79,20 @@
         "subheading_size": 18,
         "subheading_spacing": 30,
         "subheading_width": 500,
-        "button_color": "#1E81B0",
-        "button_text_color": "#FFFFFF",
+        "button_color": "#1e81b0",
+        "button_text_color": "#ffffff",
         "button_hover_color": "#156084",
-        "button_hover_text_color": "#FFFFFF",
+        "button_hover_text_color": "#ffffff",
         "button_radius": 30,
         "button_padding_vertical": 15,
         "button_padding_horizontal": 40,
         "button_border_width": 0,
-        "button_border_color": "transparent",
+        "button_border_color": "rgba(0,0,0,0)",
         "button_font_size": 16,
         "button_transform": "uppercase",
         "button_weight": 700,
         "press_color": "#444444",
-        "press_bullet_color": "#1E81B0",
+        "press_bullet_color": "#1e81b0",
         "press_font_size": 13,
         "press_min_width": 200,
         "press_gap": 16,
@@ -110,10 +110,69 @@
         "mobile_press_font_size": 14,
         "mobile_press_gap": 12
       }
+    },
+    "rw_testimonial_slider_2_zfGdnm": {
+      "type": "rw-testimonial-slider-2",
+      "blocks": {
+        "testimonial_9bMieV": {
+          "type": "testimonial",
+          "settings": {
+            "text": "This is an example testimonial.",
+            "author": "John Doe"
+          }
+        },
+        "testimonial_8FekMC": {
+          "type": "testimonial",
+          "settings": {
+            "text": "This is an example testimonial.",
+            "author": "John Doe"
+          }
+        },
+        "testimonial_8j6XeU": {
+          "type": "testimonial",
+          "settings": {
+            "text": "This is an example testimonial.",
+            "author": "John Doe"
+          }
+        },
+        "testimonial_NjUKNK": {
+          "type": "testimonial",
+          "settings": {
+            "text": "This is an example testimonial.",
+            "author": "John Doe"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_9bMieV",
+        "testimonial_8FekMC",
+        "testimonial_8j6XeU",
+        "testimonial_NjUKNK"
+      ],
+      "name": "Testimonial Slider #1",
+      "settings": {
+        "desktop_padding_top": 40,
+        "desktop_padding_bottom": 40,
+        "desktop_background_color": "#ffffff",
+        "desktop_box_shadow": false,
+        "desktop_font_size": 16,
+        "desktop_text_color": "#000000",
+        "desktop_author_font_size": 14,
+        "desktop_author_color": "#333333",
+        "mobile_padding_top": 20,
+        "mobile_padding_bottom": 20,
+        "mobile_background_color": "#ffffff",
+        "mobile_box_shadow": false,
+        "mobile_font_size": 14,
+        "mobile_text_color": "#000000",
+        "mobile_author_font_size": 12,
+        "mobile_author_color": "#333333"
+      }
     }
   },
   "order": [
     "main",
-    "pwc_video_text_CkAfqn"
+    "pwc_video_text_CkAfqn",
+    "rw_testimonial_slider_2_zfGdnm"
   ]
 }
