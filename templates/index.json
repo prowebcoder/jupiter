@@ -492,7 +492,7 @@
       "name": "PWCTestimonialSlider #2",
       "settings": {
         "page_width": 1200,
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "text_color": "#333333",
         "desktop_padding_top": 40,
         "desktop_padding_sides": 20,
@@ -501,7 +501,7 @@
         "mobile_padding_sides": 10,
         "mobile_padding_bottom": 20,
         "slide_gap": 20,
-        "slide_background": "#FFFFFF",
+        "slide_background": "#ffffff",
         "enable_box_shadow": true,
         "slide_border_radius": 10,
         "slide_padding_top": 20,
@@ -514,16 +514,16 @@
         "small_image_margin_top": 10,
         "small_image_margin_bottom": 10,
         "post_button_text": "Check full post",
-        "button_background": "#FFD700",
+        "button_background": "#ffd700",
         "button_text_color": "#333333",
         "button_border_radius": 5,
         "button_font_size": 14,
         "button_margin_top": 10,
-        "instagram_icon_color": "#E4405F",
-        "youtube_icon_color": "#FF0000",
+        "instagram_icon_color": "#e4405f",
+        "youtube_icon_color": "#ff0000",
         "social_icon_size": 20,
         "social_icon_gap": 8,
-        "autoplay_enabled": false,
+        "autoplay_enabled": true,
         "autoplay_speed": 5000
       }
     }
