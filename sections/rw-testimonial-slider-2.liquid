@@ -34,6 +34,7 @@
     background: {{ section.settings.card_background }};
     border-radius: {{ section.settings.card_radius }}px;
     height: 100%;
+    position: relative;
   }
 
   {{ sec_id }} .pc-testimonial-image {
@@ -117,6 +118,15 @@
     transform: scale(1.2);
   }
 
+  {{ sec_id }} .pc-quote-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: {{ section.settings.quote_size }}px;
+    color: {{ section.settings.quote_color }};
+    opacity: 0.1;
+  }
+
   @media (max-width: 768px) {
     {{ sec_id }} .pc-testimonial-container {
       padding: {{ section.settings.mobile_padding_vertical }}px {{ section.settings.mobile_padding_horizontal }}px;
@@ -142,10 +152,23 @@
     {{ sec_id }} .pc-testimonial-role {
       font-size: {{ section.settings.mobile_role_size }}px;
     }
+
+    {{ sec_id }} .pc-quote-icon {
+      font-size: {{ section.settings.mobile_quote_size }}px;
+    }
   }
 </style>
 
 <div class="pc-testimonial-container">
+  {% if section.settings.heading != blank %}
+    <h2
+      class="pc-section-heading"
+      style="text-align: {{ section.settings.heading_alignment }}; font-size: {{ section.settings.heading_size }}px; color: {{ section.settings.heading_color }}; margin-bottom: {{ section.settings.heading_margin }}px;"
+    >
+      {{ section.settings.heading }}
+    </h2>
+  {% endif %}
+
   <pc-testimonial-slider
     data-slides-to-show="{{ section.settings.slides_to_show }}"
     data-autoplay="{{ section.settings.autoplay }}"
@@ -156,6 +179,7 @@
         {% for block in section.blocks %}
           <div class="pc-testimonial-slide" {{ block.shopify_attributes }}>
             <div class="pc-testimonial-content">
+              <div class="pc-quote-icon">“</div>
               {% if block.settings.image != blank %}
                 {{
                   block.settings.image
@@ -207,6 +231,7 @@ class PCTestimonialSlider extends HTMLElement {
     this.autoplaySpeed = parseInt(this.dataset.autoplaySpeed) || 5000;
     this.currentIndex = 0;
     this.autoplayInterval = null;
+    this.isAnimating = false;
     
     this.initSlider();
     this.createDots();
@@ -227,11 +252,29 @@ class PCTestimonialSlider extends HTMLElement {
     this.slides.forEach(slide => {
       slide.style.flex = `0 0 ${this.slideWidth}%`;
     });
+    
+    // Clone slides for infinite effect
+    this.cloneFirstAndLast();
+    this.updateSlidePosition();
+  }
+  
+  cloneFirstAndLast() {
+    const firstSlide = this.slides[0].cloneNode(true);
+    const lastSlide = this.slides[this.slides.length - 1].cloneNode(true);
+    
+    firstSlide.classList.add('pc-cloned');
+    lastSlide.classList.add('pc-cloned');
+    
+    this.slider.appendChild(firstSlide);
+    this.slider.insertBefore(lastSlide, this.slides[0]);
+    
+    // Update slides list
+    this.slides = this.querySelectorAll('.pc-testimonial-slide');
   }
   
   createDots() {
     this.dotsContainer.innerHTML = '';
-    for (let i = 0; i < this.slides.length; i++) {
+    for (let i = 0; i < this.slides.length - 2; i++) {
       const dot = document.createElement('div');
       dot.classList.add('pc-slider-dot');
       dot.dataset.index = i;
@@ -244,7 +287,8 @@ class PCTestimonialSlider extends HTMLElement {
     this.dotsContainer.querySelectorAll('.pc-slider-dot').forEach(dot => {
       dot.classList.remove('active');
     });
-    const activeDot = this.dotsContainer.querySelector(`.pc-slider-dot[data-index="${this.currentIndex}"]`);
+    const activeIndex = (this.currentIndex + this.slides.length - 2) % (this.slides.length - 2);
+    const activeDot = this.dotsContainer.querySelector(`.pc-slider-dot[data-index="${activeIndex}"]`);
     if (activeDot) activeDot.classList.add('active');
   }
   
@@ -253,24 +297,71 @@ class PCTestimonialSlider extends HTMLElement {
   }
   
   prevSlide() {
-    this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
-    this.updateSlidePosition();
+    if (this.isAnimating) return;
+    this.isAnimating = true;
+    
+    this.currentIndex--;
+    if (this.currentIndex < 0) {
+      this.currentIndex = this.slides.length - 1;
+      this.slider.style.transition = 'none';
+      this.updateSlidePosition();
+      
+      setTimeout(() => {
+        this.slider.style.transition = 'transform 0.5s ease';
+        this.currentIndex--;
+        this.updateSlidePosition();
+      }, 50);
+    } else {
+      this.updateSlidePosition();
+    }
+    
     this.setActiveDot();
     this.resetAutoplay();
+    
+    setTimeout(() => {
+      this.isAnimating = false;
+    }, 500);
   }
   
   nextSlide() {
-    this.currentIndex = (this.currentIndex + 1) % this.slides.length;
-    this.updateSlidePosition();
+    if (this.isAnimating) return;
+    this.isAnimating = true;
+    
+    this.currentIndex++;
+    if (this.currentIndex >= this.slides.length) {
+      this.currentIndex = 0;
+      this.slider.style.transition = 'none';
+      this.updateSlidePosition();
+      
+      setTimeout(() => {
+        this.slider.style.transition = 'transform 0.5s ease';
+        this.currentIndex++;
+        this.updateSlidePosition();
+      }, 50);
+    } else {
+      this.updateSlidePosition();
+    }
+    
     this.setActiveDot();
     this.resetAutoplay();
+    
+    setTimeout(() => {
+      this.isAnimating = false;
+    }, 500);
   }
   
   goToSlide(index) {
-    this.currentIndex = index;
+    if (this.isAnimating) return;
+    this.isAnimating = true;
+    
+    this.currentIndex = index + 1;
     this.updateSlidePosition();
     this.setActiveDot();
     this.resetAutoplay();
+    
+    setTimeout(() => {
+      this.isAnimating = false;
+    }, 500);
   }
   
   startAutoplay() {
@@ -294,6 +385,53 @@ customElements.define('pc-testimonial-slider', PCTestimonialSlider);
 {
   "name": "Testimonial Slider #1",
   "settings": [
+    {
+      "type": "header",
+      "content": "Section Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading Alignment",
+      "options": [
+        {"value": "left", "label": "Left"},
+        {"value": "center", "label": "Center"},
+        {"value": "right", "label": "Right"}
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size",
+      "min": 20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "heading_margin",
+      "label": "Heading Bottom Margin",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
     {
       "type": "header",
       "content": "Layout Settings"
@@ -489,6 +627,12 @@ customElements.define('pc-testimonial-slider', PCTestimonialSlider);
       "default": "#333333"
     },
     {
+      "type": "color",
+      "id": "quote_color",
+      "label": "Quote Icon Color",
+      "default": "#cccccc"
+    },
+    {
       "type": "header",
       "content": "Typography (Desktop)"
     },
@@ -532,6 +676,16 @@ customElements.define('pc-testimonial-slider', PCTestimonialSlider);
       "step": 1,
       "unit": "px",
       "default": 14
+    },
+    {
+      "type": "range",
+      "id": "quote_size",
+      "label": "Quote Icon Size",
+      "min": 30,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 50
     },
     {
       "type": "range",
@@ -599,6 +753,16 @@ customElements.define('pc-testimonial-slider', PCTestimonialSlider);
     },
     {
       "type": "range",
+      "id": "mobile_quote_size",
+      "label": "Quote Icon Size",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
       "id": "mobile_image_size",
       "label": "Image Size",
       "min": 40,
@@ -645,13 +809,36 @@ customElements.define('pc-testimonial-slider', PCTestimonialSlider);
       "category": "Custom",
       "blocks": [
         {
-          "type": "testimonial"
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "<p>This product completely changed how I approach my daily routine. The quality is outstanding and the customer service was exceptional!</p>",
+            "author": "Sarah Johnson",
+            "role": "Marketing Director"
+          }
         },
         {
-          "type": "testimonial"
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "<p>I've tried many similar products, but this one stands out for its innovation and reliability. Highly recommend to anyone looking for a solution.</p>",
+            "author": "Michael Chen",
+            "role": "Product Designer"
+          }
         },
         {
-          "type": "testimonial"
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "<p>As a business owner, I'm always looking for ways to improve efficiency. This service saved me hours each week and was worth every penny.</p>",
+            "author": "David Rodriguez",
+            "role": "Small Business Owner"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "<p>The team behind this product truly understands their customers' needs. The attention to detail and continuous improvements are impressive.</p>",
+            "author": "Emily Thompson",
+            "role": "Software Engineer"
+          }
         }
       ]
     }
