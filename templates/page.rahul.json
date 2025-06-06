@@ -160,7 +160,7 @@
         "heading_size": 32,
         "heading_color": "#333333",
         "heading_margin": 30,
-        "max_width": 1200,
+        "max_width": 1800,
         "slides_to_show": 3,
         "slide_gap": 20,
         "autoplay": true,
