@@ -110,10 +110,99 @@
         "mobile_press_font_size": 14,
         "mobile_press_gap": 12
       }
+    },
+    "rw_testimonial_slider_2_eCmmb7": {
+      "type": "rw-testimonial-slider-2",
+      "blocks": {
+        "testimonial_H3kPjC": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "<p>This product completely changed how I approach my daily routine. The quality is outstanding and the customer service was exceptional!</p>",
+            "author": "Sarah Johnson",
+            "role": "Marketing Director"
+          }
+        },
+        "testimonial_acVGYC": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "<p>I've tried many similar products, but this one stands out for its innovation and reliability. Highly recommend to anyone looking for a solution.</p>",
+            "author": "Michael Chen",
+            "role": "Product Designer"
+          }
+        },
+        "testimonial_JVbjhh": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "<p>As a business owner, I'm always looking for ways to improve efficiency. This service saved me hours each week and was worth every penny.</p>",
+            "author": "David Rodriguez",
+            "role": "Small Business Owner"
+          }
+        },
+        "testimonial_CkfWkK": {
+          "type": "testimonial",
+          "settings": {
+            "testimonial": "<p>The team behind this product truly understands their customers' needs. The attention to detail and continuous improvements are impressive.</p>",
+            "author": "Emily Thompson",
+            "role": "Software Engineer"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_H3kPjC",
+        "testimonial_acVGYC",
+        "testimonial_JVbjhh",
+        "testimonial_CkfWkK"
+      ],
+      "name": "Testimonial Slider #1",
+      "settings": {
+        "heading": "What Our Customers Say",
+        "heading_alignment": "center",
+        "heading_size": 32,
+        "heading_color": "#333333",
+        "heading_margin": 30,
+        "max_width": 1200,
+        "slides_to_show": 3,
+        "slide_gap": 20,
+        "autoplay": true,
+        "autoplay_speed": 5000,
+        "enable_shadow": true,
+        "border_radius": 12,
+        "text_alignment": "center",
+        "desktop_padding_vertical": 40,
+        "desktop_padding_horizontal": 40,
+        "mobile_padding_vertical": 30,
+        "mobile_padding_horizontal": 20,
+        "background_color": "#f9f9f9",
+        "card_background": "#ffffff",
+        "text_color": "#333333",
+        "author_color": "#000000",
+        "role_color": "#666666",
+        "nav_background": "#f0f0f0",
+        "nav_color": "#333333",
+        "nav_hover_background": "#e0e0e0",
+        "nav_hover_color": "#000000",
+        "dot_color": "#cccccc",
+        "dot_active_color": "#333333",
+        "quote_color": "#cccccc",
+        "text_size": 16,
+        "author_size": 18,
+        "author_weight": "600",
+        "role_size": 14,
+        "quote_size": 50,
+        "image_size": 80,
+        "image_margin": 20,
+        "card_radius": 8,
+        "mobile_text_size": 14,
+        "mobile_author_size": 16,
+        "mobile_role_size": 13,
+        "mobile_quote_size": 40,
+        "mobile_image_size": 70
+      }
     }
   },
   "order": [
     "main",
-    "pwc_video_text_CkAfqn"
+    "pwc_video_text_CkAfqn",
+    "rw_testimonial_slider_2_eCmmb7"
   ]
 }
