@@ -425,6 +425,44 @@
             "youtube_link": ""
           }
         },
+        "testimonial_GtHbYq": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "name_margin_top": 10,
+            "role": "Designer",
+            "role_font_size": 14,
+            "role_margin_top": 8,
+            "testimonial_text": "This is the best service I’ve ever used!",
+            "testimonial_font_size": 16,
+            "testimonial_margin_top": 8,
+            "post_link": "",
+            "social_margin_top": 10,
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
+        "testimonial_wBK8x9": {
+          "type": "testimonial",
+          "settings": {
+            "alignment": "center",
+            "name": "John Doe",
+            "name_font_size": 18,
+            "name_margin_top": 10,
+            "role": "Designer",
+            "role_font_size": 14,
+            "role_margin_top": 8,
+            "testimonial_text": "This is the best service I’ve ever used!",
+            "testimonial_font_size": 16,
+            "testimonial_margin_top": 8,
+            "post_link": "",
+            "social_margin_top": 10,
+            "instagram_link": "",
+            "youtube_link": ""
+          }
+        },
         "testimonial_9fnk7d": {
           "type": "testimonial",
           "settings": {
@@ -485,6 +523,8 @@
       },
       "block_order": [
         "testimonial_WwtCYN",
+        "testimonial_GtHbYq",
+        "testimonial_wBK8x9",
         "testimonial_9fnk7d",
         "testimonial_dNf7jz",
         "testimonial_XXQDNB"
