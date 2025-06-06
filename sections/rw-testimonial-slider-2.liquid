@@ -1,6 +1,7 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 {%- assign parts = sec_id | split: '_' -%}
-{%- assign last_part = parts | last -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
 <style>
   {{ sec_id }} .pc-testimonial-container {
     max-width: {{ section.settings.max_width }}px;
