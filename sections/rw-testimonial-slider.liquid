@@ -3,7 +3,7 @@
 {%- assign last_lower = parts | last -%}
 {%- assign last_part = last_lower | downcase -%}
 {%- style -%}
-  {{ sec_id }} testimonial-slider {
+  {{ sec_id }} testimonial-slider-{{last_part}} {
     display: block;
     position: relative;
     width: 100%;
@@ -91,7 +91,7 @@
     right: 10px;
   }
   @media (max-width: 768px) {
-    {{ sec_id }} testimonial-slider {
+    {{ sec_id }} testimonial-slider-{{last_part}} {
       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_sides }}px {{ section.settings.mobile_padding_bottom }}px;
     }
     {{ sec_id }} .pc-container {
