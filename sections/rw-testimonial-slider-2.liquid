@@ -171,6 +171,8 @@
 
   <pc-testimonial-slider
     data-slides-to-show="{{ section.settings.slides_to_show }}"
+    data-slides-to-show-mobile="1"
+    data-slides-to-show-tablet="2"
     data-autoplay="{{ section.settings.autoplay }}"
     data-autoplay-speed="{{ section.settings.autoplay_speed }}"
   >
@@ -226,10 +228,15 @@ class PCTestimonialSlider extends HTMLElement {
     this.nextBtn = this.querySelector('.pc-slider-btn.next');
     this.dotsContainer = this.querySelector('.pc-slider-dots');
 
-    this.slidesToShow = parseInt(this.dataset.slidesToShow) || 1;
+    // Configurable
+    this.defaultSlidesToShow = parseInt(this.dataset.slidesToShow) || 1;
+    this.mobileSlidesToShow = parseInt(this.dataset.slidesToShowMobile) || 1;
+    this.tabletSlidesToShow = parseInt(this.dataset.slidesToShowTablet) || 1;
+
     this.autoplay = this.dataset.autoplay === 'true';
     this.autoplaySpeed = parseInt(this.dataset.autoplaySpeed) || 5000;
-    this.currentIndex = this.slidesToShow; // Start from first real slide after clone
+
+    this.currentIndex = 0;
     this.autoplayInterval = null;
     this.isAnimating = false;
 
@@ -242,37 +249,53 @@ class PCTestimonialSlider extends HTMLElement {
 
     if (this.autoplay) this.startAutoplay();
 
-    window.addEventListener('resize', () => {
-      this.updateSlidePosition();
-    });
+    window.addEventListener('resize', () => this.handleResize());
   }
 
   initSlider() {
+    this.updateSlidesToShow();
+    this.cloneSlides();
+
+    this.currentIndex = this.slidesToShow; // start after clones
+    this.updateSlidePosition();
+  }
+
+  updateSlidesToShow() {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth <= 767) {
+      this.slidesToShow = this.mobileSlidesToShow;
+    } else if (windowWidth <= 1023) {
+      this.slidesToShow = this.tabletSlidesToShow;
+    } else {
+      this.slidesToShow = this.defaultSlidesToShow;
+    }
+
     this.slideWidth = 100 / this.slidesToShow;
     this.slides.forEach(slide => {
       slide.style.flex = `0 0 ${this.slideWidth}%`;
     });
-
-    this.cloneSlides();
-    this.updateSlidePosition();
   }
 
   cloneSlides() {
-    // Clone last N slides and append to start
+    // Remove existing clones first
+    this.querySelectorAll('.pc-cloned').forEach(clone => clone.remove());
+
+    // Clone last N slides and prepend
     for (let i = this.slides.length - this.slidesToShow; i < this.slides.length; i++) {
       const clone = this.slides[i].cloneNode(true);
       clone.classList.add('pc-cloned');
       this.slider.insertBefore(clone, this.slider.firstChild);
     }
 
-    // Clone first N slides and append to end
+    // Clone first N slides and append
     for (let i = 0; i < this.slidesToShow; i++) {
       const clone = this.slides[i].cloneNode(true);
       clone.classList.add('pc-cloned');
       this.slider.appendChild(clone);
     }
 
-    // Update slides list after cloning
+    // Refresh slides list after cloning
     this.slides = this.querySelectorAll('.pc-testimonial-slide');
   }
 
@@ -360,8 +383,7 @@ class PCTestimonialSlider extends HTMLElement {
     const translateX = -this.currentIndex * this.slideWidth;
     this.slider.style.transform = `translateX(${translateX}%)`;
 
-    // Force browser repaint so next transition works
-    this.slider.offsetHeight;
+    this.slider.offsetHeight; // force repaint
     this.slider.style.transition = 'transform 0.5s ease';
     this.setActiveDot();
   }
@@ -391,6 +413,23 @@ class PCTestimonialSlider extends HTMLElement {
     if (this.autoplay) {
       clearInterval(this.autoplayInterval);
       this.startAutoplay();
+    }
+  }
+
+  handleResize() {
+    const prevSlidesToShow = this.slidesToShow;
+    this.updateSlidesToShow();
+
+    // If slidesToShow changed, need to re-clone + re-layout
+    if (this.slidesToShow !== prevSlidesToShow) {
+      this.cloneSlides();
+      this.currentIndex = this.slidesToShow;
+      this.updateSlidePosition();
+      this.createDots();
+      this.setActiveDot();
+    } else {
+      // Only update slideWidth and position
+      this.updateSlidePosition();
     }
   }
 }
