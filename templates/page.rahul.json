@@ -165,7 +165,7 @@
         "slide_gap": 20,
         "autoplay": true,
         "autoplay_speed": 5000,
-        "enable_shadow": true,
+        "enable_shadow": false,
         "border_radius": 12,
         "text_alignment": "center",
         "desktop_padding_vertical": 40,
