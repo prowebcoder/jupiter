@@ -180,46 +180,60 @@
 <script>
 class TestimonialSlider_{{last_part}} extends HTMLElement {
   connectedCallback() {
-    const container = this.querySelector('.pc-container');
-    const leftArrow = this.querySelector('.pc-arrow.pc-left');
-    const rightArrow = this.querySelector('.pc-arrow.pc-right');
-    const slides = container.querySelectorAll('.pc-slide');
+    this.container = this.querySelector('.pc-container');
+    this.leftArrow = this.querySelector('.pc-arrow.pc-left');
+    this.rightArrow = this.querySelector('.pc-arrow.pc-right');
+    this.slides = this.container.querySelectorAll('.pc-slide');
     
-    if (!slides.length) return;
+    if (!this.slides.length) return;
     
-    let index = 0;
-    const slidesToShow = 3;
-    const totalSlides = slides.length;
-    
-    const updateSlide = () => {
-      const gap = parseInt(getComputedStyle(container).getPropertyValue('gap'));
-      const slideWidth = slides[0].offsetWidth + gap;
-      container.style.transform = `translateX(${-index * slideWidth}px)`;
-    };
-    
-    leftArrow.addEventListener('click', () => {
-      index = index > 0 ? index - 1 : totalSlides - slidesToShow;
-      updateSlide();
+    this.index = 0;
+    this.slidesToShow = 3;
+    this.totalSlides = this.slides.length;
+
+    this.updateSlide = this.updateSlide.bind(this); // make it class-bound for resize
+
+    this.leftArrow.addEventListener('click', () => {
+      this.index = this.index > 0 ? this.index - 1 : this.totalSlides - this.slidesToShow;
+      this.updateSlide();
     });
-    
-    rightArrow.addEventListener('click', () => {
-      index = index < totalSlides - slidesToShow ? index + 1 : 0;
-      updateSlide();
+
+    this.rightArrow.addEventListener('click', () => {
+      this.index = this.index < this.totalSlides - this.slidesToShow ? this.index + 1 : 0;
+      this.updateSlide();
     });
-    
+
+    // Autoplay support
     if ({{ section.settings.autoplay_enabled | default: false }}) {
       const intervalSpeed = {{ section.settings.autoplay_speed }};
       this._autoPlayInterval = setInterval(() => {
-        index = index < totalSlides - slidesToShow ? index + 1 : 0;
-        updateSlide();
+        this.index = this.index < this.totalSlides - this.slidesToShow ? this.index + 1 : 0;
+        this.updateSlide();
       }, intervalSpeed);
     }
-    
-    // Initialize on load and resize
-    updateSlide();
-    window.addEventListener('resize', updateSlide);
+
+    // Initialize
+    this.updateSlide();
+    window.addEventListener('resize', this.updateSlide);
   }
-  
+
+  updateSlide() {
+    const containerWidth = this.container.offsetWidth;
+    const gap = parseInt(getComputedStyle(this.container).getPropertyValue('gap')) || 0;
+    const visibleSlideCount = window.innerWidth <= 768 ? 1 : this.slidesToShow;
+    
+    // Calculate slide width based on container / visible slides
+    const slideWidth = (containerWidth - gap * (visibleSlideCount - 1)) / visibleSlideCount;
+
+    this.slides.forEach(slide => {
+      slide.style.minWidth = `${slideWidth}px`;
+    });
+
+    // Translate the container
+    const translateX = -this.index * (slideWidth + gap);
+    this.container.style.transform = `translateX(${translateX}px)`;
+  }
+
   disconnectedCallback() {
     if (this._autoPlayInterval) clearInterval(this._autoPlayInterval);
     window.removeEventListener('resize', this.updateSlide);
