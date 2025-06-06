@@ -169,7 +169,7 @@
     </h2>
   {% endif %}
 
-  <pc-testimonial-slider
+  <pc-testimonial-slider-{{ sec_id }}
     data-slides-to-show="{{ section.settings.slides_to_show }}"
     data-slides-to-show-mobile="{{ section.settings.slides_to_show_mb }}"
     data-slides-to-show-tablet="{{ section.settings.slides_to_show_tb }}"
@@ -215,7 +215,7 @@
 
       <div class="pc-slider-dots"></div>
     </div>
-  </pc-testimonial-slider>
+  </pc-testimonial-slider-{{ sec_id }}>
 </div>
 
 <script>
@@ -434,7 +434,7 @@ class PCTestimonialSlider extends HTMLElement {
   }
 }
 
-customElements.define('pc-testimonial-slider', PCTestimonialSlider);
+customElements.define('pc-testimonial-slider-{{ sec_id }}', PCTestimonialSlider);
 </script>
 
 {% schema %}
