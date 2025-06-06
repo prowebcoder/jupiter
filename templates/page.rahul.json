@@ -173,7 +173,7 @@
         "mobile_padding_vertical": 30,
         "mobile_padding_horizontal": 20,
         "background_color": "#ffffff",
-        "card_background": "#ffffff",
+        "card_background": "#f1f1f1",
         "text_color": "#333333",
         "author_color": "#000000",
         "role_color": "#666666",
