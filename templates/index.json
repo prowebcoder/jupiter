@@ -553,7 +553,7 @@
         "youtube_icon_color": "#ff0000",
         "social_icon_size": 20,
         "social_icon_gap": 8,
-        "autoplay_enabled": false,
+        "autoplay_enabled": true,
         "autoplay_speed": 5000
       }
     }
