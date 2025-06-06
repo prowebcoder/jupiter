@@ -171,8 +171,8 @@
 
   <pc-testimonial-slider
     data-slides-to-show="{{ section.settings.slides_to_show }}"
-    data-slides-to-show-mobile="1"
-    data-slides-to-show-tablet="2"
+    data-slides-to-show-mobile="{{ section.settings.slides_to_show_mb }}"
+    data-slides-to-show-tablet="{{ section.settings.slides_to_show_tb }}"
     data-autoplay="{{ section.settings.autoplay }}"
     data-autoplay-speed="{{ section.settings.autoplay_speed }}"
   >
@@ -510,6 +510,24 @@ customElements.define('pc-testimonial-slider', PCTestimonialSlider);
       "max": 4,
       "step": 1,
       "default": 3
+    },
+    {
+      "type": "range",
+      "id": "slides_to_show_mb",
+      "label": "Slides to Show Mobile",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "slides_to_show_tb",
+      "label": "Slides to Show Tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2
     },
     {
       "type": "range",
