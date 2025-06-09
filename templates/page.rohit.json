@@ -866,7 +866,7 @@
       "name": "RW Interactive Scroll Text",
       "settings": {
         "text": "Get in touch",
-        "speed": 8,
+        "speed": 12,
         "rotation": -4,
         "gap": 40,
         "text_size_desktop": 100,
