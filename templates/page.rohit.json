@@ -832,7 +832,7 @@
         "shadow_color": "rgba(31, 38, 135, 0.15)",
         "message_shadow_color": "rgba(0,0,0,0.1)",
         "min_height": 240,
-        "heading_width": 650,
+        "heading_width": 600,
         "heading_height": 40,
         "prefix_margin_left": 10,
         "message_width": 285,
