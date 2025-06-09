@@ -831,7 +831,7 @@
         "container_background": "rgba(255, 255, 255, 0.9)",
         "shadow_color": "rgba(31, 38, 135, 0.15)",
         "message_shadow_color": "rgba(0,0,0,0.1)",
-        "min_height": 300,
+        "min_height": 270,
         "heading_width": 650,
         "heading_height": 40,
         "prefix_margin_left": 10,
