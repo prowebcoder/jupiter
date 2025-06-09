@@ -874,7 +874,7 @@
         "gradient_start": "#a2a2a2",
         "gradient_middle": "#ffffff",
         "gradient_end": "#212121",
-        "bg_color": "rgba(0,0,0,0)",
+        "bg_color": "#4f9e9a",
         "shadow": false,
         "padding_top": 40,
         "padding_bottom": 40,
