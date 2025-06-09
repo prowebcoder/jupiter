@@ -14,6 +14,8 @@
   assign padding_bottom = section.settings.padding_bottom
   assign padding_top_mobile = section.settings.padding_top_mobile
   assign padding_bottom_mobile = section.settings.padding_bottom_mobile
+  assign margin_top_mobile = section.settings.margin_top_mobile
+  assign margin_bottom_mobile = section.settings.margin_bottom_mobile
   assign shadow = section.settings.shadow
 -%}
 
@@ -28,6 +30,11 @@
     width: 100%;
     padding-top: {{ padding_top_mobile }}px;
     padding-bottom: {{ padding_bottom_mobile }}px;
+  }
+
+  {{ sec_id }} .pc-infinite-text-scroll__wrapper {
+    margin-top: {{ margin_top_mobile }}px;
+    margin-bottom: {{ margin_bottom_mobile }}px;
   }
 
   {{ sec_id }} .pc-infinite-text-scroll__container {
