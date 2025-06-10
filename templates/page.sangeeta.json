@@ -662,16 +662,16 @@
           "type": "hotspot",
           "settings": {
             "product": "crossbody-bags",
-            "top": 50,
-            "left": 50
+            "top": 32,
+            "left": 45
           }
         },
         "hotspot_Vx3YH3": {
           "type": "hotspot",
           "settings": {
             "product": "green-snowboard",
-            "top": 50,
-            "left": 50
+            "top": 62,
+            "left": 36
           }
         },
         "hotspot_c8ANDJ": {
@@ -686,8 +686,8 @@
           "type": "hotspot",
           "settings": {
             "product": "product-name-1",
-            "top": 50,
-            "left": 50
+            "top": 22,
+            "left": 77
           }
         }
       },
