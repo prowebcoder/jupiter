@@ -628,6 +628,32 @@
         "shopify_video": "shopify://files/videos/7614397-sd_506_960_25fps.mp4",
         "video_url": ""
       }
+    },
+    "rd_highlighter_image_banner_PkdXwb": {
+      "type": "RD-highlighter-image-banner",
+      "name": "RD Highlighter Banner",
+      "settings": {
+        "full_width": false,
+        "bg_color": "#f8f5f5",
+        "left_image_height": 600,
+        "left_image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg",
+        "subheading": "Know about our mini bags",
+        "subheading_size": 16,
+        "subheading_color": "#1a1a1a",
+        "heading": "My life’s journey is lighter with a shoulder bag.",
+        "heading_size": 32,
+        "heading_color": "#000000",
+        "small_image": "shopify://shop_images/woman-in-park-afternoon.jpeg",
+        "small_image_height": 300,
+        "button_text": "Shop Now",
+        "button_url": "",
+        "button_bg": "#000000",
+        "button_color": "#ffffff",
+        "button_hover_bg": "#333333",
+        "button_hover_color": "#ffffff",
+        "button_radius": "4px",
+        "button_alignment": "left"
+      }
     }
   },
   "order": [
@@ -639,6 +665,7 @@
     "collection_grid_image_pwc_WPFmUG",
     "text_image_text_pwc_VedTK4",
     "image_hover_pro_pwc_Qhgcdx",
-    "text_image_video_pwc_RtUCTd"
+    "text_image_video_pwc_RtUCTd",
+    "rd_highlighter_image_banner_PkdXwb"
   ]
 }
