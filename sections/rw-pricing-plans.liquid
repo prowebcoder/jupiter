@@ -109,7 +109,7 @@
     height: 14px;
     background-color: #FFF;
     left: 0;
-    bottom: 0;
+    bottom: -1px;
     clip-path: polygon(0 100%, 50% 0, 100% 100%);
   }
 
@@ -207,10 +207,16 @@
   }
 </style>
 
-<section class="pc-pricing-plans" style="background-color: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+<section
+  class="pc-pricing-plans"
+  style="background-color: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
   <div class="pc-pricing-container">
     {% if section.settings.heading != blank %}
-      <h2 class="pc-section-heading" style="text-align: {{ section.settings.heading_alignment }}; font-size: {{ section.settings.heading_size }}px; color: {{ section.settings.heading_color }}; margin-bottom: {{ section.settings.heading_spacing }}px;">
+      <h2
+        class="pc-section-heading"
+        style="text-align: {{ section.settings.heading_alignment }}; font-size: {{ section.settings.heading_size }}px; color: {{ section.settings.heading_color }}; margin-bottom: {{ section.settings.heading_spacing }}px;"
+      >
         {{ section.settings.heading }}
       </h2>
     {% endif %}
@@ -219,14 +225,20 @@
       {% for block in section.blocks %}
         <div class="pc-plan-card" {{ block.shopify_attributes }}>
           {% if block.settings.badge_text != blank %}
-            <div class="pc-popular-badge" style="text-align: {{ block.settings.badge_alignment }};
-              font-size: {{ block.settings.max_font_size }}px;
-              color: {{ block.settings.badge_color }};
-              margin-bottom: {{ block.settings.badge_spacing }}px;
-              font-weight: {{ block.settings.badge_font_weight }};
-              font-style: {{ block.settings.badge_font_style }};
-              letter-spacing: {{ block.settings.badge_letter_spacing }};
-              ">{{ block.settings.badge_text }}</div>
+            <div
+              class="pc-popular-badge"
+              style="
+                text-align: {{ block.settings.badge_alignment }};
+                font-size: {{ block.settings.max_font_size }}px;
+                color: {{ block.settings.badge_color }};
+                margin-bottom: {{ block.settings.badge_spacing }}px;
+                font-weight: {{ block.settings.badge_font_weight }};
+                font-style: {{ block.settings.badge_font_style }};
+                letter-spacing: {{ block.settings.badge_letter_spacing }};
+              "
+            >
+              {{ block.settings.badge_text }}
+            </div>
           {% endif %}
 
           <div class="pc-plan-price">
@@ -239,42 +251,51 @@
           <header class="pc-plan-header">
             <div class="pc-plan-header-circle">
               {%- if block.settings.icon != blank -%}
-                {{ block.settings.icon | image_url: width: 30 | image_tag: class: 'pc-plan-header-img', loading: 'lazy' }}
+                {{
+                  block.settings.icon
+                  | image_url: width: 30
+                  | image_tag: class: 'pc-plan-header-img', loading: 'lazy'
+                }}
               {%- else -%}
                 {{ 'product-1' | placeholder_svg_tag: 'pc-plan-header-img' }}
               {%- endif -%}
             </div>
 
             {% if block.settings.subtitle != blank %}
-              <span class="pc-plan-subtitle" 
+              <span
+                class="pc-plan-subtitle"
                 style="
-              font-size: {{ block.settings.subtitle_max_font_size }}px;
-              color: {{ block.settings.subtitle_color }};
-              font-weight: {{ block.settings.subtitle_font_weight }};
-              font-style: {{ block.settings.subtitle_font_style }};
-              letter-spacing: {{ block.settings.subtitle_letter_spacing }};
-              text-decoration: {{ block.settings.subtitle_text_decoration }};
-              text-decoration-color: {{ block.settings.subtitle_text_decoration_color }};
-              padding-top: {{ block.settings.subtitle_padding_top }};
-              padding-bottom: {{ block.settings.subtitle_padding_bottom }};
-              "
-                >{{ block.settings.subtitle }}</span>
+                  font-size: {{ block.settings.subtitle_max_font_size }}px;
+                  color: {{ block.settings.subtitle_color }};
+                  font-weight: {{ block.settings.subtitle_font_weight }};
+                  font-style: {{ block.settings.subtitle_font_style }};
+                  letter-spacing: {{ block.settings.subtitle_letter_spacing }};
+                  text-decoration: {{ block.settings.subtitle_text_decoration }};
+                  text-decoration-color: {{ block.settings.subtitle_text_decoration_color }};
+                  padding-top: {{ block.settings.subtitle_padding_top }};
+                  padding-bottom: {{ block.settings.subtitle_padding_bottom }};
+                "
+              >
+                {{- block.settings.subtitle -}}
+              </span>
             {% endif %}
-            <h3 class="pc-plan-title"
-                 style="
-              font-size: {{ block.settings.title_max_font_size }}px;
-              color: {{ block.settings.title_color }};
-              font-weight: {{ block.settings.title_font_weight }};
-              font-style: {{ block.settings.title_font_style }};
-              letter-spacing: {{ block.settings.title_letter_spacing }};
-              text-decoration: {{ block.settings.title_text_decoration }};
-              text-decoration-color: {{ block.settings.title_text_decoration_color }};
-              padding-top: {{ block.settings.title_padding_top }};
-              padding-bottom: {{ block.settings.title_padding_bottom }};
-              margin-top: 12px;
+            <h3
+              class="pc-plan-title"
+              style="
+                font-size: {{ block.settings.title_max_font_size }}px;
+                color: {{ block.settings.title_color }};
+                font-weight: {{ block.settings.title_font_weight }};
+                font-style: {{ block.settings.title_font_style }};
+                letter-spacing: {{ block.settings.title_letter_spacing }};
+                text-decoration: {{ block.settings.title_text_decoration }};
+                text-decoration-color: {{ block.settings.title_text_decoration_color }};
+                padding-top: {{ block.settings.title_padding_top }};
+                padding-bottom: {{ block.settings.title_padding_bottom }};
+                margin-top: 12px;
               "
-              
-              >{{ block.settings.title }}</h3>
+            >
+              {{ block.settings.title }}
+            </h3>
           </header>
 
           <ul class="pc-plan-features">
@@ -282,7 +303,16 @@
               {% assign feature_text = 'feature_' | append: i | append: '_text' %}
               {% if block.settings[feature_text] != blank %}
                 <li class="pc-feature-item">
-                  <svg class="pc-feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <svg
+                    class="pc-feature-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                   <span class="pc-feature-text">{{ block.settings[feature_text] }}</span>
@@ -291,23 +321,25 @@
             {% endfor %}
           </ul>
 
-          <button class="pc-plan-button"
-        style="
-        background-color: {{ block.settings.button_background_color }};
-        color: {{ block.settings.button_text_color }};
-        font-size: {{ block.settings.button_font_size }}px;
-        font-weight: {{ block.settings.button_font_weight }};
-        text-transform: {{ block.settings.button_text_transform }};
-        letter-spacing: {{ block.settings.button_letter_spacing }}px;
-        text-decoration: {{ block.settings.button_text_decoration }};
-        text-decoration-color: {{ block.settings.button_text_decoration_color }};
-        border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
-        border-radius: {{ block.settings.button_border_radius }}px;
-        transition: all 0.3s ease;
-        "
-        type="button">
+          <button
+            class="pc-plan-button"
+            style="
+              background-color: {{ block.settings.button_background_color }};
+              color: {{ block.settings.button_text_color }};
+              font-size: {{ block.settings.button_font_size }}px;
+              font-weight: {{ block.settings.button_font_weight }};
+              text-transform: {{ block.settings.button_text_transform }};
+              letter-spacing: {{ block.settings.button_letter_spacing }}px;
+              text-decoration: {{ block.settings.button_text_decoration }};
+              text-decoration-color: {{ block.settings.button_text_decoration_color }};
+              border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+              border-radius: {{ block.settings.button_border_radius }}px;
+              transition: all 0.3s ease;
+            "
+            type="button"
+          >
             {{ block.settings.button_text }}
-        </button>
+          </button>
         </div>
       {% endfor %}
     </div>
@@ -316,7 +348,7 @@
 
 {% schema %}
 {
-  "name": "Pricing Plans",
+  "name": "PWC Pricing Plans",
   "settings": [
     {
       "type": "text",
@@ -471,6 +503,7 @@
     {
       "type": "plan",
       "name": "Pricing Plan",
+      "limit": 4,
       "settings": [
         {
           "type": "text",
