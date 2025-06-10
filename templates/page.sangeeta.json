@@ -646,13 +646,13 @@
         "small_image": "shopify://shop_images/woman-in-park-afternoon.jpeg",
         "small_image_height": 300,
         "button_text": "Shop Now",
-        "button_url": "",
+        "button_url": "shopify://products/product-name-1",
         "button_bg": "#000000",
         "button_color": "#ffffff",
         "button_hover_bg": "#333333",
         "button_hover_color": "#ffffff",
-        "button_radius": "4px",
-        "button_alignment": "left"
+        "button_radius": "24px",
+        "button_alignment": "center"
       }
     }
   },
