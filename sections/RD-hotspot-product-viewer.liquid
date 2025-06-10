@@ -1,6 +1,378 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+
+<style>
+  {{ sec_id }} .pc-hotspot-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
   }
+
+  {{ sec_id }} .pc-hotspot-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: {{ section.settings.block_gap | default: 0 }}px;
+    height: 600px;
+  }
+
+  {{ sec_id }} .pc-hotspot-image-wrapper,
+  {{ sec_id }} .pc-product-slider {
+    width: 50%;
+    position: relative;
+  }
+
+  {{ sec_id }} .pc-hotspot-image-wrapper {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  {{ sec_id }} .pc-hotspot-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  {{ sec_id }} .pc-hotspot {
+    position: absolute;
+    background: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  {{ sec_id }} .pc-product-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: {{ section.settings.product_bg_color | default: '#f9f9f9' }};
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  {{ sec_id }} .pc-slider-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  {{ sec_id }} .pc-arrow-buttons {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 3;
+  }
+
+  {{ sec_id }} .pc-arrow {
+    background: white;
+    border: 1px solid #ddd;
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  {{ sec_id }} .pc-product-cards {
+    transition: transform 0.5s ease-in-out;
+  }
+
+  {{ sec_id }} .pc-product-card {
+    height: 540px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  {{ sec_id }} .pc-product-title {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  {{ sec_id }} .pc-product-price {
+    color: #444;
+  }
+
+  {{ sec_id }} .pc-quick-view-btn {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+  }
+
+  {{ sec_id }} .pc-color-swatches {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  {{ sec_id }} .pc-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.15);
+  }
+
+  {{ sec_id }} .pc-quick-view-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  {{ sec_id }} .pc-modal-content {
+    background: white;
+    max-width: 600px;
+    width: 90%;
+    padding: 30px;
+    border-radius: 8px;
+    position: relative;
+    overflow-y: auto;
+    max-height: 80vh;
+  }
+
+  {{ sec_id }} .pc-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+</style>
+
+<div class="pc-hotspot-container" data-section-id="{{ section.id }}">
+  <div class="pc-hotspot-section">
+    <div class="pc-hotspot-image-wrapper">
+      {{ section.settings.main_image | image_url: width: 550 | image_tag }}
+      {% for block in section.blocks %}
+        <div class="pc-hotspot" style="top:{{ block.settings.top }}%; left:{{ block.settings.left }}%;" data-index="{{ forloop.index0 }}">+</div>
+      {% endfor %}
+    </div>
+    <div class="pc-product-slider">
+      <div class="pc-slider-wrapper">
+        <div class="pc-arrow-buttons">
+          <button class="pc-arrow up">⬆</button>
+          <button class="pc-arrow down">⬇</button>
+        </div>
+        <div class="pc-product-cards">
+          {% for block in section.blocks %}
+            {% assign product = all_products[block.settings.product] %}
+            {% if product %}
+              <div class="pc-product-card" data-description="{{ product.description | strip_html | escape }}">
+                <span class="pc-product-title">{{ product.title }}</span>
+                <span class="pc-product-price">
+                  {% if product.compare_at_price > product.price %}
+                    <del>{{ product.compare_at_price | money }}</del>
+                  {% endif %}
+                  {{ product.price | money }}
+                </span>
+                <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}">
+                <button class="pc-quick-view-btn">Quick View</button>
+
+                {% assign color_option = '' %}
+                {% for option in product.options_with_values %}
+                  {% assign opt_name = option.name | downcase %}
+                  {% if opt_name == 'color' or opt_name == 'colour' %}
+                    {% assign color_option = option %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pc-quick-view-modal" style="display: none;">
+    <div class="modal-overlay"></div>
+    <div class="pc-modal-content">
+      <button class="pc-modal-close">&times;</button>
+      <div class="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const container = document.querySelector('{{ sec_id }} .pc-hotspot-container');
+    const cardsContainer = container.querySelector('.pc-product-cards');
+    const cards = container.querySelectorAll('.pc-product-card');
+    const hotspots = container.querySelectorAll('.pc-hotspot');
+    const arrowUp = container.querySelector('.pc-arrow.up');
+    const arrowDown = container.querySelector('.pc-arrow.down');
+    const modal = container.querySelector('.pc-quick-view-modal');
+    const modalBody = modal.querySelector('.modal-body');
+    const modalClose = modal.querySelector('.pc-modal-close');
+
+    let currentIndex = 0;
+    const cardHeight = cards[0].offsetHeight;
+    const marginBottom = parseFloat(getComputedStyle(cards[0]).marginBottom);
+    const step = cardHeight + marginBottom;
+    const maxIndex = cards.length - 1;
+
+    function updateSliderPosition() {
+      cardsContainer.style.transform = `translateY(-${currentIndex * step}px)`;
+    }
+
+    hotspots.forEach(h => h.addEventListener('click', () => {
+      const i = parseInt(h.dataset.index);
+      if (i >= 0 && i <= maxIndex) {
+        currentIndex = i;
+        updateSliderPosition();
+      }
+    }));
+
+    arrowUp.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSliderPosition();
+      }
+    });
+
+    arrowDown.addEventListener('click', () => {
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        updateSliderPosition();
+      }
+    });
+
+    container.querySelectorAll('.pc-quick-view-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.pc-product-card');
+        const img = card.querySelector('img').src;
+        const title = card.querySelector('.pc-product-title').textContent;
+        const price = card.querySelector('.pc-product-price').innerHTML;
+        const description = card.dataset.description;
+        const swatches = card.querySelector('.pc-color-swatches')?.outerHTML || '';
+
+        modalBody.innerHTML = `
+          <img src="${img}" class="modal-img" style="width:100%;margin-bottom:15px;">
+          <div class="pc-product-title">${title}</div>
+          <div class="pc-product-price">${price}</div>
+          ${swatches}
+          <div class="product-description" style="margin-top:10px;">${description}</div>
+        `;
+        modal.style.display = 'flex';
+
+        modalBody.querySelectorAll('.pc-swatch').forEach(swatch => {
+          swatch.addEventListener('click', () => {
+            const imgUrl = swatch.dataset.image;
+            if (imgUrl) modalBody.querySelector('.modal-img').src = imgUrl;
+          });
+        });
+      });
+    });
+
+    modalClose.addEventListener('click', () => modal.style.display = 'none');
+    modal.addEventListener('click', e => { if (e.target.classList.contains('modal-overlay')) modal.style.display = 'none'; });
+  });
+</script>
+
+{% schema %}
+{
+  "name": " RD Hotspot Product",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main Image"
+    },
+    {
+      "type": "range",
+      "id": "block_gap",
+      "label": "Gap Between Image and Product",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "product_bg_color",
+      "label": "Product Block Background",
+      "default": "#f9f9f9"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hotspot",
+      "name": "Hotspot",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Linked Product"
+        },
+        {
+          "type": "range",
+          "id": "top",
+          "label": "Top (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "left",
+          "label": "Left (%)",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 50
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": " RD Hotspot Product",
+      "category": "Custom"
+    }
+  ]
+}
 {% endschema %}
