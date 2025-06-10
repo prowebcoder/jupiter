@@ -654,6 +654,55 @@
         "button_radius": "24px",
         "button_alignment": "center"
       }
+    },
+    "rd_hotspot_product_viewer_GL3hdh": {
+      "type": "RD-hotspot-product-viewer",
+      "blocks": {
+        "hotspot_zMCJPL": {
+          "type": "hotspot",
+          "settings": {
+            "product": "crossbody-bags",
+            "top": 50,
+            "left": 50
+          }
+        },
+        "hotspot_Vx3YH3": {
+          "type": "hotspot",
+          "settings": {
+            "product": "green-snowboard",
+            "top": 50,
+            "left": 50
+          }
+        },
+        "hotspot_c8ANDJ": {
+          "type": "hotspot",
+          "settings": {
+            "product": "orange-snowboard",
+            "top": 50,
+            "left": 50
+          }
+        },
+        "hotspot_bCXdNt": {
+          "type": "hotspot",
+          "settings": {
+            "product": "product-name-1",
+            "top": 50,
+            "left": 50
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_zMCJPL",
+        "hotspot_Vx3YH3",
+        "hotspot_c8ANDJ",
+        "hotspot_bCXdNt"
+      ],
+      "name": "RD Hotspot Product",
+      "settings": {
+        "main_image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg",
+        "block_gap": 20,
+        "product_bg_color": "#f8f5f5"
+      }
     }
   },
   "order": [
@@ -666,6 +715,7 @@
     "text_image_text_pwc_VedTK4",
     "image_hover_pro_pwc_Qhgcdx",
     "text_image_video_pwc_RtUCTd",
-    "rd_highlighter_image_banner_PkdXwb"
+    "rd_highlighter_image_banner_PkdXwb",
+    "rd_hotspot_product_viewer_GL3hdh"
   ]
 }
