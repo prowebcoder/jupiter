@@ -759,6 +759,89 @@
         "margin_top": 30,
         "margin_bottom": 30
       }
+    },
+    "rw_carousel_DPmLyg": {
+      "type": "rw-carousel",
+      "blocks": {
+        "slide_YVUXbP": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1011-1200x800.jpg",
+            "title": "First Slide",
+            "text": "This is the first slide of your carousel",
+            "author": "Author One"
+          }
+        },
+        "slide_a36Q7r": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1024-1200x800.jpg",
+            "title": "Second Slide",
+            "text": "This is the second slide of your carousel",
+            "author": "Author Two"
+          }
+        },
+        "slide_bGjiVF": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1025-1200x800.jpg",
+            "title": "Third Slide",
+            "text": "This is the third slide of your carousel",
+            "author": "Author Three"
+          }
+        },
+        "slide_ixFXVz": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/1040-1200x800.jpg",
+            "title": "Slide Title",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "author": "Author Name"
+          }
+        }
+      },
+      "block_order": [
+        "slide_YVUXbP",
+        "slide_a36Q7r",
+        "slide_bGjiVF",
+        "slide_ixFXVz"
+      ],
+      "name": "RW Carousel",
+      "settings": {
+        "heading": "Carousel",
+        "heading_font_size": 32,
+        "heading_margin_bottom": 20,
+        "heading_color": "#000000",
+        "background_color": "#FFFFFF",
+        "enable_shadow": true,
+        "border_radius": 16,
+        "transition_duration": 0.6,
+        "title_font_size": 32,
+        "title_color": "#FFFFFF",
+        "text_font_size": 16,
+        "text_color": "#FFFFFF",
+        "author_font_size": 14,
+        "author_color": "#FFFFFF",
+        "active_dot_color": "#60A5FA",
+        "margin_top": 5,
+        "margin_bottom": 5,
+        "desktop_height": 360,
+        "mobile_height": 220,
+        "auto_slide": true,
+        "auto_slide_interval": 5,
+        "desktop_padding_top": 20,
+        "desktop_padding_right": 20,
+        "desktop_padding_bottom": 20,
+        "desktop_padding_left": 20,
+        "mobile_padding_top": 15,
+        "mobile_padding_right": 15,
+        "mobile_padding_bottom": 15,
+        "mobile_padding_left": 15,
+        "mobile_title_font_size": 24,
+        "mobile_text_font_size": 14,
+        "mobile_small_title_font_size": 18,
+        "overlay_opacity": 0.7
+      }
     }
   },
   "order": [
@@ -770,6 +853,7 @@
     "rw_blog_layout_rnwDVH",
     "rw_interactive_text_ent4en",
     "rw_text_with_icon_V33BVL",
-    "rw_testimonials_gLCa36"
+    "rw_testimonials_gLCa36",
+    "rw_carousel_DPmLyg"
   ]
 }
