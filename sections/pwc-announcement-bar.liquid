@@ -1,333 +1,719 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
-{% style %}
-  {{ sec_id }} .utility-bar {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
-    background-color: {{ section.settings.colorBackground }};
+<style>
+  {{ sec_id }} .pc-utility-bar {
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+    position: relative;
+    z-index: 10;
   }
 
-  {{ sec_id }} .pc-newsletter {
-    background-color: {{ section.settings.background_color }};
-    color: {{ section.settings.text_color }};
-    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+  {{ sec_id }} .pc-utility-container {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 0 20px;
+  }
+
+  {{ sec_id }} .pc-social-icons {
+    display: flex;
+    gap: {{ section.settings.social_icon_spacing }}px;
+  }
+
+  {{ sec_id }} .pc-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: {{ section.settings.social_icon_size }}px;
+    height: {{ section.settings.social_icon_size }}px;
+    background: {{ section.settings.social_icon_bg }};
+    border-radius: {{ section.settings.social_icon_radius }}px;
+    transition: all 0.3s ease;
+  }
+
+  {{ sec_id }} .pc-social-icon:hover {
+    background: {{ section.settings.social_icon_hover_bg }};
+    transform: translateY(-2px);
+  }
+
+  {{ sec_id }} .pc-social-icon svg {
+    width: {{ section.settings.social_icon_size | times: 0.6 }}px;
+    height: {{ section.settings.social_icon_size | times: 0.6 }}px;
+    fill: {{ section.settings.social_icon_color }};
+  }
+
+  {{ sec_id }} .pc-social-icon:hover svg {
+    fill: {{ section.settings.social_icon_hover_color }};
+  }
+
+  {{ sec_id }} .pc-announcement-slider-wrapper {
+    flex: 1;
+    margin: 0 {{ section.settings.content_spacing }}px;
     position: relative;
     overflow: hidden;
+    height: {{ section.settings.announcement_height }}px;
+    display: flex;
+    align-items: center;
   }
 
-  {{ sec_id }} .pc-newsletter__heading {
+  {{ sec_id }} .pc-announcement-slider {
+    width: 100%;
+    position: relative;
+  }
+
+  {{ sec_id }} .pc-announcement {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    text-align: center;
+  }
+
+  {{ sec_id }} .pc-announcement.active {
+    opacity: 1;
+  }
+
+  {{ sec_id }} .pc-announcement-link {
+    display: inline-block;
+    text-decoration: none;
+    width: 100%;
+    padding: 5px 0;
+  }
+
+  {{ sec_id }} .pc-announcement-text {
+    margin: 0;
     font-weight: {{ section.settings.font_weight }};
-    padding-top: {{ section.settings.padding_top_first }}px;
-    padding-bottom: {{ section.settings.padding_bottom_first }}px;
-    font-style: {{ section.settings.font_style }};
     text-decoration: {{ section.settings.text_decoration }};
+    color: {{ section.settings.text_color }};
+    font-style: {{ section.settings.font_style }};
+    letter-spacing: {{ section.settings.letter_spacing }}px;
+    font-size: {{ section.settings.font_size }}px;
+    line-height: 1.3;
   }
-{% endstyle %}
 
-{% style %}
-  {% for block in section.blocks %}
-    {% case block.type %}
-      {% when 'heading' %}
-        {{ sec_id }} .banner__heading {
-          font-weight: {{ block.settings.font_weight }};
-        }
-      {% when 'text' %}
-        {{ sec_id }} .banner__text {
-          font-weight: {{ block.settings.font_weight }};
-        }
-      {% when 'buttons' %}
-        {{ sec_id }} .banner__buttons {
-          padding-top: {{ block.settings.padding_top }}px;
-          padding-bottom: {{ block.settings.padding_bottom }}px;
-        }
-    {% endcase %}
-  {% endfor %}
-{% endstyle %}
+  {{ sec_id }} .pc-announcement-link:hover .pc-announcement-text {
+    color: {{ section.settings.text_hover_color }};
+  }
 
-<div
-  class="utility-bar color-{{ section.settings.color_scheme }}"
-  style="background-color: {{ section.settings.colorBackground }}"
->
-  <div class="page-width utility-bar__grid">
+  {{ sec_id }} .pc-announcement-icon {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  {{ sec_id }} .pc-announcement-link:hover .pc-announcement-icon {
+    transform: translateX(3px);
+  }
+
+  {{ sec_id }} .pc-utility-actions {
+    display: flex;
+    gap: {{ section.settings.action_spacing }}px;
+  }
+
+  {{ sec_id }} .pc-utility-action {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: {{ section.settings.action_text_color }};
+    font-size: {{ section.settings.action_font_size }}px;
+    transition: all 0.3s ease;
+  }
+
+  {{ sec_id }} .pc-utility-action:hover {
+    color: {{ section.settings.action_hover_color }};
+  }
+
+  {{ sec_id }} .pc-utility-action svg {
+    width: {{ section.settings.action_icon_size }}px;
+    height: {{ section.settings.action_icon_size }}px;
+    margin-right: 6px;
+    fill: currentColor;
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    {{ sec_id }} .pc-utility-bar {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    {{ sec_id }} .pc-utility-container {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    {{ sec_id }} .pc-social-icons,
+    {{ sec_id }} .pc-utility-actions {
+      display: none;
+    }
+
+    {{ sec_id }} .pc-announcement-slider-wrapper {
+      margin: 0;
+      order: -1;
+      width: 100%;
+      height: auto;
+      min-height: {{ section.settings.mobile_announcement_height }}px;
+    }
+
+    {{ sec_id }} .pc-announcement-text {
+      font-size: {{ section.settings.mobile_font_size }}px;
+    }
+  }
+</style>
+
+<div class="pc-utility-bar" id="section-{{ section.id }}">
+  <div class="pc-utility-container">
     {% if section.settings.show_social %}
-      {% render 'social-icons' %}
+      <div class="pc-social-icons">
+        {%- if settings.social_twitter_link != blank -%}
+          <a
+            href="{{ settings.social_twitter_link }}"
+            class="pc-social-icon"
+            target="_blank"
+            rel="noopener"
+            aria-label="Twitter"
+          >
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.014 10.014 0 01-3.127 1.195 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.937 4.937 0 004.604 3.417 9.868 9.868 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63a9.935 9.935 0 002.46-2.548l-.047-.02z"/>
+            </svg>
+          </a>
+        {%- endif -%}
+
+        {%- if settings.social_facebook_link != blank -%}
+          <a
+            href="{{ settings.social_facebook_link }}"
+            class="pc-social-icon"
+            target="_blank"
+            rel="noopener"
+            aria-label="Facebook"
+          >
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/>
+            </svg>
+          </a>
+        {%- endif -%}
+
+        {%- if settings.social_instagram_link != blank -%}
+          <a
+            href="{{ settings.social_instagram_link }}"
+            class="pc-social-icon"
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
+          >
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </a>
+        {%- endif -%}
+      </div>
     {% endif %}
 
-    {% if section.blocks.size == 1 %}
-      <div class="announcement-bar">
-        {% for block in section.blocks %}
-          {% if block.type == 'announcement' %}
-            <div role="region" aria-label="Announcement">
-              {% if block.settings.text %}
-                {% if block.settings.link %}
-                  <a href="{{ block.settings.link }}" class="announcement-bar__link">
-                {% endif %}
-                <p
-                  class="announcement-bar__message h5"
-                  style="
-                    font-size: {% case block.settings.text_size %}
-                               {% when 'small' %} 14px
-                               {% when 'medium' %} 18px
-                               {% when 'large' %} 22px
-                               {% else %} 14px
-                             {% endcase %};
-                    font-weight: {{ block.settings.font_weight }};
-                    text-decoration: {{ block.settings.text_decoration }};
-                    color: {{ block.settings.text_color }};
-                    font-style: {{ block.settings.font_style }};
-                  "
-                >
-                  <span style="letter-spacing: {{ block.settings.letter_spacing }}px;">
-                    {{ block.settings.text | escape }}
-                  </span>
-                  {% if block.settings.link %}
-                    {{ 'icon-arrow.svg' | inline_asset_content }}
-                  {% endif %}
-                </p>
-                {% if block.settings.link %}
-                  </a>
-                {% endif %}
-              {% endif %}
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-    {% elsif section.blocks.size > 1 %}
-      <slideshow-component
-        class="announcement-bar"
-        role="region"
-        aria-roledescription="Carousel"
-        aria-label="Announcements"
+    {% if section.blocks.size > 0 %}
+      <div
+        class="pc-announcement-slider-wrapper"
         data-autoplay="{{ section.settings.auto_rotate }}"
         data-speed="{{ section.settings.change_slides_speed }}"
       >
-        <div class="announcement-bar-slider">
+        <div class="pc-announcement-slider" id="pc-slider-{{ section.id }}">
           {% for block in section.blocks %}
-            <div class="announcement-bar__announcement" role="group">
-              {% if block.settings.text %}
-                {% if block.settings.link %}
-                  <a href="{{ block.settings.link }}" class="announcement-bar__link">
+            <div
+              class="pc-announcement {% if forloop.first %}active{% endif %}"
+              {{ block.shopify_attributes }}
+              role="region"
+              aria-label="Announcement"
+            >
+              {% if block.settings.text != blank %}
+                {% if block.settings.link != blank %}
+                  <a href="{{ block.settings.link }}" class="pc-announcement-link">
                 {% endif %}
-                <p class="announcement-bar__message h5">
-                  <span style="letter-spacing: {{ block.settings.letter_spacing }}px;">
-                    {{ block.settings.text | escape }}
-                  </span>
-                  {% if block.settings.link %}
-                    {{ 'icon-arrow.svg' | inline_asset_content }}
+
+                <p class="pc-announcement-text">
+                  {{ block.settings.text | escape }}
+                  {% if block.settings.link != blank %}
+                    <span class="pc-announcement-icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </span>
                   {% endif %}
                 </p>
-                {% if block.settings.link %}
+
+                {% if block.settings.link != blank %}
                   </a>
                 {% endif %}
               {% endif %}
             </div>
           {% endfor %}
         </div>
-      </slideshow-component>
+      </div>
     {% endif %}
+
+    <div class="pc-utility-actions">
+      {% if section.settings.show_contact %}
+        <a href="{{ section.settings.contact_link }}" class="pc-utility-action">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+          </svg>
+          {{ section.settings.contact_text }}
+        </a>
+      {% endif %}
+
+      {% if section.settings.show_account and shop.customer_accounts_enabled %}
+        <a href="{{ routes.account_url }}" class="pc-utility-action">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          {{ section.settings.account_text }}
+        </a>
+      {% endif %}
+    </div>
   </div>
 </div>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const wrapper = document.querySelector('#section-{{ section.id }} .pc-announcement-slider-wrapper');
+    if (!wrapper || wrapper.querySelectorAll('.pc-announcement').length <= 1) return;
+
+    const slider = wrapper.querySelector('.pc-announcement-slider');
+    const announcements = slider.querySelectorAll('.pc-announcement');
+    let current = 0;
+    const speed = parseInt(wrapper.dataset.speed) || 5000;
+    const autoplay = wrapper.dataset.autoplay === 'true';
+    let autoplayInterval;
+
+    function showSlide(index) {
+      announcements.forEach((announcement, i) => {
+        announcement.classList.toggle('active', i === index);
+      });
+    }
+
+    function nextSlide() {
+      current = (current + 1) % announcements.length;
+      showSlide(current);
+    }
+
+    showSlide(current);
+
+    if (autoplay) {
+      autoplayInterval = setInterval(nextSlide, speed);
+
+      wrapper.addEventListener('mouseenter', () => {
+        clearInterval(autoplayInterval);
+      });
+
+      wrapper.addEventListener('mouseleave', () => {
+        autoplayInterval = setInterval(nextSlide, speed);
+      });
+    }
+  });
+</script>
+
 {% schema %}
 {
-  "name": "t:sections.announcement-bar.name",
-  "max_blocks": 12,
-  "class": "announcement-bar-section",
-  "enabled_on": {
-    "groups": ["header"]
-  },
+  "name": "PWC - Utility Bar #1",
+  "max_blocks": 5,
   "settings": [
     {
-      "type": "color",
-      "id": "colorBackground",
-      "label": "Background color",
-      "default": "#000000"
-    },
-     {
-      "type": "range",
-      "id": "padding_top",
-      "label": "Padding Top (px)",
-      "default": 5,
-      "min": 0,
-      "max": 150,
-      "step": 5
+      "type": "header",
+      "content": "Layout Settings"
     },
     {
       "type": "range",
-      "id": "padding_bottom",
-      "label": "Padding Bottom (px)",
-      "default": 5,
+      "id": "container_width",
+      "label": "Container Width",
+      "min": 1000,
+      "max": 1800,
+      "step": 50,
+      "default": 1200,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "range",
+      "id": "content_spacing",
+      "label": "Content Spacing",
       "min": 0,
-      "max": 150,
-      "step": 5
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Spacing (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "announcement_height",
+      "label": "Announcement Height",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Spacing (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 8,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 8,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_announcement_height",
+      "label": "Announcement Height",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "default": 35,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Social Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show Social Icons",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "social_icon_size",
+      "label": "Icon Size",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "social_icon_spacing",
+      "label": "Icon Spacing",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "social_icon_radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 4,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "social_icon_color",
+      "label": "Icon Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "social_icon_hover_color",
+      "label": "Hover Icon Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "social_icon_bg",
+      "label": "Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "social_icon_hover_bg",
+      "label": "Hover Background",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Announcement Text"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "Auto-rotate Announcements",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "label": "Rotation Speed",
+      "min": 2000,
+      "max": 9000,
+      "step": 500,
+      "default": 5000,
+      "unit": "ms"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "label": "Mobile Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "text_hover_color",
+      "label": "Hover Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "500"
+    },
+    {
+      "type": "select",
+      "id": "text_decoration",
+      "label": "Text Decoration",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "underline", "label": "Underline" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "font_style",
+      "label": "Font Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter Spacing",
+      "min": 0,
+      "max": 5,
+      "step": 0.1,
+      "default": 0.5,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Utility Actions"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact",
+      "label": "Show Contact Link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "contact_text",
+      "label": "Contact Text",
+      "default": "Contact Us"
+    },
+    {
+      "type": "url",
+      "id": "contact_link",
+      "label": "Contact Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show Account Link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "account_text",
+      "label": "Account Text",
+      "default": "My Account"
+    },
+    {
+      "type": "range",
+      "id": "action_spacing",
+      "label": "Action Spacing",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "action_font_size",
+      "label": "Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 14,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "action_icon_size",
+      "label": "Icon Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "action_text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "action_hover_color",
+      "label": "Hover Color",
+      "default": "#000000"
     }
   ],
   "blocks": [
     {
       "type": "announcement",
-      "name": "t:sections.announcement-bar.blocks.announcement.name",
+      "name": "Announcement",
       "settings": [
         {
           "type": "text",
           "id": "text",
-          "default": "t:sections.announcement-bar.blocks.announcement.settings.text.default",
-          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
-        },
-        {
-          "type": "select",
-          "id": "text_size",
-          "options": [
-            {
-              "value": "small",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__1.label"
-            },
-            {
-              "value": "medium",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__2.label"
-            },
-            {
-              "value": "large",
-              "label": "t:sections.rich-text.blocks.caption.settings.caption_size.options__3.label"
-            }
-          ],
-          "default": "small",
-          "label": "t:sections.rich-text.blocks.caption.settings.caption_size.label"
-        },
-        {
-          "type": "select",
-          "id": "font_weight",
-          "label": "Font weight",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "bold",
-              "label": "Bold"
-            },
-            {
-              "value": "bolder",
-              "label": "Bolder"
-            },
-            {
-              "value": "lighter",
-              "label": "Lighter"
-            },
-            {
-              "value": "100",
-              "label": "100"
-            },
-            {
-              "value": "200",
-              "label": "200"
-            },
-            {
-              "value": "300",
-              "label": "300"
-            },
-            {
-              "value": "400",
-              "label": "400"
-            },
-            {
-              "value": "500",
-              "label": "500"
-            },
-            {
-              "value": "600",
-              "label": "600"
-            },
-            {
-              "value": "700",
-              "label": "700"
-            },
-            {
-              "value": "800",
-              "label": "800"
-            },
-            {
-              "value": "900",
-              "label": "900"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "select",
-          "id": "font_style",
-          "label": "Font style",
-          "options": [
-            {
-              "value": "normal",
-              "label": "Normal"
-            },
-            {
-              "value": "italic",
-              "label": "Italic"
-            },
-            {
-              "value": "oblique",
-              "label": "Oblique"
-            }
-          ],
-          "default": "normal"
-        },
-        {
-          "type": "range",
-          "id": "letter_spacing",
-          "min": 0,
-          "max": 10,
-          "step": 0.5,
-          "unit": "px",
-          "label": "Letter spacing",
-          "default": 0
-        },
-         {
-          "type": "select",
-          "id": "text_decoration",
-          "label": "Text Decoration",
-          "options": [
-            {
-              "value": "none",
-              "label": "None"
-            },
-            {
-              "value": "underline",
-              "label": "Underline"
-            },
-            {
-              "value": "overline",
-              "label": "Overline"
-            },
-            {
-              "value": "line-through",
-              "label": "Line Through"
-            }
-          ],
-          "default": "none"
-        },
-         {
-          "type": "color",
-          "id": "text_color",
-          "label": "Text Color",
-          "default": "#000000"
+          "label": "Text",
+          "default": "Announce something important here"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
+          "label": "Link"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Pwc announcement bar",
+      "name": "PWC - Utility Bar #1",
       "category": "Custom",
       "blocks": [
         {
-          "type": "announcement"
+          "type": "announcement",
+          "settings": {
+            "text": "Free shipping on all orders over $50"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "text": "New collection now available"
+          }
         }
       ]
     }
