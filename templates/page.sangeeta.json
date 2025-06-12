@@ -101,155 +101,6 @@
         "padding_bottom_mobile": 30
       }
     },
-    "pricing_plan_p_JP9y6c": {
-      "type": "pricing-plan-p",
-      "blocks": {
-        "pricing_plan_fyHFtF": {
-          "type": "pricing_plan",
-          "settings": {
-            "highlight_plan": false,
-            "is_vip_plan": false,
-            "plan_image": "shopify://shop_images/download_5b87c0d5-7083-424d-a48e-3644f7d41815.png",
-            "block_width": 20,
-            "plan_name": "Plan Name",
-            "plan_price": "$99",
-            "plan_features": "Feature 1\nFeature 2\nFeature 3\nFeature 4",
-            "button_text": "Buy Now",
-            "button_link": ""
-          }
-        },
-        "pricing_plan_8aYLew": {
-          "type": "pricing_plan",
-          "settings": {
-            "highlight_plan": true,
-            "is_vip_plan": true,
-            "plan_image": "shopify://shop_images/planning.png",
-            "block_width": 20,
-            "plan_name": "Plan Name",
-            "plan_price": "$99",
-            "plan_features": "Feature 1\nFeature 2\nFeature 3\nFeature 4",
-            "button_text": "Buy Now",
-            "button_link": ""
-          }
-        },
-        "pricing_plan_ECdfTc": {
-          "type": "pricing_plan",
-          "settings": {
-            "highlight_plan": false,
-            "is_vip_plan": false,
-            "plan_image": "shopify://shop_images/Searching_4.png",
-            "block_width": 20,
-            "plan_name": "Plan Name",
-            "plan_price": "$99",
-            "plan_features": "Feature 1\nFeature 2\nFeature 3\nFeature 4",
-            "button_text": "Buy Now",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "pricing_plan_fyHFtF",
-        "pricing_plan_8aYLew",
-        "pricing_plan_ECdfTc"
-      ],
-      "disabled": true,
-      "settings": {
-        "heading": "Pricing Plans",
-        "section_padding_top": 5,
-        "section_padding_bottom": 5,
-        "background_color": "#f5f5f5",
-        "background_image": "shopify://shop_images/p1.png",
-        "parallax_effect": true,
-        "overlay_opacity": 0,
-        "container_width": 1200,
-        "container_padding": 20,
-        "font_family": "'Montserrat', sans-serif",
-        "heading_font_size": 40,
-        "heading_font_size_mobile": 32,
-        "heading_font_weight": "700",
-        "heading_color": "#212529",
-        "heading_text_transform": "uppercase",
-        "heading_letter_spacing": 1,
-        "heading_line_height": 1.2,
-        "heading_margin_bottom": 1,
-        "heading_alignment": "center",
-        "plans_alignment": "center",
-        "plans_gap": 30,
-        "card_width": 50,
-        "card_min_width": 280,
-        "card_max_width": 350,
-        "card_padding_top": 40,
-        "card_padding_bottom": 40,
-        "card_padding_sides": 30,
-        "card_background_color": "#ffffff",
-        "card_border_radius": 10,
-        "card_border_width": 0,
-        "card_border_color": "#e0e0e0",
-        "card_text_alignment": "center",
-        "card_box_shadow_horizontal": 0,
-        "card_box_shadow_vertical": 10,
-        "card_box_shadow_blur": 30,
-        "card_box_shadow_opacity": 0.1,
-        "card_hover_box_shadow_horizontal": 0,
-        "card_hover_box_shadow_vertical": 15,
-        "card_hover_box_shadow_blur": 35,
-        "card_hover_box_shadow_opacity": 1,
-        "card_hover_lift": 10,
-        "card_hover_animation_speed": 0.3,
-        "plan_name_font_size": 24,
-        "plan_name_font_weight": "600",
-        "plan_name_color": "#212529",
-        "plan_name_margin_bottom": 20,
-        "plan_price_font_size": 48,
-        "plan_price_font_weight": "700",
-        "plan_price_small_font_size": 16,
-        "plan_price_small_font_weight": "400",
-        "plan_price_margin_bottom": 25,
-        "features_margin_bottom": 30,
-        "feature_padding_vertical": 10,
-        "feature_border_width": 1,
-        "feature_border_color": "#eeeeee",
-        "feature_text_color": "#6c757d",
-        "feature_font_size": 16,
-        "feature_line_height": 1.5,
-        "button_padding_vertical": 12,
-        "button_padding_horizontal": 30,
-        "button_min_width": 200,
-        "button_border_radius": 50,
-        "button_border_width": 0,
-        "button_border_color": "rgba(0,0,0,0)",
-        "button_font_size": 16,
-        "button_font_weight": "600",
-        "button_text_color": "#ffffff",
-        "button_text_transform": "uppercase",
-        "button_letter_spacing": 1,
-        "button_hover_lift": 2,
-        "button_hover_shadow_opacity": 0.1,
-        "button_hover_animation_speed": 0.3,
-        "button_hover_text_color": "#ffffff",
-        "button_hover_border_color": "rgba(0,0,0,0)",
-        "popular_badge_text": "Popular",
-        "badge_position_top": 15,
-        "badge_position_right": 30,
-        "badge_padding_vertical": 5,
-        "badge_padding_horizontal": 30,
-        "badge_width": 150,
-        "badge_font_size": 13,
-        "badge_font_weight": "600",
-        "badge_text_color": "#ffffff",
-        "plan_image_size": "500x",
-        "plan_image_fit": "contain",
-        "plan_image_height": 140,
-        "plan_image_height_mobile": 150,
-        "plan_image_margin_bottom": 20,
-        "plan_image_border_radius": 8,
-        "primary_color": "#3a86ff",
-        "secondary_color": "#8338ec",
-        "accent_color": "#ff006e",
-        "accent_color_hover": "#d80060",
-        "vip_button_border_color": "rgba(0,0,0,0)"
-      }
-    },
     "image_counter_pwc_4LedYC": {
       "type": "Image_Counter_pwc",
       "settings": {
@@ -550,61 +401,6 @@
         "center_image": "shopify://shop_images/woman-poses-in-dark-room.jpg"
       }
     },
-    "image_hover_pro_pwc_Qhgcdx": {
-      "type": "image_hover_pro_pwc",
-      "blocks": {
-        "image_GJbTKA": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
-            "title": "Shoulder bags",
-            "title_font_size": 32,
-            "title_color": "#ffffff",
-            "title_hover_color": "#ffcc00",
-            "description": "<p>Add your product description here</p>",
-            "description_font_size": 16,
-            "description_color": "#f5f5f5",
-            "description_hover_color": "#eeeeee",
-            "button_text": "Shop Now",
-            "link": "shopify://collections",
-            "hover_bg": "#5f663b",
-            "button_bg": "#ffffff",
-            "button_text_color": "#000000",
-            "hover_width": 60
-          }
-        },
-        "image_Vcpa3Q": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/stylish-skirt-purse.jpg",
-            "title": "Crossbody bags",
-            "title_font_size": 32,
-            "title_color": "#ffffff",
-            "title_hover_color": "#ffcc00",
-            "description": "<p>Add your product description here</p>",
-            "description_font_size": 16,
-            "description_color": "#f5f5f5",
-            "description_hover_color": "#eeeeee",
-            "button_text": "Shop Now",
-            "link": "shopify://collections/crossbody-bag",
-            "hover_bg": "#ff0000",
-            "button_bg": "#ffffff",
-            "button_text_color": "#000000",
-            "hover_width": 60
-          }
-        }
-      },
-      "block_order": [
-        "image_GJbTKA",
-        "image_Vcpa3Q"
-      ],
-      "name": "Image Hover Pro Pwc",
-      "settings": {
-        "page_width": "wide",
-        "gap_between": 20,
-        "image_height": 500
-      }
-    },
     "text_image_video_pwc_RtUCTd": {
       "type": "text-image-video-pwc",
       "name": "PC Text + Image + Video",
@@ -703,19 +499,73 @@
         "block_gap": 20,
         "product_bg_color": "#f8f5f5"
       }
+    },
+    "pwc_announcement_bar_C4M6tA": {
+      "type": "pwc-announcement-bar",
+      "blocks": {
+        "announcement_ajK8dk": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free shipping on all orders over $50",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_ajK8dk"
+      ],
+      "name": "PWC - Utility Bar #1",
+      "settings": {
+        "container_width": 1200,
+        "background_color": "#f9f9f9",
+        "content_spacing": 40,
+        "desktop_padding_top": 10,
+        "desktop_padding_bottom": 10,
+        "announcement_height": 40,
+        "mobile_padding_top": 8,
+        "mobile_padding_bottom": 8,
+        "mobile_announcement_height": 35,
+        "show_social": true,
+        "social_icon_size": 24,
+        "social_icon_spacing": 10,
+        "social_icon_radius": 4,
+        "social_icon_color": "#333333",
+        "social_icon_hover_color": "#ffffff",
+        "social_icon_bg": "transparent",
+        "social_icon_hover_bg": "#333333",
+        "auto_rotate": true,
+        "change_slides_speed": 5000,
+        "font_size": 16,
+        "mobile_font_size": 14,
+        "text_color": "#333333",
+        "text_hover_color": "#000000",
+        "font_weight": "500",
+        "text_decoration": "none",
+        "font_style": "normal",
+        "letter_spacing": 0.5,
+        "show_contact": true,
+        "contact_text": "Contact Us",
+        "contact_link": "",
+        "show_account": true,
+        "account_text": "My Account",
+        "action_spacing": 20,
+        "action_font_size": 14,
+        "action_icon_size": 16,
+        "action_text_color": "#333333",
+        "action_hover_color": "#000000"
+      }
     }
   },
   "order": [
     "main",
     "pwc_timer_BeYrN3",
-    "pricing_plan_p_JP9y6c",
     "image_counter_pwc_4LedYC",
     "collection_grid_pwc_WfW39c",
     "collection_grid_image_pwc_WPFmUG",
     "text_image_text_pwc_VedTK4",
-    "image_hover_pro_pwc_Qhgcdx",
     "text_image_video_pwc_RtUCTd",
     "rd_highlighter_image_banner_PkdXwb",
-    "rd_hotspot_product_viewer_GL3hdh"
+    "rd_hotspot_product_viewer_GL3hdh",
+    "pwc_announcement_bar_C4M6tA"
   ]
 }
