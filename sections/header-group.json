@@ -120,12 +120,6 @@
           "type": "announcement",
           "settings": {
             "text": "Welcome to our store",
-            "text_size": "medium",
-            "font_weight": "800",
-            "font_style": "italic",
-            "letter_spacing": 1,
-            "text_decoration": "underline",
-            "text_color": "#ffffff",
             "link": ""
           }
         }
@@ -135,15 +129,75 @@
       ],
       "disabled": true,
       "settings": {
-        "colorBackground": "#a3ba35",
-        "padding_top": 5,
-        "padding_bottom": 20
+        "container_width": 1200,
+        "background_color": "#000000",
+        "desktop_padding_top": 8,
+        "desktop_padding_bottom": 8,
+        "mobile_padding_top": 6,
+        "mobile_padding_bottom": 6,
+        "text_color": "#ffffff",
+        "text_hover_color": "#cccccc",
+        "font_size": 14,
+        "mobile_font_size": 12,
+        "font_weight": "500",
+        "text_decoration": "none",
+        "font_style": "normal",
+        "letter_spacing": 0.5,
+        "auto_rotate": true,
+        "change_slides_speed": 5000,
+        "dot_color": "#ffffff80",
+        "dot_active_color": "#ffffff"
+      }
+    },
+    "pwc_announcement_bar_Kn94YV": {
+      "type": "pwc-announcement-bar",
+      "blocks": {
+        "announcement_J4EXLc": {
+          "type": "announcement",
+          "settings": {
+            "text": "Free shipping on all orders over $50",
+            "link": ""
+          }
+        },
+        "announcement_KdVq8c": {
+          "type": "announcement",
+          "settings": {
+            "text": "New collection now available",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_J4EXLc",
+        "announcement_KdVq8c"
+      ],
+      "name": "PWC - Announcement Bar #1",
+      "settings": {
+        "container_width": 1200,
+        "background_color": "#000000",
+        "desktop_padding_top": 8,
+        "desktop_padding_bottom": 8,
+        "mobile_padding_top": 6,
+        "mobile_padding_bottom": 6,
+        "text_color": "#ffffff",
+        "text_hover_color": "#cccccc",
+        "font_size": 14,
+        "mobile_font_size": 12,
+        "font_weight": "500",
+        "text_decoration": "none",
+        "font_style": "normal",
+        "letter_spacing": 0.5,
+        "auto_rotate": true,
+        "change_slides_speed": 5000,
+        "dot_color": "rgba(255,255,255,0.5)",
+        "dot_active_color": "#ffffff"
       }
     }
   },
   "order": [
     "pwc_marquee_anouncement_BjG7ky",
     "header",
-    "pwc_announcement_bar_JMa9Tp"
+    "pwc_announcement_bar_JMa9Tp",
+    "pwc_announcement_bar_Kn94YV"
   ]
 }
