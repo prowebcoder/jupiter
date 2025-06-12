@@ -156,7 +156,7 @@
             <div class="pw-block">
               {{-
                 block.settings.image
-                | image_url: width: block.settings.image.width
+                | image_url: width: 50
                 | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pw-image'
               -}}
               <h3 class="pw-heading" style="font-size: {{ block.settings.heading_size }}px;">
