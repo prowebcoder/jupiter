@@ -676,90 +676,6 @@
         "padding_bottom": 36
       }
     },
-    "rw_testimonials_gLCa36": {
-      "type": "rw-testimonials",
-      "blocks": {
-        "testimonial_pLWqni": {
-          "type": "testimonial",
-          "settings": {
-            "image": "shopify://shop_images/purchased-favorite-coffee.jpg",
-            "name": "Tamar Mendelson",
-            "designation": "Restaurant Critic",
-            "quote": "I was impressed by the food — every dish is bursting with flavor! And I could really tell that they use high-quality ingredients. The staff was friendly and attentive, going the extra mile. I'll definitely be back for more!"
-          }
-        },
-        "testimonial_GXhpaD": {
-          "type": "testimonial",
-          "settings": {
-            "image": "shopify://shop_images/home-overlay-cards-1.webp",
-            "name": "Joe Charlescraft",
-            "designation": "Frequent Visitor",
-            "quote": "This place exceeded all expectations! The atmosphere is inviting, and the staff truly goes above and beyond to ensure a fantastic visit. I'll definitely keep returning for more exceptional dining experience."
-          }
-        },
-        "testimonial_7GTkVg": {
-          "type": "testimonial",
-          "settings": {
-            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
-            "name": "Martina Edelweist",
-            "designation": "Satisfied Customer",
-            "quote": "Shining Yam is a hidden gem! From the moment I walked in, I knew I was in for a treat. The impeccable service and overall attention to detail created a memorable experience. I highly recommend it!"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_pLWqni",
-        "testimonial_GXhpaD",
-        "testimonial_7GTkVg"
-      ],
-      "name": "RW Testimonials",
-      "settings": {
-        "max_width": 1200,
-        "grid_gap": 50,
-        "mobile_grid_gap": 30,
-        "arrow_position": "side",
-        "shadow_enabled": false,
-        "image_width": 600,
-        "image_height": 400,
-        "mobile_image_height": 300,
-        "image_border_radius": 15,
-        "image_shadow_enabled": true,
-        "name_font_size": 24,
-        "mobile_name_font_size": 20,
-        "name_font_weight": "600",
-        "name_color": "#000000",
-        "name_margin_bottom": 5,
-        "designation_font_size": 14,
-        "mobile_designation_font_size": 12,
-        "designation_color": "#6b7280",
-        "designation_margin_bottom": 20,
-        "quote_font_size": 18,
-        "mobile_quote_font_size": 16,
-        "quote_color": "#4b5563",
-        "quote_line_height": 1.6,
-        "arrow_size": 28,
-        "arrow_icon_size": 20,
-        "arrow_gap": 10,
-        "arrow_padding_top": 30,
-        "mobile_arrow_padding_top": 30,
-        "arrow_background": "#141414",
-        "arrow_hover_background": "#00a6fb",
-        "arrow_icon_color": "#f1f1f7",
-        "arrow_icon_hover_color": "#ffffff",
-        "autoplay_enabled": true,
-        "autoplay_interval": 5000,
-        "desktop_padding_top": 40,
-        "desktop_padding_bottom": 40,
-        "desktop_padding_left": 20,
-        "desktop_padding_right": 20,
-        "mobile_padding_top": 30,
-        "mobile_padding_bottom": 30,
-        "mobile_padding_left": 15,
-        "mobile_padding_right": 15,
-        "margin_top": 30,
-        "margin_bottom": 30
-      }
-    },
     "rw_carousel_DPmLyg": {
       "type": "rw-carousel",
       "blocks": {
@@ -812,17 +728,17 @@
         "heading_font_size": 32,
         "heading_margin_bottom": 20,
         "heading_color": "#000000",
-        "background_color": "#FFFFFF",
+        "background_color": "#ffffff",
         "enable_shadow": true,
         "border_radius": 16,
         "transition_duration": 0.6,
         "title_font_size": 33,
-        "title_color": "#FFFFFF",
+        "title_color": "#ffffff",
         "text_font_size": 19,
         "text_color": "#ffffff",
         "author_font_size": 16,
         "author_color": "#ffffff",
-        "active_dot_color": "#60A5FA",
+        "active_dot_color": "#60a5fa",
         "margin_top": 5,
         "margin_bottom": 5,
         "desktop_height": 360,
@@ -842,6 +758,120 @@
         "mobile_small_title_font_size": 18,
         "overlay_opacity": 0.7
       }
+    },
+    "rw_tabs_FUNTVU": {
+      "type": "rw-tabs",
+      "blocks": {
+        "overview_enmEUQ": {
+          "type": "overview",
+          "settings": {
+            "tab_title": "Overview",
+            "heading": "Overview",
+            "content": "<p>Welcome to our modern tabbed interface! Enjoy smooth transitions, vibrant gradients, and responsive design. Whether you're browsing on mobile or desktop, everything adapts seamlessly.</p>",
+            "button_label": "Learn More"
+          }
+        },
+        "details_F3exjN": {
+          "type": "details",
+          "settings": {
+            "tab_title": "Details",
+            "heading": "Details",
+            "detail_1": "Responsive across all devices",
+            "detail_2": "Smooth animations and transitions",
+            "detail_3": "Modern, gradient-based design",
+            "detail_4": "Clean, easy-to-read fonts",
+            "detail_5": "detail 5",
+            "button_label": "Get Started"
+          }
+        },
+        "contact_UU3Q7k": {
+          "type": "contact",
+          "settings": {
+            "tab_title": "Contact",
+            "heading": "Contact Us",
+            "name_label": "Name:",
+            "name_placeholder": "Your Name",
+            "email_label": "Email:",
+            "email_placeholder": "Your Email",
+            "message_label": "Message:",
+            "message_placeholder": "Your Message",
+            "button_label": "Submit"
+          }
+        },
+        "faq_aEKKBb": {
+          "type": "faq",
+          "settings": {
+            "tab_title": "FAQ",
+            "heading": "Frequently Asked Questions",
+            "intro_text": "Here are some common questions we get asked:",
+            "question_1": "What is this component for?",
+            "answer_1": "It's a modern, interactive tab interface for websites.",
+            "question_2": "Is it responsive?",
+            "answer_2": "Yes! It's built to work perfectly on any screen size.",
+            "question_3": "question 3",
+            "answer_3": "answer 3",
+            "question_4": "question 4",
+            "answer_4": "answer 4",
+            "question_5": "question 5",
+            "answer_5": "answer 5",
+            "question_6": "question 6",
+            "answer_6": "answer 6"
+          }
+        }
+      },
+      "block_order": [
+        "overview_enmEUQ",
+        "details_F3exjN",
+        "contact_UU3Q7k",
+        "faq_aEKKBb"
+      ],
+      "name": "RW Tabs",
+      "settings": {
+        "heading": "Tabs",
+        "heading_alignment": "center",
+        "heading_font_size": 32,
+        "heading_color": "#000000",
+        "heading_background_color": "#FFFFFF",
+        "heading_margin_top": 20,
+        "heading_margin_bottom": 10,
+        "enable_shadow": true,
+        "container_width": 90,
+        "container_max_width": 1100,
+        "container_height": 350,
+        "container_min_height": 300,
+        "mobile_container_width": 95,
+        "mobile_container_min_height": 300,
+        "background_color": "#ffffff",
+        "border_radius": 20,
+        "shadow_enable": true,
+        "tab_font_size": 16,
+        "mobile_tab_font_size": 14,
+        "tab_font_weight": "500",
+        "tab_color": "#BCAA5F",
+        "tab_active_color": "#b84de5",
+        "tab_active_border_color": "#b84de5",
+        "tab_border_color": "#f0f0f0",
+        "tab_links_justify": "space-between",
+        "tab_content_spacing": 20,
+        "button_background": "#b84de5",
+        "button_hover_background": "#9c3bce",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 50,
+        "input_border_color": "#dddddd",
+        "input_focus_border_color": "#b84de5",
+        "desktop_margin_top": 10,
+        "desktop_margin_bottom": 0,
+        "desktop_padding_top": 20,
+        "desktop_padding_right": 20,
+        "desktop_padding_bottom": 20,
+        "desktop_padding_left": 20,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0,
+        "mobile_padding_top": 15,
+        "mobile_padding_right": 15,
+        "mobile_padding_bottom": 15,
+        "mobile_padding_left": 15
+      }
     }
   },
   "order": [
@@ -853,7 +883,7 @@
     "rw_blog_layout_rnwDVH",
     "rw_interactive_text_ent4en",
     "rw_text_with_icon_V33BVL",
-    "rw_testimonials_gLCa36",
-    "rw_carousel_DPmLyg"
+    "rw_carousel_DPmLyg",
+    "rw_tabs_FUNTVU"
   ]
 }
