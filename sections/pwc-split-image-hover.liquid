@@ -1,6 +1,7 @@
 {% assign sec_id = '#shopify-section-' | append: section.id %}
 
 {% style %}
+
     {{ sec_id }} .pc-section-container {
       {% case section.settings.page_width %}
         {% when 'full' %} max-width: 100%;
@@ -220,7 +221,7 @@
       }
     }
 {% endstyle %}
-asdasdasd
+
 <div class="pc-section-container">
   <div class="pc-split-container">
     {% for block in section.blocks %}
@@ -245,7 +246,7 @@ asdasdasd
     {% endfor %}
   </div>
 </div>
-asdasd
+
 {% schema %}
 {
   "name": "Split Banner Hover PWC",
