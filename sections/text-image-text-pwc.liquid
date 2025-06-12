@@ -115,11 +115,11 @@
         {% for block in section.blocks %}
           {% if block.settings.position == 'left' %}
             <div class="pw-block">
-              <img
-                src="{{ block.settings.image | img_url: 'small' }}"
-                alt="{{ block.settings.heading }}"
-                class="pw-image"
-              >
+              {{-
+                block.settings.image
+                | image_url: width: block.settings.image.width
+                | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pw-image'
+              -}}
               <h3 class="pw-heading" style="font-size: {{ block.settings.heading_size }}px;">
                 {{ block.settings.heading }}
               </h3>
@@ -142,7 +142,11 @@
 
       <!-- Center Image -->
       <div class="pw-center-image">
-        <img src="{{ section.settings.center_image | img_url: 'large' }}" alt="Center Image" class="pw-image">
+        {{-
+          section.settings.center_image
+          | image_url: width: section.settings.center_image.width
+          | image_tag: loading: 'lazy', preload: true, alt: section.settings.center_image.alt, class: 'pw-image'
+        -}}
       </div>
 
       <!-- Right Column -->
@@ -150,11 +154,11 @@
         {% for block in section.blocks %}
           {% if block.settings.position == 'right' %}
             <div class="pw-block">
-              <img
-                src="{{ block.settings.image | img_url: 'small' }}"
-                alt="{{ block.settings.heading }}"
-                class="pw-image"
-              >
+              {{-
+                block.settings.image
+                | image_url: width: block.settings.image.width
+                | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pw-image'
+              -}}
               <h3 class="pw-heading" style="font-size: {{ block.settings.heading_size }}px;">
                 {{ block.settings.heading }}
               </h3>
