@@ -7,7 +7,7 @@
      margin-top: {{ section.settings.margin_top }}px;
      margin-bottom: {{ section.settings.margin_bottom }}px;
   }
-  
+
   {{ sec_id }} .pc-testimonial-slider {
     width: 100%;
     padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
@@ -147,7 +147,7 @@
     {{ sec_id }} .pc-testimonial-grid {
       grid-template-columns: 1fr 1fr;
     }
-    
+
     {% if section.settings.arrow_position == 'bottom' %}
       {{ sec_id }} .pc-arrow-buttons {
         padding-top: {{ section.settings.arrow_padding_top }}px;
@@ -166,9 +166,10 @@
       <div class="pc-image-container" id="pc-image-container-{{ last_part }}">
         {%- for block in section.blocks -%}
           {%- if block.settings.image -%}
-            {{- block.settings.image
-                  | image_url: width: 800
-                  | image_tag: loading: 'lazy', class: 'pc-testimonial-image', data-index: forloop.index0
+            {{-
+              block.settings.image
+              | image_url: width: 800
+              | image_tag: loading: 'lazy', class: 'pc-testimonial-image', data-index: forloop.index0
             -}}
           {%- else -%}
             {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'pc-testimonial-image' }}
@@ -296,7 +297,7 @@
 
 {% schema %}
 {
-  "name": "RW Testimonials",
+  "name": "PWC:TestimonialsSlider #2",
   "class": "shopify-section--testimonials",
   "settings": [
     {
@@ -796,7 +797,7 @@
   ],
   "presets": [
     {
-      "name": "RW Testimonials",
+      "name": "PWC:TestimonialsSlider #2",
       "category": "Custom",
       "blocks": [
         {
