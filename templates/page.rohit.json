@@ -869,7 +869,6 @@
     },
     "rw_contact_us_JVAbGy": {
       "type": "rw-contact-us",
-      "name": "RW Contact Us",
       "settings": {
         "image": "shopify://shop_images/1040-1200x800.jpg",
         "image_width_desktop": 45,
@@ -895,14 +894,14 @@
         "success_message": "Thank you! I will get back to you as soon as possible.",
         "primary_color": "#010712",
         "secondary_color": "#818386",
-        "bg_color": "#FCFDFD",
-        "button_color": "#3B3636",
-        "heading_color": "#3F444C",
+        "bg_color": "#fcfdfd",
+        "button_color": "#3b3636",
+        "heading_color": "#3f444c",
         "dark_primary_color": "#5ab9b9",
         "dark_secondary_color": "#334fb4",
         "dark_bg_color": "#2d6adb",
         "dark_button_color": "#1cdada",
-        "dark_heading_color": "#FCFDFD",
+        "dark_heading_color": "#fcfdfd",
         "shadow_enabled": true,
         "heading_font_size_desktop": 40,
         "heading_letter_spacing_desktop": 2,
@@ -973,6 +972,36 @@
         "theme_switch_border_radius_mobile": 28,
         "message_margin_top_mobile": 6
       }
+    },
+    "rw_wavy_layout_hmKEx9": {
+      "type": "rw-wavy-layout",
+      "name": "RW - Wavy Layout #1",
+      "settings": {
+        "title": "Wave Banner Title",
+        "container_width": 100,
+        "container_height": 500,
+        "wave_height": 100,
+        "background_gradient": "linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%)",
+        "enable_shadow": false,
+        "wave_color_1": "rgba(255,255,255,0.7)",
+        "wave_color_2": "#121212",
+        "wave_color_3": "#FFFFFF",
+        "wave_color_4": "#121212",
+        "title_font_size": 42,
+        "title_font_weight": 400,
+        "title_margin_bottom": 102,
+        "margin_top": 20,
+        "mobile_container_width": 100,
+        "mobile_container_height": 400,
+        "mobile_wave_height": 80,
+        "mobile_title_font_size": 32,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0,
+        "mobile_padding_top": 30,
+        "mobile_padding_right": 15,
+        "mobile_padding_bottom": 30,
+        "mobile_padding_left": 15
+      }
     }
   },
   "order": [
@@ -986,6 +1015,7 @@
     "rw_text_with_icon_V33BVL",
     "rw_carousel_DPmLyg",
     "rw_tabs_FUNTVU",
-    "rw_contact_us_JVAbGy"
+    "rw_contact_us_JVAbGy",
+    "rw_wavy_layout_hmKEx9"
   ]
 }
