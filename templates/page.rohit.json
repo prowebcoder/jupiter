@@ -923,7 +923,7 @@
         "message_error_message": "Please write a longer message.",
         "success_message": "Thank you! I will get back to you as soon as possible.",
         "primary_color": "#010712",
-        "secondary_color": "#818386",
+        "secondary_color": "#f8f5f5",
         "bg_color": "#ffffff",
         "button_color": "#121212",
         "heading_color": "#3f444c",
