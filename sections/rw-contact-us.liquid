@@ -441,6 +441,35 @@
 {
   "name": "RW Contact Us",
   "settings": [
+        {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left Side Image"
+    },
+    {
+      "type": "range",
+      "id": "image_width_desktop",
+      "label": "Image Width (Desktop)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 45
+    },
+    {
+      "type": "range",
+      "id": "image_height_mobile",
+      "label": "Image Height (Mobile)",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 400
+    },
     {
       "type": "header",
       "content": "Container Settings"
@@ -524,36 +553,6 @@
       "step": 1,
       "unit": "px",
       "default": 20
-    },
-    
-    {
-      "type": "header",
-      "content": "Image Settings"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Left Side Image"
-    },
-    {
-      "type": "range",
-      "id": "image_width_desktop",
-      "label": "Image Width (Desktop)",
-      "min": 20,
-      "max": 80,
-      "step": 5,
-      "unit": "%",
-      "default": 45
-    },
-    {
-      "type": "range",
-      "id": "image_height_mobile",
-      "label": "Image Height (Mobile)",
-      "min": 200,
-      "max": 800,
-      "step": 50,
-      "unit": "px",
-      "default": 400
     },
     {
       "type": "header",
