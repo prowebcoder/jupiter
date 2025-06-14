@@ -190,6 +190,7 @@
     right: 0;
     top: 0;
     transition: .4s;
+    border-radius: {{ section.settings.theme_switch_border_radius_desktop }}px;
   }
 
   {{ sec_id }} .pc-slider:before {
@@ -207,11 +208,12 @@
     background-color: var(--pc-button-color);
   }
 
- 
-
+  {{ sec_id }} input:checked + .pc-slider:before {
+    transform: translateX(calc(64px - 26px - (4px * 2)));} - {{ section.settings.theme_switch_knob_size_desktop }}px - ({{ section.settings.theme_switch_knob_offset_desktop }}px * 2)));
+  }
 
   {{ sec_id }} .pc-slider.pc-round {
-    border-radius: {{ section.settings.theme_switch_border_radius_desktop }}px;
+    border-radius: {{ section.settings.theme_switch_border_radius_desktop }}px !important;
   }
 
   {{ sec_id }} .pc-slider.pc-round:before {
@@ -309,18 +311,12 @@
       left: {{ section.settings.theme_switch_knob_offset_mobile }}px;
     }
 
-    {{ sec_id }} input:checked + .pc-slider:before {
-  transform: translateX(calc({{ section.settings.theme_switch_width_desktop }}px - {{ section.settings.theme_switch_knob_size_desktop }}px - {{ section.settings.theme_switch_knob_offset_desktop }}px * 2));
-}
 
-@media only screen and (max-width: 768px) {
-  {{ sec_id }} input:checked + .pc-slider:before {
-    transform: translateX(calc({{ section.settings.theme_switch_width_mobile }}px - {{ section.settings.theme_switch_knob_size_mobile }}px - {{ section.settings.theme_switch_knob_offset_mobile }}px * 2));
+  @media only screen and (max-width: 768px) {
+    {{ sec_id }} input:checked + .pc-slider:before {
+      transform: translateX(calc({{ section.settings.theme_switch_width_mobile }}px - {{ section.settings.theme_switch_knob_size_mobile }}px - {{ section.settings.theme_switch_knob_offset_mobile }}px * 2));
+    }
   }
-}
-  {{ sec_id }} .pc-theme-switch-wrapper {
-  z-index: 10;
-}
 
     {{ sec_id }} .pc-slider.pc-round {
       border-radius: {{ section.settings.theme_switch_border_radius_mobile }}px;
@@ -345,12 +341,12 @@
     </div>
     <div class="pc-right-col">
       <div class="pc-theme-switch-wrapper">
-       <label class="pc-theme-switch" for="pc-checkbox-{{ last_part }}">
+        <label class="pc-theme-switch" for="pc-checkbox-{{ last_part }}">
           <input type="checkbox" id="pc-checkbox-{{ last_part }}" />
           <div class="pc-slider pc-round"></div>
         </label>
-        <div class="pc-description">{{ section.settings.dark_mode_label }}</div>
-      </div>
+      <div class="pc-description">{{ section.settings.dark_mode_label }}</div>
+    </div>
       
       <h1 class="pc-heading">{{ section.settings.heading }}</h1>
       <p class="pc-subheading">{{ section.settings.subheading }}</p>
@@ -375,7 +371,7 @@
 </pc-contact-form-{{ last_part }}>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     const toggleSwitch = document.querySelector('{{ sec_id }} .pc-theme-switch input[type="checkbox"]');
     const contactForm = document.querySelector('pc-contact-form-{{ last_part }}');
     const currentTheme = localStorage.getItem('theme');
@@ -1049,7 +1045,7 @@
       "max": 50,
       "step": 1,
       "unit": "px",
-      "default": 34
+      "default": 20
     },
     {
       "type": "header",
@@ -1368,26 +1364,26 @@
       "unit": "px",
       "default": 4
     },
-  {
-  "type": "range",
-  "id": "theme_switch_knob_translate_desktop",
-  "label": "Theme Switch Knob Translate (Desktop)",
-  "min": 0,
-  "max": 100,
-  "step": 1,
-  "unit": "px",
-  "default": 60
-},
-{
-  "type": "range",
-  "id": "theme_switch_knob_translate_mobile",
-  "label": "Theme Switch Knob Translate (Mobile)",
-  "min": 0,
-  "max": 100,
-  "step": 1,
-  "unit": "px",
-  "default": 40
-},
+   {
+      "type": "range",
+      "id": "theme_switch_knob_translate_desktop",
+      "label": "Theme Switch Knob Translate (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "theme_switch_knob_translate_mobile",
+      "label": "Theme Switch Knob Translate (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 40
+      },
     {
       "type": "range",
       "id": "theme_switch_border_radius_mobile",
