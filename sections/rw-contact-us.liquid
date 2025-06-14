@@ -310,8 +310,17 @@
     }
 
     {{ sec_id }} input:checked + .pc-slider:before {
-      transform: translateX({{ section.settings.theme_switch_knob_translate_mobile }}px);
-    }
+  transform: translateX(calc({{ section.settings.theme_switch_width_desktop }}px - {{ section.settings.theme_switch_knob_size_desktop }}px - {{ section.settings.theme_switch_knob_offset_desktop }}px * 2));
+}
+
+@media only screen and (max-width: 768px) {
+  {{ sec_id }} input:checked + .pc-slider:before {
+    transform: translateX(calc({{ section.settings.theme_switch_width_mobile }}px - {{ section.settings.theme_switch_knob_size_mobile }}px - {{ section.settings.theme_switch_knob_offset_mobile }}px * 2));
+  }
+}
+  {{ sec_id }} .pc-theme-switch-wrapper {
+  z-index: 10;
+}
 
     {{ sec_id }} .pc-slider.pc-round {
       border-radius: {{ section.settings.theme_switch_border_radius_mobile }}px;
