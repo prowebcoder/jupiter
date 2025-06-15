@@ -159,7 +159,10 @@
     <div class="pc-content-block">
       <div class="pc-content-wrapper">
         <h4 class="pc-post-title">{{ section.settings.blog_title }}</h4>
-        <p class="pc-post-excerpt">{{ section.settings.blog_excerpt }}</p>
+        <p class="pc-post-excerpt">
+          {{ section.settings.blog_excerpt }}
+          <span><a href="{{ section.settings.blog_url }}">read more</a></span>
+        </p>
         <div class="pc-post-meta">
           <span class="pc-meta-date">{{ section.settings.post_date }}</span>
           <span class="pc-meta-category">{{ section.settings.blog_category }}</span>
@@ -455,6 +458,12 @@
       "id": "blog_category",
       "label": "Blog Category",
       "default": "Clothing Fashion"
+    },
+    {
+      "type":"url",
+      "id": "blog_url",
+      "label": "Blog url",
+      "info": "Select Blog URL"
     },
     {
       "type": "range",
