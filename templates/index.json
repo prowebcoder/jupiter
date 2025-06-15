@@ -438,7 +438,7 @@
       "type": "rw-wavy-layout",
       "name": "RW - Wavy Layout #1",
       "settings": {
-        "title": "Wave Banner Title",
+        "title": "",
         "container_width": 100,
         "container_height": 500,
         "wave_height": 100,
