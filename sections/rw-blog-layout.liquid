@@ -163,7 +163,9 @@
         <h4 class="pc-post-title">{{ section.settings.blog_title }}</h4>
         <p class="pc-post-excerpt">
           {{ section.settings.blog_excerpt }}
-          <span><a href="{{ section.settings.blog_url }}">read more</a></span>
+          <span
+            ><a href="{{ section.settings.blog_url }}">{{ section.settings.read_more }}</a></span
+          >
         </p>
         <div class="pc-post-meta">
           <span class="pc-meta-date">{{ section.settings.post_date }}</span>
@@ -432,6 +434,13 @@
       "id": "blog_excerpt",
       "label": "Blog Excerpt",
       "default": "As much as we live and breath monochrome styles (and we can all agree a majority of our daily wear is crisp whites and deep blacks), a gals gotta have a..."
+    },
+
+    {
+      "type": "textarea",
+      "id": "read_more",
+      "label": "Read More Text",
+      "default": "Read More"
     },
     {
       "type": "range",
