@@ -448,7 +448,7 @@
         "wave_color_1": "#fafafa",
         "wave_color_2": "#999999",
         "wave_color_3": "#c1c1c1",
-        "wave_color_4": "#949494",
+        "wave_color_4": "#000000",
         "title_color": "#000000",
         "title_font_size": 23,
         "title_font_weight": 400,
@@ -466,7 +466,7 @@
         "mobile_padding_left": 15
       }
     },
-    "rw_wavy_layout_AxBgyM": {
+    "rw_wavy_layout_et3k3m": {
       "type": "rw-wavy-layout",
       "name": "RW - Wavy Layout #1",
       "settings": {
@@ -477,10 +477,10 @@
         "background_gradient": "",
         "enable_shadow": true,
         "enable_invert": true,
-        "wave_color_1": "#334fb4",
-        "wave_color_2": "#121212",
-        "wave_color_3": "#ff0000",
-        "wave_color_4": "#121212",
+        "wave_color_1": "#fafafa",
+        "wave_color_2": "#999999",
+        "wave_color_3": "#c1c1c1",
+        "wave_color_4": "#000000",
         "title_color": "#000000",
         "title_font_size": 23,
         "title_font_weight": 400,
@@ -506,6 +506,6 @@
     "pwc_counter_aTT7wW",
     "rw_testimonial_slider_mdzBML",
     "rw_wavy_layout_ytR4w6",
-    "rw_wavy_layout_AxBgyM"
+    "rw_wavy_layout_et3k3m"
   ]
 }
