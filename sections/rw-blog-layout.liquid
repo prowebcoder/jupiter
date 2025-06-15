@@ -4,7 +4,7 @@
   {{ sec_id }} .pc-custom-blog-layout {
     width: 100%;
     margin: 0 auto;
-    font-family: {{ section.settings.font_family }};
+
     padding: 20px;
   }
 
@@ -105,25 +105,25 @@
     object-fit: {{ section.settings.image_fit }};
     object-position: center;
   }
-  
+
   @media (max-width: 768px) {
     {{ sec_id }} .pc-blog-container {
       flex-direction: column !important;
     }
-    
+
     {{ sec_id }} .pc-image-block,
     {{ sec_id }} .pc-content-block {
       width: 100% !important;
       height: auto !important;
     }
-    
+
     {{ sec_id }} .pc-content-block {
       position: relative !important;
       margin: 20px 0 0 0 !important;
       left: 0 !important;
       right: 0 !important;
     }
-    
+
     {{ sec_id }} .pc-image-block {
       height: {{ section.settings.image_height | divided_by: 2 }}px !important;
     }
@@ -132,7 +132,7 @@
 
 <div class="pc-custom-blog-layout" style="max-width: {{ section.settings.container_width }}%">
   <!-- Heading -->
-  <h3 class="pc-section-heading">{{ section.settings.heading | default: "FROM THE BLOG" }}</h3>
+  <h3 class="pc-section-heading">{{ section.settings.heading | default: 'FROM THE BLOG' }}</h3>
 
   <!-- Image & Content Container -->
   <div class="pc-blog-container">
@@ -387,17 +387,7 @@
       "type": "header",
       "content": "Text Settings"
     },
-    {
-      "type": "select",
-      "id": "font_family",
-      "label": "Font Family",
-      "options": [
-        { "value": "sans-serif", "label": "Sans-serif" },
-        { "value": "serif", "label": "Serif" },
-        { "value": "monospace", "label": "Monospace" }
-      ],
-      "default": "sans-serif"
-    },
+
     {
       "type": "text",
       "id": "heading",
