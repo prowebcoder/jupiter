@@ -1,6 +1,6 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 {% assign read_more = section.settings.meta_size | plus: 3 %}
-<style>
+{% style %}
     {{ sec_id }} .pc-custom-blog-layout {
       width: 100%;
       margin: 0 auto;
@@ -130,7 +130,7 @@
         height: {{ section.settings.image_height | divided_by: 2 }}px !important;
       }
     }
-</style>
+{% endstyle %}
 
 <div class="pc-custom-blog-layout" style="max-width: {{ section.settings.container_width }}%">
   <!-- Heading -->
