@@ -22,6 +22,9 @@
     left: 0;
     width: 100%;
     height: {{ section.settings.wave_height }}px;
+    {% if section.settings.enable_invert %}
+      transform: rotateX(180deg);
+    {% endif %}
   }
 
   {{ sec_id }} .pc-wave-banner__waves-svg-{{ last_part }} {
@@ -111,7 +114,14 @@
     {%- endif -%}
   </div>
   <div class="pc-wave-banner__waves-{{ last_part }}">
-    <svg class="pc-wave-banner__waves-svg-{{ last_part }}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <svg
+      class="pc-wave-banner__waves-svg-{{ last_part }}"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 24 150 28"
+      preserveAspectRatio="none"
+      shape-rendering="auto"
+    >
       <defs>
         <path id="pc-gentle-wave-{{ last_part }}" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
       </defs>
@@ -186,6 +196,12 @@
       "type": "checkbox",
       "id": "enable_shadow",
       "label": "Enable Shadow",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_invert",
+      "label": "Invert Layout",
       "default": false
     },
     {
