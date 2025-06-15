@@ -4,104 +4,108 @@
 {%- assign last_part = last_lower | downcase -%}
 
 <style>
-    {{ sec_id }} .pc-wave-banner-{{ last_part }} {
-      position: relative;
-      width: {{ section.settings.container_width }}%;
-      height: {{ section.settings.container_height }}px;
-      background: {{ section.settings.background_gradient }};
-      background-color: {{ section.settings.background_color }};
-      {% if section.settings.enable_shadow %}
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      {% endif %}
-      overflow: hidden;
-         margin-top: 100px;
-    }
-
-    {{ sec_id }} .pc-wave-banner__waves-{{ last_part }} {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: {{ section.settings.wave_height }}px;
-      {% if section.settings.enable_invert %}
-        transform: rotateX(180deg);
-      {% endif %}
-    }
-
-    {{ sec_id }} .pc-wave-banner__waves-svg-{{ last_part }} {
-      width: 100%;
-      height: 100%;
+    {{ sec_id }}{
+  margin-top: 100px;
 
     }
+     {{ sec_id }} .pc-wave-banner-{{ last_part }} {
+       position: relative;
+       width: {{ section.settings.container_width }}%;
+       height: {{ section.settings.container_height }}px;
+       background: {{ section.settings.background_gradient }};
+       background-color: {{ section.settings.background_color }};
+       {% if section.settings.enable_shadow %}
+         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+       {% endif %}
+       overflow: hidden;
 
-    {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use {
-      animation: pc-wave-move-{{ last_part }} 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-    }
+     }
 
-    @keyframes pc-wave-move-{{ last_part }} {
-      0% {
-        transform: translate3d(-90px, 0, 0);
-      }
-      100% {
-        transform: translate3d(85px, 0, 0);
-      }
-    }
+     {{ sec_id }} .pc-wave-banner__waves-{{ last_part }} {
+       position: absolute;
+       bottom: 0;
+       left: 0;
+       width: 100%;
+       height: {{ section.settings.wave_height }}px;
+       {% if section.settings.enable_invert %}
+         transform: rotateX(180deg);
+       {% endif %}
+     }
 
-    {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use:nth-child(1) {
-      animation-delay: -2s;
-      animation-duration: 7s;
-      fill: {{ section.settings.wave_color_1 }};
-    }
+     {{ sec_id }} .pc-wave-banner__waves-svg-{{ last_part }} {
+       width: 100%;
+       height: 100%;
 
-    {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use:nth-child(2) {
-      animation-delay: -3s;
-      animation-duration: 10s;
-      fill: {{ section.settings.wave_color_2 }};
-    }
+     }
 
-    {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use:nth-child(3) {
-      animation-delay: -4s;
-      animation-duration: 13s;
-      fill: {{ section.settings.wave_color_3 }};
-    }
+     {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use {
+       animation: pc-wave-move-{{ last_part }} 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+     }
 
-    {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use:nth-child(4) {
-      animation-delay: -5s;
-      animation-duration: 20s;
-      fill: {{ section.settings.wave_color_4 }};
-    }
+     @keyframes pc-wave-move-{{ last_part }} {
+       0% {
+         transform: translate3d(-90px, 0, 0);
+       }
+       100% {
+         transform: translate3d(85px, 0, 0);
+       }
+     }
 
-   {{ sec_id }} .pc-wave-banner__content-{{ last_part }} {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    /* Remove this line if no text content */
+     {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use:nth-child(1) {
+       animation-delay: -2s;
+       animation-duration: 7s;
+       fill: {{ section.settings.wave_color_1 }};
+     }
 
-  }
+     {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use:nth-child(2) {
+       animation-delay: -3s;
+       animation-duration: 10s;
+       fill: {{ section.settings.wave_color_2 }};
+     }
+
+     {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use:nth-child(3) {
+       animation-delay: -4s;
+       animation-duration: 13s;
+       fill: {{ section.settings.wave_color_3 }};
+     }
+
+     {{ sec_id }} .pc-wave-banner__parallax-{{ last_part }} > use:nth-child(4) {
+       animation-delay: -5s;
+       animation-duration: 20s;
+       fill: {{ section.settings.wave_color_4 }};
+     }
+
+    {{ sec_id }} .pc-wave-banner__content-{{ last_part }} {
+     position: relative;
+     z-index: 1;
+     width: 100%;
+     height: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+     /* Remove this line if no text content */
+
+   }
 
 
 
 
-    @media (max-width: 768px) {
-      {{ sec_id }} .pc-wave-banner-{{ last_part }} {
-        width: {{ section.settings.mobile_container_width }}%;
-        height: {{ section.settings.mobile_container_height }}px;
-        margin: {{ section.settings.mobile_margin_top }}px auto {{ section.settings.mobile_margin_bottom }}px;
-        padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
-      }
+     @media (max-width: 768px) {
+       {{ sec_id }} .pc-wave-banner-{{ last_part }} {
+         width: {{ section.settings.mobile_container_width }}%;
+         height: {{ section.settings.mobile_container_height }}px;
+         margin: {{ section.settings.mobile_margin_top }}px auto {{ section.settings.mobile_margin_bottom }}px;
+         padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
+       }
 
 
 
-      {{ sec_id }} .pc-wave-banner__waves-{{ last_part }} {
-        height: {{ section.settings.mobile_wave_height }}px;
-      }
-    }
+       {{ sec_id }} .pc-wave-banner__waves-{{ last_part }} {
+         height: {{ section.settings.mobile_wave_height }}px;
+       }
+     }
 </style>
 
 <pc-wave-banner-{{ last_part }} class="pc-wave-banner-{{ last_part }}">
