@@ -454,7 +454,7 @@
         "content_height": 300,
         "content_position": "right",
         "content_offset": 40,
-        "content_padding": 30,
+        "content_padding": 25,
         "content_background": "#ffffff",
         "content_border": true,
         "content_border_thickness": 1,
@@ -471,7 +471,7 @@
         "excerpt_color": "#666666",
         "post_date": "Posted on Apr 28, 2017",
         "blog_category": "Clothing Fashion",
-        "meta_size": 14,
+        "meta_size": 10,
         "meta_color": "#000000",
         "meta_divider_color": "#eeeeee"
       }
