@@ -1,5 +1,5 @@
 {%- assign sec_id = '#shopify-section-' | append: section.id -%}
-
+{% assign read_more = section.settings.meta_size | plus: 5 %}
 <style>
     {{ sec_id }} .pc-custom-blog-layout {
       width: 100%;
@@ -18,7 +18,7 @@
     }
   {{ sec_id }}  .pc-post-excerpt span a {
       color: #ccc;
-     font-size: {{ section.settings.meta_size }}px;
+     font-size: {{ read_more }}px;
   }
     {{ sec_id }} .pc-blog-container {
       display: flex;
