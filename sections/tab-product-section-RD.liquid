@@ -1,6 +1,410 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+<style>
+.pc-tabbed-section {
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: var(--section-width);
+}
+
+.pc-tab-buttons.rectangle .pc-tab-button {
+  border-radius: 0;
+}
+.pc-tab-buttons.rounded .pc-tab-button {
+  border-radius: 8px;
+}
+.pc-tab-buttons.pill .pc-tab-button {
+  border-radius: 9999px;
+}
+
+.pc-tab-buttons {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 40px auto;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pc-tab-button {
+  padding: 10px 20px;
+  background: #eee;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s;
+}
+.pc-tab-button.active {
+  background: #222;
+  color: #fff;
+}
+
+.pc-tab-content {
+  display: none;
+  text-align: center;
+}
+.pc-tab-content.active {
+  display: block;
+}
+
+.pc-tabbed-section h2 {
+  text-align: var(--heading-align);
+  color: var(--heading-color);
+  font-size: var(--heading-size);
+}
+
+.pc-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+  justify-items: center;
+}
+@media screen and (max-width: 1024px) {
+  .pc-product-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
+@media screen and (max-width: 600px) {
+  .pc-product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pc-product-card {
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+  width: 100%;
+  max-width: 280px;
+  background: #fff;
+}
+.pc-product-card:hover {
+  transform: scale(1.12);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+.pc-product-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.pc-product-card .pc-product-title {
+  font-size: var(--product-title-size);
+  color: var(--product-title-color);
+  font-weight: var(--product-title-weight);
+  margin-top: 8px;
+}
+
+.pc-product-price {
+  font-size: var(--price-font-size);
+  color: var(--price-color);
+  font-weight: var(--price-font-weight);
+  margin-top: 5px;
+}
+
+.pc-product-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+.pc-product-card:hover img {
+  transform: scale(1.1);
+}
+
+.pc-add-to-cart {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: var(--btn-bg);
+  color: var(--btn-color);
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.pc-tabbed-section.square .pc-add-to-cart {
+  border-radius: 0;
+}
+.pc-tabbed-section.rounded .pc-add-to-cart {
+  border-radius: 6px;
+}
+.pc-tabbed-section.pill .pc-add-to-cart {
+  border-radius: 9999px;
+}
+
+.pc-add-to-cart:hover {
+  background-color: var(--btn-hover-bg);
+  color: var(--btn-hover-color);
+}
+
+.pc-sold-out {
+  margin-top: 10px;
+  font-size: 13px;
+  color: red;
+  font-weight: bold;
+}
+</style>
+
+<section class="pc-tabbed-section {{ section.settings.btn_shape }}"
+  style="
+    --section-width: {{ section.settings.page_width }}px;
+    --heading-align: {{ section.settings.heading_align }};
+    --heading-color: {{ section.settings.heading_color }};
+    --heading-size: {{ section.settings.heading_size }}px;
+    --product-title-size: {{ section.settings.title_font_size }}px;
+    --product-title-color: {{ section.settings.title_color }};
+    --product-title-weight: {{ section.settings.title_font_weight }};
+    --price-font-size: {{ section.settings.price_font_size }}px;
+    --price-color: {{ section.settings.price_color }};
+    --price-font-weight: {{ section.settings.price_font_weight }};
+    --btn-bg: {{ section.settings.btn_bg }};
+    --btn-color: {{ section.settings.btn_text }};
+    --btn-hover-bg: {{ section.settings.btn_hover_bg }};
+    --btn-hover-color: {{ section.settings.btn_hover_text }};
+  ">
+  <h2>{{ section.settings.heading }}</h2>
+
+  <div class="pc-tabs">
+    <ul class="pc-tab-buttons {{ section.settings.tab_button_shape }}">
+      {% for block in section.blocks %}
+        {% assign collection = collections[block.settings.collection] %}
+        {% if collection %}
+          <li>
+            <button class="pc-tab-button{% if forloop.first %} active{% endif %}" data-tab="pc-tab-{{ block.id }}">
+              {{ collection.title }}
+            </button>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <div class="pc-tab-contents">
+      {% for block in section.blocks %}
+        {% assign collection = collections[block.settings.collection] %}
+        {% if collection %}
+          <div id="pc-tab-{{ block.id }}" class="pc-tab-content{% if forloop.first %} active{% endif %}">
+            <div class="pc-product-grid">
+              {% for product in collection.products limit: 8 %}
+                <div class="pc-product-card">
+                  <a href="{{ product.url }}">
+                    <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}">
+                    <div class="pc-product-title">{{ product.title }}</div>
+                  </a>
+                  <div class="pc-product-price"><strong>{{ product.price | money }}</strong></div>
+                  {% if product.available %}
+                    <form method="post" action="/cart/add">
+                      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                      <button type="submit" class="pc-add-to-cart">Add to Cart</button>
+                    </form>
+                  {% else %}
+                    <p class="pc-sold-out">Sold Out</p>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  window.addEventListener('load', function () {
+    const tabButtons = document.querySelectorAll('.pc-tab-button');
+    const tabContents = document.querySelectorAll('.pc-tab-content');
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', function () {
+        const target = this.dataset.tab;
+        tabButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        tabContents.forEach(content => {
+          content.classList.remove('active');
+          if (content.id === target) {
+            content.classList.add('active');
+          }
+        });
+      });
+    });
+  });
+</script>
+{% schema %}
+{
+  "name": "Tab Product section RD",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Browse by Collection"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "heading_align",
+      "label": "Heading Alignment",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "page_width",
+      "label": "Page Width (px)",
+      "min": 600,
+      "max": 1600,
+      "step": 20,
+      "default": 1200
+    },
+    {
+      "type": "select",
+      "id": "tab_button_shape",
+      "label": "Tab Button Shape",
+      "default": "rounded",
+      "options": [
+        { "value": "rectangle", "label": "Rectangle" },
+        { "value": "rounded", "label": "Rounded" },
+        { "value": "pill", "label": "Pill" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Product Title Font Size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Product Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Product Title Font Weight",
+      "default": "bold",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "bold", "label": "Bold" },
+        { "value": "600", "label": "Semi Bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra Bold (800)" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "price_font_size",
+      "label": "Price Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "price_font_weight",
+      "label": "Price Font Weight",
+      "default": "bold",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "bold", "label": "Bold" },
+        { "value": "600", "label": "Semi Bold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "Extra Bold (800)" }
+      ]
+    },
+    {
+  "type": "color",
+  "id": "btn_bg",
+  "label": "Add to Cart Button Background",
+  "default": "#000000"
+},
+{
+  "type": "color",
+  "id": "btn_text",
+  "label": "Add to Cart Text Color",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "btn_hover_bg",
+  "label": "Add to Cart Hover Background",
+  "default": "#444444"
+},
+{
+  "type": "color",
+  "id": "btn_hover_text",
+  "label": "Add to Cart Hover Text Color",
+  "default": "#ffffff"
+},
+{
+  "type": "select",
+  "id": "btn_shape",
+  "label": "Add to Cart Button Shape",
+  "default": "rounded",
+  "options": [
+    { "value": "square", "label": "Square" },
+    { "value": "rounded", "label": "Rounded" },
+    { "value": "pill", "label": "Pill" }
+  ]
+}
+
+  ],
+  "blocks": [
+    {
+      "type": "collection_tab",
+      "name": "Collection Tab",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Tab Product section RD",
+      "category": "Custom"
+    }
+  ]
+}
 {% endschema %}
