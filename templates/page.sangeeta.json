@@ -286,121 +286,6 @@
         "default_image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg"
       }
     },
-    "text_image_text_pwc_VedTK4": {
-      "type": "text-image-text-pwc",
-      "blocks": {
-        "image_text_block_PRKAyL": {
-          "type": "image_text_block",
-          "settings": {
-            "position": "right",
-            "image": "shopify://shop_images/delivery-status.png",
-            "heading": "Your Heading",
-            "heading_size": 18,
-            "text": "Your text content goes here.",
-            "text_size": 14,
-            "button_text": "Learn More",
-            "button_link": "#",
-            "button_bg": "#000000",
-            "button_text_color": "#ffffff",
-            "button_radius": 30
-          }
-        },
-        "image_text_block_zNrEtQ": {
-          "type": "image_text_block",
-          "settings": {
-            "position": "left",
-            "image": "shopify://shop_images/free-shipping_1.png",
-            "heading": "Your Heading",
-            "heading_size": 18,
-            "text": "Your text content goes here.",
-            "text_size": 14,
-            "button_text": "Learn More",
-            "button_link": "#",
-            "button_bg": "#000000",
-            "button_text_color": "#ffffff",
-            "button_radius": 30
-          }
-        },
-        "image_text_block_G6TPpn": {
-          "type": "image_text_block",
-          "settings": {
-            "position": "left",
-            "image": "shopify://shop_images/security.png",
-            "heading": "Your Heading",
-            "heading_size": 18,
-            "text": "Your text content goes here.",
-            "text_size": 14,
-            "button_text": "Learn More",
-            "button_link": "#",
-            "button_bg": "#000000",
-            "button_text_color": "#ffffff",
-            "button_radius": 30
-          }
-        },
-        "image_text_block_LzFenJ": {
-          "type": "image_text_block",
-          "settings": {
-            "position": "right",
-            "image": "shopify://shop_images/free-shipping_1.png",
-            "heading": "Your Heading",
-            "heading_size": 18,
-            "text": "Your text content goes here.",
-            "text_size": 14,
-            "button_text": "Learn More",
-            "button_link": "#",
-            "button_bg": "#000000",
-            "button_text_color": "#ffffff",
-            "button_radius": 30
-          }
-        },
-        "image_text_block_4XAdPB": {
-          "type": "image_text_block",
-          "settings": {
-            "position": "right",
-            "image": "shopify://shop_images/security.png",
-            "heading": "Your Heading",
-            "heading_size": 18,
-            "text": "Your text content goes here.",
-            "text_size": 14,
-            "button_text": "Learn More",
-            "button_link": "#",
-            "button_bg": "#000000",
-            "button_text_color": "#ffffff",
-            "button_radius": 30
-          }
-        },
-        "image_text_block_43X3Y6": {
-          "type": "image_text_block",
-          "settings": {
-            "position": "left",
-            "image": "shopify://shop_images/delivery-status.png",
-            "heading": "Your Heading",
-            "heading_size": 18,
-            "text": "Your text content goes here.",
-            "text_size": 14,
-            "button_text": "Learn More",
-            "button_link": "#",
-            "button_bg": "#000000",
-            "button_text_color": "#ffffff",
-            "button_radius": 29
-          }
-        }
-      },
-      "block_order": [
-        "image_text_block_PRKAyL",
-        "image_text_block_zNrEtQ",
-        "image_text_block_G6TPpn",
-        "image_text_block_LzFenJ",
-        "image_text_block_4XAdPB",
-        "image_text_block_43X3Y6"
-      ],
-      "settings": {
-        "main_heading": "Main Section Heading",
-        "main_heading_size": 41,
-        "main_heading_color": "#000000",
-        "center_image": "shopify://shop_images/vecteezy_overear-headphones-red-leather-blue-accents-premium-audio_55244231.png"
-      }
-    },
     "text_image_video_pwc_RtUCTd": {
       "type": "text-image-video-pwc",
       "name": "PC Text + Image + Video",
@@ -500,59 +385,52 @@
         "product_bg_color": "#f8f5f5"
       }
     },
-    "pwc_announcement_bar_C4M6tA": {
-      "type": "pwc-announcement-bar",
+    "tab_product_section_rd_gXbnnf": {
+      "type": "tab-product-section-RD",
       "blocks": {
-        "announcement_ajK8dk": {
-          "type": "announcement",
+        "collection_tab_efJAp7": {
+          "type": "collection_tab",
           "settings": {
-            "text": "Free shipping on all orders over $50",
-            "link": ""
+            "collection": "crossbody-bag"
+          }
+        },
+        "collection_tab_atBhak": {
+          "type": "collection_tab",
+          "settings": {
+            "collection": "bags"
+          }
+        },
+        "collection_tab_RnFbWL": {
+          "type": "collection_tab",
+          "settings": {
+            "collection": "test"
           }
         }
       },
       "block_order": [
-        "announcement_ajK8dk"
+        "collection_tab_efJAp7",
+        "collection_tab_atBhak",
+        "collection_tab_RnFbWL"
       ],
-      "name": "PWC - Utility Bar #1",
+      "name": "Tab Product section RD",
       "settings": {
-        "container_width": 1200,
-        "background_color": "#f9f9f9",
-        "content_spacing": 40,
-        "desktop_padding_top": 10,
-        "desktop_padding_bottom": 10,
-        "announcement_height": 40,
-        "mobile_padding_top": 8,
-        "mobile_padding_bottom": 8,
-        "mobile_announcement_height": 35,
-        "show_social": true,
-        "social_icon_size": 24,
-        "social_icon_spacing": 10,
-        "social_icon_radius": 4,
-        "social_icon_color": "#333333",
-        "social_icon_hover_color": "#ffffff",
-        "social_icon_bg": "transparent",
-        "social_icon_hover_bg": "#333333",
-        "auto_rotate": true,
-        "change_slides_speed": 5000,
-        "font_size": 16,
-        "mobile_font_size": 14,
-        "text_color": "#333333",
-        "text_hover_color": "#000000",
-        "font_weight": "500",
-        "text_decoration": "none",
-        "font_style": "normal",
-        "letter_spacing": 0.5,
-        "show_contact": false,
-        "contact_text": "",
-        "contact_link": "",
-        "show_account": false,
-        "account_text": "",
-        "action_spacing": 20,
-        "action_font_size": 14,
-        "action_icon_size": 16,
-        "action_text_color": "#333333",
-        "action_hover_color": "#000000"
+        "heading": "Browse by Collection",
+        "heading_size": 28,
+        "heading_color": "#000000",
+        "heading_align": "center",
+        "page_width": 1200,
+        "tab_button_shape": "rounded",
+        "title_font_size": 16,
+        "title_color": "#000000",
+        "title_font_weight": "bold",
+        "price_font_size": 14,
+        "price_color": "#000000",
+        "price_font_weight": "bold",
+        "btn_bg": "#000000",
+        "btn_text": "#ffffff",
+        "btn_hover_bg": "#444444",
+        "btn_hover_text": "#ffffff",
+        "btn_shape": "rounded"
       }
     }
   },
@@ -562,10 +440,9 @@
     "image_counter_pwc_4LedYC",
     "collection_grid_pwc_WfW39c",
     "collection_grid_image_pwc_WPFmUG",
-    "text_image_text_pwc_VedTK4",
     "text_image_video_pwc_RtUCTd",
     "rd_highlighter_image_banner_PkdXwb",
     "rd_hotspot_product_viewer_GL3hdh",
-    "pwc_announcement_bar_C4M6tA"
+    "tab_product_section_rd_gXbnnf"
   ]
 }
