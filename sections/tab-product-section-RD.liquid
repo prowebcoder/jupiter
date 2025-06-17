@@ -1,23 +1,22 @@
 {% assign sec_id = '#shopify-section-' | append: section.id %}
 <style>
-{{ sec_id }}
-.pc-tabbed-section {
+{{ sec_id }} .pc-tabbed-section {
   margin: 0 auto;
   padding: 0 20px;
   max-width: var(--section-width);
 }
 
-.pc-tab-buttons.rectangle .pc-tab-button {
+{{ sec_id }} .pc-tab-buttons.rectangle .pc-tab-button {
   border-radius: 0;
 }
-.pc-tab-buttons.rounded .pc-tab-button {
+{{ sec_id }} .pc-tab-buttons.rounded .pc-tab-button {
   border-radius: 8px;
 }
-.pc-tab-buttons.pill .pc-tab-button {
+{{ sec_id }} .pc-tab-buttons.pill .pc-tab-button {
   border-radius: 9999px;
 }
 
-.pc-tab-buttons {
+{{ sec_id }} .pc-tab-buttons {
   list-style: none;
   padding: 0;
   margin: 0 auto 40px auto;
@@ -27,7 +26,7 @@
   flex-wrap: wrap;
 }
 
-.pc-tab-button {
+{{ sec_id }} .pc-tab-button {
   padding: 10px 20px;
   background: #eee;
   border: none;
@@ -35,26 +34,26 @@
   text-align: center;
   transition: background 0.3s;
 }
-.pc-tab-button.active {
+{{ sec_id }} .pc-tab-button.active {
   background: #222;
   color: #fff;
 }
 
-.pc-tab-content {
+{{ sec_id }} .pc-tab-content {
   display: none;
   text-align: center;
 }
-.pc-tab-content.active {
+{{ sec_id }} .pc-tab-content.active {
   display: block;
 }
 
-.pc-tabbed-section h2 {
+{{ sec_id }} .pc-tabbed-section h2 {
   text-align: var(--heading-align);
   color: var(--heading-color);
   font-size: var(--heading-size);
 }
 
-.pc-product-grid {
+{{ sec_id }} .pc-product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
@@ -62,17 +61,17 @@
   justify-items: center;
 }
 @media screen and (max-width: 1024px) {
-  .pc-product-grid {
+  {{ sec_id }} .pc-product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media screen and (max-width: 600px) {
-  .pc-product-grid {
+  {{ sec_id }} .pc-product-grid {
     grid-template-columns: 1fr;
   }
 }
 
-.pc-product-card {
+{{ sec_id }} .pc-product-card {
   border: 1px solid #eee;
   padding: 10px;
   border-radius: 6px;
@@ -83,44 +82,44 @@
   max-width: 280px;
   background: #fff;
 }
-.pc-product-card:hover {
+{{ sec_id }} .pc-product-card:hover {
   transform: scale(1.12);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
   z-index: 10;
 }
 
-.pc-product-card a {
+{{ sec_id }} .pc-product-card a {
   text-decoration: none;
   color: inherit;
   display: block;
 }
 
-.pc-product-card .pc-product-title {
+{{ sec_id }} .pc-product-card .pc-product-title {
   font-size: var(--product-title-size);
   color: var(--product-title-color);
   font-weight: var(--product-title-weight);
   margin-top: 8px;
 }
 
-.pc-product-price {
+{{ sec_id }} .pc-product-price {
   font-size: var(--price-font-size);
   color: var(--price-color);
   font-weight: var(--price-font-weight);
   margin-top: 5px;
 }
 
-.pc-product-card img {
+{{ sec_id }} .pc-product-card img {
   width: 100%;
   height: 280px;
   object-fit: cover;
   border-radius: 4px;
   transition: transform 0.3s ease;
 }
-.pc-product-card:hover img {
+{{ sec_id }} .pc-product-card:hover img {
   transform: scale(1.1);
 }
 
-.pc-add-to-cart {
+{{ sec_id }} .pc-add-to-cart {
   margin-top: 10px;
   padding: 8px 16px;
   background-color: var(--btn-bg);
@@ -131,28 +130,29 @@
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-.pc-tabbed-section.square .pc-add-to-cart {
+{{ sec_id }}.square .pc-add-to-cart {
   border-radius: 0;
 }
-.pc-tabbed-section.rounded .pc-add-to-cart {
+{{ sec_id }}.rounded .pc-add-to-cart {
   border-radius: 6px;
 }
-.pc-tabbed-section.pill .pc-add-to-cart {
+{{ sec_id }}.pill .pc-add-to-cart {
   border-radius: 9999px;
 }
 
-.pc-add-to-cart:hover {
+{{ sec_id }} .pc-add-to-cart:hover {
   background-color: var(--btn-hover-bg);
   color: var(--btn-hover-color);
 }
 
-.pc-sold-out {
+{{ sec_id }} .pc-sold-out {
   margin-top: 10px;
   font-size: 13px;
   color: red;
   font-weight: bold;
 }
 </style>
+
 
 <section class="pc-tabbed-section {{ section.settings.btn_shape }}"
   style="
