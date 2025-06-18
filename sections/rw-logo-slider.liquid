@@ -1,6 +1,292 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} .pc-logoslider- {
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
   }
+  
+  {{ sec_id }} .pc-logoslider-{{ last_part }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    background: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.desktop_padding_top }}px;
+    padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+    {% if section.settings.shadow_enabled %}
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    {% endif %}
+  }
+
+  {{ sec_id }} .pc-logoslider-container-{{ last_part }} {
+    display: flex;
+    width: fit-content;
+  }
+
+  {{ sec_id }} .pc-logoslider-track-{{ last_part }} {
+    display: flex;
+    align-items: center;
+    animation: pc-scroll-{{ last_part }} {{ section.settings.animation_speed }}s linear infinite;
+    will-change: transform;
+  }
+
+  {{ sec_id }} .pc-logoslider-slide-{{ last_part }} {
+    flex: 0 0 auto;
+    width: {{ section.settings.logo_width }}px;
+    height: {{ section.settings.logo_height }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 {{ section.settings.logo_spacing }}px;
+  }
+
+  {{ sec_id }} .pc-logoslider-slide-{{ last_part }} img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  @keyframes pc-scroll-{{ last_part }} {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-logoslider-{{ last_part }} {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+    {{ sec_id }} .pc-logoslider-slide-{{ last_part }} {
+      width: {{ section.settings.mobile_logo_width }}px;
+      height: {{ section.settings.mobile_logo_height }}px;
+    }
+  }
+</style>
+
+<div class="pc-logoslider-{{ last_part }}">
+  <div class="pc-logoslider-container-{{ last_part }}">
+    <div class="pc-logoslider-track-{{ last_part }}">
+      {% for block in section.blocks %}
+        <div class="pc-logoslider-slide-{{ last_part }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{- block.settings.image | image_url: width: section.settings.logo_width, height: section.settings.logo_height | image_tag: loading: 'lazy', alt: block.settings.image.alt -}}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'pc-logoslider-placeholder' }}
+          {%- endif -%}
+        </div>
+      {% endfor %}
+      {% for block in section.blocks %}
+        <div class="pc-logoslider-slide-{{ last_part }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{- block.settings.image | image_url: width: section.settings.logo_width, height: section.settings.logo_height | image_tag: loading: 'lazy', alt: block.settings.image.alt -}}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'pc-logoslider-placeholder' }}
+          {%- endif -%}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "RW - Logo Slider #1",
+  "tag": "section",
+  "class": "pc-logoslider-section",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "animation_speed",
+      "label": "Animation Speed",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "s",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo Width (Desktop)",
+      "min": 50,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "default": 250
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Logo Height (Desktop)",
+      "min": 50,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_width",
+      "label": "Logo Width (Mobile)",
+      "min": 30,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 150
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_height",
+      "label": "Logo Height (Mobile)",
+      "min": 30,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "logo_spacing",
+      "label": "Logo Spacing",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+      {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Section Styling"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "shadow_enabled",
+      "label": "Enable Shadow",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RW - Logo Slider #1",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
