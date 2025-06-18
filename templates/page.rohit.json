@@ -1014,7 +1014,7 @@
         "logo_spacing": 20,
         "background_color": "#ffffff",
         "shadow_enabled": true,
-        "desktop_margin_top": 0,
+        "desktop_margin_top": 55,
         "desktop_margin_bottom": 0,
         "desktop_padding_top": 0,
         "desktop_padding_bottom": 0,
