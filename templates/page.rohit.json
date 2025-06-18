@@ -466,48 +466,6 @@
         "padding_bottom": 0
       }
     },
-    "rw_blog_layout_rnwDVH": {
-      "type": "rw-blog-layout",
-      "settings": {
-        "container_width": 100,
-        "max_container_width": 1200,
-        "image_position": "0",
-        "blog_image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
-        "image_width": 50,
-        "image_height": 500,
-        "image_fit": "cover",
-        "image_border": true,
-        "image_border_thickness": 1,
-        "image_border_color": "#34b7d7",
-        "image_rounded_corners": true,
-        "image_corner_radius": 10,
-        "content_width": 50,
-        "content_height": 200,
-        "content_position": "right",
-        "content_offset": 265,
-        "content_padding": 40,
-        "content_background": "#ffffff",
-        "content_border": true,
-        "content_border_thickness": 1,
-        "content_border_color": "#ff0000",
-        "content_rounded_corners": false,
-        "content_corner_radius": 5,
-        "font_family": "sans-serif",
-        "heading": "FROM THE BLOG",
-        "heading_color": "#333333",
-        "blog_title": "Color pop",
-        "title_size": 24,
-        "title_color": "#222222",
-        "blog_excerpt": "As much as we live and breath monochrome styles (and we can all agree a majority of our daily wear is crisp whites and deep blacks), a gals gotta have a...",
-        "excerpt_size": 15,
-        "excerpt_color": "#666666",
-        "post_date": "Posted on Apr 28, 2026",
-        "blog_category": "Clothing Fashion",
-        "meta_size": 14,
-        "meta_color": "#2e76da",
-        "meta_divider_color": "#3bf486"
-      }
-    },
     "rw_interactive_text_ent4en": {
       "type": "rw-interactive-text",
       "settings": {
@@ -870,25 +828,20 @@
     "rw_wavy_layout_hmKEx9": {
       "type": "rw-wavy-layout",
       "settings": {
-        "title": "Wavy Layout",
         "container_width": 100,
         "container_height": 500,
         "wave_height": 100,
         "background_gradient": "linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%)",
         "enable_shadow": false,
+        "enable_invert": false,
         "wave_color_1": "#e49b9b",
         "wave_color_2": "#d8be71",
         "wave_color_3": "#66dead",
         "wave_color_4": "#8077be",
-        "title_color": "#b77a7a",
-        "title_font_size": 42,
-        "title_font_weight": 400,
-        "title_margin_bottom": 162,
         "margin_top": 5,
         "mobile_container_width": 100,
         "mobile_container_height": 400,
         "mobile_wave_height": 80,
-        "mobile_title_font_size": 32,
         "mobile_margin_top": 0,
         "mobile_margin_bottom": 0,
         "mobile_padding_top": 30,
@@ -1005,10 +958,10 @@
         "message_margin_top_mobile": 6
       }
     },
-    "rw_countdown_2_nVaeXK": {
-      "type": "rw-countdown-2",
+    "rw_carousel_2_mPjgWm": {
+      "type": "rw-carousel-2",
       "blocks": {
-        "card_WtGHJ8": {
+        "card_KVt77e": {
           "type": "card",
           "settings": {
             "subtitle": "THE SUBTITLE",
@@ -1016,10 +969,10 @@
             "text": "This is a wider card with supporting text below as a natural.",
             "button_label": "Learn more",
             "button_link": "",
-            "image": "shopify://shop_images/1040-1200x800.jpg"
+            "image": "shopify://shop_images/autumn-photographer-taking-picture.jpg"
           }
         },
-        "card_pUEqbF": {
+        "card_D88jQf": {
           "type": "card",
           "settings": {
             "subtitle": "ANOTHER SUBTITLE",
@@ -1027,19 +980,31 @@
             "text": "Additional content with supporting text for another card.",
             "button_label": "Read more",
             "button_link": "",
-            "image": "shopify://shop_images/person-fishing-on-the-beach-is-silhouetted-at-sunset.jpg"
+            "image": "shopify://shop_images/1011-1200x800.jpg"
+          }
+        },
+        "card_qhgrFm": {
+          "type": "card",
+          "settings": {
+            "subtitle": "THE SUBTITLE",
+            "title": "New title",
+            "text": "This is a wider card with supporting text below as a natural.",
+            "button_label": "Learn more",
+            "button_link": "",
+            "image": "shopify://shop_images/model-poses-near-bushes.jpg"
           }
         }
       },
       "block_order": [
-        "card_WtGHJ8",
-        "card_pUEqbF"
+        "card_KVt77e",
+        "card_D88jQf",
+        "card_qhgrFm"
       ],
       "name": "RW - Carousel #2",
       "settings": {
         "container_width": 90,
-        "container_max_width": 1200,
-        "container_height": 400,
+        "container_max_width": 1100,
+        "container_height": 420,
         "container_padding": 20,
         "container_radius": 0,
         "mobile_container_width": 95,
@@ -1047,11 +1012,12 @@
         "mobile_container_padding": 10,
         "image_position": "right",
         "image_width": 50,
-        "image_height": 400,
+        "image_height": 500,
         "mobile_image_height": 300,
+        "image_border_radius": 4,
         "spacer": 20,
-        "card_radius": 8,
-        "enable_shadow": true,
+        "card_radius": 0,
+        "enable_shadow": false,
         "card_bg": "#ffffff",
         "subtitle_size": 14,
         "mobile_subtitle_size": 12,
@@ -1059,16 +1025,20 @@
         "subtitle_color": "#666666",
         "title_size": 36,
         "mobile_title_size": 28,
-        "title_weight": "600",
+        "title_weight": "400",
         "title_color": "#000000",
+        "title_padding_top": 5,
+        "title_padding_bottom": 5,
         "text_size": 16,
         "mobile_text_size": 14,
         "text_color": "#333333",
-        "button_radius": 4,
+        "text_padding_top": 5,
+        "text_padding_bottom": 5,
+        "button_radius": 0,
         "button_weight": "500",
-        "button_color": "#ffffff",
-        "button_bg": "#000000",
-        "button_hover": "#333333",
+        "button_color": "#000000",
+        "button_bg": "transparent",
+        "button_hover": "#000000",
         "arrow_color": "#ffffff",
         "arrow_bg": "#000000",
         "arrow_hover": "#333333"
@@ -1081,13 +1051,12 @@
     "pwc_pricing_card_NHeMiK",
     "pwc_countdown_HfHr9w",
     "pwc_split_image_hover_aGrP4r",
-    "rw_blog_layout_rnwDVH",
     "rw_interactive_text_ent4en",
     "rw_text_with_icon_V33BVL",
     "rw_carousel_DPmLyg",
     "rw_tabs_FUNTVU",
     "rw_wavy_layout_hmKEx9",
     "rw_contact_us_PHmtbr",
-    "rw_countdown_2_nVaeXK"
+    "rw_carousel_2_mPjgWm"
   ]
 }
