@@ -661,72 +661,6 @@
         "mobile_padding_bottom": 0,
         "mobile_padding_left": 15
       }
-    },
-    "rw_contact_us_CibWER": {
-      "type": "rw-contact-us",
-      "blocks": {
-        "logo_tjNc4G": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/1.png"
-          }
-        },
-        "logo_cQ8NGp": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/2.png"
-          }
-        },
-        "logo_n6mPNp": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/3.png"
-          }
-        },
-        "logo_cwMJ8e": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/4.png"
-          }
-        },
-        "logo_EcEwJF": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/5.png"
-          }
-        },
-        "logo_FwqjUD": {
-          "type": "logo",
-          "settings": {
-            "image": "shopify://shop_images/6.png"
-          }
-        }
-      },
-      "block_order": [
-        "logo_tjNc4G",
-        "logo_cQ8NGp",
-        "logo_n6mPNp",
-        "logo_cwMJ8e",
-        "logo_EcEwJF",
-        "logo_FwqjUD"
-      ],
-      "name": "RW - Logo Slider #1",
-      "settings": {
-        "animation_speed": 30,
-        "logo_width": 250,
-        "logo_height": 130,
-        "mobile_logo_width": 150,
-        "mobile_logo_height": 60,
-        "logo_spacing": 20,
-        "margin_top": 36,
-        "margin_bottom": 36,
-        "background_color": "#ffffff",
-        "shadow_enabled": true,
-        "desktop_padding_top": 20,
-        "desktop_padding_bottom": 20,
-        "mobile_padding_top": 15,
-        "mobile_padding_bottom": 15
-      }
     }
   },
   "order": [
@@ -737,7 +671,6 @@
     "rw_testimonial_slider_mdzBML",
     "rw_wavy_layout_ytR4w6",
     "rw_testimonial_slider_cmYayq",
-    "rw_wavy_layout_et3k3m",
-    "rw_contact_us_CibWER"
+    "rw_wavy_layout_et3k3m"
   ]
 }
