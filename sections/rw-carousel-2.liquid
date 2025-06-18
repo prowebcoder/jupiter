@@ -30,6 +30,10 @@
     --pc-mobile-container-height-{{ last_part }}: {{ section.settings.mobile_container_height }}px;
   }
 
+  {{ sec_id }} .pc-card-content .pc-card-title {
+    margin: 0;
+  }
+
   {{ sec_id }} .pc-section-container-{{ last_part }} {
     width: var(--pc-container-width-{{ last_part }});
     max-width: var(--pc-container-max-width-{{ last_part }});
@@ -78,14 +82,17 @@
     letter-spacing: 1px;
     margin-bottom: calc(var(--pc-spacer-{{ last_part }}) / 2);
     font-weight: {{ section.settings.subtitle_weight }};
+    margin: 0;
   }
 
   {{ sec_id }} .pc-card-title-{{ last_part }} {
     font-size: {{ section.settings.title_size }}px;
     color: var(--pc-title-color-{{ last_part }});
-    margin-bottom: var(--pc-spacer-{{ last_part }});
+    margin: 0;
     font-weight: {{ section.settings.title_weight }};
     line-height: 1.2;
+    padding-top: {{ section.settings.title_padding_top }}px;
+    padding-bottom: {{ section.settings.title_padding_bottom }}px;
   }
 
   {{ sec_id }} .pc-card-text-{{ last_part }} {
@@ -93,22 +100,28 @@
     color: var(--pc-text-color-{{ last_part }});
     margin-bottom: calc(var(--pc-spacer-{{ last_part }}) * 1.5);
     line-height: 1.6;
+    max-width: 80%;
+    margin: 0;
+    padding-top: {{ section.settings.text_padding_top }}px;
+    padding-bottom: {{ section.settings.text_padding_bottom }}px;
   }
 
   {{ sec_id }} .pc-card-button-{{ last_part }} {
     display: inline-block;
     padding: 12px 24px;
-    background: var(--pc-button-bg-{{ last_part }});
+    background: transparent;
     color: var(--pc-button-color-{{ last_part }});
     text-decoration: none;
     border-radius: {{ section.settings.button_radius }}px;
     font-weight: {{ section.settings.button_weight }};
     transition: all 0.3s ease;
     align-self: flex-start;
+    border: 1px solid var(--pc-button-color-{{ last_part }});
   }
 
   {{ sec_id }} .pc-card-button-{{ last_part }}:hover {
-    background: var(--pc-button-hover-{{ last_part }});
+    background: var(--pc-button-color-{{ last_part }});
+    color: white;
     transform: translateY(-2px);
   }
 
@@ -118,25 +131,30 @@
     height: 100%;
   }
 
-  {{ sec_id }} .pc-card-image-{{ last_part }} img {
+   {{ sec_id }} .pc-card-image-{{ last_part }} img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    {% if section.settings.image_position == 'right' %}
-      border-radius: 0 {{ section.settings.card_radius }}px {{ section.settings.card_radius }}px 0;
-    {% else %}
-      border-radius: {{ section.settings.card_radius }}px 0 0 {{ section.settings.card_radius }}px;
-    {% endif %}
+    border-radius: {{ section.settings.image_border_radius }}px;
   }
 
-  {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
+   {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
     position: absolute;
     bottom: 20px;
-    left: 10%;
-    transform: translateX(-50%);
+    z-index: 10;
     display: flex;
     gap: 10px;
-    z-index: 10;
+  }
+
+  {{ sec_id }} .pc-align-right .pc-carousel-nav-{{ last_part }} {
+    left: 6%;
+    transform: translateX(0);
+  }
+
+  {{ sec_id }} .pc-align-left .pc-carousel-nav-{{ last_part }} {
+    right: 35%;
+    left: auto;
+    transform: translateX(0);
   }
 
   {{ sec_id }} .pc-carousel-arrow-{{ last_part }} {
@@ -161,51 +179,92 @@
     fill: var(--pc-arrow-color-{{ last_part }});
   }
 
-  @media (max-width: 767px) {
-    {{ sec_id }} .pc-section-container-{{ last_part }} {
-      width: {{ section.settings.mobile_container_width }}%;
-      padding: {{ section.settings.mobile_container_padding }}px;
-    }
-
-    {{ sec_id }} .pc-card-carousel-{{ last_part }} {
-      height: var(--pc-mobile-container-height-{{ last_part }});
-    }
-
-    {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
-      flex-direction: column;
-    }
-
-    {{ sec_id }} .pc-card-content-{{ last_part }} {
-      padding: var(--pc-spacer-{{ last_part }});
-      width: 100%;
-      height: auto;
-    }
-
-    {{ sec_id }} .pc-card-image-{{ last_part }} {
-      width: 100%;
-      height: {{ section.settings.mobile_image_height }}px;
-    }
-
-    {{ sec_id }} .pc-card-image-{{ last_part }} img {
-      border-radius: 0 0 {{ section.settings.card_radius }}px {{ section.settings.card_radius }}px;
-    }
-
-    {{ sec_id }} .pc-card-subtitle-{{ last_part }} {
-      font-size: {{ section.settings.mobile_subtitle_size }}px;
-    }
-
-    {{ sec_id }} .pc-card-title-{{ last_part }} {
-      font-size: {{ section.settings.mobile_title_size }}px;
-    }
-
-    {{ sec_id }} .pc-card-text-{{ last_part }} {
-      font-size: {{ section.settings.mobile_text_size }}px;
+   @media (max-width: 767px) {
+    {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
+      bottom: 10px;
+      left: 50% !important;
+      right: auto !important;
+      transform: translateX(-50%) !important;
+      gap: 20px;
     }
   }
+
+ @media (max-width: 767px) {
+  {{ sec_id }} .pc-section-container-{{ last_part }} {
+    width: {{ section.settings.mobile_container_width }}%;
+    padding: {{ section.settings.mobile_container_padding }}px;
+    box-sizing: border-box;
+  }
+
+  {{ sec_id }} .pc-card-carousel-{{ last_part }} {
+    height: var(--pc-mobile-container-height-{{ last_part }});
+  }
+
+  {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  {{ sec_id }} .pc-card-content-{{ last_part }} {
+    padding: calc(var(--pc-spacer-{{ last_part }}) * 1.5);
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+  }
+
+  {{ sec_id }} .pc-card-image-{{ last_part }} {
+    width: 100%;
+    height: {{ section.settings.mobile_image_height }}px;
+    order: -1; /* Image first on mobile */
+  }
+
+  {{ sec_id }} .pc-card-image-{{ last_part }} img {
+    border-radius: {{ section.settings.image_border_radius }}px {{ section.settings.image_border_radius }}px 0 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  {{ sec_id }} .pc-card-subtitle-{{ last_part }} {
+    font-size: {{ section.settings.mobile_subtitle_size }}px;
+    margin-bottom: 8px;
+  }
+
+  {{ sec_id }} .pc-card-title-{{ last_part }} {
+    font-size: {{ section.settings.mobile_title_size }}px;
+    padding-top: {{ section.settings.title_padding_top | divided_by: 2 }}px;
+    padding-bottom: {{ section.settings.title_padding_bottom | divided_by: 2 }}px;
+  }
+
+  {{ sec_id }} .pc-card-text-{{ last_part }} {
+    font-size: {{ section.settings.mobile_text_size }}px;
+    max-width: 100%;
+    padding-top: {{ section.settings.text_padding_top | divided_by: 2 }}px;
+    padding-bottom: {{ section.settings.text_padding_bottom | divided_by: 2 }}px;
+    margin-bottom: 16px;
+  }
+
+  {{ sec_id }} .pc-card-button-{{ last_part }} {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  {{ sec_id }} .pc-carousel-nav-{{ last_part }} {
+    bottom: 10px;
+    left: 50%;
+    gap: 20px;
+  }
+
+  {{ sec_id }} .pc-carousel-arrow-{{ last_part }} {
+    width: 32px;
+    height: 32px;
+  }
+}
 </style>
 
 <div class="pc-section-container-{{ last_part }}">
-  <div class="pc-card-carousel-{{ last_part }}">
+  <div class="pc-card-carousel-{{ last_part }} pc-align-{{ section.settings.image_position }}">
     {% for block in section.blocks %}
       <div class="pc-card-{{ last_part }} {% if forloop.first %}pc-active-{{ last_part }}{% endif %}">
         <div class="pc-card-content-{{ last_part }}">
@@ -254,57 +313,33 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const sectionId = '{{ last_part }}';
-    const cards = document.querySelectorAll('{{ sec_id }} .pc-card-{{ last_part }}');
-    let currentIndex = 0;
-    
+  document.addEventListener("DOMContentLoaded", function () {
+    const sectionId = "{{ last_part }}";
+    const cards = document.querySelectorAll(".pc-card-" + sectionId);
+    const leftArrow = document.getElementById("pc-moveLeft-" + sectionId);
+    const rightArrow = document.getElementById("pc-moveRight-" + sectionId);
+
+    let current = 0;
+
     function showCard(index) {
       cards.forEach((card, i) => {
-        card.classList.toggle('pc-active-{{ last_part }}', i === index);
+        if (i === index) {
+          card.classList.add("pc-active-" + sectionId);
+        } else {
+          card.classList.remove("pc-active-" + sectionId);
+        }
       });
-      currentIndex = index;
     }
-    
-    document.getElementById('pc-moveLeft-{{ last_part }}').addEventListener('click', function() {
-      let newIndex = currentIndex - 1;
-      if (newIndex < 0) newIndex = cards.length - 1;
-      showCard(newIndex);
+
+    leftArrow.addEventListener("click", () => {
+      current = (current - 1 + cards.length) % cards.length;
+      showCard(current);
     });
-    
-    document.getElementById('pc-moveRight-{{ last_part }}').addEventListener('click', function() {
-      let newIndex = currentIndex + 1;
-      if (newIndex >= cards.length) newIndex = 0;
-      showCard(newIndex);
+
+    rightArrow.addEventListener("click", () => {
+      current = (current + 1) % cards.length;
+      showCard(current);
     });
- 
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    const carousel = document.querySelector('{{ sec_id }} .pc-card-carousel-{{ last_part }}');
-    
-    carousel.addEventListener('touchstart', function(e) {
-      touchStartX = e.changedTouches[0].screenX;
-    }, {passive: true});
-    
-    carousel.addEventListener('touchend', function(e) {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, {passive: true});
-    
-    function handleSwipe() {
-      if (touchEndX < touchStartX - 50) {
-        let newIndex = currentIndex + 1;
-        if (newIndex >= cards.length) newIndex = 0;
-        showCard(newIndex);
-      }
-      
-      if (touchEndX > touchStartX + 50) {
-        let newIndex = currentIndex - 1;
-        if (newIndex < 0) newIndex = cards.length - 1;
-        showCard(newIndex);
-      }
-    }
   });
 </script>
 
@@ -336,7 +371,7 @@
       "max": 2000,
       "step": 50,
       "unit": "px",
-      "default": 1200
+      "default": 1100
     },
     {
       "type": "range",
@@ -346,7 +381,7 @@
       "max": 1000,
       "step": 10,
       "unit": "px",
-      "default": 400
+      "default": 420
     },
     {
       "type": "range",
@@ -430,7 +465,7 @@
       "max": 800,
       "step": 10,
       "unit": "px",
-      "default": 400
+      "default": 500
     },
     {
       "type": "range",
@@ -441,6 +476,16 @@
       "step": 10,
       "unit": "px",
       "default": 300
+    },
+     {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Input border radius",
+      "default": 4
     },
     {
       "type": "header",
@@ -464,13 +509,13 @@
       "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 8
+      "default": 0
     },
     {
       "type": "checkbox",
       "id": "enable_shadow",
       "label": "Enable Card Shadow",
-      "default": true
+      "default": false
     },
     {
       "type": "color",
@@ -554,13 +599,31 @@
         { "value": "600", "label": "Semi Bold" },
         { "value": "700", "label": "Bold" }
       ],
-      "default": "600"
+      "default": "400"
     },
     {
       "type": "color",
       "id": "title_color",
       "label": "Color",
       "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_padding_top",
+      "label": "Padding Top (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "title_padding_bottom",
+      "label": "Padding Bottom (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
     },
     {
       "type": "header",
@@ -593,6 +656,24 @@
       "default": "#333333"
     },
     {
+      "type": "range",
+      "id": "text_padding_top",
+      "label": "Padding Top (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "text_padding_bottom",
+      "label": "Padding Bottom (px)",
+      "default": 5,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
       "type": "header",
       "content": "Button"
     },
@@ -604,7 +685,7 @@
       "max": 30,
       "step": 1,
       "unit": "px",
-      "default": 4
+      "default": 0
     },
     {
       "type": "select",
@@ -622,19 +703,19 @@
       "type": "color",
       "id": "button_color",
       "label": "Text Color",
-      "default": "#ffffff"
+      "default": "#000000"
     },
     {
       "type": "color",
       "id": "button_bg",
       "label": "Background Color",
-      "default": "#000000"
+      "default": "transparent"
     },
     {
       "type": "color",
       "id": "button_hover",
       "label": "Hover Background",
-      "default": "#333333"
+      "default": "#000000"
     },
     {
       "type": "header",
