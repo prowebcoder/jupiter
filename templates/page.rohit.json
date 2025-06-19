@@ -1033,7 +1033,7 @@
           "settings": {
             "title": "Lorem ipsum dolor sit amet",
             "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "time": "01-01-2026 Saturday"
+            "time": "01-01-2026 Monday"
           }
         },
         "item_9UVcBB": {
@@ -1113,10 +1113,10 @@
         "content_background": "#ffffff",
         "text_font_size": 14,
         "mobile_text_font_size": 12,
-        "icon_color": "#64bf3e",
+        "icon_color": "#573ebf",
         "icon_background": "#ffffff",
         "enble_icon_shadow": true,
-        "time_color": "#333333",
+        "time_color": "#39c24d",
         "time_font_size": 14,
         "mobile_time_font_size": 12,
         "mobile_column_margin_top": 10,
