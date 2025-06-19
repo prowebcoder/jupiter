@@ -1024,6 +1024,79 @@
         "mobile_padding_top": 15,
         "mobile_padding_bottom": 15
       }
+    },
+    "rw_timeline_erCjEG": {
+      "type": "rw-timeline",
+      "blocks": {
+        "item_P4kWcd": {
+          "type": "item",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet",
+            "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "time": "01-01-2026 Saturday"
+          }
+        },
+        "item_9UVcBB": {
+          "type": "item",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet",
+            "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "time": "1970-01-01 Saturday"
+          }
+        },
+        "item_GX4Gb3": {
+          "type": "item",
+          "settings": {
+            "title": "Lorem ipsum dolor sit amet",
+            "description": "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "time": "1970-01-01 Saturday"
+          }
+        }
+      },
+      "block_order": [
+        "item_P4kWcd",
+        "item_9UVcBB",
+        "item_GX4Gb3"
+      ],
+      "name": "RW - Timeline #2",
+      "settings": {
+        "margin_top": 36,
+        "margin_bottom": 36,
+        "heading": "Our Timeline",
+        "heading_alignment": "center",
+        "heading_font_size": 32,
+        "mobile_heading_font_size": 24,
+        "heading_font_weight": "700",
+        "heading_color": "#000000",
+        "mobile_heading_padding_top": 10,
+        "mobile_heading_padding_right": 10,
+        "mobile_heading_padding_bottom": 10,
+        "mobile_heading_padding_left": 10,
+        "line_width": 1,
+        "line_color": "#ff0000",
+        "line_opacity": 0.5,
+        "item_border_radius": 5,
+        "enable_shadow": true,
+        "title_color": "#ffffff",
+        "title_background": "#476668",
+        "title_font_size": 18,
+        "mobile_title_font_size": 16,
+        "title_font_weight": "600",
+        "text_color": "#333333",
+        "content_background": "#ffffff",
+        "text_font_size": 14,
+        "mobile_text_font_size": 12,
+        "icon_color": "#64bf3e",
+        "icon_background": "#ffffff",
+        "enble_icon_shadow": true,
+        "time_color": "#333333",
+        "time_font_size": 14,
+        "mobile_time_font_size": 12,
+        "mobile_column_margin_top": 10,
+        "mobile_column_margin_right": 10,
+        "mobile_column_margin_bottom": 10,
+        "mobile_column_margin_left": 10
+      }
     }
   },
   "order": [
@@ -1039,6 +1112,7 @@
     "rw_wavy_layout_hmKEx9",
     "rw_contact_us_PHmtbr",
     "rw_carousel_2_mPjgWm",
-    "rw_logo_slider_tRj4y9"
+    "rw_logo_slider_tRj4y9",
+    "rw_timeline_erCjEG"
   ]
 }
