@@ -955,6 +955,75 @@
         "arrow_bg": "#000000",
         "arrow_hover": "#333333"
       }
+    },
+    "rw_logo_slider_tRj4y9": {
+      "type": "rw-logo-slider",
+      "blocks": {
+        "logo_pRxkYr": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/1.png"
+          }
+        },
+        "logo_Tk98Xq": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/2.png"
+          }
+        },
+        "logo_rY8qr9": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/3.png"
+          }
+        },
+        "logo_RkmajP": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/4.png"
+          }
+        },
+        "logo_Nm47YA": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/5.png"
+          }
+        },
+        "logo_WX9UHH": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/6.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_pRxkYr",
+        "logo_Tk98Xq",
+        "logo_rY8qr9",
+        "logo_RkmajP",
+        "logo_Nm47YA",
+        "logo_WX9UHH"
+      ],
+      "name": "RW - Logo Slider #2",
+      "settings": {
+        "animation_direction": "left-to-right",
+        "animation_speed": 40,
+        "logo_width": 250,
+        "logo_height": 100,
+        "mobile_logo_width": 150,
+        "mobile_logo_height": 60,
+        "logo_spacing": 20,
+        "background_color": "#ffffff",
+        "shadow_enabled": false,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "desktop_padding_top": 20,
+        "desktop_padding_bottom": 20,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0,
+        "mobile_padding_top": 15,
+        "mobile_padding_bottom": 15
+      }
     }
   },
   "order": [
@@ -969,6 +1038,7 @@
     "rw_tabs_FUNTVU",
     "rw_wavy_layout_hmKEx9",
     "rw_contact_us_PHmtbr",
-    "rw_carousel_2_mPjgWm"
+    "rw_carousel_2_mPjgWm",
+    "rw_logo_slider_tRj4y9"
   ]
 }
