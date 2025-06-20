@@ -1131,7 +1131,7 @@
         "product_jpMUFC": {
           "type": "product",
           "settings": {
-            "image": "shopify://shop_images/autumn-photographer-taking-picture.jpg",
+            "image": "shopify://shop_images/a-model-in-red-suit-jacket-removing-sunglasses.jpg",
             "title": "Product Title 1",
             "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             "button_label": "Shop Now",
@@ -1141,7 +1141,7 @@
         "product_768nKx": {
           "type": "product",
           "settings": {
-            "image": "shopify://shop_images/purchased-favorite-coffee.jpg",
+            "image": "shopify://shop_images/model-in-neutral-colors-by-window.jpg",
             "title": "Product Title 2",
             "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             "button_label": "Shop Now",
@@ -1151,7 +1151,7 @@
         "product_P7UJQT": {
           "type": "product",
           "settings": {
-            "image": "shopify://shop_images/home-overlay-cards-1.webp",
+            "image": "shopify://shop_images/purchased-favorite-coffee.jpg",
             "title": "Product Title 3",
             "description": "Prouduct Description",
             "button_label": "Shop Now",
@@ -1161,7 +1161,7 @@
         "product_wD3iiC": {
           "type": "product",
           "settings": {
-            "image": "shopify://shop_images/1011-1200x800.jpg",
+            "image": "shopify://shop_images/home-overlay-cards-1.webp",
             "title": "Product Title 4",
             "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             "button_label": "Shop Now",
@@ -1171,7 +1171,7 @@
         "product_hqGGFn": {
           "type": "product",
           "settings": {
-            "image": "shopify://shop_images/About-Parallax_754a27da-f0c1-4e85-9b2b-a6373731a692.png",
+            "image": "shopify://shop_images/1011-1200x800.jpg",
             "title": "Product Title 5",
             "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             "button_label": "Shop Now",
