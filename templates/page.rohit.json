@@ -1124,97 +1124,6 @@
         "mobile_column_margin_bottom": 10,
         "mobile_column_margin_left": 10
       }
-    },
-    "rw_product_slider_Hax8ti": {
-      "type": "rw-product-slider",
-      "blocks": {
-        "product_mgFETp": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/autumn-photographer-taking-picture.jpg",
-            "title": "Product Title",
-            "description": "Product Description",
-            "button_label": "Shop Now",
-            "button_link": ""
-          }
-        },
-        "product_GbJy9F": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/purchased-favorite-coffee.jpg",
-            "title": "Product Title",
-            "description": "Product Description",
-            "button_label": "Shop Now",
-            "button_link": ""
-          }
-        },
-        "product_QYQAmU": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/1011-1200x800.jpg",
-            "title": "Fresh And Healthy Vegetable",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_label": "Shop Now",
-            "button_link": ""
-          }
-        },
-        "product_weBHxV": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/About-Parallax_754a27da-f0c1-4e85-9b2b-a6373731a692.png",
-            "title": "Fresh And Healthy Vegetable",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_label": "Shop Now",
-            "button_link": ""
-          }
-        },
-        "product_Fb7ijt": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/stylish-skirt-purse.jpg",
-            "title": "Fresh And Healthy Vegetable",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_label": "Shop Now",
-            "button_link": ""
-          }
-        },
-        "product_ADW8VW": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/home-overlay-cards-1.webp",
-            "title": "Fresh And Healthy Vegetable",
-            "description": "Daily updates of all special deals. Bookmark this page & come back often.",
-            "button_label": "Shop Now",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_mgFETp",
-        "product_GbJy9F",
-        "product_QYQAmU",
-        "product_weBHxV",
-        "product_Fb7ijt",
-        "product_ADW8VW"
-      ],
-      "name": "RW - Product Slider #2",
-      "settings": {
-        "heading": "All Products",
-        "heading_alignment": "center",
-        "heading_font_size": 28,
-        "heading_color": "#333333",
-        "bg_color": "#f9f9f9",
-        "shadow": true,
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "padding_side": 20,
-        "mobile_padding_top": 30,
-        "mobile_padding_bottom": 30,
-        "mobile_padding_side": 15,
-        "mobile_heading_font_size": 24,
-        "button_color": "#222222",
-        "title_font_size": 20
-      }
     }
   },
   "order": [
@@ -1231,7 +1140,6 @@
     "rw_contact_us_PHmtbr",
     "rw_carousel_2_mPjgWm",
     "rw_logo_slider_tRj4y9",
-    "rw_timeline_erCjEG",
-    "rw_product_slider_Hax8ti"
+    "rw_timeline_erCjEG"
   ]
 }
