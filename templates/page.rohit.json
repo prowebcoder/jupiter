@@ -1124,6 +1124,97 @@
         "mobile_column_margin_bottom": 10,
         "mobile_column_margin_left": 10
       }
+    },
+    "rw_product_slider_HcpyCh": {
+      "type": "rw-product-slider",
+      "blocks": {
+        "product_jpMUFC": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/autumn-photographer-taking-picture.jpg",
+            "title": "Product Title 1",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "product_768nKx": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/purchased-favorite-coffee.jpg",
+            "title": "Product Title 2",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "product_P7UJQT": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/home-overlay-cards-1.webp",
+            "title": "Product Title 3",
+            "description": "Prouduct Description",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "product_wD3iiC": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/1011-1200x800.jpg",
+            "title": "Product Title 4",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "product_hqGGFn": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/About-Parallax_754a27da-f0c1-4e85-9b2b-a6373731a692.png",
+            "title": "Product Title 5",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        },
+        "product_wFhppx": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/model-poses-near-bushes.jpg",
+            "title": "Product Title",
+            "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_jpMUFC",
+        "product_768nKx",
+        "product_P7UJQT",
+        "product_wD3iiC",
+        "product_hqGGFn",
+        "product_wFhppx"
+      ],
+      "name": "RW - Product Slider #2",
+      "settings": {
+        "heading": "All Products",
+        "heading_alignment": "center",
+        "heading_font_size": 28,
+        "heading_color": "#333333",
+        "bg_color": "#f9f9f9",
+        "shadow": true,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "padding_side": 20,
+        "mobile_padding_top": 30,
+        "mobile_padding_bottom": 30,
+        "mobile_padding_side": 15,
+        "mobile_heading_font_size": 24,
+        "button_color": "#222222",
+        "title_font_size": 20
+      }
     }
   },
   "order": [
@@ -1140,6 +1231,7 @@
     "rw_contact_us_PHmtbr",
     "rw_carousel_2_mPjgWm",
     "rw_logo_slider_tRj4y9",
-    "rw_timeline_erCjEG"
+    "rw_timeline_erCjEG",
+    "rw_product_slider_HcpyCh"
   ]
 }
