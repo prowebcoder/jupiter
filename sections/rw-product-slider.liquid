@@ -67,7 +67,7 @@
   }
 
   {{ sec_id }} .pc-slider-item-{{ last_part }} {
-    flex: 0 0 calc(33.33% - 14px);
+    flex: 0 0 calc(50% - 10px);
   }
 
   {{ sec_id }} .pc-product-card-{{ last_part }} {
@@ -129,12 +129,6 @@
   {{ sec_id }} .pc-shop-button-{{ last_part }}:hover {
     background: {{ section.settings.button_color }};
     color: white;
-  }
-
-  @media (max-width: 1024px) {
-    {{ sec_id }} .pc-slider-item-{{ last_part }} {
-      flex: 0 0 calc(50% - 10px);
-    }
   }
 
   @media (max-width: 767px) {
@@ -211,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (slides.length > 0) {
     let currentIndex = 0;
     const slideWidth = slides[0].offsetWidth + 20; // width + gap
-    const maxIndex = Math.max(0, slides.length - 3); // Updated for 3 cards
+    const maxIndex = slides.length - 2;
     
     function updateSlider() {
       sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
@@ -404,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function() {
           "type": "textarea",
           "id": "description",
           "label": "Description",
-          "default": "Product Description"
+          "default": "Prouduct Description"
         },
         {
           "type": "text",
@@ -428,32 +422,16 @@ document.addEventListener('DOMContentLoaded', function() {
         {
           "type": "product",
           "settings": {
-            "title": "Product 1",
-            "description": "Description for product 1",
+            "title": "Product Title",
+            "description": "Product Description",
             "button_label": "Shop Now"
           }
         },
         {
           "type": "product",
           "settings": {
-            "title": "Product 2",
-            "description": "Description for product 2",
-            "button_label": "Shop Now"
-          }
-        },
-        {
-          "type": "product",
-          "settings": {
-            "title": "Product 3",
-            "description": "Description for product 3",
-            "button_label": "Shop Now"
-          }
-        },
-        {
-          "type": "product",
-          "settings": {
-            "title": "Product 4",
-            "description": "Description for product 4",
+            "title": "Product Title",
+            "description": "Product Description",
             "button_label": "Shop Now"
           }
         }
