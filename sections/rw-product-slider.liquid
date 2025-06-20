@@ -67,7 +67,7 @@
   }
 
   {{ sec_id }} .pc-slider-item-{{ last_part }} {
-    flex: 0 0 calc(50% - 10px);
+    flex: 0 0 calc(33.33% - 14px);
   }
 
   {{ sec_id }} .pc-product-card-{{ last_part }} {
@@ -129,6 +129,12 @@
   {{ sec_id }} .pc-shop-button-{{ last_part }}:hover {
     background: {{ section.settings.button_color }};
     color: white;
+  }
+
+  @media (max-width: 1024px) {
+    {{ sec_id }} .pc-slider-item-{{ last_part }} {
+      flex: 0 0 calc(50% - 10px);
+    }
   }
 
   @media (max-width: 767px) {
@@ -205,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (slides.length > 0) {
     let currentIndex = 0;
     const slideWidth = slides[0].offsetWidth + 20; // width + gap
-    const maxIndex = slides.length - 2;
+    const maxIndex = Math.max(0, slides.length - 3); // Updated for 3 cards
     
     function updateSlider() {
       sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
@@ -398,7 +404,7 @@ document.addEventListener('DOMContentLoaded', function() {
           "type": "textarea",
           "id": "description",
           "label": "Description",
-          "default": "Prouduct Description"
+          "default": "Product Description"
         },
         {
           "type": "text",
@@ -422,16 +428,32 @@ document.addEventListener('DOMContentLoaded', function() {
         {
           "type": "product",
           "settings": {
-            "title": "Product Title",
-            "description": "Product Description",
+            "title": "Product 1",
+            "description": "Description for product 1",
             "button_label": "Shop Now"
           }
         },
         {
           "type": "product",
           "settings": {
-            "title": "Product Title",
-            "description": "Product Description",
+            "title": "Product 2",
+            "description": "Description for product 2",
+            "button_label": "Shop Now"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "title": "Product 3",
+            "description": "Description for product 3",
+            "button_label": "Shop Now"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "title": "Product 4",
+            "description": "Description for product 4",
             "button_label": "Shop Now"
           }
         }
