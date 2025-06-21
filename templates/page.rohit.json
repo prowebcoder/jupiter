@@ -1236,7 +1236,7 @@
         "heading_font_size": 50,
         "mobile_heading_font_size": 40,
         "heading_font_weight": "400",
-        "heading_spacing": 30,
+        "heading_spacing": 20,
         "mobile_heading_spacing": 20,
         "heading_letter_spacing": 2,
         "mobile_heading_letter_spacing": 1,
