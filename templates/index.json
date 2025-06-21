@@ -661,50 +661,6 @@
         "mobile_padding_bottom": 0,
         "mobile_padding_left": 15
       }
-    },
-    "rw_video_banner_2_XHPGRW": {
-      "type": "rw-video-banner-2",
-      "name": "RW - Video Banner #2",
-      "settings": {
-        "video": "shopify://files/videos/9218c4836a5c40429127819258a50242.HD-1080p-4.8Mbps-25897980.mp4",
-        "container_width": 1000,
-        "desktop_height": 600,
-        "container_border_radius": 0,
-        "video_border_radius": 0,
-        "mobile_container_width": 400,
-        "mobile_height": 400,
-        "mobile_container_border_radius": 0,
-        "mobile_video_border_radius": 0,
-        "overlay_color": "#000000",
-        "overlay_opacity": 0.3,
-        "heading": "NATURAL WINE",
-        "text_color": "#ffffff",
-        "heading_font_size": 50,
-        "mobile_heading_font_size": 40,
-        "heading_font_weight": "700",
-        "heading_spacing": 30,
-        "mobile_heading_spacing": 20,
-        "heading_letter_spacing": 2,
-        "mobile_heading_letter_spacing": 1,
-        "heading_shadow": true,
-        "button_text": "shop wine",
-        "button_link": "",
-        "button_background": "#7ff171",
-        "button_text_color": "#000000",
-        "button_background_hover": "#94ce49",
-        "button_text_color_hover": "#ffffff",
-        "button_border_color": "#121212",
-        "button_border_width": 1,
-        "button_border_radius": 0,
-        "button_font_size": 16,
-        "mobile_button_font_size": 14,
-        "button_font_weight": "500",
-        "button_text_transform": "uppercase",
-        "button_padding_top": 12,
-        "button_padding_right": 30,
-        "mobile_button_padding_top": 10,
-        "mobile_button_padding_right": 20
-      }
     }
   },
   "order": [
@@ -715,7 +671,6 @@
     "rw_testimonial_slider_mdzBML",
     "rw_wavy_layout_ytR4w6",
     "rw_testimonial_slider_cmYayq",
-    "rw_wavy_layout_et3k3m",
-    "rw_video_banner_2_XHPGRW"
+    "rw_wavy_layout_et3k3m"
   ]
 }
