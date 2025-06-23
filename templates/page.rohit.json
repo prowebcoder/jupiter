@@ -1415,7 +1415,7 @@
         "container_bg": "rgba(0,0,0,0)",
         "container_shadow": true,
         "slider_height": 500,
-        "slider_height_mobile": 600,
+        "slider_height_mobile": 500,
         "left_slide_width": 35,
         "transition_speed": 500,
         "text_color": "#ffffff",
