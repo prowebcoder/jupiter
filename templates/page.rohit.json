@@ -1260,81 +1260,6 @@
         "mobile_button_padding_right": 20
       }
     },
-    "rw_image_grid_xXWi4U": {
-      "type": "rw-image-grid",
-      "blocks": {
-        "image_nhEUTe": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/autumn-photographer-taking-picture.jpg"
-          }
-        },
-        "image_Urp7eX": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/1011-1200x800.jpg"
-          }
-        },
-        "image_Q49wiC": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/formal-party-toast.jpg"
-          }
-        },
-        "image_dCzKpf": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/stylish-skirt-purse.jpg"
-          }
-        },
-        "image_rc3btf": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg"
-          }
-        },
-        "image_BznUDp": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/purchased-favorite-coffee.jpg"
-          }
-        },
-        "image_RpfNK3": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "image_nhEUTe",
-        "image_Urp7eX",
-        "image_Q49wiC",
-        "image_dCzKpf",
-        "image_rc3btf",
-        "image_BznUDp",
-        "image_RpfNK3"
-      ],
-      "name": "RW - Image Grid #1",
-      "settings": {
-        "max_width": 1200,
-        "columns_desktop": 5,
-        "columns_mobile": 3,
-        "row_height_desktop": 200,
-        "row_height_mobile": 120,
-        "gap_size": 8,
-        "image_border_radius": 8,
-        "image_shadow": true,
-        "padding_top": 20,
-        "padding_right": 20,
-        "padding_bottom": 20,
-        "padding_left": 20,
-        "mobile_padding_top": 15,
-        "mobile_padding_right": 15,
-        "mobile_padding_bottom": 15,
-        "mobile_padding_left": 15
-      }
-    },
     "rw_vertical_slider_3m9DX8": {
       "type": "rw-vertical-slider",
       "blocks": {
@@ -1434,6 +1359,81 @@
         "button_hover_color": "#000000",
         "button_shadow": true
       }
+    },
+    "rw_image_gallery_fMWcVR": {
+      "type": "rw-image-gallery",
+      "blocks": {
+        "image_mH4Aiw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg"
+          }
+        },
+        "image_ArDVqr": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg"
+          }
+        },
+        "image_Kd7pdb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/blond-woman-with-winter-pine.jpg"
+          }
+        },
+        "image_drgYUX": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/woman-in-park-afternoon.jpeg"
+          }
+        },
+        "image_gLGVbg": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg"
+          }
+        },
+        "image_6nhpc9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/woman-infront-of-tree-with-berries.jpeg"
+          }
+        },
+        "image_xzqVzm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_mH4Aiw",
+        "image_ArDVqr",
+        "image_Kd7pdb",
+        "image_drgYUX",
+        "image_gLGVbg",
+        "image_6nhpc9",
+        "image_xzqVzm"
+      ],
+      "name": "RW - Image Gallery #1",
+      "settings": {
+        "max_width": 1200,
+        "columns_desktop": 5,
+        "columns_mobile": 3,
+        "row_height_desktop": 200,
+        "row_height_mobile": 120,
+        "gap_size": 8,
+        "image_border_radius": 8,
+        "image_shadow": true,
+        "padding_top": 20,
+        "padding_right": 20,
+        "padding_bottom": 20,
+        "padding_left": 20,
+        "mobile_padding_top": 15,
+        "mobile_padding_right": 15,
+        "mobile_padding_bottom": 15,
+        "mobile_padding_left": 15
+      }
     }
   },
   "order": [
@@ -1453,7 +1453,7 @@
     "rw_timeline_erCjEG",
     "rw_product_slider_HcpyCh",
     "rw_video_banner_2_QFpR6K",
-    "rw_image_grid_xXWi4U",
+    "rw_image_gallery_fMWcVR",
     "rw_vertical_slider_3m9DX8"
   ]
 }
