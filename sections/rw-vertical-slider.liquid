@@ -1,6 +1,665 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} .pc-vertical-slider {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: {{ section.settings.container_padding }}px;
+    background-color: {{ section.settings.section_bg }};
+    {% if section.settings.section_padding_top != blank or section.settings.section_padding_bottom != blank %}
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px 0;
+    {% endif %}
   }
+
+  {{ sec_id }} .pc-slider-outer {
+    width: 100%;
+    {% if section.settings.container_shadow %}
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    {% endif %}
+    border-radius: {{ section.settings.container_radius }}px;
+    overflow: hidden;
+    {% if section.settings.container_bg != blank %}
+    background-color: {{ section.settings.container_bg }};
+    {% endif %}
+  }
+
+  {{ sec_id }} .pc-slider-container {
+    position: relative;
+    width: 100%;
+    height: {{ section.settings.slider_height }}px;
+    overflow: hidden;
+  }
+
+  {{ sec_id }} .pc-left-slide {
+    height: 100%;
+    width: {{ section.settings.left_slide_width }}%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform {{ section.settings.transition_speed }}ms ease-in-out;
+    z-index: 2;
+  }
+
+  {{ sec_id }} .pc-slide-content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: {{ section.settings.text_color }};
+    padding: 20px;
+    text-align: center;
+  }
+
+  {{ sec_id }} .pc-slide-heading {
+    font-size: {{ section.settings.heading_size }}px;
+    margin-bottom: {{ section.settings.heading_spacing }}px;
+    font-weight: {{ section.settings.heading_weight }};
+    color: inherit;
+    line-height: 1.2;
+  }
+
+  {{ sec_id }} .pc-slide-text {
+    font-size: {{ section.settings.text_size }}px;
+    margin-bottom: 0;
+    font-weight: {{ section.settings.text_weight }};
+    color: inherit;
+    max-width: 80%;
+    line-height: 1.5;
+  }
+
+  {{ sec_id }} .pc-right-slide {
+    height: 100%;
+    position: absolute;
+    left: {{ section.settings.left_slide_width }}%;
+    width: calc(100% - {{ section.settings.left_slide_width }}%);
+    transition: transform {{ section.settings.transition_speed }}ms ease-in-out;
+  }
+
+  {{ sec_id }} .pc-slide-image {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  {{ sec_id }} .pc-slide-image-tag,
+  {{ sec_id }} .pc-slide-image svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+  }
+
+  {{ sec_id }} .pc-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+  }
+
+  {{ sec_id }} .pc-action-buttons button {
+    border: none;
+    background-color: {{ section.settings.button_bg }};
+    color: {{ section.settings.button_color }};
+    cursor: pointer;
+    font-size: 16px;
+    width: {{ section.settings.button_size }}px;
+    height: {{ section.settings.button_size }}px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 23%;
+    box-shadow: {% if section.settings.button_shadow %}0 2px 5px rgba(0,0,0,0.2){% else %}none{% endif %};
+    transition: all 0.3s ease;
+    z-index: 3;
+  }
+
+  {{ sec_id }} .pc-action-buttons button:hover {
+    background-color: {{ section.settings.button_hover_bg }};
+    color: {{ section.settings.button_hover_color }};
+  }
+
+  {{ sec_id }} .pc-action-buttons button svg {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+  }
+
+  {{ sec_id }} .pc-action-buttons {
+    position: absolute;
+    left: {{ section.settings.left_slide_width }}%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media (max-width: 767px) {
+    {{ sec_id }} .pc-vertical-slider {
+      padding: {{ section.settings.container_padding_mobile }}px;
+      {% if section.settings.section_padding_top_mobile != blank or section.settings.section_padding_bottom_mobile != blank %}
+      padding: {{ section.settings.section_padding_top_mobile }}px 0 {{ section.settings.section_padding_bottom_mobile }}px 0;
+      {% endif %}
+    }
+    
+    {{ sec_id }} .pc-slider-container {
+      height: {{ section.settings.slider_height_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-left-slide {
+      width: 100%;
+      height: 30%;
+      top: auto;
+      bottom: 0;
+    }
+
+    {{ sec_id }} .pc-right-slide {
+      left: 0;
+      width: 100%;
+      height: 70%;
+    }
+
+    {{ sec_id }} .pc-slide-heading {
+      font-size: {{ section.settings.heading_size_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-slide-text {
+      font-size: {{ section.settings.text_size_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-action-buttons {
+      left: auto;
+      right: 20px;
+      top: 30%;
+      transform: translateY(-50%);
+      flex-direction: row;
+    }
+
+    {{ sec_id }} .pc-slide-content {
+      padding: 10px;
+    }
+  }
+</style>
+
+<pc-vertical-slider-{{ last_part }} class="pc-vertical-slider">
+  <div class="pc-slider-outer" style="max-width: {{ section.settings.container_width }}px;">
+    <div class="pc-slider-container">
+      <div class="pc-left-slide">
+        {% for block in section.blocks %}
+          <div class="pc-slide-content" style="background-color: {{ block.settings.bg_color }};">
+            <h2 class="pc-slide-heading">{{ block.settings.heading }}</h2>
+            <p class="pc-slide-text">{{ block.settings.text }}</p>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="pc-right-slide">
+        {% for block in section.blocks %}
+          <div class="pc-slide-image">
+            {%- if block.settings.image != blank -%}
+              {{- block.settings.image
+                | image_url: width: 2000
+                | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-slide-image-tag'
+              -}}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder' }}
+            {%- endif -%}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="pc-action-buttons">
+        <button class="pc-up-button" aria-label="Previous slide">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+          </svg>
+        </button>
+        <button class="pc-down-button" aria-label="Next slide">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</pc-vertical-slider-{{ last_part }}>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slider = document.querySelector('pc-vertical-slider-{{ last_part }}');
+    if (!slider) return;
+
+    const container = slider.querySelector('.pc-slider-container');
+    const leftSlide = slider.querySelector('.pc-left-slide');
+    const rightSlide = slider.querySelector('.pc-right-slide');
+    const upButton = slider.querySelector('.pc-up-button');
+    const downButton = slider.querySelector('.pc-down-button');
+    const slides = slider.querySelectorAll('.pc-slide-image');
+    
+    if (!slides.length) return;
+
+    let activeSlideIndex = 0;
+    const slidesLength = slides.length;
+
+    leftSlide.style.top = `-${(slidesLength - 1) * 100}%`;
+
+    const changeSlide = (direction) => {
+      const sliderHeight = container.clientHeight;
+      
+      if (direction === 'up') {
+        activeSlideIndex++;
+        if (activeSlideIndex > slidesLength - 1) activeSlideIndex = 0;
+      } else {
+        activeSlideIndex--;
+        if (activeSlideIndex < 0) activeSlideIndex = slidesLength - 1;
+      }
+
+      rightSlide.style.transform = `translateY(-${activeSlideIndex * sliderHeight}px)`;
+      leftSlide.style.transform = `translateY(${activeSlideIndex * sliderHeight}px)`;
+    };
+
+    upButton.addEventListener('click', () => changeSlide('up'));
+    downButton.addEventListener('click', () => changeSlide('down'));
+
+    container.setAttribute('tabindex', '0');
+    container.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        changeSlide('up');
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        changeSlide('down');
+      }
+    });
+
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    container.addEventListener('touchstart', (e) => {
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+      touchEndY = e.changedTouches[0].screenY;
+      handleSwipe();
+    }, { passive: true });
+
+    const handleSwipe = () => {
+      if (touchEndY < touchStartY) {
+        changeSlide('up');
+      } else if (touchEndY > touchStartY) {
+        changeSlide('down');
+      }
+    };
+  });
+</script>
+
+{% schema %}
+{
+  "name": "RW - Vertical Slider #1",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section Background",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Section Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Section Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "label": "Section Padding Top (Mobile)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "label": "Section Padding Bottom (Mobile)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Container Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container Max Width",
+      "min": 800,
+      "max": 1800,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "label": "Container Padding (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "container_padding_mobile",
+      "label": "Container Padding (Mobile)",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "container_radius",
+      "label": "Container Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "container_bg",
+      "label": "Container Background",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "checkbox",
+      "id": "container_shadow",
+      "label": "Container Shadow",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    {
+      "type": "range",
+      "id": "slider_height",
+      "label": "Slider Height (Desktop)",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 700
+    },
+    {
+      "type": "range",
+      "id": "slider_height_mobile",
+      "label": "Slider Height (Mobile)",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "left_slide_width",
+      "label": "Left Slide Width (%)",
+      "min": 20,
+      "max": 50,
+      "step": 5,
+      "unit": "%",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "transition_speed",
+      "label": "Transition Speed",
+      "min": 300,
+      "max": 1000,
+      "step": 100,
+      "unit": "ms",
+      "default": 500
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Heading Settings"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Size (Desktop)",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading Size (Mobile)",
+      "min": 14,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "heading_weight",
+      "label": "Heading Font Weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Heading Bottom Spacing",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Text Settings"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text Size (Desktop)",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "label": "Text Size (Mobile)",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_weight",
+      "label": "Text Font Weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "header",
+      "content": "Navigation Buttons"
+    },
+    {
+      "type": "range",
+      "id": "button_size",
+      "label": "Button Size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg",
+      "label": "Button Hover Background",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button Hover Color",
+      "default": "#000000"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_shadow",
+      "label": "Button Shadow",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Slide Heading"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Slide description text goes here."
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Left Side Background Color",
+          "default": "#000000"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RW - Vertical Slider #1",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "heading": "Slide One",
+            "text": "Text One",
+            "bg_color": "#7f7856"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "heading": "Slide Two",
+            "text": "Text Two",
+            "bg_color": "#6d6b9f"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "heading": "Slide Three",
+            "text": "Text Three",
+            "bg_color": "#252e33"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "heading": "Slide Three",
+            "text": "Text Three",
+            "bg_color": "#739c10"
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
