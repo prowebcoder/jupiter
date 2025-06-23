@@ -1260,6 +1260,81 @@
         "mobile_button_padding_right": 20
       }
     },
+    "rw_image_gallery_fMWcVR": {
+      "type": "rw-image-gallery",
+      "blocks": {
+        "image_mH4Aiw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg"
+          }
+        },
+        "image_ArDVqr": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg"
+          }
+        },
+        "image_Kd7pdb": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/blond-woman-with-winter-pine.jpg"
+          }
+        },
+        "image_drgYUX": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/woman-in-park-afternoon.jpeg"
+          }
+        },
+        "image_gLGVbg": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg"
+          }
+        },
+        "image_6nhpc9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/woman-infront-of-tree-with-berries.jpeg"
+          }
+        },
+        "image_xzqVzm": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_mH4Aiw",
+        "image_ArDVqr",
+        "image_Kd7pdb",
+        "image_drgYUX",
+        "image_gLGVbg",
+        "image_6nhpc9",
+        "image_xzqVzm"
+      ],
+      "name": "RW - Image Gallery #1",
+      "settings": {
+        "max_width": 1200,
+        "columns_desktop": 5,
+        "columns_mobile": 3,
+        "row_height_desktop": 200,
+        "row_height_mobile": 120,
+        "gap_size": 8,
+        "image_border_radius": 8,
+        "image_shadow": true,
+        "padding_top": 20,
+        "padding_right": 20,
+        "padding_bottom": 20,
+        "padding_left": 20,
+        "mobile_padding_top": 15,
+        "mobile_padding_right": 15,
+        "mobile_padding_bottom": 15,
+        "mobile_padding_left": 15
+      }
+    },
     "rw_vertical_slider_3m9DX8": {
       "type": "rw-vertical-slider",
       "blocks": {
@@ -1339,7 +1414,7 @@
         "container_radius": 0,
         "container_bg": "rgba(0,0,0,0)",
         "container_shadow": true,
-        "slider_height": 500,
+        "slider_height": 400,
         "slider_height_mobile": 500,
         "left_slide_width": 35,
         "transition_speed": 500,
@@ -1358,81 +1433,6 @@
         "button_hover_bg": "#f0f0f0",
         "button_hover_color": "#000000",
         "button_shadow": true
-      }
-    },
-    "rw_image_gallery_fMWcVR": {
-      "type": "rw-image-gallery",
-      "blocks": {
-        "image_mH4Aiw": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg"
-          }
-        },
-        "image_ArDVqr": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg"
-          }
-        },
-        "image_Kd7pdb": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/blond-woman-with-winter-pine.jpg"
-          }
-        },
-        "image_drgYUX": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/woman-in-park-afternoon.jpeg"
-          }
-        },
-        "image_gLGVbg": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg"
-          }
-        },
-        "image_6nhpc9": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/woman-infront-of-tree-with-berries.jpeg"
-          }
-        },
-        "image_xzqVzm": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "image_mH4Aiw",
-        "image_ArDVqr",
-        "image_Kd7pdb",
-        "image_drgYUX",
-        "image_gLGVbg",
-        "image_6nhpc9",
-        "image_xzqVzm"
-      ],
-      "name": "RW - Image Gallery #1",
-      "settings": {
-        "max_width": 1200,
-        "columns_desktop": 5,
-        "columns_mobile": 3,
-        "row_height_desktop": 200,
-        "row_height_mobile": 120,
-        "gap_size": 8,
-        "image_border_radius": 8,
-        "image_shadow": true,
-        "padding_top": 20,
-        "padding_right": 20,
-        "padding_bottom": 20,
-        "padding_left": 20,
-        "mobile_padding_top": 15,
-        "mobile_padding_right": 15,
-        "mobile_padding_bottom": 15,
-        "mobile_padding_left": 15
       }
     }
   },
