@@ -1334,6 +1334,106 @@
         "mobile_padding_bottom": 15,
         "mobile_padding_left": 15
       }
+    },
+    "rw_vertical_slider_3m9DX8": {
+      "type": "rw-vertical-slider",
+      "blocks": {
+        "slide_H7FVfU": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
+            "heading": "Product One",
+            "text": "Text One",
+            "bg_color": "#7f7856"
+          }
+        },
+        "slide_M6m4nN": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/autumn-photographer-taking-picture.jpg",
+            "heading": "Product Two",
+            "text": "Text Two",
+            "bg_color": "#6d6b9f"
+          }
+        },
+        "slide_3C3jJr": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "heading": "Product Three",
+            "text": "Text Three",
+            "bg_color": "#252e33"
+          }
+        },
+        "slide_NnxRA6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/blond-woman-with-winter-pine.jpg",
+            "heading": "Product Four",
+            "text": "Text Three",
+            "bg_color": "#739c10"
+          }
+        },
+        "slide_48pkRz": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/model-poses-near-bushes.jpg",
+            "heading": "Product Five",
+            "text": "Slide description text goes here.",
+            "bg_color": "#083d4d"
+          }
+        },
+        "slide_EwzQz9": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
+            "heading": "Product Six",
+            "text": "Slide description text goes here.",
+            "bg_color": "#323d68"
+          }
+        }
+      },
+      "block_order": [
+        "slide_H7FVfU",
+        "slide_M6m4nN",
+        "slide_3C3jJr",
+        "slide_NnxRA6",
+        "slide_48pkRz",
+        "slide_EwzQz9"
+      ],
+      "name": "RW - Vertical Slider #1",
+      "settings": {
+        "section_bg": "rgba(0,0,0,0)",
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "section_padding_top_mobile": 0,
+        "section_padding_bottom_mobile": 0,
+        "container_width": 1200,
+        "container_padding": 20,
+        "container_padding_mobile": 10,
+        "container_radius": 0,
+        "container_bg": "rgba(0,0,0,0)",
+        "container_shadow": false,
+        "slider_height": 700,
+        "slider_height_mobile": 500,
+        "left_slide_width": 35,
+        "transition_speed": 500,
+        "text_color": "#ffffff",
+        "heading_size": 40,
+        "heading_size_mobile": 24,
+        "heading_weight": 600,
+        "heading_spacing": 10,
+        "text_size": 16,
+        "text_size_mobile": 14,
+        "text_weight": 400,
+        "button_size": 40,
+        "icon_size": 16,
+        "button_bg": "#ffffff",
+        "button_color": "#333333",
+        "button_hover_bg": "#f0f0f0",
+        "button_hover_color": "#000000",
+        "button_shadow": true
+      }
     }
   },
   "order": [
@@ -1353,6 +1453,7 @@
     "rw_timeline_erCjEG",
     "rw_product_slider_HcpyCh",
     "rw_video_banner_2_QFpR6K",
-    "rw_image_grid_xXWi4U"
+    "rw_image_grid_xXWi4U",
+    "rw_vertical_slider_3m9DX8"
   ]
 }
