@@ -140,11 +140,10 @@
     align-items: center;
   }
 
-  {{ sec_id }} .pc-feature-icon {
-  width: 24px;
-  height: 24px;
+{{ sec_id }} .pc-feature-icon {
   margin-right: 0.5rem;
   color: {{ section.settings.feature_icon_color }};
+  flex-shrink: 0; /* Prevents icon from shrinking */
 }
 
  
@@ -308,17 +307,18 @@
               {% if block.settings[feature_text] != blank %}
                 <li class="pc-feature-item">
   <svg
-    class="pc-feature-icon"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <polyline points="20 6 9 17 4 12"></polyline>
-  </svg>
+  class="pc-feature-icon"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  style="width: {{ block.settings.feature_icon_size }}px; height: {{ block.settings.feature_icon_size }}px;"
+>
+  <polyline points="20 6 9 17 4 12"></polyline>
+</svg>
   <span class="pc-feature-text" style="color: {{ block.settings.feature_text_color }}; font-size: {{ block.settings.feature_text_size }}px;">{{ block.settings[feature_text] }}</span>
 </li>
               {% endif %}
@@ -1026,6 +1026,20 @@
   "step": 1,
   "unit": "px",
   "default": 14
+},
+        {
+  "type": "header",
+  "content": "Feature Icon Sizing"
+},
+{
+  "type": "range",
+  "id": "feature_icon_size",
+  "label": "Feature icon size",
+  "min": 16,
+  "max": 40,
+  "step": 1,
+  "unit": "px",
+  "default": 24
 },
         {
           "type": "header",
