@@ -65,45 +65,43 @@
     font-weight: {{ section.settings.title_font_weight }};
   }
 
-{{ sec_id }} .pc-plan-price {
-  position: absolute;
-  background: {{ section.settings.right_background_color }};
-  width: 60px;
-  height: 88px;
-  right: 1.5rem;
-  top: -1rem;
-  padding-top: 1.25rem;
-  text-align: center;
-}
-
-  {{ sec_id }} .pc-price-number {
-  font-family: inherit;
-}
-
-{{ sec_id }} .pc-price-month {
-  display: block;
-}
-
-{{ sec_id }} .pc-plan-price::after,
-{{ sec_id }} .pc-plan-price::before {
-  content: '';
-  position: absolute;
-}
-
-{{ sec_id }} .pc-plan-price::after {
-  width: 100%;
-  height: 14px;
-  background-color: #FFF;
-  left: 0;
-  bottom: -1px;
-  clip-path: polygon(0 100%, 50% 0, 100% 100%);
-}
+  {{ sec_id }} .pc-plan-price {
+    position: absolute;
+    background: {{ section.settings.right_background_color }};
+    width: 60px;
+    height: 88px;
+    right: 1.5rem;
+    top: -1rem;
+    padding-top: 1.25rem;
+    text-align: center;
+  }
 
   {{ sec_id }} .pc-price-number {
     font-family: inherit;
   }
 
- 
+  {{ sec_id }} .pc-price-month {
+    display: block;
+  }
+
+  {{ sec_id }} .pc-plan-price::after,
+  {{ sec_id }} .pc-plan-price::before {
+    content: '';
+    position: absolute;
+  }
+
+  {{ sec_id }} .pc-plan-price::after {
+    width: 100%;
+    height: 14px;
+    background-color: #FFF;
+    left: 0;
+    bottom: -1px;
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  }
+
+  {{ sec_id }} .pc-price-number {
+    font-family: inherit;
+  }
 
   {{ sec_id }} .pc-plan-price::after,
   {{ sec_id }} .pc-plan-price::before {
@@ -140,13 +138,11 @@
     align-items: center;
   }
 
-{{ sec_id }} .pc-feature-icon {
-  margin-right: 0.5rem;
-  color: {{ section.settings.feature_icon_color }};
-  flex-shrink: 0; /* Prevents icon from shrinking */
-}
-
- 
+  {{ sec_id }} .pc-feature-icon {
+    margin-right: 0.5rem;
+    color: {{ section.settings.feature_icon_color }};
+    flex-shrink: 0;
+  }
 
   {{ sec_id }} .pc-plan-button {
     padding: 1.25rem;
@@ -244,12 +240,12 @@
             </div>
           {% endif %}
 
-         <div class="pc-plan-price">
-  <div class="pc-price-number" style="color: {{ block.settings.price_color }}; font-size: {{ block.settings.price_size }}px;">
-    <span class="pc-price-symbol" style="color: {{ block.settings.currency_symbol_color }}; font-size: {{ block.settings.currency_symbol_size }}px;">{{ block.settings.currency_symbol }}</span>{{ block.settings.price }}
-  </div>
-  <span class="pc-price-month" style="color: {{ block.settings.billing_period_color }}; font-size: {{ block.settings.billing_period_size }}px;">{{ block.settings.billing_period }}</span>
-</div>
+          <div class="pc-plan-price">
+            <div class="pc-price-number" style="color: {{ block.settings.price_color }}; font-size: {{ block.settings.price_size }}px;">
+              <span class="pc-price-symbol" style="color: {{ block.settings.currency_symbol_color }}; font-size: {{ block.settings.currency_symbol_size }}px;">{{ block.settings.currency_symbol }}</span>{{ block.settings.price }}
+            </div>
+            <span class="pc-price-month" style="color: {{ block.settings.billing_period_color }}; font-size: {{ block.settings.billing_period_size }}px;">{{ block.settings.billing_period }}</span>
+          </div>
 
           <header class="pc-plan-header">
             <div class="pc-plan-header-circle">
@@ -306,21 +302,21 @@
               {% assign feature_text = 'feature_' | append: i | append: '_text' %}
               {% if block.settings[feature_text] != blank %}
                 <li class="pc-feature-item">
-  <svg
-  class="pc-feature-icon"
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-  style="width: {{ block.settings.feature_icon_size }}px; height: {{ block.settings.feature_icon_size }}px;"
->
-  <polyline points="20 6 9 17 4 12"></polyline>
-</svg>
-  <span class="pc-feature-text" style="color: {{ block.settings.feature_text_color }}; font-size: {{ block.settings.feature_text_size }}px;">{{ block.settings[feature_text] }}</span>
-</li>
+                  <svg
+                    class="pc-feature-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    style="width: {{ block.settings.feature_icon_size }}px; height: {{ block.settings.feature_icon_size }}px;"
+                  >
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span class="pc-feature-text" style="color: {{ block.settings.feature_text_color }}; font-size: {{ block.settings.feature_text_size }}px;">{{ block.settings[feature_text] }}</span>
+                </li>
               {% endif %}
             {% endfor %}
           </ul>
@@ -443,7 +439,7 @@
       "label": "Background color",
       "default": "#F3F3F3"
     },
-     {
+    {
       "type": "color",
       "id": "card_bg_color",
       "label": "Card background color",
@@ -456,17 +452,17 @@
       "default": "#4A6CF7"
     },
     {
-  "type": "color",
-  "id": "right_background_color",
-  "label": "Price Tag Background Color",
-  "default": "#4a6cf7"
-},
-{
-  "type": "color",
-  "id": "feature_icon_color",
-  "label": "Feature icon color",
-  "default": "#4a6cf7"
-},
+      "type": "color",
+      "id": "right_background_color",
+      "label": "Price Tag Background Color",
+      "default": "#4a6cf7"
+    },
+    {
+      "type": "color",
+      "id": "feature_icon_color",
+      "label": "Feature icon color",
+      "default": "#4a6cf7"
+    }
   ],
   "blocks": [
     {
@@ -475,31 +471,31 @@
       "limit": 4,
       "settings": [
         {
-      "type": "header",
-      "content": "Badge"
-    },
+          "type": "header",
+          "content": "Badge"
+        },
         {
           "type": "text",
           "id": "badge_text",
           "label": "Badge text",
           "default": "Badge Text"
         },
-         {
+        {
           "type": "color",
           "id": "badge_color",
           "label": "Text Color",
           "default": "#FFF"
         },
-       {
-      "type": "range",
-      "id": "max_font_size",
-      "label": "Maximum Font Size",
-      "min": 6,
-      "max": 50,
-      "step": 2,
-      "unit": "px",
-      "default": 10
-    },
+        {
+          "type": "range",
+          "id": "max_font_size",
+          "label": "Maximum Font Size",
+          "min": 6,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "default": 10
+        },
         {
           "type": "select",
           "id": "badge_font_weight",
@@ -596,31 +592,31 @@
           "label": "Icon"
         },
         {
-      "type": "header",
-      "content": "Subtitle"
-    },
+          "type": "header",
+          "content": "Subtitle"
+        },
         {
           "type": "text",
           "id": "subtitle",
           "label": "Subtitle",
           "default": "BASIC"
         },
-         {
+        {
           "type": "color",
           "id": "subtitle_color",
           "label": "Text Color",
           "default": "#000"
         },
-       {
-      "type": "range",
-      "id": "subtitle_max_font_size",
-      "label": "Maximum Font Size",
-      "min": 6,
-      "max": 50,
-      "step": 2,
-      "unit": "px",
-      "default": 12
-    },
+        {
+          "type": "range",
+          "id": "subtitle_max_font_size",
+          "label": "Maximum Font Size",
+          "min": 6,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        },
         {
           "type": "select",
           "id": "subtitle_font_weight",
@@ -760,9 +756,9 @@
           "step": 5
         },
         {
-      "type": "header",
-      "content": "Text"
-    },
+          "type": "header",
+          "content": "Text"
+        },
         {
           "type": "text",
           "id": "title",
@@ -775,16 +771,16 @@
           "label": "Text Color",
           "default": "#000"
         },
-       {
-      "type": "range",
-      "id": "title_max_font_size",
-      "label": "Maximum Font Size",
-      "min": 6,
-      "max": 50,
-      "step": 2,
-      "unit": "px",
-      "default": 14
-    },
+        {
+          "type": "range",
+          "id": "title_max_font_size",
+          "label": "Maximum Font Size",
+          "min": 6,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "default": 14
+        },
         {
           "type": "select",
           "id": "title_font_weight",
@@ -924,9 +920,9 @@
           "step": 5
         },
         {
-      "type": "header",
-      "content": "Currency"
-    },
+          "type": "header",
+          "content": "Currency"
+        },
         {
           "type": "text",
           "id": "currency_symbol",
@@ -934,25 +930,25 @@
           "default": "$"
         },
         {
-  "type": "range",
-  "id": "currency_symbol_size",
-  "label": "Currency symbol size",
-  "min": 10,
-  "max": 30,
-  "step": 1,
-  "unit": "px",
-  "default": 12
-},
+          "type": "range",
+          "id": "currency_symbol_size",
+          "label": "Currency symbol size",
+          "min": 10,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "default": 12
+        },
         {
-  "type": "color",
-  "id": "currency_symbol_color",
-  "label": "Currency symbol color",
-  "default": "#FFFFFF"
-},
+          "type": "color",
+          "id": "currency_symbol_color",
+          "label": "Currency symbol color",
+          "default": "#FFFFFF"
+        },
         {
-      "type": "header",
-      "content": "Price"
-    },
+          "type": "header",
+          "content": "Price"
+        },
         {
           "type": "text",
           "id": "price",
@@ -960,25 +956,25 @@
           "default": "19"
         },
         {
-  "type": "color",
-  "id": "price_color",
-  "label": "Price color",
-  "default": "#FFFFFF"
-},
-{
-  "type": "range",
-  "id": "price_size",
-  "label": "Price size",
-  "min": 14,
-  "max": 40,
-  "step": 1,
-  "unit": "px",
-  "default": 14
-},
+          "type": "color",
+          "id": "price_color",
+          "label": "Price color",
+          "default": "#FFFFFF"
+        },
         {
-      "type": "header",
-      "content": "Billing"
-    },
+          "type": "range",
+          "id": "price_size",
+          "label": "Price size",
+          "min": 14,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "type": "header",
+          "content": "Billing"
+        },
         {
           "type": "text",
           "id": "billing_period",
@@ -986,21 +982,21 @@
           "default": "/month"
         },
         {
-  "type": "color",
-  "id": "billing_period_color",
-  "label": "Billing period color",
-  "default": "#FFFFFF"
-},
-{
-  "type": "range",
-  "id": "billing_period_size",
-  "label": "Billing period size",
-  "min": 8,
-  "max": 20,
-  "step": 1,
-  "unit": "px",
-  "default": 10
-},
+          "type": "color",
+          "id": "billing_period_color",
+          "label": "Billing period color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "range",
+          "id": "billing_period_size",
+          "label": "Billing period size",
+          "min": 8,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 10
+        },
         {
           "type": "header",
           "content": "Features"
@@ -1036,35 +1032,35 @@
           "default": "Community access"
         },
         {
-  "type": "color",
-  "id": "feature_text_color",
-  "label": "Feature text color",
-  "default": "#000"
-},
-{
-  "type": "range",
-  "id": "feature_text_size",
-  "label": "Feature text size",
-  "min": 12,
-  "max": 24,
-  "step": 1,
-  "unit": "px",
-  "default": 14
-},
+          "type": "color",
+          "id": "feature_text_color",
+          "label": "Feature text color",
+          "default": "#000"
+        },
         {
-  "type": "header",
-  "content": "Feature Icon Sizing"
-},
-{
-  "type": "range",
-  "id": "feature_icon_size",
-  "label": "Feature icon size",
-  "min": 16,
-  "max": 40,
-  "step": 1,
-  "unit": "px",
-  "default": 20
-},
+          "type": "range",
+          "id": "feature_text_size",
+          "label": "Feature text size",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "type": "header",
+          "content": "Feature Icon Sizing"
+        },
+        {
+          "type": "range",
+          "id": "feature_icon_size",
+          "label": "Feature icon size",
+          "min": 16,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "default": 20
+        },
         {
           "type": "header",
           "content": "Button"
@@ -1075,7 +1071,7 @@
           "label": "Button text",
           "default": "Get Started"
         },
-          {
+        {
           "type": "color",
           "id": "button_background_color",
           "label": "Button Background Color",
@@ -1243,7 +1239,7 @@
           "unit": "px",
           "label": "Input border radius",
           "default": 4
-        },
+        }
       ]
     }
   ],
