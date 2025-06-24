@@ -870,6 +870,92 @@
         "mobile_padding_bottom": 40
       }
     },
+    "rw_carousel_2_mPjgWm": {
+      "type": "rw-carousel-2",
+      "blocks": {
+        "card_KVt77e": {
+          "type": "card",
+          "settings": {
+            "subtitle": "THE SUBTITLE",
+            "title": "New title",
+            "text": "This is a wider card with supporting text below as a natural.",
+            "button_label": "Learn more",
+            "button_link": "",
+            "image": "shopify://shop_images/autumn-photographer-taking-picture.jpg"
+          }
+        },
+        "card_D88jQf": {
+          "type": "card",
+          "settings": {
+            "subtitle": "ANOTHER SUBTITLE",
+            "title": "Second title",
+            "text": "Additional content with supporting text for another card.",
+            "button_label": "Read more",
+            "button_link": "",
+            "image": "shopify://shop_images/1011-1200x800.jpg"
+          }
+        },
+        "card_qhgrFm": {
+          "type": "card",
+          "settings": {
+            "subtitle": "THE SUBTITLE",
+            "title": "New title",
+            "text": "This is a wider card with supporting text below as a natural.",
+            "button_label": "Learn more",
+            "button_link": "",
+            "image": "shopify://shop_images/model-poses-near-bushes.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "card_KVt77e",
+        "card_D88jQf",
+        "card_qhgrFm"
+      ],
+      "name": "RW - Carousel #2",
+      "settings": {
+        "container_width": 90,
+        "container_max_width": 1100,
+        "container_height": 420,
+        "container_padding": 20,
+        "container_radius": 0,
+        "mobile_container_width": 95,
+        "mobile_container_height": 600,
+        "mobile_container_padding": 10,
+        "image_position": "right",
+        "image_width": 50,
+        "image_height": 500,
+        "mobile_image_height": 300,
+        "image_border_radius": 14,
+        "spacer": 20,
+        "card_radius": 0,
+        "enable_shadow": false,
+        "card_bg": "#ffffff",
+        "subtitle_size": 14,
+        "mobile_subtitle_size": 12,
+        "subtitle_weight": "600",
+        "subtitle_color": "#666666",
+        "title_size": 36,
+        "mobile_title_size": 28,
+        "title_weight": "400",
+        "title_color": "#000000",
+        "title_padding_top": 5,
+        "title_padding_bottom": 5,
+        "text_size": 16,
+        "mobile_text_size": 14,
+        "text_color": "#333333",
+        "text_padding_top": 5,
+        "text_padding_bottom": 15,
+        "button_radius": 0,
+        "button_weight": "500",
+        "button_color": "#000000",
+        "button_bg": "rgba(0,0,0,0)",
+        "button_hover": "#000000",
+        "arrow_color": "#ffffff",
+        "arrow_bg": "#000000",
+        "arrow_hover": "#333333"
+      }
+    },
     "rw_logo_slider_tRj4y9": {
       "type": "rw-logo-slider",
       "blocks": {
@@ -1037,92 +1123,6 @@
         "mobile_column_margin_right": 10,
         "mobile_column_margin_bottom": 10,
         "mobile_column_margin_left": 10
-      }
-    },
-    "rw_carousel_2_mPjgWm": {
-      "type": "rw-carousel-2",
-      "blocks": {
-        "card_KVt77e": {
-          "type": "card",
-          "settings": {
-            "subtitle": "THE SUBTITLE",
-            "title": "New title",
-            "text": "This is a wider card with supporting text below as a natural.",
-            "button_label": "Learn more",
-            "button_link": "",
-            "image": "shopify://shop_images/autumn-photographer-taking-picture.jpg"
-          }
-        },
-        "card_D88jQf": {
-          "type": "card",
-          "settings": {
-            "subtitle": "ANOTHER SUBTITLE",
-            "title": "Second title",
-            "text": "Additional content with supporting text for another card.",
-            "button_label": "Read more",
-            "button_link": "",
-            "image": "shopify://shop_images/1011-1200x800.jpg"
-          }
-        },
-        "card_qhgrFm": {
-          "type": "card",
-          "settings": {
-            "subtitle": "THE SUBTITLE",
-            "title": "New title",
-            "text": "This is a wider card with supporting text below as a natural.",
-            "button_label": "Learn more",
-            "button_link": "",
-            "image": "shopify://shop_images/model-poses-near-bushes.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "card_KVt77e",
-        "card_D88jQf",
-        "card_qhgrFm"
-      ],
-      "name": "RW - Carousel #2",
-      "settings": {
-        "container_width": 90,
-        "container_max_width": 1100,
-        "container_height": 420,
-        "container_padding": 20,
-        "container_radius": 0,
-        "mobile_container_width": 95,
-        "mobile_container_height": 600,
-        "mobile_container_padding": 10,
-        "image_position": "right",
-        "image_width": 50,
-        "image_height": 500,
-        "mobile_image_height": 300,
-        "image_border_radius": 14,
-        "spacer": 20,
-        "card_radius": 0,
-        "enable_shadow": false,
-        "card_bg": "#ffffff",
-        "subtitle_size": 14,
-        "mobile_subtitle_size": 12,
-        "subtitle_weight": "600",
-        "subtitle_color": "#666666",
-        "title_size": 36,
-        "mobile_title_size": 28,
-        "title_weight": "400",
-        "title_color": "#000000",
-        "title_padding_top": 5,
-        "title_padding_bottom": 5,
-        "text_size": 16,
-        "mobile_text_size": 14,
-        "text_color": "#333333",
-        "text_padding_top": 5,
-        "text_padding_bottom": 15,
-        "button_radius": 0,
-        "button_weight": "500",
-        "button_color": "#000000",
-        "button_bg": "rgba(0,0,0,0)",
-        "button_hover": "#000000",
-        "arrow_color": "#ffffff",
-        "arrow_bg": "#000000",
-        "arrow_hover": "#333333"
       }
     },
     "rw_product_slider_HcpyCh": {
@@ -1652,8 +1652,8 @@
     "rw_tabs_FUNTVU",
     "rw_wavy_layout_hmKEx9",
     "rw_contact_us_PHmtbr",
-    "rw_logo_slider_tRj4y9",
     "rw_carousel_2_mPjgWm",
+    "rw_logo_slider_tRj4y9",
     "rw_timeline_erCjEG",
     "rw_product_slider_HcpyCh",
     "rw_video_banner_2_QFpR6K",
