@@ -150,7 +150,7 @@
     border: none;
     font-size: 0.938rem;
     border-radius: 0.5rem;
-    background: linear-gradient(157deg, hsl({{ section.settings.hue_color }}, 96%, 69%) -12%, hsl({{ section.settings.hue_color }}, 96%, 54%) 109%);
+    background: linear-gradient(157deg, hsl({{ section.settings.background_color }}, 96%, 69%) -12%, hsl({{ section.settings.background_color }}, 96%, 54%) 109%);
     color: #FFF;
     cursor: pointer;
     transition: 0.4s;
@@ -442,13 +442,10 @@
       "default": true
     },
     {
-      "type": "range",
-      "id": "hue_color",
-      "label": "Accent color hue",
-      "min": 1,
-      "max": 101,
-      "step": 1,
-      "default": 101
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
     },
     {
       "type": "color",
