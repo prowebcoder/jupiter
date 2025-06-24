@@ -1608,7 +1608,7 @@
         "padding_bottom": 48,
         "card_bg_color": "#ffffff",
         "card_shadow": true,
-        "background_color": "#1a13f1",
+        "right_background_color": "#1851b1",
         "badge_bg_color": "#f3f3f3",
         "badge_text_color": "#ff0000",
         "subtitle_font_weight": "600",
