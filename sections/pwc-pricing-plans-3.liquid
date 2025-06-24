@@ -147,10 +147,7 @@
   color: {{ section.settings.feature_icon_color }};
 }
 
-  {{ sec_id }} .pc-feature-text {
-    font-size: 1.7rem;
-    color: hsl({{ section.settings.hue_color }}, 12%, 35%);
-  }
+ 
 
   {{ sec_id }} .pc-plan-button {
     padding: 1.25rem;
@@ -310,20 +307,20 @@
               {% assign feature_text = 'feature_' | append: i | append: '_text' %}
               {% if block.settings[feature_text] != blank %}
                 <li class="pc-feature-item">
-                  <svg
-                    class="pc-feature-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span class="pc-feature-text">{{ block.settings[feature_text] }}</span>
-                </li>
+  <svg
+    class="pc-feature-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <polyline points="20 6 9 17 4 12"></polyline>
+  </svg>
+  <span class="pc-feature-text" style="color: {{ block.settings.feature_text_color }}; font-size: {{ block.settings.feature_text_size }}px;">{{ block.settings[feature_text] }}</span>
+</li>
               {% endif %}
             {% endfor %}
           </ul>
@@ -1014,6 +1011,22 @@
           "label": "Feature 5",
           "default": "Community access"
         },
+        {
+  "type": "color",
+  "id": "feature_text_color",
+  "label": "Feature text color",
+  "default": "#6B7280"
+},
+{
+  "type": "range",
+  "id": "feature_text_size",
+  "label": "Feature text size",
+  "min": 12,
+  "max": 24,
+  "step": 1,
+  "unit": "px",
+  "default": 14
+},
         {
           "type": "header",
           "content": "Button"
