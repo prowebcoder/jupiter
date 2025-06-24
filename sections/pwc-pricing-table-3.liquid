@@ -134,11 +134,11 @@
   }
 
   {{ sec_id }} .pc-feature-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 0.5rem;
-    color: hsl({{ section.settings.hue_color }}, 96%, 54%);
-  }
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5rem;
+  color: {{ block.settings.feature_icon_color }};
+}
 
   {{ sec_id }} .pc-feature-text {
     font-size: 1.7rem;
@@ -459,6 +459,16 @@
       "label": "Badge text color",
       "default": "#FFFFFF"
     },
+           {
+  "type": "header",
+  "content": "Feature Icon Colors"
+},
+{
+  "type": "color",
+  "id": "feature_icon_color",
+  "label": "Feature icon color",
+  "default": "#4a6cf7"
+},
     {
       "type": "select",
       "id": "subtitle_font_weight",
