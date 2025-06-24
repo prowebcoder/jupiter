@@ -77,26 +77,33 @@
 }
 
   {{ sec_id }} .pc-price-number {
+  font-family: inherit;
+}
+
+{{ sec_id }} .pc-price-month {
+  display: block;
+}
+
+{{ sec_id }} .pc-plan-price::after,
+{{ sec_id }} .pc-plan-price::before {
+  content: '';
+  position: absolute;
+}
+
+{{ sec_id }} .pc-plan-price::after {
+  width: 100%;
+  height: 14px;
+  background-color: #FFF;
+  left: 0;
+  bottom: -1px;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+
+  {{ sec_id }} .pc-price-number {
     font-family: inherit;
   }
 
-  {{ sec_id }} .pc-price-symbol {
-    font-size: 0.75rem;
-  }
-
-  {{ sec_id }} .pc-price-number {
-    font-size: 1.25rem;
-  }
-
-  {{ sec_id }} .pc-price-month {
-    display: block;
-    font-size: 0.625rem;
-  }
-
-  {{ sec_id }} .pc-price-number,
-  {{ sec_id }} .pc-price-month {
-    color: #FFF;
-  }
+ 
 
   {{ sec_id }} .pc-plan-price::after,
   {{ sec_id }} .pc-plan-price::before {
@@ -241,12 +248,12 @@
             </div>
           {% endif %}
 
-          <div class="pc-plan-price">
-            <div class="pc-price-number">
-              <span class="pc-price-symbol">{{ block.settings.currency_symbol }}</span>{{ block.settings.price }}
-            </div>
-            <span class="pc-price-month">{{ block.settings.billing_period }}</span>
-          </div>
+         <div class="pc-plan-price">
+  <div class="pc-price-number" style="color: {{ block.settings.price_color }}; font-size: {{ block.settings.price_size }}px;">
+    <span class="pc-price-symbol" style="color: {{ block.settings.currency_symbol_color }}; font-size: {{ block.settings.currency_symbol_size }}px;">{{ block.settings.currency_symbol }}</span>{{ block.settings.price }}
+  </div>
+  <span class="pc-price-month" style="color: {{ block.settings.billing_period_color }}; font-size: {{ block.settings.billing_period_size }}px;">{{ block.settings.billing_period }}</span>
+</div>
 
           <header class="pc-plan-header">
             <div class="pc-plan-header-circle">
@@ -914,17 +921,65 @@
           "default": "$"
         },
         {
+  "type": "range",
+  "id": "currency_symbol_size",
+  "label": "Currency symbol size",
+  "min": 10,
+  "max": 30,
+  "step": 1,
+  "unit": "px",
+  "default": 12
+},
+        {
+  "type": "color",
+  "id": "currency_symbol_color",
+  "label": "Currency symbol color",
+  "default": "#FFFFFF"
+},
+        {
           "type": "text",
           "id": "price",
           "label": "Price",
           "default": "19"
         },
         {
+  "type": "color",
+  "id": "price_color",
+  "label": "Price color",
+  "default": "#FFFFFF"
+},
+{
+  "type": "range",
+  "id": "price_size",
+  "label": "Price size",
+  "min": 14,
+  "max": 40,
+  "step": 1,
+  "unit": "px",
+  "default": 20
+},
+        {
           "type": "text",
           "id": "billing_period",
           "label": "Billing period",
           "default": "/month"
         },
+        {
+  "type": "color",
+  "id": "billing_period_color",
+  "label": "Billing period color",
+  "default": "#FFFFFF"
+},
+{
+  "type": "range",
+  "id": "billing_period_size",
+  "label": "Billing period size",
+  "min": 8,
+  "max": 20,
+  "step": 1,
+  "unit": "px",
+  "default": 10
+},
         {
           "type": "header",
           "content": "Features"
