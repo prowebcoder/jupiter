@@ -201,10 +201,10 @@
     }
 
     @media (max-width: 768px) {
-      {{ sec_id }} .pc-slider-slide-{{ last_part }} {
-        flex: 0 0 calc({{ section.settings.slide_width }}px * 0.8);
-        height: calc({{ section.settings.slide_height }}px * 0.8);
-      }
+     {{ sec_id }} .pc-slider-slide-{{ last_part }} {
+    flex: 0 0 80%; /* ← more mobile-friendly than fixed px */
+    height: auto;
+  }
 
       {{ sec_id }} .pc-slider-slide-{{ last_part }}.center {
         transform: scale(1);
