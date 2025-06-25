@@ -278,12 +278,12 @@
   class PokemonSlider extends HTMLElement {
     constructor() {
       super();
-      const sectionId = this.dataset.sectionId;
-      this.sliderTrack = this.querySelector(`#pc-slider-track-${sectionId}`);
-      this.slides = this.querySelectorAll(`#pc-slider-track-${sectionId} .pc-slider-slide-{{ last_part }}`);
-      this.prevBtn = this.querySelector(`#pc-prev-${sectionId}`);
-      this.nextBtn = this.querySelector(`#pc-next-${sectionId}`);
-      this.dotsContainer = this.querySelector(`#pc-slider-dots-${sectionId}`);
+      this.sectionId = this.dataset.sectionId;
+      this.sliderTrack = this.querySelector(`#pc-slider-track-${this.sectionId}`);
+      this.slides = this.querySelectorAll(`#pc-slider-track-${this.sectionId} .pc-slider-slide-{{ last_part }}`);
+      this.prevBtn = this.querySelector(`#pc-prev-${this.sectionId}`);
+      this.nextBtn = this.querySelector(`#pc-next-${this.sectionId}`);
+      this.dotsContainer = this.querySelector(`#pc-slider-dots-${this.sectionId}`);
       this.dots = this.dotsContainer ? this.dotsContainer.querySelectorAll('.pc-slider-dot-{{ last_part }}') : [];
       
       if (!this.sliderTrack || this.slides.length === 0) return;
@@ -303,13 +303,6 @@
     }
 
     initSlider() {
-      if (this.infiniteLoop) {
-        const firstSlide = this.slides[0].cloneNode(true);
-        const lastSlide = this.slides[this.slides.length - 1].cloneNode(true);
-        this.sliderTrack.insertBefore(lastSlide, this.slides[0]);
-        this.sliderTrack.appendChild(firstSlide);
-      }
-      
       this.updateSlider();
       this.centerActiveSlide();
       this.updateDots();
@@ -317,11 +310,6 @@
       if (this.autoplay) {
         this.startAutoplay();
       }
-      
-      window.addEventListener('resize', () => {
-        this.updateSlider();
-        this.centerActiveSlide();
-      });
     }
 
     updateSlider() {
@@ -329,32 +317,21 @@
       const trackWidth = this.sliderTrack.offsetWidth;
       const slideOffset = (trackWidth / 2) - (this.slideWidth / 2) - (this.slideWidth * centerOffset);
       
-      if (this.infiniteLoop) {
-        this.sliderTrack.style.transform = `translateX(${slideOffset - ((this.currentIndex + 1) * this.slideWidth)}px)`;
-      } else {
-        this.sliderTrack.style.transform = `translateX(${slideOffset - (this.currentIndex * this.slideWidth)}px)`;
-      }
+      this.sliderTrack.style.transform = `translateX(${slideOffset - (this.currentIndex * this.slideWidth)}px)`;
       
       if (this.prevBtn && this.nextBtn) {
-        if (this.infiniteLoop) {
-          this.prevBtn.classList.remove('hidden');
-          this.nextBtn.classList.remove('hidden');
-        } else {
-          this.prevBtn.classList.toggle('hidden', this.currentIndex === 0);
-          this.nextBtn.classList.toggle('hidden', this.currentIndex >= this.slides.length - this.itemsPerView);
-        }
+        this.prevBtn.classList.toggle('hidden', !this.infiniteLoop && this.currentIndex === 0);
+        this.nextBtn.classList.toggle('hidden', !this.infiniteLoop && this.currentIndex >= this.slides.length - this.itemsPerView);
       }
     }
 
     centerActiveSlide() {
-      const allSlides = this.querySelectorAll(`#pc-slider-track-{{ section.id }} .pc-slider-slide-{{ last_part }}`);
-      allSlides.forEach((slide, index) => {
+      this.slides.forEach((slide, index) => {
         slide.classList.remove('center');
         
-        const centerPosition = Math.floor(this.itemsPerView / 2);
-        if (index >= this.currentIndex + (this.infiniteLoop ? 1 : 0) && index < this.currentIndex + (this.infiniteLoop ? 1 : 0) + this.itemsPerView) {
-          const positionInView = index - this.currentIndex - (this.infiniteLoop ? 1 : 0);
-          if (positionInView === centerPosition) {
+        if (index >= this.currentIndex && index < this.currentIndex + this.itemsPerView) {
+          const positionInView = index - this.currentIndex;
+          if (positionInView === Math.floor(this.itemsPerView / 2)) {
             slide.classList.add('center');
           }
         }
@@ -384,52 +361,20 @@
     }
 
     nextSlide() {
-      if (this.infiniteLoop) {
-        this.currentIndex++;
+      if (this.infiniteLoop || this.currentIndex < this.slides.length - this.itemsPerView) {
+        this.currentIndex = (this.currentIndex + 1) % (this.slides.length - this.itemsPerView + 1);
         this.updateSlider();
         this.centerActiveSlide();
-        
-        if (this.currentIndex >= this.slides.length) {
-          setTimeout(() => {
-            this.currentIndex = 0;
-            this.sliderTrack.style.transition = 'none';
-            this.updateSlider();
-            setTimeout(() => {
-              this.sliderTrack.style.transition = 'transform 0.5s ease';
-            }, 50);
-          }, 500);
-        }
-        
         this.updateDots();
-      } else {
-        if (this.currentIndex < this.slides.length - this.itemsPerView) {
-          this.goToSlide(this.currentIndex + 1);
-        }
       }
     }
 
     prevSlide() {
-      if (this.infiniteLoop) {
-        this.currentIndex--;
+      if (this.infiniteLoop || this.currentIndex > 0) {
+        this.currentIndex = (this.currentIndex - 1 + (this.slides.length - this.itemsPerView + 1)) % (this.slides.length - this.itemsPerView + 1);
         this.updateSlider();
         this.centerActiveSlide();
-        
-        if (this.currentIndex < 0) {
-          setTimeout(() => {
-            this.currentIndex = this.slides.length - 1;
-            this.sliderTrack.style.transition = 'none';
-            this.updateSlider();
-            setTimeout(() => {
-              this.sliderTrack.style.transition = 'transform 0.5s ease';
-            }, 50);
-          }, 500);
-        }
-        
         this.updateDots();
-      } else {
-        if (this.currentIndex > 0) {
-          this.goToSlide(this.currentIndex - 1);
-        }
       }
     }
 
@@ -440,8 +385,11 @@
     }
 
     setupEventListeners() {
-      if (this.prevBtn && this.nextBtn) {
+      if (this.prevBtn) {
         this.prevBtn.addEventListener('click', () => this.prevSlide());
+      }
+      
+      if (this.nextBtn) {
         this.nextBtn.addEventListener('click', () => this.nextSlide());
       }
       
