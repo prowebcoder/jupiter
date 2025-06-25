@@ -837,7 +837,7 @@
         "items_per_view": 5,
         "slide_width": 300,
         "slide_height": 400,
-        "center_scale": 1.2,
+        "center_scale": 1.3,
         "show_navigation": true,
         "show_dots": true,
         "arrow_style": "simple",
