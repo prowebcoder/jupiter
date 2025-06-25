@@ -73,7 +73,6 @@
       bottom: 0;
       z-index: 10;
       padding: 15px;
-
       background: {{section.settings.image_color}}70;
     }
 
@@ -202,8 +201,8 @@
 
     @media (max-width: 768px) {
       {{ sec_id }} .pc-slider-slide-{{ last_part }} {
-        flex: 0 0 calc({{ section.settings.slide_width }}px * 0.5);
-        height: calc({{ section.settings.slide_height }}px * 0.5);
+        /* flex: 0 0 calc({{ section.settings.slide_width }}px * 0.5);
+        height: calc({{ section.settings.slide_height }}px * 0.5); */
       }
 
       {{ sec_id }} .pc-slider-slide-{{ last_part }}.center {
