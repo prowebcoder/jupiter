@@ -698,15 +698,16 @@
         "look_mrWdbA": {
           "type": "look",
           "settings": {
+            "image": "shopify://shop_images/1025-1200x800.jpg",
             "hotspot_1_x": 20,
             "hotspot_1_y": 30,
-            "hotspot_1_product": "",
+            "hotspot_1_product": "product-name-1",
             "hotspot_2_x": 50,
             "hotspot_2_y": 60,
-            "hotspot_2_product": "",
+            "hotspot_2_product": "product-name-3",
             "hotspot_3_x": 80,
             "hotspot_3_y": 40,
-            "hotspot_3_product": ""
+            "hotspot_3_product": "orange-snowboard"
           }
         }
       },
