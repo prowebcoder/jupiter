@@ -76,7 +76,8 @@
       bottom: 0;
       z-index: 10;
       padding: 15px;
-      background: rgba(0, 0, 0, 0.7);
+
+      background: {{section.settings.image_color}}70;
     }
 
     {{ sec_id }} .pc-slide-info-{{ last_part }} h4 {
@@ -535,13 +536,19 @@
   "type": "color",
   "id": "text_color",
   "label": "Text Color",
-  "default": "#ffffff"
+  "default": "#000"
 },
 {
   "type": "color",
   "id": "background_color",
   "label": "Background Color",
-  "default": "#17141d"
+  "default": "#fff"
+},
+    {
+  "type": "color",
+  "id": "image_color",
+  "label": "Image Background Color",
+  "default": "#fff"
 },
 {
   "type": "range",
