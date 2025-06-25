@@ -735,6 +735,98 @@
         "mobile_padding_bottom": 30,
         "mobile_padding_left": 15
       }
+    },
+    "rd_pokemon_slider_j9DTck": {
+      "type": "RD_pokemon-slider",
+      "blocks": {
+        "slide_taYLbR": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "title": "Slide Title",
+            "subtitle": "Slide Subtitle"
+          }
+        },
+        "slide_CtxbAN": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "title": "Slide Title",
+            "subtitle": "Slide Subtitle"
+          }
+        },
+        "slide_fadfiQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "title": "Slide Title",
+            "subtitle": "Slide Subtitle"
+          }
+        },
+        "slide_eXwKFG": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "title": "Slide Title",
+            "subtitle": "Slide Subtitle"
+          }
+        },
+        "slide_9CkfRC": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "title": "Slide Title",
+            "subtitle": "Slide Subtitle"
+          }
+        },
+        "slide_ytYBWm": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "title": "Slide Title",
+            "subtitle": "Slide Subtitle"
+          }
+        },
+        "slide_bJ9Jjz": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "title": "Slide Title",
+            "subtitle": "Slide Subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "slide_taYLbR",
+        "slide_CtxbAN",
+        "slide_fadfiQ",
+        "slide_eXwKFG",
+        "slide_9CkfRC",
+        "slide_ytYBWm",
+        "slide_bJ9Jjz"
+      ],
+      "name": "PWC - Pokemon Slider #1",
+      "settings": {
+        "heading": "Featured Collection",
+        "items_per_view": 5,
+        "slide_width": 300,
+        "slide_height": 400,
+        "center_scale": 1.2,
+        "show_navigation": true,
+        "show_dots": true,
+        "arrow_style": "simple",
+        "arrow_size": 50,
+        "arrow_size_mobile": 40,
+        "arrow_offset": 20,
+        "gradient_color_1": "#c31432",
+        "gradient_color_2": "#240b36",
+        "button_color": "#c31432",
+        "button_shadow_color": "#7a0c20",
+        "accent_color": "#c31432",
+        "autoplay": true,
+        "infinite_loop": true,
+        "autoplay_delay": 3000
+      }
     }
   },
   "order": [
@@ -746,6 +838,7 @@
     "rw_wavy_layout_ytR4w6",
     "rw_testimonial_slider_cmYayq",
     "rw_wavy_layout_et3k3m",
-    "pwc_look_book_69J784"
+    "pwc_look_book_69J784",
+    "rd_pokemon_slider_j9DTck"
   ]
 }
