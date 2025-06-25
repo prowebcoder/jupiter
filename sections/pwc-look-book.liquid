@@ -5,284 +5,271 @@
 
 {% style %}
    {{ sec_id }} .pc-lookbook-{{ last_part }} {
-     padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px !important;
-     max-width: 1400px !important;
-     margin: 0 auto !important;
-     position: relative !important;
-     box-sizing: border-box !important;
-     width: 100% !important;
+     padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
+     max-width: 1400px;
+     margin: 0 auto;
+     position: relative;
    }
 
    {{ sec_id }} .pc-lookbook-slider-container-{{ last_part }} {
-     position: relative !important;
-     width: 100% !important;
-     overflow: hidden !important;
+     position: relative;
    }
 
    {{ sec_id }} .pc-lookbook-slider-{{ last_part }} {
-     display: flex !important;
-     overflow: hidden !important;
-     scroll-behavior: smooth !important;
-     -webkit-overflow-scrolling: touch !important;
-     margin-bottom: 30px !important;
-     width: 100% !important;
-     position: relative !important;
+     display: flex;
+     overflow: hidden;
+     scroll-behavior: smooth;
+     -webkit-overflow-scrolling: touch;
+     margin-bottom: 30px;
    }
 
    {{ sec_id }} .pc-lookbook-item-{{ last_part }} {
-     flex: 0 0 100% !important;
-     display: flex !important;
-     min-height: 500px !important;
-     scroll-snap-align: start !important;
-     width: 100% !important;
-     position: relative !important;
+     flex: 0 0 100%;
+     display: flex;
+     min-height: 500px;
+     scroll-snap-align: start;
    }
 
    {{ sec_id }} .pc-slider-arrows-{{ last_part }} {
-     display: flex !important;
-     justify-content: space-between !important;
-     position: absolute !important;
-     top: 50% !important;
-     left: 0 !important;
-     right: 0 !important;
-     transform: translateY(-50%) !important;
-     z-index: 100 !important;
-     pointer-events: none !important;
+     display: flex;
+     justify-content: space-between;
+     position: absolute;
+     top: 50%;
+     left: 0;
+     right: 0;
+     transform: translateY(-50%);
+     z-index: 2;
+     pointer-events: none;
    }
 
    {{ sec_id }} .pc-slider-arrow-{{ last_part }} {
-     pointer-events: all !important;
-     background: rgba(255, 255, 255, 0.8) !important;
-     border: none !important;
-     width: 40px !important;
-     height: 40px !important;
-     border-radius: 50% !important;
-     display: flex !important;
-     align-items: center !important;
-     justify-content: center !important;
-     cursor: pointer !important;
-     transition: all 0.3s ease !important;
-     box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+     pointer-events: all;
+     background: rgba(255, 255, 255, 0.8);
+     border: none;
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
    }
 
    {{ sec_id }} .pc-slider-arrow-{{ last_part }}:hover {
-     background: #000 !important;
+     background: #000;
    }
 
    {{ sec_id }} .pc-slider-arrow-{{ last_part }}:hover svg {
-     stroke: #fff !important;
+     stroke: #fff;
    }
 
    {{ sec_id }} .pc-slider-arrow-{{ last_part }} svg {
-     width: 20px !important;
-     height: 20px !important;
-     stroke: #000 !important;
-     stroke-width: 2 !important;
+     width: 20px;
+     height: 20px;
+     stroke: #000;
+     stroke-width: 2;
    }
 
    {{ sec_id }} .pc-slider-arrow-prev-{{ last_part }} {
-     margin-left: 20px !important;
+     margin-left: 20px;
    }
 
    {{ sec_id }} .pc-slider-arrow-next-{{ last_part }} {
-     margin-right: 20px !important;
+     margin-right: 20px;
    }
 
    {{ sec_id }} .pc-lookbook-image-container-{{ last_part }} {
-     flex: 0 0 50% !important;
-     padding-right: 15px !important;
-     position: relative !important;
-     width: 50% !important;
-     height: 100% !important;
+     flex: 0 0 50%;
+     padding-right: 15px;
+     position: relative;
    }
 
    {{ sec_id }} .pc-lookbook-products-{{ last_part }} {
-     flex: 0 0 50% !important;
-     padding-left: 15px !important;
-     display: flex !important;
-     align-items: center !important;
-     width: 50% !important;
-     height: 100% !important;
+     flex: 0 0 50%;
+     padding-left: 15px;
+     display: flex;
+     align-items: center;
    }
 
    {{ sec_id }} .pc-lookbook-image-{{ last_part }} {
-     position: relative !important;
-     height: 100% !important;
-     width: 100% !important;
+     position: relative;
+     height: 100%;
    }
 
    {{ sec_id }} .pc-lookbook-image-{{ last_part }} img {
-     width: 100% !important;
-     height: 100% !important;
-     object-fit: cover !important;
-     display: block !important;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     display: block;
    }
 
    {{ sec_id }} .pc-product-slider-container-{{ last_part }} {
-     height: 100% !important;
-     position: relative !important;
-     width: 100% !important;
+     height: 100%;
+     position: relative;
+     width: 100%;
    }
 
    {{ sec_id }} .pc-product-slider-{{ last_part }} {
-     display: flex !important;
-     overflow: hidden !important;
-     scroll-behavior: smooth !important;
-     height: 100% !important;
-     width: 100% !important;
+     display: flex;
+     overflow: hidden;
+     scroll-behavior: smooth;
+     height: 100%;
+     width: 100%;
    }
 
    {{ sec_id }} .pc-product-slide-{{ last_part }} {
-     flex: 0 0 100% !important;
-     padding: 20px !important;
-     transition: opacity 0.3s ease !important;
-     display: flex !important;
-     justify-content: center !important;
-     align-items: center !important;
-     min-width: 100% !important;
+     flex: 0 0 100%;
+     padding: 20px;
+     transition: opacity 0.3s ease;
+     display: flex;
+     justify-content: center;
+     align-items: center;
    }
 
    {{ sec_id }} .pc-product-card-{{ last_part }} {
-     max-width: 100% !important;
-     width: 100% !important;
-     margin: 0 auto !important;
-     text-align: center !important;
-     padding: 20px !important;
+     max-width: 100%;
+     width: 100%;
+     margin: 0 auto;
+     text-align: center;
+     padding: 20px;
    }
 
    {{ sec_id }} .pc-product-card-image-{{ last_part }} {
-     max-width: 100% !important;
-     margin: 0 auto !important;
-     padding: 0 20px !important;
+     max-width: 100%;
+     margin: 0 auto;
+     padding: 0 20px;
    }
 
    {{ sec_id }} .pc-product-card-info-{{ last_part }} {
-     padding: 15px 0 !important;
-     width: 100% !important;
+     padding: 15px 0;
+     width: 100%;
    }
 
    {{ sec_id }} .pc-hotspot-{{ last_part }} {
-     position: absolute !important;
-     transform: translate(-50%, -50%) !important;
-     cursor: pointer !important;
-     z-index: 101 !important;
+     position: absolute;
+     transform: translate(-50%, -50%);
+     cursor: pointer;
+     z-index: 2;
    }
 
    {{ sec_id }} .pc-hotspot-marker-{{ last_part }} {
-     width: 24px !important;
-     height: 24px !important;
-     background: rgba(255, 255, 255, 0.8) !important;
-     border: 2px solid #000 !important;
-     border-radius: 50% !important;
-     position: relative !important;
-     transition: all 0.3s ease !important;
-     display: flex !important;
-     align-items: center !important;
-     justify-content: center !important;
+     width: 24px;
+     height: 24px;
+     background: rgba(255, 255, 255, 0.8);
+     border: 2px solid #000;
+     border-radius: 50%;
+     position: relative;
+     transition: all 0.3s ease;
+     display: flex;
+     align-items: center;
+     justify-content: center;
    }
 
    {{ sec_id }} .pc-hotspot-marker-{{ last_part }}:after {
-     content: '' !important;
-     width: 12px !important;
-     height: 12px !important;
-     background: #000 !important;
-     border-radius: 50% !important;
+     content: '';
+     width: 12px;
+     height: 12px;
+     background: #000;
+     border-radius: 50%;
    }
 
    {{ sec_id }} .pc-hotspot-{{ last_part }}.active .pc-hotspot-marker-{{ last_part }},
    {{ sec_id }} .pc-hotspot-{{ last_part }}:hover .pc-hotspot-marker-{{ last_part }} {
-     transform: scale(1.3) !important;
-     background: #000 !important;
+     transform: scale(1.3);
+     background: #000;
    }
 
    {{ sec_id }} .pc-hotspot-{{ last_part }}.active .pc-hotspot-marker-{{ last_part }}:after,
    {{ sec_id }} .pc-hotspot-{{ last_part }}:hover .pc-hotspot-marker-{{ last_part }}:after {
-     background: #fff !important;
+     background: #fff;
    }
 
    {{ sec_id }} .pc-slider-nav-{{ last_part }} {
-     display: flex !important;
-     justify-content: center !important;
-     margin-top: 30px !important;
+     display: flex;
+     justify-content: center;
+     margin-top: 30px;
    }
 
    {{ sec_id }} .pc-slider-dot-{{ last_part }} {
-     width: 12px !important;
-     height: 12px !important;
-     border-radius: 50% !important;
-     background: #ddd !important;
-     margin: 0 5px !important;
-     cursor: pointer !important;
-     transition: all 0.3s ease !important;
+     width: 12px;
+     height: 12px;
+     border-radius: 50%;
+     background: #ddd;
+     margin: 0 5px;
+     cursor: pointer;
+     transition: all 0.3s ease;
    }
 
    {{ sec_id }} .pc-slider-dot-{{ last_part }}.active {
-     background: #000 !important;
-     transform: scale(1.2) !important;
+     background: #000;
+     transform: scale(1.2);
    }
 
    {{ sec_id }} .pc-lookbook-dots-{{ last_part }} {
-     display: flex !important;
-     justify-content: center !important;
-     margin-top: 20px !important;
+     display: flex;
+     justify-content: center;
+     margin-top: 20px;
    }
 
    {{ sec_id }} .pc-section-title-{{ last_part }} {
-     font-size: {{ section.settings.title_font_size }}px !important;
-     color: {{ section.settings.title_color }} !important;
-     text-align: {{ section.settings.title_alignment }} !important;
-     margin-bottom: {{ section.settings.title_margin_bottom }}px !important;
-     font-weight: {{ section.settings.title_font_weight }} !important;
-     width: 100% !important;
+     font-size: {{ section.settings.title_font_size }}px;
+     color: {{ section.settings.title_color }};
+     text-align: {{ section.settings.title_alignment }};
+     margin-bottom: {{ section.settings.title_margin_bottom }}px;
+     font-weight: {{ section.settings.title_font_weight }};
    }
 
    @media (max-width: 768px) {
      {{ sec_id }} .pc-lookbook-{{ last_part }} {
-       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px !important;
+       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
      }
-     
-     {{ sec_id }} .pc-lookbook-item-{{ last_part }} {
-       flex-direction: column !important;
-       min-height: auto !important;
-     }
+  {{ sec_id }} .pc-lookbook-item-{{ last_part }} {
+     flex: auto;
+     display: block;
+     min-height: 500px;
+     scroll-snap-align: start;
+    min-height: auto;
+   }
+
 
      {{ sec_id }} .pc-lookbook-image-container-{{ last_part }},
      {{ sec_id }} .pc-lookbook-products-{{ last_part }} {
-       flex: 0 0 100% !important;
-       padding: 0 !important;
-       width: 100% !important;
+       flex: 0 0 100%;
+       padding: 0;
      }
 
      {{ sec_id }} .pc-lookbook-image-{{ last_part }} {
-       height: 400px !important;
+       height: 400px;
      }
 
      {{ sec_id }} .pc-lookbook-products-{{ last_part }} {
-       margin-top: 30px !important;
-       height: auto !important;
-       min-height: 300px !important;
+       margin-top: 30px;
+       height: auto;
+       min-height: 300px;
      }
 
      {{ sec_id }} .pc-slider-arrow-{{ last_part }} {
-       width: 30px !important;
-       height: 30px !important;
+       width: 30px;
+       height: 30px;
      }
 
      {{ sec_id }} .pc-slider-arrow-prev-{{ last_part }} {
-       margin-left: 10px !important;
+       margin-left: 10px;
      }
 
      {{ sec_id }} .pc-slider-arrow-next-{{ last_part }} {
-       margin-right: 10px !important;
+       margin-right: 10px;
      }
 
      {{ sec_id }} .pc-product-slide-{{ last_part }} {
-       padding: 10px !important;
+       padding: 10px;
      }
 
      {{ sec_id }} .pc-section-title-{{ last_part }} {
-       font-size: {{ section.settings.mobile_title_font_size }}px !important;
-       margin-bottom: {{ section.settings.mobile_title_margin_bottom }}px !important;
+       font-size: {{ section.settings.mobile_title_font_size }}px;
+       margin-bottom: {{ section.settings.mobile_title_margin_bottom }}px;
      }
    }
 {% endstyle %}
@@ -317,7 +304,7 @@
                 {{
                   block.settings.image
                   | image_url: width: 1000
-                  | image_tag: loading: 'lazy', alt: block.settings.image.alt, class: 'pc-lookbook-img'
+                  | image_tag: loading: 'lazy', alt: block.settings.image.alt
                 }}
 
                 {% if block.settings.hotspot_1_product != blank %}
@@ -355,7 +342,7 @@
               </div>
             {% else %}
               <div class="pc-lookbook-image-{{ last_part }}">
-                {{ 'product-1' | placeholder_svg_tag: 'pc-lookbook-placeholder' }}
+                {{ 'product-1' | placeholder_svg_tag }}
               </div>
             {% endif %}
           </div>
@@ -372,7 +359,7 @@
                           {{
                             product.featured_image
                             | image_url: width: 400
-                            | image_tag: loading: 'lazy', alt: product.title, class: 'pc-product-img'
+                            | image_tag: loading: 'lazy', alt: product.title
                           }}
                         </a>
                       </div>
@@ -395,7 +382,7 @@
                           {{
                             product.featured_image
                             | image_url: width: 400
-                            | image_tag: loading: 'lazy', alt: product.title, class: 'pc-product-img'
+                            | image_tag: loading: 'lazy', alt: product.title
                           }}
                         </a>
                       </div>
@@ -418,530 +405,7 @@
                           {{
                             product.featured_image
                             | image_url: width: 400
-                            | image_tag: loading: 'lazy', alt: product.title, class: 'pc-product-img'
-                          }}
-                        </a>
-                      </div>
-                      <div class="pc-product-card-info-{{ last_part }}">
-                        <h3>
-                          <a href="{{ product.url }}">{{ product.title }}</a>
-                        </h3>
-                        <p>{{ product.price | money }}</p>
-                      </div>
-                    </div>
-                  </div>
-                {% endif %}
-              </div>
-
-              <div class="pc-slider-nav-{{ last_part }}">
-                {% if block.settings.hotspot_1_product != blank %}
-                  <div class="pc-slider-dot-{{ last_part }} active" data-slide-index="0"></div>
-                {% endif %}
-                {% if block.settings.hotspot_2_product != blank %}
-                  <div class="pc-slider-dot-{{ last_part }}" data-slide-index="1"></div>
-                {% endif %}
-                {% if block.settings.hotspot_3_product != blank %}
-                  <div class="pc-slider-dot-{{ last_part }}" data-slide-index="2"></div>
-                {% endif %}
-              </div>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-
-  <div class="pc-lookbook-dots-{{ last_part }}">
-    {% for block in section.blocks %}
-      <div
-        class="pc-slider-dot-{{ last_part }} {% if forloop.first %}active{% endif %}"
-        data-lookbook-index="{{ forloop.index0 }}"
-      ></div>
-    {% endfor %}
-  </div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Use more specific selectors with the section ID
-    const section = document.querySelector('{{ sec_id }}');
-    if (!section) return;
-    
-    const lastPart = '{{ last_part }}';
-    const lookbookSlider = section.querySelector(`.pc-lookbook-slider-${lastPart}`);
-    const lookbookDots = section.querySelectorAll(`.pc-lookbook-dots-${lastPart} .pc-slider-dot-${lastPart}`);
-    const lookbookItems = section.querySelectorAll(`.pc-lookbook-item-${lastPart}`);
-    const prevArrow = section.querySelector(`.pc-slider-arrow-prev-${lastPart}`);
-    const nextArrow = section.querySelector(`.pc-slider-arrow-next-${lastPart}`);
-
-    // Only proceed if essential elements exist
-    if (!lookbookSlider || !lookbookItems.length) return;
-
-    let currentLookbookIndex = 0;
-    let isScrolling = false;
-
-    function updateLookbookSlider(index) {
-      if (isScrolling) return;
-      if (index < 0 || index >= lookbookItems.length) return;
-      
-      currentLookbookIndex = index;
-      isScrolling = true;
-      
-      const itemWidth = lookbookItems[0].offsetWidth;
-      lookbookSlider.scrollTo({
-        left: itemWidth * index,
-        behavior: 'smooth'
-      });
-
-      // Update dots
-      lookbookDots.forEach(dot => {
-        dot.classList.toggle('active', parseInt(dot.dataset.lookbookIndex) === index);
-      });
-
-      // Reset scrolling flag after animation
-      setTimeout(() => {
-        isScrolling = false;
-      }, 500);
-    }
-
-    // Add event listeners with checks
-    if (prevArrow) {
-      prevArrow.addEventListener('click', function() {
-        updateLookbookSlider(currentLookbookIndex - 1);
-      });
-    }
-
-    if (nextArrow) {
-      nextArrow.addEventListener('click', function() {
-        updateLookbookSlider(currentLookbookIndex + 1);
-      });
-    }
-
-    // Initialize each lookbook item
-    lookbookItems.forEach((item, index) => {
-      const slider = item.querySelector(`.pc-product-slider-${lastPart}`);
-      const hotspots = item.querySelectorAll(`.pc-hotspot-${lastPart}`);
-{%- assign sec_id = '#shopify-section-' | append: section.id -%}
-{%- assign parts = sec_id | split: '_' -%}
-{%- assign last_lower = parts | last -%}
-{%- assign last_part = last_lower | downcase -%}
-
-{% style %}
-   {{ sec_id }} .pc-lookbook-{{ last_part }} {
-     padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px !important;
-     max-width: 1400px !important;
-     margin: 0 auto !important;
-     position: relative !important;
-     box-sizing: border-box !important;
-     width: 100% !important;
-   }
-
-   {{ sec_id }} .pc-lookbook-slider-container-{{ last_part }} {
-     position: relative !important;
-     width: 100% !important;
-     overflow: hidden !important;
-   }
-
-   {{ sec_id }} .pc-lookbook-slider-{{ last_part }} {
-     display: flex !important;
-     overflow: hidden !important;
-     scroll-behavior: smooth !important;
-     -webkit-overflow-scrolling: touch !important;
-     margin-bottom: 30px !important;
-     width: 100% !important;
-     position: relative !important;
-   }
-
-   {{ sec_id }} .pc-lookbook-item-{{ last_part }} {
-     flex: 0 0 100% !important;
-     display: flex !important;
-     min-height: 500px !important;
-     scroll-snap-align: start !important;
-     width: 100% !important;
-     position: relative !important;
-   }
-
-   {{ sec_id }} .pc-slider-arrows-{{ last_part }} {
-     display: flex !important;
-     justify-content: space-between !important;
-     position: absolute !important;
-     top: 50% !important;
-     left: 0 !important;
-     right: 0 !important;
-     transform: translateY(-50%) !important;
-     z-index: 100 !important;
-     pointer-events: none !important;
-   }
-
-   {{ sec_id }} .pc-slider-arrow-{{ last_part }} {
-     pointer-events: all !important;
-     background: rgba(255, 255, 255, 0.8) !important;
-     border: none !important;
-     width: 40px !important;
-     height: 40px !important;
-     border-radius: 50% !important;
-     display: flex !important;
-     align-items: center !important;
-     justify-content: center !important;
-     cursor: pointer !important;
-     transition: all 0.3s ease !important;
-     box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
-   }
-
-   {{ sec_id }} .pc-slider-arrow-{{ last_part }}:hover {
-     background: #000 !important;
-   }
-
-   {{ sec_id }} .pc-slider-arrow-{{ last_part }}:hover svg {
-     stroke: #fff !important;
-   }
-
-   {{ sec_id }} .pc-slider-arrow-{{ last_part }} svg {
-     width: 20px !important;
-     height: 20px !important;
-     stroke: #000 !important;
-     stroke-width: 2 !important;
-   }
-
-   {{ sec_id }} .pc-slider-arrow-prev-{{ last_part }} {
-     margin-left: 20px !important;
-   }
-
-   {{ sec_id }} .pc-slider-arrow-next-{{ last_part }} {
-     margin-right: 20px !important;
-   }
-
-   {{ sec_id }} .pc-lookbook-image-container-{{ last_part }} {
-     flex: 0 0 50% !important;
-     padding-right: 15px !important;
-     position: relative !important;
-     width: 50% !important;
-     height: 100% !important;
-   }
-
-   {{ sec_id }} .pc-lookbook-products-{{ last_part }} {
-     flex: 0 0 50% !important;
-     padding-left: 15px !important;
-     display: flex !important;
-     align-items: center !important;
-     width: 50% !important;
-     height: 100% !important;
-   }
-
-   {{ sec_id }} .pc-lookbook-image-{{ last_part }} {
-     position: relative !important;
-     height: 100% !important;
-     width: 100% !important;
-   }
-
-   {{ sec_id }} .pc-lookbook-image-{{ last_part }} img {
-     width: 100% !important;
-     height: 100% !important;
-     object-fit: cover !important;
-     display: block !important;
-   }
-
-   {{ sec_id }} .pc-product-slider-container-{{ last_part }} {
-     height: 100% !important;
-     position: relative !important;
-     width: 100% !important;
-   }
-
-   {{ sec_id }} .pc-product-slider-{{ last_part }} {
-     display: flex !important;
-     overflow: hidden !important;
-     scroll-behavior: smooth !important;
-     height: 100% !important;
-     width: 100% !important;
-   }
-
-   {{ sec_id }} .pc-product-slide-{{ last_part }} {
-     flex: 0 0 100% !important;
-     padding: 20px !important;
-     transition: opacity 0.3s ease !important;
-     display: flex !important;
-     justify-content: center !important;
-     align-items: center !important;
-     min-width: 100% !important;
-   }
-
-   {{ sec_id }} .pc-product-card-{{ last_part }} {
-     max-width: 100% !important;
-     width: 100% !important;
-     margin: 0 auto !important;
-     text-align: center !important;
-     padding: 20px !important;
-   }
-
-   {{ sec_id }} .pc-product-card-image-{{ last_part }} {
-     max-width: 100% !important;
-     margin: 0 auto !important;
-     padding: 0 20px !important;
-   }
-
-   {{ sec_id }} .pc-product-card-info-{{ last_part }} {
-     padding: 15px 0 !important;
-     width: 100% !important;
-   }
-
-   {{ sec_id }} .pc-hotspot-{{ last_part }} {
-     position: absolute !important;
-     transform: translate(-50%, -50%) !important;
-     cursor: pointer !important;
-     z-index: 101 !important;
-   }
-
-   {{ sec_id }} .pc-hotspot-marker-{{ last_part }} {
-     width: 24px !important;
-     height: 24px !important;
-     background: rgba(255, 255, 255, 0.8) !important;
-     border: 2px solid #000 !important;
-     border-radius: 50% !important;
-     position: relative !important;
-     transition: all 0.3s ease !important;
-     display: flex !important;
-     align-items: center !important;
-     justify-content: center !important;
-   }
-
-   {{ sec_id }} .pc-hotspot-marker-{{ last_part }}:after {
-     content: '' !important;
-     width: 12px !important;
-     height: 12px !important;
-     background: #000 !important;
-     border-radius: 50% !important;
-   }
-
-   {{ sec_id }} .pc-hotspot-{{ last_part }}.active .pc-hotspot-marker-{{ last_part }},
-   {{ sec_id }} .pc-hotspot-{{ last_part }}:hover .pc-hotspot-marker-{{ last_part }} {
-     transform: scale(1.3) !important;
-     background: #000 !important;
-   }
-
-   {{ sec_id }} .pc-hotspot-{{ last_part }}.active .pc-hotspot-marker-{{ last_part }}:after,
-   {{ sec_id }} .pc-hotspot-{{ last_part }}:hover .pc-hotspot-marker-{{ last_part }}:after {
-     background: #fff !important;
-   }
-
-   {{ sec_id }} .pc-slider-nav-{{ last_part }} {
-     display: flex !important;
-     justify-content: center !important;
-     margin-top: 30px !important;
-   }
-
-   {{ sec_id }} .pc-slider-dot-{{ last_part }} {
-     width: 12px !important;
-     height: 12px !important;
-     border-radius: 50% !important;
-     background: #ddd !important;
-     margin: 0 5px !important;
-     cursor: pointer !important;
-     transition: all 0.3s ease !important;
-   }
-
-   {{ sec_id }} .pc-slider-dot-{{ last_part }}.active {
-     background: #000 !important;
-     transform: scale(1.2) !important;
-   }
-
-   {{ sec_id }} .pc-lookbook-dots-{{ last_part }} {
-     display: flex !important;
-     justify-content: center !important;
-     margin-top: 20px !important;
-   }
-
-   {{ sec_id }} .pc-section-title-{{ last_part }} {
-     font-size: {{ section.settings.title_font_size }}px !important;
-     color: {{ section.settings.title_color }} !important;
-     text-align: {{ section.settings.title_alignment }} !important;
-     margin-bottom: {{ section.settings.title_margin_bottom }}px !important;
-     font-weight: {{ section.settings.title_font_weight }} !important;
-     width: 100% !important;
-   }
-
-   @media (max-width: 768px) {
-     {{ sec_id }} .pc-lookbook-{{ last_part }} {
-       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px !important;
-     }
-     
-     {{ sec_id }} .pc-lookbook-item-{{ last_part }} {
-       flex-direction: column !important;
-       min-height: auto !important;
-     }
-
-     {{ sec_id }} .pc-lookbook-image-container-{{ last_part }},
-     {{ sec_id }} .pc-lookbook-products-{{ last_part }} {
-       flex: 0 0 100% !important;
-       padding: 0 !important;
-       width: 100% !important;
-     }
-
-     {{ sec_id }} .pc-lookbook-image-{{ last_part }} {
-       height: 400px !important;
-     }
-
-     {{ sec_id }} .pc-lookbook-products-{{ last_part }} {
-       margin-top: 30px !important;
-       height: auto !important;
-       min-height: 300px !important;
-     }
-
-     {{ sec_id }} .pc-slider-arrow-{{ last_part }} {
-       width: 30px !important;
-       height: 30px !important;
-     }
-
-     {{ sec_id }} .pc-slider-arrow-prev-{{ last_part }} {
-       margin-left: 10px !important;
-     }
-
-     {{ sec_id }} .pc-slider-arrow-next-{{ last_part }} {
-       margin-right: 10px !important;
-     }
-
-     {{ sec_id }} .pc-product-slide-{{ last_part }} {
-       padding: 10px !important;
-     }
-
-     {{ sec_id }} .pc-section-title-{{ last_part }} {
-       font-size: {{ section.settings.mobile_title_font_size }}px !important;
-       margin-bottom: {{ section.settings.mobile_title_margin_bottom }}px !important;
-     }
-   }
-{% endstyle %}
-
-<div class="pc-lookbook-{{ last_part }}">
-  <h2 class="pc-section-title-{{ last_part }}">{{ section.settings.title }}</h2>
-
-  <div class="pc-lookbook-slider-container-{{ last_part }}">
-    <div class="pc-slider-arrows-{{ last_part }}">
-      <button class="pc-slider-arrow-{{ last_part }} pc-slider-arrow-prev-{{ last_part }}" aria-label="Previous look">
-        <svg viewBox="0 0 24 24" fill="none">
-          <path d="M15 18L9 12L15 6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <button class="pc-slider-arrow-{{ last_part }} pc-slider-arrow-next-{{ last_part }}" aria-label="Next look">
-        <svg viewBox="0 0 24 24" fill="none">
-          <path d="M9 6L15 12L9 18" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </div>
-
-    <div class="pc-lookbook-slider-{{ last_part }}">
-      {% for block in section.blocks %}
-        <div
-          class="pc-lookbook-item-{{ last_part }}"
-          {{ block.shopify_attributes }}
-          data-lookbook-index="{{ forloop.index0 }}"
-        >
-          <div class="pc-lookbook-image-container-{{ last_part }}">
-            {% if block.settings.image != blank %}
-              <div class="pc-lookbook-image-{{ last_part }}">
-                {{
-                  block.settings.image
-                  | image_url: width: 1000
-                  | image_tag: loading: 'lazy', alt: block.settings.image.alt, class: 'pc-lookbook-img'
-                }}
-
-                {% if block.settings.hotspot_1_product != blank %}
-                  <div
-                    class="pc-hotspot-{{ last_part }} {% if forloop.first %}active{% endif %}"
-                    style="left: {{ block.settings.hotspot_1_x }}%; top: {{ block.settings.hotspot_1_y }}%;"
-                    data-product-id="{{ all_products[block.settings.hotspot_1_product].variants.first.id }}"
-                    data-slide-index="0"
-                  >
-                    <div class="pc-hotspot-marker-{{ last_part }}"></div>
-                  </div>
-                {% endif %}
-
-                {% if block.settings.hotspot_2_product != blank %}
-                  <div
-                    class="pc-hotspot-{{ last_part }}"
-                    style="left: {{ block.settings.hotspot_2_x }}%; top: {{ block.settings.hotspot_2_y }}%;"
-                    data-product-id="{{ all_products[block.settings.hotspot_2_product].variants.first.id }}"
-                    data-slide-index="1"
-                  >
-                    <div class="pc-hotspot-marker-{{ last_part }}"></div>
-                  </div>
-                {% endif %}
-
-                {% if block.settings.hotspot_3_product != blank %}
-                  <div
-                    class="pc-hotspot-{{ last_part }}"
-                    style="left: {{ block.settings.hotspot_3_x }}%; top: {{ block.settings.hotspot_3_y }}%;"
-                    data-product-id="{{ all_products[block.settings.hotspot_3_product].variants.first.id }}"
-                    data-slide-index="2"
-                  >
-                    <div class="pc-hotspot-marker-{{ last_part }}"></div>
-                  </div>
-                {% endif %}
-              </div>
-            {% else %}
-              <div class="pc-lookbook-image-{{ last_part }}">
-                {{ 'product-1' | placeholder_svg_tag: 'pc-lookbook-placeholder' }}
-              </div>
-            {% endif %}
-          </div>
-
-          <div class="pc-lookbook-products-{{ last_part }}">
-            <div class="pc-product-slider-container-{{ last_part }}">
-              <div class="pc-product-slider-{{ last_part }}" id="pc-product-slider-{{ last_part }}-{{ forloop.index }}">
-                {% if block.settings.hotspot_1_product != blank %}
-                  {% assign product = all_products[block.settings.hotspot_1_product] %}
-                  <div class="pc-product-slide-{{ last_part }}" data-product-id="{{ product.variants.first.id }}">
-                    <div class="pc-product-card-{{ last_part }}">
-                      <div class="pc-product-card-image-{{ last_part }}">
-                        <a href="{{ product.url }}">
-                          {{
-                            product.featured_image
-                            | image_url: width: 400
-                            | image_tag: loading: 'lazy', alt: product.title, class: 'pc-product-img'
-                          }}
-                        </a>
-                      </div>
-                      <div class="pc-product-card-info-{{ last_part }}">
-                        <h3>
-                          <a href="{{ product.url }}">{{ product.title }}</a>
-                        </h3>
-                        <p>{{ product.price | money }}</p>
-                      </div>
-                    </div>
-                  </div>
-                {% endif %}
-
-                {% if block.settings.hotspot_2_product != blank %}
-                  {% assign product = all_products[block.settings.hotspot_2_product] %}
-                  <div class="pc-product-slide-{{ last_part }}" data-product-id="{{ product.variants.first.id }}">
-                    <div class="pc-product-card-{{ last_part }}">
-                      <div class="pc-product-card-image-{{ last_part }}">
-                        <a href="{{ product.url }}">
-                          {{
-                            product.featured_image
-                            | image_url: width: 400
-                            | image_tag: loading: 'lazy', alt: product.title, class: 'pc-product-img'
-                          }}
-                        </a>
-                      </div>
-                      <div class="pc-product-card-info-{{ last_part }}">
-                        <h3>
-                          <a href="{{ product.url }}">{{ product.title }}</a>
-                        </h3>
-                        <p>{{ product.price | money }}</p>
-                      </div>
-                    </div>
-                  </div>
-                {% endif %}
-
-                {% if block.settings.hotspot_3_product != blank %}
-                  {% assign product = all_products[block.settings.hotspot_3_product] %}
-                  <div class="pc-product-slide-{{ last_part }}" data-product-id="{{ product.variants.first.id }}">
-                    <div class="pc-product-card-{{ last_part }}">
-                      <div class="pc-product-card-image-{{ last_part }}">
-                        <a href="{{ product.url }}">
-                          {{
-                            product.featured_image
-                            | image_url: width: 400
-                            | image_tag: loading: 'lazy', alt: product.title, class: 'pc-product-img'
+                            | image_tag: loading: 'lazy', alt: product.title
                           }}
                         </a>
                       </div>
