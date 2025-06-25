@@ -661,6 +661,79 @@
         "mobile_padding_bottom": 0,
         "mobile_padding_left": 15
       }
+    },
+    "pwc_look_book_69J784": {
+      "type": "pwc-look-book",
+      "blocks": {
+        "look_cVUnaf": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/71EiaJzAQ3L._SL1500.jpg",
+            "hotspot_1_x": 20,
+            "hotspot_1_y": 30,
+            "hotspot_1_product": "product-name-3",
+            "hotspot_2_x": 31,
+            "hotspot_2_y": 50,
+            "hotspot_2_product": "green-snowboard",
+            "hotspot_3_x": 67,
+            "hotspot_3_y": 70,
+            "hotspot_3_product": "product-name-2"
+          }
+        },
+        "look_L9APwD": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/autumn-photographer-taking-picture.jpg",
+            "hotspot_1_x": 20,
+            "hotspot_1_y": 30,
+            "hotspot_1_product": "orange-snowboard",
+            "hotspot_2_x": 50,
+            "hotspot_2_y": 60,
+            "hotspot_2_product": "product-name",
+            "hotspot_3_x": 80,
+            "hotspot_3_y": 40,
+            "hotspot_3_product": "crossbody-bags"
+          }
+        },
+        "look_mrWdbA": {
+          "type": "look",
+          "settings": {
+            "hotspot_1_x": 20,
+            "hotspot_1_y": 30,
+            "hotspot_1_product": "",
+            "hotspot_2_x": 50,
+            "hotspot_2_y": 60,
+            "hotspot_2_product": "",
+            "hotspot_3_x": 80,
+            "hotspot_3_y": 40,
+            "hotspot_3_product": ""
+          }
+        }
+      },
+      "block_order": [
+        "look_cVUnaf",
+        "look_L9APwD",
+        "look_mrWdbA"
+      ],
+      "name": "PWC - Lookbook #1",
+      "settings": {
+        "title": "Look Book",
+        "title_font_size": 32,
+        "mobile_title_font_size": 24,
+        "title_color": "#000000",
+        "title_alignment": "center",
+        "title_font_weight": 600,
+        "title_margin_bottom": 30,
+        "mobile_title_margin_bottom": 20,
+        "desktop_padding_top": 50,
+        "desktop_padding_right": 20,
+        "desktop_padding_bottom": 50,
+        "desktop_padding_left": 20,
+        "mobile_padding_top": 30,
+        "mobile_padding_right": 15,
+        "mobile_padding_bottom": 30,
+        "mobile_padding_left": 15
+      }
     }
   },
   "order": [
@@ -671,6 +744,7 @@
     "rw_testimonial_slider_mdzBML",
     "rw_wavy_layout_ytR4w6",
     "rw_testimonial_slider_cmYayq",
-    "rw_wavy_layout_et3k3m"
+    "rw_wavy_layout_et3k3m",
+    "pwc_look_book_69J784"
   ]
 }
