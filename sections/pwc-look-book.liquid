@@ -986,78 +986,60 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Use more specific selectors with the section ID
-    const section = document.querySelector('{{ sec_id }}');
-    if (!section) return;
-    
+    const sectionId = '{{ sec_id }}';
     const lastPart = '{{ last_part }}';
-    const lookbookSlider = section.querySelector(`.pc-lookbook-slider-${lastPart}`);
-    const lookbookDots = section.querySelectorAll(`.pc-lookbook-dots-${lastPart} .pc-slider-dot-${lastPart}`);
-    const lookbookItems = section.querySelectorAll(`.pc-lookbook-item-${lastPart}`);
-    const prevArrow = section.querySelector(`.pc-slider-arrow-prev-${lastPart}`);
-    const nextArrow = section.querySelector(`.pc-slider-arrow-next-${lastPart}`);
-
-    // Only proceed if essential elements exist
-    if (!lookbookSlider || !lookbookItems.length) return;
+    
+    const lookbookSlider = document.querySelector(`${sectionId} .pc-lookbook-slider-${lastPart}`);
+    const lookbookDots = document.querySelectorAll(`${sectionId} .pc-lookbook-dots-${lastPart} .pc-slider-dot-${lastPart}`);
+    const lookbookItems = document.querySelectorAll(`${sectionId} .pc-lookbook-item-${lastPart}`);
+    const prevArrow = document.querySelector(`${sectionId} .pc-slider-arrow-prev-${lastPart}`);
+    const nextArrow = document.querySelector(`${sectionId} .pc-slider-arrow-next-${lastPart}`);
 
     let currentLookbookIndex = 0;
-    let isScrolling = false;
 
     function updateLookbookSlider(index) {
-      if (isScrolling) return;
-      if (index < 0 || index >= lookbookItems.length) return;
-      
       currentLookbookIndex = index;
-      isScrolling = true;
-      
-      const itemWidth = lookbookItems[0].offsetWidth;
+      const itemWidth = lookbookItems[0].clientWidth;
       lookbookSlider.scrollTo({
         left: itemWidth * index,
         behavior: 'smooth'
       });
 
-      // Update dots
       lookbookDots.forEach(dot => {
         dot.classList.toggle('active', parseInt(dot.dataset.lookbookIndex) === index);
       });
-
-      // Reset scrolling flag after animation
-      setTimeout(() => {
-        isScrolling = false;
-      }, 500);
     }
 
-    // Add event listeners with checks
-    if (prevArrow) {
-      prevArrow.addEventListener('click', function() {
+    prevArrow.addEventListener('click', function() {
+      if (currentLookbookIndex > 0) {
         updateLookbookSlider(currentLookbookIndex - 1);
-      });
-    }
+      }
+    });
 
-    if (nextArrow) {
-      nextArrow.addEventListener('click', function() {
+    nextArrow.addEventListener('click', function() {
+      if (currentLookbookIndex < lookbookItems.length - 1) {
         updateLookbookSlider(currentLookbookIndex + 1);
-      });
-    }
+      }
+    });
 
-    // Initialize each lookbook item
+    lookbookDots.forEach(dot => {
+      dot.addEventListener('click', function() {
+        const lookbookIndex = parseInt(this.dataset.lookbookIndex);
+        updateLookbookSlider(lookbookIndex);
+      });
+    });
+
     lookbookItems.forEach((item, index) => {
       const slider = item.querySelector(`.pc-product-slider-${lastPart}`);
       const hotspots = item.querySelectorAll(`.pc-hotspot-${lastPart}`);
       const dots = item.querySelectorAll(`.pc-slider-nav-${lastPart} .pc-slider-dot-${lastPart}`);
-      
+      const slides = item.querySelectorAll(`.pc-product-slide-${lastPart}`);
+
       if (!slider || !hotspots.length || !dots.length) return;
 
-      let isProductScrolling = false;
-
       function goToProductSlide(slideIndex) {
-        if (isProductScrolling) return;
-        if (slideIndex < 0 || slideIndex >= hotspots.length) return;
-        
-        isProductScrolling = true;
-        
         slider.scrollTo({
-          left: slider.offsetWidth * slideIndex,
+          left: slider.clientWidth * slideIndex,
           behavior: 'smooth'
         });
 
@@ -1068,66 +1050,43 @@
         dots.forEach(dot => {
           dot.classList.toggle('active', parseInt(dot.dataset.slideIndex) === slideIndex);
         });
-
-        setTimeout(() => {
-          isProductScrolling = false;
-        }, 500);
       }
 
-      // Add click handlers
       hotspots.forEach(hotspot => {
         hotspot.addEventListener('click', function() {
-          goToProductSlide(parseInt(this.dataset.slideIndex));
+          const slideIndex = parseInt(this.dataset.slideIndex);
+          goToProductSlide(slideIndex);
         });
       });
 
       dots.forEach(dot => {
         dot.addEventListener('click', function() {
-          goToProductSlide(parseInt(this.dataset.slideIndex));
+          const slideIndex = parseInt(this.dataset.slideIndex);
+          goToProductSlide(slideIndex);
         });
       });
 
-      // Initialize first slide as active
-      if (hotspots.length > 0) {
-        const firstHotspot = item.querySelector(`.pc-hotspot-${lastPart}`);
-        if (firstHotspot) {
-          firstHotspot.classList.add('active');
-        }
+      if (slides.length > 0) {
+        const activeIndex = item.querySelector(`.pc-hotspot-${lastPart}.active`)?.dataset.slideIndex || 0;
+        setTimeout(() => {
+          goToProductSlide(parseInt(activeIndex));
+        }, 100);
       }
     });
 
-    // Handle scroll events for lookbook slider
     let lookbookScrollTimeout;
     lookbookSlider.addEventListener('scroll', function() {
       clearTimeout(lookbookScrollTimeout);
       lookbookScrollTimeout = setTimeout(() => {
-        if (isScrolling) return;
-        
         const scrollPosition = lookbookSlider.scrollLeft;
-        const itemWidth = lookbookItems[0].offsetWidth;
-        const newIndex = Math.round(scrollPosition / itemWidth);
-        
-        if (newIndex !== currentLookbookIndex) {
-          currentLookbookIndex = newIndex;
-          lookbookDots.forEach(dot => {
-            dot.classList.toggle('active', parseInt(dot.dataset.lookbookIndex) === currentLookbookIndex);
-          });
-        }
+        const itemWidth = lookbookItems[0].clientWidth;
+        currentLookbookIndex = Math.round(scrollPosition / itemWidth);
+
+        lookbookDots.forEach(dot => {
+          dot.classList.toggle('active', parseInt(dot.dataset.lookbookIndex) === currentLookbookIndex);
+        });
       }, 100);
     });
-
-    // Handle dot navigation clicks
-    lookbookDots.forEach(dot => {
-      dot.addEventListener('click', function() {
-        const lookbookIndex = parseInt(this.dataset.lookbookIndex);
-        updateLookbookSlider(lookbookIndex);
-      });
-    });
-
-    // Initialize first lookbook item as active
-    if (lookbookDots.length > 0) {
-      lookbookDots[0].classList.add('active');
-    }
   });
 </script>
 
