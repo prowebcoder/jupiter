@@ -314,21 +314,22 @@
         this.startAutoplay();
       }
     }
-
 updateSlider() {
-  const centerOffset = Math.floor(this.itemsPerView / 2);
-  const trackWidth = this.sliderTrack.offsetWidth;
-  const slideOffset = (trackWidth / 2) - (this.slideWidth / 2) - (this.slideWidth * centerOffset);
+  let translateXValue;
 
-  // 👉 Fix here: force translateX(0) on first load
-  let translateXValue = 0;
+  if (this.currentIndex === 0) {
+    translateXValue = 0; // Align to the start
+  } else {
+    const centerOffset = Math.floor(this.itemsPerView / 2);
+    const trackWidth = this.sliderTrack.offsetWidth;
+    const slideOffset = (trackWidth / 2) - (this.slideWidth / 2) - (this.slideWidth * centerOffset);
 
-  if (this.currentIndex > 0) {
     translateXValue = slideOffset - (this.currentIndex * this.slideWidth);
   }
 
   this.sliderTrack.style.transform = `translateX(${translateXValue}px)`;
 
+  // Update navigation buttons
   if (this.prevBtn && this.nextBtn) {
     this.prevBtn.classList.toggle('hidden', !this.infiniteLoop && this.currentIndex === 0);
     this.nextBtn.classList.toggle(
