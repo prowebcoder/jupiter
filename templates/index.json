@@ -794,6 +794,22 @@
             "title": "Slide Title",
             "subtitle": "Slide Subtitle"
           }
+        },
+        "slide_MqH3rg": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "title": "Slide Title",
+            "subtitle": "Slide Subtitle"
+          }
+        },
+        "slide_eEgYb9": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg",
+            "title": "Slide Title",
+            "subtitle": "Slide Subtitle"
+          }
         }
       },
       "block_order": [
@@ -803,7 +819,9 @@
         "slide_eXwKFG",
         "slide_9CkfRC",
         "slide_ytYBWm",
-        "slide_bJ9Jjz"
+        "slide_bJ9Jjz",
+        "slide_MqH3rg",
+        "slide_eEgYb9"
       ],
       "name": "PWC - Pokemon Slider #1",
       "settings": {
