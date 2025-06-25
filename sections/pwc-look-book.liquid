@@ -1,0 +1,842 @@
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+{% style %}
+   {{ sec_id }} .pc-lookbook-{{ last_part }} {
+     padding: {{ section.settings.desktop_padding_top }}px {{ section.settings.desktop_padding_right }}px {{ section.settings.desktop_padding_bottom }}px {{ section.settings.desktop_padding_left }}px;
+     max-width: 1400px;
+     margin: 0 auto;
+     position: relative;
+   }
+
+   {{ sec_id }} .pc-lookbook-slider-container-{{ last_part }} {
+     position: relative;
+   }
+
+   {{ sec_id }} .pc-lookbook-slider-{{ last_part }} {
+     display: flex;
+     overflow: hidden;
+     scroll-behavior: smooth;
+     -webkit-overflow-scrolling: touch;
+     margin-bottom: 30px;
+   }
+
+   {{ sec_id }} .pc-lookbook-item-{{ last_part }} {
+     flex: 0 0 100%;
+     display: flex;
+     min-height: 500px;
+     scroll-snap-align: start;
+   }
+
+   {{ sec_id }} .pc-slider-arrows-{{ last_part }} {
+     display: flex;
+     justify-content: space-between;
+     position: absolute;
+     top: 50%;
+     left: 0;
+     right: 0;
+     transform: translateY(-50%);
+     z-index: 2;
+     pointer-events: none;
+   }
+
+   {{ sec_id }} .pc-slider-arrow-{{ last_part }} {
+     pointer-events: all;
+     background: rgba(255, 255, 255, 0.8);
+     border: none;
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+   }
+
+   {{ sec_id }} .pc-slider-arrow-{{ last_part }}:hover {
+     background: #000;
+   }
+
+   {{ sec_id }} .pc-slider-arrow-{{ last_part }}:hover svg {
+     stroke: #fff;
+   }
+
+   {{ sec_id }} .pc-slider-arrow-{{ last_part }} svg {
+     width: 20px;
+     height: 20px;
+     stroke: #000;
+     stroke-width: 2;
+   }
+
+   {{ sec_id }} .pc-slider-arrow-prev-{{ last_part }} {
+     margin-left: 20px;
+   }
+
+   {{ sec_id }} .pc-slider-arrow-next-{{ last_part }} {
+     margin-right: 20px;
+   }
+
+   {{ sec_id }} .pc-lookbook-image-container-{{ last_part }} {
+     flex: 0 0 50%;
+     padding-right: 15px;
+     position: relative;
+   }
+
+   {{ sec_id }} .pc-lookbook-products-{{ last_part }} {
+     flex: 0 0 50%;
+     padding-left: 15px;
+     display: flex;
+     align-items: center;
+   }
+
+   {{ sec_id }} .pc-lookbook-image-{{ last_part }} {
+     position: relative;
+     height: 100%;
+   }
+
+   {{ sec_id }} .pc-lookbook-image-{{ last_part }} img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     display: block;
+   }
+
+   {{ sec_id }} .pc-product-slider-container-{{ last_part }} {
+     height: 100%;
+     position: relative;
+     width: 100%;
+   }
+
+   {{ sec_id }} .pc-product-slider-{{ last_part }} {
+     display: flex;
+     overflow: hidden;
+     scroll-behavior: smooth;
+     height: 100%;
+     width: 100%;
+   }
+
+   {{ sec_id }} .pc-product-slide-{{ last_part }} {
+     flex: 0 0 100%;
+     padding: 20px;
+     transition: opacity 0.3s ease;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+   }
+
+   {{ sec_id }} .pc-product-card-{{ last_part }} {
+     max-width: 100%;
+     width: 100%;
+     margin: 0 auto;
+     text-align: center;
+     padding: 20px;
+   }
+
+   {{ sec_id }} .pc-product-card-image-{{ last_part }} {
+     max-width: 100%;
+     margin: 0 auto;
+     padding: 0 20px;
+   }
+
+   {{ sec_id }} .pc-product-card-info-{{ last_part }} {
+     padding: 15px 0;
+     width: 100%;
+   }
+
+   {{ sec_id }} .pc-hotspot-{{ last_part }} {
+     position: absolute;
+     transform: translate(-50%, -50%);
+     cursor: pointer;
+     z-index: 2;
+   }
+
+   {{ sec_id }} .pc-hotspot-marker-{{ last_part }} {
+     width: 24px;
+     height: 24px;
+     background: rgba(255, 255, 255, 0.8);
+     border: 2px solid #000;
+     border-radius: 50%;
+     position: relative;
+     transition: all 0.3s ease;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   }
+
+   {{ sec_id }} .pc-hotspot-marker-{{ last_part }}:after {
+     content: '';
+     width: 12px;
+     height: 12px;
+     background: #000;
+     border-radius: 50%;
+   }
+
+   {{ sec_id }} .pc-hotspot-{{ last_part }}.active .pc-hotspot-marker-{{ last_part }},
+   {{ sec_id }} .pc-hotspot-{{ last_part }}:hover .pc-hotspot-marker-{{ last_part }} {
+     transform: scale(1.3);
+     background: #000;
+   }
+
+   {{ sec_id }} .pc-hotspot-{{ last_part }}.active .pc-hotspot-marker-{{ last_part }}:after,
+   {{ sec_id }} .pc-hotspot-{{ last_part }}:hover .pc-hotspot-marker-{{ last_part }}:after {
+     background: #fff;
+   }
+
+   {{ sec_id }} .pc-slider-nav-{{ last_part }} {
+     display: flex;
+     justify-content: center;
+     margin-top: 30px;
+   }
+
+   {{ sec_id }} .pc-slider-dot-{{ last_part }} {
+     width: 12px;
+     height: 12px;
+     border-radius: 50%;
+     background: #ddd;
+     margin: 0 5px;
+     cursor: pointer;
+     transition: all 0.3s ease;
+   }
+
+   {{ sec_id }} .pc-slider-dot-{{ last_part }}.active {
+     background: #000;
+     transform: scale(1.2);
+   }
+
+   {{ sec_id }} .pc-lookbook-dots-{{ last_part }} {
+     display: flex;
+     justify-content: center;
+     margin-top: 20px;
+   }
+
+   {{ sec_id }} .pc-section-title-{{ last_part }} {
+     font-size: {{ section.settings.title_font_size }}px;
+     color: {{ section.settings.title_color }};
+     text-align: {{ section.settings.title_alignment }};
+     margin-bottom: {{ section.settings.title_margin_bottom }}px;
+     font-weight: {{ section.settings.title_font_weight }};
+   }
+
+   @media (max-width: 768px) {
+     {{ sec_id }} .pc-lookbook-{{ last_part }} {
+       padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_right }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_left }}px;
+     }
+  {{ sec_id }} .pc-lookbook-item-{{ last_part }} {
+     flex: auto;
+     display: block;
+     min-height: 500px;
+     scroll-snap-align: start;
+    min-height: auto;
+   }
+
+
+     {{ sec_id }} .pc-lookbook-image-container-{{ last_part }},
+     {{ sec_id }} .pc-lookbook-products-{{ last_part }} {
+       flex: 0 0 100%;
+       padding: 0;
+     }
+
+     {{ sec_id }} .pc-lookbook-image-{{ last_part }} {
+       height: 400px;
+     }
+
+     {{ sec_id }} .pc-lookbook-products-{{ last_part }} {
+       margin-top: 30px;
+       height: auto;
+       min-height: 300px;
+     }
+
+     {{ sec_id }} .pc-slider-arrow-{{ last_part }} {
+       width: 30px;
+       height: 30px;
+     }
+
+     {{ sec_id }} .pc-slider-arrow-prev-{{ last_part }} {
+       margin-left: 10px;
+     }
+
+     {{ sec_id }} .pc-slider-arrow-next-{{ last_part }} {
+       margin-right: 10px;
+     }
+
+     {{ sec_id }} .pc-product-slide-{{ last_part }} {
+       padding: 10px;
+     }
+
+     {{ sec_id }} .pc-section-title-{{ last_part }} {
+       font-size: {{ section.settings.mobile_title_font_size }}px;
+       margin-bottom: {{ section.settings.mobile_title_margin_bottom }}px;
+     }
+   }
+{% endstyle %}
+
+<div class="pc-lookbook-{{ last_part }}">
+  <h2 class="pc-section-title-{{ last_part }}">{{ section.settings.title }}</h2>
+
+  <div class="pc-lookbook-slider-container-{{ last_part }}">
+    <div class="pc-slider-arrows-{{ last_part }}">
+      <button class="pc-slider-arrow-{{ last_part }} pc-slider-arrow-prev-{{ last_part }}" aria-label="Previous look">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M15 18L9 12L15 6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="pc-slider-arrow-{{ last_part }} pc-slider-arrow-next-{{ last_part }}" aria-label="Next look">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M9 6L15 12L9 18" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="pc-lookbook-slider-{{ last_part }}">
+      {% for block in section.blocks %}
+        <div
+          class="pc-lookbook-item-{{ last_part }}"
+          {{ block.shopify_attributes }}
+          data-lookbook-index="{{ forloop.index0 }}"
+        >
+          <div class="pc-lookbook-image-container-{{ last_part }}">
+            {% if block.settings.image != blank %}
+              <div class="pc-lookbook-image-{{ last_part }}">
+                {{
+                  block.settings.image
+                  | image_url: width: 1000
+                  | image_tag: loading: 'lazy', alt: block.settings.image.alt
+                }}
+
+                {% if block.settings.hotspot_1_product != blank %}
+                  <div
+                    class="pc-hotspot-{{ last_part }} {% if forloop.first %}active{% endif %}"
+                    style="left: {{ block.settings.hotspot_1_x }}%; top: {{ block.settings.hotspot_1_y }}%;"
+                    data-product-id="{{ all_products[block.settings.hotspot_1_product].variants.first.id }}"
+                    data-slide-index="0"
+                  >
+                    <div class="pc-hotspot-marker-{{ last_part }}"></div>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.hotspot_2_product != blank %}
+                  <div
+                    class="pc-hotspot-{{ last_part }}"
+                    style="left: {{ block.settings.hotspot_2_x }}%; top: {{ block.settings.hotspot_2_y }}%;"
+                    data-product-id="{{ all_products[block.settings.hotspot_2_product].variants.first.id }}"
+                    data-slide-index="1"
+                  >
+                    <div class="pc-hotspot-marker-{{ last_part }}"></div>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.hotspot_3_product != blank %}
+                  <div
+                    class="pc-hotspot-{{ last_part }}"
+                    style="left: {{ block.settings.hotspot_3_x }}%; top: {{ block.settings.hotspot_3_y }}%;"
+                    data-product-id="{{ all_products[block.settings.hotspot_3_product].variants.first.id }}"
+                    data-slide-index="2"
+                  >
+                    <div class="pc-hotspot-marker-{{ last_part }}"></div>
+                  </div>
+                {% endif %}
+              </div>
+            {% else %}
+              <div class="pc-lookbook-image-{{ last_part }}">
+                {{ 'product-1' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="pc-lookbook-products-{{ last_part }}">
+            <div class="pc-product-slider-container-{{ last_part }}">
+              <div class="pc-product-slider-{{ last_part }}" id="pc-product-slider-{{ last_part }}-{{ forloop.index }}">
+                {% if block.settings.hotspot_1_product != blank %}
+                  {% assign product = all_products[block.settings.hotspot_1_product] %}
+                  <div class="pc-product-slide-{{ last_part }}" data-product-id="{{ product.variants.first.id }}">
+                    <div class="pc-product-card-{{ last_part }}">
+                      <div class="pc-product-card-image-{{ last_part }}">
+                        <a href="{{ product.url }}">
+                          {{
+                            product.featured_image
+                            | image_url: width: 400
+                            | image_tag: loading: 'lazy', alt: product.title
+                          }}
+                        </a>
+                      </div>
+                      <div class="pc-product-card-info-{{ last_part }}">
+                        <h3>
+                          <a href="{{ product.url }}">{{ product.title }}</a>
+                        </h3>
+                        <p>{{ product.price | money }}</p>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.hotspot_2_product != blank %}
+                  {% assign product = all_products[block.settings.hotspot_2_product] %}
+                  <div class="pc-product-slide-{{ last_part }}" data-product-id="{{ product.variants.first.id }}">
+                    <div class="pc-product-card-{{ last_part }}">
+                      <div class="pc-product-card-image-{{ last_part }}">
+                        <a href="{{ product.url }}">
+                          {{
+                            product.featured_image
+                            | image_url: width: 400
+                            | image_tag: loading: 'lazy', alt: product.title
+                          }}
+                        </a>
+                      </div>
+                      <div class="pc-product-card-info-{{ last_part }}">
+                        <h3>
+                          <a href="{{ product.url }}">{{ product.title }}</a>
+                        </h3>
+                        <p>{{ product.price | money }}</p>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if block.settings.hotspot_3_product != blank %}
+                  {% assign product = all_products[block.settings.hotspot_3_product] %}
+                  <div class="pc-product-slide-{{ last_part }}" data-product-id="{{ product.variants.first.id }}">
+                    <div class="pc-product-card-{{ last_part }}">
+                      <div class="pc-product-card-image-{{ last_part }}">
+                        <a href="{{ product.url }}">
+                          {{
+                            product.featured_image
+                            | image_url: width: 400
+                            | image_tag: loading: 'lazy', alt: product.title
+                          }}
+                        </a>
+                      </div>
+                      <div class="pc-product-card-info-{{ last_part }}">
+                        <h3>
+                          <a href="{{ product.url }}">{{ product.title }}</a>
+                        </h3>
+                        <p>{{ product.price | money }}</p>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="pc-slider-nav-{{ last_part }}">
+                {% if block.settings.hotspot_1_product != blank %}
+                  <div class="pc-slider-dot-{{ last_part }} active" data-slide-index="0"></div>
+                {% endif %}
+                {% if block.settings.hotspot_2_product != blank %}
+                  <div class="pc-slider-dot-{{ last_part }}" data-slide-index="1"></div>
+                {% endif %}
+                {% if block.settings.hotspot_3_product != blank %}
+                  <div class="pc-slider-dot-{{ last_part }}" data-slide-index="2"></div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="pc-lookbook-dots-{{ last_part }}">
+    {% for block in section.blocks %}
+      <div
+        class="pc-slider-dot-{{ last_part }} {% if forloop.first %}active{% endif %}"
+        data-lookbook-index="{{ forloop.index0 }}"
+      ></div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sectionId = '{{ sec_id }}';
+    const lastPart = '{{ last_part }}';
+    
+    const lookbookSlider = document.querySelector(`${sectionId} .pc-lookbook-slider-${lastPart}`);
+    const lookbookDots = document.querySelectorAll(`${sectionId} .pc-lookbook-dots-${lastPart} .pc-slider-dot-${lastPart}`);
+    const lookbookItems = document.querySelectorAll(`${sectionId} .pc-lookbook-item-${lastPart}`);
+    const prevArrow = document.querySelector(`${sectionId} .pc-slider-arrow-prev-${lastPart}`);
+    const nextArrow = document.querySelector(`${sectionId} .pc-slider-arrow-next-${lastPart}`);
+
+    let currentLookbookIndex = 0;
+
+    function updateLookbookSlider(index) {
+      currentLookbookIndex = index;
+      const itemWidth = lookbookItems[0].clientWidth;
+      lookbookSlider.scrollTo({
+        left: itemWidth * index,
+        behavior: 'smooth'
+      });
+
+      lookbookDots.forEach(dot => {
+        dot.classList.toggle('active', parseInt(dot.dataset.lookbookIndex) === index);
+      });
+    }
+
+    prevArrow.addEventListener('click', function() {
+      if (currentLookbookIndex > 0) {
+        updateLookbookSlider(currentLookbookIndex - 1);
+      }
+    });
+
+    nextArrow.addEventListener('click', function() {
+      if (currentLookbookIndex < lookbookItems.length - 1) {
+        updateLookbookSlider(currentLookbookIndex + 1);
+      }
+    });
+
+    lookbookDots.forEach(dot => {
+      dot.addEventListener('click', function() {
+        const lookbookIndex = parseInt(this.dataset.lookbookIndex);
+        updateLookbookSlider(lookbookIndex);
+      });
+    });
+
+    lookbookItems.forEach((item, index) => {
+      const slider = item.querySelector(`.pc-product-slider-${lastPart}`);
+      const hotspots = item.querySelectorAll(`.pc-hotspot-${lastPart}`);
+      const dots = item.querySelectorAll(`.pc-slider-nav-${lastPart} .pc-slider-dot-${lastPart}`);
+      const slides = item.querySelectorAll(`.pc-product-slide-${lastPart}`);
+
+      if (!slider || !hotspots.length || !dots.length) return;
+
+      function goToProductSlide(slideIndex) {
+        slider.scrollTo({
+          left: slider.clientWidth * slideIndex,
+          behavior: 'smooth'
+        });
+
+        hotspots.forEach(hotspot => {
+          hotspot.classList.toggle('active', parseInt(hotspot.dataset.slideIndex) === slideIndex);
+        });
+
+        dots.forEach(dot => {
+          dot.classList.toggle('active', parseInt(dot.dataset.slideIndex) === slideIndex);
+        });
+      }
+
+      hotspots.forEach(hotspot => {
+        hotspot.addEventListener('click', function() {
+          const slideIndex = parseInt(this.dataset.slideIndex);
+          goToProductSlide(slideIndex);
+        });
+      });
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+          const slideIndex = parseInt(this.dataset.slideIndex);
+          goToProductSlide(slideIndex);
+        });
+      });
+
+      if (slides.length > 0) {
+        const activeIndex = item.querySelector(`.pc-hotspot-${lastPart}.active`)?.dataset.slideIndex || 0;
+        setTimeout(() => {
+          goToProductSlide(parseInt(activeIndex));
+        }, 100);
+      }
+    });
+
+    let lookbookScrollTimeout;
+    lookbookSlider.addEventListener('scroll', function() {
+      clearTimeout(lookbookScrollTimeout);
+      lookbookScrollTimeout = setTimeout(() => {
+        const scrollPosition = lookbookSlider.scrollLeft;
+        const itemWidth = lookbookItems[0].clientWidth;
+        currentLookbookIndex = Math.round(scrollPosition / itemWidth);
+
+        lookbookDots.forEach(dot => {
+          dot.classList.toggle('active', parseInt(dot.dataset.lookbookIndex) === currentLookbookIndex);
+        });
+      }, 100);
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "PWC - Lookbook #1",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Look Book"
+    },
+    {
+      "type": "header",
+      "content": "Title Styling"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Font Size (Desktop)",
+      "min": 12,
+      "max": 72,
+      "step": 1,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_font_size",
+      "label": "Font Size (Mobile)",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "title_font_weight",
+      "label": "Font Weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "label": "Title Margin Bottom (Desktop)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_margin_bottom",
+      "label": "Title Margin Bottom (Mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Desktop Padding"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_right",
+      "label": "Right Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_left",
+      "label": "Left Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Mobile Padding"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_right",
+      "label": "Right Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_left",
+      "label": "Left Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    }
+  ],
+  "blocks": [
+    {
+      "type": "look",
+      "name": "Look Book Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Look Book Image"
+        },
+        {
+          "type": "header",
+          "content": "Hotspot 1"
+        },
+        {
+          "type": "range",
+          "id": "hotspot_1_x",
+          "label": "X Position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 20
+        },
+        {
+          "type": "range",
+          "id": "hotspot_1_y",
+          "label": "Y Position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 30
+        },
+        {
+          "type": "product",
+          "id": "hotspot_1_product",
+          "label": "Product"
+        },
+        {
+          "type": "header",
+          "content": "Hotspot 2"
+        },
+        {
+          "type": "range",
+          "id": "hotspot_2_x",
+          "label": "X Position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "hotspot_2_y",
+          "label": "Y Position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 60
+        },
+        {
+          "type": "product",
+          "id": "hotspot_2_product",
+          "label": "Product"
+        },
+        {
+          "type": "header",
+          "content": "Hotspot 3"
+        },
+        {
+          "type": "range",
+          "id": "hotspot_3_x",
+          "label": "X Position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 80
+        },
+        {
+          "type": "range",
+          "id": "hotspot_3_y",
+          "label": "Y Position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 40
+        },
+        {
+          "type": "product",
+          "id": "hotspot_3_product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC - Lookbook #1",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
