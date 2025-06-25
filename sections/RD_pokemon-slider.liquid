@@ -27,7 +27,7 @@
       width: 100%;
       margin-bottom: 40px;
      font-size: {{ section.settings.heading_font_size }}px;
-    color: {{ section.settings.text_color }};
+    color: {{ section.settings.heading_color }};
     }
 
     {{ sec_id }} .pc-custom-slider-{{ last_part }} {
@@ -532,6 +532,12 @@
       "default": 20,
       "unit": "px"
     },
+      {
+  "type": "color",
+  "id": "heading_color",
+  "label": "Heading Color",
+  "default": "#000000"
+},
     {
   "type": "color",
   "id": "text_color",
