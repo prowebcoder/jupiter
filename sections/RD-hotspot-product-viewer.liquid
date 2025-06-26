@@ -188,17 +188,12 @@
     width: 100%;
     height: auto;
   }
-  
-{{ sec_id }} .pc-hotspot-image-wrapper {
-    width: 100%;
-    height: auto;
-  }
   {{ sec_id }} .pc-hotspot-main-image {
     width: 100%;
-    height: auto;        /* let height adapt naturally */
-    object-fit: contain; /* show full image without cropping or zoom */
+    height: auto;
+    object-fit: cover;
   }
-}
+
   /* Ensure hotspots scale over full image, not zoomed */
   {{ sec_id }} .pc-hotspot {
     position: absolute;
