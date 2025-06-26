@@ -179,31 +179,34 @@
     cursor: pointer;
   }
   @media (max-width: 768px) {
-  /* Switch layout */
-  {{sec_id}} .pc-hotspot-section {
+  {{ sec_id }} .pc-hotspot-section {
     flex-direction: column;
   }
-  /* Full‑width image wrapper */
-  {{sec_id}} .pc-hotspot-image-wrapper {
+
+  /* Make image and wrapper full width */
+  {{ sec_id }} .pc-hotspot-image-wrapper {
     width: 100%;
     height: auto;
   }
-  /* Image scales to container */
-  {{sec_id}} .pc-hotspot-main-image {
+  {{ sec_id }} .pc-hotspot-main-image {
     width: 100%;
     height: auto;
+    object-fit: cover;
   }
-  /* Product slider full width */
-  {{sec_id}} .pc-product-slider {
+
+  /* Ensure hotspots scale over full image, not zoomed */
+  {{ sec_id }} .pc-hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    /* Already uses % for top/left */
+  }
+
+  {{ sec_id }} .pc-product-slider {
     width: 100%;
     margin-top: 20px;
   }
-  /* Hotspot positions scale with image */
-  {{sec_id}} .pc-hotspot {
-    /* positions are already % based */
-    transform: translate(-50%, -50%);
-  }
 }
+
 
 </style>
 
