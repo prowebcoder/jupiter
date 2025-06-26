@@ -178,6 +178,33 @@
     border: none;
     cursor: pointer;
   }
+  @media (max-width: 768px) {
+  /* Switch layout */
+  {{sec_id}} .pc-hotspot-section {
+    flex-direction: column;
+  }
+  /* Full‑width image wrapper */
+  {{sec_id}} .pc-hotspot-image-wrapper {
+    width: 100%;
+    height: auto;
+  }
+  /* Image scales to container */
+  {{sec_id}} .pc-hotspot-main-image {
+    width: 100%;
+    height: auto;
+  }
+  /* Product slider full width */
+  {{sec_id}} .pc-product-slider {
+    width: 100%;
+    margin-top: 20px;
+  }
+  /* Hotspot positions scale with image */
+  {{sec_id}} .pc-hotspot {
+    /* positions are already % based */
+    transform: translate(-50%, -50%);
+  }
+}
+
 </style>
 
 <div class="pc-hotspot-container" data-section-id="{{ section.id }}">
