@@ -432,6 +432,33 @@
         "btn_hover_text": "#ffffff",
         "btn_shape": "rounded"
       }
+    },
+    "rd_image_video_overlay_YxUYaP": {
+      "type": "RD-image-video-overlay",
+      "name": "Text image video overlay Rd",
+      "settings": {
+        "section_width": 1200,
+        "vertical_spacing": 30,
+        "eyeliner": "MAGNOLIA",
+        "heading_size1": 28,
+        "eyeliner_font_color": "#555555",
+        "heading": "Dreamy Summer",
+        "heading_size2": 28,
+        "heading_font_color": "#555555",
+        "body_text": "Inspired by an endless summer…",
+        "description_size3": 28,
+        "desc_font_color": "#444444",
+        "button_text": "Shop Collection",
+        "button_link": "",
+        "button_shape": "rectangle",
+        "button_bg_color": "#333333",
+        "button_text_color": "#ffffff",
+        "button_bg_hover": "#555555",
+        "button_text_hover": "#ffffff",
+        "shopify_video": "shopify://files/videos/8798158-sd_506_960_25fps.mp4",
+        "video_url": "",
+        "right_image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg"
+      }
     }
   },
   "order": [
@@ -443,6 +470,7 @@
     "text_image_video_pwc_RtUCTd",
     "rd_highlighter_image_banner_PkdXwb",
     "rd_hotspot_product_viewer_GL3hdh",
-    "tab_product_section_rd_gXbnnf"
+    "tab_product_section_rd_gXbnnf",
+    "rd_image_video_overlay_YxUYaP"
   ]
 }
