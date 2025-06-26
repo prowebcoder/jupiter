@@ -178,30 +178,34 @@
     border: none;
     cursor: pointer;
   }
- @media (max-width: 768px) {
-    {{ sec_id }} .pc-hotspot-section {
-      flex-direction: column;
-      height: auto;
-    }
-    {{ sec_id }} .pc-hotspot-image-wrapper {
-      width: 100%;
-      height: auto;
-      overflow: visible;
-    }
-    {{ sec_id }} .pc-hotspot-main-image {
-      width: 100%;
-      height: auto;
-      object-fit: contain; /* Better scaling on mobile */
-    }
-    {{ sec_id }} .pc-product-slider {
-      width: 100%;
-      margin-top: 20px;
-    }
-    {{ sec_id }} .pc-hotspot {
-      /* keep relative positioning */
-      transform: translate(-50%, -50%);
-    }
+  @media (max-width: 768px) {
+  {{ sec_id }} .pc-hotspot-section {
+    flex-direction: column;
   }
+
+  /* Make image and wrapper full width */
+  {{ sec_id }} .pc-hotspot-image-wrapper {
+    width: 100%;
+    height: auto;
+  }
+  {{ sec_id }} .pc-hotspot-main-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Ensure hotspots scale over full image, not zoomed */
+  {{ sec_id }} .pc-hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    /* Already uses % for top/left */
+  }
+
+  {{ sec_id }} .pc-product-slider {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
 
 
 </style>
