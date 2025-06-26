@@ -336,55 +336,6 @@
         "button_alignment": "center"
       }
     },
-    "rd_hotspot_product_viewer_GL3hdh": {
-      "type": "RD-hotspot-product-viewer",
-      "blocks": {
-        "hotspot_zMCJPL": {
-          "type": "hotspot",
-          "settings": {
-            "product": "crossbody-bags",
-            "top": 32,
-            "left": 45
-          }
-        },
-        "hotspot_Vx3YH3": {
-          "type": "hotspot",
-          "settings": {
-            "product": "green-snowboard",
-            "top": 62,
-            "left": 36
-          }
-        },
-        "hotspot_c8ANDJ": {
-          "type": "hotspot",
-          "settings": {
-            "product": "orange-snowboard",
-            "top": 50,
-            "left": 50
-          }
-        },
-        "hotspot_bCXdNt": {
-          "type": "hotspot",
-          "settings": {
-            "product": "shoulder-bag",
-            "top": 22,
-            "left": 77
-          }
-        }
-      },
-      "block_order": [
-        "hotspot_zMCJPL",
-        "hotspot_Vx3YH3",
-        "hotspot_c8ANDJ",
-        "hotspot_bCXdNt"
-      ],
-      "name": "RD Hotspot Product",
-      "settings": {
-        "main_image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
-        "block_gap": 20,
-        "product_bg_color": "#f8f5f5"
-      }
-    },
     "tab_product_section_rd_gXbnnf": {
       "type": "tab-product-section-RD",
       "blocks": {
@@ -459,6 +410,55 @@
         "video_url": "",
         "right_image": "shopify://shop_images/a-model-perched-on-a-stool-smiles.jpg"
       }
+    },
+    "rd_hotspot_product_viewer_GL3hdh": {
+      "type": "RD-hotspot-product-viewer",
+      "blocks": {
+        "hotspot_zMCJPL": {
+          "type": "hotspot",
+          "settings": {
+            "product": "crossbody-bags",
+            "top": 32,
+            "left": 45
+          }
+        },
+        "hotspot_Vx3YH3": {
+          "type": "hotspot",
+          "settings": {
+            "product": "green-snowboard",
+            "top": 62,
+            "left": 36
+          }
+        },
+        "hotspot_c8ANDJ": {
+          "type": "hotspot",
+          "settings": {
+            "product": "orange-snowboard",
+            "top": 50,
+            "left": 50
+          }
+        },
+        "hotspot_bCXdNt": {
+          "type": "hotspot",
+          "settings": {
+            "product": "shoulder-bag",
+            "top": 22,
+            "left": 77
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_zMCJPL",
+        "hotspot_Vx3YH3",
+        "hotspot_c8ANDJ",
+        "hotspot_bCXdNt"
+      ],
+      "name": "RD Hotspot Product",
+      "settings": {
+        "main_image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
+        "block_gap": 20,
+        "product_bg_color": "#f8f5f5"
+      }
     }
   },
   "order": [
@@ -469,8 +469,8 @@
     "collection_grid_image_pwc_WPFmUG",
     "text_image_video_pwc_RtUCTd",
     "rd_highlighter_image_banner_PkdXwb",
-    "rd_hotspot_product_viewer_GL3hdh",
     "tab_product_section_rd_gXbnnf",
-    "rd_image_video_overlay_YxUYaP"
+    "rd_image_video_overlay_YxUYaP",
+    "rd_hotspot_product_viewer_GL3hdh"
   ]
 }
