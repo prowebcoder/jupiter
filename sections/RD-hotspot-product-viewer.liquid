@@ -179,26 +179,49 @@
     cursor: pointer;
   }
   @media (max-width: 768px) {
-    {{ sec_id }} .pc-hotspot-section {
-      flex-direction: column;
-    }
-    {{ sec_id }} .pc-hotspot-image-wrapper {
-      width: 100%;
-      height: auto;
-    }
-    {{ sec_id }} .pc-hotspot-main-image {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
-    {{ sec_id }} .pc-hotspot {
-      transform: translate(-50%, -50%);
-    }
-    {{ sec_id }} .pc-product-slider {
-      width: 100%;
-      margin-top: 20px;
-    }
+  {{ sec_id }} .pc-hotspot-section {
+    flex-direction: column;
   }
+
+  /* Make image and wrapper full width */
+  {{ sec_id }} .pc-hotspot-image-wrapper {
+    width: 100%;
+    height: auto;
+  }
+  
+
+  {{ sec_id }} .pc-hotspot-main-image {
+    width: 100%;
+    height: auto;        /* let height adapt naturally */
+    object-fit: contain; /* show full image without cropping or zoom */
+  }
+}
+  /* Ensure hotspots scale over full image, not zoomed */
+  {{ sec_id }} .pc-hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    /* Already uses % for top/left */
+  }
+
+  {{ sec_id }} .pc-product-slider {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+  {{ sec_id }} .pc-product-card {
+    height: 540px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex
+;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
 </style>
 
 <div class="pc-hotspot-container" data-section-id="{{ section.id }}">
