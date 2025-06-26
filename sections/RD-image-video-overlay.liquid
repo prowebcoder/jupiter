@@ -1,6 +1,289 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+<section class="pc-text-media-section">
+  <style>
+{{ sec_id }}  .pc-inner-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 250px; 
+      align-items: center;
+      margin: 0 auto;
+      max-width: {{ section.settings.section_width }}px;
+    padding-top: {{ section.settings.vertical_spacing }}px;
+  padding-bottom: {{ section.settings.vertical_spacing }}px;
+    }
+   {{ sec_id }} .pc-text-container {
+      flex: 1 1 400px;
+    }
+    {{ sec_id }} .pc-eyeliner {
+    font-size: {{ section.settings.heading_size1 }}px;
+    color: {{ section.settings.eyeliner_font_color }};
+    text-transform: uppercase;
+    letter-spacing: 2px;
   }
+ {{ sec_id }}  .pc-h2 {
+    font-size: {{ section.settings.heading_size2 }}px;
+    color: {{ section.settings.heading_font_color }};
+  }
+  {{ sec_id }} .pc-desc {
+    font-size: {{ section.settings.description_size3 }}px;
+    color: {{ section.settings.desc_font_color }};
+  }
+    {{ sec_id }} .pc-text-container .pc-h2 {
+      font-size: 32px;
+      margin: 10px 0;
+    }
+    {{ sec_id }} .pc-h2 {
+      font-size: {{ section.settings.heading_size2 }}px;
+      margin: 10px 0;
+    }
+    {{ sec_id }}  .pc-desc {
+       font-size: {{ section.settings.description_size3 }}px;
+      color: {{ section.settings.desc_font_color }};
+    }
+    {{ sec_id }} .pc-btn {
+      display: inline-block;
+      background: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      margin-top: 15px;
+       background: {{ section.settings.button_bg_color }};
+      color: {{ section.settings.button_text_color }};
+       border-radius:
+        {% case section.settings.button_shape %}
+          {% when 'pill' %}50px;
+          {% when 'square' %}0;
+          {% else %}4px;
+        {% endcase %}
+    }
+ {{ sec_id }} .pc-btn:hover {
+      background: {{ section.settings.button_bg_hover }};
+      color: {{ section.settings.button_text_hover }};
+    }
+    /* Media container */
+    {{ sec_id }} .pc-media-container {
+      position: relative;
+      flex: 1 1 400px;
+    }
+
+    /* Background image */
+   
+{{ sec_id }} .pc-overlay-img {
+  width: 80%;
+  height: auto;
+  max-height: 500px; /* 👈 Adjust this value as needed */
+  border-radius: 12px;
+  object-fit: cover;  /* Ensures the image covers container nicely */
+  display: block;
+}
+    /* Small centered video overlay */
+   {{ sec_id }}  .pc-video-wrapper {
+      position: absolute;
+      top: 50%;
+    
+      transform: translate(-50%, -50%);
+      width: 60%;
+      max-width: 300px;
+      aspect-ratio: 1/1;
+      border-radius: 12px;
+      overflow: hidden;
+      z-index: 1;
+    }
+   {{ sec_id }}  .pc-video-wrapper video,
+    .pc-video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+   
+
+@media (max-width: 768px) {
+  {{ sec_id }} .pc-inner-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  {{ sec_id }} .pc-media-container {
+        position: relative;
+        width: 90%;
+        display: flex;
+        overflow: hidden;
+        justify-content: space-between;
+          
+  }
+
+  /* Image half-width */
+  {{ sec_id }} .pc-overlay-img {
+    width: 70%;
+    max-width: none;
+    max-height: none;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  /* Overlay video centered over image */
+  {{ sec_id }} .pc-video-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-width: 300px;
+  }
+
+  /* Ensure video doesn’t float outside */
+  {{ sec_id }} .pc-media-container {
+    overflow: visible;
+  }
+
+  /* Keep text and button full width & centered */
+  {{ sec_id }} .pc-text-container {
+    width: 100%;
+    text-align: center;
+      order: 2;
+  }
+  {{ sec_id }} .pc-btn {
+    margin-top: 20px;
+  }
+}
+
+
+
+
+  </style>
+
+  <div class="pc-inner-wrapper">
+    <div class="pc-text-container">
+      {% if section.settings.eyeliner %}
+        <p class="pc-eyeliner">{{ section.settings.eyeliner }}</p>
+      {% endif %}
+      {% if section.settings.heading %}
+        <h2 class="pc-h2">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.body_text %}
+        <p class="pc-desc">{{ section.settings.body_text }}</p>
+      {% endif %}
+      {% if section.settings.button_link %}
+        <a href="{{ section.settings.button_link }}" class="pc-btn">{{ section.settings.button_text }}</a>
+      {% endif %}
+    </div>
+
+    <div class="pc-media-container">
+      {% if section.settings.right_image %}
+        <img class="pc-overlay-img"
+             src="{{ section.settings.right_image | image_url: width:1000 }}"
+             alt="Background image">
+      {% endif %}
+
+      {% if section.settings.shopify_video %}
+        {% assign mp4 = section.settings.shopify_video.sources | where: "format", "mp4" | first %}
+        {% if mp4 %}
+          <div class="pc-video-wrapper">
+            <video controls autoplay muted loop playsinline>
+              <source src="{{ mp4.url }}" type="video/mp4">
+            </video>
+          </div>
+        {% endif %}
+      {% elsif section.settings.video_url %}
+        <div class="pc-video-wrapper">
+          {% if section.settings.video_url contains "youtu" %}
+            {% assign vid = section.settings.video_url | replace: 'youtu.be/', '' | replace: 'watch?v=', '' %}
+            <iframe src="https://www.youtube.com/embed/{{ vid }}?autoplay=1&mute=1&loop=1&playlist={{ vid }}"
+                    frameborder="0" allow="autoplay; muted; loop" allowfullscreen>
+            </iframe>
+          {% elsif section.settings.video_url contains "vimeo" %}
+            {% assign vid = section.settings.video_url | split: '/' | last %}
+            <iframe src="https://player.vimeo.com/video/{{ vid }}?autoplay=1&muted=1&loop=1&background=1"
+                    frameborder="0" allowfullscreen>
+            </iframe>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Video Above Image Section",
+  "settings": [
+    {"type":"range","id":"section_width","label":"Section Max Width (px)","min":600,"max":1600,"step":20,"default":1200},
+    {
+  "type": "range",
+  "id": "vertical_spacing",
+  "label": "Top & Bottom Spacing (px)",
+  "min": 0,
+  "max": 200,
+  "step": 5,
+  "default": 30
+},
+    {"type":"text","id":"eyeliner","label":"Eyeliner text","default":"MAGNOLIA"},
+      {
+      "type": "range",
+      "id": "heading_size1",
+      "label": "eyelinertext  Font Size",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "default": 28
+    },
+    { "type": "color", "id": "eyeliner_font_color", 
+      "label": "Eyeliner Font Color", 
+      "default": "#555555"
+    },
+    {"type":"text",
+      "id":"heading",
+      "label":"Heading",
+      "default":"Dreamy Summer"
+    },
+     {
+      "type": "range",
+      "id": "heading_size2",
+      "label": "Heading Font Size",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "default": 28
+    },
+      { "type": "color",
+        "id": "heading_font_color", 
+      "label": "heading  Font Color", 
+      "default": "#555555"
+    },
+    {"type":"textarea","id":"body_text","label":"Description","default":"Inspired by an endless summer…"},
+     {
+      "type": "range",
+      "id": "description_size3",
+      "label": "description Font Size",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "default": 28
+    },
+    { "type": "color", 
+      "id": "desc_font_color", 
+      "label": "Description Font Color",
+      "default": "#444444" 
+    },
+    {"type":"text","id":"button_text","label":"Button text","default":"Shop Collection"},
+    {"type":"url","id":"button_link","label":"Button link"},
+    {"type":"select","id":"button_shape","label":"Button Shape","default":"rectangle",
+      "options":[{"value":"pill","label":"Pill"},{"value":"rectangle","label":"Rectangle"},{"value":"square","label":"Square"}]},
+
+    { "type":"color","id":"button_bg_color","label":"Button Background Color","default":"#333333" },
+    { "type":"color","id":"button_text_color","label":"Button Text Color","default":"#ffffff" },
+    { "type":"color","id":"button_bg_hover","label":"Button Hover Background","default":"#555555" },
+    { "type":"color","id":"button_text_hover","label":"Button Hover Text Color","default":"#ffffff" },
+
+    {"type":"video","id":"shopify_video","label":"Shopify Hosted Video"},
+    {"type":"url","id":"video_url","label":"Video URL (YouTube or Vimeo)"},
+    {"type":"image_picker","id":"right_image","label":"Background Image"}
+  ],
+  "presets":[{"name":"Text image video overlay Rd","category":"Media"}]
+}
 {% endschema %}
