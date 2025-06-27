@@ -459,6 +459,51 @@
         "block_gap": 20,
         "product_bg_color": "#f8f5f5"
       }
+    },
+    "rd_image_product_slider_BwyB6c": {
+      "type": "RD-image-product-slider",
+      "blocks": {
+        "product_image_44YmBY": {
+          "type": "product_image",
+          "settings": {
+            "gallery_image": "shopify://shop_images/71tW7k0mnHL._SL1500.jpg"
+          }
+        },
+        "product_image_GPjqJB": {
+          "type": "product_image",
+          "settings": {
+            "gallery_image": "shopify://shop_images/1_5347004d-14ad-4665-8061-da2a994495df.jpg"
+          }
+        },
+        "product_image_fFYjBz": {
+          "type": "product_image",
+          "settings": {
+            "gallery_image": "shopify://shop_images/3_4a19b4b3-8c9c-4ded-b21c-3dc881b1442d.jpg"
+          }
+        },
+        "product_image_eDfHky": {
+          "type": "product_image",
+          "settings": {
+            "gallery_image": "shopify://shop_images/61BBGrywjEL._SL1500.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "product_image_44YmBY",
+        "product_image_GPjqJB",
+        "product_image_fFYjBz",
+        "product_image_eDfHky"
+      ],
+      "name": "RD Image Product Slider",
+      "settings": {
+        "left_image": "shopify://shop_images/pack2_600x_7a591dd0-7627-4add-9595-f20e54edf9a6.png",
+        "left_product": "green-snowboard",
+        "page_width": "standard",
+        "columns_gap": 10,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "slider_bg_color": "#f5f5f5"
+      }
     }
   },
   "order": [
@@ -471,6 +516,7 @@
     "rd_highlighter_image_banner_PkdXwb",
     "tab_product_section_rd_gXbnnf",
     "rd_image_video_overlay_YxUYaP",
-    "rd_hotspot_product_viewer_GL3hdh"
+    "rd_hotspot_product_viewer_GL3hdh",
+    "rd_image_product_slider_BwyB6c"
   ]
 }
