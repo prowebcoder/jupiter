@@ -1722,6 +1722,7 @@
         "gallery_item_iP8tqn",
         "gallery_item_Lk7f6Q"
       ],
+      "disabled": true,
       "name": "RW - Filter Gallery #2",
       "settings": {
         "max_width": 1320,
