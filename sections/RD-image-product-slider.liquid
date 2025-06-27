@@ -1,6 +1,213 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+
+<style>
+{{ sec_id }} .pc-gallery-section {
+  display: flex;
+  gap: {{ section.settings.columns_gap }}px;
+  align-items: center;
+  margin: 0 auto;
+}
+{{ sec_id }} .pc-gallery-section.full { width: 100%; padding: 0; }
+{{ sec_id }} .pc-gallery-section.standard { max-width: 1200px; width: 100%; }
+{{ sec_id }} .pc-gallery-section.narrow   { max-width: 800px;  width: 100%; }
+
+{{ sec_id }} .pc-left-image,
+{{ sec_id }} .pc-right-slider {
+  flex: 1;
+}
+{{ sec_id }} .pc-left-image { cursor: pointer; }
+{{ sec_id }} .pc-left-image img {
+  width: 100%; height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  max-height: 500px;
+}
+
+{{ sec_id }} .pc-right-slider {
+  background-color: {{ section.settings.slider_bg_color }};
+  padding: 10px;
+  border-radius: 6px;
+}
+
+{{ sec_id }} .pc-slider-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+{{ sec_id }} .pc-slides {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+{{ sec_id }} .pc-slide {
+  flex-shrink: 0;
+  width: 80%;
+  margin: 0 10%;
+  position: relative;
+}
+{{ sec_id }} .pc-slide a { display: block; }
+{{ sec_id }} .pc-slide img {
+  width: 100%; height: auto;
+  object-fit: contain;
+}
+{{ sec_id }} .pc-slide .pc-product-info {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.8);
+  color: #000;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+{{ sec_id }} .pc-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.7);
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 18px;
+}
+{{ sec_id }} .pc-prev { left: 10px; }
+{{ sec_id }} .pc-next { right: 10px; }
+
+@media (max-width: 767px) {
+  {{ sec_id }} .pc-gallery-section {
+    flex-direction: column;
+    gap: {{ section.settings.columns_gap }}px;
   }
+  {{ sec_id }} .pc-left-image,
+  {{ sec_id }} .pc-right-slider {
+    width: 100%;
+  }
+  {{ sec_id }} .pc-left-image img {
+    width: 100%;
+    max-height: none;
+  }
+  {{ sec_id }} .pc-slider-wrapper {
+    width: 100%;
+    aspect-ratio: auto;
+    max-height: none;
+  }
+  {{ sec_id }} .pc-slide {
+    width: 90%;
+    margin: 0 5%;
+  }
+  {{ sec_id }} .pc-nav-btn {
+    padding: 6px 10px;
+    font-size: 16px;
+  }
+  {{ sec_id }} .pc-slide .pc-product-info {
+    top: 5px;
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+}
+</style>
+
+{% if section.settings.left_product %}
+  {% assign prod = all_products[section.settings.left_product.handle] %}
+{% endif %}
+
+<div class="pc-gallery-section {{ section.settings.page_width }}"
+     style="padding-top: {{ section.settings.padding_top }}px;
+            padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="pc-left-image" id="leftImg">
+    {% if prod %}<a href="{{ prod.url }}">{% endif %}
+      {% if section.settings.left_image %}
+        <img src="{{ section.settings.left_image | img_url:'master' }}" alt="{{ prod.title }}">
+      {% endif %}
+    {% if prod %}</a>{% endif %}
+  </div>
+
+  <div class="pc-right-slider">
+    <div class="pc-slider-wrapper">
+      <div class="pc-slides" id="slides">
+        {% for block in section.blocks %}
+          {% if block.settings.gallery_image %}
+            <div class="pc-slide">
+              {% if prod %}
+                <div class="pc-product-info">
+                  {{ prod.title }} — {{ prod.price | money }}
+                </div>
+                <a href="{{ prod.url }}">
+              {% endif %}
+                <img src="{{ block.settings.gallery_image | img_url:'master' }}" alt="{{ prod.title }}">
+              {% if prod %}</a>{% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <button class="pc-nav-btn pc-prev" id="prevBtn">‹</button>
+      <button class="pc-nav-btn pc-next" id="nextBtn">›</button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const slides = document.getElementById('slides');
+  if (!slides) return;
+  const total = slides.children.length;
+  let idx = 0;
+
+  document.getElementById('prevBtn').onclick = () => {
+    idx = (idx - 1 + total) % total;
+    slides.style.transform = `translateX(-${idx * 100}%)`;
+  };
+  document.getElementById('nextBtn').onclick = () => {
+    idx = (idx + 1) % total;
+    slides.style.transform = `translateX(-${idx * 100}%)`;
+  };
+  document.getElementById('leftImg').onclick = () => {
+    idx = 0;
+    slides.style.transform = 'translateX(0)';
+  };
+});
+</script>
+
+{% schema %}
+{
+  "name": "RD Image Product Slider",
+  "settings": [
+    { "type": "image_picker", "id": "left_image", "label": "Left Fixed Image" },
+    { "type": "product", "id": "left_product", "label": "Product for Left Image" },
+    {
+      "type": "select",
+      "id": "page_width",
+      "label": "Page Width",
+      "default": "standard",
+      "options": [
+        { "value": "narrow", "label": "Narrow" },
+        { "value": "standard", "label": "Standard" },
+        { "value": "full", "label": "Full Width" }
+      ]
+    },
+    { "type": "number", "id": "columns_gap", "label": "Columns Gap (px)", "default": 10 },
+    { "type": "number", "id": "padding_top", "label": "Padding Top (px)", "default": 20 },
+    { "type": "number", "id": "padding_bottom", "label": "Padding Bottom (px)", "default": 20 },
+    { "type": "color", "id": "slider_bg_color", "label": "Slider Background Color", "default": "#f5f5f5" }
+  ],
+  "blocks": [
+    {
+      "type": "product_image",
+      "name": "Gallery Image",
+      "settings": [
+        { "type": "image_picker", "id": "gallery_image", "label": "Gallery Image" }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [{ "name": "RD Image Product Slider" }]
+}
 {% endschema %}
