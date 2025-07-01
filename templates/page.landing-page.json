@@ -66,7 +66,7 @@
             "show_dots": true,
             "show_arrows": false,
             "dot_color": "#000000",
-            "dot_active_colorr": "#b9ff66",
+            "dot_active_color": "#b9ff66",
             "logo_max_width": 120,
             "logo_max_height": 60,
             "item_padding": 15,
@@ -328,32 +328,6 @@
             "testimonial_4_content": "<p>\"We have been working with Positivus for the past year and have seen a significant increase in website traffic and leads as a result of their efforts. The team is professional, responsive, and truly cares about the success of our business. We highly recommend Positivus to any company looking to grow their online presence.\"</p>",
             "testimonial_4_rating": 5
           }
-        },
-        "contact_form_9MN9qE": {
-          "type": "contact_form",
-          "settings": {
-            "container_width": "medium",
-            "padding_top": 10,
-            "padding_bottom": 20,
-            "background_color": "#ffffff",
-            "text_color": "#000000",
-            "content_bg_color": "#f5f5f5",
-            "layout": "right",
-            "title": "Contact Us",
-            "title_size": 40,
-            "title_size_mobile": 28,
-            "title_color": "#333333",
-            "title_bg_color": "#b9ff66",
-            "description": "<p>Connect with Us: Let's Discuss Your Digital Marketing Needs</p>",
-            "description_size": 18,
-            "description_size_mobile": 17,
-            "description_color": "#666666",
-            "name_placeholder": "Your Name",
-            "email_placeholder": "Your Email",
-            "phone_placeholder": "Your Phone",
-            "message_placeholder": "Your Message",
-            "button_label": "Send Message"
-          }
         }
       },
       "block_order": [
@@ -363,8 +337,7 @@
         "case_studies_jCWMEH",
         "accordion_hWBdfK",
         "team_TcUX3Y",
-        "testimonials_QiLVXG",
-        "contact_form_9MN9qE"
+        "testimonials_QiLVXG"
       ],
       "name": "PWC - Landing Page #2",
       "settings": {
