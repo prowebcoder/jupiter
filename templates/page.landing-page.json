@@ -63,6 +63,7 @@
             "title_font_weight": "400",
             "title_color": "#000000",
             "title_bg_color": "#b9ff66",
+            "show_dots": true,
             "logo_max_width": 120,
             "logo_max_height": 60,
             "item_padding": 15,
