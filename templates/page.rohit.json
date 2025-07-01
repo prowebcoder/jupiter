@@ -1763,7 +1763,7 @@
         "filter_bottom_margin": 15,
         "gallery_top_margin": 0,
         "image_width": 200,
-        "image_height": 200,
+        "image_height": 300,
         "small_mobile_image_width": 60,
         "small_mobile_image_height": 180,
         "image_border_radius": 12,
