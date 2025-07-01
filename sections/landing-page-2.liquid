@@ -945,6 +945,7 @@ document.addEventListener('DOMContentLoaded', function() {
     background: {{ block.settings.background_color }};
     padding-top: {{ block.settings.padding_top }}px;
     padding-bottom: {{ block.settings.padding_bottom }}px;
+    position: relative;
   }
 
   {{ sec_id }} #block-{{ block.id }} .pc-team__header {
@@ -1037,34 +1038,69 @@ document.addEventListener('DOMContentLoaded', function() {
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 20px 0;
     gap: 0;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode::-webkit-scrollbar {
+    display: none;
   }
 
   {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode .pc-team-member {
     scroll-snap-align: start;
-    flex: 0 0 100%;
-    margin: 0 15px;
+    flex: 0 0 calc(100% - 40px);
+    margin: 0 20px;
   }
 
-  {{ sec_id }} #block-{{ block.id }} .slider-dots {
+  /* Navigation Arrows */
+  {% if block.settings.show_arrows %}
+  {{ sec_id }} #block-{{ block.id }} .pc-team__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: {{ block.settings.arrow_bg_color | default: '#ffffff' }};
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+    color: {{ block.settings.arrow_color }};
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  {{ sec_id }} #block-{{ block.id }} .pc-team__arrow--prev {
+    left: 10px;
+  }
+  {{ sec_id }} #block-{{ block.id }} .pc-team__arrow--next {
+    right: 10px;
+  }
+  {% endif %}
+
+  /* Pagination Dots */
+  {% if block.settings.show_dots %}
+  {{ sec_id }} #block-{{ block.id }} .pc-team__dots {
     display: flex;
     justify-content: center;
+    gap: 8px;
     margin-top: 20px;
-    gap: 10px;
   }
-
-  {{ sec_id }} #block-{{ block.id }} .slider-dot {
-    width: 12px;
-    height: 12px;
+  {{ sec_id }} #block-{{ block.id }} .pc-team__dot {
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: #ccc;
+    background: {{ block.settings.dot_color }};
     cursor: pointer;
     transition: background 0.3s ease;
   }
-
-  {{ sec_id }} #block-{{ block.id }} .slider-dot.active {
-    background: #000;
+  {{ sec_id }} #block-{{ block.id }} .pc-team__dot.active {
+    background: {{ block.settings.dot_active_color }};
   }
+  {% endif %}
 
   @media (min-width: 769px) {
     {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode {
@@ -1078,7 +1114,8 @@ document.addEventListener('DOMContentLoaded', function() {
       margin: 0;
     }
 
-    {{ sec_id }} #block-{{ block.id }} .slider-dots {
+    {{ sec_id }} #block-{{ block.id }} .pc-team__dots,
+    {{ sec_id }} #block-{{ block.id }} .pc-team__arrow {
       display: none !important;
     }
   }
@@ -1129,6 +1166,10 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="pc-team__description">{{ block.settings.description }}</div>
   </div>
   
+  {% if block.settings.show_arrows %}
+    <button class="pc-team__arrow pc-team__arrow--prev">←</button>
+  {% endif %}
+  
   <div class="pc-team__grid {% if block.settings.enable_mobile_slider %}slider-mode{% endif %}">
     {% for i in (1..6) %}
       {% assign image_key = 'member_' | append: i | append: '_image' %}
@@ -1159,8 +1200,19 @@ document.addEventListener('DOMContentLoaded', function() {
     {% endfor %}
   </div>
   
-  {% if block.settings.enable_mobile_slider and block.settings.show_dots %}
-    <div class="slider-dots" style="display: none;"></div>
+  {% if block.settings.show_arrows %}
+    <button class="pc-team__arrow pc-team__arrow--next">→</button>
+  {% endif %}
+  
+  {% if block.settings.show_dots %}
+    <div class="pc-team__dots">
+      {% for i in (1..6) %}
+        {% assign name_key = 'member_' | append: i | append: '_name' %}
+        {% if block.settings[name_key] != blank %}
+          <div class="pc-team__dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
+        {% endif %}
+      {% endfor %}
+    </div>
   {% endif %}
 </div>
 
@@ -1168,72 +1220,71 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const blockId = 'block-{{ block.id }}';
-  const grid = document.querySelector(`#${blockId} .pc-team__grid`);
-  const dotsContainer = document.querySelector(`#${blockId} .slider-dots`);
+  const slider = document.querySelector(`#${blockId} .pc-team__grid.slider-mode`);
+  const prevBtn = document.querySelector(`#${blockId} .pc-team__arrow--prev`);
+  const nextBtn = document.querySelector(`#${blockId} .pc-team__arrow--next`);
+  const dots = document.querySelectorAll(`#${blockId} .pc-team__dot`);
   
-  if (!grid || !grid.classList.contains('slider-mode')) return;
+  if (!slider) return;
   
   // Initialize slider only on mobile
   function initSlider() {
     if (window.innerWidth > 768) {
       // Remove slider behavior on desktop
-      if (dotsContainer) dotsContainer.style.display = 'none';
       return;
     }
     
-    const members = grid.querySelectorAll('.pc-team-member');
+    const members = slider.querySelectorAll('.pc-team-member');
     if (members.length <= 1) {
-      if (dotsContainer) dotsContainer.style.display = 'none';
+      if (dots) dots.forEach(dot => dot.style.display = 'none');
+      if (prevBtn) prevBtn.style.display = 'none';
+      if (nextBtn) nextBtn.style.display = 'none';
       return;
     }
     
-    // Create dots if enabled
-    if (dotsContainer && block.settings.show_dots) {
-      dotsContainer.style.display = 'flex';
-      dotsContainer.innerHTML = '';
-      
-      members.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.className = 'slider-dot';
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => {
-          scrollToMember(index);
+    // Show navigation if enabled
+    if (prevBtn) prevBtn.style.display = 'flex';
+    if (nextBtn) nextBtn.style.display = 'flex';
+    
+    // Handle arrow clicks
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        slider.scrollBy({
+          left: -slider.clientWidth,
+          behavior: 'smooth'
         });
-        dotsContainer.appendChild(dot);
       });
     }
     
-    // Handle scroll events for dot highlighting
-    let isScrolling;
-    grid.addEventListener('scroll', function() {
-      window.clearTimeout(isScrolling);
-      isScrolling = setTimeout(() => {
-        const scrollLeft = grid.scrollLeft;
-        const memberWidth = grid.querySelector('.pc-team-member').offsetWidth;
-        const currentIndex = Math.round(scrollLeft / memberWidth);
-        
-        if (dotsContainer) {
-          const dots = dotsContainer.querySelectorAll('.slider-dot');
-          dots.forEach((dot, index) => {
-            if (index === currentIndex) {
-              dot.classList.add('active');
-            } else {
-              dot.classList.remove('active');
-            }
-          });
-        }
-      }, 100);
-    });
-  }
-  
-  function scrollToMember(index) {
-    const member = grid.querySelectorAll('.pc-team-member')[index];
-    if (!member) return;
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        slider.scrollBy({
+          left: slider.clientWidth,
+          behavior: 'smooth'
+        });
+      });
+    }
     
-    grid.scrollTo({
-      left: member.offsetLeft,
-      behavior: 'smooth'
-    });
+    // Handle dot clicks
+    if (dots.length > 0) {
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const index = parseInt(dot.dataset.index);
+          slider.scrollTo({
+            left: slider.clientWidth * index,
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      // Update active dot on scroll
+      slider.addEventListener('scroll', () => {
+        const activeIndex = Math.round(slider.scrollLeft / slider.clientWidth);
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === activeIndex);
+        });
+      });
+    }
   }
   
   // Initialize on load
