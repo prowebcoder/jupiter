@@ -1,6 +1,4265 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+  {%- assign sec_id = '#shopify-section-' | append: section.id -%}
+
+<style>
+  /* SECTION STYLES */
+  {{ sec_id }} {
+    --pc-section-padding-top: {{ section.settings.desktop_padding_top }}px;
+    --pc-section-padding-bottom: {{ section.settings.desktop_padding_bottom }}px;
+    --pc-section-margin-top: {{ section.settings.desktop_margin_top }}px;
+    --pc-section-margin-bottom: {{ section.settings.desktop_margin_bottom }}px;
+    --pc-section-bg-color: {{ section.settings.background_color }};
+    --pc-section-text-color: {{ section.settings.text_color }};
   }
+
+  {{ sec_id }} .pc-landing-section {
+    padding: var(--pc-section-padding-top) 0 var(--pc-section-padding-bottom);
+    background-color: var(--pc-section-bg-color);
+    color: var(--pc-section-text-color);
+  }
+
+  {{ sec_id }} .pc-container {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  /* BLOCK CONTAINERS */
+
+  {{ sec_id }} .pc-block-container--full { width: 100%; }
+  {{ sec_id }} .pc-block-container--large { max-width: 1400px; margin: 0 auto; }
+  {{ sec_id }} .pc-block-container--medium { max-width: 1200px; margin: 0 auto; }
+  {{ sec_id }} .pc-block-container--small { max-width: 1000px; margin: 0 auto; }
+
+  /* PLACEHOLDER STYLES */
+  {{ sec_id }} .placeholder-svg {
+    background-color: #f5f5f5;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border: 1px dashed #ddd;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  /* RESPONSIVE STYLES */
+  @media (max-width: 768px) {
+    {{ sec_id }} {
+      --pc-section-padding-top: {{ section.settings.mobile_padding_top }}px;
+      --pc-section-padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    {{ sec_id }} .pc-image-with-text,
+    {{ sec_id }} .pc-contact-form {
+      flex-direction: column;
+    }
+
+    {{ sec_id }} .pc-services__header,
+    {{ sec_id }} .pc-simple-columns__header,
+    {{ sec_id }} .pc-team__header,
+    {{ sec_id }} .pc-case-studies__header,
+    {{ sec_id }} .pc-accordion__header,
+    {{ sec_id }} .pc-testimonials__header,
+    {{ sec_id }} .pc-contact-form__header {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    {{ sec_id }} .pc-services__description,
+    {{ sec_id }} .pc-simple-columns__description,
+    {{ sec_id }} .pc-team__description, 
+    {{ sec_id }} .pc-case-studies__description,
+    {{ sec_id }} .pc-accordion__description,
+    {{ sec_id }} .pc-testimonials__description,
+    {{ sec_id }} .pc-contact-form__description {
+      flex: none;
+      text-align: center;
+      width: 100%;
+    }
+
+    {{ sec_id }} .pc-services__grid,
+    {{ sec_id }} .pc-simple-columns__grid,
+    {{ sec_id }} .pc-team__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    {{ sec_id }} .pc-service__content {
+      flex-direction: column;
+    }
+
+    {{ sec_id }} .pc-testimonial {
+      flex: 0 0 80%;
+    }
+
+    {{ sec_id }} .pc-team-member__image {
+      width: 150px;
+      height: 150px;
+    }
+  }
+</style>
+
+<section class="pc-landing-section">
+  <div class="pc-container">
+    {% for block in section.blocks %}
+      {%- assign block_bg_color = block.settings.background_color | default: 'transparent' -%}
+      {%- assign block_text_color = block.settings.text_color | default: 'inherit' -%}
+
+      <div
+        class="pc-block-container pc-block-container--{{ block.settings.container_width }}"
+        style="background-color: {{ block_bg_color }}; color: {{ block_text_color }};"
+        {{ block.shopify_attributes }}
+      >
+        {% case block.type %}
+          {% when 'image_with_text' %}
+          <style>
+            {{ sec_id }} #block-{{ block.id }}.pc-image-with-text {
+              display: flex;
+              align-items: center;
+              gap: 40px;
+              padding-top: {{ block.settings.padding_top }}px;
+              padding-bottom: {{ block.settings.padding_bottom }}px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }}.pc-image-with-text--reverse {
+              flex-direction: row-reverse;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image {
+              flex: 1;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image img {
+              width: {{ block.settings.image_width_percent }}%;
+              height: {{ block.settings.image_height }}px;
+              object-fit: contain;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__content {
+              flex: 1;
+              padding-left: {{ block.settings.content_padding_lr }}px;
+              padding-right: {{ block.settings.content_padding_lr }}px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__heading {
+              font-size: {{ block.settings.heading_size }}px;
+              font-weight: {{ block.settings.heading_font_weight }};
+              margin-bottom: 20px;
+              color: {{ block.settings.heading_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__text {
+              font-size: {{ block.settings.text_size }}px;
+              margin-bottom: 25px;
+              color: {{ block.settings.text_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__button {
+              display: inline-block;
+              padding: 12px 24px;
+              background-color: {{ block.settings.button_bg }};
+              color: {{ block.settings.button_text_color }};
+              font-size: {{ block.settings.button_text_size }}px;
+              font-weight: {{ block.settings.button_font_weight }};
+              border-radius: {{ block.settings.button_border_radius }}px;
+              text-decoration: none;
+              transition: all 0.3s ease;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__button:hover {
+              opacity: 0.9;
+              transform: translateY(-2px);
+            }
+
+            @media (max-width: 768px) {
+              {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__heading {
+                font-size: calc({{ block.settings.heading_size }}px * 0.8);
+              }
+              {{ sec_id }} #block-{{ block.id }}.pc-image-with-text--reverse {
+                flex-direction: column;
+              }
+              {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image img {
+                height: auto;
+              }
+              {{ sec_id }} #block-{{ block.id }}.pc-image-with-text {
+                gap: 20px;
+              }
+            }
+          </style>
+          <div id="block-{{ block.id }}" class="pc-image-with-text {% if block.settings.layout == 'right' %}pc-image-with-text--reverse{% endif %}">
+            <div class="pc-image-with-text__image">
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+            <div class="pc-image-with-text__content">
+              {% if block.settings.heading != blank %}
+                <h2 class="pc-image-with-text__heading">{{ block.settings.heading }}</h2>
+              {% endif %}
+              {% if block.settings.text != blank %}
+                <div class="pc-image-with-text__text">{{ block.settings.text }}</div>
+              {% endif %}
+              {% if block.settings.button_label != blank %}
+                <a href="{{ block.settings.button_link }}" class="pc-image-with-text__button">
+                  {{ block.settings.button_label }}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+
+         {% when 'brands' %}
+<style>
+  {{ sec_id }} #block-{{ block.id }}.pc-brand-slider {
+    text-align: center;
+    background: {{ block.settings.background_color }};
+    position: relative;
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__title {
+    font-size: {{ block.settings.title_size }}px;
+    margin-bottom: 30px;
+    color: {{ block.settings.title_color }};
+    font-weight: {{ block.settings.title_font_weight }};
+    background: {{ block.settings.title_bg_color }};
+    display: inline-block;
+    padding: 5px 15px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+    scrollbar-width: none;
+    padding: 20px 0;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item {
+    flex: 0 0 calc(16.666% - 17px);
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    background: {{ block.settings.item_bg_color }};
+    padding: {{ block.settings.item_padding }}px;
+    border-radius: 8px;
+    min-height: {{ block.settings.item_min_height }}px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item img {
+    max-width: {{ block.settings.logo_max_width }}px;
+    max-height: {{ block.settings.logo_max_height }}px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Navigation Arrows */
+  {% if block.settings.show_arrows %}
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: {{ block.settings.arrow_bg_color | default: '#ffffff' }};
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+    color: {{ block.settings.arrow_color }};
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__arrow--prev {
+    left: 10px;
+  }
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__arrow--next {
+    right: 10px;
+  }
+  {% endif %}
+
+  /* Pagination Dots */
+  {% if block.settings.show_dots %}
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: {{ block.settings.dot_color }};
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__dot.active {
+    background: {{ block.settings.dot_active_color }};
+  }
+  {% endif %}
+
+  @media (max-width: 768px) {
+    {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__title {
+      font-size: {{ block.settings.title_size_mobile }}px;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item {
+      flex: 0 0 calc(33.333% - 14px);
+      min-height: {{ block.settings.item_min_height | times: 0.8 }}px;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item img {
+      max-width: {{ block.settings.logo_max_width | times: 0.8 }}px;
+      max-height: {{ block.settings.logo_max_height | times: 0.8 }}px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item {
+      flex: 0 0 calc(50% - 10px);
+      min-height: {{ block.settings.item_min_height | times: 0.7 }}px;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item img {
+      max-width: {{ block.settings.logo_max_width | times: 0.7 }}px;
+      max-height: {{ block.settings.logo_max_height | times: 0.7 }}px;
+    }
+  }
+</style>
+
+<div id="block-{{ block.id }}" class="pc-brand-slider">
+  {% if block.settings.title != blank %}
+    <h2 class="pc-brand-slider__title">{{ block.settings.title }}</h2>
+  {% endif %}
+  
+  {% if block.settings.show_arrows %}
+    <button class="pc-brand-slider__arrow pc-brand-slider__arrow--prev">←</button>
+  {% endif %}
+  
+  <div class="pc-brand-slider__slider" id="brand-slider-{{ block.id }}">
+    {% for i in (1..6) %}
+      {% assign image_key = 'brand_' | append: i | append: '_image' %}
+      {% if block.settings[image_key] != blank %}
+        <div class="pc-brand-slider__item">
+          {{ block.settings[image_key] | image_url: width: 300 | image_tag: loading: 'lazy', alt: 'Brand logo' }}
+        </div>
+      {% else %}
+        <div class="pc-brand-slider__item">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  
+  {% if block.settings.show_arrows %}
+    <button class="pc-brand-slider__arrow pc-brand-slider__arrow--next">→</button>
+  {% endif %}
+  
+  {% if block.settings.show_dots %}
+    <div class="pc-brand-slider__dots">
+      {% for i in (1..6) %}
+        <div class="pc-brand-slider__dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Brand slider functionality
+  const brandSliders = document.querySelectorAll('.pc-brand-slider__slider');
+  
+  brandSliders.forEach(slider => {
+    const wrapper = slider.closest('.pc-brand-slider');
+    const prevBtn = wrapper.querySelector('.pc-brand-slider__arrow--prev');
+    const nextBtn = wrapper.querySelector('.pc-brand-slider__arrow--next');
+    const dots = wrapper.querySelectorAll('.pc-brand-slider__dot');
+    
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        slider.scrollBy({
+          left: -slider.clientWidth,
+          behavior: 'smooth'
+        });
+      });
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        slider.scrollBy({
+          left: slider.clientWidth,
+          behavior: 'smooth'
+        });
+      });
+    }
+    
+    if (dots.length > 0) {
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const index = parseInt(dot.dataset.index);
+          slider.scrollTo({
+            left: slider.clientWidth * index,
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      slider.addEventListener('scroll', () => {
+        const activeIndex = Math.round(slider.scrollLeft / slider.clientWidth);
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === activeIndex);
+        });
+      });
+    }
+  });
+});
+</script>
+
+           <!-- SERVICES BLOCK -->
+          {% when 'services' %}
+          <style>
+  {{ sec_id }} #block-{{ block.id }}.pc-services {
+    background: {{ block.settings.background_color }};
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-services__header {
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-services__title {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: bold;
+    color: {{ block.settings.title_color }};
+    background: {{ block.settings.title_bg_color }};
+    display: inline-block;
+    padding: 5px 15px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-services__description {
+    max-width: 600px;
+    color: {{ block.settings.description_color }};
+    font-size: {{ block.settings.description_size }}px;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-services__grid {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop | default: 2 }}, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service {
+    display: flex;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    {% if block.settings.card_shadow %}
+    box-shadow: 0 7px 1px rgb(0 0 0);
+    {% endif %}
+    min-height: 200px;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__heading {
+    font-size: {{ block.settings.heading_size }}px;
+    margin-bottom: 15px;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    font-size: {{ block.settings.link_size }}px;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__link-arrow {
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__link:hover .pc-service__link-arrow {
+    transform: translateX(-3px);
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__image {
+    flex: 0 0 40%;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__image img {
+    width: 65%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  /* RESPONSIVE STYLES */
+  @media (max-width: 992px) {
+    {{ sec_id }}  #block-{{ block.id }} .pc-services__grid {
+      grid-template-columns: 1fr;
+    }
+    
+    {{ sec_id }}  #block-{{ block.id }} .pc-service__image {
+      flex: 0 0 200px;
+    }
+    {{ sec_id }}  #block-{{ block.id }} .pc-service__heading {
+    font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+  }
+     {{ sec_id }}  #block-{{ block.id }} .pc-service__link {
+    margin-top: 0px;
+  }
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} #block-{{ block.id }} .pc-services__title {
+      font-size: {{ block.settings.title_size_mobile }}px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-services__description {
+      font-size: {{ block.settings.description_size_mobile }}px;
+    }
+    
+    {{ sec_id }}  #block-{{ block.id }} .pc-service {
+      flex-direction: column;
+    }
+    
+    {{ sec_id }}  #block-{{ block.id }} .pc-service__image img {
+      width: 100%;
+      padding: 20px;
+    }
+    {{ sec_id }}  #block-{{ block.id }} .pc-service__content {
+      align-items: center;
+      padding: 0px;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-services__header {
+    gap: 0px;
+    margin: 0 auto 0px;
+  }
+  }
+</style>
+            <div id="block-{{ block.id }}" class="pc-services">
+  <div class="pc-services__header">
+    <h2 class="pc-services__title">{{ block.settings.title }}</h2>
+    <div class="pc-services__description">{{ block.settings.description }}</div>
+  </div>
+  <div class="pc-services__grid">
+    {% for i in (1..6) %}
+      {% assign heading_key = 'service_' | append: i | append: '_heading' %}
+      {% assign heading_color_key = 'service_' | append: i | append: '_heading_color' %}
+      {% assign image_key = 'service_' | append: i | append: '_image' %}
+      {% assign bg_key = 'service_' | append: i | append: '_bg' %}
+      {% assign link_key = 'service_' | append: i | append: '_link' %}
+      
+      {% if block.settings[heading_key] != blank %}
+        <div class="pc-service" style="background: {{ block.settings[bg_key] | default: '#ffffff' }};">
+          <div class="pc-service__content">
+            <h3 style="color: {{ block.settings[heading_color_key] | default: '#000000' }}" class="pc-service__heading">
+              {{ block.settings[heading_key] }}
+            </h3>
+            {% if block.settings[link_key] != blank %}
+              <a style="color: {{ block.settings[heading_color_key] | default: '#000000' }}" 
+                 href="{{ block.settings[link_key] }}" 
+                 class="pc-service__link">
+                <span class="pc-service__link-arrow">→</span>
+                Learn more
+              </a>
+            {% endif %}
+          </div>
+          {% if block.settings[image_key] != blank %}
+            <div class="pc-service__image">
+              {{ block.settings[image_key] | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings[heading_key] }}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+          {% when 'case_studies' %}
+          <style>
+            {{ sec_id }} #block-{{ block.id }}.pc-case-studies {
+              background-color: {{ block.settings.bg_color }};
+              padding-top: {{ block.settings.padding_top }}px;
+              padding-bottom: {{ block.settings.padding_bottom }}px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-studies__header {
+              display: flex;
+              justify-content: center;
+              gap: 40px;
+              align-items: center;
+              flex-wrap: wrap;
+              max-width: 1200px;
+              margin: 0 auto 40px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-studies__title {
+              font-size: {{ block.settings.title_size }}px;
+              color: {{ block.settings.title_color }};
+              font-weight: bold;
+              background: {{ block.settings.title_bg_color }};
+              display: inline-block;
+              padding: 5px 15px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-studies__description {
+              max-width: 600px;
+              color: {{ block.settings.description_color }};
+              font-size: {{ block.settings.description_size }}px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-studies__grid {
+              display: flex;
+              gap: 0;
+              max-width: 1200px;
+              margin: 0 auto;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study {
+              flex: 1;
+              background: {{ block.settings.card_bg }};
+              padding: 30px;
+              color: {{ block.settings.text_color }};
+              text-align: left;
+              border-right: 1px solid {{ block.settings.divider_color }};
+              min-height: 240px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study:last-child {
+              border-right: none;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study__content p {
+              margin-bottom: 20px;
+              font-size: {{ block.settings.content_size }}px;
+              line-height: 1.6;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study__link {
+              display: inline-flex;
+              align-items: center;
+              color: {{ block.settings.link_color }};
+              font-weight: 600;
+              text-decoration: none;
+              font-size: {{ block.settings.link_size }}px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study__link:hover {
+              color: {{ block.settings.link_hover_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study__link-arrow {
+              margin-left: 6px;
+              transition: transform 0.3s ease;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study__link:hover .pc-case-study__link-arrow {
+              transform: translateX(3px);
+            }
+
+            @media (max-width: 992px) {
+              {{ sec_id }} #block-{{ block.id }} .pc-case-studies__grid {
+                flex-direction: column;
+              }
+
+              {{ sec_id }} #block-{{ block.id }} .pc-case-study {
+                border-right: none;
+                border-bottom: 1px solid {{ block.settings.divider_color }};
+              }
+
+              {{ sec_id }} #block-{{ block.id }} .pc-case-study:last-child {
+                border-bottom: none;
+              }
+
+              {{ sec_id }} #block-{{ block.id }} .pc-case-studies__description {
+                text-align: left;
+                margin-top: 10px;
+              }
+            }
+
+            @media (max-width: 768px) {
+              {{ sec_id }} #block-{{ block.id }} .pc-case-studies__header {
+              gap: 0px;
+              margin: 0 auto 0px;
+            }
+              {{ sec_id }} #block-{{ block.id }} .pc-case-studies__title {
+                font-size: {{ block.settings.title_size_mobile }}px;
+              }
+              
+              {{ sec_id }} #block-{{ block.id }} .pc-case-studies__description {
+                font-size: {{ block.settings.description_size_mobile }}px;
+              }
+              
+              {{ sec_id }} #block-{{ block.id }} .pc-case-study__content p {
+                font-size: {{ block.settings.content_size_mobile }}px;
+              }
+            }
+          </style>
+          <div id="block-{{ block.id }}" class="pc-case-studies">
+            <div class="pc-case-studies__header">
+              <h2 class="pc-case-studies__title">{{ block.settings.title }}</h2>
+              <div class="pc-case-studies__description">{{ block.settings.description }}</div>
+            </div>
+            <div class="pc-case-studies__grid">
+              {% for i in (1..3) %}
+                {% assign content_key = 'case_study_' | append: i | append: '_content' %}
+                {% assign link_key = 'case_study_' | append: i | append: '_link' %}
+                {% assign bg_key = 'case_study_' | append: i | append: '_bg' %}
+
+                {% if block.settings[content_key] != blank %}
+                  <div class="pc-case-study" style="background: {{ block.settings[bg_key] | default: block.settings.card_bg }};">
+                    <div class="pc-case-study__content">{{ block.settings[content_key] }}</div>
+                    {% if block.settings[link_key] != blank %}
+                      <a href="{{ block.settings[link_key] }}" class="pc-case-study__link">
+                        Learn more <span class="pc-case-study__link-arrow">→</span>
+                      </a>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+
+          {% when 'accordion' %}
+          <style>
+            {{ sec_id }} #block-{{ block.id }}.pc-accordion {
+              margin: 0 auto;
+              padding-top: {{ block.settings.padding_top }}px;
+              padding-bottom: {{ block.settings.padding_bottom }}px;
+              background: {{ block.settings.background_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion__header {
+              display: flex;
+              justify-content: flex-start;
+              gap: 40px; 
+              align-items: center;
+              flex-wrap: wrap;
+              max-width: 1200px;
+              margin: 0 auto 40px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion__title {
+              font-size: {{ block.settings.title_size }}px;
+              color: {{ block.settings.title_color }};
+              font-weight: bold;
+              background: {{ block.settings.title_bg_color }};
+              display: inline-block;
+              padding: 5px 15px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion__description {
+              max-width: 600px;
+              color: {{ block.settings.description_color }};
+              font-size: {{ block.settings.description_size }}px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-item {
+              margin-bottom: 15px;
+              border-bottom: 1px solid #e0e0e0;
+              padding-bottom: 15px;
+              padding: 10px 20px;
+              border-radius: 8px;
+              {% if block.settings.card_shadow %}
+              box-shadow: 0 7px 1px rgb(0 0 0);
+              {% endif %}
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              cursor: pointer;
+              padding: 15px 0;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-number {
+              font-size: {{ block.settings.number_size }}px;
+              font-weight: bold;
+              margin-right: 15px;
+              min-width: 30px;
+              color: {{ block.settings.number_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-title {
+              flex: 1;
+              font-size: {{ block.settings.item_title_size }}px;
+              font-weight: {{ block.settings.item_font_weight }};
+              color: {{ block.settings.item_title_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle {
+              width: 24px;
+              height: 24px;
+              position: relative;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle::before,
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle::after {
+              content: '';
+              position: absolute;
+              background-color: currentColor;
+              transition: transform 0.3s ease;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle::before {
+              width: 100%;
+              height: 2px;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle::after {
+              width: 2px;
+              height: 100%;
+              left: 50%;
+              transform: translateX(-50%) rotate(0deg);
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-item.active .pc-accordion-content-toggle::after {
+              transform: translateX(-50%) rotate(90deg);
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content {
+              max-height: 0;
+              overflow: hidden;
+              transition: max-height 0.6s ease, padding 0.6s ease;
+              padding: 0 45px 15px;
+              font-size: {{ block.settings.content_size }}px;
+              line-height: 1.6;
+              color: {{ block.settings.content_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-item.active .pc-accordion-content {
+              max-height: 500px;
+              padding: 0 45px 15px;
+            }
+
+            @media (max-width: 768px) {
+              {{ sec_id }} #block-{{ block.id }} .pc-accordion__title {
+                font-size: {{ block.settings.title_size_mobile }}px;
+              }
+              
+              {{ sec_id }} #block-{{ block.id }} .pc-accordion__description {
+                font-size: {{ block.settings.description_size_mobile }}px;
+              }
+              
+              {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-title {
+                font-size: {{ block.settings.item_title_size | times: 0.6 }}px;
+              }
+              
+              {{ sec_id }} #block-{{ block.id }} .pc-accordion-content {
+                font-size: {{ block.settings.content_size_mobile }}px;
+                padding: 0 20px 15px;
+              }
+              
+              {{ sec_id }} #block-{{ block.id }} .pc-accordion-item.active .pc-accordion-content {
+                padding: 0 20px 15px;
+              }
+              {{ sec_id }} #block-{{ block.id }} .pc-accordion__header {
+              gap: 0px;
+              margin: 0 auto 0px;
+            }
+            }
+          </style>
+          <div id="block-{{ block.id }}" class="pc-accordion">
+            <div class="pc-accordion__header">
+              <h2 class="pc-accordion__title">{{ block.settings.title }}</h2>
+              <div class="pc-accordion__description">{{ block.settings.description }}</div>
+            </div>
+            {% for i in (1..6) %}
+              {% assign title_key = 'item_' | append: i | append: '_title' %}
+              {% assign content_key = 'item_' | append: i | append: '_content' %}
+              {% assign background_key = 'item_' | append: i | append: '_background' %}
+              
+              {% if block.settings[title_key] != blank %}
+                <div style="background: {{ block.settings[background_key] | default: '#f8f8f8' }}" class="pc-accordion-item" data-index="{{ i }}">
+                  <div class="pc-accordion-content-header">
+                    <div class="pc-accordion-content-number">0{{ i }}</div>
+                    <div class="pc-accordion-content-title">{{ block.settings[title_key] }}</div>
+                    <div class="pc-accordion-content-toggle"></div>
+                  </div>
+                  <div class="pc-accordion-content">
+                    {{ block.settings[content_key] }}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          {% when 'team' %}
+<style>
+  {{ sec_id }} #block-{{ block.id }}.pc-team {
+    background: {{ block.settings.background_color }};
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team__header {
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team__title {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    font-weight: bold;
+    background: {{ block.settings.title_bg_color }};
+    display: inline-block;
+    padding: 5px 15px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team__description {
+    max-width: 600px;
+    color: {{ block.settings.description_color }};
+    font-size: {{ block.settings.description_size }}px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member {
+    background: {{ block.settings.card_bg }};
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 7px 1px rgb(0 0 0);
+    border: 1px solid #707070;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team-meta {
+    display: flex;
+    align-items: center;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member__image {
+    flex-shrink: 0;
+    width: {{ block.settings.image_width | default: 80 }}px;
+    height: {{ block.settings.image_height | default: 80 }}px;
+    margin-right: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: {{ block.settings.image_bg_color }};
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member__content {
+    flex: 1;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member__name {
+    font-size: {{ block.settings.name_size }}px;
+    font-weight: 600;
+    margin: 0 0 5px;
+    color: {{ block.settings.name_color }};
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member__position {
+    font-size: {{ block.settings.position_size }}px;
+    color: {{ block.settings.position_color }};
+    margin-bottom: 8px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member__description {
+    font-size: {{ block.settings.content_description_size }}px;
+    color: {{ block.settings.description_text_color }};
+    line-height: 1.5;
+  }
+
+  /* Slider styles */
+  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 0;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode .pc-team-member {
+    scroll-snap-align: start;
+    flex: 0 0 100%;
+    margin: 0 15px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .slider-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .slider-dot.active {
+    background: #000;
+  }
+
+  @media (min-width: 769px) {
+    {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode .pc-team-member {
+      flex: none;
+      margin: 0;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .slider-dots {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} #block-{{ block.id }} .pc-team__title {
+      font-size: {{ block.settings.title_size_mobile }}px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-team__description {
+      font-size: {{ block.settings.description_size_mobile }}px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-team-member {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-team-member__image {
+      width: {{ block.settings.image_width_mobile | default: block.settings.image_width | default: 80 }}px;
+      height: {{ block.settings.image_height_mobile | default: block.settings.image_height | default: 80 }}px;
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-team-member__name {
+      font-size: {{ block.settings.name_size_mobile }}px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-team-member__position {
+      font-size: {{ block.settings.position_size_mobile }}px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-team-member__description {
+      font-size: {{ block.settings.content_description_size_mobile }}px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-team__header {
+      gap: 0px;
+      margin: 0 auto 0px;
+    }
+  }
+</style>
+
+<div id="block-{{ block.id }}" class="pc-team">
+  <div class="pc-team__header">
+    <h2 class="pc-team__title">{{ block.settings.title }}</h2>
+    <div class="pc-team__description">{{ block.settings.description }}</div>
+  </div>
+  
+  <div class="pc-team__grid {% if block.settings.enable_mobile_slider %}slider-mode{% endif %}">
+    {% for i in (1..6) %}
+      {% assign image_key = 'member_' | append: i | append: '_image' %}
+      {% assign name_key = 'member_' | append: i | append: '_name' %}
+      {% assign position_key = 'member_' | append: i | append: '_position' %}
+      {% assign description_key = 'member_' | append: i | append: '_description' %}
+      {% assign bg_key = 'member_' | append: i | append: '_bg' %}
+
+      {% if block.settings[name_key] != blank %}
+        <div class="pc-team-member" style="background: {{ block.settings[bg_key] | default: block.settings.card_bg }};">
+          <div class="pc-team-meta">
+            <div class="pc-team-member__image">
+              {% if block.settings[image_key] != blank %}
+                {{ block.settings[image_key] | image_url: width: 160 | image_tag: loading: 'lazy' }}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+            <div class="pc-team-member__content">
+              <h3 class="pc-team-member__name">{{ block.settings[name_key] }}</h3>
+              <div class="pc-team-member__position">{{ block.settings[position_key] }}</div>
+            </div>
+          </div>
+          <hr>
+          <div class="pc-team-member__description">{{ block.settings[description_key] }}</div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  
+  {% if block.settings.enable_mobile_slider and block.settings.show_dots %}
+    <div class="slider-dots" style="display: none;"></div>
+  {% endif %}
+</div>
+
+{% if block.settings.enable_mobile_slider %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const blockId = 'block-{{ block.id }}';
+  const grid = document.querySelector(`#${blockId} .pc-team__grid`);
+  const dotsContainer = document.querySelector(`#${blockId} .slider-dots`);
+  
+  if (!grid || !grid.classList.contains('slider-mode')) return;
+  
+  // Initialize slider only on mobile
+  function initSlider() {
+    if (window.innerWidth > 768) {
+      // Remove slider behavior on desktop
+      if (dotsContainer) dotsContainer.style.display = 'none';
+      return;
+    }
+    
+    const members = grid.querySelectorAll('.pc-team-member');
+    if (members.length <= 1) {
+      if (dotsContainer) dotsContainer.style.display = 'none';
+      return;
+    }
+    
+    // Create dots if enabled
+    if (dotsContainer && block.settings.show_dots) {
+      dotsContainer.style.display = 'flex';
+      dotsContainer.innerHTML = '';
+      
+      members.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'slider-dot';
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+          scrollToMember(index);
+        });
+        dotsContainer.appendChild(dot);
+      });
+    }
+    
+    // Handle scroll events for dot highlighting
+    let isScrolling;
+    grid.addEventListener('scroll', function() {
+      window.clearTimeout(isScrolling);
+      isScrolling = setTimeout(() => {
+        const scrollLeft = grid.scrollLeft;
+        const memberWidth = grid.querySelector('.pc-team-member').offsetWidth;
+        const currentIndex = Math.round(scrollLeft / memberWidth);
+        
+        if (dotsContainer) {
+          const dots = dotsContainer.querySelectorAll('.slider-dot');
+          dots.forEach((dot, index) => {
+            if (index === currentIndex) {
+              dot.classList.add('active');
+            } else {
+              dot.classList.remove('active');
+            }
+          });
+        }
+      }, 100);
+    });
+  }
+  
+  function scrollToMember(index) {
+    const member = grid.querySelectorAll('.pc-team-member')[index];
+    if (!member) return;
+    
+    grid.scrollTo({
+      left: member.offsetLeft,
+      behavior: 'smooth'
+    });
+  }
+  
+  // Initialize on load
+  initSlider();
+  
+  // Re-initialize on resize
+  window.addEventListener('resize', function() {
+    initSlider();
+  });
+});
+</script>
+{% endif %}
+
+        {% when 'testimonials' %}  
+  <style>
+    {{ sec_id }} #block-{{ block.id }}.pc-testimonials {
+      position: relative;
+      background: {{ block.settings.background_color }};
+      padding-top: {{ block.settings.padding_top }}px;
+      padding-bottom: {{ block.settings.padding_bottom }}px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonials__header {
+      display: flex;
+      justify-content: flex-start;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto 40px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonials__title {
+      font-size: {{ block.settings.title_size }}px;
+      color: {{ block.settings.title_color }};
+      font-weight: bold;
+      background: {{ block.settings.title_bg_color }};
+      display: inline-block;
+      padding: 5px 15px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonials__description {
+      max-width: 600px;
+      color: {{ block.settings.description_color }};
+      font-size: {{ block.settings.description_size }}px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 20px;
+      scrollbar-width: none;
+      position: relative;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-slider-wrapper {
+      position: relative;
+      padding: 40px;
+      background: {{ block.settings.slider_bg }};
+      border-radius: 12px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial {
+      flex: 0 0 calc(100% / {{ block.settings.slides_to_show }} - 20px);
+      scroll-snap-align: start;
+      padding: 30px;
+      position: relative;
+      margin: 0 10px;
+      border-radius: 8px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__image {
+      width: {{ block.settings.image_size }}px;
+      height: {{ block.settings.image_size }}px;
+      border-radius: {{ block.settings.image_radius }}%;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content {
+      font-style: italic;
+      margin-bottom: 15px;
+      color: {{ block.settings.content_color }};
+      font-size: {{ block.settings.content_size }}px;
+      border: 1px solid #b9ff66;
+      padding: 12px;
+      position: relative;
+      border-radius: 12px;
+    }
+
+    /* Speech bubble styles */
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-left:after,
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-left:before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 20px;
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: #b9ff66 transparent;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-left:after {
+      bottom: -8px;
+      border-color: white transparent;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-center:after,
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-center:before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: #b9ff66 transparent;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-center:after {
+      bottom: -8px;
+      border-color: white transparent;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-right:after,
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-right:before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 20px;
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: #b9ff66 transparent;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-right:after {
+      bottom: -8px;
+      border-color: white transparent;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__name {
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: {{ block.settings.name_color }};
+      font-size: {{ block.settings.name_size }}px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-rating {
+      color: {{ block.settings.rating_color }};
+      font-size: {{ block.settings.rating_size }}px;
+    }
+
+    /* Pagination styles */
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 8px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-pagination .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-pagination .dot.active {
+      background: #333;
+    }
+
+    /* Navigation arrows */
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav.prev {
+      left: 10px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav.next {
+      right: 10px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    @media (max-width: 992px) {
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial {
+        flex: 0 0 calc(100% / 2 - 15px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonials__title {
+        font-size: {{ block.settings.title_size_mobile }}px;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonials__description {
+        font-size: {{ block.settings.description_size_mobile }}px;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial {
+        flex: 0 0 100%;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content {
+        font-size: {{ block.settings.content_size_mobile }}px;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial__name {
+        font-size: {{ block.settings.name_size_mobile }}px;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial-rating {
+        font-size: {{ block.settings.rating_size_mobile }}px;
+      }
+
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav {
+        width: 30px;
+        height: 30px;
+      }
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial-slider {
+        padding: 0px;
+      }
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial {
+        padding: 15px;
+      }
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonials__header {
+      gap: 0px;
+      margin: 0 auto 0px;
+    }
+    }
+  </style>
+  <div id="block-{{ block.id }}" class="pc-testimonials">
+    <div class="pc-testimonials__header">
+      <h2 class="pc-testimonials__title">{{ block.settings.title }}</h2>
+      <div class="pc-testimonials__description">{{ block.settings.description }}</div>
+    </div>
+    <div class="pc-testimonial-slider-wrapper">
+      {% if block.settings.show_navigation %}
+        <div class="pc-testimonial-nav prev">
+          <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+        </div>
+      {% endif %}
+      
+      <div class="pc-testimonial-slider" data-autoplay="{{ block.settings.autoplay }}" data-speed="{{ block.settings.autoplay_speed }}">
+        {% for i in (1..4) %}
+          {% assign image_key = 'testimonial_' | append: i | append: '_image' %}
+          {% assign name_key = 'testimonial_' | append: i | append: '_name' %}
+          {% assign content_key = 'testimonial_' | append: i | append: '_content' %}
+          {% assign rating_key = 'testimonial_' | append: i | append: '_rating' %}
+          {% assign bg_key = 'testimonial_' | append: i | append: '_bg' %}
+           
+          {% if block.settings[name_key] != blank %}
+            <div class="pc-testimonial" style="background: {{ block.settings[bg_key] | default: block.settings.card_bg }};">
+              {% if block.settings.show_images %}
+                {% if block.settings[image_key] != blank %}
+                  <div class="pc-testimonial__image">
+                    {{ block.settings[image_key] | image_url: width: 200 | image_tag: loading: 'lazy' }}
+                  </div>
+                {% else %}
+                  <div class="pc-testimonial__image">
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+                {% endif %}
+              {% endif %}
+              <div class="pc-testimonial__content bubble-{{ block.settings.bubble_position | default: 'center' }}">
+                {{ block.settings[content_key] }}
+              </div>
+              <div class="pc-testimonial__name">{{ block.settings[name_key] }}</div>
+              <div class="pc-testimonial-rating">
+                {% for star in (1..5) %}
+                  {% if star <= block.settings[rating_key] %}
+                    ★
+                  {% else %}
+                    ☆
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      
+      {% if block.settings.show_navigation %}
+        <div class="pc-testimonial-nav next">
+          <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+        </div>
+      {% endif %}
+    </div>
+    
+    {% if block.settings.show_pagination %}
+      <div class="pc-testimonial-pagination">
+        {% for i in (1..4) %}
+          {% assign name_key = 'testimonial_' | append: i | append: '_name' %}
+          {% if block.settings[name_key] != blank %}
+            <div class="dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+          {% when 'contact_form' %}
+          <style>
+            {{ sec_id }} #block-{{ block.id }}.pc-contact-form {
+              background: {{ block.settings.background_color }};
+              padding-top: {{ block.settings.padding_top }}px;
+              padding-bottom: {{ block.settings.padding_bottom }}px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__content {
+              display: flex;
+              gap: 40px;
+              align-items: center;
+              background: {{ block.settings.content_bg_color }};
+              padding: 20px;
+              border-radius: 12px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form--reverse {
+              flex-direction: row-reverse;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__header {
+              display: flex;
+              justify-content: flex-start;
+              gap: 40px;
+              align-items: center;
+              flex-wrap: wrap;
+              max-width: 1200px;
+              margin: 0 auto 40px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__title {
+              font-size: {{ block.settings.title_size }}px;
+              color: {{ block.settings.title_color }};
+              font-weight: bold;
+              background: {{ block.settings.title_bg_color }};
+              display: inline-block;
+              padding: 5px 15px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__description {
+              max-width: 600px;
+              color: {{ block.settings.description_color }};
+              font-size: {{ block.settings.description_size }}px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__image {
+              flex: 1;
+              padding: 20px;
+              border-radius: 8px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__image img {
+              width: 100%;
+              height: auto;
+              border-radius: 8px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__form {
+              flex: 1;
+              padding: 40px;
+              border-radius: 8px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} input, 
+            {{ sec_id }} #block-{{ block.id }} textarea {
+              width: 100%;
+              margin-bottom: 20px;
+              padding: 10px;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+            }
+            
+            {{ sec_id }} #block-{{ block.id }} button {
+              background: #000;
+              color: #fff;
+              padding: 14px 20px;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+              transition: opacity 0.3s ease;
+            }
+            
+            {{ sec_id }} #block-{{ block.id }} button:hover {
+              opacity: 0.9;
+            }
+
+            @media (max-width: 768px) {
+              {{ sec_id }} #block-{{ block.id }} .pc-contact-form__content {
+                flex-direction: column;
+              }
+              
+              {{ sec_id }} #block-{{ block.id }} .pc-contact-form__title {
+                font-size: {{ block.settings.title_size_mobile }}px;
+              }
+              
+              {{ sec_id }} #block-{{ block.id }} .pc-contact-form__description {
+                font-size: {{ block.settings.description_size_mobile }}px;
+              }
+              {{ sec_id }} #block-{{ block.id }} .pc-contact-form__header {
+              gap: 0px;
+              margin: 0 auto 0px;
+            }
+            }
+          </style>
+          <div id="block-{{ block.id }}" class="pc-contact-form">
+            <div class="pc-contact-form__header">
+              <h2 class="pc-contact-form__title">{{ block.settings.title }}</h2>
+              <div class="pc-contact-form__description">{{ block.settings.description }}</div>
+            </div>
+            <div class="pc-contact-form__content {% if block.settings.layout == 'right' %}pc-contact-form--reverse{% endif %}">
+              <div class="pc-contact-form__image">
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+              </div>
+              <div class="pc-contact-form__form">
+                
+                {% form 'contact' %}
+                  {% if form.posted_successfully? %}
+                    <p class="note form-success">Thank you for contacting us!</p>
+                  {% endif %}
+
+                  {{ form.errors | default_errors }}
+
+                  <input type="text" name="contact[name]" placeholder="{{ block.settings.name_placeholder }}" required>
+                  <input type="email" name="contact[email]" placeholder="{{ block.settings.email_placeholder }}" required>
+                  <input type="tel" name="contact[phone]" placeholder="{{ block.settings.phone_placeholder }}">
+                  <textarea name="contact[body]" placeholder="{{ block.settings.message_placeholder }}" required></textarea>
+                  <button type="submit">{{ block.settings.button_label }}</button>
+                {% endform %}
+              </div>
+            </div>
+          </div>
+        {% endcase %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Accordion functionality
+  const accordionItems = document.querySelectorAll('.pc-accordion-item');
+
+  accordionItems.forEach(item => {
+    const header = item.querySelector('.pc-accordion-content-header');
+    const toggle = item.querySelector('.pc-accordion-content-toggle');
+
+    header.addEventListener('click', () => {
+      item.classList.toggle('active');
+
+      // Close other accordion items
+      if (item.classList.contains('active')) {
+        accordionItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('active')) {
+            otherItem.classList.remove('active');
+          }
+        });
+      }
+    });
+  });
+
+  // Testimonial slider functionality
+  const sliders = document.querySelectorAll('.pc-testimonial-slider');
+
+  sliders.forEach(slider => {
+    const autoplay = slider.dataset.autoplay === 'true';
+    const speed = parseInt(slider.dataset.speed) * 1000 || 3000;
+    let interval;
+
+    // Initialize pagination
+    const pagination = slider.closest('.pc-testimonials')?.querySelector('.pc-testimonial-pagination');
+    if (pagination) {
+      const slides = slider.querySelectorAll('.pc-testimonial');
+      slides.forEach((slide, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+          slider.scrollTo({
+            left: slider.clientWidth * index,
+            behavior: 'smooth'
+          });
+        });
+        pagination.appendChild(dot);
+      });
+    }
+
+    // Navigation arrows
+    const wrapper = slider.closest('.pc-testimonial-slider-wrapper');
+    const prevBtn = wrapper?.querySelector('.prev');
+    const nextBtn = wrapper?.querySelector('.next');
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        slider.scrollBy({
+          left: -slider.clientWidth,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        slider.scrollBy({
+          left: slider.clientWidth,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    // Update active dot on scroll
+    slider.addEventListener('scroll', () => {
+      if (pagination) {
+        const dots = pagination.querySelectorAll('.dot');
+        const slideIndex = Math.round(slider.scrollLeft / slider.clientWidth);
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === slideIndex);
+        });
+      }
+    });
+
+    function startAutoplay() {
+      interval = setInterval(() => {
+        slider.scrollBy({
+          left: slider.clientWidth,
+          behavior: 'smooth'
+        });
+
+        // Loop to start
+        if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 50) {
+          setTimeout(() => {
+            slider.scrollTo({
+              left: 0,
+              behavior: 'smooth'
+            });
+          }, 1000);
+        }
+      }, speed);
+    }
+
+    if (autoplay) startAutoplay();
+
+    // Pause autoplay on hover
+    slider.addEventListener('mouseenter', () => {
+      clearInterval(interval);
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      if (autoplay) startAutoplay();
+    });
+  });
+});
+</script>
+
+
+{% schema %}
+{
+  "name": "PWC - Landing Page #2",
+  "tag": "section",
+  "class": "pc-landing-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container width",
+      "min": 800,
+      "max": 1800,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Desktop top padding",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Desktop bottom padding",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Mobile top padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Mobile bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_with_text",
+      "name": "Image with Text",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Block Settings"
+        },
+        {
+          "type": "select",
+          "id": "container_width",
+          "label": "Container width",
+          "options": [
+            { "value": "full", "label": "Full width" },
+            { "value": "large", "label": "Large" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "small", "label": "Small" }
+          ],
+          "default": "medium"
+        },
+        {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Block Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Block Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "transparent"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Image position",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "range",
+          "id": "image_width_percent",
+          "label": "Image width (%)",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "default": 100
+        },
+        {
+          "type": "range",
+          "id": "image_height",
+          "label": "Image height (desktop)",
+          "min": 200,
+          "max": 800,
+          "step": 10,
+          "unit": "px",
+          "default": 500
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Image with text"
+        },
+        {
+          "type": "range",
+          "id": "heading_size",
+          "label": "Heading size (px)",
+          "min": 16,
+          "max": 78,
+          "step": 1,
+          "default": 32
+        },
+        {
+  "type": "select",
+  "id": "heading_font_weight",
+  "label": "Heading font weight",
+  "options": [
+    {
+      "value": "400",
+      "label": "Normal"
+    },
+    {
+      "value": "700",
+      "label": "Bold"
+    } 
+  ],
+  "default": "400"
+},
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading color",
+          "default": "#000000"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post.</p>"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "label": "Text size (px)",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "content_padding_lr",
+          "label": "Content padding left & right (px)",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "default": 20
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Learn more"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "color",
+          "id": "button_bg",
+          "label": "Button background",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button text color",
+          "default": "#ffffff"
+        },
+        {
+  "type": "select",
+  "id": "button_font_weight",
+  "label": "Button font weight",
+  "options": [
+    {
+      "value": "400",
+      "label": "Normal"
+    },
+    {
+      "value": "700",
+      "label": "Bold"
+    } 
+  ],
+  "default": "400"
+},
+        {
+  "type": "range",
+  "id": "button_border_radius",
+  "label": "Button border radius",
+  "min": 0,
+  "max": 50,
+  "step": 1,
+  "unit": "px",
+  "default": 4
+},
+        {
+          "type": "range",
+          "id": "button_text_size",
+          "label": "Button text size (px)",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "default": 16
+        }
+      ]
+    },
+    {
+  "type": "brands",
+  "name": "Brands",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Block Settings"
+    },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container width",
+      "options": [
+        { "value": "full", "label": "Full width" },
+        { "value": "large", "label": "Large" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "small", "label": "Small" }
+      ],
+      "default": "full"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Block Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Block Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "item_bg_color",
+      "label": "Item background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Trusted by leading brands"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size (px)",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title size mobile (px)",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title font weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "title_bg_color",
+      "label": "Title Background color",
+      "default": "#b9ff66"
+    },
+    {
+      "type": "header",
+      "content": "Brand Logos"
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "label": "Logo max width (px)",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "logo_max_height",
+      "label": "Logo max height (px)",
+      "min": 30,
+      "max": 200,
+      "step": 5,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "item_padding",
+      "label": "Item padding (px)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "item_min_height",
+      "label": "Item min height (px)",
+      "min": 50,
+      "max": 200,
+      "step": 5,
+      "default": 100
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_1_image",
+      "label": "Brand 1 logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_2_image",
+      "label": "Brand 2 logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_3_image",
+      "label": "Brand 3 logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_4_image",
+      "label": "Brand 4 logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_5_image",
+      "label": "Brand 5 logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_6_image",
+      "label": "Brand 6 logo"
+    }
+  ]
+},
+    {
+      "type": "services",
+      "name": "Services",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Block Settings"
+        },
+        {
+          "type": "select",
+          "id": "container_width",
+          "label": "Container width",
+          "options": [
+            { "value": "full", "label": "Full width" },
+            { "value": "large", "label": "Large" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "small", "label": "Small" }
+          ],
+          "default": "medium"
+        },
+        {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Block Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Block Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "transparent"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Services"
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "label": "Title size (px)",
+          "min": 16,
+          "max": 48,
+          "step": 1,
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "title_size_mobile",
+          "label": "Title size mobile (px)",
+          "min": 14,
+          "max": 36,
+          "step": 1,
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title color",
+          "default": "#000000"
+        },
+        {
+      "type": "color",
+      "id": "title_bg_color",
+      "label": "Title Background color",
+      "default": "#b9ff66"
+    },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "All our digital marketing agency, we offer a range of services to help businesses grow and succeed online."
+        },
+        {
+          "type": "range",
+          "id": "description_size",
+          "label": "Description size (px)",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "description_size_mobile",
+          "label": "Description size mobile (px)",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description color",
+          "default": "#666666"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "range",
+          "id": "columns_desktop",
+          "label": "Columns (desktop)",
+          "min": 1,
+          "max": 3,
+          "step": 1,
+          "default": 2
+        },
+        {
+          "type": "checkbox",
+          "id": "card_shadow",
+          "label": "Enable card shadow",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "heading_size",
+          "label": "Service heading size (px)",
+          "min": 14,
+          "max": 36,
+          "step": 1,
+          "default": 22
+        },
+        {
+          "type": "range",
+          "id": "link_size",
+          "label": "Link size (px)",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "default": 16
+        },
+        {
+          "type": "header",
+          "content": "Service Items"
+        },
+        {
+          "type": "text",
+          "id": "service_1_heading",
+          "label": "Service 1 heading",
+          "default": "Social Media Marketing"
+        },
+        {
+          "type": "color",
+          "id": "service_1_heading_color",
+          "label": "Heading color",
+          "default": "#000000"
+        },
+        {
+          "type": "image_picker",
+          "id": "service_1_image",
+          "label": "Service 1 image"
+        },
+        {
+          "type": "color",
+          "id": "service_1_bg",
+          "label": "Service 1 background",
+          "default": "#f8f8f8"
+        },
+        {
+          "type": "url",
+          "id": "service_1_link",
+          "label": "Service 1 link"
+        },
+        {
+          "type": "text",
+          "id": "service_2_heading",
+          "label": "Service 2 heading",
+          "default": "Email Marketing"
+        },
+        {
+          "type": "color",
+          "id": "service_2_heading_color",
+          "label": "Heading color",
+          "default": "#000000"
+        },
+        {
+          "type": "image_picker",
+          "id": "service_2_image",
+          "label": "Service 2 image"
+        },
+        {
+          "type": "color",
+          "id": "service_2_bg",
+          "label": "Service 2 background",
+          "default": "#f0f0f0"
+        },
+        {
+          "type": "url",
+          "id": "service_2_link",
+          "label": "Service 2 link"
+        },
+        {
+          "type": "text",
+          "id": "service_3_heading",
+          "label": "Service 3 heading",
+          "default": "Search Engine Optimization"
+        },
+        {
+          "type": "color",
+          "id": "service_3_heading_color",
+          "label": "Heading color",
+          "default": "#000000"
+        },
+        {
+          "type": "image_picker",
+          "id": "service_3_image",
+          "label": "Service 3 image"
+        },
+        {
+          "type": "color",
+          "id": "service_3_bg",
+          "label": "Service 3 background",
+          "default": "#e8e8e8"
+        },
+        {
+          "type": "url",
+          "id": "service_3_link",
+          "label": "Service 3 link"
+        },
+        {
+          "type": "text",
+          "id": "service_4_heading",
+          "label": "Service 4 heading",
+          "default": "Pay-Per-Click Advertising"
+        },
+        {
+          "type": "color",
+          "id": "service_4_heading_color",
+          "label": "Heading color",
+          "default": "#000000"
+        },
+        {
+          "type": "image_picker",
+          "id": "service_4_image",
+          "label": "Service 4 image"
+        },
+        {
+          "type": "color",
+          "id": "service_4_bg",
+          "label": "Service 4 background",
+          "default": "#e0e0e0"
+        },
+        {
+          "type": "url",
+          "id": "service_4_link",
+          "label": "Service 4 link"
+        },
+        {
+          "type": "text",
+          "id": "service_5_heading",
+          "label": "Service 5 heading",
+          "default": "Content Creation"
+        },
+        {
+          "type": "color",
+          "id": "service_5_heading_color",
+          "label": "Heading color",
+          "default": "#000000"
+        },
+        {
+          "type": "image_picker",
+          "id": "service_5_image",
+          "label": "Service 5 image"
+        },
+        {
+          "type": "color",
+          "id": "service_5_bg",
+          "label": "Service 5 background",
+          "default": "#d8d8d8"
+        },
+        {
+          "type": "url",
+          "id": "service_5_link",
+          "label": "Service 5 link"
+        },
+        {
+          "type": "text",
+          "id": "service_6_heading",
+          "label": "Service 6 heading",
+          "default": "Analytics and Tracking"
+        },
+        {
+          "type": "color",
+          "id": "service_6_heading_color",
+          "label": "Heading color",
+          "default": "#000000"
+        },
+        {
+          "type": "image_picker",
+          "id": "service_6_image",
+          "label": "Service 6 image"
+        },
+        {
+          "type": "color",
+          "id": "service_6_bg",
+          "label": "Service 6 background",
+          "default": "#d0d0d0"
+        },
+        {
+          "type": "url",
+          "id": "service_6_link",
+          "label": "Service 6 link"
+        }
+      ]
+    },
+    {
+      "type": "case_studies",
+      "name": "Case Studies",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Block Settings"
+        },
+        {
+          "type": "select",
+          "id": "container_width",
+          "label": "Container width",
+          "options": [
+            { "value": "full", "label": "Full width" },
+            { "value": "large", "label": "Large" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "small", "label": "Small" }
+          ],
+          "default": "medium"
+        },
+        {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Block Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Block Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "transparent"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Section Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "divider_color",
+          "label": "Card Divider Line Color",
+          "default": "#444444"
+        },
+        {
+          "type": "color",
+          "id": "card_bg",
+          "label": "Card Background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "link_color",
+          "label": "Link Color",
+          "default": "#0066cc"
+        },
+        {
+          "type": "color",
+          "id": "link_hover_color",
+          "label": "Link Hover Color",
+          "default": "#004499"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Case Studies"
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "label": "Title size (px)",
+          "min": 16,
+          "max": 48,
+          "step": 1,
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "title_size_mobile",
+          "label": "Title size mobile (px)",
+          "min": 14,
+          "max": 36,
+          "step": 1,
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#000000"
+        },
+        {
+      "type": "color",
+      "id": "title_bg_color",
+      "label": "Title Background color",
+      "default": "#b9ff66"
+    },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Explore Real-Life Examples of Our Proven Digital Marketing Success through Our Case Studies</p>"
+        },
+        {
+          "type": "range",
+          "id": "description_size",
+          "label": "Description size (px)",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "description_size_mobile",
+          "label": "Description size mobile (px)",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description Color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "content_size",
+          "label": "Content size (px)",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "default": 15
+        },
+        {
+          "type": "range",
+          "id": "content_size_mobile",
+          "label": "Content size mobile (px)",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "default": 14
+        },
+        {
+          "type": "range",
+          "id": "link_size",
+          "label": "Link size (px)",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "default": 16
+        },
+        {
+          "type": "header",
+          "content": "Case Study 1"
+        },
+        {
+          "type": "richtext",
+          "id": "case_study_1_content",
+          "label": "Content",
+          "default": "<p>For a local restaurant, we implemented a targeted PPC campaign that resulted in a 50% increase in website traffic and a 25% increase in sales.</p>"
+        },
+        {
+          "type": "color",
+          "id": "case_study_1_bg",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "url",
+          "id": "case_study_1_link",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Case Study 2"
+        },
+        {
+          "type": "richtext",
+          "id": "case_study_2_content",
+          "label": "Content",
+          "default": "<p>For a B2B software company, we developed an SEO strategy that resulted in a first page ranking for key keywords and a 200% increase in organic traffic.</p>"
+        },
+        {
+          "type": "color",
+          "id": "case_study_2_bg",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "url",
+          "id": "case_study_2_link",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Case Study 3"
+        },
+        {
+          "type": "richtext",
+          "id": "case_study_3_content",
+          "label": "Content",
+          "default": "<p>For a national retail chain, we created a social media marketing campaign that increased followers by 25% and generated a 20% increase in online sales.</p>"
+        },
+        {
+          "type": "color",
+          "id": "case_study_3_bg",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "url",
+          "id": "case_study_3_link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Block Settings"
+        },
+        {
+          "type": "select",
+          "id": "container_width",
+          "label": "Container width",
+          "options": [
+            { "value": "full", "label": "Full width" },
+            { "value": "large", "label": "Large" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "small", "label": "Small" }
+          ],
+          "default": "medium"
+        },
+        {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Block Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Block Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "transparent"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "type": "checkbox",
+          "id": "card_shadow",
+          "label": "Enable card shadow",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Our Working Process"
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "label": "Title size (px)",
+          "min": 16,
+          "max": 48,
+          "step": 1,
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "title_size_mobile",
+          "label": "Title size mobile (px)",
+          "min": 14,
+          "max": 36,
+          "step": 1,
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#000000"
+        },
+        {
+      "type": "color",
+      "id": "title_bg_color",
+      "label": "Title Background color",
+      "default": "#b9ff66"
+    },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Explore Real-Life Examples of Our Proven Digital Marketing Success through Our Case Studies</p>"
+        },
+        {
+          "type": "range",
+          "id": "description_size",
+          "label": "Description size (px)",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "description_size_mobile",
+          "label": "Description size mobile (px)",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description Color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "number_size",
+          "label": "Number size (px)",
+          "min": 12,
+          "max": 36,
+          "step": 1,
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "number_color",
+          "label": "Number color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "item_title_size",
+          "label": "Item title size (px)",
+          "min": 14,
+          "max": 36,
+          "step": 1,
+          "default": 18
+        },
+        {
+          "type": "color",
+          "id": "item_title_color",
+          "label": "Item title color",
+          "default": "#000000"
+        },
+        {
+  "type": "select",
+  "id": "item_font_weight",
+  "label": "Title font weight",
+  "options": [
+    {
+      "value": "400",
+      "label": "Normal"
+    },
+    {
+      "value": "600",
+      "label": "Bold"
+    } 
+  ],
+  "default": "600"
+},
+        {
+          "type": "range",
+          "id": "content_size",
+          "label": "Content size (px)",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "content_size_mobile",
+          "label": "Content size mobile (px)",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "content_color",
+          "label": "Content color",
+          "default": "#333333"
+        },
+        {
+          "type": "header",
+          "content": "Item 1"
+        },
+        {
+          "type": "text",
+          "id": "item_1_title",
+          "label": "Title",
+          "default": "Accordion Item 1"
+        },
+        {
+          "type": "richtext",
+          "id": "item_1_content",
+          "label": "Content",
+          "default": "<p>Accordion content goes here</p>"
+        },
+        {
+          "type": "color",
+          "id": "item_1_background",
+          "label": "Background color",
+          "default": "#f8f8f8"
+        },
+        {
+          "type": "header",
+          "content": "Item 2"
+        },
+        {
+          "type": "text",
+          "id": "item_2_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "item_2_content",
+          "label": "Content"
+        },
+        {
+          "type": "color",
+          "id": "item_2_background",
+          "label": "Background color",
+          "default": "#f8f8f8"
+        },
+        {
+          "type": "header",
+          "content": "Item 3"
+        },
+        {
+          "type": "text",
+          "id": "item_3_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "item_3_content",
+          "label": "Content"
+        },
+        {
+          "type": "color",
+          "id": "item_3_background",
+          "label": "Background color",
+          "default": "#f8f8f8"
+        },
+        {
+          "type": "header",
+          "content": "Item 4"
+        },
+        {
+          "type": "text",
+          "id": "item_4_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "item_4_content",
+          "label": "Content"
+        },
+        {
+          "type": "color",
+          "id": "item_4_background",
+          "label": "Background color",
+          "default": "#f8f8f8"
+        },
+        {
+          "type": "header",
+          "content": "Item 5"
+        },
+        {
+          "type": "text",
+          "id": "item_5_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "item_5_content",
+          "label": "Content"
+        },
+        {
+          "type": "color",
+          "id": "item_5_background",
+          "label": "Background color",
+          "default": "#f8f8f8"
+        },
+        {
+          "type": "header",
+          "content": "Item 6"
+        },
+        {
+          "type": "text",
+          "id": "item_6_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "item_6_content",
+          "label": "Content"
+        },
+        {
+          "type": "color",
+          "id": "item_6_background",
+          "label": "Background color",
+          "default": "#f8f8f8"
+        }
+      ]
+    },
+    {
+      "type": "team",
+      "name": "Team",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Block Settings"
+        },
+        {
+          "type": "select",
+          "id": "container_width",
+          "label": "Container width",
+          "options": [
+            { "value": "full", "label": "Full width" },
+            { "value": "large", "label": "Large" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "small", "label": "Small" }
+          ],
+          "default": "medium"
+        },
+        {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Block Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Block Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "transparent"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "card_bg",
+          "label": "Card background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "image_bg_color",
+          "label": "Image background",
+          "default": "#f5f5f5"
+        },
+        {
+          "type": "header",
+          "content": "Header"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Our Team"
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "label": "Title size (px)",
+          "min": 16,
+          "max": 48,
+          "step": 1,
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "title_size_mobile",
+          "label": "Title size mobile (px)",
+          "min": 14,
+          "max": 36,
+          "step": 1,
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title color",
+          "default": "#000000"
+        },
+        {
+      "type": "color",
+      "id": "title_bg_color",
+      "label": "Title Background color",
+      "default": "#b9ff66"
+    },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Meet our talented team members</p>"
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "description_size",
+          "label": "Description size (px)",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "default": 13
+        },
+        {
+          "type": "range",
+          "id": "description_size_mobile",
+          "label": "Description size mobile (px)",
+          "min": 12,
+          "max": 18,
+          "step": 1,
+          "default": 12
+        },
+        {
+          "type": "header",
+          "content": "Team Member Styles"
+        },
+        {
+          "type": "range",
+          "id": "name_size",
+          "label": "Name size (px)",
+          "min": 14,
+          "max": 36,
+          "step": 1,
+          "default": 18
+        },
+        {
+          "type": "range",
+          "id": "name_size_mobile",
+          "label": "Name size mobile (px)",
+          "min": 14,
+          "max": 28,
+          "step": 1,
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "name_color",
+          "label": "Name color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "position_size",
+          "label": "Position size (px)",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "default": 14
+        },
+        {
+          "type": "range",
+          "id": "position_size_mobile",
+          "label": "Position size mobile (px)",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "default": 13
+        },
+        {
+          "type": "color",
+          "id": "position_color",
+          "label": "Position color",
+          "default": "#666666"
+        },
+        {
+          "type": "range",
+          "id": "content_description_size",
+          "label": "Description size (px)",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "default": 13
+        },
+        {
+          "type": "range",
+          "id": "contenr_description_size_mobile",
+          "label": "Description size mobile (px)",
+          "min": 12,
+          "max": 18,
+          "step": 1,
+          "default": 12
+        },
+        {
+          "type": "color",
+          "id": "description_text_color",
+          "label": "Description text color",
+          "default": "#333333"
+        },
+        {
+  "type": "header",
+  "content": "Image Settings"
+},
+{
+  "type": "range",
+  "id": "image_width",
+  "label": "Image Width (Desktop)",
+  "min": 40,
+  "max": 200,
+  "step": 5,
+  "unit": "px",
+  "default": 80
+},
+{
+  "type": "range",
+  "id": "image_height",
+  "label": "Image Height (Desktop)",
+  "min": 40,
+  "max": 200,
+  "step": 5,
+  "unit": "px",
+  "default": 80
+},
+{
+  "type": "range",
+  "id": "image_width_mobile",
+  "label": "Image Width (Mobile)",
+  "min": 40,
+  "max": 200,
+  "step": 5,
+  "unit": "px",
+  "default": 80
+},
+{
+  "type": "range",
+  "id": "image_height_mobile",
+  "label": "Image Height (Mobile)",
+  "min": 40,
+  "max": 200,
+  "step": 5,
+  "unit": "px",
+  "default": 80
+},
+{
+  "type": "header",
+  "content": "Mobile Slider Settings"
+},
+{
+  "type": "checkbox",
+  "id": "enable_mobile_slider",
+  "label": "Enable Slider on Mobile",
+  "default": false
+},
+{
+  "type": "checkbox",
+  "id": "show_dots",
+  "label": "Show Navigation Dots",
+  "default": true,
+  "info": "Only visible when slider is enabled"
+},
+        {
+          "type": "header",
+          "content": "Member 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "member_1_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "member_1_name",
+          "label": "Name",
+          "default": "Team Member"
+        },
+        {
+          "type": "text",
+          "id": "member_1_position",
+          "label": "Position",
+          "default": "Position"
+        },
+        {
+          "type": "richtext",
+          "id": "member_1_description",
+          "label": "Description",
+          "default": "<p>Team member description</p>"
+        },
+        {
+          "type": "color",
+          "id": "member_1_bg",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Member 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "member_2_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "member_2_name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "member_2_position",
+          "label": "Position"
+        },
+        {
+          "type": "richtext",
+          "id": "member_2_description",
+          "label": "Description"
+        },
+        {
+          "type": "color",
+          "id": "member_2_bg",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Member 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "member_3_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "member_3_name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "member_3_position",
+          "label": "Position"
+        },
+        {
+          "type": "richtext",
+          "id": "member_3_description",
+          "label": "Description"
+        },
+        {
+          "type": "color",
+          "id": "member_3_bg",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Member 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "member_4_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "member_4_name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "member_4_position",
+          "label": "Position"
+        },
+        {
+          "type": "richtext",
+          "id": "member_4_description",
+          "label": "Description"
+        },
+        {
+          "type": "color",
+          "id": "member_4_bg",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Member 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "member_5_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "member_5_name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "member_5_position",
+          "label": "Position"
+        },
+        {
+          "type": "richtext",
+          "id": "member_5_description",
+          "label": "Description"
+        },
+        {
+          "type": "color",
+          "id": "member_5_bg",
+          "label": "Background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Member 6"
+        },
+        {
+          "type": "image_picker",
+          "id": "member_6_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "member_6_name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "member_6_position",
+          "label": "Position"
+        },
+        {
+          "type": "richtext",
+          "id": "member_6_description",
+          "label": "Description"
+        },
+        {
+          "type": "color",
+          "id": "member_6_bg",
+          "label": "Background color",
+          "default": "#ffffff"
+        }
+      ]
+    },
+    {
+  "type": "testimonials",
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Block Settings"
+    },
+    {
+      "type": "select",
+      "id": "container_width",
+      "label": "Container width",
+      "options": [
+        { "value": "full", "label": "Full width" },
+        { "value": "large", "label": "Large" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "small", "label": "Small" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Block Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Block Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "transparent"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Testimonails"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size (px)",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "label": "Title size mobile (px)",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "title_bg_color",
+      "label": "Title Background color",
+      "default": "#b9ff66"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Hear from Our Satisfied Clients: Read Our Testimonials to Learn More about Our Digital Marketing Services</p>"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size (px)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "description_size_mobile",
+      "label": "Description size mobile (px)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description Color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Testimonial Styles"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_images",
+      "label": "Show testimonial images",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "image_size",
+      "label": "Image size (px)",
+      "min": 40,
+      "max": 120,
+      "step": 5,
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "default": 30,
+      "unit": "%"
+    },
+    {
+      "type": "range",
+      "id": "content_size",
+      "label": "Content size (px)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "content_size_mobile",
+      "label": "Content size mobile (px)",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "content_color",
+      "label": "Content color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "name_size",
+      "label": "Name size (px)",
+      "min": 14,
+      "max": 36,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "name_size_mobile",
+      "label": "Name size mobile (px)",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "name_color",
+      "label": "Name color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "rating_size",
+      "label": "Rating size (px)",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "rating_size_mobile",
+      "label": "Rating size mobile (px)",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "rating_color",
+      "label": "Rating color",
+      "default": "#ffc107"
+    },
+    {
+      "type": "header",
+      "content": "Slider Settings"
+    },
+    
+    {
+      "type": "color",
+      "id": "slider_bg",
+      "label": "Slider Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "slides_to_show",
+      "label": "Slides to show",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed (seconds)",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
+    {
+  "type": "header",
+  "content": "Pagination & Navigation"
+},
+{
+  "type": "checkbox",
+  "id": "show_pagination",
+  "label": "Show pagination dots",
+  "default": true
+},
+{
+  "type": "checkbox",
+  "id": "show_navigation",
+  "label": "Show navigation arrows",
+  "default": true
+},
+{
+  "type": "header",
+  "content": "Speech Bubble"
+},
+{
+  "type": "select",
+  "id": "bubble_position",
+  "label": "Speech bubble position",
+  "options": [
+    { "value": "left", "label": "Left" },
+    { "value": "center", "label": "Center" },
+    { "value": "right", "label": "Right" }
+  ],
+  "default": "center"
+},
+    {
+      "type": "header",
+      "content": "Testimonial 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonial_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_1_name",
+      "label": "Name",
+      "default": "Customer Name"
+    },
+    {
+      "type": "richtext",
+      "id": "testimonial_1_content",
+      "label": "Testimonial",
+      "default": "<p>Great product! I love it.</p>"
+    },
+    {
+      "type": "range",
+      "id": "testimonial_1_rating",
+      "label": "Rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Testimonial 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonial_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_2_name",
+      "label": "Name",
+      "default": "Customer Name"
+    },
+    {
+      "type": "richtext",
+      "id": "testimonial_2_content",
+      "label": "Testimonial",
+      "default": "<p>Great product! I love it.</p>"
+    },
+    {
+      "type": "range",
+      "id": "testimonial_2_rating",
+      "label": "Rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Testimonial 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonial_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_3_name",
+      "label": "Name",
+      "default": "Customer Name"
+    },
+    {
+      "type": "richtext",
+      "id": "testimonial_3_content",
+      "label": "Testimonial",
+      "default": "<p>Great product! I love it.</p>"
+    },
+    {
+      "type": "range",
+      "id": "testimonial_3_rating",
+      "label": "Rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Testimonial 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "testimonial_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_4_name",
+      "label": "Name",
+      "default": "Customer Name"
+    },
+    {
+      "type": "richtext",
+      "id": "testimonial_4_content",
+      "label": "Testimonial",
+      "default": "<p>Great product! I love it.</p>"
+    },
+    {
+      "type": "range",
+      "id": "testimonial_4_rating",
+      "label": "Rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    }
+  ]
+},
+    {
+      "type": "contact_form",
+      "name": "Contact Form",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Block Settings"
+        },
+        {
+          "type": "select",
+          "id": "container_width",
+          "label": "Container width",
+          "options": [
+            { "value": "full", "label": "Full width" },
+            { "value": "large", "label": "Large" },
+            { "value": "medium", "label": "Medium" },
+            { "value": "small", "label": "Small" }
+          ],
+          "default": "medium"
+        },
+        {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Block Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+	{
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Block Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 10
+    },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "transparent"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "content_bg_color",
+          "label": "Form background color",
+          "default": "#f5f5f5"
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Image position",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Contact Us"
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "label": "Title size (px)",
+          "min": 16,
+          "max": 48,
+          "step": 1,
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "title_size_mobile",
+          "label": "Title size mobile (px)",
+          "min": 14,
+          "max": 36,
+          "step": 1,
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title color",
+          "default": "#000000"
+        },
+        {
+      "type": "color",
+      "id": "title_bg_color",
+      "label": "Title Background color",
+      "default": "#b9ff66"
+    },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Get in touch with our team</p>"
+        },
+        {
+          "type": "range",
+          "id": "description_size",
+          "label": "Description size (px)",
+          "min": 12,
+          "max": 24,
+          "step": 1,
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "description_size_mobile",
+          "label": "Description size mobile (px)",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "default": 14
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description color",
+          "default": "#666666"
+        },
+        {
+          "type": "header",
+          "content": "Form Fields"
+        },
+        {
+          "type": "text",
+          "id": "name_placeholder",
+          "label": "Name placeholder",
+          "default": "Your Name"
+        },
+        {
+          "type": "text",
+          "id": "email_placeholder",
+          "label": "Email placeholder",
+          "default": "Your Email"
+        },
+        {
+          "type": "text",
+          "id": "phone_placeholder",
+          "label": "Phone placeholder",
+          "default": "Your Phone"
+        },
+        {
+          "type": "text",
+          "id": "message_placeholder",
+          "label": "Message placeholder",
+          "default": "Your Message"
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Send Message"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC - Landing Page #2",
+      "blocks": [
+        {
+          "type": "image_with_text"
+        },
+        {
+          "type": "services"
+        },
+        {
+          "type": "case_studies"
+        },
+        {
+          "type": "accordion"
+        },
+        {
+          "type": "team"
+        },
+        {
+          "type": "testimonials"
+        },
+        {
+          "type": "contact_form"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
