@@ -243,7 +243,7 @@
             "image_width_mobile": 80,
             "image_height_mobile": 80,
             "enable_mobile_slider": false,
-            "show_dots": true,
+            "show_dots": false,
             "member_1_image": "shopify://shop_images/t1.png",
             "member_1_name": "Team Member",
             "member_1_position": "Content Creator",
