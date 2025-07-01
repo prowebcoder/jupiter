@@ -616,6 +616,10 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="pc-service__image">
               {{ block.settings[image_key] | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings[heading_key] }}
             </div>
+            {% else %}
+        <div class="pc-service__image">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
           {% endif %}
         </div>
       {% endif %}
