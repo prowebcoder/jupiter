@@ -1033,7 +1033,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   /* Slider styles */
-  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode {
+  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.pc-slider-mode {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -1044,11 +1044,11 @@ document.addEventListener('DOMContentLoaded', function() {
     gap: 0;
   }
 
-  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode::-webkit-scrollbar {
+  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.pc-slider-mode::-webkit-scrollbar {
     display: none;
   }
 
-  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode .pc-team-member {
+  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.pc-slider-mode .pc-team-member {
     scroll-snap-align: start;
     flex: 0 0 calc(85% - 0px);
     margin: 0 10px;
@@ -1104,13 +1104,13 @@ document.addEventListener('DOMContentLoaded', function() {
   {% endif %}
 
   @media (min-width: 769px) {
-    {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode {
+    {{ sec_id }} #block-{{ block.id }} .pc-team__grid.pc-slider-mode {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
     }
 
-    {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode .pc-team-member {
+    {{ sec_id }} #block-{{ block.id }} .pc-team__grid.pc-slider-mode .pc-team-member {
       flex: none;
       margin: 0;
     }
@@ -1171,7 +1171,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <button class="pc-team__arrow pc-team__arrow--prev">←</button>
   {% endif %}
   
-  <div class="pc-team__grid {% if block.settings.enable_mobile_slider %}slider-mode{% endif %}">
+  <div class="pc-team__grid {% if block.settings.enable_mobile_slider %}pc-slider-mode{% endif %}">
     {% for i in (1..6) %}
       {% assign image_key = 'member_' | append: i | append: '_image' %}
       {% assign name_key = 'member_' | append: i | append: '_name' %}
@@ -1221,7 +1221,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const blockId = 'block-{{ block.id }}';
-  const slider = document.querySelector(`#${blockId} .pc-team__grid.slider-mode`);
+  const slider = document.querySelector(`#${blockId} .pc-team__grid.pc-slider-mode`);
   const prevBtn = document.querySelector(`#${blockId} .pc-team__arrow--prev`);
   const nextBtn = document.querySelector(`#${blockId} .pc-team__arrow--next`);
   const dots = document.querySelectorAll(`#${blockId} .pc-team__dot`);
