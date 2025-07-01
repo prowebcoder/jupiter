@@ -154,6 +154,10 @@
                 {{ sec_id }} #block-{{ block.id }}.pc-image-with-text {
                   gap: 20px;
                 }
+                 {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__button {
+                margin: 0 auto;
+                display: table;
+              }
               }
             </style>
             <div id="block-{{ block.id }}" class="pc-image-with-text {% if block.settings.layout == 'right' %}pc-image-with-text--reverse{% endif %}">
