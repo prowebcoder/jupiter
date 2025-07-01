@@ -110,105 +110,104 @@
       >
         {% case block.type %}
           {% when 'image_with_text' %}
-          <style>
-            {{ sec_id }} #block-{{ block.id }}.pc-image-with-text {
-              display: flex;
-              align-items: center;
-              gap: 40px;
-              padding-top: {{ block.settings.padding_top }}px;
-              padding-bottom: {{ block.settings.padding_bottom }}px;
-            }
+  <style>
+    {{ sec_id }} #block-{{ block.id }}.pc-image-with-text {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding-top: {{ block.settings.padding_top }}px;
+      padding-bottom: {{ block.settings.padding_bottom }}px;
+    }
 
-            {{ sec_id }} #block-{{ block.id }}.pc-image-with-text--reverse {
-              flex-direction: row-reverse;
-            }
+    {{ sec_id }} #block-{{ block.id }}.pc-image-with-text--reverse {
+      flex-direction: row-reverse;
+    }
 
-            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image {
-              flex: 1;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
+    {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image img {
-              width: {{ block.settings.image_width_percent }}%;
-              height: {{ block.settings.image_height }}px;
-              object-fit: contain;
-            }
+    {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image img {
+      width: {{ block.settings.image_width_percent }}%;
+      height: {{ block.settings.image_height }}px;
+      object-fit: contain;
+    }
 
-            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__content {
-              flex: 1;
-              padding-left: {{ block.settings.content_padding_lr }}px;
-              padding-right: {{ block.settings.content_padding_lr }}px;
-            }
+    {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__content {
+      flex: 1;
+      padding: 0 {{ block.settings.content_padding_lr }}px;
+    }
 
-            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__heading {
-              font-size: {{ block.settings.heading_size }}px;
-              font-weight: {{ block.settings.heading_font_weight }};
-              margin-bottom: 20px;
-              color: {{ block.settings.heading_color }};
-            }
+    {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__heading {
+      font-size: {{ block.settings.heading_size }}px;
+      font-weight: {{ block.settings.heading_font_weight }};
+      margin-bottom: 20px;
+      color: {{ block.settings.heading_color }};
+    }
 
-            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__text {
-              font-size: {{ block.settings.text_size }}px;
-              margin-bottom: 25px;
-              color: {{ block.settings.text_color }};
-            }
+    {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__text {
+      font-size: {{ block.settings.text_size }}px;
+      margin-bottom: 25px;
+      color: {{ block.settings.text_color }};
+    }
 
-            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__button {
-              display: inline-block;
-              padding: 12px 24px;
-              background-color: {{ block.settings.button_bg }};
-              color: {{ block.settings.button_text_color }};
-              font-size: {{ block.settings.button_text_size }}px;
-              font-weight: {{ block.settings.button_font_weight }};
-              border-radius: {{ block.settings.button_border_radius }}px;
-              text-decoration: none;
-              transition: all 0.3s ease;
-            }
+    {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: {{ block.settings.button_bg }};
+      color: {{ block.settings.button_text_color }};
+      font-size: {{ block.settings.button_text_size }}px;
+      font-weight: {{ block.settings.button_font_weight }};
+      border-radius: {{ block.settings.button_border_radius }}px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
 
-            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__button:hover {
-              opacity: 0.9;
-              transform: translateY(-2px);
-            }
+    {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
 
-            @media (max-width: 768px) {
-              {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__heading {
-                font-size: calc({{ block.settings.heading_size }}px * 0.8);
-              }
-              {{ sec_id }} #block-{{ block.id }}.pc-image-with-text--reverse {
-                flex-direction: column;
-              }
-              {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image img {
-                height: auto;
-              }
-              {{ sec_id }} #block-{{ block.id }}.pc-image-with-text {
-                gap: 20px;
-              }
-            }
-          </style>
-          <div id="block-{{ block.id }}" class="pc-image-with-text {% if block.settings.layout == 'right' %}pc-image-with-text--reverse{% endif %}">
-            <div class="pc-image-with-text__image">
-              {% if block.settings.image != blank %}
-                {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
-              {% else %}
-                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-              {% endif %}
-            </div>
-            <div class="pc-image-with-text__content">
-              {% if block.settings.heading != blank %}
-                <h2 class="pc-image-with-text__heading">{{ block.settings.heading }}</h2>
-              {% endif %}
-              {% if block.settings.text != blank %}
-                <div class="pc-image-with-text__text">{{ block.settings.text }}</div>
-              {% endif %}
-              {% if block.settings.button_label != blank %}
-                <a href="{{ block.settings.button_link }}" class="pc-image-with-text__button">
-                  {{ block.settings.button_label }}
-                </a>
-              {% endif %}
-            </div>
-          </div>
+    @media (max-width: 768px) {
+      {{ sec_id }} #block-{{ block.id }}.pc-image-with-text {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image img {
+        height: auto;
+      }
+
+      {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__heading {
+        font-size: calc({{ block.settings.heading_size }}px * 0.8);
+      }
+    }
+  </style>
+
+  <div id="block-{{ block.id }}" class="pc-image-with-text {% if block.settings.layout == 'right' %}pc-image-with-text--reverse{% endif %}">
+    <div class="pc-image-with-text__image">
+      {% if block.settings.image != blank %}
+        {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+    <div class="pc-image-with-text__content">
+      {% if block.settings.heading != blank %}
+        <h2 class="pc-image-with-text__heading">{{ block.settings.heading }}</h2>
+      {% endif %}
+      {% if block.settings.text != blank %}
+        <div class="pc-image-with-text__text">{{ block.settings.text }}</div>
+      {% endif %}
+      {% if block.settings.button_label != blank %}
+        <a href="{{ block.settings.button_link }}" class="pc-image-with-text__button">{{ block.settings.button_label }}</a>
+      {% endif %}
+    </div>
+  </div>
+
 
          {% when 'brands' %}
 <style>
