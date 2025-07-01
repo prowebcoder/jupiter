@@ -1160,7 +1160,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 </style>
-
+<pc-team >
 <div id="block-{{ block.id }}" class="pc-team">
   <div class="pc-team__header">
     <h2 class="pc-team__title">{{ block.settings.title }}</h2>
@@ -1218,84 +1218,121 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 {% if block.settings.enable_mobile_slider %}
+  </pc-team>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const blockId = 'block-{{ block.id }}';
-  const slider = document.querySelector(`#${blockId} .pc-team__grid.pc-slider-mode`);
-  const prevBtn = document.querySelector(`#${blockId} .pc-team__arrow--prev`);
-  const nextBtn = document.querySelector(`#${blockId} .pc-team__arrow--next`);
-  const dots = document.querySelectorAll(`#${blockId} .pc-team__dot`);
-  
-  if (!slider) return;
-  
-  // Initialize slider only on mobile
-  function initSlider() {
-    if (window.innerWidth > 768) {
-      // Remove slider behavior on desktop
-      return;
+class PCTeam extends HTMLElement {
+  constructor() {
+    super();
+    this.sliderEnabled = this.classList.contains('pc-slider-mode');
+    this.grid = this.querySelector('.pc-team__grid');
+    this.prevBtn = this.querySelector('.pc-team__arrow--prev');
+    this.nextBtn = this.querySelector('.pc-team__arrow--next');
+    this.dotsContainer = this.querySelector('.pc-team__dots');
+    this.dots = this.dotsContainer ? this.dotsContainer.querySelectorAll('.pc-team__dot') : [];
+    this.members = this.querySelectorAll('.pc-team-member');
+    
+    this.initComponent();
+  }
+
+  initComponent() {
+    if (!this.sliderEnabled) return;
+    
+    // Check if we need slider behavior
+    this.checkSliderNeeded();
+    
+    // Initialize only if needed and on mobile
+    if (this.needsSlider && window.innerWidth <= 768) {
+      this.initSlider();
     }
     
-    const members = slider.querySelectorAll('.pc-team-member');
-    if (members.length <= 1) {
-      if (dots) dots.forEach(dot => dot.style.display = 'none');
-      if (prevBtn) prevBtn.style.display = 'none';
-      if (nextBtn) nextBtn.style.display = 'none';
-      return;
-    }
+    // Add resize listener
+    window.addEventListener('resize', () => this.handleResize());
+  }
+
+  checkSliderNeeded() {
+    this.needsSlider = this.members.length > 1;
     
-    // Show navigation if enabled
-    if (prevBtn) prevBtn.style.display = 'flex';
-    if (nextBtn) nextBtn.style.display = 'flex';
-    
-    // Handle arrow clicks
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        slider.scrollBy({
-          left: -slider.clientWidth,
-          behavior: 'smooth'
-        });
-      });
-    }
-    
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        slider.scrollBy({
-          left: slider.clientWidth,
-          behavior: 'smooth'
-        });
-      });
-    }
-    
-    // Handle dot clicks
-    if (dots.length > 0) {
-      dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-          const index = parseInt(dot.dataset.index);
-          slider.scrollTo({
-            left: slider.clientWidth * index,
-            behavior: 'smooth'
-          });
-        });
-      });
-      
-      // Update active dot on scroll
-      slider.addEventListener('scroll', () => {
-        const activeIndex = Math.round(slider.scrollLeft / slider.clientWidth);
-        dots.forEach((dot, index) => {
-          dot.classList.toggle('active', index === activeIndex);
-        });
-      });
+    // Hide navigation if not needed
+    if (!this.needsSlider) {
+      if (this.prevBtn) this.prevBtn.style.display = 'none';
+      if (this.nextBtn) this.nextBtn.style.display = 'none';
+      if (this.dotsContainer) this.dotsContainer.style.display = 'none';
     }
   }
-  
-  // Initialize on load
-  initSlider();
-  
-  // Re-initialize on resize
-  window.addEventListener('resize', function() {
-    initSlider();
-  });
-});
+
+  initSlider() {
+    // Set up navigation
+    if (this.prevBtn) {
+      this.prevBtn.style.display = 'flex';
+      this.prevBtn.addEventListener('click', () => this.prevSlide());
+    }
+    
+    if (this.nextBtn) {
+      this.nextBtn.style.display = 'flex';
+      this.nextBtn.addEventListener('click', () => this.nextSlide());
+    }
+    
+    // Set up dots
+    if (this.dots.length > 0) {
+      this.dotsContainer.style.display = 'flex';
+      this.dots.forEach(dot => {
+        dot.addEventListener('click', () => this.goToSlide(parseInt(dot.dataset.index)));
+      });
+      
+      // Update dots on scroll
+      this.grid.addEventListener('scroll', () => this.updateDots());
+    }
+  }
+
+  prevSlide() {
+    this.grid.scrollBy({
+      left: -this.grid.clientWidth,
+      behavior: 'smooth'
+    });
+  }
+
+  nextSlide() {
+    this.grid.scrollBy({
+      left: this.grid.clientWidth,
+      behavior: 'smooth'
+    });
+  }
+
+  goToSlide(index) {
+    this.grid.scrollTo({
+      left: this.grid.clientWidth * index,
+      behavior: 'smooth'
+    });
+  }
+
+  updateDots() {
+    const activeIndex = Math.round(this.grid.scrollLeft / this.grid.clientWidth);
+    this.dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === activeIndex);
+    });
+  }
+
+  handleResize() {
+    if (window.innerWidth <= 768 && this.needsSlider) {
+      if (!this.sliderInitialized) {
+        this.initSlider();
+        this.sliderInitialized = true;
+      }
+    } else {
+      // Reset to grid layout on desktop
+      if (this.prevBtn) this.prevBtn.style.display = 'none';
+      if (this.nextBtn) this.nextBtn.style.display = 'none';
+      if (this.dotsContainer) this.dotsContainer.style.display = 'none';
+      this.sliderInitialized = false;
+    }
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('resize', () => this.handleResize());
+  }
+}
+
+customElements.define('pc-team', PCTeam);
 </script>
 {% endif %}
 
