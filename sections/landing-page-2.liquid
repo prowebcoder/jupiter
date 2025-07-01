@@ -371,7 +371,7 @@
       {% endif %}
     {% endfor %}
   </div>
-  
+ {% if block.settings.enable_mobile_slider %}
   {% if block.settings.show_arrows %}
     <button class="pc-brand-slider__arrow pc-brand-slider__arrow--next">→</button>
   {% endif %}
@@ -383,6 +383,7 @@
       {% endfor %}
     </div>
   {% endif %}
+    {% endif %}
 </div>
 
 <script>
