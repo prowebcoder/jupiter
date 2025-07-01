@@ -1,4 +1,4 @@
-{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+  {%- assign sec_id = '#shopify-section-' | append: section.id -%}
 
 <style>
   /* SECTION STYLES */
@@ -24,13 +24,11 @@
   }
 
   /* BLOCK CONTAINERS */
-  {{ sec_id }} [class*="pc-block-container--"] {
-    margin: 0 auto;
-  }
+
   {{ sec_id }} .pc-block-container--full { width: 100%; }
-  {{ sec_id }} .pc-block-container--large { max-width: 1400px; }
-  {{ sec_id }} .pc-block-container--medium { max-width: 1200px; }
-  {{ sec_id }} .pc-block-container--small { max-width: 1000px; }
+  {{ sec_id }} .pc-block-container--large { max-width: 1400px; margin: 0 auto; }
+  {{ sec_id }} .pc-block-container--medium { max-width: 1200px; margin: 0 auto; }
+  {{ sec_id }} .pc-block-container--small { max-width: 1000px; margin: 0 auto; }
 
   /* PLACEHOLDER STYLES */
   {{ sec_id }} .placeholder-svg {
@@ -50,19 +48,51 @@
       --pc-section-padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
     }
 
-    {{ sec_id }} [class*="__header"] {
+    {{ sec_id }} .pc-image-with-text,
+    {{ sec_id }} .pc-contact-form {
+      flex-direction: column;
+    }
+
+    {{ sec_id }} .pc-services__header,
+    {{ sec_id }} .pc-simple-columns__header,
+    {{ sec_id }} .pc-team__header,
+    {{ sec_id }} .pc-case-studies__header,
+    {{ sec_id }} .pc-accordion__header,
+    {{ sec_id }} .pc-testimonials__header,
+    {{ sec_id }} .pc-contact-form__header {
       flex-direction: column;
       gap: 15px;
     }
 
-    {{ sec_id }} [class*="__description"] {
+    {{ sec_id }} .pc-services__description,
+    {{ sec_id }} .pc-simple-columns__description,
+    {{ sec_id }} .pc-team__description, 
+    {{ sec_id }} .pc-case-studies__description,
+    {{ sec_id }} .pc-accordion__description,
+    {{ sec_id }} .pc-testimonials__description,
+    {{ sec_id }} .pc-contact-form__description {
       flex: none;
       text-align: center;
       width: 100%;
     }
 
-    {{ sec_id }} [class*="__grid"] {
+    {{ sec_id }} .pc-services__grid,
+    {{ sec_id }} .pc-simple-columns__grid,
+    {{ sec_id }} .pc-team__grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    {{ sec_id }} .pc-service__content {
+      flex-direction: column;
+    }
+
+    {{ sec_id }} .pc-testimonial {
+      flex: 0 0 80%;
+    }
+
+    {{ sec_id }} .pc-team-member__image {
+      width: 150px;
+      height: 150px;
     }
   }
 </style>
@@ -73,1231 +103,1600 @@
       {%- assign block_bg_color = block.settings.background_color | default: 'transparent' -%}
       {%- assign block_text_color = block.settings.text_color | default: 'inherit' -%}
 
-      <div class="pc-block-container pc-block-container--{{ block.settings.container_width }}"
-           style="background-color: {{ block_bg_color }}; color: {{ block_text_color }};"
-           {{ block.shopify_attributes }}>
-        
+      <div
+        class="pc-block-container pc-block-container--{{ block.settings.container_width }}"
+        style="background-color: {{ block_bg_color }}; color: {{ block_text_color }};"
+        {{ block.shopify_attributes }}
+      >
         {% case block.type %}
           {% when 'image_with_text' %}
-            <style>
-              {{ sec_id }} #block-{{ block.id }}.pc-image-with-text {
-                display: flex;
-                align-items: center;
-                gap: 40px;
-                padding-top: {{ block.settings.padding_top }}px;
-                padding-bottom: {{ block.settings.padding_bottom }}px;
-              }
+          <style>
+            {{ sec_id }} #block-{{ block.id }}.pc-image-with-text {
+              display: flex;
+              align-items: center;
+              gap: 40px;
+              padding-top: {{ block.settings.padding_top }}px;
+              padding-bottom: {{ block.settings.padding_bottom }}px;
+            }
 
-              {{ sec_id }} #block-{{ block.id }}.pc-image-with-text--reverse {
-                flex-direction: row-reverse;
-              }
+            {{ sec_id }} #block-{{ block.id }}.pc-image-with-text--reverse {
+              flex-direction: row-reverse;
+            }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image {
-                flex: 1;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-              }
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image {
+              flex: 1;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image img {
-                width: {{ block.settings.image_width_percent }}%;
-                height: {{ block.settings.image_height }}px;
-                object-fit: contain;
-              }
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image img {
+              width: {{ block.settings.image_width_percent }}%;
+              height: {{ block.settings.image_height }}px;
+              object-fit: contain;
+            }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__content {
-                flex: 1;
-                padding: 0 {{ block.settings.content_padding_lr }}px;
-              }
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__content {
+              flex: 1;
+              padding-left: {{ block.settings.content_padding_lr }}px;
+              padding-right: {{ block.settings.content_padding_lr }}px;
+            }
 
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__heading {
+              font-size: {{ block.settings.heading_size }}px;
+              font-weight: {{ block.settings.heading_font_weight }};
+              margin-bottom: 20px;
+              color: {{ block.settings.heading_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__text {
+              font-size: {{ block.settings.text_size }}px;
+              margin-bottom: 25px;
+              color: {{ block.settings.text_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__button {
+              display: inline-block;
+              padding: 12px 24px;
+              background-color: {{ block.settings.button_bg }};
+              color: {{ block.settings.button_text_color }};
+              font-size: {{ block.settings.button_text_size }}px;
+              font-weight: {{ block.settings.button_font_weight }};
+              border-radius: {{ block.settings.button_border_radius }}px;
+              text-decoration: none;
+              transition: all 0.3s ease;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__button:hover {
+              opacity: 0.9;
+              transform: translateY(-2px);
+            }
+
+            @media (max-width: 768px) {
               {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__heading {
-                font-size: {{ block.settings.heading_size }}px;
-                font-weight: {{ block.settings.heading_font_weight }};
-                margin-bottom: 20px;
-                color: {{ block.settings.heading_color }};
+                font-size: calc({{ block.settings.heading_size }}px * 0.8);
               }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__text {
-                font-size: {{ block.settings.text_size }}px;
-                margin-bottom: 25px;
-                color: {{ block.settings.text_color }};
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__button {
-                display: inline-block;
-                padding: 12px 24px;
-                background-color: {{ block.settings.button_bg }};
-                color: {{ block.settings.button_text_color }};
-                font-size: {{ block.settings.button_text_size }}px;
-                font-weight: {{ block.settings.button_font_weight }};
-                border-radius: {{ block.settings.button_border_radius }}px;
-                text-decoration: none;
-                transition: all 0.3s ease;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__button:hover {
-                opacity: 0.9;
-                transform: translateY(-2px);
-              }
-
-              @media (max-width: 768px) {
-                {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__heading {
-                  font-size: calc({{ block.settings.heading_size }}px * 0.5);
-                }
-                {{ sec_id }} #block-{{ block.id }}.pc-image-with-text,
-                {{ sec_id }} #block-{{ block.id }}.pc-image-with-text--reverse {
-                  flex-direction: column;
-                }
-                {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image img {
-                  height: auto;
-                }
-                {{ sec_id }} #block-{{ block.id }}.pc-image-with-text {
-                  gap: 20px;
-                }
-                 {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__button {
-                margin: 0 auto;
-                display: table;
-              }
-              }
-            </style>
-            <div id="block-{{ block.id }}" class="pc-image-with-text {% if block.settings.layout == 'right' %}pc-image-with-text--reverse{% endif %}">
-              <div class="pc-image-with-text__image">
-                {% if block.settings.image != blank %}
-                  {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
-                {% else %}
-                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                {% endif %}
-              </div>
-              <div class="pc-image-with-text__content">
-                {% if block.settings.heading != blank %}
-                  <h2 class="pc-image-with-text__heading">{{ block.settings.heading }}</h2>
-                {% endif %}
-                {% if block.settings.text != blank %}
-                  <div class="pc-image-with-text__text">{{ block.settings.text }}</div>
-                {% endif %}
-                {% if block.settings.button_label != blank %}
-                  <a href="{{ block.settings.button_link }}" class="pc-image-with-text__button">
-                    {{ block.settings.button_label }}
-                  </a>
-                {% endif %}
-              </div>
-            </div>
-
-          {% when 'services' %}
-            <style>
-              {{ sec_id }} #block-{{ block.id }}.pc-services {
-                background: {{ block.settings.background_color }};
-                padding-top: {{ block.settings.padding_top }}px;
-                padding-bottom: {{ block.settings.padding_bottom }}px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-services__header {
-                display: flex;
-                justify-content: flex-start;
-                gap: 40px;
-                align-items: center;
-                flex-wrap: wrap;
-                max-width: 1200px;
-                margin: 0 auto 40px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-services__title {
-                font-size: {{ block.settings.title_size }}px;
-                font-weight: bold;
-                color: {{ block.settings.title_color }};
-                background: {{ block.settings.title_bg_color }};
-                display: inline-block;
-                padding: 5px 15px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-services__description {
-                max-width: 600px;
-                color: {{ block.settings.description_color }};
-                font-size: {{ block.settings.description_size }}px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-services__grid {
-                display: grid;
-                grid-template-columns: repeat({{ block.settings.columns_desktop | default: 2 }}, 1fr);
-                gap: 30px;
-                max-width: 1200px;
-                margin: 0 auto;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-service {
-                display: flex;
-                border-radius: 12px;
-                overflow: hidden;
-                transition: all 0.3s ease;
-                {% if block.settings.card_shadow %}
-                box-shadow: 0 7px 1px rgb(0 0 0);
-                {% endif %}
-                min-height: 200px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-service__content {
-                flex: 1;
-                padding: 30px;
-                display: flex;
+              {{ sec_id }} #block-{{ block.id }}.pc-image-with-text--reverse {
                 flex-direction: column;
-                justify-content: center;
               }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-service__heading {
-                font-size: {{ block.settings.heading_size }}px;
-                margin-bottom: 15px;
+              {{ sec_id }} #block-{{ block.id }} .pc-image-with-text__image img {
+                height: auto;
               }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-service__link {
-                display: inline-flex;
-                align-items: center;
-                margin-top: 20px;
-                text-decoration: none;
-                font-weight: 600;
-                transition: color 0.3s ease;
-                font-size: {{ block.settings.link_size }}px;
+              {{ sec_id }} #block-{{ block.id }}.pc-image-with-text {
+                gap: 20px;
               }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-service__link-arrow {
-                margin-right: 8px;
-                transition: transform 0.3s ease;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-service__link:hover .pc-service__link-arrow {
-                transform: translateX(-3px);
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-service__image {
-                flex: 0 0 40%;
-                position: relative;
-                overflow: hidden;
-                padding: 20px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-service__image img {
-                width: 65%;
-                height: 100%;
-                object-fit: contain;
-              }
-
-              @media (max-width: 992px) {
-                {{ sec_id }} #block-{{ block.id }} .pc-services__grid {
-                  grid-template-columns: 1fr;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-service__image {
-                  flex: 0 0 200px;
-                }
-                {{ sec_id }} #block-{{ block.id }} .pc-service__heading {
-                  font-size: {{ block.settings.heading_size | times: 0.8 }}px;
-                }
-                {{ sec_id }} #block-{{ block.id }} .pc-service__link {
-                  margin-top: 0px;
-                }
-              }
-
-              @media (max-width: 768px) {
-                {{ sec_id }} #block-{{ block.id }} .pc-services__title {
-                  font-size: {{ block.settings.title_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-services__description {
-                  font-size: {{ block.settings.description_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-service {
-                  flex-direction: column;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-service__image img {
-                  width: 100%;
-                  padding: 20px;
-                }
-                {{ sec_id }} #block-{{ block.id }} .pc-service__content {
-                  align-items: center;
-                  padding: 0px;
-                }
-                {{ sec_id }} #block-{{ block.id }} .pc-services__header {
-                  gap: 0px;
-                  margin: 0 auto 0px;
-                }
-              }
-            </style>
-            <div id="block-{{ block.id }}" class="pc-services">
-              <div class="pc-services__header">
-                <h2 class="pc-services__title">{{ block.settings.title }}</h2>
-                <div class="pc-services__description">{{ block.settings.description }}</div>
-              </div>
-              <div class="pc-services__grid">
-                {% for i in (1..6) %}
-                  {% assign heading_key = 'service_' | append: i | append: '_heading' %}
-                  {% assign heading_color_key = 'service_' | append: i | append: '_heading_color' %}
-                  {% assign image_key = 'service_' | append: i | append: '_image' %}
-                  {% assign bg_key = 'service_' | append: i | append: '_bg' %}
-                  {% assign link_key = 'service_' | append: i | append: '_link' %}
-                  
-                  {% if block.settings[heading_key] != blank %}
-                    <div class="pc-service" style="background: {{ block.settings[bg_key] | default: '#ffffff' }};">
-                      <div class="pc-service__content">
-                        <h3 style="color: {{ block.settings[heading_color_key] | default: '#000000' }}" class="pc-service__heading">
-                          {{ block.settings[heading_key] }}
-                        </h3>
-                        {% if block.settings[link_key] != blank %}
-                          <a style="color: {{ block.settings[heading_color_key] | default: '#000000' }}" 
-                             href="{{ block.settings[link_key] }}" 
-                             class="pc-service__link">
-                            <span class="pc-service__link-arrow">→</span>
-                            Learn more
-                          </a>
-                        {% endif %}
-                      </div>
-                      {% if block.settings[image_key] != blank %}
-                        <div class="pc-service__image">
-                          {{ block.settings[image_key] | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings[heading_key] }}
-                        </div>
-                      {% else %}
-                        <div class="pc-service__image">
-                          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                        </div>
-                      {% endif %}
-                    </div>
-                  {% endif %}
-                {% endfor %}
-              </div>
+            }
+          </style>
+          <div id="block-{{ block.id }}" class="pc-image-with-text {% if block.settings.layout == 'right' %}pc-image-with-text--reverse{% endif %}">
+            <div class="pc-image-with-text__image">
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
             </div>
+            <div class="pc-image-with-text__content">
+              {% if block.settings.heading != blank %}
+                <h2 class="pc-image-with-text__heading">{{ block.settings.heading }}</h2>
+              {% endif %}
+              {% if block.settings.text != blank %}
+                <div class="pc-image-with-text__text">{{ block.settings.text }}</div>
+              {% endif %}
+              {% if block.settings.button_label != blank %}
+                <a href="{{ block.settings.button_link }}" class="pc-image-with-text__button">
+                  {{ block.settings.button_label }}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+
+         {% when 'brands' %}
+<style>
+  {{ sec_id }} #block-{{ block.id }}.pc-brand-slider {
+    text-align: center;
+    background: {{ block.settings.background_color }};
+    position: relative;
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__title {
+    font-size: {{ block.settings.title_size }}px;
+    margin-bottom: 30px;
+    color: {{ block.settings.title_color }};
+    font-weight: {{ block.settings.title_font_weight }};
+    background: {{ block.settings.title_bg_color }};
+    display: inline-block;
+    padding: 5px 15px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+    scrollbar-width: none;
+    padding: 20px 0;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item {
+    flex: 0 0 calc(16.666% - 17px);
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    background: {{ block.settings.item_bg_color }};
+    padding: {{ block.settings.item_padding }}px;
+    border-radius: 8px;
+    min-height: {{ block.settings.item_min_height }}px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item img {
+    max-width: {{ block.settings.logo_max_width }}px;
+    max-height: {{ block.settings.logo_max_height }}px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Navigation Arrows */
+  {% if block.settings.show_arrows %}
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: {{ block.settings.arrow_bg_color | default: '#ffffff' }};
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+    color: {{ block.settings.arrow_color }};
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__arrow--prev {
+    left: 10px;
+  }
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__arrow--next {
+    right: 10px;
+  }
+  {% endif %}
+
+  /* Pagination Dots */
+  {% if block.settings.show_dots %}
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: {{ block.settings.dot_color }};
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__dot.active {
+    background: {{ block.settings.dot_active_color }};
+  }
+  {% endif %}
+
+  @media (max-width: 768px) {
+    {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__title {
+      font-size: {{ block.settings.title_size_mobile }}px;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item {
+      flex: 0 0 calc(33.333% - 14px);
+      min-height: {{ block.settings.item_min_height | times: 0.8 }}px;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item img {
+      max-width: {{ block.settings.logo_max_width | times: 0.8 }}px;
+      max-height: {{ block.settings.logo_max_height | times: 0.8 }}px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item {
+      flex: 0 0 calc(50% - 10px);
+      min-height: {{ block.settings.item_min_height | times: 0.7 }}px;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item img {
+      max-width: {{ block.settings.logo_max_width | times: 0.7 }}px;
+      max-height: {{ block.settings.logo_max_height | times: 0.7 }}px;
+    }
+  }
+</style>
+
+<div id="block-{{ block.id }}" class="pc-brand-slider">
+  {% if block.settings.title != blank %}
+    <h2 class="pc-brand-slider__title">{{ block.settings.title }}</h2>
+  {% endif %}
+  
+  {% if block.settings.show_arrows %}
+    <button class="pc-brand-slider__arrow pc-brand-slider__arrow--prev">←</button>
+  {% endif %}
+  
+  <div class="pc-brand-slider__slider" id="brand-slider-{{ block.id }}">
+    {% for i in (1..6) %}
+      {% assign image_key = 'brand_' | append: i | append: '_image' %}
+      {% if block.settings[image_key] != blank %}
+        <div class="pc-brand-slider__item">
+          {{ block.settings[image_key] | image_url: width: 300 | image_tag: loading: 'lazy', alt: 'Brand logo' }}
+        </div>
+      {% else %}
+        <div class="pc-brand-slider__item">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  
+  {% if block.settings.show_arrows %}
+    <button class="pc-brand-slider__arrow pc-brand-slider__arrow--next">→</button>
+  {% endif %}
+  
+  {% if block.settings.show_dots %}
+    <div class="pc-brand-slider__dots">
+      {% for i in (1..6) %}
+        <div class="pc-brand-slider__dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Brand slider functionality
+  const brandSliders = document.querySelectorAll('.pc-brand-slider__slider');
+  
+  brandSliders.forEach(slider => {
+    const wrapper = slider.closest('.pc-brand-slider');
+    const prevBtn = wrapper.querySelector('.pc-brand-slider__arrow--prev');
+    const nextBtn = wrapper.querySelector('.pc-brand-slider__arrow--next');
+    const dots = wrapper.querySelectorAll('.pc-brand-slider__dot');
+    
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        slider.scrollBy({
+          left: -slider.clientWidth,
+          behavior: 'smooth'
+        });
+      });
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        slider.scrollBy({
+          left: slider.clientWidth,
+          behavior: 'smooth'
+        });
+      });
+    }
+    
+    if (dots.length > 0) {
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const index = parseInt(dot.dataset.index);
+          slider.scrollTo({
+            left: slider.clientWidth * index,
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      slider.addEventListener('scroll', () => {
+        const activeIndex = Math.round(slider.scrollLeft / slider.clientWidth);
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === activeIndex);
+        });
+      });
+    }
+  });
+});
+</script>
+
+           <!-- SERVICES BLOCK -->
+          {% when 'services' %}
+          <style>
+  {{ sec_id }} #block-{{ block.id }}.pc-services {
+    background: {{ block.settings.background_color }};
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-services__header {
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-services__title {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: bold;
+    color: {{ block.settings.title_color }};
+    background: {{ block.settings.title_bg_color }};
+    display: inline-block;
+    padding: 5px 15px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .pc-services__description {
+    max-width: 600px;
+    color: {{ block.settings.description_color }};
+    font-size: {{ block.settings.description_size }}px;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-services__grid {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop | default: 2 }}, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service {
+    display: flex;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    {% if block.settings.card_shadow %}
+    box-shadow: 0 7px 1px rgb(0 0 0);
+    {% endif %}
+    min-height: 200px;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__heading {
+    font-size: {{ block.settings.heading_size }}px;
+    margin-bottom: 15px;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    font-size: {{ block.settings.link_size }}px;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__link-arrow {
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__link:hover .pc-service__link-arrow {
+    transform: translateX(-3px);
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__image {
+    flex: 0 0 40%;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  {{ sec_id }}  #block-{{ block.id }} .pc-service__image img {
+    width: 65%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  /* RESPONSIVE STYLES */
+  @media (max-width: 992px) {
+    {{ sec_id }}  #block-{{ block.id }} .pc-services__grid {
+      grid-template-columns: 1fr;
+    }
+    
+    {{ sec_id }}  #block-{{ block.id }} .pc-service__image {
+      flex: 0 0 200px;
+    }
+    {{ sec_id }}  #block-{{ block.id }} .pc-service__heading {
+    font-size: {{ block.settings.heading_size | times: 0.8 }}px;
+  }
+     {{ sec_id }}  #block-{{ block.id }} .pc-service__link {
+    margin-top: 0px;
+  }
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} #block-{{ block.id }} .pc-services__title {
+      font-size: {{ block.settings.title_size_mobile }}px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-services__description {
+      font-size: {{ block.settings.description_size_mobile }}px;
+    }
+    
+    {{ sec_id }}  #block-{{ block.id }} .pc-service {
+      flex-direction: column;
+    }
+    
+    {{ sec_id }}  #block-{{ block.id }} .pc-service__image img {
+      width: 100%;
+      padding: 20px;
+    }
+    {{ sec_id }}  #block-{{ block.id }} .pc-service__content {
+      align-items: center;
+      padding: 0px;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-services__header {
+    gap: 0px;
+    margin: 0 auto 0px;
+  }
+  }
+</style>
+            <div id="block-{{ block.id }}" class="pc-services">
+  <div class="pc-services__header">
+    <h2 class="pc-services__title">{{ block.settings.title }}</h2>
+    <div class="pc-services__description">{{ block.settings.description }}</div>
+  </div>
+  <div class="pc-services__grid">
+    {% for i in (1..6) %}
+      {% assign heading_key = 'service_' | append: i | append: '_heading' %}
+      {% assign heading_color_key = 'service_' | append: i | append: '_heading_color' %}
+      {% assign image_key = 'service_' | append: i | append: '_image' %}
+      {% assign bg_key = 'service_' | append: i | append: '_bg' %}
+      {% assign link_key = 'service_' | append: i | append: '_link' %}
+      
+      {% if block.settings[heading_key] != blank %}
+        <div class="pc-service" style="background: {{ block.settings[bg_key] | default: '#ffffff' }};">
+          <div class="pc-service__content">
+            <h3 style="color: {{ block.settings[heading_color_key] | default: '#000000' }}" class="pc-service__heading">
+              {{ block.settings[heading_key] }}
+            </h3>
+            {% if block.settings[link_key] != blank %}
+              <a style="color: {{ block.settings[heading_color_key] | default: '#000000' }}" 
+                 href="{{ block.settings[link_key] }}" 
+                 class="pc-service__link">
+                <span class="pc-service__link-arrow">→</span>
+                Learn more
+              </a>
+            {% endif %}
+          </div>
+          {% if block.settings[image_key] != blank %}
+            <div class="pc-service__image">
+              {{ block.settings[image_key] | image_url: width: 600 | image_tag: loading: 'lazy', alt: block.settings[heading_key] }}
+            </div>
+            {% else %}
+        <div class="pc-service__image">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
 
           {% when 'case_studies' %}
-            <style>
-              {{ sec_id }} #block-{{ block.id }}.pc-case-studies {
-                background-color: {{ block.settings.bg_color }};
-                padding-top: {{ block.settings.padding_top }}px;
-                padding-bottom: {{ block.settings.padding_bottom }}px;
-              }
+          <style>
+            {{ sec_id }} #block-{{ block.id }}.pc-case-studies {
+              background-color: {{ block.settings.bg_color }};
+              padding-top: {{ block.settings.padding_top }}px;
+              padding-bottom: {{ block.settings.padding_bottom }}px;
+            }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-case-studies__header {
-                display: flex;
-                justify-content: flex-start;
-                gap: 40px;
-                align-items: center;
-                flex-wrap: wrap;
-                max-width: 1200px;
-                margin: 0 auto 40px;
-              }
+            {{ sec_id }} #block-{{ block.id }} .pc-case-studies__header {
+              display: flex;
+              justify-content: flex-start;
+              gap: 40px;
+              align-items: center;
+              flex-wrap: wrap;
+              max-width: 1200px;
+              margin: 0 auto 40px;
+            }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-case-studies__title {
-                font-size: {{ block.settings.title_size }}px;
-                color: {{ block.settings.title_color }};
-                font-weight: bold;
-                background: {{ block.settings.title_bg_color }};
-                display: inline-block;
-                padding: 5px 15px;
-              }
+            {{ sec_id }} #block-{{ block.id }} .pc-case-studies__title {
+              font-size: {{ block.settings.title_size }}px;
+              color: {{ block.settings.title_color }};
+              font-weight: bold;
+              background: {{ block.settings.title_bg_color }};
+              display: inline-block;
+              padding: 5px 15px;
+            }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-case-studies__description {
-                max-width: 600px;
-                color: {{ block.settings.description_color }};
-                font-size: {{ block.settings.description_size }}px;
-              }
+            {{ sec_id }} #block-{{ block.id }} .pc-case-studies__description {
+              max-width: 600px;
+              color: {{ block.settings.description_color }};
+              font-size: {{ block.settings.description_size }}px;
+            }
 
+            {{ sec_id }} #block-{{ block.id }} .pc-case-studies__grid {
+              display: flex;
+              gap: 0;
+              max-width: 1200px;
+              margin: 0 auto;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study {
+              flex: 1;
+              background: {{ block.settings.card_bg }};
+              padding: 30px;
+              color: {{ block.settings.text_color }};
+              text-align: left;
+              border-right: 1px solid {{ block.settings.divider_color }};
+              min-height: 240px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study:last-child {
+              border-right: none;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study__content p {
+              margin-bottom: 20px;
+              font-size: {{ block.settings.content_size }}px;
+              line-height: 1.6;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study__link {
+              display: inline-flex;
+              align-items: center;
+              color: {{ block.settings.link_color }};
+              font-weight: 600;
+              text-decoration: none;
+              font-size: {{ block.settings.link_size }}px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study__link:hover {
+              color: {{ block.settings.link_hover_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study__link-arrow {
+              margin-left: 6px;
+              transition: transform 0.3s ease;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-case-study__link:hover .pc-case-study__link-arrow {
+              transform: translateX(3px);
+            }
+
+            @media (max-width: 992px) {
               {{ sec_id }} #block-{{ block.id }} .pc-case-studies__grid {
-                display: flex;
-                gap: 0;
-                max-width: 1200px;
-                margin: 0 auto;
+                flex-direction: column;
               }
 
               {{ sec_id }} #block-{{ block.id }} .pc-case-study {
-                flex: 1;
-                background: {{ block.settings.card_bg }};
-                padding: 30px;
-                color: {{ block.settings.text_color }};
-                text-align: left;
-                border-right: 1px solid {{ block.settings.divider_color }};
-                min-height: 240px;
+                border-right: none;
+                border-bottom: 1px solid {{ block.settings.divider_color }};
               }
 
               {{ sec_id }} #block-{{ block.id }} .pc-case-study:last-child {
-                border-right: none;
+                border-bottom: none;
               }
 
+              {{ sec_id }} #block-{{ block.id }} .pc-case-studies__description {
+                text-align: left;
+                margin-top: 10px;
+              }
+            }
+
+            @media (max-width: 768px) {
+              {{ sec_id }} #block-{{ block.id }} .pc-case-studies__header {
+              gap: 0px;
+              margin: 0 auto 0px;
+            }
+              {{ sec_id }} #block-{{ block.id }} .pc-case-studies__title {
+                font-size: {{ block.settings.title_size_mobile }}px;
+              }
+              
+              {{ sec_id }} #block-{{ block.id }} .pc-case-studies__description {
+                font-size: {{ block.settings.description_size_mobile }}px;
+              }
+              
               {{ sec_id }} #block-{{ block.id }} .pc-case-study__content p {
-                margin-bottom: 20px;
-                font-size: {{ block.settings.content_size }}px;
-                line-height: 1.6;
+                font-size: {{ block.settings.content_size_mobile }}px;
               }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-case-study__link {
-                display: inline-flex;
-                align-items: center;
-                color: {{ block.settings.link_color }};
-                font-weight: 600;
-                text-decoration: none;
-                font-size: {{ block.settings.link_size }}px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-case-study__link:hover {
-                color: {{ block.settings.link_hover_color }};
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-case-study__link-arrow {
-                margin-left: 6px;
-                transition: transform 0.3s ease;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-case-study__link:hover .pc-case-study__link-arrow {
-                transform: translateX(3px);
-              }
-
-              @media (max-width: 992px) {
-                {{ sec_id }} #block-{{ block.id }} .pc-case-studies__grid {
-                  flex-direction: column;
-                }
-
-                {{ sec_id }} #block-{{ block.id }} .pc-case-study {
-                  border-right: none;
-                  border-bottom: 1px solid {{ block.settings.divider_color }};
-                }
-
-                {{ sec_id }} #block-{{ block.id }} .pc-case-study:last-child {
-                  border-bottom: none;
-                }
-
-                {{ sec_id }} #block-{{ block.id }} .pc-case-studies__description {
-                  text-align: left;
-                  margin-top: 10px;
-                }
-              }
-
-              @media (max-width: 768px) {
-                {{ sec_id }} #block-{{ block.id }} .pc-case-studies__header {
-                  gap: 0px;
-                  margin: 0 auto 0px;
-                }
-                {{ sec_id }} #block-{{ block.id }} .pc-case-studies__title {
-                  font-size: {{ block.settings.title_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-case-studies__description {
-                  font-size: {{ block.settings.description_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-case-study__content p {
-                  font-size: {{ block.settings.content_size_mobile }}px;
-                }
-              }
-            </style>
-            <div id="block-{{ block.id }}" class="pc-case-studies">
-              <div class="pc-case-studies__header">
-                <h2 class="pc-case-studies__title">{{ block.settings.title }}</h2>
-                <div class="pc-case-studies__description">{{ block.settings.description }}</div>
-              </div>
-              <div class="pc-case-studies__grid">
-                {% for i in (1..3) %}
-                  {% assign content_key = 'case_study_' | append: i | append: '_content' %}
-                  {% assign link_key = 'case_study_' | append: i | append: '_link' %}
-                  {% assign bg_key = 'case_study_' | append: i | append: '_bg' %}
-
-                  {% if block.settings[content_key] != blank %}
-                    <div class="pc-case-study" style="background: {{ block.settings[bg_key] | default: block.settings.card_bg }};">
-                      <div class="pc-case-study__content">{{ block.settings[content_key] }}</div>
-                      {% if block.settings[link_key] != blank %}
-                        <a href="{{ block.settings[link_key] }}" class="pc-case-study__link">
-                          Learn more <span class="pc-case-study__link-arrow">→</span>
-                        </a>
-                      {% endif %}
-                    </div>
-                  {% endif %}
-                {% endfor %}
-              </div>
+            }
+          </style>
+          <div id="block-{{ block.id }}" class="pc-case-studies">
+            <div class="pc-case-studies__header">
+              <h2 class="pc-case-studies__title">{{ block.settings.title }}</h2>
+              <div class="pc-case-studies__description">{{ block.settings.description }}</div>
             </div>
+            <div class="pc-case-studies__grid">
+              {% for i in (1..3) %}
+                {% assign content_key = 'case_study_' | append: i | append: '_content' %}
+                {% assign link_key = 'case_study_' | append: i | append: '_link' %}
+                {% assign bg_key = 'case_study_' | append: i | append: '_bg' %}
 
-          {% when 'accordion' %}
-            <style>
-              {{ sec_id }} #block-{{ block.id }}.pc-accordion {
-                margin: 0 auto;
-                padding-top: {{ block.settings.padding_top }}px;
-                padding-bottom: {{ block.settings.padding_bottom }}px;
-                background: {{ block.settings.background_color }};
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion__header {
-                display: flex;
-                justify-content: flex-start;
-                gap: 40px; 
-                align-items: center;
-                flex-wrap: wrap;
-                max-width: 1200px;
-                margin: 0 auto 40px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion__title {
-                font-size: {{ block.settings.title_size }}px;
-                color: {{ block.settings.title_color }};
-                font-weight: bold;
-                background: {{ block.settings.title_bg_color }};
-                display: inline-block;
-                padding: 5px 15px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion__description {
-                max-width: 600px;
-                color: {{ block.settings.description_color }};
-                font-size: {{ block.settings.description_size }}px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion-item {
-                margin-bottom: 15px;
-                border-bottom: 1px solid #e0e0e0;
-                padding-bottom: 15px;
-                padding: 10px 20px;
-                border-radius: 8px;
-                {% if block.settings.card_shadow %}
-                box-shadow: 0 7px 1px rgb(0 0 0);
-                {% endif %}
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                cursor: pointer;
-                padding: 15px 0;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-number {
-                font-size: {{ block.settings.number_size }}px;
-                font-weight: bold;
-                margin-right: 15px;
-                min-width: 30px;
-                color: {{ block.settings.number_color }};
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-title {
-                flex: 1;
-                font-size: {{ block.settings.item_title_size }}px;
-                font-weight: {{ block.settings.item_font_weight }};
-                color: {{ block.settings.item_title_color }};
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle {
-                width: 24px;
-                height: 24px;
-                position: relative;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle::before,
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle::after {
-                content: '';
-                position: absolute;
-                background-color: currentColor;
-                transition: transform 0.3s ease;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle::before {
-                width: 100%;
-                height: 2px;
-                top: 50%;
-                transform: translateY(-50%);
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle::after {
-                width: 2px;
-                height: 100%;
-                left: 50%;
-                transform: translateX(-50%) rotate(0deg);
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion-item.active .pc-accordion-content-toggle::after {
-                transform: translateX(-50%) rotate(90deg);
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion-content {
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.6s ease, padding 0.6s ease;
-                padding: 0 45px 15px;
-                font-size: {{ block.settings.content_size }}px;
-                line-height: 1.6;
-                color: {{ block.settings.content_color }};
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-accordion-item.active .pc-accordion-content {
-                max-height: 500px;
-                padding: 0 45px 15px;
-              }
-
-              @media (max-width: 768px) {
-                {{ sec_id }} #block-{{ block.id }} .pc-accordion__title {
-                  font-size: {{ block.settings.title_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-accordion__description {
-                  font-size: {{ block.settings.description_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-title {
-                  font-size: {{ block.settings.item_title_size | times: 0.6 }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-accordion-content {
-                  font-size: {{ block.settings.content_size_mobile }}px;
-                  padding: 0 20px 15px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-accordion-item.active .pc-accordion-content {
-                  padding: 0 20px 15px;
-                }
-                {{ sec_id }} #block-{{ block.id }} .pc-accordion__header {
-                  gap: 0px;
-                  margin: 0 auto 0px;
-                }
-              }
-            </style>
-            <div id="block-{{ block.id }}" class="pc-accordion">
-              <div class="pc-accordion__header">
-                <h2 class="pc-accordion__title">{{ block.settings.title }}</h2>
-                <div class="pc-accordion__description">{{ block.settings.description }}</div>
-              </div>
-              {% for i in (1..6) %}
-                {% assign title_key = 'item_' | append: i | append: '_title' %}
-                {% assign content_key = 'item_' | append: i | append: '_content' %}
-                {% assign background_key = 'item_' | append: i | append: '_background' %}
-                
-                {% if block.settings[title_key] != blank %}
-                  <div style="background: {{ block.settings[background_key] | default: '#f8f8f8' }}" class="pc-accordion-item" data-index="{{ i }}">
-                    <div class="pc-accordion-content-header">
-                      <div class="pc-accordion-content-number">0{{ i }}</div>
-                      <div class="pc-accordion-content-title">{{ block.settings[title_key] }}</div>
-                      <div class="pc-accordion-content-toggle"></div>
-                    </div>
-                    <div class="pc-accordion-content">
-                      {{ block.settings[content_key] }}
-                    </div>
+                {% if block.settings[content_key] != blank %}
+                  <div class="pc-case-study" style="background: {{ block.settings[bg_key] | default: block.settings.card_bg }};">
+                    <div class="pc-case-study__content">{{ block.settings[content_key] }}</div>
+                    {% if block.settings[link_key] != blank %}
+                      <a href="{{ block.settings[link_key] }}" class="pc-case-study__link">
+                        Learn more <span class="pc-case-study__link-arrow">→</span>
+                      </a>
+                    {% endif %}
                   </div>
                 {% endif %}
               {% endfor %}
             </div>
+          </div>
+
+          {% when 'accordion' %}
+          <style>
+            {{ sec_id }} #block-{{ block.id }}.pc-accordion {
+              margin: 0 auto;
+              padding-top: {{ block.settings.padding_top }}px;
+              padding-bottom: {{ block.settings.padding_bottom }}px;
+              background: {{ block.settings.background_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion__header {
+              display: flex;
+              justify-content: flex-start;
+              gap: 40px; 
+              align-items: center;
+              flex-wrap: wrap;
+              max-width: 1200px;
+              margin: 0 auto 40px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion__title {
+              font-size: {{ block.settings.title_size }}px;
+              color: {{ block.settings.title_color }};
+              font-weight: bold;
+              background: {{ block.settings.title_bg_color }};
+              display: inline-block;
+              padding: 5px 15px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion__description {
+              max-width: 600px;
+              color: {{ block.settings.description_color }};
+              font-size: {{ block.settings.description_size }}px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-item {
+              margin-bottom: 15px;
+              border-bottom: 1px solid #e0e0e0;
+              padding-bottom: 15px;
+              padding: 10px 20px;
+              border-radius: 8px;
+              {% if block.settings.card_shadow %}
+              box-shadow: 0 7px 1px rgb(0 0 0);
+              {% endif %}
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              cursor: pointer;
+              padding: 15px 0;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-number {
+              font-size: {{ block.settings.number_size }}px;
+              font-weight: bold;
+              margin-right: 15px;
+              min-width: 30px;
+              color: {{ block.settings.number_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-title {
+              flex: 1;
+              font-size: {{ block.settings.item_title_size }}px;
+              font-weight: {{ block.settings.item_font_weight }};
+              color: {{ block.settings.item_title_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle {
+              width: 24px;
+              height: 24px;
+              position: relative;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle::before,
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle::after {
+              content: '';
+              position: absolute;
+              background-color: currentColor;
+              transition: transform 0.3s ease;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle::before {
+              width: 100%;
+              height: 2px;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-toggle::after {
+              width: 2px;
+              height: 100%;
+              left: 50%;
+              transform: translateX(-50%) rotate(0deg);
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-item.active .pc-accordion-content-toggle::after {
+              transform: translateX(-50%) rotate(90deg);
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-content {
+              max-height: 0;
+              overflow: hidden;
+              transition: max-height 0.6s ease, padding 0.6s ease;
+              padding: 0 45px 15px;
+              font-size: {{ block.settings.content_size }}px;
+              line-height: 1.6;
+              color: {{ block.settings.content_color }};
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-accordion-item.active .pc-accordion-content {
+              max-height: 500px;
+              padding: 0 45px 15px;
+            }
+
+            @media (max-width: 768px) {
+              {{ sec_id }} #block-{{ block.id }} .pc-accordion__title {
+                font-size: {{ block.settings.title_size_mobile }}px;
+              }
+              
+              {{ sec_id }} #block-{{ block.id }} .pc-accordion__description {
+                font-size: {{ block.settings.description_size_mobile }}px;
+              }
+              
+              {{ sec_id }} #block-{{ block.id }} .pc-accordion-content-title {
+                font-size: {{ block.settings.item_title_size | times: 0.6 }}px;
+              }
+              
+              {{ sec_id }} #block-{{ block.id }} .pc-accordion-content {
+                font-size: {{ block.settings.content_size_mobile }}px;
+                padding: 0 20px 15px;
+              }
+              
+              {{ sec_id }} #block-{{ block.id }} .pc-accordion-item.active .pc-accordion-content {
+                padding: 0 20px 15px;
+              }
+              {{ sec_id }} #block-{{ block.id }} .pc-accordion__header {
+              gap: 0px;
+              margin: 0 auto 0px;
+            }
+            }
+          </style>
+          <div id="block-{{ block.id }}" class="pc-accordion">
+            <div class="pc-accordion__header">
+              <h2 class="pc-accordion__title">{{ block.settings.title }}</h2>
+              <div class="pc-accordion__description">{{ block.settings.description }}</div>
+            </div>
+            {% for i in (1..6) %}
+              {% assign title_key = 'item_' | append: i | append: '_title' %}
+              {% assign content_key = 'item_' | append: i | append: '_content' %}
+              {% assign background_key = 'item_' | append: i | append: '_background' %}
+              
+              {% if block.settings[title_key] != blank %}
+                <div style="background: {{ block.settings[background_key] | default: '#f8f8f8' }}" class="pc-accordion-item" data-index="{{ i }}">
+                  <div class="pc-accordion-content-header">
+                    <div class="pc-accordion-content-number">0{{ i }}</div>
+                    <div class="pc-accordion-content-title">{{ block.settings[title_key] }}</div>
+                    <div class="pc-accordion-content-toggle"></div>
+                  </div>
+                  <div class="pc-accordion-content">
+                    {{ block.settings[content_key] }}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
 
           {% when 'team' %}
-            <style>
-              {{ sec_id }} #block-{{ block.id }}.pc-team {
-                background: {{ block.settings.background_color }};
-                padding-top: {{ block.settings.padding_top }}px;
-                padding-bottom: {{ block.settings.padding_bottom }}px;
-              }
+<style>
+  {{ sec_id }} #block-{{ block.id }}.pc-team {
+    background: {{ block.settings.background_color }};
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+  }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-team__header {
-                display: flex;
-                justify-content: flex-start;
-                gap: 40px;
-                align-items: center;
-                flex-wrap: wrap;
-                max-width: 1200px;
-                margin: 0 auto 40px;
-              }
+  {{ sec_id }} #block-{{ block.id }} .pc-team__header {
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+  }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-team__title {
-                font-size: {{ block.settings.title_size }}px;
-                color: {{ block.settings.title_color }};
-                font-weight: bold;
-                background: {{ block.settings.title_bg_color }};
-                display: inline-block;
-                padding: 5px 15px;
-              }
+  {{ sec_id }} #block-{{ block.id }} .pc-team__title {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    font-weight: bold;
+    background: {{ block.settings.title_bg_color }};
+    display: inline-block;
+    padding: 5px 15px;
+  }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-team__description {
-                max-width: 600px;
-                color: {{ block.settings.description_color }};
-                font-size: {{ block.settings.description_size }}px;
-              }
+  {{ sec_id }} #block-{{ block.id }} .pc-team__description {
+    max-width: 600px;
+    color: {{ block.settings.description_color }};
+    font-size: {{ block.settings.description_size }}px;
+  }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-team__grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 30px;
-              }
+  {{ sec_id }} #block-{{ block.id }} .pc-team__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-team-member {
-                background: {{ block.settings.card_bg }};
-                padding: 35px;
-                border-radius: 12px;
-                box-shadow: 0 7px 1px rgb(0 0 0);
-                border: 1px solid #707070;
-              }
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member {
+    background: {{ block.settings.card_bg }};
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 7px 1px rgb(0 0 0);
+    border: 1px solid #707070;
+  }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-team-meta {
-                display: flex;
-                align-items: center;
-              }
+  {{ sec_id }} #block-{{ block.id }} .pc-team-meta {
+    display: flex;
+    align-items: center;
+  }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-team-member__image {
-                flex-shrink: 0;
-                width: {{ block.settings.image_width | default: 80 }}px;
-                height: {{ block.settings.image_height | default: 80 }}px;
-                margin-right: 20px;
-                border-radius: 50%;
-                overflow: hidden;
-                background: {{ block.settings.image_bg_color }};
-              }
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member__image {
+    flex-shrink: 0;
+    width: {{ block.settings.image_width | default: 80 }}px;
+    height: {{ block.settings.image_height | default: 80 }}px;
+    margin-right: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: {{ block.settings.image_bg_color }};
+  }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-team-member__image img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-              }
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-team-member__content {
-                flex: 1;
-              }
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member__content {
+    flex: 1;
+  }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-team-member__name {
-                font-size: {{ block.settings.name_size }}px;
-                font-weight: 600;
-                margin: 0 0 5px;
-                color: {{ block.settings.name_color }};
-              }
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member__name {
+    font-size: {{ block.settings.name_size }}px;
+    font-weight: 600;
+    margin: 0 0 5px;
+    color: {{ block.settings.name_color }};
+  }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-team-member__position {
-                font-size: {{ block.settings.position_size }}px;
-                color: {{ block.settings.position_color }};
-                margin-bottom: 8px;
-              }
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member__position {
+    font-size: {{ block.settings.position_size }}px;
+    color: {{ block.settings.position_color }};
+    margin-bottom: 8px;
+  }
 
-              {{ sec_id }} #block-{{ block.id }} .pc-team-member__description {
-                font-size: {{ block.settings.content_description_size }}px;
-                color: {{ block.settings.description_text_color }};
-                line-height: 1.5;
-              }
+  {{ sec_id }} #block-{{ block.id }} .pc-team-member__description {
+    font-size: {{ block.settings.content_description_size }}px;
+    color: {{ block.settings.description_text_color }};
+    line-height: 1.5;
+  }
 
-              @media (max-width: 768px) {
-                {{ sec_id }} #block-{{ block.id }} .pc-team__title {
-                  font-size: {{ block.settings.title_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-team__description {
-                  font-size: {{ block.settings.description_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-team-member {
-                  flex-direction: column;
-                  text-align: center;
-                }
+  /* Slider styles */
+  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    gap: 0;
+  }
 
-                {{ sec_id }} #block-{{ block.id }} .pc-team-member__image {
-                  width: {{ block.settings.image_width_mobile | default: block.settings.image_width | default: 80 }}px;
-                  height: {{ block.settings.image_height_mobile | default: block.settings.image_height | default: 80 }}px;
-                  margin-right: 0;
-                  margin-bottom: 15px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-team-member__name {
-                  font-size: {{ block.settings.name_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-team-member__position {
-                  font-size: {{ block.settings.position_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-team-member__description {
-                  font-size: {{ block.settings.content_description_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-team__header {
-                  gap: 0px;
-                  margin: 0 auto 0px;
-                }
-              }
-            </style>
-            <div id="block-{{ block.id }}" class="pc-team">
-              <div class="pc-team__header">
-                <h2 class="pc-team__title">{{ block.settings.title }}</h2>
-                <div class="pc-team__description">{{ block.settings.description }}</div>
+  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode .pc-team-member {
+    scroll-snap-align: start;
+    flex: 0 0 100%;
+    margin: 0 15px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .slider-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  {{ sec_id }} #block-{{ block.id }} .slider-dot.active {
+    background: #000;
+  }
+
+  @media (min-width: 769px) {
+    {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-team__grid.slider-mode .pc-team-member {
+      flex: none;
+      margin: 0;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .slider-dots {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} #block-{{ block.id }} .pc-team__title {
+      font-size: {{ block.settings.title_size_mobile }}px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-team__description {
+      font-size: {{ block.settings.description_size_mobile }}px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-team-member {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-team-member__image {
+      width: {{ block.settings.image_width_mobile | default: block.settings.image_width | default: 80 }}px;
+      height: {{ block.settings.image_height_mobile | default: block.settings.image_height | default: 80 }}px;
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-team-member__name {
+      font-size: {{ block.settings.name_size_mobile }}px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-team-member__position {
+      font-size: {{ block.settings.position_size_mobile }}px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-team-member__description {
+      font-size: {{ block.settings.content_description_size_mobile }}px;
+    }
+    
+    {{ sec_id }} #block-{{ block.id }} .pc-team__header {
+      gap: 0px;
+      margin: 0 auto 0px;
+    }
+  }
+</style>
+
+<div id="block-{{ block.id }}" class="pc-team">
+  <div class="pc-team__header">
+    <h2 class="pc-team__title">{{ block.settings.title }}</h2>
+    <div class="pc-team__description">{{ block.settings.description }}</div>
+  </div>
+  
+  <div class="pc-team__grid {% if block.settings.enable_mobile_slider %}slider-mode{% endif %}">
+    {% for i in (1..6) %}
+      {% assign image_key = 'member_' | append: i | append: '_image' %}
+      {% assign name_key = 'member_' | append: i | append: '_name' %}
+      {% assign position_key = 'member_' | append: i | append: '_position' %}
+      {% assign description_key = 'member_' | append: i | append: '_description' %}
+      {% assign bg_key = 'member_' | append: i | append: '_bg' %}
+
+      {% if block.settings[name_key] != blank %}
+        <div class="pc-team-member" style="background: {{ block.settings[bg_key] | default: block.settings.card_bg }};">
+          <div class="pc-team-meta">
+            <div class="pc-team-member__image">
+              {% if block.settings[image_key] != blank %}
+                {{ block.settings[image_key] | image_url: width: 160 | image_tag: loading: 'lazy' }}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {% endif %}
+            </div>
+            <div class="pc-team-member__content">
+              <h3 class="pc-team-member__name">{{ block.settings[name_key] }}</h3>
+              <div class="pc-team-member__position">{{ block.settings[position_key] }}</div>
+            </div>
+          </div>
+          <hr>
+          <div class="pc-team-member__description">{{ block.settings[description_key] }}</div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  
+  {% if block.settings.enable_mobile_slider and block.settings.show_dots %}
+    <div class="slider-dots" style="display: none;"></div>
+  {% endif %}
+</div>
+
+{% if block.settings.enable_mobile_slider %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const blockId = 'block-{{ block.id }}';
+  const grid = document.querySelector(`#${blockId} .pc-team__grid`);
+  const dotsContainer = document.querySelector(`#${blockId} .slider-dots`);
+  
+  if (!grid || !grid.classList.contains('slider-mode')) return;
+  
+  // Initialize slider only on mobile
+  function initSlider() {
+    if (window.innerWidth > 768) {
+      // Remove slider behavior on desktop
+      if (dotsContainer) dotsContainer.style.display = 'none';
+      return;
+    }
+    
+    const members = grid.querySelectorAll('.pc-team-member');
+    if (members.length <= 1) {
+      if (dotsContainer) dotsContainer.style.display = 'none';
+      return;
+    }
+    
+    // Create dots if enabled
+    if (dotsContainer && block.settings.show_dots) {
+      dotsContainer.style.display = 'flex';
+      dotsContainer.innerHTML = '';
+      
+      members.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'slider-dot';
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+          scrollToMember(index);
+        });
+        dotsContainer.appendChild(dot);
+      });
+    }
+    
+    // Handle scroll events for dot highlighting
+    let isScrolling;
+    grid.addEventListener('scroll', function() {
+      window.clearTimeout(isScrolling);
+      isScrolling = setTimeout(() => {
+        const scrollLeft = grid.scrollLeft;
+        const memberWidth = grid.querySelector('.pc-team-member').offsetWidth;
+        const currentIndex = Math.round(scrollLeft / memberWidth);
+        
+        if (dotsContainer) {
+          const dots = dotsContainer.querySelectorAll('.slider-dot');
+          dots.forEach((dot, index) => {
+            if (index === currentIndex) {
+              dot.classList.add('active');
+            } else {
+              dot.classList.remove('active');
+            }
+          });
+        }
+      }, 100);
+    });
+  }
+  
+  function scrollToMember(index) {
+    const member = grid.querySelectorAll('.pc-team-member')[index];
+    if (!member) return;
+    
+    grid.scrollTo({
+      left: member.offsetLeft,
+      behavior: 'smooth'
+    });
+  }
+  
+  // Initialize on load
+  initSlider();
+  
+  // Re-initialize on resize
+  window.addEventListener('resize', function() {
+    initSlider();
+  });
+});
+</script>
+{% endif %}
+
+        {% when 'testimonials' %}  
+  <style>
+    {{ sec_id }} #block-{{ block.id }}.pc-testimonials {
+      position: relative;
+      background: {{ block.settings.background_color }};
+      padding-top: {{ block.settings.padding_top }}px;
+      padding-bottom: {{ block.settings.padding_bottom }}px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonials__header {
+      display: flex;
+      justify-content: flex-start;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto 40px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonials__title {
+      font-size: {{ block.settings.title_size }}px;
+      color: {{ block.settings.title_color }};
+      font-weight: bold;
+      background: {{ block.settings.title_bg_color }};
+      display: inline-block;
+      padding: 5px 15px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonials__description {
+      max-width: 600px;
+      color: {{ block.settings.description_color }};
+      font-size: {{ block.settings.description_size }}px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 20px;
+      scrollbar-width: none;
+      position: relative;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-slider-wrapper {
+      position: relative;
+      padding: 40px;
+      background: {{ block.settings.slider_bg }};
+      border-radius: 12px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial {
+      flex: 0 0 calc(100% / {{ block.settings.slides_to_show }} - 20px);
+      scroll-snap-align: start;
+      padding: 30px;
+      position: relative;
+      margin: 0 10px;
+      border-radius: 8px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__image {
+      width: {{ block.settings.image_size }}px;
+      height: {{ block.settings.image_size }}px;
+      border-radius: {{ block.settings.image_radius }}%;
+      overflow: hidden;
+      margin-bottom: 15px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content {
+      font-style: italic;
+      margin-bottom: 15px;
+      color: {{ block.settings.content_color }};
+      font-size: {{ block.settings.content_size }}px;
+      border: 1px solid #b9ff66;
+      padding: 12px;
+      position: relative;
+      border-radius: 12px;
+    }
+
+    /* Speech bubble styles */
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-left:after,
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-left:before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 20px;
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: #b9ff66 transparent;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-left:after {
+      bottom: -8px;
+      border-color: white transparent;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-center:after,
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-center:before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: #b9ff66 transparent;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-center:after {
+      bottom: -8px;
+      border-color: white transparent;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-right:after,
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-right:before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 20px;
+      border-width: 10px 10px 0;
+      border-style: solid;
+      border-color: #b9ff66 transparent;
+    }
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-right:after {
+      bottom: -8px;
+      border-color: white transparent;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial__name {
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: {{ block.settings.name_color }};
+      font-size: {{ block.settings.name_size }}px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-rating {
+      color: {{ block.settings.rating_color }};
+      font-size: {{ block.settings.rating_size }}px;
+    }
+
+    /* Pagination styles */
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 8px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-pagination .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-pagination .dot.active {
+      background: #333;
+    }
+
+    /* Navigation arrows */
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav.prev {
+      left: 10px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav.next {
+      right: 10px;
+    }
+
+    {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    @media (max-width: 992px) {
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial {
+        flex: 0 0 calc(100% / 2 - 15px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonials__title {
+        font-size: {{ block.settings.title_size_mobile }}px;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonials__description {
+        font-size: {{ block.settings.description_size_mobile }}px;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial {
+        flex: 0 0 100%;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content {
+        font-size: {{ block.settings.content_size_mobile }}px;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial__name {
+        font-size: {{ block.settings.name_size_mobile }}px;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial-rating {
+        font-size: {{ block.settings.rating_size_mobile }}px;
+      }
+
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav {
+        width: 30px;
+        height: 30px;
+      }
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial-slider {
+        padding: 0px;
+      }
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonial {
+        padding: 15px;
+      }
+      {{ sec_id }} #block-{{ block.id }} .pc-testimonials__header {
+      gap: 0px;
+      margin: 0 auto 0px;
+    }
+    }
+  </style>
+  <div id="block-{{ block.id }}" class="pc-testimonials">
+    <div class="pc-testimonials__header">
+      <h2 class="pc-testimonials__title">{{ block.settings.title }}</h2>
+      <div class="pc-testimonials__description">{{ block.settings.description }}</div>
+    </div>
+    <div class="pc-testimonial-slider-wrapper">
+      {% if block.settings.show_navigation %}
+        <div class="pc-testimonial-nav prev">
+          <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+        </div>
+      {% endif %}
+      
+      <div class="pc-testimonial-slider" data-autoplay="{{ block.settings.autoplay }}" data-speed="{{ block.settings.autoplay_speed }}">
+        {% for i in (1..4) %}
+          {% assign image_key = 'testimonial_' | append: i | append: '_image' %}
+          {% assign name_key = 'testimonial_' | append: i | append: '_name' %}
+          {% assign content_key = 'testimonial_' | append: i | append: '_content' %}
+          {% assign rating_key = 'testimonial_' | append: i | append: '_rating' %}
+          {% assign bg_key = 'testimonial_' | append: i | append: '_bg' %}
+           
+          {% if block.settings[name_key] != blank %}
+            <div class="pc-testimonial" style="background: {{ block.settings[bg_key] | default: block.settings.card_bg }};">
+              {% if block.settings.show_images %}
+                {% if block.settings[image_key] != blank %}
+                  <div class="pc-testimonial__image">
+                    {{ block.settings[image_key] | image_url: width: 200 | image_tag: loading: 'lazy' }}
+                  </div>
+                {% else %}
+                  <div class="pc-testimonial__image">
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+                {% endif %}
+              {% endif %}
+              <div class="pc-testimonial__content bubble-{{ block.settings.bubble_position | default: 'center' }}">
+                {{ block.settings[content_key] }}
               </div>
-              
-              <div class="pc-team__grid">
-                {% for i in (1..6) %}
-                  {% assign image_key = 'member_' | append: i | append: '_image' %}
-                  {% assign name_key = 'member_' | append: i | append: '_name' %}
-                  {% assign position_key = 'member_' | append: i | append: '_position' %}
-                  {% assign description_key = 'member_' | append: i | append: '_description' %}
-                  {% assign bg_key = 'member_' | append: i | append: '_bg' %}
-
-                  {% if block.settings[name_key] != blank %}
-                    <div class="pc-team-member" style="background: {{ block.settings[bg_key] | default: block.settings.card_bg }};">
-                      <div class="pc-team-meta">
-                        <div class="pc-team-member__image">
-                          {% if block.settings[image_key] != blank %}
-                            {{ block.settings[image_key] | image_url: width: 160 | image_tag: loading: 'lazy' }}
-                          {% else %}
-                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                          {% endif %}
-                        </div>
-                        <div class="pc-team-member__content">
-                          <h3 class="pc-team-member__name">{{ block.settings[name_key] }}</h3>
-                          <div class="pc-team-member__position">{{ block.settings[position_key] }}</div>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="pc-team-member__description">{{ block.settings[description_key] }}</div>
-                    </div>
+              <div class="pc-testimonial__name">{{ block.settings[name_key] }}</div>
+              <div class="pc-testimonial-rating">
+                {% for star in (1..5) %}
+                  {% if star <= block.settings[rating_key] %}
+                    ★
+                  {% else %}
+                    ☆
                   {% endif %}
                 {% endfor %}
               </div>
             </div>
-
-          {% when 'testimonials' %}  
-            <style>
-              {{ sec_id }} #block-{{ block.id }}.pc-testimonials {
-                position: relative;
-                background: {{ block.settings.background_color }};
-                padding-top: {{ block.settings.padding_top }}px;
-                padding-bottom: {{ block.settings.padding_bottom }}px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonials__header {
-                display: flex;
-                justify-content: flex-start;
-                gap: 40px;
-                align-items: center;
-                flex-wrap: wrap;
-                max-width: 1200px;
-                margin: 0 auto 40px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonials__title {
-                font-size: {{ block.settings.title_size }}px;
-                color: {{ block.settings.title_color }};
-                font-weight: bold;
-                background: {{ block.settings.title_bg_color }};
-                display: inline-block;
-                padding: 5px 15px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonials__description {
-                max-width: 600px;
-                color: {{ block.settings.description_color }};
-                font-size: {{ block.settings.description_size }}px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial-slider {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                padding: 20px;
-                scrollbar-width: none;
-                position: relative;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial-slider-wrapper {
-                position: relative;
-                padding: 40px;
-                background: {{ block.settings.slider_bg }};
-                border-radius: 12px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial-slider::-webkit-scrollbar {
-                display: none;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial {
-                flex: 0 0 calc(100% / {{ block.settings.slides_to_show }} - 20px);
-                scroll-snap-align: start;
-                padding: 30px;
-                position: relative;
-                margin: 0 10px;
-                border-radius: 8px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial__image {
-                width: {{ block.settings.image_size }}px;
-                height: {{ block.settings.image_size }}px;
-                border-radius: {{ block.settings.image_radius }}%;
-                overflow: hidden;
-                margin-bottom: 15px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial__image img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content {
-                font-style: italic;
-                margin-bottom: 15px;
-                color: {{ block.settings.content_color }};
-                font-size: {{ block.settings.content_size }}px;
-                border: 1px solid #b9ff66;
-                padding: 12px;
-                position: relative;
-                border-radius: 12px;
-              }
-
-              /* Speech bubble styles */
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-left:after,
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-left:before {
-                content: '';
-                position: absolute;
-                bottom: -10px;
-                left: 20px;
-                border-width: 10px 10px 0;
-                border-style: solid;
-                border-color: #b9ff66 transparent;
-              }
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-left:after {
-                bottom: -8px;
-                border-color: white transparent;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-center:after,
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-center:before {
-                content: '';
-                position: absolute;
-                bottom: -10px;
-                left: 50%;
-                transform: translateX(-50%);
-                border-width: 10px 10px 0;
-                border-style: solid;
-                border-color: #b9ff66 transparent;
-              }
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-center:after {
-                bottom: -8px;
-                border-color: white transparent;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-right:after,
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-right:before {
-                content: '';
-                position: absolute;
-                bottom: -10px;
-                right: 20px;
-                border-width: 10px 10px 0;
-                border-style: solid;
-                border-color: #b9ff66 transparent;
-              }
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content.bubble-right:after {
-                bottom: -8px;
-                border-color: white transparent;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial__name {
-                font-weight: bold;
-                margin-bottom: 5px;
-                color: {{ block.settings.name_color }};
-                font-size: {{ block.settings.name_size }}px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial-rating {
-                color: {{ block.settings.rating_color }};
-                font-size: {{ block.settings.rating_size }}px;
-              }
-
-              /* Pagination styles */
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial-pagination {
-                display: flex;
-                justify-content: center;
-                margin-top: 20px;
-                gap: 8px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial-pagination .dot {
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background: #ccc;
-                cursor: pointer;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial-pagination .dot.active {
-                background: #333;
-              }
-
-              /* Navigation arrows */
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 40px;
-                height: 40px;
-                background: white;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-                z-index: 1;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav.prev {
-                left: 10px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav.next {
-                right: 10px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav svg {
-                width: 20px;
-                height: 20px;
-              }
-
-              @media (max-width: 992px) {
-                {{ sec_id }} #block-{{ block.id }} .pc-testimonial {
-                  flex: 0 0 calc(100% / 2 - 15px);
-                }
-              }
-
-              @media (max-width: 768px) {
-                {{ sec_id }} #block-{{ block.id }} .pc-testimonials__title {
-                  font-size: {{ block.settings.title_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-testimonials__description {
-                  font-size: {{ block.settings.description_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-testimonial {
-                  flex: 0 0 100%;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-testimonial__content {
-                  font-size: {{ block.settings.content_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-testimonial__name {
-                  font-size: {{ block.settings.name_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-testimonial-rating {
-                  font-size: {{ block.settings.rating_size_mobile }}px;
-                }
-
-                {{ sec_id }} #block-{{ block.id }} .pc-testimonial-nav {
-                  width: 30px;
-                  height: 30px;
-                }
-                {{ sec_id }} #block-{{ block.id }} .pc-testimonial-slider {
-                  padding: 0px;
-                }
-                {{ sec_id }} #block-{{ block.id }} .pc-testimonial {
-                  padding: 15px;
-                }
-                {{ sec_id }} #block-{{ block.id }} .pc-testimonials__header {
-                  gap: 0px;
-                  margin: 0 auto 0px;
-                }
-              }
-            </style>
-            <div id="block-{{ block.id }}" class="pc-testimonials">
-              <div class="pc-testimonials__header">
-                <h2 class="pc-testimonials__title">{{ block.settings.title }}</h2>
-                <div class="pc-testimonials__description">{{ block.settings.description }}</div>
-              </div>
-              <div class="pc-testimonial-slider-wrapper">
-                {% if block.settings.show_navigation %}
-                  <div class="pc-testimonial-nav prev">
-                    <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
-                  </div>
-                {% endif %}
-                
-                <div class="pc-testimonial-slider" data-autoplay="{{ block.settings.autoplay }}" data-speed="{{ block.settings.autoplay_speed }}">
-                  {% for i in (1..4) %}
-                    {% assign image_key = 'testimonial_' | append: i | append: '_image' %}
-                    {% assign name_key = 'testimonial_' | append: i | append: '_name' %}
-                    {% assign content_key = 'testimonial_' | append: i | append: '_content' %}
-                    {% assign rating_key = 'testimonial_' | append: i | append: '_rating' %}
-                    {% assign bg_key = 'testimonial_' | append: i | append: '_bg' %}
-                     
-                    {% if block.settings[name_key] != blank %}
-                      <div class="pc-testimonial" style="background: {{ block.settings[bg_key] | default: block.settings.card_bg }};">
-                        {% if block.settings.show_images %}
-                          {% if block.settings[image_key] != blank %}
-                            <div class="pc-testimonial__image">
-                              {{ block.settings[image_key] | image_url: width: 200 | image_tag: loading: 'lazy' }}
-                            </div>
-                          {% else %}
-                            <div class="pc-testimonial__image">
-                              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                            </div>
-                          {% endif %}
-                        {% endif %}
-                        <div class="pc-testimonial__content bubble-{{ block.settings.bubble_position | default: 'center' }}">
-                          {{ block.settings[content_key] }}
-                        </div>
-                        <div class="pc-testimonial__name">{{ block.settings[name_key] }}</div>
-                        <div class="pc-testimonial-rating">
-                          {% for star in (1..5) %}
-                            {% if star <= block.settings[rating_key] %}
-                              ★
-                            {% else %}
-                              ☆
-                            {% endif %}
-                          {% endfor %}
-                        </div>
-                      </div>
-                    {% endif %}
-                  {% endfor %}
-                </div>
-                
-                {% if block.settings.show_navigation %}
-                  <div class="pc-testimonial-nav next">
-                    <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
-                  </div>
-                {% endif %}
-              </div>
-              
-              {% if block.settings.show_pagination %}
-                <div class="pc-testimonial-pagination">
-                  {% for i in (1..4) %}
-                    {% assign name_key = 'testimonial_' | append: i | append: '_name' %}
-                    {% if block.settings[name_key] != blank %}
-                      <div class="dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
-                    {% endif %}
-                  {% endfor %}
-                </div>
-              {% endif %}
-            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      
+      {% if block.settings.show_navigation %}
+        <div class="pc-testimonial-nav next">
+          <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+        </div>
+      {% endif %}
+    </div>
+    
+    {% if block.settings.show_pagination %}
+      <div class="pc-testimonial-pagination">
+        {% for i in (1..4) %}
+          {% assign name_key = 'testimonial_' | append: i | append: '_name' %}
+          {% if block.settings[name_key] != blank %}
+            <div class="dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
 
           {% when 'contact_form' %}
-            <style>
-              {{ sec_id }} #block-{{ block.id }}.pc-contact-form {
-                background: {{ block.settings.background_color }};
-                padding-top: {{ block.settings.padding_top }}px;
-                padding-bottom: {{ block.settings.padding_bottom }}px;
-              }
+          <style>
+            {{ sec_id }} #block-{{ block.id }}.pc-contact-form {
+              background: {{ block.settings.background_color }};
+              padding-top: {{ block.settings.padding_top }}px;
+              padding-bottom: {{ block.settings.padding_bottom }}px;
+            }
 
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__content {
+              display: flex;
+              gap: 40px;
+              align-items: center;
+              background: {{ block.settings.content_bg_color }};
+              padding: 20px;
+              border-radius: 12px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form--reverse {
+              flex-direction: row-reverse;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__header {
+              display: flex;
+              justify-content: flex-start;
+              gap: 40px;
+              align-items: center;
+              flex-wrap: wrap;
+              max-width: 1200px;
+              margin: 0 auto 40px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__title {
+              font-size: {{ block.settings.title_size }}px;
+              color: {{ block.settings.title_color }};
+              font-weight: bold;
+              background: {{ block.settings.title_bg_color }};
+              display: inline-block;
+              padding: 5px 15px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__description {
+              max-width: 600px;
+              color: {{ block.settings.description_color }};
+              font-size: {{ block.settings.description_size }}px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__image {
+              flex: 1;
+              padding: 20px;
+              border-radius: 8px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__image img {
+              width: 100%;
+              height: auto;
+              border-radius: 8px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} .pc-contact-form__form {
+              flex: 1;
+              padding: 40px;
+              border-radius: 8px;
+            }
+
+            {{ sec_id }} #block-{{ block.id }} input, 
+            {{ sec_id }} #block-{{ block.id }} textarea {
+              width: 100%;
+              margin-bottom: 20px;
+              padding: 10px;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+            }
+            
+            {{ sec_id }} #block-{{ block.id }} button {
+              background: #000;
+              color: #fff;
+              padding: 14px 20px;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+              transition: opacity 0.3s ease;
+            }
+            
+            {{ sec_id }} #block-{{ block.id }} button:hover {
+              opacity: 0.9;
+            }
+
+            @media (max-width: 768px) {
               {{ sec_id }} #block-{{ block.id }} .pc-contact-form__content {
-                display: flex;
-                gap: 40px;
-                align-items: center;
-                background: {{ block.settings.content_bg_color }};
-                padding: 20px;
-                border-radius: 12px;
+                flex-direction: column;
               }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-contact-form--reverse {
-                flex-direction: row-reverse;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-contact-form__header {
-                display: flex;
-                justify-content: flex-start;
-                gap: 40px;
-                align-items: center;
-                flex-wrap: wrap;
-                max-width: 1200px;
-                margin: 0 auto 40px;
-              }
-
+              
               {{ sec_id }} #block-{{ block.id }} .pc-contact-form__title {
-                font-size: {{ block.settings.title_size }}px;
-                color: {{ block.settings.title_color }};
-                font-weight: bold;
-                background: {{ block.settings.title_bg_color }};
-                display: inline-block;
-                padding: 5px 15px;
+                font-size: {{ block.settings.title_size_mobile }}px;
               }
-
+              
               {{ sec_id }} #block-{{ block.id }} .pc-contact-form__description {
-                max-width: 600px;
-                color: {{ block.settings.description_color }};
-                font-size: {{ block.settings.description_size }}px;
+                font-size: {{ block.settings.description_size_mobile }}px;
               }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-contact-form__image {
-                flex: 1;
-                padding: 20px;
-                border-radius: 8px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-contact-form__image img {
-                width: 100%;
-                height: auto;
-                border-radius: 8px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} .pc-contact-form__form {
-                flex: 1;
-                padding: 40px;
-                border-radius: 8px;
-              }
-
-              {{ sec_id }} #block-{{ block.id }} input, 
-              {{ sec_id }} #block-{{ block.id }} textarea {
-                width: 100%;
-                margin-bottom: 20px;
-                padding: 10px;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-              }
-              
-              {{ sec_id }} #block-{{ block.id }} button {
-                background: #000;
-                color: #fff;
-                padding: 14px 20px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                transition: opacity 0.3s ease;
-              }
-              
-              {{ sec_id }} #block-{{ block.id }} button:hover {
-                opacity: 0.9;
-              }
-
-              @media (max-width: 768px) {
-                {{ sec_id }} #block-{{ block.id }} .pc-contact-form__content {
-                  flex-direction: column;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-contact-form__title {
-                  font-size: {{ block.settings.title_size_mobile }}px;
-                }
-                
-                {{ sec_id }} #block-{{ block.id }} .pc-contact-form__description {
-                  font-size: {{ block.settings.description_size_mobile }}px;
-                }
-                {{ sec_id }} #block-{{ block.id }} .pc-contact-form__header {
-                  gap: 0px;
-                  margin: 0 auto 0px;
-                }
-              }
-            </style>
-            <div id="block-{{ block.id }}" class="pc-contact-form">
-              <div class="pc-contact-form__header">
-                <h2 class="pc-contact-form__title">{{ block.settings.title }}</h2>
-                <div class="pc-contact-form__description">{{ block.settings.description }}</div>
+              {{ sec_id }} #block-{{ block.id }} .pc-contact-form__header {
+              gap: 0px;
+              margin: 0 auto 0px;
+            }
+            }
+          </style>
+          <div id="block-{{ block.id }}" class="pc-contact-form">
+            <div class="pc-contact-form__header">
+              <h2 class="pc-contact-form__title">{{ block.settings.title }}</h2>
+              <div class="pc-contact-form__description">{{ block.settings.description }}</div>
+            </div>
+            <div class="pc-contact-form__content {% if block.settings.layout == 'right' %}pc-contact-form--reverse{% endif %}">
+              <div class="pc-contact-form__image">
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
               </div>
-              <div class="pc-contact-form__content {% if block.settings.layout == 'right' %}pc-contact-form--reverse{% endif %}">
-                <div class="pc-contact-form__image">
-                  {% if block.settings.image != blank %}
-                    {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy' }}
-                  {% else %}
-                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              <div class="pc-contact-form__form">
+                
+                {% form 'contact' %}
+                  {% if form.posted_successfully? %}
+                    <p class="note form-success">Thank you for contacting us!</p>
                   {% endif %}
-                </div>
-                <div class="pc-contact-form__form">
-                  
-                  {% form 'contact' %}
-                    {% if form.posted_successfully? %}
-                      <p class="note form-success">Thank you for contacting us!</p>
-                    {% endif %}
 
-                    {{ form.errors | default_errors }}
+                  {{ form.errors | default_errors }}
 
-                    <input type="text" name="contact[name]" placeholder="{{ block.settings.name_placeholder }}" required>
-                    <input type="email" name="contact[email]" placeholder="{{ block.settings.email_placeholder }}" required>
-                    <input type="tel" name="contact[phone]" placeholder="{{ block.settings.phone_placeholder }}">
-                    <textarea name="contact[body]" placeholder="{{ block.settings.message_placeholder }}" required></textarea>
-                    <button type="submit">{{ block.settings.button_label }}</button>
-                  {% endform %}
-                </div>
+                  <input type="text" name="contact[name]" placeholder="{{ block.settings.name_placeholder }}" required>
+                  <input type="email" name="contact[email]" placeholder="{{ block.settings.email_placeholder }}" required>
+                  <input type="tel" name="contact[phone]" placeholder="{{ block.settings.phone_placeholder }}">
+                  <textarea name="contact[body]" placeholder="{{ block.settings.message_placeholder }}" required></textarea>
+                  <button type="submit">{{ block.settings.button_label }}</button>
+                {% endform %}
               </div>
             </div>
+          </div>
         {% endcase %}
       </div>
     {% endfor %}
