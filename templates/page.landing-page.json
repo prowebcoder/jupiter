@@ -247,7 +247,7 @@
             "image_width_mobile": 80,
             "image_height_mobile": 80,
             "enable_mobile_slider": true,
-            "show_arrows": false,
+            "show_arrows": true,
             "show_dots": true,
             "arrow_color": "#000000",
             "arrow_bg_color": "#ffffff",
