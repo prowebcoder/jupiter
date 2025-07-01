@@ -914,6 +914,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             }
           </style>
+        <pc-accordion>
           <div id="block-{{ block.id }}" class="pc-accordion">
             <div class="pc-accordion__header">
               <h2 class="pc-accordion__title">{{ block.settings.title }}</h2>
@@ -938,7 +939,7 @@ document.addEventListener('DOMContentLoaded', function() {
               {% endif %}
             {% endfor %}
           </div>
-
+</pc-accordion>
           {% when 'team' %}
 <style>
   {{ sec_id }} #block-{{ block.id }}.pc-team {
@@ -1542,6 +1543,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     }
   </style>
+        <pc-testimonial-slider>
   <div id="block-{{ block.id }}" class="pc-testimonials">
     <div class="pc-testimonials__header">
       <h2 class="pc-testimonials__title">{{ block.settings.title }}</h2>
@@ -1611,6 +1613,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     {% endif %}
   </div>
+          </pc-testimonial-slider>
 
           {% when 'contact_form' %}
           <style>
