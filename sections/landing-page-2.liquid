@@ -1758,119 +1758,147 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Accordion functionality
-  const accordionItems = document.querySelectorAll('.pc-accordion-item');
+class PCAccordion extends HTMLElement {
+  constructor() {
+    super();
+    this.items = this.querySelectorAll('.pc-accordion-item');
+    this.initAccordion();
+  }
 
-  accordionItems.forEach(item => {
-    const header = item.querySelector('.pc-accordion-content-header');
-    const toggle = item.querySelector('.pc-accordion-content-toggle');
-
-    header.addEventListener('click', () => {
-      item.classList.toggle('active');
-
-      // Close other accordion items
-      if (item.classList.contains('active')) {
-        accordionItems.forEach(otherItem => {
-          if (otherItem !== item && otherItem.classList.contains('active')) {
-            otherItem.classList.remove('active');
-          }
-        });
-      }
+  initAccordion() {
+    this.items.forEach(item => {
+      const header = item.querySelector('.pc-accordion-content-header');
+      header.addEventListener('click', () => this.toggleItem(item));
     });
-  });
+  }
 
-  // Testimonial slider functionality
-  const sliders = document.querySelectorAll('.pc-testimonial-slider');
+  toggleItem(clickedItem) {
+    // Toggle clicked item
+    clickedItem.classList.toggle('active');
 
-  sliders.forEach(slider => {
-    const autoplay = slider.dataset.autoplay === 'true';
-    const speed = parseInt(slider.dataset.speed) * 1000 || 3000;
-    let interval;
-
-    // Initialize pagination
-    const pagination = slider.closest('.pc-testimonials')?.querySelector('.pc-testimonial-pagination');
-    if (pagination) {
-      const slides = slider.querySelectorAll('.pc-testimonial');
-      slides.forEach((slide, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => {
-          slider.scrollTo({
-            left: slider.clientWidth * index,
-            behavior: 'smooth'
-          });
-        });
-        pagination.appendChild(dot);
-      });
-    }
-
-    // Navigation arrows
-    const wrapper = slider.closest('.pc-testimonial-slider-wrapper');
-    const prevBtn = wrapper?.querySelector('.prev');
-    const nextBtn = wrapper?.querySelector('.next');
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        slider.scrollBy({
-          left: -slider.clientWidth,
-          behavior: 'smooth'
-        });
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        slider.scrollBy({
-          left: slider.clientWidth,
-          behavior: 'smooth'
-        });
-      });
-    }
-
-    // Update active dot on scroll
-    slider.addEventListener('scroll', () => {
-      if (pagination) {
-        const dots = pagination.querySelectorAll('.dot');
-        const slideIndex = Math.round(slider.scrollLeft / slider.clientWidth);
-        dots.forEach((dot, index) => {
-          dot.classList.toggle('active', index === slideIndex);
-        });
-      }
-    });
-
-    function startAutoplay() {
-      interval = setInterval(() => {
-        slider.scrollBy({
-          left: slider.clientWidth,
-          behavior: 'smooth'
-        });
-
-        // Loop to start
-        if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 50) {
-          setTimeout(() => {
-            slider.scrollTo({
-              left: 0,
-              behavior: 'smooth'
-            });
-          }, 1000);
+    // Close other items if this one is opening
+    if (clickedItem.classList.contains('active')) {
+      this.items.forEach(item => {
+        if (item !== clickedItem && item.classList.contains('active')) {
+          item.classList.remove('active');
         }
-      }, speed);
+      });
     }
+  }
+}
 
-    if (autoplay) startAutoplay();
+customElements.define('pc-accordion', PCAccordion);
 
+
+  class PCTestimonialSlider extends HTMLElement {
+  constructor() {
+    super();
+    this.slider = this.querySelector('.pc-testimonial-slider');
+    this.autoplay = this.slider.dataset.autoplay === 'true';
+    this.speed = parseInt(this.slider.dataset.speed) * 1000 || 3000;
+    this.interval = null;
+    
+    this.initSlider();
+  }
+
+  initSlider() {
+    this.initPagination();
+    this.initNavigation();
+    this.initScrollEvents();
+    
+    if (this.autoplay) {
+      this.startAutoplay();
+    }
+  }
+
+  initPagination() {
+    this.pagination = this.querySelector('.pc-testimonial-pagination');
+    if (!this.pagination) return;
+    
+    this.slides = this.slider.querySelectorAll('.pc-testimonial');
+    this.slides.forEach((slide, index) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (index === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => this.goToSlide(index));
+      this.pagination.appendChild(dot);
+    });
+  }
+
+  initNavigation() {
+    this.prevBtn = this.querySelector('.prev');
+    this.nextBtn = this.querySelector('.next');
+    
+    if (this.prevBtn) {
+      this.prevBtn.addEventListener('click', () => this.prevSlide());
+    }
+    
+    if (this.nextBtn) {
+      this.nextBtn.addEventListener('click', () => this.nextSlide());
+    }
+  }
+
+  initScrollEvents() {
+    this.slider.addEventListener('scroll', () => this.updateActiveDot());
+    
     // Pause autoplay on hover
-    slider.addEventListener('mouseenter', () => {
-      clearInterval(interval);
+    this.slider.addEventListener('mouseenter', () => clearInterval(this.interval));
+    this.slider.addEventListener('mouseleave', () => {
+      if (this.autoplay) this.startAutoplay();
     });
+  }
 
-    slider.addEventListener('mouseleave', () => {
-      if (autoplay) startAutoplay();
+  goToSlide(index) {
+    this.slider.scrollTo({
+      left: this.slider.clientWidth * index,
+      behavior: 'smooth'
     });
-  });
-});
+  }
+
+  prevSlide() {
+    this.slider.scrollBy({
+      left: -this.slider.clientWidth,
+      behavior: 'smooth'
+    });
+  }
+
+  nextSlide() {
+    this.slider.scrollBy({
+      left: this.slider.clientWidth,
+      behavior: 'smooth'
+    });
+    
+    // Check if we need to loop
+    if (this.slider.scrollLeft + this.slider.clientWidth >= this.slider.scrollWidth - 50) {
+      setTimeout(() => {
+        this.slider.scrollTo({
+          left: 0,
+          behavior: 'smooth'
+        });
+      }, 1000);
+    }
+  }
+
+  updateActiveDot() {
+    if (!this.pagination) return;
+    
+    const dots = this.pagination.querySelectorAll('.dot');
+    const slideIndex = Math.round(this.slider.scrollLeft / this.slider.clientWidth);
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === slideIndex);
+    });
+  }
+
+  startAutoplay() {
+    this.interval = setInterval(() => this.nextSlide(), this.speed);
+  }
+
+  disconnectedCallback() {
+    clearInterval(this.interval);
+  }
+}
+
+customElements.define('pc-testimonial-slider', PCTestimonialSlider);
 </script>
 
 
