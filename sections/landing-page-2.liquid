@@ -941,100 +941,62 @@ document.addEventListener('DOMContentLoaded', function() {
             {% endfor %}
           </div>
 </pc-accordion>
-          {% when 'team' %}
+         {% when 'brands' %}
 <style>
-  {{ sec_id }} #block-{{ block.id }}.pc-team {
+  {{ sec_id }} #block-{{ block.id }}.pc-brand-slider {
+    text-align: center;
     background: {{ block.settings.background_color }};
+    position: relative;
     padding-top: {{ block.settings.padding_top }}px;
     padding-bottom: {{ block.settings.padding_bottom }}px;
-    position: relative;
   }
 
-  {{ sec_id }} #block-{{ block.id }} .pc-team__header {
-    display: flex;
-    justify-content: flex-start;
-    gap: 40px;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto 40px;
-  }
-
-  {{ sec_id }} #block-{{ block.id }} .pc-team__title {
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__title {
     font-size: {{ block.settings.title_size }}px;
+    margin-bottom: 30px;
     color: {{ block.settings.title_color }};
-    font-weight: bold;
+    font-weight: {{ block.settings.title_font_weight }};
     background: {{ block.settings.title_bg_color }};
     display: inline-block;
     padding: 5px 15px;
   }
 
-  {{ sec_id }} #block-{{ block.id }} .pc-team__description {
-    max-width: 600px;
-    color: {{ block.settings.description_color }};
-    font-size: {{ block.settings.description_size }}px;
-  }
-
-  {{ sec_id }} #block-{{ block.id }} .pc-team__grid {
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  {{ sec_id }} #block-{{ block.id }} .pc-team-member {
-    background: {{ block.settings.card_bg }};
-    padding: 35px;
-    border-radius: 12px;
-    box-shadow: 0 7px 1px rgb(0 0 0);
-    border: 1px solid #707070;
-  }
-
-  {{ sec_id }} #block-{{ block.id }} .pc-team-meta {
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item {
     display: flex;
     align-items: center;
+    justify-content: center;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    background: {{ block.settings.item_bg_color }};
+    padding: {{ block.settings.item_padding }}px;
+    border-radius: 8px;
+    min-height: {{ block.settings.item_min_height }}px;
   }
 
-  {{ sec_id }} #block-{{ block.id }} .pc-team-member__image {
-    flex-shrink: 0;
-    width: {{ block.settings.image_width | default: 80 }}px;
-    height: {{ block.settings.image_height | default: 80 }}px;
-    margin-right: 20px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: {{ block.settings.image_bg_color }};
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item:hover {
+    filter: grayscale(0%);
+    opacity: 1;
   }
 
-  {{ sec_id }} #block-{{ block.id }} .pc-team-member__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item img {
+    max-width: {{ block.settings.logo_max_width }}px;
+    max-height: {{ block.settings.logo_max_height }}px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
   }
 
-  {{ sec_id }} #block-{{ block.id }} .pc-team-member__content {
-    flex: 1;
-  }
-
-  {{ sec_id }} #block-{{ block.id }} .pc-team-member__name {
-    font-size: {{ block.settings.name_size }}px;
-    font-weight: 600;
-    margin: 0 0 5px;
-    color: {{ block.settings.name_color }};
-  }
-
-  {{ sec_id }} #block-{{ block.id }} .pc-team-member__position {
-    font-size: {{ block.settings.position_size }}px;
-    color: {{ block.settings.position_color }};
-    margin-bottom: 8px;
-  }
-
-  {{ sec_id }} #block-{{ block.id }} .pc-team-member__description {
-    font-size: {{ block.settings.content_description_size }}px;
-    color: {{ block.settings.description_text_color }};
-    line-height: 1.5;
-  }
-
-  /* Slider styles */
-  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.pc-slider-mode {
+  /* Slider mode styles (for mobile) */
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__grid.pc-slider-mode {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -1045,21 +1007,21 @@ document.addEventListener('DOMContentLoaded', function() {
     gap: 0;
   }
 
-  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.pc-slider-mode::-webkit-scrollbar {
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__grid.pc-slider-mode::-webkit-scrollbar {
     display: none;
   }
 
-  {{ sec_id }} #block-{{ block.id }} .pc-team__grid.pc-slider-mode .pc-team-member {
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__grid.pc-slider-mode .pc-brand-slider__item {
     scroll-snap-align: start;
-    flex: 0 0 calc(85% - 0px);
+    flex: 0 0 calc(50% - 20px);
     margin: 0 10px;
   }
 
   /* Navigation Arrows */
   {% if block.settings.show_arrows %}
-  {{ sec_id }} #block-{{ block.id }} .pc-team__arrow {
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__arrow {
     position: absolute;
-    bottom: 0;
+    top: 50%;
     transform: translateY(-50%);
     width: 40px;
     height: 40px;
@@ -1074,24 +1036,26 @@ document.addEventListener('DOMContentLoaded', function() {
     justify-content: center;
     border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: none;
   }
-  {{ sec_id }} #block-{{ block.id }} .pc-team__arrow--prev {
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__arrow--prev {
     left: 10px;
   }
-  {{ sec_id }} #block-{{ block.id }} .pc-team__arrow--next {
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__arrow--next {
     right: 10px;
   }
   {% endif %}
 
   /* Pagination Dots */
   {% if block.settings.show_dots %}
-  {{ sec_id }} #block-{{ block.id }} .pc-team__dots {
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__dots {
     display: flex;
     justify-content: center;
     gap: 8px;
     margin-top: 20px;
+    display: none;
   }
-  {{ sec_id }} #block-{{ block.id }} .pc-team__dot {
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -1099,120 +1063,122 @@ document.addEventListener('DOMContentLoaded', function() {
     cursor: pointer;
     transition: background 0.3s ease;
   }
-  {{ sec_id }} #block-{{ block.id }} .pc-team__dot.active {
+  {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__dot.active {
     background: {{ block.settings.dot_active_color }};
   }
   {% endif %}
 
-  @media (min-width: 769px) {
-    {{ sec_id }} #block-{{ block.id }} .pc-team__grid.pc-slider-mode {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
-
-    {{ sec_id }} #block-{{ block.id }} .pc-team__grid.pc-slider-mode .pc-team-member {
-      flex: none;
-      margin: 0;
-    }
-
-    {{ sec_id }} #block-{{ block.id }} .pc-team__dots,
-    {{ sec_id }} #block-{{ block.id }} .pc-team__arrow {
-      display: none !important;
-    }
-  }
-
   @media (max-width: 768px) {
-    {{ sec_id }} #block-{{ block.id }} .pc-team__title {
+    {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__title {
       font-size: {{ block.settings.title_size_mobile }}px;
     }
     
-    {{ sec_id }} #block-{{ block.id }} .pc-team__description {
-      font-size: {{ block.settings.description_size_mobile }}px;
-    }
-    
-    {{ sec_id }} #block-{{ block.id }} .pc-team-member {
-      flex-direction: column;
-      text-align: center;
-    }
+    {% if block.settings.enable_mobile_slider %}
+      {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 20px 0;
+        gap: 0;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__grid::-webkit-scrollbar {
+        display: none;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item {
+        scroll-snap-align: start;
+        flex: 0 0 calc(50% - 20px);
+        margin: 0 10px;
+        min-height: {{ block.settings.item_min_height | times: 0.8 }}px;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item img {
+        max-width: {{ block.settings.logo_max_width | times: 0.8 }}px;
+        max-height: {{ block.settings.logo_max_height | times: 0.8 }}px;
+      }
+      
+      {% if block.settings.show_arrows %}
+        {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__arrow {
+          display: flex;
+        }
+      {% endif %}
+      
+      {% if block.settings.show_dots %}
+        {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__dots {
+          display: flex;
+        }
+      {% endif %}
+    {% else %}
+      {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item {
+        min-height: {{ block.settings.item_min_height | times: 0.8 }}px;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item img {
+        max-width: {{ block.settings.logo_max_width | times: 0.8 }}px;
+        max-height: {{ block.settings.logo_max_height | times: 0.8 }}px;
+      }
+    {% endif %}
+  }
 
-    {{ sec_id }} #block-{{ block.id }} .pc-team-member__image {
-      width: {{ block.settings.image_width_mobile | default: block.settings.image_width | default: 80 }}px;
-      height: {{ block.settings.image_height_mobile | default: block.settings.image_height | default: 80 }}px;
-      margin-right: 0;
-      margin-bottom: 15px;
-    }
-    
-    {{ sec_id }} #block-{{ block.id }} .pc-team-member__name {
-      font-size: {{ block.settings.name_size_mobile }}px;
-    }
-    
-    {{ sec_id }} #block-{{ block.id }} .pc-team-member__position {
-      font-size: {{ block.settings.position_size_mobile }}px;
-    }
-    
-    {{ sec_id }} #block-{{ block.id }} .pc-team-member__description {
-      font-size: {{ block.settings.content_description_size_mobile }}px;
-    }
-    
-    {{ sec_id }} #block-{{ block.id }} .pc-team__header {
-      gap: 0px;
-      margin: 0 auto 0px;
-    }
+  @media (max-width: 480px) {
+    {% if block.settings.enable_mobile_slider %}
+      {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item {
+        flex: 0 0 calc(70% - 20px);
+        min-height: {{ block.settings.item_min_height | times: 0.7 }}px;
+      }
+      
+      {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__item img {
+        max-width: {{ block.settings.logo_max_width | times: 0.7 }}px;
+        max-height: {{ block.settings.logo_max_height | times: 0.7 }}px;
+      }
+    {% else %}
+      {{ sec_id }} #block-{{ block.id }} .pc-brand-slider__grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      }
+    {% endif %}
   }
 </style>
 
-<div id="block-{{ block.id }}" class="pc-team">
-  <div class="pc-team__header">
-    <h2 class="pc-team__title">{{ block.settings.title }}</h2>
-    <div class="pc-team__description">{{ block.settings.description }}</div>
-  </div>
-  
-  {% if block.settings.show_arrows %}
-    <button class="pc-team__arrow pc-team__arrow--prev">←</button>
+<div id="block-{{ block.id }}" class="pc-brand-slider">
+  {% if block.settings.title != blank %}
+    <h2 class="pc-brand-slider__title">{{ block.settings.title }}</h2>
   {% endif %}
   
-  <div class="pc-team__grid {% if block.settings.enable_mobile_slider %}pc-slider-mode{% endif %}">
+  {% if block.settings.show_arrows %}
+    <button class="pc-brand-slider__arrow pc-brand-slider__arrow--prev">←</button>
+  {% endif %}
+  
+  <div class="pc-brand-slider__grid {% if block.settings.enable_mobile_slider %}pc-slider-mode{% endif %}">
     {% for i in (1..6) %}
-      {% assign image_key = 'member_' | append: i | append: '_image' %}
-      {% assign name_key = 'member_' | append: i | append: '_name' %}
-      {% assign position_key = 'member_' | append: i | append: '_position' %}
-      {% assign description_key = 'member_' | append: i | append: '_description' %}
-      {% assign bg_key = 'member_' | append: i | append: '_bg' %}
-
-      {% if block.settings[name_key] != blank %}
-        <div class="pc-team-member" style="background: {{ block.settings[bg_key] | default: block.settings.card_bg }};">
-          <div class="pc-team-meta">
-            <div class="pc-team-member__image">
-              {% if block.settings[image_key] != blank %}
-                {{ block.settings[image_key] | image_url: width: 160 | image_tag: loading: 'lazy' }}
-              {% else %}
-                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-              {% endif %}
-            </div>
-            <div class="pc-team-member__content">
-              <h3 class="pc-team-member__name">{{ block.settings[name_key] }}</h3>
-              <div class="pc-team-member__position">{{ block.settings[position_key] }}</div>
-            </div>
-          </div>
-          <hr>
-          <div class="pc-team-member__description">{{ block.settings[description_key] }}</div>
+      {% assign image_key = 'brand_' | append: i | append: '_image' %}
+      {% if block.settings[image_key] != blank %}
+        <div class="pc-brand-slider__item">
+          {{ block.settings[image_key] | image_url: width: 300 | image_tag: loading: 'lazy', alt: 'Brand logo' }}
+        </div>
+      {% else %}
+        <div class="pc-brand-slider__item">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
         </div>
       {% endif %}
     {% endfor %}
   </div>
   
   {% if block.settings.show_arrows %}
-    <button class="pc-team__arrow pc-team__arrow--next">→</button>
+    <button class="pc-brand-slider__arrow pc-brand-slider__arrow--next">→</button>
   {% endif %}
   
   {% if block.settings.show_dots %}
-    <div class="pc-team__dots">
+    <div class="pc-brand-slider__dots">
       {% for i in (1..6) %}
-        {% assign name_key = 'member_' | append: i | append: '_name' %}
-        {% if block.settings[name_key] != blank %}
-          <div class="pc-team__dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
-        {% endif %}
+        <div class="pc-brand-slider__dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
       {% endfor %}
     </div>
   {% endif %}
@@ -1222,22 +1188,24 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const blockId = 'block-{{ block.id }}';
-  const slider = document.querySelector(`#${blockId} .pc-team__grid.pc-slider-mode`);
-  const prevBtn = document.querySelector(`#${blockId} .pc-team__arrow--prev`);
-  const nextBtn = document.querySelector(`#${blockId} .pc-team__arrow--next`);
-  const dots = document.querySelectorAll(`#${blockId} .pc-team__dot`);
+  const slider = document.querySelector(`#${blockId} .pc-brand-slider__grid.pc-slider-mode`);
+  const prevBtn = document.querySelector(`#${blockId} .pc-brand-slider__arrow--prev`);
+  const nextBtn = document.querySelector(`#${blockId} .pc-brand-slider__arrow--next`);
+  const dots = document.querySelectorAll(`#${blockId} .pc-brand-slider__dot`);
   
-  if (!slider) return;
-  
-  // Initialize slider only on mobile
+  // Only initialize if we're on mobile and slider mode is enabled
   function initSlider() {
     if (window.innerWidth > 768) {
-      // Remove slider behavior on desktop
+      // Desktop - hide navigation elements
+      if (prevBtn) prevBtn.style.display = 'none';
+      if (nextBtn) nextBtn.style.display = 'none';
+      if (dots) dots.forEach(dot => dot.style.display = 'none');
       return;
     }
     
-    const members = slider.querySelectorAll('.pc-team-member');
-    if (members.length <= 1) {
+    // Mobile - check if we have enough items to slide
+    const items = slider.querySelectorAll('.pc-brand-slider__item');
+    if (items.length <= 1) {
       if (dots) dots.forEach(dot => dot.style.display = 'none');
       if (prevBtn) prevBtn.style.display = 'none';
       if (nextBtn) nextBtn.style.display = 'none';
@@ -1247,6 +1215,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show navigation if enabled
     if (prevBtn) prevBtn.style.display = 'flex';
     if (nextBtn) nextBtn.style.display = 'flex';
+    if (dots) dots.forEach(dot => dot.style.display = 'block');
     
     // Handle arrow clicks
     if (prevBtn) {
@@ -1268,7 +1237,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Handle dot clicks
-    if (dots.length > 0) {
+    if (dots && dots.length > 0) {
       dots.forEach(dot => {
         dot.addEventListener('click', () => {
           const index = parseInt(dot.dataset.index);
