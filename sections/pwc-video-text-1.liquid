@@ -1,0 +1,725 @@
+{%- assign sid = '#shopify-section-' | append: section.id -%}
+
+{%- liquid
+  assign video_position = section.settings.video_position
+  assign background_color = section.settings.background_color
+-%}
+
+<style>
+  {{ sid }} {
+    background-color: {{ background_color }};
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  {{ sid }} .pc-container {
+    max-width: {{ section.settings.container_width }}px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: {{ section.settings.grid_gap }}px;
+    padding: 0 20px;
+  }
+
+  {{ sid }} .pc-content-wrapper {
+    order: {% if video_position == 'right' %}1{% else %}2{% endif %};
+    height: 100%;
+    align-content: center;
+    background: {{ section.settings.content_background }};
+    border-radius: {{ section.settings.content_radius }}px;
+    padding: {{ section.settings.content_padding }}px;
+    box-shadow: {{ section.settings.content_shadow }};
+  }
+
+  {{ sid }} .pc-media-wrapper {
+    order: {% if video_position == 'right' %}2{% else %}1{% endif %};
+    position: relative;
+  }
+
+  {{ sid }} .pc-review-stars {
+    font-size: {{ section.settings.review_size }}px;
+    color: {{ section.settings.review_color }};
+    margin-bottom: {{ section.settings.review_spacing }}px;
+    letter-spacing: {{ section.settings.review_spacing }}px;
+  }
+
+  {{ sid }} .pc-heading {
+    font-size: {{ section.settings.heading_size }}px;
+    color: {{ section.settings.heading_color }};
+    margin-bottom: {{ section.settings.heading_spacing }}px;
+    line-height: {{ section.settings.heading_line_height }};
+    letter-spacing: {{ section.settings.heading_letter_spacing }}px;
+  }
+
+  {{ sid }} .pc-heading p {
+    margin: 0;
+  }
+
+  {{ sid }} .pc-subheading {
+    font-size: {{ section.settings.subheading_size }}px;
+    color: {{ section.settings.subheading_color }};
+    margin-bottom: {{ section.settings.subheading_spacing }}px;
+    max-width: {{ section.settings.subheading_width }}px;
+    line-height: {{ section.settings.subheading_line_height }};
+  }
+
+  {{ sid }} .pc-cta-button {
+    background: {{ section.settings.button_color }};
+    color: {{ section.settings.button_text_color }};
+    padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
+    border-radius: {{ section.settings.button_radius }}px;
+    display: inline-flex;
+    font-weight: {{ section.settings.button_weight }};
+    text-transform: {{ section.settings.button_transform }};
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: {{ section.settings.button_border_width }}px solid {{ section.settings.button_border_color }};
+    font-size: {{ section.settings.button_font_size }}px;
+  }
+
+  {{ sid }} .pc-cta-button:hover {
+    transform: scale(1.03);
+    background: {{ section.settings.button_hover_color }};
+    color: {{ section.settings.button_hover_text_color }};
+  }
+
+  {{ sid }} .pc-press-quotes {
+    margin-top: {{ section.settings.press_spacing }}px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax({{ section.settings.press_min_width }}px, 1fr));
+    gap: {{ section.settings.press_gap }}px;
+  }
+
+  {{ sid }} .pc-press-item {
+    font-size: {{ section.settings.press_font_size }}px;
+    color: {{ section.settings.press_color }};
+    position: relative;
+    line-height: 1.4;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  {{ sid }} .pc-video-wrapper {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: {{ section.settings.media_radius }}px;
+    position: relative;
+  }
+
+  {{ sid }} .pc-video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    {{ sid }} .pc-container {
+      grid-template-columns: 1fr;
+      gap: {{ section.settings.mobile_grid_gap }}px;
+      padding: 0 {{ section.settings.mobile_container_padding }}px;
+    }
+
+    {{ sid }} .pc-content-wrapper {
+      padding: {{ section.settings.mobile_content_padding }}px;
+      border-radius: {{ section.settings.mobile_content_radius }}px;
+      text-align: {{ section.settings.mobile_content_alignment }};
+    }
+
+    {{ sid }} .pc-heading {
+      font-size: {{ section.settings.mobile_heading_size }}px;
+      margin-bottom: {{ section.settings.mobile_heading_spacing }}px;
+    }
+
+    {{ sid }} .pc-subheading {
+      font-size: {{ section.settings.mobile_subheading_size }}px;
+      margin-bottom: {{ section.settings.mobile_subheading_spacing }}px;
+      max-width: 100%;
+    }
+
+    {{ sid }} .pc-review-stars {
+      font-size: {{ section.settings.mobile_review_size }}px;
+      margin-bottom: {{ section.settings.mobile_review_spacing }}px;
+    }
+
+    {{ sid }} .pc-cta-button {
+      width: 100%;
+      justify-content: center;
+      font-size: {{ section.settings.mobile_button_font_size }}px;
+      padding: {{ section.settings.mobile_button_padding_vertical }}px {{ section.settings.mobile_button_padding_horizontal }}px;
+    }
+
+    {{ sid }} .pc-press-quotes {
+      grid-template-columns: 1fr;
+      gap: {{ section.settings.mobile_press_gap }}px;
+    }
+
+    {{ sid }} .pc-press-item {
+      font-size: {{ section.settings.mobile_press_font_size }}px;
+     }
+
+  }
+</style>
+
+<div class="pc-container">
+  <div class="pc-media-wrapper">
+    <div class="pc-video-wrapper">
+      {%- if section.settings.video != blank -%}
+        {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false }}
+      {%- else -%}
+        {{ 'collection-5' | placeholder_svg_tag: 'pc-placeholder-video' }}
+      {%- endif -%}
+    </div>
+  </div>
+  <div class="pc-content-wrapper">
+    {%- if section.settings.reviews != blank -%}
+      <div class="pc-review-stars">{{ section.settings.reviews }}</div>
+    {%- endif -%}
+
+    <h1 class="pc-heading">{{ section.settings.heading }}</h1>
+    
+    {%- if section.settings.subheading != blank -%}
+      <div class="pc-subheading">{{ section.settings.subheading }}</div>
+    {%- endif -%}
+
+    {%- if section.settings.button_text != blank -%}
+      <a href="{{ section.settings.button_link }}" class="pc-cta-button">
+        {{- section.settings.button_text -}}
+      </a>
+    {%- endif -%}
+
+    {% if section.blocks.size > 0 %}
+      <div class="pc-press-quotes">
+        {%- for block in section.blocks -%}
+             
+          <div class="pc-press-item" {{ block.shopify_attributes }}>
+            {% if block.settings.icon_image -%}
+                {{-
+                  block.settings.icon_image
+                  | image_url: width: 40, height: 40
+                  | image_tag
+                -}}
+              {%- endif %}
+            {{ block.settings.quote }}
+          </div>
+        {%- endfor -%}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "PWC -Video With Text #1",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "reviews",
+      "label": "Review Text",
+      "default": "★ 3,913 Reviews"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Life Changing Breathing</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Intake is a revolutionary nasal strip designed to unlock your deepest breath.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video"
+    },
+    {
+      "type": "select",
+      "id": "video_position",
+      "label": "Video Position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "header",
+      "content": "Style Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color_background",
+      "id": "content_background",
+      "label": "Content Background",
+      "default": "#cccccc2e"
+    },
+      {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Content Gap",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "content_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Content Radius",
+      "default": 20
+    },
+    
+    {
+      "type": "range",
+      "id": "media_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Media Radius",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "content_padding",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Content Padding",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "color",
+      "id": "review_color",
+      "label": "Review Color",
+      "default": "#1E81B0"
+    },
+    {
+      "type": "range",
+      "id": "review_size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Review Text Size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "review_spacing",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Review Letter Spacing",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading Spacing",
+      "default": 26
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subheading Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "subheading_spacing",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Subheading Spacing",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "subheading_width",
+      "min": 200,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "label": "Subheading Max Width",
+      "default": 500
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#1E81B0"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button Hover Color",
+      "default": "#156084"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Radius",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Vertical Padding",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Button Horizontal Padding",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Border Width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button Border Color",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Button Font Size",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "button_transform",
+      "label": "Button Text Transform",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "uppercase", "label": "Uppercase" },
+        { "value": "lowercase", "label": "Lowercase" },
+        { "value": "capitalize", "label": "Capitalize" }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "button_weight",
+      "min": 300,
+      "max": 900,
+      "step": 100,
+      "label": "Button Font Weight",
+      "default": 700
+    },
+    {
+      "type": "header",
+      "content": "Press Quotes"
+    },
+    {
+      "type": "color",
+      "id": "press_color",
+      "label": "Text Color",
+      "default": "#444444"
+    },
+    {
+      "type": "color",
+      "id": "press_bullet_color",
+      "label": "Bullet Color",
+      "default": "#1E81B0"
+    },
+    {
+      "type": "range",
+      "id": "press_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "press_min_width",
+      "min": 150,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "label": "Minimum Column Width",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "press_gap",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Columns Gap",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "press_spacing",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Top Spacing",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Spacing Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Padding Top",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section Padding Bottom",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "mobile_container_padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Container Padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Content Padding",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Content Radius",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_grid_gap",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Grid Gap",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "min": 18,
+      "max": 42,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Heading Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_subheading_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Subheading Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_review_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Review Size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_press_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile Press Font Size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "mobile_press_gap",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile Press Gap",
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "press_quote",
+      "name": "Press Quote",
+      "limit": 4,
+      "settings": [
+          {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Quote",
+          "default": "<p>\"Best Anti-Snoring Devices in 2024\" - Merit Health</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PWC -Video With Text #1",
+      "blocks": [
+        {
+          "type": "press_quote"
+        },
+        {
+          "type": "press_quote"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
