@@ -1752,10 +1752,10 @@
         "filter_font_size": 16,
         "button_text_decoration": "none",
         "filter_font_weight": "500",
-        "filter_text_color": "#003",
-        "filter_bg_color": "#eee",
+        "filter_text_color": "#000033",
+        "filter_bg_color": "#eeeeee",
         "filter_border_color": "#f44336",
-        "filter_active_text_color": "#fff",
+        "filter_active_text_color": "#ffffff",
         "filter_active_bg_color": "#f44336",
         "filter_border_radius": 10,
         "filter_vertical_padding": 10,
@@ -1768,6 +1768,68 @@
         "small_mobile_image_height": 180,
         "image_border_radius": 12,
         "image_margin": 10
+      }
+    },
+    "rw_parallel_1_tXG6rB": {
+      "type": "rw-parallel-1",
+      "blocks": {
+        "image_b48XNr": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/alberto-restifo-cFplR9ZGnAk-unsplash_1.jpg",
+            "heading": "Why do we use it?",
+            "subheading": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. ",
+            "show_button": true,
+            "button_label": "Shop Now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_b48XNr"
+      ],
+      "name": "RW - Parallax #1",
+      "settings": {
+        "custom_container_width": 1200,
+        "height": 500,
+        "text_alignment": "left",
+        "text_position": 50,
+        "section_margin_top": 15,
+        "section_margin_bottom": 15,
+        "heading_size": 55,
+        "heading_color": "#ffffff",
+        "heading_font_weight": "bold",
+        "heading_font_style": "normal",
+        "heading_letter_spacing": 1,
+        "heading_text_decoration": "none",
+        "heading_text_decoration_color": "#ffffff",
+        "heading_padding_top": 0,
+        "heading_padding_bottom": 0,
+        "subheading_size": 25,
+        "subheading_color": "#ffffff",
+        "subheading_font_weight": "normal",
+        "subheading_font_style": "normal",
+        "subheading_letter_spacing": 0,
+        "subheading_text_decoration": "none",
+        "subheading_text_decoration_color": "#ffffff",
+        "subheading_padding_top": 5,
+        "subheading_padding_bottom": 5,
+        "button_size": 18,
+        "button_font_weight": "normal",
+        "button_text_transform": "uppercase",
+        "button_text_decoration": "underline",
+        "letter_spacing": 1,
+        "button_text_decoration_color": "#ffffff",
+        "button_border_color": "#ffffff",
+        "button_text_color": "#ffffff",
+        "button_padding_vertical": 5,
+        "button_padding_horizontal": 5,
+        "button_min_width": 50,
+        "enable_overlay": true,
+        "overlay_color": "#000000",
+        "overlay_opacity": 50,
+        "mobile_heading_size": 30,
+        "mobile_subheading_size": 18
       }
     }
   },
@@ -1791,6 +1853,7 @@
     "rw_image_gallery_fMWcVR",
     "rw_vertical_slider_3m9DX8",
     "pwc_pricing_plans_3_grDpX7",
-    "rw_filter_gallery_2_t9faty"
+    "rw_filter_gallery_2_t9faty",
+    "rw_parallel_1_tXG6rB"
   ]
 }
