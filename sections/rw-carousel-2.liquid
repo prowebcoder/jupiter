@@ -64,11 +64,6 @@
     {% else %}
       flex-direction: row-reverse;
     {% endif %}
-    {% if section.settings.image_position == 'left' %}
-      flex-direction: row;
-    {% else %}
-      flex-direction: row-reverse;
-    {% endif %}
   }
 
   {{ sec_id }} .pc-card-content-{{ last_part }} {
@@ -271,7 +266,7 @@
 </style>
 
 <div class="pc-section-container-{{ last_part }}">
-  <div class="pc-card-carousel-{{ last_part }} pc-align-{{ section.settings.image_position }}">
+  <pc-card-carousel-{{ last_part }} class="pc-card-carousel-{{ last_part }} pc-align-{{ section.settings.image_position }}">
     {% for block in section.blocks %}
       <div class="pc-card-{{ last_part }} {% if forloop.first %}pc-active-{{ last_part }}{% endif %}">
         <div class="pc-card-content-{{ last_part }}">
@@ -296,9 +291,15 @@
         
         <div class="pc-card-image-{{ last_part }}">
           {% if block.settings.image != blank %}
-            {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.image.alt | escape }}
+            {{ 
+              block.settings.image 
+              | image_url: width: 800 
+              | image_tag: 
+                  loading: 'lazy', 
+                  alt: block.settings.image.alt | escape 
+            }}
           {% else %}
-            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-svg' }}
           {% endif %}
         </div>
       </div>
@@ -316,43 +317,75 @@
         </svg>
       </div>
     </div>
-  </div>
+  </pc-card-carousel-{{ last_part }}>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const sectionId = "{{ last_part }}";
-    const cards = document.querySelectorAll(".pc-card-" + sectionId);
-    const leftArrow = document.getElementById("pc-moveLeft-" + sectionId);
-    const rightArrow = document.getElementById("pc-moveRight-" + sectionId);
-
-    let current = 0;
-
-    function showCard(index) {
-      cards.forEach((card, i) => {
-        if (i === index) {
-          card.classList.add("pc-active-" + sectionId);
-        } else {
-          card.classList.remove("pc-active-" + sectionId);
-        }
+(function() {
+  if (window.pcCardCarouselInitialized) return;
+  window.pcCardCarouselInitialized = true;
+  
+  class CardCarousel extends HTMLElement {
+    constructor() {
+      super();
+      
+      // Get ID suffix from class name
+      const classes = Array.from(this.classList);
+      const sectionClass = classes.find(cls => cls.startsWith('pc-card-carousel-'));
+      this.idSuffix = sectionClass ? sectionClass.split('-').pop() : '';
+      
+      // Now that we have idSuffix, we can query elements
+      this.cards = this.querySelectorAll('.pc-card-' + this.idSuffix);
+      this.leftArrow = this.querySelector('#pc-moveLeft-' + this.idSuffix);
+      this.rightArrow = this.querySelector('#pc-moveRight-' + this.idSuffix);
+      this.current = 0;
+    }
+    
+    connectedCallback() {
+      if (!this.idSuffix) return;
+      this.showCard(this.current);
+      this.setupEventListeners();
+    }
+    
+    showCard(index) {
+      this.cards.forEach((card, i) => {
+        card.classList.toggle('pc-active-' + this.idSuffix, i === index);
       });
     }
-
-    leftArrow.addEventListener("click", () => {
-      current = (current - 1 + cards.length) % cards.length;
-      showCard(current);
-    });
-
-    rightArrow.addEventListener("click", () => {
-      current = (current + 1) % cards.length;
-      showCard(current);
-    });
+    
+    setupEventListeners() {
+      if (this.leftArrow) {
+        this.leftArrow.addEventListener('click', () => {
+          this.current = (this.current - 1 + this.cards.length) % this.cards.length;
+          this.showCard(this.current);
+        });
+      }
+      
+      if (this.rightArrow) {
+        this.rightArrow.addEventListener('click', () => {
+          this.current = (this.current + 1) % this.cards.length;
+          this.showCard(this.current);
+        });
+      }
+    }
+  }
+  
+  // Register custom elements
+  document.querySelectorAll('[class*="pc-card-carousel-"]').forEach(element => {
+    const classes = Array.from(element.classList);
+    const sectionClass = classes.find(cls => cls.startsWith('pc-card-carousel-'));
+    const suffix = sectionClass ? sectionClass.split('-').pop() : '';
+    
+    if (suffix && !customElements.get('pc-card-carousel-' + suffix)) {
+      customElements.define('pc-card-carousel-' + suffix, CardCarousel);
+    }
   });
+})();
 </script>
 
 {% schema %}
 {
-  "name": "RW - Carousel #2",
+  "name": "PWC - Card Carousel #1",
   "tag": "section",
   "class": "shopify-section--pc-minimal-card-carousel",
   "settings": [
@@ -791,7 +824,7 @@
   ],
   "presets": [
     {
-      "name": "RW - Carousel #2",
+      "name": "PWC - Card Carousel #1",
       "category": "Custom",
       "blocks": [
         {
