@@ -328,15 +328,17 @@
   class CardCarousel extends HTMLElement {
     constructor() {
       super();
-      this.cards = this.querySelectorAll('.pc-card-' + this.idSuffix);
-      this.leftArrow = this.querySelector('#pc-moveLeft-' + this.idSuffix);
-      this.rightArrow = this.querySelector('#pc-moveRight-' + this.idSuffix);
-      this.current = 0;
       
       // Get ID suffix from class name
       const classes = Array.from(this.classList);
       const sectionClass = classes.find(cls => cls.startsWith('pc-card-carousel-'));
       this.idSuffix = sectionClass ? sectionClass.split('-').pop() : '';
+      
+      // Now that we have idSuffix, we can query elements
+      this.cards = this.querySelectorAll('.pc-card-' + this.idSuffix);
+      this.leftArrow = this.querySelector('#pc-moveLeft-' + this.idSuffix);
+      this.rightArrow = this.querySelector('#pc-moveRight-' + this.idSuffix);
+      this.current = 0;
     }
     
     connectedCallback() {
@@ -347,11 +349,7 @@
     
     showCard(index) {
       this.cards.forEach((card, i) => {
-        if (i === index) {
-          card.classList.add('pc-active-' + this.idSuffix);
-        } else {
-          card.classList.remove('pc-active-' + this.idSuffix);
-        }
+        card.classList.toggle('pc-active-' + this.idSuffix, i === index);
       });
     }
     
@@ -372,7 +370,7 @@
     }
   }
   
-  // Register custom element with unique name
+  // Register custom elements
   document.querySelectorAll('[class*="pc-card-carousel-"]').forEach(element => {
     const classes = Array.from(element.classList);
     const sectionClass = classes.find(cls => cls.startsWith('pc-card-carousel-'));
