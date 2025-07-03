@@ -178,9 +178,38 @@
     height: 20px;
     fill: var(--pc-arrow-color-{{ last_part }});
   }
+ {{ sec_id }} .pc-card-carousel-{{ last_part }} {
+    position: relative;
+    overflow: hidden;
+    transition: height 0.5s ease; /* For height changes on mobile */
+  }
 
-   @media (max-width: 767px) {
-  
+  {{ sec_id }} .pc-card-{{ last_part }} {
+    display: none;
+    height: 100%;
+    background: var(--pc-card-bg-{{ last_part }});
+    box-shadow: {% if section.settings.enable_shadow %}0 4px 6px rgba(0, 0, 0, 0.1){% else %}none{% endif %};
+    border-radius: {{ section.settings.card_radius }}px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
+    display: flex;
+    opacity: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  {{ sec_id }} .pc-card-{{ last_part }}.pc-transition-{{ last_part }} {
+    display: flex;
+    opacity: 0;
+    z-index: 0;
   }
 
  @media (max-width: 767px) {
@@ -262,6 +291,22 @@
     width: 32px;
     height: 32px;
   }
+    {{ sec_id }} .pc-card-{{ last_part }} {
+      position: relative;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+      transition: opacity 0.5s ease, height 0.5s ease;
+    }
+    
+    {{ sec_id }} .pc-card-{{ last_part }}.pc-active-{{ last_part }} {
+      opacity: 1;
+      height: var(--pc-mobile-container-height-{{ last_part }});
+    }
+    
+    {{ sec_id }} .pc-card-{{ last_part }}.pc-transition-{{ last_part }} {
+      display: none;
+    }
 }
 </style>
 
@@ -334,11 +379,11 @@
       const sectionClass = classes.find(cls => cls.startsWith('pc-card-carousel-'));
       this.idSuffix = sectionClass ? sectionClass.split('-').pop() : '';
       
-      // Now that we have idSuffix, we can query elements
       this.cards = this.querySelectorAll('.pc-card-' + this.idSuffix);
       this.leftArrow = this.querySelector('#pc-moveLeft-' + this.idSuffix);
       this.rightArrow = this.querySelector('#pc-moveRight-' + this.idSuffix);
       this.current = 0;
+      this.transitionTime = 500; // Match CSS transition duration
     }
     
     connectedCallback() {
@@ -348,23 +393,40 @@
     }
     
     showCard(index) {
-      this.cards.forEach((card, i) => {
-        card.classList.toggle('pc-active-' + this.idSuffix, i === index);
-      });
+      // Add transition class to current active card
+      const currentActive = this.querySelector('.pc-active-' + this.idSuffix);
+      if (currentActive) {
+        currentActive.classList.add('pc-transition-' + this.idSuffix);
+        currentActive.classList.remove('pc-active-' + this.idSuffix);
+      }
+      
+      // Set new active card
+      this.current = index;
+      this.cards[index].classList.remove('pc-transition-' + this.idSuffix);
+      this.cards[index].classList.add('pc-active-' + this.idSuffix);
+      
+      // Cleanup transition classes after animation
+      setTimeout(() => {
+        this.cards.forEach(card => {
+          if (!card.classList.contains('pc-active-' + this.idSuffix)) {
+            card.classList.remove('pc-transition-' + this.idSuffix);
+          }
+        });
+      }, this.transitionTime);
     }
     
     setupEventListeners() {
       if (this.leftArrow) {
         this.leftArrow.addEventListener('click', () => {
-          this.current = (this.current - 1 + this.cards.length) % this.cards.length;
-          this.showCard(this.current);
+          const newIndex = (this.current - 1 + this.cards.length) % this.cards.length;
+          this.showCard(newIndex);
         });
       }
       
       if (this.rightArrow) {
         this.rightArrow.addEventListener('click', () => {
-          this.current = (this.current + 1) % this.cards.length;
-          this.showCard(this.current);
+          const newIndex = (this.current + 1) % this.cards.length;
+          this.showCard(newIndex);
         });
       }
     }
