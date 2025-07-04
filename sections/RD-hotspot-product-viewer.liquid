@@ -15,14 +15,13 @@
     --pc-product-card-height: {{ section.settings.product_card_height }}px;
   }
 
-  {{ sec_id }} pc-hotspot-container-{{ last_part }} {
+  {{ sec_id }} .pc-hotspot-container-{{ last_part }} {
     max-width: {{ section.settings.section_max_width }}px;
     margin: 0 auto;
     padding: {{ section.settings.section_padding_top }}px 20px {{ section.settings.section_padding_bottom }}px;
-    display: block;
   }
 
-  {{ sec_id }} pc-hotspot-section-{{ last_part }} {
+  {{ sec_id }} .pc-hotspot-section-{{ last_part }} {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
@@ -30,28 +29,26 @@
     height: {{ section.settings.desktop_height }}px;
   }
 
-  {{ sec_id }} pc-hotspot-image-wrapper-{{ last_part }},
-  {{ sec_id }} pc-product-slider-{{ last_part }} {
+  {{ sec_id }} .pc-hotspot-image-wrapper-{{ last_part }},
+  {{ sec_id }} .pc-product-slider-{{ last_part }} {
     width: 50%;
     position: relative;
   }
 
-  {{ sec_id }} pc-hotspot-image-wrapper-{{ last_part }} {
+  {{ sec_id }} .pc-hotspot-image-wrapper-{{ last_part }} {
     height: 100%;
     overflow: hidden;
     border-radius: {{ section.settings.image_border_radius }}px;
-    display: block;
   }
 
-  {{ sec_id }} pc-hotspot-main-image-{{ last_part }} {
+  {{ sec_id }} .pc-hotspot-main-image-{{ last_part }} {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: inherit;
-    display: block;
   }
 
-  {{ sec_id }} pc-hotspot-{{ last_part }} {
+  {{ sec_id }} .pc-hotspot-{{ last_part }} {
     position: absolute;
     background: var(--pc-hotspot-color);
     color: var(--pc-hotspot-text-color);
@@ -67,12 +64,12 @@
     box-shadow: 0 0 0 2px white, 0 0 8px rgba(0,0,0,0.2);
   }
 
-  {{ sec_id }} pc-hotspot-{{ last_part }}.active {
+  {{ sec_id }} .pc-hotspot-{{ last_part }}.active {
     background: var(--pc-hotspot-active-color);
     transform: scale(1.1);
   }
 
-  {{ sec_id }} pc-product-slider-{{ last_part }} {
+  {{ sec_id }} .pc-product-slider-{{ last_part }} {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,7 +78,7 @@
     overflow: hidden;
   }
 
-  {{ sec_id }} pc-slider-wrapper-{{ last_part }} {
+  {{ sec_id }} .pc-slider-wrapper-{{ last_part }} {
     width: 100%;
     height: var(--pc-slider-height);
     position: relative;
@@ -89,7 +86,7 @@
     overflow: hidden;
   }
 
-  {{ sec_id }} pc-arrow-buttons-{{ last_part }} {
+  {{ sec_id }} .pc-arrow-buttons-{{ last_part }} {
     position: absolute;
     right: 10px;
     top: 50%;
@@ -100,7 +97,7 @@
     z-index: 3;
   }
 
-  {{ sec_id }} pc-arrow-{{ last_part }} {
+  {{ sec_id }} .pc-arrow-{{ last_part }} {
     background: white;
     border: 1px solid #ddd;
     font-size: 20px;
@@ -114,15 +111,15 @@
     transition: all 0.2s ease;
   }
 
-  {{ sec_id }} pc-arrow-{{ last_part }}:hover {
+  {{ sec_id }} .pc-arrow-{{ last_part }}:hover {
     background: #f0f0f0;
   }
 
-  {{ sec_id }} pc-product-cards-{{ last_part }} {
+  {{ sec_id }} .pc-product-cards-{{ last_part }} {
     transition: transform 0.5s ease-in-out;
   }
 
-  {{ sec_id }} pc-product-card-{{ last_part }} {
+  {{ sec_id }} .pc-product-card-{{ last_part }} {
     height: var(--pc-product-card-height);
     padding: 20px;
     box-sizing: border-box;
@@ -133,7 +130,7 @@
     text-align: center;
   }
 
-  {{ sec_id }} pc-product-title-{{ last_part }} {
+  {{ sec_id }} .pc-product-title-{{ last_part }} {
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
@@ -141,7 +138,7 @@
     font-size: {{ section.settings.title_size }}px;
   }
 
-  {{ sec_id }} pc-product-price-{{ last_part }} {
+  {{ sec_id }} .pc-product-price-{{ last_part }} {
     color: {{ section.settings.price_color }};
     font-size: {{ section.settings.price_size }}px;
     margin-bottom: 15px;
@@ -154,7 +151,7 @@
     margin-bottom: 15px;
   }
 
-  {{ sec_id }} pc-quick-view-btn-{{ last_part }} {
+  {{ sec_id }} .pc-quick-view-btn-{{ last_part }} {
     background-color: {{ section.settings.button_bg }};
     color: {{ section.settings.button_text }};
     border: none;
@@ -166,13 +163,29 @@
     margin-top: 10px;
   }
 
-  {{ sec_id }} pc-quick-view-btn-{{ last_part }}:hover {
+  {{ sec_id }} .pc-quick-view-btn-{{ last_part }}:hover {
     background-color: {{ section.settings.button_bg_hover }};
     color: {{ section.settings.button_text_hover }};
     transform: translateY(-2px);
   }
 
-  {{ sec_id }} pc-quick-view-modal-{{ last_part }} {
+  {{ sec_id }} .pc-color-swatches-{{ last_part }} {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  {{ sec_id }} .pc-swatch-{{ last_part }} {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.15);
+  }
+
+  {{ sec_id }} .pc-quick-view-modal-{{ last_part }} {
     position: fixed;
     top: 0;
     left: 0;
@@ -188,12 +201,12 @@
     transition: all 0.3s ease;
   }
 
-  {{ sec_id }} pc-quick-view-modal-{{ last_part }}.active {
+  {{ sec_id }} .pc-quick-view-modal-{{ last_part }}.active {
     opacity: 1;
     visibility: visible;
   }
 
-  {{ sec_id }} pc-modal-content-{{ last_part }} {
+  {{ sec_id }} .pc-modal-content-{{ last_part }} {
     background: white;
     max-width: 600px;
     width: 90%;
@@ -206,11 +219,11 @@
     transition: transform 0.3s ease;
   }
 
-  {{ sec_id }} pc-quick-view-modal-{{ last_part }}.active pc-modal-content-{{ last_part }} {
+  {{ sec_id }} .pc-quick-view-modal-{{ last_part }}.active .pc-modal-content-{{ last_part }} {
     transform: translateY(0);
   }
 
-  {{ sec_id }} pc-modal-close-{{ last_part }} {
+  {{ sec_id }} .pc-modal-close-{{ last_part }} {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -222,30 +235,30 @@
   }
 
   @media (max-width: 768px) {
-    {{ sec_id }} pc-hotspot-section-{{ last_part }} {
+    {{ sec_id }} .pc-hotspot-section-{{ last_part }} {
       flex-direction: column;
       height: auto;
     }
 
-    {{ sec_id }} pc-hotspot-image-wrapper-{{ last_part }},
-    {{ sec_id }} pc-product-slider-{{ last_part }} {
+    {{ sec_id }} .pc-hotspot-image-wrapper-{{ last_part }},
+    {{ sec_id }} .pc-product-slider-{{ last_part }} {
       width: 100%;
     }
 
-    {{ sec_id }} pc-hotspot-image-wrapper-{{ last_part }} {
+    {{ sec_id }} .pc-hotspot-image-wrapper-{{ last_part }} {
       height: {{ section.settings.mobile_image_height }}px;
     }
 
-    {{ sec_id }} pc-slider-wrapper-{{ last_part }} {
+    {{ sec_id }} .pc-slider-wrapper-{{ last_part }} {
       height: {{ section.settings.mobile_slider_height }}px;
     }
 
-    {{ sec_id }} pc-product-card-{{ last_part }} {
+    {{ sec_id }} .pc-product-card-{{ last_part }} {
       height: auto;
       min-height: {{ section.settings.mobile_product_card_height }}px;
     }
 
-    {{ sec_id }} pc-arrow-buttons-{{ last_part }} {
+    {{ sec_id }} .pc-arrow-buttons-{{ last_part }} {
       top: auto;
       bottom: 10px;
       right: 50%;
@@ -255,9 +268,9 @@
   }
 </style>
 
-<pc-hotspot-container-{{ last_part }}>
-  <pc-hotspot-section-{{ last_part }}>
-    <pc-hotspot-image-wrapper-{{ last_part }}>
+<div class="pc-hotspot-container-{{ last_part }}">
+  <div class="pc-hotspot-section-{{ last_part }}">
+    <div class="pc-hotspot-image-wrapper-{{ last_part }}">
       {%- if section.settings.main_image != blank -%}
         {{ 
           section.settings.main_image 
@@ -272,34 +285,34 @@
       {%- endif -%}
       
       {%- for block in section.blocks -%}
-        <pc-hotspot-{{ last_part }} 
-          class="{% if forloop.first %}active{% endif %}" 
+        <div 
+          class="pc-hotspot-{{ last_part }} {% if forloop.first %}active{% endif %}" 
           style="top:{{ block.settings.top }}%; left:{{ block.settings.left }}%;"
           data-index="{{ forloop.index0 }}"
         >
           {{ forloop.index }}
-        </pc-hotspot-{{ last_part }}>
+        </div>
       {%- endfor -%}
-    </pc-hotspot-image-wrapper-{{ last_part }}>
+    </div>
     
-    <pc-product-slider-{{ last_part }}>
-      <pc-slider-wrapper-{{ last_part }}>
-        <pc-arrow-buttons-{{ last_part }}>
-          <pc-arrow-{{ last_part }} class="up">↑</pc-arrow-{{ last_part }}>
-          <pc-arrow-{{ last_part }} class="down">↓</pc-arrow-{{ last_part }}>
-        </pc-arrow-buttons-{{ last_part }}>
-        <pc-product-cards-{{ last_part }}>
+    <div class="pc-product-slider-{{ last_part }}">
+      <div class="pc-slider-wrapper-{{ last_part }}">
+        <div class="pc-arrow-buttons-{{ last_part }}">
+          <button class="pc-arrow-{{ last_part }} up">↑</button>
+          <button class="pc-arrow-{{ last_part }} down">↓</button>
+        </div>
+        <div class="pc-product-cards-{{ last_part }}">
           {%- for block in section.blocks -%}
             {%- assign product = all_products[block.settings.product] -%}
             {%- if product != blank -%}
-              <pc-product-card-{{ last_part }} data-description="{{ product.description | strip_html | escape }}">
-                <pc-product-title-{{ last_part }}>{{ product.title }}</pc-product-title-{{ last_part }}>
-                <pc-product-price-{{ last_part }}>
+              <div class="pc-product-card-{{ last_part }}" data-description="{{ product.description | strip_html | escape }}">
+                <span class="pc-product-title-{{ last_part }}">{{ product.title }}</span>
+                <span class="pc-product-price-{{ last_part }}">
                   {%- if product.compare_at_price > product.price -%}
                     <del>{{ product.compare_at_price | money }}</del>
                   {%- endif -%}
                   {{ product.price | money }}
-                </pc-product-price-{{ last_part }}>
+                </span>
                 
                 {%- if product.featured_image != blank -%}
                   {% assign image_class = 'pc-product-image-' | append: last_part %}
@@ -315,167 +328,122 @@
                   {{ 'product-1' | placeholder_svg_tag }}
                 {%- endif -%}
                 
-                <pc-quick-view-btn-{{ last_part }}>Quick View</pc-quick-view-btn-{{ last_part }}>
-              </pc-product-card-{{ last_part }}>
+                <button class="pc-quick-view-btn-{{ last_part }}">Quick View</button>
+              </div>
             {%- endif -%}
           {%- endfor -%}
-        </pc-product-cards-{{ last_part }}>
-      </pc-slider-wrapper-{{ last_part }}>
-    </pc-product-slider-{{ last_part }}>
-  </pc-hotspot-section-{{ last_part }}>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <pc-quick-view-modal-{{ last_part }}>
+  <div class="pc-quick-view-modal-{{ last_part }}">
     <div class="pc-modal-overlay-{{ last_part }}"></div>
-    <pc-modal-content-{{ last_part }}>
-      <pc-modal-close-{{ last_part }}>&times;</pc-modal-close-{{ last_part }}>
+    <div class="pc-modal-content-{{ last_part }}">
+      <button class="pc-modal-close-{{ last_part }}">&times;</button>
       <div class="pc-modal-body-{{ last_part }}"></div>
-    </pc-modal-content-{{ last_part }}>
-  </pc-quick-view-modal-{{ last_part }}>
-</pc-hotspot-container-{{ last_part }}>
+    </div>
+  </div>
+</div>
 
 <script>
-class HotspotSlider_{{ last_part }} extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    
-    this.currentIndex = 0;
-    this.cards = [];
-    this.hotspots = [];
-    this.cardHeight = 0;
-    this.step = 0;
-    this.maxIndex = 0;
-    
-    // MutationObserver to watch for DOM changes
-    this.observer = new MutationObserver(() => this.init());
-  }
+(function() {
+  const sectionId = "{{ last_part }}";
+  const container = document.querySelector(`.pc-hotspot-container-${sectionId}`);
+  if (!container) return;
   
-  connectedCallback() {
-    this.init();
-    this.observer.observe(this, { childList: true, subtree: true });
-  }
+  const cardsContainer = container.querySelector(`.pc-product-cards-${sectionId}`);
+  const cards = container.querySelectorAll(`.pc-product-card-${sectionId}`);
+  const hotspots = container.querySelectorAll(`.pc-hotspot-${sectionId}`);
+  const arrowUp = container.querySelector(`.pc-arrow-${sectionId}.up`);
+  const arrowDown = container.querySelector(`.pc-arrow-${sectionId}.down`);
+  const modal = container.querySelector(`.pc-quick-view-modal-${sectionId}`);
+  const modalBody = container.querySelector(`.pc-modal-body-${sectionId}`);
+  const modalClose = container.querySelector(`.pc-modal-close-${sectionId}`);
   
-  disconnectedCallback() {
-    this.observer.disconnect();
-  }
+  if (!cardsContainer || !cards.length) return;
   
-  init() {
-    this.cardsContainer = this.querySelector(`pc-product-cards-${this.sectionId}`);
-    this.cards = Array.from(this.querySelectorAll(`pc-product-card-${this.sectionId}`));
-    this.hotspots = Array.from(this.querySelectorAll(`pc-hotspot-${this.sectionId}`));
-    this.arrowUp = this.querySelector(`pc-arrow-${this.sectionId}.up`);
-    this.arrowDown = this.querySelector(`pc-arrow-${this.sectionId}.down`);
-    this.modal = this.querySelector(`pc-quick-view-modal-${this.sectionId}`);
-    this.modalBody = this.querySelector('.pc-modal-body-' + this.sectionId);
-    this.modalClose = this.querySelector(`pc-modal-close-${this.sectionId}`);
-    
-    if (!this.cardsContainer || !this.cards.length) return;
-    
-    this.cardHeight = this.cards[0].offsetHeight;
-    this.step = this.cardHeight;
-    this.maxIndex = this.cards.length - 1;
-    
-    this.updateSliderPosition();
-    this.setupEventListeners();
-  }
+  let currentIndex = 0;
+  const cardHeight = cards[0].offsetHeight;
+  const step = cardHeight;
+  const maxIndex = cards.length - 1;
   
-  get sectionId() {
-    return this.getAttribute('data-section-id') || '{{ last_part }}';
-  }
-  
-  updateSliderPosition() {
-    this.cardsContainer.style.transform = `translateY(-${this.currentIndex * this.step}px)`;
+  function updateSliderPosition() {
+    cardsContainer.style.transform = `translateY(-${currentIndex * step}px)`;
     
-    this.hotspots.forEach((h, i) => {
-      h.classList.toggle('active', i === this.currentIndex);
+    // Update active hotspot
+    hotspots.forEach((h, i) => {
+      h.classList.toggle('active', i === currentIndex);
     });
   }
   
-  setupEventListeners() {
-    // Hotspot click
-    this.hotspots.forEach(h => {
-      h.addEventListener('click', () => {
-        const i = parseInt(h.dataset.index);
-        if (i >= 0 && i <= this.maxIndex) {
-          this.currentIndex = i;
-          this.updateSliderPosition();
-        }
-      });
-    });
-    
-    // Arrow navigation
-    if (this.arrowUp) {
-      this.arrowUp.addEventListener('click', () => {
-        if (this.currentIndex > 0) {
-          this.currentIndex--;
-          this.updateSliderPosition();
-        }
-      });
-    }
-    
-    if (this.arrowDown) {
-      this.arrowDown.addEventListener('click', () => {
-        if (this.currentIndex < this.maxIndex) {
-          this.currentIndex++;
-          this.updateSliderPosition();
-        }
-      });
-    }
-    
-    // Quick view modal
-    this.querySelectorAll(`pc-quick-view-btn-${this.sectionId}`).forEach(btn => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest(`pc-product-card-${this.sectionId}`);
-        const img = card.querySelector('img').src;
-        const title = card.querySelector(`pc-product-title-${this.sectionId}`).textContent;
-        const price = card.querySelector(`pc-product-price-${this.sectionId}`).innerHTML;
-        const description = card.dataset.description;
-        
-        this.modalBody.innerHTML = `
-          <img src="${img}" class="pc-modal-img-${this.sectionId}" style="max-width:100%;margin-bottom:15px;">
-          <div class="pc-product-title-${this.sectionId}">${title}</div>
-          <div class="pc-product-price-${this.sectionId}">${price}</div>
-          <div class="pc-product-description-${this.sectionId}" style="margin-top:10px;">${description}</div>
-        `;
-        this.modal.classList.add('active');
-      });
-    });
-    
-    // Close modal
-    this.modalClose.addEventListener('click', () => this.modal.classList.remove('active'));
-    this.modal.addEventListener('click', e => {
-      if (e.target.classList.contains('pc-modal-overlay-' + this.sectionId)) {
-        this.modal.classList.remove('active');
+  // Initialize
+  updateSliderPosition();
+  
+  // Hotspot click
+  hotspots.forEach(h => {
+    h.addEventListener('click', () => {
+      const i = parseInt(h.dataset.index);
+      if (i >= 0 && i <= maxIndex) {
+        currentIndex = i;
+        updateSliderPosition();
       }
     });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', e => {
-      if (this.modal.classList.contains('active') && e.key === 'Escape') {
-        this.modal.classList.remove('active');
+  });
+  
+  // Arrow navigation
+  if (arrowUp) {
+    arrowUp.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSliderPosition();
       }
     });
   }
-}
-
-// Define all custom elements
-customElements.define('pc-hotspot-container-{{ last_part }}', class extends HotspotSlider_{{ last_part }} {});
-customElements.define('pc-hotspot-section-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-hotspot-image-wrapper-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-hotspot-main-image-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-hotspot-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-product-slider-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-slider-wrapper-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-arrow-buttons-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-arrow-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-product-cards-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-product-card-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-product-title-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-product-price-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-quick-view-btn-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-quick-view-modal-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-modal-content-{{ last_part }}', class extends HTMLElement {});
-customElements.define('pc-modal-close-{{ last_part }}', class extends HTMLElement {});
+  
+  if (arrowDown) {
+    arrowDown.addEventListener('click', () => {
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        updateSliderPosition();
+      }
+    });
+  }
+  
+  // Quick view modal
+  container.querySelectorAll(`.pc-quick-view-btn-${sectionId}`).forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest(`.pc-product-card-${sectionId}`);
+      const img = card.querySelector('img').src;
+      const title = card.querySelector(`.pc-product-title-${sectionId}`).textContent;
+      const price = card.querySelector(`.pc-product-price-${sectionId}`).innerHTML;
+      const description = card.dataset.description;
+      
+      modalBody.innerHTML = `
+        <img src="${img}" class="pc-modal-img-${sectionId}" style="max-width:100%;margin-bottom:15px;">
+        <div class="pc-product-title-${sectionId}">${title}</div>
+        <div class="pc-product-price-${sectionId}">${price}</div>
+        <div class="pc-product-description-${sectionId}" style="margin-top:10px;">${description}</div>
+      `;
+      modal.classList.add('active');
+    });
+  });
+  
+  // Close modal
+  modalClose.addEventListener('click', () => modal.classList.remove('active'));
+  modal.addEventListener('click', e => {
+    if (e.target.classList.contains(`pc-modal-overlay-${sectionId}`)) {
+      modal.classList.remove('active');
+    }
+  });
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (modal.classList.contains('active') && e.key === 'Escape') {
+      modal.classList.remove('active');
+    }
+  });
+})();
 </script>
 
 {% schema %}
