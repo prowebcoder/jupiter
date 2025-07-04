@@ -110,12 +110,13 @@
       {%- for block in section.blocks -%}
         <div class="pc-promo-item-{{ last_part }}" {{ block.shopify_attributes }}>
           {%- if block.settings.image != blank -%}
+            {% assign image_class = 'pc-promo-item-image-' | append: last_part %}
             {{ 
               block.settings.image 
               | image_url: width: 1500 
               | image_tag: 
                   loading: 'lazy', 
-                  class: 'pc-promo-item-image-' | append: last_part,
+                  class: image_class,
                   alt: block.settings.image.alt | escape 
             }}
           {%- else -%}
