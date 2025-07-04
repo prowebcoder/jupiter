@@ -533,6 +533,37 @@
     },
     "rd_hotspot_product_viewer_QmWGE6": {
       "type": "RD-hotspot-product-viewer",
+      "blocks": {
+        "hotspot_HacYUj": {
+          "type": "hotspot",
+          "settings": {
+            "product": "green-snowboard",
+            "top": 50,
+            "left": 50
+          }
+        },
+        "hotspot_i78BUJ": {
+          "type": "hotspot",
+          "settings": {
+            "product": "green-snowboard",
+            "top": 13,
+            "left": 19
+          }
+        },
+        "hotspot_99nH9L": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "top": 84,
+            "left": 79
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_HacYUj",
+        "hotspot_i78BUJ",
+        "hotspot_99nH9L"
+      ],
       "name": "PWC - Hotspot Products #1",
       "settings": {
         "section_max_width": 1200,
@@ -543,7 +574,7 @@
         "desktop_height": 600,
         "mobile_image_height": 400,
         "block_gap": 20,
-        "product_bg_color": "#f9f9f9",
+        "product_bg_color": "rgba(0,0,0,0)",
         "slider_border_radius": 8,
         "slider_height": 600,
         "mobile_slider_height": 400,
@@ -553,7 +584,7 @@
         "hotspot_size": 30,
         "hotspot_color": "#ffffff",
         "hotspot_text_color": "#333333",
-        "hotspot_active_color": "#ff3366",
+        "hotspot_active_color": "#fae9ed",
         "title_color": "#333333",
         "title_size": 18,
         "price_color": "#666666",
