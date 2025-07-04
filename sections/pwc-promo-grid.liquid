@@ -1,44 +1,51 @@
-{%- style -%}
-  .promo-grid-{{ section.id }} {
+{%- liquid
+  assign sec_id = '#shopify-section-' | append: section.id
+  assign parts = sec_id | split: '_'
+  assign last_lower = parts | last
+  assign last_part = last_lower | downcase
+-%}
+
+<style>
+  {{ sec_id }} {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
     background-color: {{ section.settings.background_color }};
   }
 
-  .promo-grid-{{ section.id }} .promo-grid__container {
+  {{ sec_id }} .pc-promo-grid-container-{{ last_part }} {
     max-width: {{ section.settings.section_width }}px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
     gap: {{ section.settings.grid_gap_mobile }}px;
+    padding: 0 20px;
   }
 
-  @media (min-width: 768px) {
-    .promo-grid-{{ section.id }} .promo-grid__container {
-      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
-      gap: {{ section.settings.grid_gap_desktop }}px;
-    }
+  {{ sec_id }} .pc-promo-grid-heading-{{ last_part }} {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 20px;
   }
 
-  .promo-grid-{{ section.id }} .promo-item {
+  {{ sec_id }} .pc-promo-item-{{ last_part }} {
     position: relative;
     overflow: hidden;
     border-radius: {{ section.settings.border_radius }}px;
     aspect-ratio: {{ section.settings.image_aspect_ratio }};
   }
 
-  .promo-grid-{{ section.id }} .promo-item__image {
+  {{ sec_id }} .pc-promo-item-image-{{ last_part }} {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
   }
 
-  .promo-grid-{{ section.id }} .promo-item:hover .promo-item__image {
+  {{ sec_id }} .pc-promo-item-{{ last_part }}:hover .pc-promo-item-image-{{ last_part }} {
     transform: scale(1.05);
   }
 
-  .promo-grid-{{ section.id }} .promo-item__content {
+  {{ sec_id }} .pc-promo-item-content-{{ last_part }} {
     position: absolute;
     top: 0;
     left: 0;
@@ -56,19 +63,19 @@
     opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
   }
 
-  .promo-grid-{{ section.id }} .promo-item__heading {
+  {{ sec_id }} .pc-promo-item-heading-{{ last_part }} {
     font-size: {{ section.settings.heading_size }}px;
     margin-bottom: 10px;
     color: inherit;
   }
 
-  .promo-grid-{{ section.id }} .promo-item__text {
+  {{ sec_id }} .pc-promo-item-text-{{ last_part }} {
     font-size: {{ section.settings.text_size }}px;
     margin-bottom: 15px;
     max-width: 90%;
   }
 
-  .promo-grid-{{ section.id }} .promo-item__button {
+  {{ sec_id }} .pc-promo-item-button-{{ last_part }} {
     padding: 10px 20px;
     background-color: {{ section.settings.button_background }};
     color: {{ section.settings.button_text_color }};
@@ -79,55 +86,53 @@
     transition: all 0.3s ease;
   }
 
-  .promo-grid-{{ section.id }} .promo-item__button:hover {
+  {{ sec_id }} .pc-promo-item-button-{{ last_part }}:hover {
     background-color: {{ section.settings.button_background_hover }};
     color: {{ section.settings.button_text_color_hover }};
     transform: translateY(-2px);
   }
-{%- endstyle -%}
 
-<div class="promo-grid-{{ section.id }}">
-  <div class="page-width">
+  @media (min-width: 768px) {
+    {{ sec_id }} .pc-promo-grid-container-{{ last_part }} {
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+      gap: {{ section.settings.grid_gap_desktop }}px;
+    }
+  }
+</style>
+
+<div class="pc-promo-grid-{{ last_part }}">
+  <div class="pc-promo-grid-wrapper-{{ last_part }}">
     {%- if section.settings.heading != blank -%}
-      <h2 class="section-heading">{{ section.settings.heading }}</h2>
+      <h2 class="pc-promo-grid-heading-{{ last_part }}">{{ section.settings.heading }}</h2>
     {%- endif -%}
 
-    <div class="promo-grid__container">
+    <div class="pc-promo-grid-container-{{ last_part }}">
       {%- for block in section.blocks -%}
-        <div class="promo-item" {{ block.shopify_attributes }}>
+        <div class="pc-promo-item-{{ last_part }}" {{ block.shopify_attributes }}>
           {%- if block.settings.image != blank -%}
-            {%- liquid
-              assign image_height = block.settings.image.width | divided_by: block.settings.image.aspect_ratio
-              assign sizes = '100vw'
-            -%}
-            {{
-              block.settings.image
-              | image_url: width: 1500
-              | image_tag:
-                loading: 'lazy',
-                width: block.settings.image.width,
-                height: image_height,
-                class: 'promo-item__image',
-                sizes: sizes,
-                widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
-                alt: block.settings.image.alt
-              | escape
+            {{ 
+              block.settings.image 
+              | image_url: width: 1500 
+              | image_tag: 
+                  loading: 'lazy', 
+                  class: 'pc-promo-item-image-' | append: last_part,
+                  alt: block.settings.image.alt | escape 
             }}
           {%- else -%}
-            {{ 'image' | placeholder_svg_tag: 'promo-item__image' }}
+            {{ 'image' | placeholder_svg_tag: 'pc-promo-item-image-' | append: last_part }}
           {%- endif -%}
 
-          <div class="promo-item__content">
+          <div class="pc-promo-item-content-{{ last_part }}">
             {%- if block.settings.heading != blank -%}
-              <h3 class="promo-item__heading">{{ block.settings.heading }}</h3>
+              <h3 class="pc-promo-item-heading-{{ last_part }}">{{ block.settings.heading }}</h3>
             {%- endif -%}
 
             {%- if block.settings.text != blank -%}
-              <div class="promo-item__text">{{ block.settings.text }}</div>
+              <div class="pc-promo-item-text-{{ last_part }}">{{ block.settings.text }}</div>
             {%- endif -%}
 
             {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
-              <a href="{{ block.settings.button_link }}" class="promo-item__button">
+              <a href="{{ block.settings.button_link }}" class="pc-promo-item-button-{{ last_part }}">
                 {{ block.settings.button_label | escape }}
               </a>
             {%- endif -%}
@@ -140,15 +145,15 @@
 
 {% schema %}
 {
-  "name": "PWC Promo Grid",
+  "name": "PWC - Promo Grid #1",
   "tag": "section",
-  "class": "section",
+  "class": "shopify-section--pc-promo-grid",
   "settings": [
     {
       "type": "text",
       "id": "heading",
       "label": "Section heading",
-      "default": "Promotional Grid"
+      "default": "Featured Collections"
     },
     {
       "type": "range",
@@ -447,19 +452,19 @@
           "type": "text",
           "id": "heading",
           "label": "Heading",
-          "default": "Promotional heading"
+          "default": "Collection Name"
         },
         {
           "type": "richtext",
           "id": "text",
           "label": "Text",
-          "default": "<p>Promotional text goes here</p>"
+          "default": "<p>Shop the latest arrivals in this collection</p>"
         },
         {
           "type": "text",
           "id": "button_label",
           "label": "Button label",
-          "default": "Shop now"
+          "default": "Shop Now"
         },
         {
           "type": "url",
@@ -471,16 +476,29 @@
   ],
   "presets": [
     {
-      "name": "PWC Promo Grid",
+      "name": "PWC - Promo Grid #1",
+      "category": "Custom",
       "blocks": [
         {
-          "type": "promo_item"
+          "type": "promo_item",
+          "settings": {
+            "heading": "Summer Collection",
+            "text": "<p>Fresh styles for warm days</p>"
+          }
         },
         {
-          "type": "promo_item"
+          "type": "promo_item",
+          "settings": {
+            "heading": "New Arrivals",
+            "text": "<p>Discover our latest products</p>"
+          }
         },
         {
-          "type": "promo_item"
+          "type": "promo_item",
+          "settings": {
+            "heading": "Sale Items",
+            "text": "<p>Limited time discounts</p>"
+          }
         }
       ]
     }
