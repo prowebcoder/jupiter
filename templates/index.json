@@ -876,15 +876,17 @@
         "promo_item_LNJVdr": {
           "type": "promo_item",
           "settings": {
+            "image": "shopify://shop_images/6-3-01_RunnersAthletics_Look10026_533x_a2510d74-620a-4e60-a775-4f7fdab2f342.webp",
             "heading": "Promotional heading",
             "text": "<p>Promotional text goes here</p>",
             "button_label": "Shop now",
-            "button_link": ""
+            "button_link": "shopify://pages/rohit"
           }
         },
         "promo_item_MheRwF": {
           "type": "promo_item",
           "settings": {
+            "image": "shopify://shop_images/fashion-model-in-fur.jpg",
             "heading": "Promotional heading",
             "text": "<p>Promotional text goes here</p>",
             "button_label": "Shop now",
@@ -919,7 +921,7 @@
         "overlay_color": "#eddfdf",
         "overlay_gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) 100%)",
         "overlay_opacity": 100,
-        "button_background": "transparent",
+        "button_background": "rgba(0,0,0,0)",
         "button_text_color": "#ffffff",
         "button_border_color": "#ffffff",
         "button_border_radius": 4,
