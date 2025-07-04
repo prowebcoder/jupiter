@@ -120,7 +120,7 @@
                   alt: block.settings.image.alt | escape 
             }}
           {%- else -%}
-            {{ 'image' | placeholder_svg_tag: 'pc-promo-item-image-' | append: last_part }}
+            {{ 'image' | placeholder_svg_tag }}
           {%- endif -%}
 
           <div class="pc-promo-item-content-{{ last_part }}">
