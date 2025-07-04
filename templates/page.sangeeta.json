@@ -557,12 +557,21 @@
             "top": 84,
             "left": 79
           }
+        },
+        "hotspot_wQf3Di": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "top": 50,
+            "left": 50
+          }
         }
       },
       "block_order": [
         "hotspot_HacYUj",
         "hotspot_i78BUJ",
-        "hotspot_99nH9L"
+        "hotspot_99nH9L",
+        "hotspot_wQf3Di"
       ],
       "name": "PWC - Hotspot Products #1",
       "settings": {
