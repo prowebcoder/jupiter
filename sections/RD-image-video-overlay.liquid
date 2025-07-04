@@ -184,7 +184,7 @@
       
           <div class="pc-video-wrapper-{{ last_part }}">
             <video autoplay muted loop playsinline>
-              <source src="{{ section.settings.shopify_video | asset_url }}" type="video/mp4">
+              <source src="{{ section.settings.shopify_video.sources[1].url}}" type="{{ section.settings.shopify_video.sources[1].mime_type}}">
               Your browser does not support the video tag.
             </video>
           </div>
