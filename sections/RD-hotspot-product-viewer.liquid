@@ -1,70 +1,92 @@
-{% assign sec_id = '#shopify-section-' | append: section.id %}
+{%- liquid
+  assign sec_id = '#shopify-section-' | append: section.id
+  assign parts = sec_id | split: '_'
+  assign last_lower = parts | last
+  assign last_part = last_lower | downcase
+-%}
 
 <style>
-  {{ sec_id }} .pc-hotspot-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 60px 20px;
+  {{ sec_id }} {
+    --pc-hotspot-size: {{ section.settings.hotspot_size }}px;
+    --pc-hotspot-color: {{ section.settings.hotspot_color }};
+    --pc-hotspot-text-color: {{ section.settings.hotspot_text_color }};
+    --pc-hotspot-active-color: {{ section.settings.hotspot_active_color }};
+    --pc-slider-height: {{ section.settings.slider_height }}px;
+    --pc-product-card-height: {{ section.settings.product_card_height }}px;
   }
 
-  {{ sec_id }} .pc-hotspot-section {
+  {{ sec_id }} .pc-hotspot-container-{{ last_part }} {
+    max-width: {{ section.settings.section_max_width }}px;
+    margin: 0 auto;
+    padding: {{ section.settings.section_padding_top }}px 20px {{ section.settings.section_padding_bottom }}px;
+  }
+
+  {{ sec_id }} .pc-hotspot-section-{{ last_part }} {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    gap: {{ section.settings.block_gap | default: 0 }}px;
-    height: 600px;
+    gap: {{ section.settings.block_gap }}px;
+    height: {{ section.settings.desktop_height }}px;
   }
 
-  {{ sec_id }} .pc-hotspot-image-wrapper,
-  {{ sec_id }} .pc-product-slider {
+  {{ sec_id }} .pc-hotspot-image-wrapper-{{ last_part }},
+  {{ sec_id }} .pc-product-slider-{{ last_part }} {
     width: 50%;
     position: relative;
   }
 
-  {{ sec_id }} .pc-hotspot-image-wrapper {
+  {{ sec_id }} .pc-hotspot-image-wrapper-{{ last_part }} {
     height: 100%;
     overflow: hidden;
+    border-radius: {{ section.settings.image_border_radius }}px;
   }
 
-  {{ sec_id }} .pc-hotspot-main-image {
+  {{ sec_id }} .pc-hotspot-main-image-{{ last_part }} {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: inherit;
   }
 
-  {{ sec_id }} .pc-hotspot {
+  {{ sec_id }} .pc-hotspot-{{ last_part }} {
     position: absolute;
-    background: white;
-   
+    background: var(--pc-hotspot-color);
+    color: var(--pc-hotspot-text-color);
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: var(--pc-hotspot-size);
+    height: var(--pc-hotspot-size);
     text-align: center;
-    line-height: 1.8;
+    line-height: var(--pc-hotspot-size);
     font-weight: bold;
     cursor: pointer;
     z-index: 2;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 2px white, 0 0 8px rgba(0,0,0,0.2);
   }
 
-  {{ sec_id }} .pc-product-slider {
+  {{ sec_id }} .pc-hotspot-{{ last_part }}.active {
+    background: var(--pc-hotspot-active-color);
+    transform: scale(1.1);
+  }
+
+  {{ sec_id }} .pc-product-slider-{{ last_part }} {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: {{ section.settings.product_bg_color | default: '#f9f9f9' }};
-    border-radius: 8px;
+    background-color: {{ section.settings.product_bg_color }};
+    border-radius: {{ section.settings.slider_border_radius }}px;
     overflow: hidden;
   }
 
-  {{ sec_id }} .pc-slider-wrapper {
+  {{ sec_id }} .pc-slider-wrapper-{{ last_part }} {
     width: 100%;
-    height: 100%;
+    height: var(--pc-slider-height);
     position: relative;
     box-sizing: border-box;
     overflow: hidden;
   }
 
-  {{ sec_id }} .pc-arrow-buttons {
+  {{ sec_id }} .pc-arrow-buttons-{{ last_part }} {
     position: absolute;
     right: 10px;
     top: 50%;
@@ -75,7 +97,7 @@
     z-index: 3;
   }
 
-  {{ sec_id }} .pc-arrow {
+  {{ sec_id }} .pc-arrow-{{ last_part }} {
     background: white;
     border: 1px solid #ddd;
     font-size: 20px;
@@ -83,14 +105,22 @@
     height: 32px;
     border-radius: 50%;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
   }
 
-  {{ sec_id }} .pc-product-cards {
+  {{ sec_id }} .pc-arrow-{{ last_part }}:hover {
+    background: #f0f0f0;
+  }
+
+  {{ sec_id }} .pc-product-cards-{{ last_part }} {
     transition: transform 0.5s ease-in-out;
   }
 
-  {{ sec_id }} .pc-product-card {
-    height: 540px;
+  {{ sec_id }} .pc-product-card-{{ last_part }} {
+    height: var(--pc-product-card-height);
     padding: 20px;
     box-sizing: border-box;
     display: flex;
@@ -98,45 +128,55 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-bottom: 20px;
-    position: relative;
   }
 
-  {{ sec_id }} .pc-product-title {
+  {{ sec_id }} .pc-product-title-{{ last_part }} {
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
+    color: {{ section.settings.title_color }};
+    font-size: {{ section.settings.title_size }}px;
   }
 
-  {{ sec_id }} .pc-product-price {
-    color: #444;
+  {{ sec_id }} .pc-product-price-{{ last_part }} {
+    color: {{ section.settings.price_color }};
+    font-size: {{ section.settings.price_size }}px;
+    margin-bottom: 15px;
   }
 
-  {{ sec_id }} .pc-quick-view-btn {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #000;
-    color: #fff;
+  {{ sec_id }} .pc-product-image-{{ last_part }} {
+    max-height: {{ section.settings.product_image_height }}px;
+    max-width: 100%;
+    object-fit: contain;
+    margin-bottom: 15px;
+  }
+
+  {{ sec_id }} .pc-quick-view-btn-{{ last_part }} {
+    background-color: {{ section.settings.button_bg }};
+    color: {{ section.settings.button_text }};
     border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: {{ section.settings.button_radius }}px;
+    font-size: {{ section.settings.button_text_size }}px;
     cursor: pointer;
-    opacity: 0.85;
-    transition: opacity 0.3s ease;
-    z-index: 10;
+    transition: all 0.3s ease;
+    margin-top: 10px;
   }
 
-  {{ sec_id }} .pc-color-swatches {
+  {{ sec_id }} .pc-quick-view-btn-{{ last_part }}:hover {
+    background-color: {{ section.settings.button_bg_hover }};
+    color: {{ section.settings.button_text_hover }};
+    transform: translateY(-2px);
+  }
+
+  {{ sec_id }} .pc-color-swatches-{{ last_part }} {
     margin-top: 8px;
     display: flex;
     justify-content: center;
     gap: 6px;
   }
 
-  {{ sec_id }} .pc-swatch {
+  {{ sec_id }} .pc-swatch-{{ last_part }} {
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -145,7 +185,7 @@
     box-shadow: 0 0 2px rgba(0,0,0,0.15);
   }
 
-  {{ sec_id }} .pc-quick-view-modal {
+  {{ sec_id }} .pc-quick-view-modal-{{ last_part }} {
     position: fixed;
     top: 0;
     left: 0;
@@ -156,9 +196,17 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
   }
 
-  {{ sec_id }} .pc-modal-content {
+  {{ sec_id }} .pc-quick-view-modal-{{ last_part }}.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  {{ sec_id }} .pc-modal-content-{{ last_part }} {
     background: white;
     max-width: 600px;
     width: 90%;
@@ -167,9 +215,15 @@
     position: relative;
     overflow-y: auto;
     max-height: 80vh;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
   }
 
-  {{ sec_id }} .pc-modal-close {
+  {{ sec_id }} .pc-quick-view-modal-{{ last_part }}.active .pc-modal-content-{{ last_part }} {
+    transform: translateY(0);
+  }
+
+  {{ sec_id }} .pc-modal-close-{{ last_part }} {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -177,189 +231,254 @@
     background: none;
     border: none;
     cursor: pointer;
+    z-index: 10;
   }
+
   @media (max-width: 768px) {
-  {{ sec_id }} .pc-hotspot-section {
-    flex-direction: column;
-  }
+    {{ sec_id }} .pc-hotspot-section-{{ last_part }} {
+      flex-direction: column;
+      height: auto;
+    }
 
-  /* Make image and wrapper full width */
-  {{ sec_id }} .pc-hotspot-image-wrapper {
-    width: 100%;
-    height: auto;
-  }
-  {{ sec_id }} .pc-hotspot-main-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
+    {{ sec_id }} .pc-hotspot-image-wrapper-{{ last_part }},
+    {{ sec_id }} .pc-product-slider-{{ last_part }} {
+      width: 100%;
+    }
 
-  /* Ensure hotspots scale over full image, not zoomed */
-  {{ sec_id }} .pc-hotspot {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    /* Already uses % for top/left */
-  }
+    {{ sec_id }} .pc-hotspot-image-wrapper-{{ last_part }} {
+      height: {{ section.settings.mobile_image_height }}px;
+    }
 
-  {{ sec_id }} .pc-product-slider {
-    width: 100%;
-    margin-top: 20px;
-  }
-}
-  {{ sec_id }} .pc-product-card {
-    height: 540px;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex
-;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 20px;
-    position: relative;
-}
+    {{ sec_id }} .pc-slider-wrapper-{{ last_part }} {
+      height: {{ section.settings.mobile_slider_height }}px;
+    }
 
+    {{ sec_id }} .pc-product-card-{{ last_part }} {
+      height: auto;
+      min-height: {{ section.settings.mobile_product_card_height }}px;
+    }
+
+    {{ sec_id }} .pc-arrow-buttons-{{ last_part }} {
+      top: auto;
+      bottom: 10px;
+      right: 50%;
+      transform: translateX(50%);
+      flex-direction: row;
+    }
+  }
 </style>
 
-<div class="pc-hotspot-container" data-section-id="{{ section.id }}">
-  <div class="pc-hotspot-section">
-    <div class="pc-hotspot-image-wrapper">
-      {{ section.settings.main_image | image_url: width: 550 | image_tag }}
-      {% for block in section.blocks %}
-        <div class="pc-hotspot" style="top:{{ block.settings.top }}%; left:{{ block.settings.left }}%;" data-index="{{ forloop.index0 }}">+</div>
-      {% endfor %}
-    </div>
-    <div class="pc-product-slider">
-      <div class="pc-slider-wrapper">
-        <div class="pc-arrow-buttons">
-          <button class="pc-arrow up">⬆</button>
-          <button class="pc-arrow down">⬇</button>
+<div class="pc-hotspot-container-{{ last_part }}">
+  <div class="pc-hotspot-section-{{ last_part }}">
+    <div class="pc-hotspot-image-wrapper-{{ last_part }}">
+      {%- if section.settings.main_image != blank -%}
+        {{ 
+          section.settings.main_image 
+          | image_url: width: 1000 
+          | image_tag: 
+              loading: 'lazy', 
+              class: 'pc-hotspot-main-image-' | append: last_part,
+              alt: section.settings.main_image.alt | escape 
+        }}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'pc-hotspot-main-image-' | append: last_part }}
+      {%- endif -%}
+      
+      {%- for block in section.blocks -%}
+        <div 
+          class="pc-hotspot-{{ last_part }} {% if forloop.first %}active{% endif %}" 
+          style="top:{{ block.settings.top }}%; left:{{ block.settings.left }}%;"
+          data-index="{{ forloop.index0 }}"
+        >
+          {{ forloop.index }}
         </div>
-        <div class="pc-product-cards">
-          {% for block in section.blocks %}
-            {% assign product = all_products[block.settings.product] %}
-            {% if product %}
-              <div class="pc-product-card" data-description="{{ product.description | strip_html | escape }}">
-                <span class="pc-product-title">{{ product.title }}</span>
-                <span class="pc-product-price">
-                  {% if product.compare_at_price > product.price %}
+      {%- endfor -%}
+    </div>
+    
+    <div class="pc-product-slider-{{ last_part }}">
+      <div class="pc-slider-wrapper-{{ last_part }}">
+        <div class="pc-arrow-buttons-{{ last_part }}">
+          <button class="pc-arrow-{{ last_part }} up">↑</button>
+          <button class="pc-arrow-{{ last_part }} down">↓</button>
+        </div>
+        <div class="pc-product-cards-{{ last_part }}">
+          {%- for block in section.blocks -%}
+            {%- assign product = all_products[block.settings.product] -%}
+            {%- if product != blank -%}
+              <div class="pc-product-card-{{ last_part }}" data-description="{{ product.description | strip_html | escape }}">
+                <span class="pc-product-title-{{ last_part }}">{{ product.title }}</span>
+                <span class="pc-product-price-{{ last_part }}">
+                  {%- if product.compare_at_price > product.price -%}
                     <del>{{ product.compare_at_price | money }}</del>
-                  {% endif %}
+                  {%- endif -%}
                   {{ product.price | money }}
                 </span>
-                <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}">
-                <button class="pc-quick-view-btn">Quick View</button>
-
-                {% assign color_option = '' %}
-                {% for option in product.options_with_values %}
-                  {% assign opt_name = option.name | downcase %}
-                  {% if opt_name == 'color' or opt_name == 'colour' %}
-                    {% assign color_option = option %}
-                    {% break %}
-                  {% endif %}
-                {% endfor %}
+                
+                {%- if product.featured_image != blank -%}
+                  {{ 
+                    product.featured_image 
+                    | image_url: width: 400 
+                    | image_tag: 
+                        loading: 'lazy', 
+                        class: 'pc-product-image-' | append: last_part,
+                        alt: product.title 
+                  }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'pc-product-image-' | append: last_part }}
+                {%- endif -%}
+                
+                <button class="pc-quick-view-btn-{{ last_part }}">Quick View</button>
               </div>
-            {% endif %}
-          {% endfor %}
+            {%- endif -%}
+          {%- endfor -%}
         </div>
       </div>
     </div>
   </div>
 
-  <div class="pc-quick-view-modal" style="display: none;">
-    <div class="modal-overlay"></div>
-    <div class="pc-modal-content">
-      <button class="pc-modal-close">&times;</button>
-      <div class="modal-body"></div>
+  <div class="pc-quick-view-modal-{{ last_part }}">
+    <div class="pc-modal-overlay-{{ last_part }}"></div>
+    <div class="pc-modal-content-{{ last_part }}">
+      <button class="pc-modal-close-{{ last_part }}">&times;</button>
+      <div class="pc-modal-body-{{ last_part }}"></div>
     </div>
   </div>
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const container = document.querySelector('{{ sec_id }} .pc-hotspot-container');
-    const cardsContainer = container.querySelector('.pc-product-cards');
-    const cards = container.querySelectorAll('.pc-product-card');
-    const hotspots = container.querySelectorAll('.pc-hotspot');
-    const arrowUp = container.querySelector('.pc-arrow.up');
-    const arrowDown = container.querySelector('.pc-arrow.down');
-    const modal = container.querySelector('.pc-quick-view-modal');
-    const modalBody = modal.querySelector('.modal-body');
-    const modalClose = container.querySelector('.pc-modal-close');
-
-    let currentIndex = 0;
-    const cardHeight = cards[0].offsetHeight;
-    const marginBottom = parseFloat(getComputedStyle(cards[0]).marginBottom);
-    const step = cardHeight + marginBottom;
-    const maxIndex = cards.length - 1;
-
-    function updateSliderPosition() {
-      cardsContainer.style.transform = `translateY(-${currentIndex * step}px)`;
-    }
-
-    hotspots.forEach(h => h.addEventListener('click', () => {
+(function() {
+  const sectionId = "{{ last_part }}";
+  const container = document.querySelector(`.pc-hotspot-container-${sectionId}`);
+  if (!container) return;
+  
+  const cardsContainer = container.querySelector(`.pc-product-cards-${sectionId}`);
+  const cards = container.querySelectorAll(`.pc-product-card-${sectionId}`);
+  const hotspots = container.querySelectorAll(`.pc-hotspot-${sectionId}`);
+  const arrowUp = container.querySelector(`.pc-arrow-${sectionId}.up`);
+  const arrowDown = container.querySelector(`.pc-arrow-${sectionId}.down`);
+  const modal = container.querySelector(`.pc-quick-view-modal-${sectionId}`);
+  const modalBody = container.querySelector(`.pc-modal-body-${sectionId}`);
+  const modalClose = container.querySelector(`.pc-modal-close-${sectionId}`);
+  
+  if (!cardsContainer || !cards.length) return;
+  
+  let currentIndex = 0;
+  const cardHeight = cards[0].offsetHeight;
+  const step = cardHeight;
+  const maxIndex = cards.length - 1;
+  
+  function updateSliderPosition() {
+    cardsContainer.style.transform = `translateY(-${currentIndex * step}px)`;
+    
+    // Update active hotspot
+    hotspots.forEach((h, i) => {
+      h.classList.toggle('active', i === currentIndex);
+    });
+  }
+  
+  // Initialize
+  updateSliderPosition();
+  
+  // Hotspot click
+  hotspots.forEach(h => {
+    h.addEventListener('click', () => {
       const i = parseInt(h.dataset.index);
       if (i >= 0 && i <= maxIndex) {
         currentIndex = i;
         updateSliderPosition();
       }
-    }));
-
+    });
+  });
+  
+  // Arrow navigation
+  if (arrowUp) {
     arrowUp.addEventListener('click', () => {
       if (currentIndex > 0) {
         currentIndex--;
         updateSliderPosition();
       }
     });
-
+  }
+  
+  if (arrowDown) {
     arrowDown.addEventListener('click', () => {
       if (currentIndex < maxIndex) {
         currentIndex++;
         updateSliderPosition();
       }
     });
-
-    container.querySelectorAll('.pc-quick-view-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest('.pc-product-card');
-        const img = card.querySelector('img').src;
-        const title = card.querySelector('.pc-product-title').textContent;
-        const price = card.querySelector('.pc-product-price').innerHTML;
-        const description = card.dataset.description;
-        const swatches = card.querySelector('.pc-color-swatches')?.outerHTML || '';
-
-        modalBody.innerHTML = `
-          <img src="${img}" class="modal-img" style="width:100%;margin-bottom:15px;">
-          <div class="pc-product-title">${title}</div>
-          <div class="pc-product-price">${price}</div>
-          ${swatches}
-          <div class="product-description" style="margin-top:10px;">${description}</div>
-        `;
-        modal.style.display = 'flex';
-
-        modalBody.querySelectorAll('.pc-swatch').forEach(swatch => {
-          swatch.addEventListener('click', () => {
-            const imgUrl = swatch.dataset.image;
-            if (imgUrl) modalBody.querySelector('.modal-img').src = imgUrl;
-          });
-        });
-      });
-    });
-
-    modalClose.addEventListener('click', () => modal.style.display = 'none');
-    modal.addEventListener('click', e => {
-      if (e.target.classList.contains('modal-overlay')) {
-        modal.style.display = 'none';
-      }
+  }
+  
+  // Quick view modal
+  container.querySelectorAll(`.pc-quick-view-btn-${sectionId}`).forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest(`.pc-product-card-${sectionId}`);
+      const img = card.querySelector('img').src;
+      const title = card.querySelector(`.pc-product-title-${sectionId}`).textContent;
+      const price = card.querySelector(`.pc-product-price-${sectionId}`).innerHTML;
+      const description = card.dataset.description;
+      
+      modalBody.innerHTML = `
+        <img src="${img}" class="pc-modal-img-${sectionId}" style="max-width:100%;margin-bottom:15px;">
+        <div class="pc-product-title-${sectionId}">${title}</div>
+        <div class="pc-product-price-${sectionId}">${price}</div>
+        <div class="pc-product-description-${sectionId}" style="margin-top:10px;">${description}</div>
+      `;
+      modal.classList.add('active');
     });
   });
+  
+  // Close modal
+  modalClose.addEventListener('click', () => modal.classList.remove('active'));
+  modal.addEventListener('click', e => {
+    if (e.target.classList.contains(`pc-modal-overlay-${sectionId}`)) {
+      modal.classList.remove('active');
+    }
+  });
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (modal.classList.contains('active') && e.key === 'Escape') {
+      modal.classList.remove('active');
+    }
+  });
+})();
 </script>
 
 {% schema %}
 {
-  "name": "RD Hotspot Product",
+  "name": "PWC - Hotspot Products #1",
   "settings": [
+    {
+      "type": "range",
+      "id": "section_max_width",
+      "label": "Section Max Width",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Top Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Bottom Padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
     {
       "type": "image_picker",
       "id": "main_image",
@@ -367,8 +486,38 @@
     },
     {
       "type": "range",
+      "id": "image_border_radius",
+      "label": "Image Border Radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "label": "Desktop Section Height",
+      "min": 400,
+      "max": 1000,
+      "step": 50,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "mobile_image_height",
+      "label": "Mobile Image Height",
+      "min": 200,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
       "id": "block_gap",
-      "label": "Gap Between Image and Product",
+      "label": "Gap Between Blocks",
       "min": 0,
       "max": 100,
       "step": 5,
@@ -380,6 +529,182 @@
       "id": "product_bg_color",
       "label": "Product Block Background",
       "default": "#f9f9f9"
+    },
+    {
+      "type": "range",
+      "id": "slider_border_radius",
+      "label": "Slider Border Radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "slider_height",
+      "label": "Slider Height",
+      "min": 400,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "mobile_slider_height",
+      "label": "Mobile Slider Height",
+      "min": 300,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "range",
+      "id": "product_card_height",
+      "label": "Product Card Height",
+      "min": 300,
+      "max": 700,
+      "step": 20,
+      "unit": "px",
+      "default": 540
+    },
+    {
+      "type": "range",
+      "id": "mobile_product_card_height",
+      "label": "Mobile Card Height",
+      "min": 200,
+      "max": 500,
+      "step": 25,
+      "unit": "px",
+      "default": 350
+    },
+    {
+      "type": "range",
+      "id": "product_image_height",
+      "label": "Product Image Height",
+      "min": 100,
+      "max": 400,
+      "step": 25,
+      "unit": "px",
+      "default": 250
+    },
+    {
+      "type": "header",
+      "content": "Hotspot Settings"
+    },
+    {
+      "type": "range",
+      "id": "hotspot_size",
+      "label": "Hotspot Size",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "hotspot_color",
+      "label": "Hotspot Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "hotspot_text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "hotspot_active_color",
+      "label": "Active Color",
+      "default": "#ff3366"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title Size",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "price_size",
+      "label": "Price Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Background Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_hover",
+      "label": "Hover Background",
+      "default": "#555555"
+    },
+    {
+      "type": "color",
+      "id": "button_text_hover",
+      "label": "Hover Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "label": "Border Radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Text Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
     }
   ],
   "blocks": [
@@ -395,19 +720,21 @@
         {
           "type": "range",
           "id": "top",
-          "label": "Top (%)",
+          "label": "Top Position",
           "min": 0,
           "max": 100,
           "step": 1,
+          "unit": "%",
           "default": 50
         },
         {
           "type": "range",
           "id": "left",
-          "label": "Left (%)",
+          "label": "Left Position",
           "min": 0,
           "max": 100,
           "step": 1,
+          "unit": "%",
           "default": 50
         }
       ]
@@ -415,8 +742,8 @@
   ],
   "presets": [
     {
-      "name": "RD Hotspot Product",
-      "category": "Custom"
+      "name": "PWC - Hotspot Products #1",
+      "category": "Products"
     }
   ]
 }
