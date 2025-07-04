@@ -455,9 +455,35 @@
       ],
       "name": "RD Hotspot Product",
       "settings": {
+        "section_max_width": 1200,
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
         "main_image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
+        "image_border_radius": 8,
+        "desktop_height": 600,
+        "mobile_image_height": 400,
         "block_gap": 20,
-        "product_bg_color": "#f8f5f5"
+        "product_bg_color": "#f8f5f5",
+        "slider_border_radius": 8,
+        "slider_height": 600,
+        "mobile_slider_height": 400,
+        "product_card_height": 540,
+        "mobile_product_card_height": 350,
+        "product_image_height": 250,
+        "hotspot_size": 30,
+        "hotspot_color": "#ffffff",
+        "hotspot_text_color": "#333333",
+        "hotspot_active_color": "#ff3366",
+        "title_color": "#333333",
+        "title_size": 18,
+        "price_color": "#666666",
+        "price_size": 16,
+        "button_bg": "#333333",
+        "button_text": "#ffffff",
+        "button_bg_hover": "#555555",
+        "button_text_hover": "#ffffff",
+        "button_radius": 4,
+        "button_text_size": 14
       }
     },
     "rd_image_product_slider_BwyB6c": {
@@ -504,6 +530,41 @@
         "padding_bottom": 20,
         "slider_bg_color": "#efe0e0"
       }
+    },
+    "rd_hotspot_product_viewer_QmWGE6": {
+      "type": "RD-hotspot-product-viewer",
+      "name": "PWC - Hotspot Products #1",
+      "settings": {
+        "section_max_width": 1200,
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "main_image": "shopify://shop_images/welcome-to-my-business.jpg",
+        "image_border_radius": 8,
+        "desktop_height": 600,
+        "mobile_image_height": 400,
+        "block_gap": 20,
+        "product_bg_color": "#f9f9f9",
+        "slider_border_radius": 8,
+        "slider_height": 600,
+        "mobile_slider_height": 400,
+        "product_card_height": 540,
+        "mobile_product_card_height": 350,
+        "product_image_height": 250,
+        "hotspot_size": 30,
+        "hotspot_color": "#ffffff",
+        "hotspot_text_color": "#333333",
+        "hotspot_active_color": "#ff3366",
+        "title_color": "#333333",
+        "title_size": 18,
+        "price_color": "#666666",
+        "price_size": 16,
+        "button_bg": "#333333",
+        "button_text": "#ffffff",
+        "button_bg_hover": "#555555",
+        "button_text_hover": "#ffffff",
+        "button_radius": 4,
+        "button_text_size": 14
+      }
     }
   },
   "order": [
@@ -517,6 +578,7 @@
     "tab_product_section_rd_gXbnnf",
     "rd_image_video_overlay_YxUYaP",
     "rd_hotspot_product_viewer_GL3hdh",
-    "rd_image_product_slider_BwyB6c"
+    "rd_image_product_slider_BwyB6c",
+    "rd_hotspot_product_viewer_QmWGE6"
   ]
 }

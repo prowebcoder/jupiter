@@ -272,16 +272,17 @@
   <div class="pc-hotspot-section-{{ last_part }}">
     <div class="pc-hotspot-image-wrapper-{{ last_part }}">
       {%- if section.settings.main_image != blank -%}
+          {% assign image_class_hotspot = 'pc-hotspot-main-image-' | append: last_part %}
         {{ 
           section.settings.main_image 
           | image_url: width: 1000 
           | image_tag: 
               loading: 'lazy', 
-              class: 'pc-hotspot-main-image-' | append: last_part,
+              class: image_class_hotspot,
               alt: section.settings.main_image.alt | escape 
         }}
       {%- else -%}
-        {{ 'image' | placeholder_svg_tag: 'pc-hotspot-main-image-' | append: last_part }}
+        {{ 'image' | placeholder_svg_tag}}
       {%- endif -%}
       
       {%- for block in section.blocks -%}
