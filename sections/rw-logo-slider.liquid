@@ -35,10 +35,10 @@
     }
     @keyframes pc-scroll-ltr-{{ last_part }} {
       0% {
-        transform: translateX(-50%);
+        transform: translateX(100%);
       }
       100% {
-        transform: translateX(0);
+        transform: translateX(0%);
       }
     }
   {% else %}
@@ -48,13 +48,14 @@
     }
     @keyframes pc-scroll-rtl-{{ last_part }} {
       0% {
-        transform: translateX(0);
+        transform: translateX(0%);
       }
       100% {
-        transform: translateX(-50%);
+        transform: translateX(-100%);
       }
     }
   {% endif %}
+
 
   {{ sec_id }} .pc-logoslider-slide-{{ last_part }} {
     flex: 0 0 auto;
