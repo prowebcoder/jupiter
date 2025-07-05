@@ -1624,7 +1624,7 @@
       ],
       "name": "RW - Parallax #1",
       "settings": {
-        "custom_container_width": 1200,
+        "custom_container_width": 2000,
         "height": 500,
         "text_alignment": "center",
         "text_position": 50,
