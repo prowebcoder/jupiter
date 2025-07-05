@@ -630,88 +630,6 @@
         "padding_bottom": 36
       }
     },
-    "rw_carousel_DPmLyg": {
-      "type": "rw-carousel",
-      "blocks": {
-        "slide_YVUXbP": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1011-1200x800.jpg",
-            "title": "First Slide",
-            "text": "This is the first slide of your carousel",
-            "author": "Author One"
-          }
-        },
-        "slide_a36Q7r": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1024-1200x800.jpg",
-            "title": "Second Slide",
-            "text": "This is the second slide of your carousel",
-            "author": "Author Two"
-          }
-        },
-        "slide_bGjiVF": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1025-1200x800.jpg",
-            "title": "Third Slide",
-            "text": "This is the third slide of your carousel",
-            "author": "Author Three"
-          }
-        },
-        "slide_ixFXVz": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/1040-1200x800.jpg",
-            "title": "Slide Title",
-            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            "author": "Author Name"
-          }
-        }
-      },
-      "block_order": [
-        "slide_YVUXbP",
-        "slide_a36Q7r",
-        "slide_bGjiVF",
-        "slide_ixFXVz"
-      ],
-      "settings": {
-        "heading": "Carousel",
-        "heading_font_size": 32,
-        "heading_margin_bottom": 20,
-        "heading_color": "#000000",
-        "background_color": "#ffffff",
-        "enable_shadow": true,
-        "border_radius": 16,
-        "transition_duration": 0.6,
-        "title_font_size": 33,
-        "title_color": "#ffffff",
-        "text_font_size": 19,
-        "text_color": "#ffffff",
-        "author_font_size": 16,
-        "author_color": "#ffffff",
-        "active_dot_color": "#60a5fa",
-        "margin_top": 5,
-        "margin_bottom": 5,
-        "desktop_height": 360,
-        "mobile_height": 220,
-        "auto_slide": true,
-        "auto_slide_interval": 5,
-        "desktop_padding_top": 20,
-        "desktop_padding_right": 20,
-        "desktop_padding_bottom": 20,
-        "desktop_padding_left": 20,
-        "mobile_padding_top": 15,
-        "mobile_padding_right": 15,
-        "mobile_padding_bottom": 15,
-        "mobile_padding_left": 15,
-        "mobile_title_font_size": 24,
-        "mobile_text_font_size": 14,
-        "mobile_small_title_font_size": 18,
-        "overlay_opacity": 0.7
-      }
-    },
     "rw_tabs_FUNTVU": {
       "type": "rw-tabs",
       "blocks": {
@@ -868,92 +786,6 @@
         "desktop_padding_bottom": 80,
         "mobile_padding_top": 40,
         "mobile_padding_bottom": 40
-      }
-    },
-    "rw_carousel_2_mPjgWm": {
-      "type": "rw-carousel-2",
-      "blocks": {
-        "card_KVt77e": {
-          "type": "card",
-          "settings": {
-            "subtitle": "THE SUBTITLE",
-            "title": "New title",
-            "text": "This is a wider card with supporting text below as a natural.",
-            "button_label": "Learn more",
-            "button_link": "",
-            "image": "shopify://shop_images/autumn-photographer-taking-picture.jpg"
-          }
-        },
-        "card_D88jQf": {
-          "type": "card",
-          "settings": {
-            "subtitle": "ANOTHER SUBTITLE",
-            "title": "Second title",
-            "text": "Additional content with supporting text for another card.",
-            "button_label": "Read more",
-            "button_link": "",
-            "image": "shopify://shop_images/1011-1200x800.jpg"
-          }
-        },
-        "card_qhgrFm": {
-          "type": "card",
-          "settings": {
-            "subtitle": "THE SUBTITLE",
-            "title": "New title",
-            "text": "This is a wider card with supporting text below as a natural.",
-            "button_label": "Learn more",
-            "button_link": "",
-            "image": "shopify://shop_images/model-poses-near-bushes.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "card_KVt77e",
-        "card_D88jQf",
-        "card_qhgrFm"
-      ],
-      "name": "RW - Carousel #2",
-      "settings": {
-        "container_width": 90,
-        "container_max_width": 1100,
-        "container_height": 420,
-        "container_padding": 20,
-        "container_radius": 0,
-        "mobile_container_width": 95,
-        "mobile_container_height": 600,
-        "mobile_container_padding": 10,
-        "image_position": "right",
-        "image_width": 50,
-        "image_height": 500,
-        "mobile_image_height": 300,
-        "image_border_radius": 14,
-        "spacer": 20,
-        "card_radius": 0,
-        "enable_shadow": false,
-        "card_bg": "#ffffff",
-        "subtitle_size": 14,
-        "mobile_subtitle_size": 12,
-        "subtitle_weight": "600",
-        "subtitle_color": "#666666",
-        "title_size": 36,
-        "mobile_title_size": 28,
-        "title_weight": "400",
-        "title_color": "#000000",
-        "title_padding_top": 5,
-        "title_padding_bottom": 5,
-        "text_size": 16,
-        "mobile_text_size": 14,
-        "text_color": "#333333",
-        "text_padding_top": 5,
-        "text_padding_bottom": 15,
-        "button_radius": 0,
-        "button_weight": "500",
-        "button_color": "#000000",
-        "button_bg": "rgba(0,0,0,0)",
-        "button_hover": "#000000",
-        "arrow_color": "#ffffff",
-        "arrow_bg": "#000000",
-        "arrow_hover": "#333333"
       }
     },
     "rw_logo_slider_tRj4y9": {
@@ -1295,12 +1127,14 @@
         },
         "image_6nhpc9": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/woman-infront-of-tree-with-berries.jpeg"
           }
         },
         "image_xzqVzm": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/model-in-sunglasses-and-summer-clothes.jpg"
           }
@@ -1318,7 +1152,7 @@
       "name": "RW - Image Gallery #1",
       "settings": {
         "max_width": 1200,
-        "columns_desktop": 5,
+        "columns_desktop": 4,
         "columns_mobile": 3,
         "row_height_desktop": 200,
         "row_height_mobile": 120,
@@ -1344,7 +1178,7 @@
             "image": "shopify://shop_images/happy-customer-smiles-and-holds-white-shopping-bags.jpg",
             "heading": "Product One",
             "text": "Text One",
-            "bg_color": "#7f7856"
+            "bg_color": "#334fb4"
           }
         },
         "slide_M6m4nN": {
@@ -1831,6 +1665,86 @@
         "mobile_heading_size": 30,
         "mobile_subheading_size": 18
       }
+    },
+    "rw_vertical_slider_88hXpK": {
+      "type": "rw-vertical-slider",
+      "blocks": {
+        "slide_3PXFix": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/71EiaJzAQ3L._SL1500.jpg",
+            "heading": "Slide One",
+            "text": "Text One",
+            "bg_color": "#7f7856"
+          }
+        },
+        "slide_bwDRY6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/About-Parallax_754a27da-f0c1-4e85-9b2b-a6373731a692.png",
+            "heading": "Slide Two",
+            "text": "Text Two",
+            "bg_color": "#6d6b9f"
+          }
+        },
+        "slide_LHqLV4": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/About-Parallax_754a27da-f0c1-4e85-9b2b-a6373731a692.png",
+            "heading": "Slide Three",
+            "text": "Text Three",
+            "bg_color": "#252e33"
+          }
+        },
+        "slide_ggKiyQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/purchased-favorite-coffee.jpg",
+            "heading": "Slide Three",
+            "text": "Text Three",
+            "bg_color": "#739c10"
+          }
+        }
+      },
+      "block_order": [
+        "slide_3PXFix",
+        "slide_bwDRY6",
+        "slide_LHqLV4",
+        "slide_ggKiyQ"
+      ],
+      "name": "PWC - Vertical Slider #1",
+      "settings": {
+        "section_bg": "rgba(0,0,0,0)",
+        "section_padding_top": 0,
+        "section_padding_bottom": 0,
+        "section_padding_top_mobile": 0,
+        "section_padding_bottom_mobile": 0,
+        "container_width": 1200,
+        "container_padding": 20,
+        "container_padding_mobile": 10,
+        "container_radius": 0,
+        "container_bg": "rgba(0,0,0,0)",
+        "container_shadow": false,
+        "slider_height": 700,
+        "slider_height_mobile": 500,
+        "left_slide_width": 35,
+        "transition_speed": 500,
+        "text_color": "#ffffff",
+        "heading_size": 40,
+        "heading_size_mobile": 24,
+        "heading_weight": 600,
+        "heading_spacing": 10,
+        "text_size": 16,
+        "text_size_mobile": 14,
+        "text_weight": 400,
+        "button_size": 40,
+        "icon_size": 16,
+        "button_bg": "#ffffff",
+        "button_color": "#333333",
+        "button_hover_bg": "#f0f0f0",
+        "button_hover_color": "#000000",
+        "button_shadow": true
+      }
     }
   },
   "order": [
@@ -1841,11 +1755,9 @@
     "pwc_split_image_hover_aGrP4r",
     "rw_interactive_text_ent4en",
     "rw_text_with_icon_V33BVL",
-    "rw_carousel_DPmLyg",
     "rw_tabs_FUNTVU",
     "rw_wavy_layout_hmKEx9",
     "rw_contact_us_PHmtbr",
-    "rw_carousel_2_mPjgWm",
     "rw_logo_slider_tRj4y9",
     "rw_timeline_erCjEG",
     "rw_product_slider_HcpyCh",
@@ -1854,6 +1766,7 @@
     "rw_vertical_slider_3m9DX8",
     "pwc_pricing_plans_3_grDpX7",
     "rw_filter_gallery_2_t9faty",
-    "rw_parallel_1_tXG6rB"
+    "rw_parallel_1_tXG6rB",
+    "rw_vertical_slider_88hXpK"
   ]
 }
