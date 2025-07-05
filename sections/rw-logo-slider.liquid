@@ -85,6 +85,17 @@
       height: {{ section.settings.mobile_logo_height }}px;
     }
   }
+    {{ sec_id }} .pc-logoslider-container-{{ last_part }} {
+    display: flex;
+    white-space: nowrap;
+  }
+
+  {{ sec_id }} .pc-logoslider-track-{{ last_part }} {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
 </style>
 
 <div class="pc-logoslider-{{ last_part }}">
