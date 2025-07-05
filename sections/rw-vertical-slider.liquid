@@ -1,10 +1,12 @@
-{%- assign sec_id = '#shopify-section-' | append: section.id -%}
-{%- assign parts = sec_id | split: '_' -%}
-{%- assign last_lower = parts | last -%}
-{%- assign last_part = last_lower | downcase -%}
+{%- liquid
+  assign sec_id = '#shopify-section-' | append: section.id
+  assign parts = sec_id | split: '_'
+  assign last_lower = parts | last
+  assign last_part = last_lower | downcase
+-%}
 
 <style>
-  {{ sec_id }} .pc-vertical-slider {
+  {{ sec_id }} pc-vertical-slider-{{ last_part }} {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -15,7 +17,7 @@
     {% endif %}
   }
 
-  {{ sec_id }} .pc-slider-outer {
+  {{ sec_id }} .pc-slider-outer-{{ last_part }} {
     width: 100%;
     {% if section.settings.container_shadow %}
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
@@ -27,14 +29,14 @@
     {% endif %}
   }
 
-  {{ sec_id }} .pc-slider-container {
+  {{ sec_id }} .pc-slider-container-{{ last_part }} {
     position: relative;
     width: 100%;
     height: {{ section.settings.slider_height }}px;
     overflow: hidden;
   }
 
-  {{ sec_id }} .pc-left-slide {
+  {{ sec_id }} .pc-left-slide-{{ last_part }} {
     height: 100%;
     width: {{ section.settings.left_slide_width }}%;
     position: absolute;
@@ -44,7 +46,7 @@
     z-index: 2;
   }
 
-  {{ sec_id }} .pc-slide-content {
+  {{ sec_id }} .pc-slide-content-{{ last_part }} {
     height: 100%;
     width: 100%;
     display: flex;
@@ -56,7 +58,7 @@
     text-align: center;
   }
 
-  {{ sec_id }} .pc-slide-heading {
+  {{ sec_id }} .pc-slide-heading-{{ last_part }} {
     font-size: {{ section.settings.heading_size }}px;
     margin-bottom: {{ section.settings.heading_spacing }}px;
     font-weight: {{ section.settings.heading_weight }};
@@ -64,7 +66,7 @@
     line-height: 1.2;
   }
 
-  {{ sec_id }} .pc-slide-text {
+  {{ sec_id }} .pc-slide-text-{{ last_part }} {
     font-size: {{ section.settings.text_size }}px;
     margin-bottom: 0;
     font-weight: {{ section.settings.text_weight }};
@@ -73,7 +75,7 @@
     line-height: 1.5;
   }
 
-  {{ sec_id }} .pc-right-slide {
+  {{ sec_id }} .pc-right-slide-{{ last_part }} {
     height: 100%;
     position: absolute;
     left: {{ section.settings.left_slide_width }}%;
@@ -81,14 +83,14 @@
     transition: transform {{ section.settings.transition_speed }}ms ease-in-out;
   }
 
-  {{ sec_id }} .pc-slide-image {
+  {{ sec_id }} .pc-slide-image-{{ last_part }} {
     height: 100%;
     width: 100%;
     position: relative;
   }
 
-  {{ sec_id }} .pc-slide-image-tag,
-  {{ sec_id }} .pc-slide-image svg {
+  {{ sec_id }} .pc-slide-image-tag-{{ last_part }},
+  {{ sec_id }} .pc-slide-image-{{ last_part }} svg {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -96,13 +98,13 @@
     z-index: 1;
   }
 
-  {{ sec_id }} .pc-placeholder {
+  {{ sec_id }} .pc-placeholder-{{ last_part }} {
     width: 100%;
     height: 100%;
     background-color: #f5f5f5;
   }
 
-  {{ sec_id }} .pc-action-buttons button {
+  {{ sec_id }} .pc-action-button-{{ last_part }} {
     border: none;
     background-color: {{ section.settings.button_bg }};
     color: {{ section.settings.button_color }};
@@ -119,17 +121,17 @@
     z-index: 3;
   }
 
-  {{ sec_id }} .pc-action-buttons button:hover {
+  {{ sec_id }} .pc-action-button-{{ last_part }}:hover {
     background-color: {{ section.settings.button_hover_bg }};
     color: {{ section.settings.button_hover_color }};
   }
 
-  {{ sec_id }} .pc-action-buttons button svg {
+  {{ sec_id }} .pc-action-button-{{ last_part }} svg {
     width: {{ section.settings.icon_size }}px;
     height: {{ section.settings.icon_size }}px;
   }
 
-  {{ sec_id }} .pc-action-buttons {
+  {{ sec_id }} .pc-action-buttons-{{ last_part }} {
     position: absolute;
     left: {{ section.settings.left_slide_width }}%;
     top: 50%;
@@ -141,39 +143,39 @@
   }
 
   @media (max-width: 767px) {
-    {{ sec_id }} .pc-vertical-slider {
+    {{ sec_id }} pc-vertical-slider-{{ last_part }} {
       padding: {{ section.settings.container_padding_mobile }}px;
       {% if section.settings.section_padding_top_mobile != blank or section.settings.section_padding_bottom_mobile != blank %}
       padding: {{ section.settings.section_padding_top_mobile }}px 0 {{ section.settings.section_padding_bottom_mobile }}px 0;
       {% endif %}
     }
     
-    {{ sec_id }} .pc-slider-container {
+    {{ sec_id }} .pc-slider-container-{{ last_part }} {
       height: {{ section.settings.slider_height_mobile }}px;
     }
 
-    {{ sec_id }} .pc-left-slide {
+    {{ sec_id }} .pc-left-slide-{{ last_part }} {
       width: 100%;
       height: 30%;
       top: auto;
       bottom: 0;
     }
 
-    {{ sec_id }} .pc-right-slide {
+    {{ sec_id }} .pc-right-slide-{{ last_part }} {
       left: 0;
       width: 100%;
       height: 70%;
     }
 
-    {{ sec_id }} .pc-slide-heading {
+    {{ sec_id }} .pc-slide-heading-{{ last_part }} {
       font-size: {{ section.settings.heading_size_mobile }}px;
     }
 
-    {{ sec_id }} .pc-slide-text {
+    {{ sec_id }} .pc-slide-text-{{ last_part }} {
       font-size: {{ section.settings.text_size_mobile }}px;
     }
 
-    {{ sec_id }} .pc-action-buttons {
+    {{ sec_id }} .pc-action-buttons-{{ last_part }} {
       left: auto;
       right: 20px;
       top: 30%;
@@ -181,44 +183,45 @@
       flex-direction: row;
     }
 
-    {{ sec_id }} .pc-slide-content {
+    {{ sec_id }} .pc-slide-content-{{ last_part }} {
       padding: 10px;
     }
   }
 </style>
 
-<pc-vertical-slider-{{ last_part }} class="pc-vertical-slider">
-  <div class="pc-slider-outer" style="max-width: {{ section.settings.container_width }}px;">
-    <div class="pc-slider-container">
-      <div class="pc-left-slide">
+<pc-vertical-slider-{{ last_part }}>
+  <div class="pc-slider-outer-{{ last_part }}" style="max-width: {{ section.settings.container_width }}px;">
+    <div class="pc-slider-container-{{ last_part }}">
+      <div class="pc-left-slide-{{ last_part }}">
         {% for block in section.blocks %}
-          <div class="pc-slide-content" style="background-color: {{ block.settings.bg_color }};">
-            <h2 class="pc-slide-heading">{{ block.settings.heading }}</h2>
-            <p class="pc-slide-text">{{ block.settings.text }}</p>
+          <div class="pc-slide-content-{{ last_part }}" style="background-color: {{ block.settings.bg_color }};">
+            <h2 class="pc-slide-heading-{{ last_part }}">{{ block.settings.heading }}</h2>
+            <p class="pc-slide-text-{{ last_part }}">{{ block.settings.text }}</p>
           </div>
         {% endfor %}
       </div>
-      <div class="pc-right-slide">
+      <div class="pc-right-slide-{{ last_part }}">
         {% for block in section.blocks %}
-          <div class="pc-slide-image">
+          <div class="pc-slide-image-{{ last_part }}">
             {%- if block.settings.image != blank -%}
+              {% assign image_class = 'pc-slide-image-tag-' | append: last_part %}
               {{- block.settings.image
                 | image_url: width: 2000
-                | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: 'pc-slide-image-tag'
+                | image_tag: loading: 'lazy', preload: true, alt: block.settings.image.alt, class: image_class
               -}}
             {%- else -%}
-              {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder' }}
+              {{ 'product-1' | placeholder_svg_tag: 'pc-placeholder-' | append: last_part }}
             {%- endif -%}
           </div>
         {% endfor %}
       </div>
-      <div class="pc-action-buttons">
-        <button class="pc-up-button" aria-label="Previous slide">
+      <div class="pc-action-buttons-{{ last_part }}">
+        <button class="pc-action-button-{{ last_part }} up" aria-label="Previous slide">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
           </svg>
         </button>
-        <button class="pc-down-button" aria-label="Next slide">
+        <button class="pc-action-button-{{ last_part }} down" aria-label="Next slide">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
           </svg>
@@ -229,78 +232,97 @@
 </pc-vertical-slider-{{ last_part }}>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const slider = document.querySelector('pc-vertical-slider-{{ last_part }}');
-    if (!slider) return;
-
-    const container = slider.querySelector('.pc-slider-container');
-    const leftSlide = slider.querySelector('.pc-left-slide');
-    const rightSlide = slider.querySelector('.pc-right-slide');
-    const upButton = slider.querySelector('.pc-up-button');
-    const downButton = slider.querySelector('.pc-down-button');
-    const slides = slider.querySelectorAll('.pc-slide-image');
+class VerticalSlider_{{ last_part }} extends HTMLElement {
+  constructor() {
+    super();
+    this.activeSlideIndex = 0;
+    this.slidesLength = 0;
+    this.sliderHeight = 0;
+  }
+  
+  connectedCallback() {
+    this.initSlider();
+    this.setupEventListeners();
+  }
+  
+  initSlider() {
+    this.container = this.querySelector('.pc-slider-container-{{ last_part }}');
+    this.leftSlide = this.querySelector('.pc-left-slide-{{ last_part }}');
+    this.rightSlide = this.querySelector('.pc-right-slide-{{ last_part }}');
+    this.upButton = this.querySelector('.pc-action-button-{{ last_part }}.up');
+    this.downButton = this.querySelector('.pc-action-button-{{ last_part }}.down');
+    this.slides = this.querySelectorAll('.pc-slide-image-{{ last_part }}');
     
-    if (!slides.length) return;
+    if (!this.slides.length) return;
+    
+    this.slidesLength = this.slides.length;
+    this.sliderHeight = this.container.clientHeight;
+    this.leftSlide.style.top = `-${(this.slidesLength - 1) * 100}%`;
+  }
+  
+  changeSlide(direction) {
+    if (direction === 'up') {
+      this.activeSlideIndex++;
+      if (this.activeSlideIndex > this.slidesLength - 1) this.activeSlideIndex = 0;
+    } else {
+      this.activeSlideIndex--;
+      if (this.activeSlideIndex < 0) this.activeSlideIndex = this.slidesLength - 1;
+    }
 
-    let activeSlideIndex = 0;
-    const slidesLength = slides.length;
+    this.rightSlide.style.transform = `translateY(-${this.activeSlideIndex * this.sliderHeight}px)`;
+    this.leftSlide.style.transform = `translateY(${this.activeSlideIndex * this.sliderHeight}px)`;
+  }
+  
+  setupEventListeners() {
+    if (this.upButton) {
+      this.upButton.addEventListener('click', () => this.changeSlide('up'));
+    }
+    
+    if (this.downButton) {
+      this.downButton.addEventListener('click', () => this.changeSlide('down'));
+    }
 
-    leftSlide.style.top = `-${(slidesLength - 1) * 100}%`;
-
-    const changeSlide = (direction) => {
-      const sliderHeight = container.clientHeight;
-      
-      if (direction === 'up') {
-        activeSlideIndex++;
-        if (activeSlideIndex > slidesLength - 1) activeSlideIndex = 0;
-      } else {
-        activeSlideIndex--;
-        if (activeSlideIndex < 0) activeSlideIndex = slidesLength - 1;
-      }
-
-      rightSlide.style.transform = `translateY(-${activeSlideIndex * sliderHeight}px)`;
-      leftSlide.style.transform = `translateY(${activeSlideIndex * sliderHeight}px)`;
-    };
-
-    upButton.addEventListener('click', () => changeSlide('up'));
-    downButton.addEventListener('click', () => changeSlide('down'));
-
-    container.setAttribute('tabindex', '0');
-    container.addEventListener('keydown', (e) => {
+    // Keyboard navigation
+    this.container?.setAttribute('tabindex', '0');
+    this.container?.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowUp') {
         e.preventDefault();
-        changeSlide('up');
+        this.changeSlide('up');
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
-        changeSlide('down');
+        this.changeSlide('down');
       }
     });
 
+    // Touch events
     let touchStartY = 0;
     let touchEndY = 0;
 
-    container.addEventListener('touchstart', (e) => {
+    this.container?.addEventListener('touchstart', (e) => {
       touchStartY = e.changedTouches[0].screenY;
     }, { passive: true });
 
-    container.addEventListener('touchend', (e) => {
+    this.container?.addEventListener('touchend', (e) => {
       touchEndY = e.changedTouches[0].screenY;
-      handleSwipe();
+      this.handleSwipe(touchStartY, touchEndY);
     }, { passive: true });
+  }
+  
+  handleSwipe(startY, endY) {
+    if (endY < startY) {
+      this.changeSlide('up');
+    } else if (endY > startY) {
+      this.changeSlide('down');
+    }
+  }
+}
 
-    const handleSwipe = () => {
-      if (touchEndY < touchStartY) {
-        changeSlide('up');
-      } else if (touchEndY > touchStartY) {
-        changeSlide('down');
-      }
-    };
-  });
+customElements.define('pc-vertical-slider-{{ last_part }}', VerticalSlider_{{ last_part }});
 </script>
 
 {% schema %}
 {
-  "name": "RW - Vertical Slider #1",
+  "name": "PWC - Vertical Slider #1",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -624,7 +646,7 @@
   ],
   "presets": [
     {
-      "name": "RW - Vertical Slider #1",
+      "name": "PWC - Vertical Slider #1",
       "blocks": [
         {
           "type": "slide",
