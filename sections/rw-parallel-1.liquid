@@ -12,8 +12,9 @@
     {% endif %}
     margin-top: {{ section.settings.section_margin_top }}px;
     margin-bottom: {{ section.settings.section_margin_bottom }}px;
+    position: relative;
   }
-  
+
   {{ sec_id }} .pc-parallax {
     position: relative;
     background-repeat: no-repeat;
@@ -22,7 +23,7 @@
     width: 100%;
     overflow: hidden;
   }
-  
+
   {{ sec_id }} .pc-text-block-{{ last_part }} {
     position: absolute;
     top: {{ section.settings.text_position }}%;
@@ -30,23 +31,25 @@
     transform: translate(-50%, -50%);
     width: 90%;
     text-align: {{ section.settings.text_alignment }};
+    z-index: 2;
   }
-  
+
   {{ sec_id }} .pc-heading-{{ last_part }} {
     font-size: {{ section.settings.heading_size }}px;
     letter-spacing: {{ section.settings.heading_letter_spacing }}px;
     font-weight: {{ section.settings.heading_font_weight }};
     font-style: {{ section.settings.heading_font_style }};
     color: {{ section.settings.heading_color }};
-    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.3);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     padding-top: {{ section.settings.heading_padding_top }}px;
     padding-bottom: {{ section.settings.heading_padding_bottom }}px;
     text-decoration: {{ section.settings.heading_text_decoration }};
     {% if section.settings.heading_text_decoration != 'none' %}
     text-decoration-color: {{ section.settings.heading_text_decoration_color }};
     {% endif %}
+    margin: 0 auto;
   }
-  
+
   {{ sec_id }} .pc-subheading-{{ last_part }} {
     font-size: {{ section.settings.subheading_size }}px;
     letter-spacing: {{ section.settings.subheading_letter_spacing }}px;
@@ -59,12 +62,13 @@
     {% if section.settings.subheading_text_decoration != 'none' %}
     text-decoration-color: {{ section.settings.subheading_text_decoration_color }};
     {% endif %}
+    margin: 0 auto;
   }
-  
+
   {{ sec_id }} .pc-button-{{ last_part }} {
     font-size: {{ section.settings.button_size }}px;
     letter-spacing: {{ section.settings.letter_spacing }}px;
-    border-color: {{ section.settings.button_border_color }};
+    border: 2px solid {{ section.settings.button_border_color }};
     background: transparent;
     color: {{ section.settings.button_text_color }};
     font-weight: {{ section.settings.button_font_weight }};
@@ -77,8 +81,15 @@
     min-width: {{ section.settings.button_min_width }}px;
     display: inline-block;
     text-align: center;
+    margin-top: 15px;
+    transition: all 0.3s ease-in-out;
   }
-  
+
+  {{ sec_id }} .pc-button-{{ last_part }}:hover {
+    background-color: {{ section.settings.button_text_color }};
+    color: {{ section.settings.button_border_color }};
+  }
+
   {{ sec_id }} .pc-parallax-overlay-{{ last_part }}::before {
     content: '';
     position: absolute;
@@ -88,29 +99,29 @@
     left: 0;
     background-color: {{ section.settings.overlay_color }};
     opacity: {{ section.settings.overlay_opacity }}%;
+    z-index: 1;
   }
-  
+
   @media only screen and (max-width: 767px) {
     {{ sec_id }} .pc-parallax {
       background-attachment: scroll;
     }
-    
+
     {{ sec_id }} .pc-heading-{{ last_part }} {
       font-size: {{ section.settings.mobile_heading_size }}px;
     }
-    
+
     {{ sec_id }} .pc-subheading-{{ last_part }} {
       font-size: {{ section.settings.mobile_subheading_size }}px;
     }
 
-    {{ sec_id }} .pc-parallax-container {
-      {% if section.settings.container_width != 'full' %}
-      max-width: 100%;
-      padding: 0 15px;
-      {% endif %}
-    }.
+    {{ sec_id }} .pc-text-block-{{ last_part }} {
+      width: 95%;
+      padding: 0 10px;
+    }
   }
 </style>
+
 
 <div class="pc-parallax-section-container {% if section.settings.full_width %}pc-full-width{% endif %}">
 <pc-parallax-{{ last_part }} class="pc-parallax">
