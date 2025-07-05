@@ -18,44 +18,38 @@
   }
 
   {{ sec_id }} .pc-logoslider-container-{{ last_part }} {
-    display: flex;
-    width: fit-content;
+    white-space: nowrap;
   }
 
   {{ sec_id }} .pc-logoslider-track-{{ last_part }} {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    white-space: nowrap;
     will-change: transform;
+    {% if section.settings.animation_direction == 'left-to-right' %}
+      animation: pc-marquee-ltr-{{ last_part }} {{ section.settings.animation_speed }}s linear infinite;
+    {% else %}
+      animation: pc-marquee-rtl-{{ last_part }} {{ section.settings.animation_speed }}s linear infinite;
+    {% endif %}
   }
 
-  /* Animation for left-to-right direction */
-  {% if section.settings.animation_direction == 'left-to-right' %}
-    {{ sec_id }} .pc-logoslider-track-{{ last_part }} {
-      animation: pc-scroll-ltr-{{ last_part }} {{ section.settings.animation_speed }}s linear infinite;
+  @keyframes pc-marquee-rtl-{{ last_part }} {
+    0% {
+      transform: translateX(0%);
     }
-    @keyframes pc-scroll-ltr-{{ last_part }} {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(0%);
-      }
+    100% {
+      transform: translateX(-50%);
     }
-  {% else %}
-    /* Default right-to-left animation */
-    {{ sec_id }} .pc-logoslider-track-{{ last_part }} {
-      animation: pc-scroll-rtl-{{ last_part }} {{ section.settings.animation_speed }}s linear infinite;
-    }
-    @keyframes pc-scroll-rtl-{{ last_part }} {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-  {% endif %}
+  }
 
+  @keyframes pc-marquee-ltr-{{ last_part }} {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
 
   {{ sec_id }} .pc-logoslider-slide-{{ last_part }} {
     flex: 0 0 auto;
@@ -85,18 +79,8 @@
       height: {{ section.settings.mobile_logo_height }}px;
     }
   }
-    {{ sec_id }} .pc-logoslider-container-{{ last_part }} {
-    display: flex;
-    white-space: nowrap;
-  }
-
-  {{ sec_id }} .pc-logoslider-track-{{ last_part }} {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-  }
-
 </style>
+
 
 <div class="pc-logoslider-{{ last_part }}">
   <div class="pc-logoslider-container-{{ last_part }}">

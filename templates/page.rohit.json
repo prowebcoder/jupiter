@@ -838,7 +838,7 @@
       ],
       "name": "RW - Logo Slider #2",
       "settings": {
-        "animation_direction": "right-to-left",
+        "animation_direction": "left-to-right",
         "animation_speed": 40,
         "logo_width": 250,
         "logo_height": 100,
