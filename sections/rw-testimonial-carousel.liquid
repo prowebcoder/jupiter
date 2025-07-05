@@ -1,6 +1,866 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{%- assign sec_id = '#shopify-section-' | append: section.id -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  
+  {{ sec_id }} .pc-carousel-section {
+    margin-top: {{ section.settings.section_margin_top }}px !important;
+    margin-bottom: {{ section.settings.section_margin_bottom }}px !important;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    max-width: {{ section.settings.max_width }}px;
+    background: {{ section.settings.background_color }};
+    box-shadow: {% if section.settings.shadow_enabled %}0 30px 50px {{ section.settings.shadow_color | color_modify: 'alpha', 0.3 }}{% else %}none{% endif %};
+    border-radius: {{ section.settings.border_radius }}px;
+    overflow: hidden;
   }
+
+  {{ sec_id }} .pc-carousel-slide-{{last_part}} {
+    position: relative;
+    width: 100%;
+    height: {{ section.settings.slide_height }}px;
+  }
+
+  {{ sec_id }} .pc-carousel-item-{{last_part}} {
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    border-radius: 20px;
+    box-shadow: {% if section.settings.item_shadow_enabled %}0 30px 50px {{ section.settings.item_shadow_color | color_modify: 'alpha', 0.3 }}{% else %}none{% endif %};
+    background-position: 50% 50%;
+    background-size: cover;
+    display: inline-block;
+    transition: 0.5s;
+  }
+
+  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(1),
+  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(2) {
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(3) {
+    left: 50%;
+  }
+
+  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(4) {
+    left: calc(50% + 220px);
+  }
+
+  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(5) {
+    left: calc(50% + 440px);
+  }
+
+  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(n + 6) {
+    left: calc(50% + 660px);
+    opacity: 0;
+  }
+
+  {{ sec_id }} .pc-carousel-content-{{last_part}} {
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    width: 300px;
+    text-align: left;
+    color: {{ section.settings.text_color }};
+    transform: translate(0, -50%);
+    display: none;
+  }
+
+  {{ sec_id }} .pc-carousel-slide-{{last_part}} .pc-carousel-item-{{last_part}}:nth-child(2) .pc-carousel-content-{{last_part}} {
+    display: block;
+  }
+
+  {{ sec_id }} .pc-carousel-name-{{last_part}} {
+    font-size: {{ section.settings.title_size }}px;
+    font-weight: {{ section.settings.title_weight }};
+    font-style: {{ section.settings.text_font_style }};
+    letter-spacing: {{ section.settings.text_letter_spacing }}px;
+    text-decoration: {{ section.settings.text_text_decoration }};
+    text-decoration-color: {{ section.settings.text_text_decoration_color }};
+    text-transform: {{ section.settings.text_text_transform }};
+    opacity: 0;
+    animation: pc-carousel-animate-{{last_part}} 1s ease-in-out 1 forwards;
+  }
+
+  {{ sec_id }} .pc-carousel-description-{{last_part}} {
+    color: {{ section.settings.description_text_color }};
+    margin-top: {{ section.settings.description_spacing }}px;
+    margin-bottom: {{ section.settings.button_spacing }}px;
+    font-size: {{ section.settings.description_size }}px;
+    font-style: {{ section.settings.description_font_style }};
+    font-weight: {{ section.settings.description_font_weight }};
+    letter-spacing: {{ section.settings.description_letter_spacing }}px;
+    padding-top: {{ section.settings.description_padding_top }}px;
+    padding-bottom: {{ section.settings.description_padding_bottom }}px;
+    text-decoration: {{ section.settings.description_text_decoration }};
+    text-decoration-color: {{ section.settings.description_text_decoration_color }};
+    text-transform: {{ section.settings.description_text_transform }};
+    opacity: 0;
+    animation: pc-carousel-animate-{{last_part}} 1s ease-in-out 0.3s 1 forwards;
+  }
+
+  {{ sec_id }} .pc-carousel-button-{{last_part}} {
+    padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
+    border: none;
+    cursor: pointer;
+    background: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    border-radius: {{ section.settings.button_border_radius }}px;
+    font-size: {{ section.settings.button_text_size }}px;
+    text-transform: {{ section.settings.button_text_transform }};
+    opacity: 0;
+    animation: pc-carousel-animate-{{last_part}} 1s ease-in-out 0.6s 1 forwards;
+  }
+
+  {{ sec_id }} .pc-carousel-button-{{last_part}}:hover {
+    background: {{ section.settings.button_hover_background }};
+    color: {{ section.settings.button_hover_text_color }};
+  }
+
+  {{ sec_id }} .pc-carousel-nav-{{last_part}} {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+  }
+
+  {{ sec_id }} .pc-carousel-nav-button-{{last_part}} {
+    width: 80px;
+    height: 35px;
+    border: 1px solid {{ section.settings.nav_button_border_color }};
+    cursor: pointer;
+    margin: 0 5px;
+    background: {{ section.settings.nav_button_background }};
+    color: {{ section.settings.nav_button_hover_text_color }};
+    transition: 0.3s;
+  }
+
+  {{ sec_id }} .pc-carousel-nav-button-{{last_part}}:hover {
+    background: {{ section.settings.nav_button_hover_background }};
+    color: {{ section.settings.nav_button_hover_text_color }};
+  }
+
+  {{ sec_id }} .pc-carousel-nav-button-{{last_part}}:active {
+  top: 2px;
+  }
+  
+  @keyframes pc-carousel-animate-{{last_part}} {
+    from {
+      opacity: 0;
+      transform: translate(0, 100px);
+      filter: blur(33px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0);
+      filter: blur(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    {{ sec_id }} .pc-carousel-container-{{last_part}} {
+      max-width: 100%;
+      border-radius: {{ section.settings.mobile_border_radius }}px;
+    }
+
+    {{ sec_id }} .pc-carousel-slide-{{last_part}} {
+      height: {{ section.settings.mobile_slide_height }}px;
+    }
+
+    {{ sec_id }} .pc-carousel-content-{{last_part}} {
+      left: 50px;
+      width: 250px;
+    }
+
+    {{ sec_id }} .pc-carousel-name-{{last_part}} {
+      font-size: {{ section.settings.mobile_title_size }}px;
+    }
+
+    {{ sec_id }} .pc-carousel-description-{{last_part}} {
+      font-size: {{ section.settings.mobile_description_size }}px;
+    }
+  }
+</style>
+
+<div class="pc-carousel-section">
+<pc-carousel-container-{{last_part}} class="pc-carousel-container-{{last_part}}">
+  <div class="pc-carousel-slide-{{last_part}}">
+    {% for block in section.blocks %}
+      <div class="pc-carousel-item-{{last_part}}" 
+           style="background-image: url('{{ block.settings.image | image_url: width: 1000, height: 500 }}');">
+        <div class="pc-carousel-content-{{last_part}}">
+          <div class="pc-carousel-name-{{last_part}}">{{ block.settings.title }}</div>
+          <div class="pc-carousel-description-{{last_part}}">{{ block.settings.description }}</div>
+          <button class="pc-carousel-button-{{last_part}}">{{ block.settings.button_text }}</button>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="pc-carousel-nav-{{last_part}}">
+    <button class="pc-carousel-nav-button-{{last_part}} prev-{{last_part}}">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+    <button class="pc-carousel-nav-button-{{last_part}} next-{{last_part}}">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+  </div>
+</pc-carousel-container-{{last_part}}>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const nextBtn = document.querySelector('{{ sec_id }} .next-{{last_part}}');
+    const prevBtn = document.querySelector('{{ sec_id }} .prev-{{last_part}}');
+    const slide = document.querySelector('{{ sec_id }} .pc-carousel-slide-{{last_part}}');
+
+    if (nextBtn && prevBtn && slide) {
+      nextBtn.addEventListener('click', function() {
+        const items = document.querySelectorAll('{{ sec_id }} .pc-carousel-item-{{last_part}}');
+        slide.appendChild(items[0]);
+      });
+
+      prevBtn.addEventListener('click', function() {
+        const items = document.querySelectorAll('{{ sec_id }} .pc-carousel-item-{{last_part}}');
+        slide.prepend(items[items.length - 1]);
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "PWC - Carousel Slider #8",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+     {
+      "type": "checkbox",
+      "id": "shadow_enabled",
+      "label": "Enable Container Shadow",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "item_shadow_enabled",
+      "label": "Enable Item Shadow",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "item_shadow_color",
+      "label": "Item Shadow Color",
+      "default": "#505050"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max Width",
+      "min": 800,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "slide_height",
+      "label": "Slide Height (Desktop)",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border Radius (Desktop)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_slide_height",
+      "label": "Slide Height (Mobile)",
+      "min": 200,
+      "max": 600,
+      "step": 50,
+      "unit": "px",
+      "default": 350
+    },
+    {
+      "type": "range",
+      "id": "mobile_border_radius",
+      "label": "Border Radius (Mobile)",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "section_margin_top",
+      "label": "Margin Top (px)",
+      "default": 15,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "section_margin_bottom",
+      "label": "Margin Bottom (px)",
+      "default": 15,
+      "min": 0,
+      "max": 150,
+      "step": 5
+    },
+    {
+      "type": "header",
+      "content": "Title Settings"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Title Text Color",
+      "default": "#eeeeee"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title Size (Desktop)",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_size",
+      "label": "Title Size (Mobile)",
+      "min": 14,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+     {
+      "type": "select",
+      "id": "text_text_transform",
+      "label": "Title text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None (default)"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title Font Weight",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi Bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra Bold" }
+      ],
+      "default": "700"
+    },
+        {
+          "type": "select",
+          "id": "text_font_style",
+          "label": "Title Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "text_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Title Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "text_text_decoration",
+          "label": "Title Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "text_text_decoration_color",
+          "label": "Title Decoration Color",
+          "default": "#000"
+        },
+    {
+      "type": "header",
+      "content": "Description Settings"
+    },
+    {
+      "type": "color",
+      "id": "description_text_color",
+      "label": "Description Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description Size (Desktop)",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_description_size",
+      "label": "Description Size (Mobile)",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+     {
+      "type": "select",
+      "id": "description_text_transform",
+      "label": "Description text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None (default)"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "none"
+    },
+        {
+          "type": "select",
+          "id": "description_font_weight",
+          "label": "Description Font weight",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "bold",
+              "label": "Bold"
+            },
+            {
+              "value": "bolder",
+              "label": "Bolder"
+            },
+            {
+              "value": "lighter",
+              "label": "Lighter"
+            },
+            {
+              "value": "100",
+              "label": "100"
+            },
+            {
+              "value": "200",
+              "label": "200"
+            },
+            {
+              "value": "300",
+              "label": "300"
+            },
+            {
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "value": "900",
+              "label": "900"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "select",
+          "id": "description_font_style",
+          "label": "Description Font style",
+          "options": [
+            {
+              "value": "normal",
+              "label": "Normal"
+            },
+            {
+              "value": "italic",
+              "label": "Italic"
+            },
+            {
+              "value": "oblique",
+              "label": "Oblique"
+            }
+          ],
+          "default": "normal"
+        },
+        {
+          "type": "range",
+          "id": "description_letter_spacing",
+          "min": 0,
+          "max": 10,
+          "step": 0.5,
+          "unit": "px",
+          "label": "Description Letter spacing",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "description_text_decoration",
+          "label": "Description Text Decoration",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "underline",
+              "label": "Underline"
+            },
+            {
+              "value": "overline",
+              "label": "Overline"
+            },
+            {
+              "value": "line-through",
+              "label": "Line Through"
+            }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "color",
+          "id": "description_text_decoration_color",
+          "label": "Description Decoration Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "description_padding_top",
+          "label": "Description Padding Top (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+        {
+          "type": "range",
+          "id": "description_padding_bottom",
+          "label": "Description Padding Bottom (px)",
+          "default": 5,
+          "min": 0,
+          "max": 150,
+          "step": 5
+        },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "range",
+      "id": "button_spacing",
+      "label": "Button Top Spacing",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Button Padding Vertical",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Button Padding Horizontal",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 35
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "button_text_size",
+      "label": "Button Text Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+     {
+      "type": "select",
+      "id": "button_text_transform",
+      "label": "Button text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None (default)"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button Hover Background",
+      "default": "#ababab"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button Hover Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Navigation Button Settings"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_background",
+      "label": "Navigation Button Background",
+      "default": "#121212"
+    },
+    {
+          "type": "color",
+          "id": "nav_button_text_color",
+          "label": "Navigation Button Arrow Color",
+          "default": "#ffffff"
+        },
+    {
+      "type": "color",
+      "id": "nav_button_border_color",
+      "label": "Navigation Button Border Color",
+      "default":"#121212"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_hover_background",
+      "label": "Navigation Button Hover Background",
+      "default": "#ababab"
+    },
+    {
+      "type": "color",
+      "id": "nav_button_hover_text_color",
+      "label": "Navigation Button Hover Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Slide Title"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Slide description goes here."
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "See More"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "RW - Carousel Slider #8",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "title": "Title-1",
+            "description": "Type your description here..!",
+            "button_text": "See More"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "title": "Title-2",
+            "description": "Type your description here..!",
+            "button_text": "See More"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "title": "Title-3",
+            "description": "Type your description here..!",
+            "button_text": "See More"
+          }
+        },
+         {
+          "type": "slide",
+          "settings": {
+            "title": "Title-4",
+            "description": "Type your description here..!",
+            "button_text": "See More"
+          }
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
