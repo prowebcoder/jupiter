@@ -940,7 +940,7 @@
             "link": "",
             "title": "Image title",
             "description": "Image description",
-            "grid_row_span": 15
+            "grid_row_span": 20
           }
         },
         "image_xxcJ8a": {
@@ -960,7 +960,7 @@
             "link": "",
             "title": "Image title",
             "description": "Image description",
-            "grid_row_span": 15
+            "grid_row_span": 10
           }
         },
         "image_mXKhQT": {
@@ -970,7 +970,7 @@
             "link": "",
             "title": "Image title",
             "description": "Image description",
-            "grid_row_span": 30
+            "grid_row_span": 10
           }
         },
         "image_nnwMrW": {
@@ -980,7 +980,7 @@
             "link": "",
             "title": "Image title",
             "description": "Image description",
-            "grid_row_span": 30
+            "grid_row_span": 10
           }
         },
         "image_ECegfT": {
@@ -990,7 +990,7 @@
             "link": "",
             "title": "Image title",
             "description": "Image description",
-            "grid_row_span": 30
+            "grid_row_span": 10
           }
         }
       },
