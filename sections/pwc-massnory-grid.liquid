@@ -59,7 +59,10 @@
   }
   {% for block in section.blocks %}
     
-    {{ sid }} .block_settings_heading_{{ block.id }}{ color: {{ section.settings.caption_text_color }};font-size:{{block.settings.heading_font_size}}}
+    {{ sid }} .block_settings_heading_{{ block.id }}{ 
+      color: {{ section.settings.caption_text_color }};
+      font-size:{{block.settings.heading_font_size}}px;
+    }
 
 
   {% endfor %}
