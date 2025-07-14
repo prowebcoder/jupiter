@@ -936,79 +936,61 @@
         "image_TRQ8m7": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/7-03_RunnersAthletics_Look30111_533x_8afaed0a-66f6-407c-ab8c-fc4e46a26b83.webp",
             "link": "",
             "title": "Image title",
             "description": "Image description",
-            "text_alignment": "left",
-            "caption_position": "bottom",
-            "custom_height": "",
-            "custom_width": 1,
-            "image_max_height": 500
+            "grid_row_span": 15
           }
         },
         "image_xxcJ8a": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/5-01_RunnersAthletics_Look10029_533x_5538b18f-7913-4d86-9998-cce24b109d97.webp",
             "link": "",
             "title": "Image title",
             "description": "Image description",
-            "text_alignment": "left",
-            "caption_position": "bottom",
-            "custom_height": "",
-            "custom_width": 1,
-            "image_max_height": 500
+            "grid_row_span": 20
           }
         },
         "image_iy8Vca": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/71EiaJzAQ3L._SL1500.jpg",
             "link": "",
             "title": "Image title",
             "description": "Image description",
-            "text_alignment": "left",
-            "caption_position": "bottom",
-            "custom_height": "",
-            "custom_width": 1,
-            "image_max_height": 500
+            "grid_row_span": 15
           }
         },
         "image_mXKhQT": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/1040-1200x800.jpg",
             "link": "",
             "title": "Image title",
             "description": "Image description",
-            "text_alignment": "left",
-            "caption_position": "bottom",
-            "custom_height": "",
-            "custom_width": 1,
-            "image_max_height": 500
+            "grid_row_span": 30
           }
         },
         "image_nnwMrW": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/71EiaJzAQ3L._SL1500.jpg",
             "link": "",
             "title": "Image title",
             "description": "Image description",
-            "text_alignment": "left",
-            "caption_position": "bottom",
-            "custom_height": "",
-            "custom_width": 1,
-            "image_max_height": 500
+            "grid_row_span": 30
           }
         },
         "image_ECegfT": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/pack2_600x_c1fb9dd8-5f47-456a-bc73-2d35a6fd3803.png",
             "link": "",
             "title": "Image title",
             "description": "Image description",
-            "text_alignment": "left",
-            "caption_position": "bottom",
-            "custom_height": "",
-            "custom_width": 1,
-            "image_max_height": 500
+            "grid_row_span": 30
           }
         }
       },
@@ -1025,44 +1007,16 @@
         "heading": "Our Gallery",
         "container_width": 1200,
         "container_padding": 20,
+        "min_item_width": 250,
         "grid_gap": 10,
         "image_border_radius": 8,
+        "image_fit": "cover",
         "zoom_scale": 105,
         "zoom_duration": 300,
-        "image_fit": "cover",
-        "text_alignment": "left",
-        "text_alignment_mobile": "center",
-        "caption_position": "bottom",
-        "collage_item_height": "auto",
-        "collage_item_height_mobile": "none",
-        "image_max_height": 500,
-        "large_item_columns": 4,
-        "large_item_rows": 2,
-        "medium_item_columns": 3,
-        "medium_item_rows": 1,
-        "wide_item_columns": 4,
-        "wide_item_rows": 1,
-        "default_item_columns": 4,
-        "default_item_rows": 1,
-        "large_item_columns_tablet": 3,
-        "large_item_rows_tablet": 2,
-        "medium_item_columns_tablet": 3,
-        "medium_item_rows_tablet": 1,
-        "wide_item_columns_tablet": 6,
-        "wide_item_rows_tablet": 1,
-        "default_item_columns_tablet": 2,
-        "default_item_rows_tablet": 1,
-        "mobile_item_columns": 1,
-        "mobile_item_rows": 1,
-        "heading_font_size": 32,
-        "heading_font_size_mobile": 24,
         "caption_text_color": "#ffffff",
-        "caption_opacity": 0.8,
-        "title_font_size": 16,
-        "title_font_size_mobile": 14,
-        "title_font_weight": "600",
-        "description_font_size": 12,
-        "description_font_size_mobile": 11
+        "caption_opacity": 1,
+        "text_alignment": "left",
+        "heading_font_size": 32
       }
     }
   },
