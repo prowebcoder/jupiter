@@ -939,6 +939,7 @@
             "image": "shopify://shop_images/7-03_RunnersAthletics_Look30111_533x_8afaed0a-66f6-407c-ab8c-fc4e46a26b83.webp",
             "link": "",
             "title": "Image title",
+            "heading_font_size": 15,
             "description": "Image description",
             "grid_row_span": 20
           }
@@ -949,6 +950,7 @@
             "image": "shopify://shop_images/5-01_RunnersAthletics_Look10029_533x_5538b18f-7913-4d86-9998-cce24b109d97.webp",
             "link": "",
             "title": "Image title",
+            "heading_font_size": 28,
             "description": "Image description",
             "grid_row_span": 20
           }
@@ -959,6 +961,7 @@
             "image": "shopify://shop_images/71EiaJzAQ3L._SL1500.jpg",
             "link": "",
             "title": "Image title",
+            "heading_font_size": 28,
             "description": "Image description",
             "grid_row_span": 10
           }
@@ -969,6 +972,7 @@
             "image": "shopify://shop_images/1040-1200x800.jpg",
             "link": "",
             "title": "Image title",
+            "heading_font_size": 28,
             "description": "Image description",
             "grid_row_span": 10
           }
@@ -979,6 +983,7 @@
             "image": "shopify://shop_images/71EiaJzAQ3L._SL1500.jpg",
             "link": "",
             "title": "Image title",
+            "heading_font_size": 28,
             "description": "Image description",
             "grid_row_span": 10
           }
@@ -989,6 +994,7 @@
             "image": "shopify://shop_images/pack2_600x_c1fb9dd8-5f47-456a-bc73-2d35a6fd3803.png",
             "link": "",
             "title": "Image title",
+            "heading_font_size": 28,
             "description": "Image description",
             "grid_row_span": 10
           }
