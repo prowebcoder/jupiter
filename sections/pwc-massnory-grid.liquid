@@ -57,7 +57,12 @@
     text-align: {{ section.settings.text_alignment }};
     transition: opacity {{ section.settings.zoom_duration }}ms ease;
   }
-    {{ sid }} .pcg-collage-caption h3{ color: {{ section.settings.caption_text_color }};}
+  {% for block in section.blocks %}
+    
+    {{ sid }} .block_settings_heading_{{ block.id }}{ color: {{ section.settings.caption_text_color }};font-size:{{block.settings.heading_font_size}}}
+
+
+  {% endfor %}
 
   {{ sid }} .pcg-collage-item:hover .pcg-collage-caption {
     opacity: 1;
@@ -86,7 +91,7 @@
             >
             {% if block.settings.title != blank or block.settings.description != blank %}
               <div class="pcg-collage-caption">
-                {% if block.settings.title != blank %}<h3 class="block_settings_heading">{{ block.settings.title }}</h3>{% endif %}
+                {% if block.settings.title != blank %}<h3 class="block_settings_heading_{{ block.id }}" >{{ block.settings.title }}</h3>{% endif %}
                 {% if block.settings.description != blank %}<p>{{ block.settings.description }}</p>{% endif %}
               </div>
             {% endif %}
