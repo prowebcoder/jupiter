@@ -86,7 +86,7 @@
             >
             {% if block.settings.title != blank or block.settings.description != blank %}
               <div class="pcg-collage-caption">
-                {% if block.settings.title != blank %}<h3>{{ block.settings.title }}</h3>{% endif %}
+                {% if block.settings.title != blank %}<h3 class="block_settings_heading">{{ block.settings.title }}</h3>{% endif %}
                 {% if block.settings.description != blank %}<p>{{ block.settings.description }}</p>{% endif %}
               </div>
             {% endif %}
@@ -247,6 +247,16 @@
           "id": "title",
           "label": "Title"
         },
+         {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 14,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading Font Size",
+      "default": 28
+    },
         {
           "type": "text",
           "id": "description",
