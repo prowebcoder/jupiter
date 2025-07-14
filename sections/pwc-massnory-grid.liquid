@@ -15,6 +15,7 @@
     text-align: center;
     margin-bottom: 20px;
     font-size: {{ section.settings.heading_font_size }}px;
+      color: {{ section.settings.caption_text_color }};
   }
 
   {{ sid }} .pcg-masonry-layout {
@@ -28,6 +29,7 @@
     overflow: hidden;
     border-radius: {{ section.settings.image_border_radius }}px;
     grid-row: span var(--rows, 30);
+      color: {{ section.settings.caption_text_color }};
     position: relative;
   }
 
