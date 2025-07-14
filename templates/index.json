@@ -929,6 +929,141 @@
         "button_background_hover": "#ffffff",
         "button_text_color_hover": "#000000"
       }
+    },
+    "pwc_massnory_grid_pgxqrm": {
+      "type": "pwc-massnory-grid",
+      "blocks": {
+        "image_TRQ8m7": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 1,
+            "image_max_height": 500
+          }
+        },
+        "image_xxcJ8a": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 1,
+            "image_max_height": 500
+          }
+        },
+        "image_iy8Vca": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 1,
+            "image_max_height": 500
+          }
+        },
+        "image_mXKhQT": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 1,
+            "image_max_height": 500
+          }
+        },
+        "image_nnwMrW": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 1,
+            "image_max_height": 500
+          }
+        },
+        "image_ECegfT": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "title": "Image title",
+            "description": "Image description",
+            "text_alignment": "left",
+            "caption_position": "bottom",
+            "custom_height": "",
+            "custom_width": 1,
+            "image_max_height": 500
+          }
+        }
+      },
+      "block_order": [
+        "image_TRQ8m7",
+        "image_xxcJ8a",
+        "image_iy8Vca",
+        "image_mXKhQT",
+        "image_nnwMrW",
+        "image_ECegfT"
+      ],
+      "name": "PWC Masonry Collage",
+      "settings": {
+        "heading": "Our Gallery",
+        "container_width": 1200,
+        "container_padding": 20,
+        "grid_gap": 10,
+        "image_border_radius": 8,
+        "zoom_scale": 105,
+        "zoom_duration": 300,
+        "image_fit": "cover",
+        "text_alignment": "left",
+        "text_alignment_mobile": "center",
+        "caption_position": "bottom",
+        "collage_item_height": "auto",
+        "collage_item_height_mobile": "none",
+        "image_max_height": 500,
+        "large_item_columns": 4,
+        "large_item_rows": 2,
+        "medium_item_columns": 3,
+        "medium_item_rows": 1,
+        "wide_item_columns": 4,
+        "wide_item_rows": 1,
+        "default_item_columns": 4,
+        "default_item_rows": 1,
+        "large_item_columns_tablet": 3,
+        "large_item_rows_tablet": 2,
+        "medium_item_columns_tablet": 3,
+        "medium_item_rows_tablet": 1,
+        "wide_item_columns_tablet": 6,
+        "wide_item_rows_tablet": 1,
+        "default_item_columns_tablet": 2,
+        "default_item_rows_tablet": 1,
+        "mobile_item_columns": 1,
+        "mobile_item_rows": 1,
+        "heading_font_size": 32,
+        "heading_font_size_mobile": 24,
+        "caption_text_color": "#ffffff",
+        "caption_opacity": 0.8,
+        "title_font_size": 16,
+        "title_font_size_mobile": 14,
+        "title_font_weight": "600",
+        "description_font_size": 12,
+        "description_font_size_mobile": 11
+      }
     }
   },
   "order": [
@@ -942,6 +1077,7 @@
     "rw_wavy_layout_et3k3m",
     "pwc_look_book_69J784",
     "rd_pokemon_slider_j9DTck",
-    "pwc_promo_grid_GfbEEG"
+    "pwc_promo_grid_GfbEEG",
+    "pwc_massnory_grid_pgxqrm"
   ]
 }
