@@ -74,11 +74,21 @@
     letter-spacing: {{ section.settings.title_letter_spacing }}em;
     margin-bottom: 30px;
     color: {{ section.settings.title_color }};
-    position: relative;
-    z-index: 2;
+   
     {% if section.settings.enable_title_shadow %}
       text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     {% endif %}
+
+    z-index: 0;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to bottom, rgb(8 42 123 / 35%) 30%, rgb(255 255 255 / 0%) 76%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   
   {{ sec_id }} .pc-carousel-container {
