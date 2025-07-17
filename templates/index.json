@@ -1078,7 +1078,7 @@
             "author": "Jane Doe",
             "role": "CTO, Intercom",
             "rating": 5,
-            "bg_color": "#ffffff",
+            "bg_color": "#ffff00",
             "text_color": "#333333",
             "font_size": 16,
             "enable_shadow": true
@@ -1092,7 +1092,7 @@
             "author": "Jane Doe",
             "role": "CTO, Intercom",
             "rating": 5,
-            "bg_color": "#ffffff",
+            "bg_color": "#ffa500",
             "text_color": "#333333",
             "font_size": 16,
             "enable_shadow": true
@@ -1106,7 +1106,7 @@
             "author": "Jane Doe",
             "role": "CTO, Intercom",
             "rating": 5,
-            "bg_color": "#ffffff",
+            "bg_color": "#334fb4",
             "text_color": "#333333",
             "font_size": 16,
             "enable_shadow": true
