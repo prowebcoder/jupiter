@@ -1183,7 +1183,7 @@
       "name": "PWC - Team Carousel #1",
       "settings": {
         "title": "OUR TEAM",
-        "background_color": "#f5f5f5",
+        "background_color": "#dde3f5",
         "max_width": 1200,
         "card_spacing": 200,
         "card_radius": 20,
