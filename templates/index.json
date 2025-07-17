@@ -1128,6 +1128,112 @@
         "button_label": "See all case studies",
         "button_link": ""
       }
+    },
+    "rw_testimonail_slider_5_zRWXYH": {
+      "type": "RW-testimonail-slider-5",
+      "blocks": {
+        "team_member_X39ETr": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/photo-1494790108377-be9c29b29330.avif",
+            "name": "Emily Kim",
+            "role": "Founder"
+          }
+        },
+        "team_member_BDyfEQ": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/photo-1519085360753-af0119f7cbe7.avif",
+            "name": "Michael Steward",
+            "role": "Creative Director"
+          }
+        },
+        "team_member_MERNPh": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/photo-1494790108377-be9c29b29330.avif",
+            "name": "Emma Rodriguez",
+            "role": "Lead Developer"
+          }
+        },
+        "team_member_Wn3A3G": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/photo-1494790108377-be9c29b29330.avif",
+            "name": "Emma Rodriguez",
+            "role": "Lead Developer"
+          }
+        },
+        "team_member_WxDbtR": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/photo-1494790108377-be9c29b29330.avif",
+            "name": "Emma Rodriguez",
+            "role": "Lead Developer"
+          }
+        },
+        "team_member_rtVk7L": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/photo-1494790108377-be9c29b29330.avif",
+            "name": "Emma Rodriguez",
+            "role": "Lead Developer"
+          }
+        },
+        "team_member_4nhxU3": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/photo-1494790108377-be9c29b29330.avif",
+            "name": "Emma Rodriguez",
+            "role": "Lead Developer"
+          }
+        }
+      },
+      "block_order": [
+        "team_member_X39ETr",
+        "team_member_BDyfEQ",
+        "team_member_MERNPh",
+        "team_member_Wn3A3G",
+        "team_member_WxDbtR",
+        "team_member_rtVk7L",
+        "team_member_4nhxU3"
+      ],
+      "name": "PWC - Team Carousel #1",
+      "settings": {
+        "title": "OUR TEAM",
+        "background_color": "#f5f5f5",
+        "max_width": 1200,
+        "card_spacing": 200,
+        "card_radius": 20,
+        "title_color": "#082a7b",
+        "title_font_weight": 900,
+        "title_letter_spacing": 0.1,
+        "enable_title_shadow": true,
+        "name_color": "#082a7b",
+        "name_font_weight": 700,
+        "name_line_width": 100,
+        "name_line_gap": 20,
+        "role_color": "#848696",
+        "dot_color": "#082a7b",
+        "arrow_color": "rgba(8, 42, 123, 0.6)",
+        "arrow_hover_color": "rgba(0, 0, 0, 0.8)",
+        "desktop_padding_top": 100,
+        "desktop_padding_bottom": 100,
+        "title_font_size_desktop": 75,
+        "carousel_height_desktop": 440,
+        "card_width_desktop": 280,
+        "card_height_desktop": 380,
+        "name_font_size_desktop": 40,
+        "role_font_size_desktop": 24,
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 60,
+        "title_font_size_mobile": 46,
+        "carousel_height_mobile": 320,
+        "card_width_mobile": 200,
+        "card_height_mobile": 280,
+        "name_font_size_mobile": 32,
+        "role_font_size_mobile": 18
+      }
     }
   },
   "order": [
@@ -1143,6 +1249,7 @@
     "rd_pokemon_slider_j9DTck",
     "pwc_promo_grid_GfbEEG",
     "pwc_massnory_grid_pgxqrm",
-    "rw_testimonial_slider_4_EQgUUQ"
+    "rw_testimonial_slider_4_EQgUUQ",
+    "rw_testimonail_slider_5_zRWXYH"
   ]
 }
