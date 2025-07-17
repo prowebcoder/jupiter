@@ -1028,48 +1028,6 @@
     "rw_testimonial_slider_4_EQgUUQ": {
       "type": "RW-testimonial-slider-4",
       "blocks": {
-        "testimonial_QRQfWj": {
-          "type": "testimonial",
-          "settings": {
-            "text": "This is a fantastic product!",
-            "logo": "shopify://shop_images/l6.png",
-            "author": "Jane Doe",
-            "role": "CTO, Intercom",
-            "rating": 5,
-            "bg_color": "#ffffff",
-            "text_color": "#333333",
-            "font_size": 16,
-            "enable_shadow": true
-          }
-        },
-        "testimonial_mmcdLw": {
-          "type": "testimonial",
-          "settings": {
-            "text": "This is a fantastic product!",
-            "logo": "shopify://shop_images/l6.png",
-            "author": "Jane Doe",
-            "role": "CTO, Intercom",
-            "rating": 5,
-            "bg_color": "#ffffff",
-            "text_color": "#333333",
-            "font_size": 16,
-            "enable_shadow": true
-          }
-        },
-        "testimonial_fgPeJy": {
-          "type": "testimonial",
-          "settings": {
-            "text": "This is a fantastic product!",
-            "logo": "shopify://shop_images/l6.png",
-            "author": "Jane Doe",
-            "role": "CTO, Intercom",
-            "rating": 5,
-            "bg_color": "#ffffff",
-            "text_color": "#333333",
-            "font_size": 16,
-            "enable_shadow": true
-          }
-        },
         "testimonial_xYPBdp": {
           "type": "testimonial",
           "settings": {
@@ -1111,15 +1069,54 @@
             "font_size": 16,
             "enable_shadow": true
           }
+        },
+        "testimonial_NiQVpF": {
+          "type": "testimonial",
+          "settings": {
+            "text": "This is a fantastic product!",
+            "author": "Jane Doe",
+            "role": "CTO, Intercom",
+            "rating": 5,
+            "bg_color": "#ffffff",
+            "text_color": "#333333",
+            "font_size": 16,
+            "enable_shadow": true
+          }
+        },
+        "testimonial_7ktF7f": {
+          "type": "testimonial",
+          "settings": {
+            "text": "This is a fantastic product!",
+            "author": "Jane Doe",
+            "role": "CTO, Intercom",
+            "rating": 5,
+            "bg_color": "#ffffff",
+            "text_color": "#333333",
+            "font_size": 16,
+            "enable_shadow": true
+          }
+        },
+        "testimonial_MXVP7z": {
+          "type": "testimonial",
+          "settings": {
+            "text": "This is a fantastic product!",
+            "author": "Jane Doe",
+            "role": "CTO, Intercom",
+            "rating": 5,
+            "bg_color": "#ffffff",
+            "text_color": "#333333",
+            "font_size": 16,
+            "enable_shadow": true
+          }
         }
       },
       "block_order": [
-        "testimonial_QRQfWj",
-        "testimonial_mmcdLw",
-        "testimonial_fgPeJy",
         "testimonial_xYPBdp",
         "testimonial_gXAiT9",
-        "testimonial_aiEz7T"
+        "testimonial_aiEz7T",
+        "testimonial_NiQVpF",
+        "testimonial_7ktF7f",
+        "testimonial_MXVP7z"
       ],
       "name": "PWC - Testimonial #4",
       "settings": {
