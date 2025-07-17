@@ -1129,10 +1129,10 @@
         "button_link": ""
       }
     },
-    "rw_testimonail_slider_5_zRWXYH": {
-      "type": "RW-testimonail-slider-5",
+    "rw_team_slider_5_r8iF87": {
+      "type": "RW-team-slider-5",
       "blocks": {
-        "team_member_X39ETr": {
+        "team_member_zePdWb": {
           "type": "team_member",
           "settings": {
             "image": "shopify://shop_images/photo-1494790108377-be9c29b29330.avif",
@@ -1140,23 +1140,15 @@
             "role": "Founder"
           }
         },
-        "team_member_BDyfEQ": {
+        "team_member_RRGc6x": {
           "type": "team_member",
           "settings": {
-            "image": "shopify://shop_images/photo-1519085360753-af0119f7cbe7.avif",
+            "image": "shopify://shop_images/photo-1573496359142-b8d87734a5a2.avif",
             "name": "Michael Steward",
             "role": "Creative Director"
           }
         },
-        "team_member_MERNPh": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/photo-1568602471122-7832951cc4c5.avif",
-            "name": "Emma Rodriguez",
-            "role": "Lead Developer"
-          }
-        },
-        "team_member_Wn3A3G": {
+        "team_member_G3QtND": {
           "type": "team_member",
           "settings": {
             "image": "shopify://shop_images/photo-1655249481446-25d575f1c054.avif",
@@ -1164,39 +1156,29 @@
             "role": "Lead Developer"
           }
         },
-        "team_member_WxDbtR": {
+        "team_member_LNp9Fb": {
           "type": "team_member",
           "settings": {
-            "image": "shopify://shop_images/photo-1573496359142-b8d87734a5a2.avif",
-            "name": "Emma Rodriguez",
-            "role": "Lead Developer"
+            "image": "shopify://shop_images/photo-1519085360753-af0119f7cbe7.avif",
+            "name": "Team Member",
+            "role": "Position"
           }
         },
-        "team_member_rtVk7L": {
+        "team_member_VUtxMf": {
           "type": "team_member",
           "settings": {
-            "image": "shopify://shop_images/3-2-06_RunnersAthletics_Look60005_533x_d731eed9-5780-474b-bd14-50bc6a607c0a.webp",
-            "name": "Emma Rodriguez",
-            "role": "Lead Developer"
-          }
-        },
-        "team_member_4nhxU3": {
-          "type": "team_member",
-          "settings": {
-            "image": "shopify://shop_images/fashion-model-in-fur.jpg",
-            "name": "Emma Rodriguez",
-            "role": "Lead Developer"
+            "image": "shopify://shop_images/photo-1568602471122-7832951cc4c5.avif",
+            "name": "Team Member",
+            "role": "Position"
           }
         }
       },
       "block_order": [
-        "team_member_X39ETr",
-        "team_member_BDyfEQ",
-        "team_member_MERNPh",
-        "team_member_Wn3A3G",
-        "team_member_WxDbtR",
-        "team_member_rtVk7L",
-        "team_member_4nhxU3"
+        "team_member_zePdWb",
+        "team_member_RRGc6x",
+        "team_member_G3QtND",
+        "team_member_LNp9Fb",
+        "team_member_VUtxMf"
       ],
       "name": "PWC - Team Carousel #1",
       "settings": {
@@ -1250,6 +1232,6 @@
     "pwc_promo_grid_GfbEEG",
     "pwc_massnory_grid_pgxqrm",
     "rw_testimonial_slider_4_EQgUUQ",
-    "rw_testimonail_slider_5_zRWXYH"
+    "rw_team_slider_5_r8iF87"
   ]
 }
