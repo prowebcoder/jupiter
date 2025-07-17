@@ -1201,7 +1201,7 @@
         "arrow_hover_color": "rgba(0, 0, 0, 0.8)",
         "desktop_padding_top": 100,
         "desktop_padding_bottom": 100,
-        "title_font_size_desktop": 75,
+        "title_font_size_desktop": 100,
         "carousel_height_desktop": 440,
         "card_width_desktop": 280,
         "card_height_desktop": 380,
