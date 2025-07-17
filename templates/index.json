@@ -1128,71 +1128,6 @@
         "button_label": "See all case studies",
         "button_link": ""
       }
-    },
-    "rw_testimonail_slider_5_VGbrTg": {
-      "type": "RW-testimonail-slider-5",
-      "blocks": {
-        "testimonial_p9Ra7n": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "My favorite thing about Tines is how easy and user-friendly it is. For me, it feels like a game. Whenever I build in Tines, I feel like I'm solving a fun puzzle.",
-            "name": "James K.",
-            "title": "Senior Manager Information Security",
-            "company": "Mid-market (5–1000 emp.)"
-          }
-        },
-        "testimonial_faaYVQ": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Tines is not only great for cybersecurity teams who are likely already undersized and drowning in alerts, but also for the business at large.",
-            "name": "Aljinkya Y.",
-            "title": "Cyber Incident Analyst",
-            "company": "Small-Business (50 or fewer emp.)"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_p9Ra7n",
-        "testimonial_faaYVQ"
-      ],
-      "name": "PWC - Testimonial #5",
-      "settings": {
-        "heading": "Loved by our customers",
-        "link_url": "",
-        "link_text": "See all case studies",
-        "bg_color": "#ffffff",
-        "enable_shadow": true,
-        "autoplay_enable": true,
-        "autoplay_interval": 5000,
-        "heading_font_size": 36,
-        "heading_font_size_mobile": 28,
-        "heading_font_weight": 700,
-        "quote_font_size": 18,
-        "quote_font_size_mobile": 16,
-        "name_font_size": 18,
-        "title_font_size": 16,
-        "company_font_size": 14,
-        "link_font_size": 18,
-        "heading_color": "#000000",
-        "card_bg_color": "#f9f9f9",
-        "quote_color": "#333333",
-        "name_color": "#000000",
-        "title_color": "#666666",
-        "company_color": "#333333",
-        "divider_color": "#eaeaea",
-        "arrow_color": "#000000",
-        "dot_color": "#000000",
-        "link_color": "#1a73e8",
-        "link_hover_color": "#0d5bb8",
-        "desktop_padding_top": 80,
-        "desktop_padding_bottom": 80,
-        "desktop_padding_left": 20,
-        "desktop_padding_right": 20,
-        "mobile_padding_top": 50,
-        "mobile_padding_bottom": 50,
-        "mobile_padding_left": 15,
-        "mobile_padding_right": 15
-      }
     }
   },
   "order": [
@@ -1208,7 +1143,6 @@
     "rd_pokemon_slider_j9DTck",
     "pwc_promo_grid_GfbEEG",
     "pwc_massnory_grid_pgxqrm",
-    "rw_testimonial_slider_4_EQgUUQ",
-    "rw_testimonail_slider_5_VGbrTg"
+    "rw_testimonial_slider_4_EQgUUQ"
   ]
 }
