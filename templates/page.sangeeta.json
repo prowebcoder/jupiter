@@ -619,21 +619,21 @@
         "icon_2_7Q6bRw": {
           "type": "icon_2",
           "settings": {
-            "svg": "",
+            "svg": "<svg width=\"64\" height=\"64\" viewbox=\"0 0 64 64\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"12\" y=\"24\" width=\"40\" height=\"28\" fill=\"#FFD580\" stroke=\"#4B3F72\" stroke-width=\"2\"></rect><polygon points=\"32,10 10,26 54,26\" fill=\"#FF8FAB\" stroke=\"#4B3F72\" stroke-width=\"2\"></polygon><circle cx=\"48\" cy=\"18\" r=\"6\" fill=\"#FFC107\"></circle><path d=\"M14 50 Q16 42 18 50 T22 50\" stroke=\"#4B3F72\" stroke-width=\"2\" fill=\"#A1E3A1\"></path></svg>",
             "bg_color": "#d3c7ff"
           }
         },
         "icon_3_C9jUn6": {
           "type": "icon_3",
           "settings": {
-            "svg": "",
+            "svg": "<svg width=\"64\" height=\"64\" viewbox=\"0 0 64 64\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"22\" y=\"30\" width=\"20\" height=\"20\" rx=\"4\" fill=\"#FF90C2\"></rect><path d=\"M20 30V20C20 18 24 18 24 20V30H20Z\" fill=\"#A1E3A1\"></path><path d=\"M44 30V20C44 18 40 18 40 20V30H44Z\" fill=\"#A1E3A1\"></path><rect x=\"20\" y=\"50\" width=\"24\" height=\"4\" fill=\"#4B3F72\"></rect></svg>",
             "bg_color": "#ffc2dd"
           }
         },
         "icon_4_6xjTL3": {
           "type": "icon_4",
           "settings": {
-            "svg": "",
+            "svg": "<svg width=\"64\" height=\"64\" viewbox=\"0 0 64 64\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M20 24 L44 24 L48 40 L24 40 Z\" fill=\"#90CAF9\" stroke=\"#4B3F72\" stroke-width=\"2\"></path><circle cx=\"26\" cy=\"44\" r=\"4\" fill=\"#FF8FAB\" stroke=\"#4B3F72\" stroke-width=\"2\"></circle><circle cx=\"42\" cy=\"44\" r=\"4\" fill=\"#FF8FAB\" stroke=\"#4B3F72\" stroke-width=\"2\"></circle><line x1=\"24\" y1=\"30\" x2=\"44\" y2=\"30\" stroke=\"#4B3F72\" stroke-width=\"2\"></line></svg>",
             "bg_color": "#ffd6a5"
           }
         }
