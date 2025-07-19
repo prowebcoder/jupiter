@@ -201,94 +201,92 @@
         "mobile_image_size": 70
       }
     },
-    "rw_testimonial_slider_2_kcXNRf": {
-      "type": "rw-testimonial-slider-2",
+    "rw_team_slider_5_NxmVd7": {
+      "type": "RW-team-slider-5",
       "blocks": {
-        "testimonial_EDETeX": {
-          "type": "testimonial",
+        "team_member_9xgEPR": {
+          "type": "team_member",
           "settings": {
-            "testimonial": "<p>This product completely changed how I approach my daily routine. The quality is outstanding and the customer service was exceptional!</p>",
-            "author": "Sarah Johnson",
-            "role": "Marketing Director"
+            "image": "shopify://shop_images/photo-1494790108377-be9c29b29330.avif",
+            "name": "Emily Kim",
+            "role": "Founder"
           }
         },
-        "testimonial_F7W4nR": {
-          "type": "testimonial",
+        "team_member_QUi6mt": {
+          "type": "team_member",
           "settings": {
-            "testimonial": "<p>I've tried many similar products, but this one stands out for its innovation and reliability. Highly recommend to anyone looking for a solution.</p>",
-            "author": "Michael Chen",
-            "role": "Product Designer"
+            "image": "shopify://shop_images/photo-1573496359142-b8d87734a5a2.avif",
+            "name": "Michael Steward",
+            "role": "Creative Director"
           }
         },
-        "testimonial_nHP4ip": {
-          "type": "testimonial",
+        "team_member_ikLhqy": {
+          "type": "team_member",
           "settings": {
-            "testimonial": "<p>As a business owner, I'm always looking for ways to improve efficiency. This service saved me hours each week and was worth every penny.</p>",
-            "author": "David Rodriguez",
-            "role": "Small Business Owner"
+            "image": "shopify://shop_images/photo-1655249481446-25d575f1c054.avif",
+            "name": "Emma Rodriguez",
+            "role": "Lead Developer"
           }
         },
-        "testimonial_rCLXkM": {
-          "type": "testimonial",
+        "team_member_Et6PGy": {
+          "type": "team_member",
           "settings": {
-            "testimonial": "<p>The team behind this product truly understands their customers' needs. The attention to detail and continuous improvements are impressive.</p>",
-            "author": "Emily Thompson",
-            "role": "Software Engineer"
+            "image": "shopify://shop_images/photo-1519085360753-af0119f7cbe7.avif",
+            "name": "Team Member",
+            "role": "Position"
+          }
+        },
+        "team_member_VUep9n": {
+          "type": "team_member",
+          "settings": {
+            "image": "shopify://shop_images/photo-1568602471122-7832951cc4c5.avif",
+            "name": "Team Member",
+            "role": "Position"
           }
         }
       },
       "block_order": [
-        "testimonial_EDETeX",
-        "testimonial_F7W4nR",
-        "testimonial_nHP4ip",
-        "testimonial_rCLXkM"
+        "team_member_9xgEPR",
+        "team_member_QUi6mt",
+        "team_member_ikLhqy",
+        "team_member_Et6PGy",
+        "team_member_VUep9n"
       ],
-      "name": "Testimonial Slider #1",
+      "name": "PWC - Team Carousel #1",
       "settings": {
-        "heading": "What Our Customers Say",
-        "heading_alignment": "center",
-        "heading_size": 32,
-        "heading_color": "#333333",
-        "heading_margin": 30,
+        "title": "OUR TEAM",
+        "background_color": "#dde3f5",
         "max_width": 1200,
-        "slides_to_show": 3,
-        "slides_to_show_mb": 1,
-        "slides_to_show_tb": 2,
-        "slide_gap": 20,
-        "autoplay": true,
-        "autoplay_speed": 5000,
-        "enable_shadow": true,
-        "border_radius": 12,
-        "text_alignment": "center",
-        "desktop_padding_vertical": 40,
-        "desktop_padding_horizontal": 40,
-        "mobile_padding_vertical": 30,
-        "mobile_padding_horizontal": 20,
-        "background_color": "#f9f9f9",
-        "card_background": "#ffffff",
-        "text_color": "#333333",
-        "author_color": "#000000",
-        "role_color": "#666666",
-        "nav_background": "#f0f0f0",
-        "nav_color": "#333333",
-        "nav_hover_background": "#e0e0e0",
-        "nav_hover_color": "#000000",
-        "dot_color": "#cccccc",
-        "dot_active_color": "#333333",
-        "quote_color": "#cccccc",
-        "text_size": 16,
-        "author_size": 18,
-        "author_weight": "600",
-        "role_size": 14,
-        "quote_size": 50,
-        "image_size": 80,
-        "image_margin": 20,
-        "card_radius": 8,
-        "mobile_text_size": 14,
-        "mobile_author_size": 16,
-        "mobile_role_size": 13,
-        "mobile_quote_size": 40,
-        "mobile_image_size": 70
+        "card_spacing": 200,
+        "card_radius": 20,
+        "title_color": "#082a7b",
+        "title_font_weight": 900,
+        "title_letter_spacing": 0.1,
+        "enable_title_shadow": true,
+        "name_color": "#082a7b",
+        "name_font_weight": 700,
+        "name_line_width": 100,
+        "name_line_gap": 20,
+        "role_color": "#848696",
+        "dot_color": "#082a7b",
+        "arrow_color": "#082a7b99",
+        "arrow_hover_color": "#000000cc",
+        "desktop_padding_top": 100,
+        "desktop_padding_bottom": 100,
+        "title_font_size_desktop": 100,
+        "carousel_height_desktop": 440,
+        "card_width_desktop": 280,
+        "card_height_desktop": 380,
+        "name_font_size_desktop": 40,
+        "role_font_size_desktop": 24,
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 60,
+        "title_font_size_mobile": 46,
+        "carousel_height_mobile": 320,
+        "card_width_mobile": 200,
+        "card_height_mobile": 280,
+        "name_font_size_mobile": 32,
+        "role_font_size_mobile": 18
       }
     }
   },
@@ -296,6 +294,6 @@
     "main",
     "pwc_video_text_CkAfqn",
     "rw_testimonial_slider_2_eCmmb7",
-    "rw_testimonial_slider_2_kcXNRf"
+    "rw_team_slider_5_NxmVd7"
   ]
 }
