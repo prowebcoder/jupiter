@@ -605,6 +605,61 @@
         "button_radius": 4,
         "button_text_size": 14
       }
+    },
+    "multiple_svg_with_text_rd_JzUWhq": {
+      "type": "multiple-svg-with-text-RD",
+      "blocks": {
+        "icon_1_kTgQCA": {
+          "type": "icon_1",
+          "settings": {
+            "svg": "",
+            "bg_color": "#b4eac9"
+          }
+        },
+        "icon_2_7Q6bRw": {
+          "type": "icon_2",
+          "settings": {
+            "svg": "",
+            "bg_color": "#d3c7ff"
+          }
+        },
+        "icon_3_C9jUn6": {
+          "type": "icon_3",
+          "settings": {
+            "svg": "",
+            "bg_color": "#ffc2dd"
+          }
+        },
+        "icon_4_6xjTL3": {
+          "type": "icon_4",
+          "settings": {
+            "svg": "",
+            "bg_color": "#ffd6a5"
+          }
+        }
+      },
+      "block_order": [
+        "icon_1_kTgQCA",
+        "icon_2_7Q6bRw",
+        "icon_3_C9jUn6",
+        "icon_4_6xjTL3"
+      ],
+      "name": "Multiple svg with text",
+      "settings": {
+        "container_max_width": 1000,
+        "heading": "Join our team",
+        "heading_font_size": 36,
+        "subtext": "We pride ourselves in hiring diverse, ambitious, and smart people.",
+        "subtext_font_size": 18,
+        "button_label": "See open positions",
+        "button_link": "",
+        "button_bg_color": "#4b3f72",
+        "button_text_color": "#ffffff",
+        "button_border_radius": 8,
+        "button_hover_bg_color": "#3a3158",
+        "heading_font_size_mobile": 28,
+        "subtext_font_size_mobile": 16
+      }
     }
   },
   "order": [
@@ -619,6 +674,7 @@
     "rd_image_video_overlay_YxUYaP",
     "rd_hotspot_product_viewer_GL3hdh",
     "rd_image_product_slider_BwyB6c",
-    "rd_hotspot_product_viewer_QmWGE6"
+    "rd_hotspot_product_viewer_QmWGE6",
+    "multiple_svg_with_text_rd_JzUWhq"
   ]
 }
