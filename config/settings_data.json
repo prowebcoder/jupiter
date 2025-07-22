@@ -135,6 +135,16 @@
       }
     },
     "content_for_index": [],
+    "blocks": {
+      "12990774739200742146": {
+        "type": "shopify://apps/pwc-customer-pages-wishlist/blocks/wishlist-header-script/9774689b-bde6-4b11-b65a-1b70b13b398a",
+        "disabled": false,
+        "settings": {
+          "custom_icon": "",
+          "custom_script": ""
+        }
+      }
+    },
     "color_schemes": {
       "scheme-1": {
         "settings": {
