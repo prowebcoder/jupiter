@@ -726,7 +726,7 @@
         "mobile_padding_top": 25,
         "mobile_padding_sides": 20,
         "mobile_padding_bottom": 40,
-        "mobile_title_font": 36,
+        "mobile_title_font": 22,
         "mobile_sub_font": 16
       }
     }
