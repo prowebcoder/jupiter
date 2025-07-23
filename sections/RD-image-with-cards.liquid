@@ -1,6 +1,385 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_lower = parts | last -%}
+{%- assign last_part = last_lower | downcase -%}
+
+<style>
+  {{ sec_id }} .pc-github-hero-wrapper-{{ last_part }} {
+       max-width: {{ section.settings.container_max_width }}px;
+    margin: 0 auto;
+    width: 100%;
   }
+
+  {{ sec_id }} .pc-github-hero-inner-{{ last_part }} {
+ 
+    text-align: center;
+    padding: {{ section.settings.desktop_padding_top }}px 20px {{ section.settings.desktop_padding_bottom }}px;
+  }
+
+  {{ sec_id }} .pc-hero-heading-{{ last_part }} {
+    font-size: {{ section.settings.heading_font_size }}px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+
+{{ sec_id }} .pc-hero-subtext-{{ last_part }} {
+  font-size: {{ section.settings.subtext_font_size }}px;
+  color: #dddddd;
+  margin-bottom: 30px;
+  white-space: pre-line;
+ 
+  text-align: center;
+ 
+}
+
+
+  {{ sec_id }} .pc-hero-buttons-{{ last_part }} {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+
+  {{ sec_id }} .pc-btn {
+    padding: 12px 24px;
+    font-weight: 600;
+    border-radius: 8px;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  {{ sec_id }} .pc-btn-primary-{{ last_part }} {
+    background: #ffffff;
+    color: #000;
+  }
+
+  {{ sec_id }} .pc-btn-secondary-{{ last_part }} {
+    border: 1px solid #ffffff;
+    color: #ffffff;
+  }
+
+  {{ sec_id }} .pc-hero-cards-{{ last_part }} {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  {{ sec_id }} .pc-card {
+    border-radius: 16px;
+    padding: 24px;
+    flex: 1 1 300px;
+    max-width: 400px;
+    text-align: left;
+    color: #ffffff;
+    box-shadow: 0 0 30px rgba(0,0,0,0.2);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  {{ sec_id }} .pc-card-icon-{{ last_part }} {
+    margin-bottom: 16px;
+  }
+
+  {{ sec_id }} .pc-card-heading-{{ last_part }} {
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 749px) {
+    {{ sec_id }} .pc-github-hero-inner-{{ last_part }} {
+      padding: {{ section.settings.mobile_padding_top }}px 16px {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    {{ sec_id }} .pc-hero-heading-{{ last_part }} {
+      font-size: {{ section.settings.heading_font_size_mobile }}px;
+    }
+
+    {{ sec_id }} .pc-hero-subtext-{{ last_part }} {
+      font-size: {{ section.settings.subtext_font_size_mobile }}px;
+      white-space: pre-line;
+    }
+
+    {{ sec_id }} .pc-hero-cards-{{ last_part }} {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+
+<section class="pc-github-hero-wrapper-{{ last_part }}" style="background: {{ section.settings.background_gradient }};">
+  <div class="pc-github-hero-inner-{{ last_part }}">
+    <h1 class="pc-hero-heading-{{ last_part }}">{{ section.settings.heading }}</h1>
+    <p class="pc-hero-subtext-{{ last_part }}">{{ section.settings.subtext }}</p>
+
+    <div class="pc-hero-buttons-{{ last_part }}">
+      <a href="{{ section.settings.primary_button_link }}" class="pc-btn pc-btn-primary-{{ last_part }}">{{ section.settings.primary_button_text }}</a>
+      <a href="{{ section.settings.secondary_button_link }}" class="pc-btn pc-btn-secondary-{{ last_part }}">{{ section.settings.secondary_button_text }}</a>
+    </div>
+
+    <div class="pc-hero-cards-{{ last_part }}">
+      {%- assign card_1_bg = section.settings.card_1_use_image | default: false | downcase -%}
+      <div class="pc-card pc-card-left-{{ last_part }}"
+        style="
+          {% if card_1_bg == 'true' and section.settings.card_1_bg_image != blank %}
+            background-image: url({{ section.settings.card_1_bg_image | image_url: width: 800 }});
+          {% else %}
+            background: {{ section.settings.card_1_bg_gradient }};
+          {% endif %}
+        ">
+        <div class="pc-card-icon-{{ last_part }}">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#00D26A" viewBox="0 0 24 24" width="40" height="40"><path d="M20.3 5.7a1 1 0 0 0-1.4-1.4L9 14.17l-3.9-3.9a1 1 0 1 0-1.4 1.42l4.6 4.6a1 1 0 0 0 1.4 0L20.3 5.7z"/></svg>
+        </div>
+        <h3 class="pc-card-heading-{{ last_part }}" style="color: {{ section.settings.card_1_heading_color }}">{{ section.settings.card_1_heading }}</h3>
+        <a href="{{ section.settings.card_1_link }}" class="pc-card-link-{{ last_part }}" style="color: {{ section.settings.card_1_subtext_color }}">{{ section.settings.card_1_link_label }}</a>
+      </div>
+
+      {%- assign card_2_bg = section.settings.card_2_use_image | default: false | downcase -%}
+      <div class="pc-card pc-card-right-{{ last_part }}"
+        style="
+          {% if card_2_bg == 'true' and section.settings.card_2_bg_image != blank %}
+            background-image: url({{ section.settings.card_2_bg_image | image_url: width: 800 }});
+          {% else %}
+            background: {{ section.settings.card_2_bg_gradient }};
+          {% endif %}
+        ">
+        <div class="pc-card-icon-{{ last_part }}">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#00D26A" viewBox="0 0 24 24" width="40" height="40"><path d="M8.12 9.29a1 1 0 0 1 0 1.42L5.83 13l2.3 2.29a1 1 0 1 1-1.42 1.42L3.7 13.71a1 1 0 0 1 0-1.42l3-3a1 1 0 0 1 1.42 0zm7.76 0a1 1 0 0 0 0 1.42L18.17 13l-2.3 2.29a1 1 0 1 0 1.42 1.42l3-3a1 1 0 0 0 0-1.42l-3-3a1 1 0 0 0-1.42 0z"/></svg>
+        </div>
+        <h3 class="pc-card-heading-{{ last_part }}" style="color: {{ section.settings.card_2_heading_color }}">{{ section.settings.card_2_heading }}</h3>
+        <a href="{{ section.settings.card_2_link }}" class="pc-card-link-{{ last_part }}" style="color: {{ section.settings.card_2_subtext_color }}">{{ section.settings.card_2_link_label }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Rd IMAGE WITH CARDS",
+  "settings": [
+    {
+      "type": "range",
+      "id": "container_max_width",
+      "label": "Content max‑width (px)",
+      "min": 320,
+      "max": 1600,
+      "step": 20,
+      "default": 1200
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Section Background Gradient",
+      "default": "linear-gradient(135deg, #0b0f1a, #1a1d2f)"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Security that moves at the speed of development"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Stop leaks before they start.\nFix vulnerabilities in your code."
+    },
+    {
+      "type": "text",
+      "id": "primary_button_text",
+      "label": "Primary Button Text",
+      "default": "Request a demo"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary Button Text",
+      "default": "See plans & pricing"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary Button Link"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "card_1_use_image",
+      "label": "Card 1: Use Image Background?",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_bg_image",
+      "label": "Card 1 Background Image"
+    },
+    {
+      "type": "color_background",
+      "id": "card_1_bg_gradient",
+      "label": "Card 1 Gradient Background",
+      "default": "linear-gradient(135deg, #1c1f2a, #1e2240)"
+    },
+    {
+      "type": "text",
+      "id": "card_1_heading",
+      "label": "Card 1 Heading",
+      "default": "Stop leaks before they start"
+    },
+    {
+      "type": "color",
+      "id": "card_1_heading_color",
+      "label": "Card 1 Heading Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_1_subtext_color",
+      "label": "Card 1 Link Color",
+      "default": "#dddddd"
+    },
+    {
+      "type": "url",
+      "id": "card_1_link",
+      "label": "Card 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "card_1_link_label",
+      "label": "Card 1 Link Label",
+      "default": "Explore Secret Protection"
+    },
+
+    {
+      "type": "checkbox",
+      "id": "card_2_use_image",
+      "label": "Card 2: Use Image Background?",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_bg_image",
+      "label": "Card 2 Background Image"
+    },
+    {
+      "type": "color_background",
+      "id": "card_2_bg_gradient",
+      "label": "Card 2 Gradient Background",
+      "default": "linear-gradient(135deg, #1c1f2a, #1e2240)"
+    },
+    {
+      "type": "text",
+      "id": "card_2_heading",
+      "label": "Card 2 Heading",
+      "default": "Fix vulnerabilities in your code"
+    },
+    {
+      "type": "color",
+      "id": "card_2_heading_color",
+      "label": "Card 2 Heading Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_2_subtext_color",
+      "label": "Card 2 Link Color",
+      "default": "#dddddd"
+    },
+    {
+      "type": "url",
+      "id": "card_2_link",
+      "label": "Card 2 Link"
+    },
+    {
+      "type": "text",
+      "id": "card_2_link_label",
+      "label": "Card 2 Link Label",
+      "default": "Explore Code Security"
+    },
+
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading Font Size (Desktop)",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "subtext_font_size",
+      "label": "Subtext Font Size (Desktop)",
+      "min": 14,
+      "max": 40,
+      "step": 2,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size_mobile",
+      "label": "Heading Font Size (Mobile)",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "subtext_font_size_mobile",
+      "label": "Subtext Font Size (Mobile)",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Top Padding (Desktop)",
+      "min": 0,
+      "max": 150,
+      "step": 10,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Bottom Padding (Desktop)",
+      "min": 0,
+      "max": 150,
+      "step": 10,
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Top Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Bottom Padding (Mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rd IMAGE WITH CARDS"
+    }
+  ]
+}
 {% endschema %}
