@@ -723,7 +723,7 @@
         "btn_secondary_bg": "#FFFFFF",
         "btn_secondary_color": "#3e2f55",
         "enable_shadow": false,
-        "mobile_padding_top": 40,
+        "mobile_padding_top": 25,
         "mobile_padding_sides": 20,
         "mobile_padding_bottom": 40,
         "mobile_title_font": 36,
