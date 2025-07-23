@@ -696,6 +696,39 @@
         "mobile_padding_top": 40,
         "mobile_padding_bottom": 40
       }
+    },
+    "rd_svg_images_with_text_ahqw7X": {
+      "type": "RD-svg-images-with-text",
+      "name": "RD Svg images with text",
+      "settings": {
+        "left_image": "shopify://shop_images/9307421.png",
+        "right_image": "shopify://shop_images/rm141-nunny-10b.jpg",
+        "title": "Build By Security practitioners for Security practititoners",
+        "subheading": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+        "primary_button_link": "shopify://collections",
+        "primary_button_text": "Book a demo",
+        "secondary_button_link": "shopify://collections/bags",
+        "secondary_button_text": "Sign up free",
+        "image_width": 250,
+        "desktop_bg": "#FFFFFF",
+        "desktop_padding_top": 60,
+        "desktop_padding_sides": 40,
+        "desktop_padding_bottom": 60,
+        "desktop_title_font": 48,
+        "desktop_sub_font": 18,
+        "title_color": "#000000",
+        "sub_color": "#666666",
+        "btn_primary_bg": "#0000FF",
+        "btn_primary_color": "#FFFFFF",
+        "btn_secondary_bg": "#FFFFFF",
+        "btn_secondary_color": "#0000FF",
+        "enable_shadow": false,
+        "mobile_padding_top": 40,
+        "mobile_padding_sides": 20,
+        "mobile_padding_bottom": 40,
+        "mobile_title_font": 36,
+        "mobile_sub_font": 16
+      }
     }
   },
   "order": [
@@ -712,6 +745,7 @@
     "rd_image_product_slider_BwyB6c",
     "rd_hotspot_product_viewer_QmWGE6",
     "multiple_svg_with_text_rd_JzUWhq",
-    "rd_image_with_cards_TpNtfa"
+    "rd_image_with_cards_TpNtfa",
+    "rd_svg_images_with_text_ahqw7X"
   ]
 }
