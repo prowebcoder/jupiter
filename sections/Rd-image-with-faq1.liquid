@@ -131,17 +131,16 @@
     gap: {{ section.settings.gap_between_image_faq | default: 20 }}px;
   }
   {{ sec_id }} .pc-faq-cta-{{ last_part }} {
-    background-color: {{ section.settings.cta_background_color }};
-    color: {{ section.settings.cta_text_color }};
-    padding: 14px 28px;
-    font-size: {{ section.settings.cta_font_size }}px;
-    border-radius: {{ section.settings.cta_border_radius }}px;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    cursor: pointer;
-  }
+  display: inline-block;
+  padding: 12px 24px; /* ya theme settings ke mutabiq */
+  font-size: {{ section.settings.cta_font_size }}px;
+  background-color: {{ section.settings.cta_background_color }};
+  color: {{ section.settings.cta_text_color }};
+  border-radius: {{ section.settings.cta_border_radius }}px;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
   {{ sec_id }} .pc-faq-cta-{{ last_part }}:hover {
     background-color: {{ section.settings.cta_hover_background_color }};
     transform: translateY(-2px);
