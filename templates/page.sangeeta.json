@@ -800,7 +800,7 @@
         "container_max_width": 1200,
         "desktop_background_color": "#fff8c9",
         "cta_text": "Contact Us",
-        "cta_link": ""
+        "cta_link": "shopify://products/product-name-2"
       }
     }
   },
