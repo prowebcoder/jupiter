@@ -288,7 +288,46 @@ document.addEventListener('DOMContentLoaded', ()=>{
     {"type":"range","id":"container_max_width","label":"Max Width","min":320,"max":1600,"step":20,"unit":"px","default":700},
     {"type":"color","id":"desktop_background_color","label":"FAQ Background Color","default":"#ffffff"},
     {"type":"text","id":"cta_text","label":"Button Text","default":"Contact Us"},
-    {"type":"url","id":"cta_link","label":"Button Link"}
+    {"type":"url","id":"cta_link","label":"Button Link"},
+    {
+  "type": "color",
+  "id": "cta_background_color",
+  "label": "CTA Button Background",
+  "default": "#007bff"
+},
+{
+  "type": "color",
+  "id": "cta_text_color",
+  "label": "CTA Button Text Color",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "cta_hover_background_color",
+  "label": "CTA Hover Background",
+  "default": "#0056b3"
+},
+{
+  "type": "range",
+  "id": "cta_font_size",
+  "label": "CTA Font Size (px)",
+  "min": 14,
+  "max": 28,
+  "step": 1,
+  "unit": "px",
+  "default": 16
+},
+{
+  "type": "range",
+  "id": "cta_border_radius",
+  "label": "CTA Border Radius (px)",
+  "min": 0,
+  "max": 50,
+  "step": 1,
+  "unit": "px",
+  "default": 4
+}
+
   ],
   "blocks":[
     {
