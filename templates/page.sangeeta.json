@@ -793,12 +793,14 @@
         "answer_font_size": 16,
         "faq_image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
         "image_alt": "FAQ image",
+        "faq_inner_background": "#f7da19",
+        "gap_between_image_faq": 10,
         "section_margin_top": 20,
         "section_margin_bottom": 20,
         "heading": "Frequently Asked Questions",
         "subtext": "Got questions? We have answers.",
         "container_max_width": 1200,
-        "desktop_background_color": "#fff8c9",
+        "desktop_background_color": "#f4f4f4",
         "cta_text": "Contact Us",
         "cta_link": "shopify://products/product-name-2"
       }
