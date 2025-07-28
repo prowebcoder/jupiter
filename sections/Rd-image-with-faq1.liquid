@@ -122,6 +122,14 @@
 {{ sec_id }} .pc-faq-subtext-{{ last_part }} { font-size: {{ section.settings.subtext_font_size }}px; }
 {{ sec_id }} .pc-faq-header-{{ last_part }} { font-size: {{ section.settings.question_font_size }}px; }
 {{ sec_id }} .pc-faq-content-{{ last_part }} { font-size: {{ section.settings.answer_font_size }}px; }
+  {{ sec_id }} .pc-faq-inner-{{ last_part }} {
+    background-color: {{ section.settings.faq_inner_background }};
+    padding: {{ section.settings.desktop_padding_sides }}px;
+  }
+
+  {{ sec_id }} .pc-faq-row-{{ last_part }} {
+    gap: {{ section.settings.gap_between_image_faq | default: 20 }}px;
+  }
 /* ===== Mobile Responsive ===== */
 @media (max-width:749px) {
   {{ sec_id }} .pc-faq-row-{{ last_part }} {
@@ -237,6 +245,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
     },
     {"type":"image_picker","id":"faq_image","label":"FAQ Image"},
     {"type":"text","id":"image_alt","label":"Image Alt Text","default":"FAQ image"},
+      {
+      "type": "color",
+      "id": "faq_inner_background",
+      "label": "FAQ Inner Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "gap_between_image_faq",
+      "label": "Gap between image & FAQ (px)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
     {"type":"range","id":"section_margin_top","label":"Section Top Margin","min":0,"max":200,"step":5,"unit":"px","default":20},
     {"type":"range","id":"section_margin_bottom","label":"Section Bottom Margin","min":0,"max":200,"step":5,"unit":"px","default":20},
     {"type":"text","id":"heading","label":"Heading","default":"Frequently Asked Questions"},
