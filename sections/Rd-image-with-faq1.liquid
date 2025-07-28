@@ -1,6 +1,259 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+{%- assign parts = sec_id | split: '_' -%}
+{%- assign last_part = parts | last | downcase -%}
+<style>
+/* ===== Section Wrapper Margins ===== */
+{{ sec_id }} {
+  margin-top: {{ section.settings.section_margin_top }}px;
+  margin-bottom: {{ section.settings.section_margin_bottom }}px;
+}
+
+/* ===== Flex Container Setup ===== */
+{{ sec_id }} .pc-faq-row-{{ last_part }} {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  max-width: {{ section.settings.container_max_width }}px;
+  margin: 0 auto; /* centers the row */
+}
+
+/* ===== Equal-Width Columns ===== */
+{{ sec_id }} .pc-faq-image-{{ last_part }},
+{{ sec_id }} .pc-faq-inner-{{ last_part }} {
+  flex: 1; /* both columns share equal width */
+  display: flex;
+  flex-direction: column;
+  padding-left: {{ section.settings.desktop_padding_sides }}px;
+  padding-right: {{ section.settings.desktop_padding_sides }}px;
+  box-sizing: border-box;
+}
+
+/* ===== Image Column & Image ===== */
+{{ sec_id }} .pc-faq-image-{{ last_part }} {
+  overflow: hidden;
+}
+{{ sec_id }} .pc-faq-image-{{ last_part }} img {
+  width: 100%;
+  height: 500px;          /* adjusted height for compact appearance */
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== FAQ Inner Column ===== */
+{{ sec_id }} .pc-faq-inner-{{ last_part }} {
+  background-color: {{ section.settings.desktop_background_color }};
+  /* Remove redundant horizontal padding if needed */
+  /* padding-left: 0; padding-right: 0; */
+}
+
+/* ===== Heading + Subtext (customize as needed) ===== */
+{{ sec_id }} .pc-faq-heading-{{ last_part }} {
+  text-align: center;
+  margin-bottom: {{ section.settings.heading_margin_bottom }}px;
+  font-size: {{ section.settings.heading_font_size }}px;
+  color: {{ section.settings.heading_color }};
+}
+{{ sec_id }} .pc-faq-subtext-{{ last_part }} {
+  font-size: {{ section.settings.subtext_font_size }}px;
+  color: {{ section.settings.subtext_color }};
+  margin-bottom: {{ section.settings.subtext_margin_bottom }}px;
+  text-align: center;
+}
+
+/* ===== FAQ Items ===== */
+{{ sec_id }} .pc-faq-item-{{ last_part }} {
+  border-bottom: 1px solid {{ section.settings.divider_color }};
+  margin-bottom: {{ section.settings.item_margin_bottom }}px;
+  padding-bottom: {{ section.settings.item_padding_bottom }}px;
+  {% if section.settings.enable_shadow %}
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  {% endif %}
+}
+
+/* ===== FAQ Question Buttons ===== */
+{{ sec_id }} .pc-faq-header-{{ last_part }} {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: {{ section.settings.header_padding_vertical }}px 0;
+  font-size: {{ section.settings.question_font_size }}px;
+  color: {{ section.settings.question_color }};
+  cursor: pointer;
+}
+{{ sec_id }} .pc-faq-icon-{{ last_part }} {
+  transition: transform 0.3s;
+}
+{{ sec_id }} .pc-faq-item-{{ last_part }}.is-open .pc-faq-icon-{{ last_part }} {
+  transform: rotate(180deg);
+}
+
+/* ===== FAQ Answers ===== */
+{{ sec_id }} .pc-faq-content-{{ last_part }} {
+  display: none;
+  font-size: {{ section.settings.answer_font_size }}px;
+  color: {{ section.settings.answer_color }};
+  padding-bottom: {{ section.settings.answer_padding_bottom }}px;
+}
+{{ sec_id }} .pc-faq-item-{{ last_part }}.is-open .pc-faq-content-{{ last_part }} {
+  display: block;
+}
+
+/* ===== CTA Button ===== */
+{{ sec_id }} .pc-faq-cta-{{ last_part }} {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: {{ section.settings.heading_color }};
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+{{ sec_id }} .pc-faq-header-{{ last_part }} {
+  margin-bottom: 8px;
+}
+
+{{ sec_id }} .pc-faq-item-{{ last_part }} {
+  margin-bottom: 16px;
+}
+  {{ sec_id }} .pc-faq-heading-{{ last_part }} { font-size: {{ section.settings.heading_font_size }}px; }
+{{ sec_id }} .pc-faq-subtext-{{ last_part }} { font-size: {{ section.settings.subtext_font_size }}px; }
+{{ sec_id }} .pc-faq-header-{{ last_part }} { font-size: {{ section.settings.question_font_size }}px; }
+{{ sec_id }} .pc-faq-content-{{ last_part }} { font-size: {{ section.settings.answer_font_size }}px; }
+/* ===== Mobile Responsive ===== */
+@media (max-width:749px) {
+  {{ sec_id }} .pc-faq-row-{{ last_part }} {
+    flex-direction: column;
   }
+  {{ sec_id }} .pc-faq-inner-{{ last_part }} {
+    order: 1;
+  }
+  {{ sec_id }} .pc-faq-image-{{ last_part }} {
+    order: 2;
+  }
+  {{ sec_id }} .pc-faq-image-{{ last_part }} img {
+    height: auto;
+  }
+}
+
+</style>
+<section id="faq-section-{{ section.id }}" class="pc-faq-section-{{ last_part }}">
+  {% assign pos = section.settings.image_position %}
+  <div class="pc-faq-row-{{ last_part }} is-image-{{ pos }}">
+
+    {% if pos == 'left' %}
+      <div class="pc-faq-image-{{ last_part }}">
+        {% if section.settings.faq_image %}
+          <img src="{{ section.settings.faq_image | img_url: '1200x' }}" alt="{{ section.settings.image_alt }}">
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="pc-faq-inner-{{ last_part }}">
+      <h2 class="pc-faq-heading-{{ last_part }}">{{ section.settings.heading }}</h2>
+      <p class="pc-faq-subtext-{{ last_part }}">{{ section.settings.subtext }}</p>
+
+      <pc-faq-accordion-{{ last_part }}>
+        {% for block in section.blocks %}
+          <div class="pc-faq-item-{{ last_part }}">
+            <button type="button" class="pc-faq-header-{{ last_part }}">
+              {{ block.settings.question }}
+              <svg class="pc-faq-icon-{{ last_part }}" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 15.66l-6.66-6.66 1.32-1.32L12 12l5.34-5.34 1.32 1.32z"/>
+              </svg>
+            </button>
+            <div class="pc-faq-content-{{ last_part }}">{{ block.settings.answer }}</div>
+          </div>
+        {% endfor %}
+      </pc-faq-accordion-{{ last_part }}>
+
+      {% if section.settings.cta_text != blank %}
+        <a href="{{ section.settings.cta_link }}" class="pc-faq-cta-{{ last_part }}">{{ section.settings.cta_text }}</a>
+      {% endif %}
+    </div>
+
+    {% if pos == 'right' %}
+      <div class="pc-faq-image-{{ last_part }}">
+        {% if section.settings.faq_image %}
+          <img src="{{ section.settings.faq_image | img_url: '1200x' }}" alt="{{ section.settings.image_alt }}">
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.querySelectorAll('.pc-faq-header-{{ last_part }}').forEach(btn =>
+    btn.addEventListener('click', ()=>{
+      btn.closest('.pc-faq-item-{{ last_part }}').classList.toggle('is-open');
+    })
+  );
+});
+</script>
+
+
+
+
+{% schema %}
+{
+  "name": "pwc image with faq1",
+  "settings":[
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "label": "Heading Font Size",
+      "min": 16, "max": 40, "step": 1, "unit": "px", "default": 24
+    },
+    {
+      "type": "range",
+      "id": "subtext_font_size",
+      "label": "Subtext Font Size",
+      "min": 12, "max": 24, "step": 1, "unit": "px", "default": 16
+    },
+    {
+      "type": "range",
+      "id": "question_font_size",
+      "label": "Question Font Size",
+      "min": 14, "max": 28, "step": 1, "unit": "px", "default": 18
+    },
+    {
+      "type": "range",
+      "id": "answer_font_size",
+      "label": "Answer Font Size",
+      "min": 12, "max": 24, "step": 1, "unit": "px", "default": 16
+    },
+    {"type":"image_picker","id":"faq_image","label":"FAQ Image"},
+    {"type":"text","id":"image_alt","label":"Image Alt Text","default":"FAQ image"},
+    {"type":"range","id":"section_margin_top","label":"Section Top Margin","min":0,"max":200,"step":5,"unit":"px","default":20},
+    {"type":"range","id":"section_margin_bottom","label":"Section Bottom Margin","min":0,"max":200,"step":5,"unit":"px","default":20},
+    {"type":"text","id":"heading","label":"Heading","default":"Frequently Asked Questions"},
+    {"type":"textarea","id":"subtext","label":"Subtext","default":"Got questions? We have answers."},
+    {"type":"range","id":"container_max_width","label":"Max Width","min":320,"max":1600,"step":20,"unit":"px","default":700},
+    {"type":"color","id":"desktop_background_color","label":"FAQ Background Color","default":"#ffffff"},
+    {"type":"text","id":"cta_text","label":"Button Text","default":"Contact Us"},
+    {"type":"url","id":"cta_link","label":"Button Link"}
+  ],
+  "blocks":[
+    {
+      "type":"faq","name":"FAQ Item","settings":[
+        {"type":"text","id":"question","label":"Question","default":"Your question?"},
+        {"type":"textarea","id":"answer","label":"Answer","default":"Your answer here."}
+      ]
+    }
+  ],
+  "presets":[{"name":"pwc image with faq1"}]
+}
 {% endschema %}
