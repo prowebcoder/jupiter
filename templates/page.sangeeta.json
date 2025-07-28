@@ -793,7 +793,7 @@
         "answer_font_size": 16,
         "faq_image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
         "image_alt": "FAQ image",
-        "faq_inner_background": "#f7da19",
+        "faq_inner_background": "#ede0e0",
         "gap_between_image_faq": 10,
         "section_margin_top": 20,
         "section_margin_bottom": 20,
