@@ -729,6 +729,79 @@
         "mobile_title_font": 22,
         "mobile_sub_font": 16
       }
+    },
+    "rd_image_with_faq1_eFVNHt": {
+      "type": "Rd-image-with-faq1",
+      "blocks": {
+        "faq_UCwJw4": {
+          "type": "faq",
+          "settings": {
+            "question": "Your question?",
+            "answer": "Your answer here."
+          }
+        },
+        "faq_Eh6EhK": {
+          "type": "faq",
+          "settings": {
+            "question": "Your question?",
+            "answer": "Your answer here."
+          }
+        },
+        "faq_zVH8hH": {
+          "type": "faq",
+          "settings": {
+            "question": "Your question?",
+            "answer": "Your answer here."
+          }
+        },
+        "faq_WJVinc": {
+          "type": "faq",
+          "settings": {
+            "question": "Your question?",
+            "answer": "Your answer here."
+          }
+        },
+        "faq_By4ffM": {
+          "type": "faq",
+          "settings": {
+            "question": "Your question?",
+            "answer": "Your answer here."
+          }
+        },
+        "faq_EyAQG8": {
+          "type": "faq",
+          "settings": {
+            "question": "Your question?",
+            "answer": "Your answer here."
+          }
+        }
+      },
+      "block_order": [
+        "faq_UCwJw4",
+        "faq_Eh6EhK",
+        "faq_zVH8hH",
+        "faq_WJVinc",
+        "faq_By4ffM",
+        "faq_EyAQG8"
+      ],
+      "name": "pwc image with faq1",
+      "settings": {
+        "image_position": "left",
+        "heading_font_size": 24,
+        "subtext_font_size": 16,
+        "question_font_size": 18,
+        "answer_font_size": 16,
+        "faq_image": "shopify://shop_images/model-with-leather-jacket-over-shoulders.jpg",
+        "image_alt": "FAQ image",
+        "section_margin_top": 20,
+        "section_margin_bottom": 20,
+        "heading": "Frequently Asked Questions",
+        "subtext": "Got questions? We have answers.",
+        "container_max_width": 1200,
+        "desktop_background_color": "#fff8c9",
+        "cta_text": "Contact Us",
+        "cta_link": ""
+      }
     }
   },
   "order": [
@@ -746,6 +819,7 @@
     "rd_hotspot_product_viewer_QmWGE6",
     "multiple_svg_with_text_rd_JzUWhq",
     "rd_image_with_cards_TpNtfa",
-    "rd_svg_images_with_text_ahqw7X"
+    "rd_svg_images_with_text_ahqw7X",
+    "rd_image_with_faq1_eFVNHt"
   ]
 }
