@@ -857,7 +857,7 @@
         "container_max_width": 1200,
         "padding_vertical": 40,
         "padding_horizontal": 20,
-        "gap_columns": 30,
+        "gap_columns": 35,
         "column_basis": 48,
         "background": "#b2e4e0",
         "card_bg": "#1caaa5",
