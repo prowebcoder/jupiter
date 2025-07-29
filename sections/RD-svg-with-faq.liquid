@@ -1,6 +1,171 @@
-{% schema %}
-  {
-    "name": "Section name",
-    "settings": []
+{% assign sec_id = '#shopify-section-' | append: section.id %}
+{% assign parts = sec_id | split: '_' %}
+{% assign last_part = parts | last | downcase %}
+
+<style>
+  /* Section wrapper with container max width */
+  {{ sec_id }} {
+    margin: 0 auto;
+    max-width: {{ section.settings.container_max_width }}px;
+    background: {{ section.settings.background }};
+    padding: {{ section.settings.padding_vertical }}px {{ section.settings.padding_horizontal }}px;
   }
+  /* Wrapper for text + image columns */
+  {{ sec_id }} .pc-faq-wrapper-{{ last_part }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: {{ section.settings.gap_columns }}px;
+    align-items: center;
+  }
+  /* Left FAQ list and right image */
+  {{ sec_id }} .pc-faq-left-{{ last_part }},
+  {{ sec_id }} .pc-faq-right-{{ last_part }} {
+    flex: 1 1 {{ section.settings.column_basis }}%;
+  }
+  /* Individual FAQ block */
+  {{ sec_id }} .pc-faq-block-{{ last_part }} {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: {{ section.settings.card_bg }};
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+  }
+  {{ sec_id }} .pc-faq-block-icon-{{ last_part }} svg {
+    width: 24px;
+    height: 24px;
+    color: {{ section.settings.icon_color }};
+  }
+  {{ sec_id }} .pc-faq-block-text-{{ last_part }} h3 {
+    font-size: {{ section.settings.title_font_size }}px;
+    color: {{ section.settings.heading_color }};
+    margin: 0;
+  }
+  {{ sec_id }} .pc-faq-block-text-{{ last_part }} p {
+    font-size: {{ section.settings.desc_font_size }}px;
+    color: {{ section.settings.text_color }};
+    margin: 4px 0 0;
+  }
+  /* Right-side image styling */
+  {{ sec_id }} .pc-faq-right-{{ last_part }} img {
+    width: 100%;
+    border-radius: 16px;
+    margin-left: auto;
+    max-height: {{ section.settings.image_max_height }}px;
+    object-fit: cover;
+  }
+
+{{ sec_id }} .pc-faq-right-{{ last_part }} img {
+    width: 100%;
+    max-width: {{ section.settings.image_max_width }}px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 16px;
+  }
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    {{ sec_id }} .pc-faq-wrapper-{{ last_part }} {
+      flex-direction: column;
+    }
+    {{ sec_id }} .pc-faq-left-{{ last_part }},
+    {{ sec_id }} .pc-faq-right-{{ last_part }} {
+      flex: 1 1 100%;
+    }
+  }
+</style>
+
+<section id="faq-section-{{ section.id }}">
+  <div class="pc-faq-wrapper-{{ last_part }}">
+    <div class="pc-faq-left-{{ last_part }}">
+      {% for block in section.blocks %}
+        <div class="pc-faq-block-{{ last_part }}">
+          <div class="pc-faq-block-icon-{{ last_part }}">
+            {{ block.settings.icon_svg }}
+          </div>
+          <div class="pc-faq-block-text-{{ last_part }}">
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.description }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="pc-faq-right-{{ last_part }}">
+      {% if section.settings.image %}
+        {{ section.settings.image | image_url: width: section.settings.image_width, height: section.settings.image_height | image_tag: loading:'lazy', class:'', alt: section.settings.image_alt }}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "RD svg icon with faq",
+  "settings": [
+    {
+      "type":"range","id":"container_max_width","label":"Section Max Width","min":600,"max":2000,"step":50,"unit":"px","default":1200
+    },
+    {
+      "type":"range","id":"padding_vertical","label":"Vertical Padding","min":0,"max":200,"step":10,"unit":"px","default":40
+    },
+    {
+      "type":"range","id":"padding_horizontal","label":"Horizontal Padding","min":0,"max":200,"step":10,"unit":"px","default":20
+    },
+    {
+      "type":"range","id":"gap_columns","label":"Gap Between Columns","min":10,"max":100,"step":5,"unit":"px","default":30
+    },
+    {
+      "type":"range","id":"column_basis","label":"Column Basis (%)","min":30,"max":70,"step":1,"unit":"%","default":48
+    },
+    {
+      "type":"color","id":"background","label":"Section Background","default":"#b2e4e0"
+    },
+    {
+      "type":"color","id":"card_bg","label":"FAQ Card Background","default":"#1caaa5"
+    },
+    {
+      "type":"color","id":"icon_color","label":"Icon Color","default":"#ffffff"
+    },
+    {
+      "type":"color","id":"heading_color","label":"Question Title Color","default":"#ffffff"
+    },
+    {
+      "type":"color","id":"text_color","label":"Answer Text Color","default":"#d6f3f2"
+    },
+    {
+      "type":"range","id":"title_font_size","label":"Question Font Size (px)","min":14,"max":24,"step":1,"unit":"px","default":16
+    },
+    {
+      "type":"range","id":"desc_font_size","label":"Answer Font Size (px)","min":12,"max":20,"step":1,"unit":"px","default":14
+    },
+    {
+      "type":"image_picker","id":"image","label":"Right Side Image"
+    },
+   
+    {
+  "type":"range",
+  "id":"image_max_width",
+  "label":"Image Max Width (px)",
+  "min":200,
+  "max":1200,
+  "step":50,
+  "unit":"px",
+  "default":600
+}
+  
+    
+  ],
+  "blocks":[
+    {
+      "type":"faq","name":"FAQ Item","settings":[
+        {"type":"textarea","id":"icon_svg","label":"Icon SVG","default":"<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 4v16m8-8H4'/></svg>"},
+        {"type":"text","id":"title","label":"Question Heading","default":"Apa itu blockchain?"},
+        {"type":"textarea","id":"description","label":"Answer Description","default":"Blockchain adalah struktur data yang aman dan tidak dapat diubah."}
+      ]
+    }
+  ],
+  "presets":[
+    { "name":"RD svg icon with faq", "blocks":[{"type":"faq"},{"type":"faq"},{"type":"faq"}] }
+  ]
+}
 {% endschema %}
