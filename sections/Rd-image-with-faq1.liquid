@@ -122,10 +122,7 @@
 {{ sec_id }} .pc-faq-subtext-{{ last_part }} { font-size: {{ section.settings.subtext_font_size }}px; }
 {{ sec_id }} .pc-faq-header-{{ last_part }} { font-size: {{ section.settings.question_font_size }}px; }
 {{ sec_id }} .pc-faq-content-{{ last_part }} { font-size: {{ section.settings.answer_font_size }}px; }
-  {{ sec_id }} .pc-faq-inner-{{ last_part }} {
-    background-color: {{ section.settings.faq_inner_background }};
-    padding: {{ section.settings.desktop_padding_sides }}px;
-  }
+
 
   {{ sec_id }} .pc-faq-row-{{ last_part }} {
     gap: {{ section.settings.gap_between_image_faq | default: 20 }}px;
