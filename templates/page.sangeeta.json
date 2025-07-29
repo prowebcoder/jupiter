@@ -809,6 +809,66 @@
         "cta_font_size": 16,
         "cta_border_radius": 50
       }
+    },
+    "rd_svg_with_faq_KNQpgm": {
+      "type": "RD-svg-with-faq",
+      "blocks": {
+        "faq_VcdzYb": {
+          "type": "faq",
+          "settings": {
+            "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewbox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 4v16m8-8H4\"></path></svg>",
+            "title": "Apa itu blockchain?",
+            "description": "Blockchain adalah struktur data yang aman dan tidak dapat diubah."
+          }
+        },
+        "faq_NeahLL": {
+          "type": "faq",
+          "settings": {
+            "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewbox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 4v16m8-8H4\"></path></svg>",
+            "title": "Apa itu blockchain?",
+            "description": "Blockchain adalah struktur data yang aman dan tidak dapat diubah."
+          }
+        },
+        "faq_jqLTCx": {
+          "type": "faq",
+          "settings": {
+            "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewbox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 4v16m8-8H4\"></path></svg>",
+            "title": "Apa itu blockchain?",
+            "description": "Blockchain adalah struktur data yang aman dan tidak dapat diubah."
+          }
+        },
+        "faq_f7GEey": {
+          "type": "faq",
+          "settings": {
+            "icon_svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewbox=\"0 0 24 24\" stroke=\"currentColor\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 4v16m8-8H4\"></path></svg>",
+            "title": "Apa itu blockchain?",
+            "description": "Blockchain adalah struktur data yang aman dan tidak dapat diubah."
+          }
+        }
+      },
+      "block_order": [
+        "faq_VcdzYb",
+        "faq_NeahLL",
+        "faq_jqLTCx",
+        "faq_f7GEey"
+      ],
+      "name": "RD svg icon with faq",
+      "settings": {
+        "container_max_width": 1200,
+        "padding_vertical": 40,
+        "padding_horizontal": 20,
+        "gap_columns": 30,
+        "column_basis": 48,
+        "background": "#b2e4e0",
+        "card_bg": "#1caaa5",
+        "icon_color": "#ffffff",
+        "heading_color": "#ffffff",
+        "text_color": "#d6f3f2",
+        "title_font_size": 16,
+        "desc_font_size": 14,
+        "image": "shopify://shop_images/About-Parallax_754a27da-f0c1-4e85-9b2b-a6373731a692.png",
+        "image_max_width": 400
+      }
     }
   },
   "order": [
@@ -827,6 +887,7 @@
     "multiple_svg_with_text_rd_JzUWhq",
     "rd_image_with_cards_TpNtfa",
     "rd_svg_images_with_text_ahqw7X",
-    "rd_image_with_faq1_eFVNHt"
+    "rd_image_with_faq1_eFVNHt",
+    "rd_svg_with_faq_KNQpgm"
   ]
 }
