@@ -11,7 +11,7 @@
       --pc-section-text-color: {{ section.settings.text_color }};
     }
 
-    {{ sec_id }} .pc-landing-section {
+    {{ sec_id }} .pc--section {
       padding: var(--pc-section-padding-top) 0 var(--pc-section-padding-bottom);
       background-color: var(--pc-section-bg-color);
       color: var(--pc-section-text-color);
@@ -1293,7 +1293,7 @@
    {% endfor %}
 {% endstyle %}
 
-<section class="pc-landing-section">
+<section class="pc--section">
   <div class="pc-container">
     {% for block in section.blocks %}
       {%- assign block_bg_color = block.settings.background_color | default: 'transparent' -%}
@@ -1982,9 +1982,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 {% schema %}
 {
-  "name": "PWC - Landing Page #2",
+  "name": "PWC -  Page #2",
   "tag": "section",
-  "class": "pc-landing-section",
+  "class": "pc--section",
   "settings": [
     {
       "type": "header",
@@ -4478,7 +4478,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ],
   "presets": [
     {
-      "name": "PWC - Landing Page #2",
+      "name": "PWC -  Page #2",
       "blocks": [
         {
           "type": "image_with_text"
