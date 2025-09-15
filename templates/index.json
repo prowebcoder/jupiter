@@ -11,7 +11,6 @@
   "sections": {
     "image_counter_pwc_GHENam": {
       "type": "Image_Counter_pwc",
-      "disabled": true,
       "settings": {
         "page_width": 1200,
         "image_position": "left",
@@ -66,7 +65,6 @@
         "faq_Jrcp3x",
         "faq_6zKPXR"
       ],
-      "disabled": true,
       "name": "FAQ + Contact",
       "settings": {
         "faq_heading": "Shipping & Returns",
@@ -153,7 +151,6 @@
         "faq_JdBVLg",
         "faq_hqfVQj"
       ],
-      "disabled": true,
       "name": "PWC - FAQ Section #1",
       "settings": {
         "title": "Shipping & Returns",
@@ -231,7 +228,6 @@
         "counter_xYxWxJ",
         "counter_aJJyd8"
       ],
-      "disabled": true,
       "name": "PWC Animated Counter",
       "settings": {
         "container_width": "container",
@@ -399,7 +395,6 @@
         "testimonial_eHhtiJ",
         "testimonial_gKkj4q"
       ],
-      "disabled": true,
       "name": "PWCTestimonialSlider #2",
       "settings": {
         "page_width": 1900,
@@ -440,7 +435,6 @@
     },
     "rw_wavy_layout_ytR4w6": {
       "type": "rw-wavy-layout",
-      "disabled": true,
       "name": "RW - Wavy Layout #1",
       "settings": {
         "container_width": 100,
@@ -603,7 +597,6 @@
         "testimonial_XMPEB7",
         "testimonial_JgTXVL"
       ],
-      "disabled": true,
       "name": "PWCTestimonialSlider #2",
       "settings": {
         "page_width": 1900,
@@ -644,7 +637,6 @@
     },
     "rw_wavy_layout_et3k3m": {
       "type": "rw-wavy-layout",
-      "disabled": true,
       "name": "RW - Wavy Layout #1",
       "settings": {
         "container_width": 100,
@@ -723,7 +715,6 @@
         "look_L9APwD",
         "look_mrWdbA"
       ],
-      "disabled": true,
       "name": "PWC - Lookbook #1",
       "settings": {
         "title": "Look Book",
@@ -1197,8 +1188,8 @@
         "name_line_gap": 20,
         "role_color": "#848696",
         "dot_color": "#082a7b",
-        "arrow_color": "rgba(8, 42, 123, 0.6)",
-        "arrow_hover_color": "rgba(0, 0, 0, 0.8)",
+        "arrow_color": "#082a7b99",
+        "arrow_hover_color": "#000000cc",
         "desktop_padding_top": 100,
         "desktop_padding_bottom": 100,
         "title_font_size_desktop": 100,
