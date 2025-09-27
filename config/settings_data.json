@@ -143,6 +143,11 @@
           "custom_icon": "",
           "custom_script": ""
         }
+      },
+      "10682179261080311933": {
+        "type": "shopify://apps/pwc-store-toolkit/blocks/app-embed/061f15fd-86d2-4caf-b270-ec2fe6a2c96b",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
