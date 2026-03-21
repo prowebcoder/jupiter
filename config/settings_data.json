@@ -144,10 +144,23 @@
           "custom_script": ""
         }
       },
-      "10682179261080311933": {
-        "type": "shopify://apps/pwc-store-toolkit/blocks/app-embed/061f15fd-86d2-4caf-b270-ec2fe6a2c96b",
+      "12084607684997673267": {
+        "type": "shopify://apps/pwc-cartflex/blocks/cart-addon/019c988a-b147-74e5-942b-2e4adfbc64b2",
         "disabled": false,
-        "settings": {}
+        "settings": {
+          "custom_title": "Add to cart",
+          "custom_subtitle": "Add this add-on for",
+          "widget_bg_color": "#ffffff",
+          "widget_text_color": "#202223",
+          "title_font_size": 14,
+          "font_size": 14,
+          "border_color": "#e5e5e5",
+          "border_width": 1,
+          "border_style": "solid",
+          "border_radius": 12,
+          "switch_bg_color": "#008060",
+          "box_shadow": "0 1px 3px rgba(0,0,0,0.08)"
+        }
       }
     },
     "color_schemes": {
